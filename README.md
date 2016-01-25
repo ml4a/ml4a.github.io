@@ -1,2 +1,5 @@
 # ml4a.github.io
-machine learning for artists online notes
+
+Machine learning for artists online notes.
+
+More documentation soon.
