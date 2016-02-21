@@ -1,13 +1,13 @@
 ---
 layout: post
 title: "Deep learning"
-date: 2016-01-25
+date: 2016-02-01
 ---
 
 
 ## Deep learning: broad overview
 
-Like machine learning, many of the concepts and algorithms associated with deep learning go back much farther than usage of the term. Some, like neural networks, predate machine learning itself and were core concepts in early artificial intelligence research. It has recently gained mainstream acceptance as a field with many researchers increasingly identifying with the term. 
+Like machine learning, many of the concepts and algorithms associated with deep learning go back much farther than usage of the term. Some, like neural networks, predate machine learning itself and were core concepts in early artificial intelligence research. It has recently gained mainstream acceptance as a field with many researchers increasingly identifying their work with the term. 
 
 Deep learning has been widely accredited with the recent resurgence of popular interest in machine learning. This has come about for a number of reasons.
 
