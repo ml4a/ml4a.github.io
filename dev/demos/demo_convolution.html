@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ml4a :: MNIST input</title>
+		
+		<script src="../libraries/util.js"></script>
+    <script src="../libraries/convnet.js" type="text/javascript"></script>
+    
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+    <script src="../libraries/p5.dom.js" type="text/javascript"></script>
+    
+    <script src="../datasets/mnist/mnist_labels.js" type="text/javascript"></script>
+    
+    <script src="../src/dataset.js" type="text/javascript"></script>
+    <script src="../src/convnet.js" type="text/javascript"></script>
+    <script src="../src/datavis.js" type="text/javascript"></script>
+
+    <script>
+    	var batch_image_path = "../datasets/mnist/mnist_batch_1.png";
+    	var dim = 28;
+		  var idx = 5;
+
+    	var batch_img;	
+    	var img_raw;
+    	
+
+    	var dataset;
+      var convnet;
+
+      var ready;
+
+      function preload() {
+				batch_img = loadImage(batch_image_path);
+			}
+
+      function setup() {
+        createCanvas(1280, 700);
+        noLoop();  
+        dataset = new dataset();
+        dataset.loadMNIST(setupNetwork);
+        ready = false;
+
+				// load batch image, get sample
+    		batch_img.loadPixels();
+  			img_raw = createImage(dim, dim);
+  			img_raw.loadPixels();
+  			var n = dim * dim * 4;
+  			for (var i=0; i<n; i++) {
+  				var offset = n * idx;
+  				img_raw.pixels[i] = batch_img.pixels[offset + i];
+     		}
+     		img_raw.updatePixels();
+    	}
+
+			function setupNetwork() {
+        convnet = new convnet(dataset);
+        convnet.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+        convnet.add_layer({type:'softmax', num_classes:10});
+        convnet.setup();
+        convnet.train_next(5000);
+        convnet.test_next(5000);
+        draw_c();
+        ready = true;
+      }
+
+      function draw_c() {
+
+      	var out_act = convnet.get_net().layers[1].out_act;
+      	draw_activations(out_act, 1);
+      }
+
+      function draw() {
+
+      }
+
+    	function draw_b() {
+     		background(255);
+
+     		var cell_size = {w:6, h:6};
+     		
+     		fill(0);
+     		rect(0, 0, dim * cell_size.w, dim * cell_size.h);
+
+     		for (var i=0; i<dim; i++) {
+     			for (var j=0; j<dim; j++) {
+     				push();
+     				var c = img_raw.get(i, j);
+     				var value = red(c);
+     				translate(i * cell_size.w, j * cell_size.h);
+     				stroke(255);
+     				fill(255, value);
+     				rect(0, 0, cell_size.w, cell_size.h);
+     				pop();
+     			}
+     		}
+
+
+				var fdim = 5;
+
+     		
+
+     		var filter = [];
+				for (var i=0; i<fdim; i++) {
+					var filter_row = [];
+     			for (var j=0; j<fdim; j++) {
+     				filter_row.push(random(1));
+     			}
+     			filter.push(filter_row);
+     		}
+
+     		
+
+     		translate(dim * cell_size.w + 100, 0);
+
+     		// x, y -> row, col
+				fill(0);
+     		rect(0, 0, fdim * cell_size.w, fdim * cell_size.h);
+
+     		for (var i=0; i<fdim; i++) {
+     			for (var j=0; j<fdim; j++) {
+     				push();
+     				var value = 255 * filter[i][j];
+     				console.log(value);
+
+     				translate(i * cell_size.w, j * cell_size.h);
+     				stroke(0);
+     				fill(255, value);
+     				rect(0, 0, cell_size.w, cell_size.h);
+     				pop();
+     			}
+     		}
+
+
+				var cdim = dim - fdim + 1;
+
+
+				var conv = [];
+				for (var i=0; i<cdim; i++) {
+					var conv_row = [];
+     			for (var j=0; j<cdim; j++) {
+     				conv_row.push(random(1));
+     			}
+     			conv.push(conv_row);
+     		}
+
+     		
+
+     		translate(fdim * cell_size.w + 100, 0);
+
+     		// x, y -> row, col
+				fill(0);
+     		rect(0, 0, cdim * cell_size.w, cdim * cell_size.h);
+
+     		for (var i=0; i<cdim; i++) {
+     			for (var j=0; j<cdim; j++) {
+     				push();
+     				var value = 255 * conv[i][j];
+     				console.log(value);
+
+     				translate(i * cell_size.w, j * cell_size.h);
+     				stroke(0);
+     				fill(255, value);
+     				rect(0, 0, cell_size.w, cell_size.h);
+     				pop();
+     			}
+     		}
+
+
+    	}
+		</script>
+
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+  </head>
+  <body>
+  </body>
+</html>

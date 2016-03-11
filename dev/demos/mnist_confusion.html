@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ml4a :: MNIST confusion</title>
+
+    <script src="../libraries/util.js"></script>
+    <script src="../libraries/convnet.js" type="text/javascript"></script>
+    
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+    <script src="../libraries/p5.dom.js" type="text/javascript"></script>
+    
+    <script src="../datasets/mnist/mnist_labels.js" type="text/javascript"></script>
+    
+    <script src="../src/dataset.js" type="text/javascript"></script>
+    <script src="../src/convnet.js" type="text/javascript"></script>
+    <script src="../src/datavis.js" type="text/javascript"></script>
+
+    <script>
+      var dataset;
+      var convnet;
+
+      // rect of confusion matrix
+      var x = 150;
+      var y = 150;
+      var w = 480;
+      var h = 240;
+
+      // highlight confusion matrix cell
+      var ix = 2;
+      var iy = 5;
+
+      var ready;
+
+      function setup() {
+        createCanvas(1280, 700);
+        noLoop();  
+        dataset = new dataset();
+        dataset.loadMNIST(setupNetwork);
+        ready = false;
+      }
+
+      function setupNetwork() {
+        convnet = new convnet(dataset);
+        convnet.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+        convnet.add_layer({type:'softmax', num_classes:10});
+        convnet.setup();
+        convnet.train_next(5000);
+        convnet.test_next(5000);
+        draw_c();
+        ready = true;
+      }
+
+      function mouseMoved() {
+        var inside = mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h;
+        if (!inside || !ready) return;
+        var n = convnet.get_dataset().get_classes().length;
+        var cell_size = {w:w/n, h:h/n};
+        var ix_ = constrain(floor((mouseX - x) / cell_size.w), 0, n-1);
+        var iy_ = constrain(floor((mouseY - y) / cell_size.h), 0, n-1);
+        if (ix_ != ix || iy_ != iy) {
+          ix = ix_;
+          iy = iy_;
+          draw_c();
+        }
+      }
+
+      function draw_c() {
+        background(255);
+        draw_confusion(convnet, x, y, w, h, iy, ix);
+        draw_confusion_samples(convnet, x, y + h + 4, w, 105, iy, ix);
+      }
+    </script>
+
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+  </head>
+  <body>
+  </body>
+</html>
