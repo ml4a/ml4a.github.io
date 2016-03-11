@@ -34,7 +34,7 @@ function dataset()
 		dim = 28;
 		channels = 1;
 		rows_per_batch = 3000;
-		num_batches = 4; //20
+		num_batches = 7; //20
 		classes = ["0","1","2","3","4","5","6","7","8","9"];
 		for (var i=0; i<num_batches; i++) { 
 			this.load_batch(i);

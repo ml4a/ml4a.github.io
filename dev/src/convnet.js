@@ -90,6 +90,7 @@ function convnet(dataset_)
       var prob = Math.max.apply(Math, out_prob);
 
       a = test_sample.label;
+      actual_label = a;
       p = out_prob.indexOf(prob);
 
       results.confusion[a][p] += 1;
@@ -122,7 +123,7 @@ function convnet(dataset_)
 
     }
     it += n;
-    console.log("done testing");
+    
   };
 
   this.get_weights_image = function() {

@@ -35,6 +35,7 @@ function neuron()
   	return radius;
   };
 
+  
   this.draw = function(txt, draw_arrow) {
     var center = this.get_center();
 		push();
@@ -553,6 +554,23 @@ function nnvis(net_)
     	}
   	}
 	};
+
+
+  ////
+
+  this.draw_sample = function() {
+
+//    text("press spacebar for next sample", 5, 20);
+
+    //var img = this.net.get_dataset().get_image();
+    var img = this.net.get_test_sample_image();
+    image(img, 20, 32, 100, 100);
+
+  };
+
+
+
+///
 
 	/* initial setup */
 	if (net_ != null) {

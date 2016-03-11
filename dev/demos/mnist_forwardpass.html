@@ -23,12 +23,19 @@
       var nnvis;
       var auto = false;
 
+      var toDraw = false;
+
       function setup() {
         createCanvas(1280, 700);
-        
+        //noLoop();
+
+        draw_wait();
+
         dataset = new dataset();
-        dataset.loadMNIST();
-        
+        dataset.loadMNIST(setupNetwork);
+      }
+
+      function setupNetwork(){
         convnet = new convnet(dataset);
         convnet.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
         convnet.add_layer({type:'softmax', num_classes:10});
@@ -44,30 +51,25 @@
         nnvis.get_layer(1).set_neuron_style(12, false);
         nnvis.set_layer_style(0, nnvis.layer_draw_type.NORMAL, 25, 7, false);
 
+        convnet.train_next(21000);
+        convnet.test_next(1);
+        nnvis.update();
+        toDraw = true;
+        auto = true;          
+
         draw_net();
         /*confusion should just take the highest prob regardless if its wrong*/
       }
 
+      function next() {
+        convnet.test_next(1);
+        nnvis.update();
+        draw_net();
+      }
+
       function keyPressed() {
-        if (key=='1') {
-          convnet.train_next(50000);
-          draw_net();
-
-        }
-        if (key=='2') {
-          convnet.test_next(1);
-          nnvis.update();
-          draw_net();
-        }
-
         if (key=='3') {
           auto = !auto;
-        }
-
-        if (key=='4') {
-          convnet.test_next(50000);
-          nnvis.update();
-          draw_net();
         }
       }
 
@@ -75,17 +77,22 @@
         //vis.process_mouse(mouseX, mouseY);
       }
 
+      function draw_wait() {
+        background(255);
+        text("training network.... wait ~10 sec", 20, 20);
+      }
+
       function draw() {
-        if (auto && frameCount % 120 == 0) {
-          convnet.test_next(1);
-          nnvis.update();
-          draw_net();
+        if (auto && frameCount % 80 == 0) {
+          next();
         }
       }
 
       function draw_net() {
         background(255);
-        //vis.draw_sample();
+        if (toDraw) {
+          nnvis.draw_sample();
+        }
         nnvis.draw_network();
         nnvis.draw_result();
         //vis.draw_confusion();
