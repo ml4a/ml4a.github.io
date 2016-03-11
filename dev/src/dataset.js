@@ -30,7 +30,7 @@ function dataset()
 
 	this.loadMNIST = function(callback_) {
 		callback = callback_;
-		root_dir = '/datasets/mnist/mnist';
+		root_dir = '/dev/datasets/mnist/mnist';
 		dim = 28;
 		channels = 1;
 		rows_per_batch = 3000;
@@ -43,7 +43,7 @@ function dataset()
 
 	this.loadCIFAR = function(callback_) {
 		callback = callback_;
-		root_dir = '/datasets/cifar/cifar10';
+		root_dir = '/dev/datasets/cifar/cifar10';
 		dim = 32;
 		channels = 3;
 		rows_per_batch = 1000;
