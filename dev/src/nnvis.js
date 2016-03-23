@@ -34,7 +34,6 @@ function neuron()
   this.get_radius = function() {
   	return radius;
   };
-
   
   this.draw = function(txt, draw_arrow) {
     var center = this.get_center();

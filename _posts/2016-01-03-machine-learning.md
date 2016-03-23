@@ -132,63 +132,39 @@ the same linear classifier which is simply telling apart two objects from each o
 
 this is supervised elarning. used for blah
 
+
+## Regression: simple example
+
+
+To make things more concrete, let's take a look at the simplest example of machine learning: linear regression. If you have ever taken a high school statistics course, you have probably solved these by hand!
+
+Linear regression is a technique used to discover the underlying functional relationship between 
+
+Linear regression in 2d
+Linear regression in 2d (p5?)
+
+Variations
+ - logistic regression/classification
+
+In practice, linear regression is almost never used because most of the functions we care about are not so simple, and more complex methods are required.
+
+- bishop
+- overfitting
+
+
 # Unsupervised learning
 
 Find underlying structure
 
-t-SNE is beautiful (my gif)
 
 # Reinforcement learning
 
 physics demo (balancing a stick) (top banner?). this book will prbbably mostly reference
 
 
-
-looking inside neural nets
- - top bar: snow angel CIFAR blobs
-
-how neural nets are trained
- - top bar: mountains
-
-deepdream
- - top bar: mike tyka's original recursive ones
- - on june __ someone mysteriously posted a photo
- - mike tyka's new deepdream experiments
- - VR: http://www.engadget.com/2016/02/27/google-deepdream-vr-experiment/
-
-convnets
- - top bar: ofxCcv viewer animated gif of me waving
-
-style transfer
- - top bar: multiple mona lisas 
-
-Wekinator and real-time performance with neural nets
- - quote from rebecca
- - top bar: some application (phoenix?)
-
-self-organizing maps
- - top bar: flower SOMs or color of words
-
-t-SNE
- - top bar: grid of flowers/animals, or karpathy's grid?
- - include olivia jack, moritz stefaner, myself, golan + aman
-
-NLP
- - top bar: wikipedia concepts?
- - quote: chris manning, deep learning will steamroll NLP
- - word2vec
- - ragas 
- - translation feedback loops?
-
-ethics
- - top bar: heather's faces
- - kate crawford, hanna wallach
- - many art projects offer a glimpse into a brave new world, filled with 
- - corporations prefer deep learning because it automates feature extraction
-
-
-
 -----
+
+from: http://ufldl.stanford.edu/tutorial/supervised/LinearRegression/
 
 For example, we might want to make predictions about the price of a house so that represents the price of the house in dollars and the elements of represent “features” that describe the house (such as its size and the number of bedrooms). Suppose that we are given many examples of houses where the features for the i’th house are denoted and the price is . For short, we will denote the
 

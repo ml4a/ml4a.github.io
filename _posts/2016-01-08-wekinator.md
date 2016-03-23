@@ -5,7 +5,10 @@ date: 2016-01-08
 ---
 
 
+
 wekinator.org
+
+Wekinator as a switchboard
 
 inputs cloud -> wekinator -> outputs cloud
 
@@ -14,6 +17,8 @@ inputs
 
 outputs
 - ableton, audiounit, sc3, chuck, max, midi, PD, unity
+
+convnetOSC?
 
 or anything you want! via osc
 

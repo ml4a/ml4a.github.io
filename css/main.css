@@ -1,6 +1,8 @@
 body {
     margin: 60px auto;
     width: 70%;
+    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
+    font-size:13px;
 }
 nav ul, footer ul {
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
@@ -25,7 +27,7 @@ h1 {
 }
 p {
     font-size: 1.5em;
-    line-height: 1.4em;
+    line-height: 1.5em;
     color: #333;
 }
 footer {
@@ -40,4 +42,9 @@ ul.posts {
 
 ul.posts li {
     list-style: none;
+}
+
+h5 {
+    font-size:16px;
+    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
 }

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>ml4a :: MNIST input</title>
 		
-		<script src="../libraries/util.js"></script>
-    <script src="../libraries/convnet.js" type="text/javascript"></script>
-    
+    <script src="../libraries/jquery-1.8.3.min.js"></script>
+
+	  <script src="../libraries/convnet.js" type="text/javascript"></script>
+    <script src="../libraries/util.js" type="text/javascript"></script>
     <script src="../libraries/p5.js" type="text/javascript"></script>
     <script src="../libraries/p5.dom.js" type="text/javascript"></script>
     
@@ -17,84 +18,108 @@
     <script src="../src/datavis.js" type="text/javascript"></script>
 
     <script>
-    	var batch_image_path = "../datasets/mnist/mnist_batch_1.png";
-    	var dim = 28;
-		  var idx = 5;
-
-    	var batch_img;	
-    	var img_raw;
-    	
-
     	var dataset;
       var convnet;
-
-      var ready;
-
-      function preload() {
-				batch_img = loadImage(batch_image_path);
-			}
 
       function setup() {
         createCanvas(1280, 700);
         noLoop();  
+
         dataset = new dataset();
-        dataset.loadMNIST(setupNetwork);
-        ready = false;
-
-				// load batch image, get sample
-    		batch_img.loadPixels();
-  			img_raw = createImage(dim, dim);
-  			img_raw.loadPixels();
-  			var n = dim * dim * 4;
-  			for (var i=0; i<n; i++) {
-  				var offset = n * idx;
-  				img_raw.pixels[i] = batch_img.pixels[offset + i];
-     		}
-     		img_raw.updatePixels();
-    	}
-
-			function setupNetwork() {
-        convnet = new convnet(dataset);
-        convnet.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
-        convnet.add_layer({type:'softmax', num_classes:10});
-        convnet.setup();
-        convnet.train_next(5000);
-        convnet.test_next(5000);
-        draw_c();
-        ready = true;
+        dataset.loadMNIST();        
+        //setupConvnet();
+        loadPresetNetwork();
+        console.log("setup");
       }
 
-      function draw_c() {
+      function keyPressed() {
+        if (key=='1') {
+          next();
+        }
+      }
 
-      	var out_act = convnet.get_net().layers[1].out_act;
-      	draw_activations(out_act, 1);
+      function loadPresetNetwork() {
+        $.getJSON("../datasets/mnist/mnist_snapshot.json", function(json){
+          convnet = new convnet(dataset);
+          convnet.load_from_json(json, {method:'adadelta', batch_size:20, l2_decay:0.001});
+          background(255);
+          console.log("dodododit");
+          next();
+        });
+      }
+
+      function setupConvnet() {
+        convnet = new convnet(dataset);
+        convnet.add_layer({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+        convnet.add_layer({type:'pool', sx:2, stride:2});
+        convnet.add_layer({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+        convnet.add_layer({type:'pool', sx:3, stride:3});
+        convnet.add_layer({type:'softmax', num_classes:10});
+        convnet.setup_trainer({method:'adadelta', batch_size:20, l2_decay:0.001});
+        convnet.train_all(finishedTraining);
+      }
+
+      function next() {
+        var tested = convnet.test_next();
+        if (tested) {
+          draw_conv_acts();
+        }
       }
 
       function draw() {
 
       }
 
-    	function draw_b() {
-     		background(255);
+      function draw_conv_acts() {
+        var layer = 1;
+        imageMode(CENTER);
+        var n = convnet.get_num_activations(layer);
+        var img = convnet.get_test_sample_image();
+        image(img, 600, 100, 100, 100);
+        for (var i=0; i<n; i++) {
+          var x = map(i, 0, n-1, 100, 1100);
+          var img_w = convnet.get_weights_image(i, 6);
+          var img_a = convnet.get_activations_image(layer, i, 2);
+          image(img_w, x, 200);  
+          image(img_a, x, 280);
+        }
+      }
 
-     		var cell_size = {w:6, h:6};
-     		
-     		fill(0);
-     		rect(0, 0, dim * cell_size.w, dim * cell_size.h);
+      function draw_image_grid(img, cw, ch) {
+        var cell_size = {w:cw, h:ch};
+        fill(0);
+        rect(0, 0, img.width * cell_size.w, img.height * cell_size.h);
+        for (var i=0; i<img.width; i++) {
+          for (var j=0; j<img.height; j++) {
+            push();
+            var value = red(img.get(i, j));
+            translate(i * cell_size.w, j * cell_size.h);
+            stroke(0);
+            fill(255, value);
+            rect(0, 0, cell_size.w, cell_size.h);
+            pop();
+          }
+        }
+      }
 
-     		for (var i=0; i<dim; i++) {
-     			for (var j=0; j<dim; j++) {
-     				push();
-     				var c = img_raw.get(i, j);
-     				var value = red(c);
-     				translate(i * cell_size.w, j * cell_size.h);
-     				stroke(255);
-     				fill(255, value);
-     				rect(0, 0, cell_size.w, cell_size.h);
-     				pop();
-     			}
-     		}
+    	function draw_conv_demo() {
+     		var f = 3;
+        var cell_size = {w:6, h:6};
+        
+        var img = convnet.get_test_sample_image();
+        var img_w = convnet.get_weights_image(f, 1);
+        var img_a = convnet.get_activations_image(1, f, 1);
 
+
+        draw_image_grid(img, 8, 8);
+        translate(200, 0);
+        draw_image_grid(img_w, 8, 8);
+        translate(200, 0);
+        draw_image_grid(img_a, 8, 8);
+
+
+
+        return;
 
 				var fdim = 5;
 
@@ -114,6 +139,7 @@
      		translate(dim * cell_size.w + 100, 0);
 
      		// x, y -> row, col
+        /*
 				fill(0);
      		rect(0, 0, fdim * cell_size.w, fdim * cell_size.h);
 
@@ -130,42 +156,65 @@
      				pop();
      			}
      		}
-
+        */
 
 				var cdim = dim - fdim + 1;
 
+        
 
-				var conv = [];
-				for (var i=0; i<cdim; i++) {
-					var conv_row = [];
-     			for (var j=0; j<cdim; j++) {
-     				conv_row.push(random(1));
-     			}
-     			conv.push(conv_row);
-     		}
-
-     		
 
      		translate(fdim * cell_size.w + 100, 0);
 
      		// x, y -> row, col
-				fill(0);
-     		rect(0, 0, cdim * cell_size.w, cdim * cell_size.h);
+				
+        for (var f=0; f<8; f++) {
+                  var filter = convnet.get_net().layers[1].filters[f];
+        var sx = filter.sx;
+        var sy = filter.sy;
 
-     		for (var i=0; i<cdim; i++) {
-     			for (var j=0; j<cdim; j++) {
-     				push();
-     				var value = 255 * conv[i][j];
-     				console.log(value);
+          push();
+          translate(f * cdim * cell_size.w * 1.1, 0);
 
-     				translate(i * cell_size.w, j * cell_size.h);
-     				stroke(0);
-     				fill(255, value);
-     				rect(0, 0, cell_size.w, cell_size.h);
-     				pop();
+        var minv_ = +1e8;
+        var maxv_ = -1e8;
+
+        var values = [];
+
+     		for (var iy=0; iy<cdim; iy++) {
+          var value_row = [];
+     			for (var ix=0; ix<cdim; ix++) {
+            var value = 0;
+            for (var fy=0; fy<sy; fy++) {
+              for (var fx=0; fx<sx; fx++) {
+                var v = red(img_raw.get(ix+fx, iy+fy));
+                var w = filter.w[fx + fy * sx];
+                value += v*w;
+              }
+            }
+            value_row.push(value);
+            minv_ = min(minv_, value);
+            maxv_ = max(maxv_, value);
      			}
+          values.push(value_row);
      		}
+        
 
+        fill(0);
+        rect(0, 0, cdim * cell_size.w, cdim * cell_size.h);
+        for (var iy=0; iy<cdim; iy++) {
+          for (var ix=0; ix<cdim; ix++) {
+            push();
+            translate(ix * cell_size.w, iy * cell_size.h);
+            stroke(0);
+            var v = map(values[iy][ix], minv_, maxv_, 0, 255);
+            fill(255, v);
+            rect(0, 0, cell_size.w, cell_size.h);
+            pop();
+          }
+        }
+
+        pop();
+        }
 
     	}
 		</script>

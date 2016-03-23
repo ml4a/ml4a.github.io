@@ -2,14 +2,14 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>ml4a :: MNIST demo</title>
+    <title>ml4a :: CIFAR-10 demo</title>
 
-  	<script src="../libraries/convnet.js" type="text/javascript"></script>
+    <script src="../libraries/convnet.js" type="text/javascript"></script>
     <script src="../libraries/util.js" type="text/javascript"></script>
     <script src="../libraries/p5.js" type="text/javascript"></script>
     <script src="../libraries/p5.dom.js" type="text/javascript"></script>
     
-    <script src="../datasets/mnist/mnist_labels.js" type="text/javascript"></script>
+    <script src="../datasets/cifar/cifar10_labels.js" type="text/javascript"></script>
     
     <script src="../src/dataset.js" type="text/javascript"></script>
     <script src="../src/convnet.js" type="text/javascript"></script>
@@ -19,19 +19,20 @@
       var dataset;
       var convnet;
       var nnvis;
-      var ready = false;
 
       function setup() {
         createCanvas(1280, 700);
-        
+        noLoop();
+        draw_waiting();
+
         dataset = new dataset();
-        dataset.loadMNIST();
+        dataset.loadCIFAR();
 
         convnet = new convnet(dataset);
         convnet.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
         convnet.add_layer({type:'softmax', num_classes:10});
         convnet.setup_trainer({method:'adadelta', batch_size:8, l2_decay:0.0001});
-        
+
         nnvis = new nnvis(convnet);
         nnvis.set_input_label("pixel");
         nnvis.set_neuron_style(15, false);
@@ -46,38 +47,32 @@
       }
 
       function finishedTraining() {
-        ready = true;
-        noLoop();
         next();
       }
 
       function keyPressed() {       
-        if (key==' ') {
+        if (key=='1') {
           next();
         }
       }
 
       function next() {
-        convnet.test_next();
-        nnvis.update();
-        draw_net();
+        var tested = convnet.test_next();
+        if (tested) {
+          nnvis.update();
+          draw_net();
+        }
       }
 
-      function draw() {
-        if (!ready) {
-          background(255);
-          text("training network.... trained "+dataset.get_training_size()+" of "+dataset.get_training_size_all()+" samples", 20, 20);
-          return;
-        }
+      function draw_waiting() {
+        background(255);
+        text("training network.... wait ~10 sec", 20, 20);
       }
 
       function draw_net() {
         background(255);
-
-        noStroke();
-        fill(0);
-        text("press spacebar to classify new sample", 20, 20);        nnvis.draw_sample();
         
+        nnvis.draw_sample();
         nnvis.draw_network();
         nnvis.draw_result();
       }

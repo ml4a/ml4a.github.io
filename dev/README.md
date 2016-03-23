@@ -1,7 +1,7 @@
 External libraries used.
 
- - [p5.js]()
- - [convnet.js]()
+ - [convnet.js](http://cs.stanford.edu/people/karpathy/convnetjs/)
+ - [p5.js](http://p5js.org)
 
 
-should there be a config.js to set locations?
+

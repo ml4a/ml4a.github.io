@@ -1,3 +1,8 @@
+function disp_text(n, d) {
+  var t = nfs(n, 0, d);
+  return t[0] == ' ' ? t.slice(1) : t;
+};
+
 function draw_image_grid(img, x, y, w, h) 
 {	
 	var dim_x = img.width;
@@ -36,22 +41,22 @@ function draw_image_grid(img, x, y, w, h)
 	pop();
 };
 
-function draw_confusion(cn, x, y, w, h, iy, ix) 
+function draw_confusion(cn, x, y, w, h, iy, ix, is_tops) 
 {
 	var classes = cn.get_dataset().get_classes();
 	var results = cn.get_results();
 	var n = cn.get_dataset().get_classes().length;
 	var cell_size = {w:w/n, h:h/n};
-	var txtSize = 12;
+  var txtSize = 14;
 	var min_precision_wrong = 1.0;
 	var max_precision_wrong = 0.0;
 	var min_precision_right = 1.0;
 	var max_precision_right = 0.0;
 	for (var a=0; a<n; a++) {
     for (var p=0; p<n; p++) {
-      var raw = results.confusion[a][p];
-      var precision = raw / results.predictions[p];
-      var recall = raw / results.actuals[a];
+      var raw = results.confusion[a][p] == 0 ? 1 : results.confusion[a][p];
+      var precision = results.predictions[p] == 0 ? 0 : raw / results.predictions[p];
+      var recall = results.actuals[a] == 0 ? 0 : raw / results.actuals[a];
     	if (a==p) {
 				min_precision_right = min(precision, min_precision_right);
 	    	max_precision_right = max(precision, max_precision_right);
@@ -67,31 +72,90 @@ function draw_confusion(cn, x, y, w, h, iy, ix)
   translate(x, y);
 	for (var a=0; a<n; a++) {
     for (var p=0; p<n; p++) {
-      var raw = results.confusion[a][p];
-      var precision = raw / results.predictions[p];
-      var recall = raw / results.actuals[a];
-      push();
-      translate(p * cell_size.w, a * cell_size.h);      
-    	noStroke();
-    	if (a == p) {
-				fill(0, 255, 0, map(precision, min_precision_right, max_precision_right, 90, 255));
-    	}
-      else {
-      	fill(255, 0, 0, map(precision, min_precision_wrong, max_precision_wrong, 0, 200));
+      if (is_tops) {
+        if (results.tops[a][p].length == 0) continue;
+        var idx = results.tops[a][p][0].idx;
+        var prob = results.tops[a][p][0].prob;
+        var img = cn.get_test_sample_image(idx);
+        push();
+        translate(p * cell_size.w, a * cell_size.h);      
+        noStroke();
+        fill(a==p?0:255, a==p?255:0, 0);
+        rect(0, 0, cell_size.w, cell_size.h);
+        var imgSize = min(cell_size.w, cell_size.h) - 4;
+        var imgMargin = {x:0.5 * (cell_size.w - imgSize), y:0.5 * (cell_size.h - imgSize)};
+        image(img, imgMargin.x, imgMargin.y, imgSize, imgSize);
+        pop();
       }
-      rect(0, 0, cell_size.w, cell_size.h);
-      fill(0);
-      noStroke();
-      text(raw, 24, 16);
-      pop();
+      else {
+        var raw = results.confusion[a][p] == 0 ? 0 : results.confusion[a][p];
+        var precision = results.predictions[p] == 0 ? 0 : raw / results.predictions[p];
+        var recall = results.actuals[a] == 0 ? 0 : raw / results.actuals[a];
+        push();
+        translate(p * cell_size.w, a * cell_size.h);      
+      	stroke(0, 10);
+      	if (a == p) {
+  				fill(0, 255, 0, map(precision, min_precision_right, max_precision_right, 90, 255));
+      	}
+        else {
+        	fill(255, 0, 0, map(precision, min_precision_wrong, max_precision_wrong, 0, 200));
+        }
+        rect(0, 0, cell_size.w, cell_size.h);
+        textSize(txtSize);
+        fill(0);
+        noStroke();        
+        text(raw, 0.5 * cell_size.w, 0.5 * (cell_size.h + txtSize));
+        pop();
+      }
     }
   }
+  textSize(txtSize);
+  strokeWeight(2);
+  stroke(0, 150);
+  noFill();
   if (ix != -1 && iy != -1) {
-  	stroke(0, 150);
-    strokeWeight(2);
-    noFill();
     rect(ix * cell_size.w, iy * cell_size.h, cell_size.w, cell_size.h);
   }
+  strokeWeight(1);
+  for (var a=0; a<n; a++) {
+    var pct = results.actuals[a] == 0 ? 0 : results.confusion[a][a] / results.actuals[a];
+    push();    
+    translate((n+0.5) * cell_size.w, a * cell_size.h);
+    stroke(0, 150);
+    fill(lerp(255, 0, pct), lerp(0, 255, pct), 0, 255);
+    rect(0, 0, cell_size.w, cell_size.h);
+    fill(0);
+    noStroke();    
+    text(results.actuals[a]==0?"":floor(100.0*pct)+"%", 0.5 * cell_size.w, 0.5 * (cell_size.h + txtSize));
+    pop();
+  }
+  for (var p=0; p<n; p++) {
+    var pct = results.predictions[p] == 0 ? 0 : results.confusion[p][p] / results.predictions[p];
+    push();    
+    translate(p * cell_size.w, (n+0.5) * cell_size.h);      
+    stroke(0, 150);
+    fill(lerp(255, 0, pct), lerp(0, 255, pct), 0, 255);
+    rect(0, 0, cell_size.w, cell_size.h);
+    fill(0);
+    noStroke();    
+    text(results.predictions[a]==0?"":floor(100.0*pct)+"%", 0.5 * cell_size.w, 0.5 * (cell_size.h + txtSize));
+    pop();
+  }
+  
+  var accuracy = results.total == 0 ? 0 : results.correct / results.total;
+  push();
+  translate((n+0.5) * cell_size.w, (n+0.5) * cell_size.h);      
+  stroke(0, 150);
+  fill(lerp(255, 0, accuracy), lerp(0, 255, accuracy), 0, 255);
+  rect(-10, -10, cell_size.w+20, cell_size.h+20);
+  fill(0);
+  noStroke();    
+  textStyle(BOLD);
+  text("accuracy", 0.5 * cell_size.w, txtSize-6);
+  textStyle(NORMAL);
+  text(disp_text(100.0*accuracy,1)+"%", 0.5 * cell_size.w, 0.5 * (cell_size.h + txtSize));
+  pop();
+
   noStroke(0);
   fill(0);
   textSize(txtSize);
@@ -103,17 +167,28 @@ function draw_confusion(cn, x, y, w, h, iy, ix)
     text("actual "+classes[a], 0, txtSize/2);
     pop();
 	}
-	textAlign(LEFT);
-	for (var p=0; p<n; p++) {
-  	push();
+  textAlign(LEFT);
+  for (var p=0; p<n; p++) {
+    push();
     translate((p + 0.5) * cell_size.w, -4);
     rotate(-PI/8);
     textStyle(p == ix ? BOLD : NORMAL);
     text("predicted "+classes[p], 0, 0);
     pop();
   }
+  textStyle(BOLD);
+  push();
+  textAlign(RIGHT);
+  translate(-12, (n + 1.0) * cell_size.h);
+  text("precision", 0, txtSize/2);
   pop();
-
+	push();
+  textAlign(LEFT);
+  translate((n + 1.0) * cell_size.w, -8);
+  rotate(-PI/8);    
+  text("recall", 0, txtSize/2);
+  pop();  
+  pop();
   stroke(0);
   noFill();
   rect(x, y, w, h);
@@ -124,24 +199,31 @@ function draw_confusion_samples(cn, x, y, w, h, actual, predicted)
 	var classes = cn.get_dataset().get_classes();
 	var results = cn.get_results();
   var n = results.tops[actual][predicted].length;
-  var max_samples = 8;
-  var sample_w = (w - 8) / max_samples;
+  var max_samples = 28;
+  var sample_w = 64;
   push();
   translate(x, y);
   fill(0);
   noStroke();
   textStyle(BOLD);
+  textSize(14);
   text(classes[actual]+(actual==predicted?" correctly classified as ":" misclassified as ")+classes[predicted], 5, 18);
   textAlign(CENTER);
+  textStyle(ITALIC);
+  textSize(11);
+  text("hover mouse over confusion matrix to get top samples", w/2, -10);
+  textSize(14);
   textStyle(NORMAL);
   for (var i=0; i<min(max_samples, n); i++) {
+    var idx_pred_r = floor(i / 4);
+    var idx_pred_c = i % 4;
   	var idx = results.tops[actual][predicted][i].idx;
-  	var img = cn.get_sample_image(idx);
+  	var img = cn.get_test_sample_image(idx);
 		var pct = floor(100.0*results.tops[actual][predicted][i].prob);
 		push();
-  	translate(4 + i * sample_w, 22);
-  	image(img, 0, 0, sample_w - 2, sample_w - 2);
-		text(pct+"%", (sample_w-2) / 2, sample_w + 13);
+  	translate(4 + idx_pred_c * (sample_w+4), 24 + idx_pred_r * (sample_w+4+14));
+  	image(img, 2, 2, sample_w, sample_w);
+		text(pct+"%", 2 + 0.5*sample_w, sample_w+14);
   	pop();
   }
   pop();
@@ -150,63 +232,120 @@ function draw_confusion_samples(cn, x, y, w, h, actual, predicted)
   rect(x, y, w, h);
 };
 
-function draw_confusion_sample_grid(cn, x, y, w, h) 
+function draw_confusion_best(cn, max_top_samples, x, y, w, h) 
 {
-	var classes = cn.get_dataset().get_classes();
-	var results = cn.get_results();
-	var n = cn.get_dataset().get_classes().length;
-	var cell_size = {w:w/n, h:h/n};
-	var txtSize = 14;
-  push();
+  fill(0);
+  noStroke();
   textAlign(CENTER);
-  translate(x, y);
-	for (var a=0; a<n; a++) {
-    for (var p=0; p<n; p++) {
-    	if (results.tops[a][p].length == 0) continue;
-    	var idx = results.tops[a][p][0].idx;
-    	var prob = results.tops[a][p][0].prob;
-  		var img = cn.get_sample_image(idx);
-      push();
-      translate(p * cell_size.w, a * cell_size.h);      
-    	noStroke();
-    	fill(a==p?0:255, a==p?255:0, 0);
-      rect(0, 0, cell_size.w, cell_size.h);
-      image(img, 2, 2, cell_size.w-4, cell_size.h-4);
-      pop();
+  textSize(16);
+  textStyle(BOLD);
+  text("Top mistakes", x + 0.5 * w, y-8);
+  var classes = cn.get_dataset().get_classes();
+  var results = cn.get_results();
+  var w_rect = w;
+  var w_height = 52;
+  var best = [];
+  for (var a=0; a<classes.length; a++) {
+    for (var p=0; p<classes.length; p++) {
+      if (a == p) continue;
+      var inserted = false;
+      for (var i=0; i<results.tops[a][p].length; i++) {
+        var idx = results.tops[a][p][i].idx;
+        var prob = results.tops[a][p][i].prob;
+        for (var j=0; j<best.length; j++) {
+          if (prob > best[j].prob) {
+            best.splice(j, 0, {idx:idx, prob:prob, actual:a, predicted:p});
+            best.splice(max_top_samples);
+            inserted = true;
+            break;
+          }
+        }
+        if (!inserted && best.length < max_top_samples) {
+          best.push({idx:idx, prob:prob, actual:a, predicted:p});
+        }
+      }
     }
   }
-  noStroke(0);
-  fill(0);
-  textSize(txtSize);
-  textAlign(RIGHT);
-  for (var a=0; a<n; a++) {
-  	push();
-    translate(-12, (a + 0.5) * cell_size.h);
-    text("actual "+classes[a], 0, txtSize/2);
+  textAlign(LEFT);
+  textSize(12);
+  textStyle(NORMAL);
+  for (var j=0; j<best.length; j++) {
+    var idx = best[j].idx;
+    var prob = best[j].prob;
+    var predicted = best[j].predicted;
+    var actual = best[j].actual;
+    var img = cn.get_test_sample_image(idx);
+    push();
+    translate(x, y + (w_height + 2) * j);
+    image(img, 2, 2, 48, 48);
+    noStroke();
+    fill(0);
+    text("actual: "+classes[actual], 54, 16);   
+    text("predicted: "+classes[predicted], 54, 32);   
+    text("confidence: "+floor(100*prob)+"%", 54, 48);   
+    stroke(0, 100);
+    noFill();
+    rect(0, 0, w_rect, w_height);
     pop();
-	}
-	textAlign(LEFT);
-	for (var p=0; p<n; p++) {
-  	push();
-    translate((p + 0.5) * cell_size.w, -4);
-    rotate(-PI/8);
-    text("predicted "+classes[p], 0, 0);
-    pop();
-  }
-  pop();
+  }      
 };
 
-
-
+var idx_pred_r = 0;
+var idx_pred_c = 0;
+var idxt = -1;
+function draw_last_predictions(cn, cols, x, y, w, h) 
+{
+  var idxt_ = cn.get_dataset().get_sample_index().test;
+  if (idxt == idxt_) {
+    return;
+  }
+  idxt = idxt_;
+  var cell_width = w / cols;
+  var cell_height = 36;
+  var num_pred_cols = floor(w / cell_width);
+  var classes = cn.get_dataset().get_classes();
+  var simg = cn.get_test_sample_image();
+  var a = cn.get_actual_label();
+  var p = cn.get_predicted_label();
+  push();
+  translate(x + cell_width * idx_pred_c, y + cell_height * idx_pred_r);
+  fill(a == p ? 0 : 255, a == p ? 255 : 0, 0);
+  stroke(0);
+  rect(1, 0, cell_width, cell_height);
+  image(simg, 4, 2, 32, 32);
+  noStroke();
+  textSize(12);
+  fill(0);
+  if (a==p) {
+    text(classes[p], 40, 24); 
+  }
+  else {
+    fill(70);
+    text(classes[p], 40, 16); 
+    fill(0);
+    text(classes[a], 40, 33);
+    stroke(70);
+    line(38, 12, 38 + textWidth(classes[p])+4, 12);    
+  }
+  pop();
+  idx_pred_r += 1;
+  if (idx_pred_r >= floor(h / cell_height)) {
+    idx_pred_r = 0;
+    idx_pred_c = (idx_pred_c + 1) % num_pred_cols;
+  }
+}
 
 
 ///----------------
 
-
+/*
 function draw_activations(A, scale) {
-  
-  //var s = scale || 2; // scale
-  var s = 1;
+  var act_images = [];
+
+  var maxmin = cnnutil.maxmin;
+  var f2t = cnnutil.f2t;
+
+  var s = scale || 2; // scale
   var draw_grads = false;
   if(typeof(grads) !== 'undefined') draw_grads = grads;
   
@@ -214,14 +353,13 @@ function draw_activations(A, scale) {
   var w = draw_grads ? A.dw : A.w;
   var mm = maxmin(w);
 
-  
   // create the canvas elements, draw and add to DOM
   for(var d=0;d<A.depth;d++) {
     var W = A.sx * s;
     var H = A.sy * s;
 
-    var img_ = createImage(A.sx, A.sy);
-    img_.loadPixels();
+    var img = createImage(A.sx * s, A.sy * s);
+    img.loadPixels();
     
     for(var x=0;x<A.sx;x++) {
       for(var y=0;y<A.sy;y++) {
@@ -233,26 +371,18 @@ function draw_activations(A, scale) {
         for(var dx=0;dx<s;dx++) {
           for(var dy=0;dy<s;dy++) {
             var pp = ((W * (y*s+dy)) + (dx + x*s)) * 4;
-            img_.pixels[pp  ] = dval;  // rgb
-            img_.pixels[pp+1] = dval;  // rgb
-            img_.pixels[pp+2] = dval;  // rgb
-            img_.pixels[pp+3] = 255;   // alpha
+            img.pixels[pp  ] = dval;  // rgb
+            img.pixels[pp+1] = dval;  // rgb
+            img.pixels[pp+2] = dval;  // rgb
+            img.pixels[pp+3] = 255;   // alpha
           }
         }
       }
-    }
-    
-    img_.updatePixels();
-    
-    var yy = floor(d / 14) * 82;// (A.sy + 2);
-    var xx = (d % 14) * 82;//(A.sx + 5);
-    
-    push();
-    translate(xx, yy);
-    noSmooth();
-    image(img_, 0, 0, 80, 80);
-    pop();
+    }    
+    img.updatePixels();
+    act_images.push(img);
   }
+  return act_images;
 }
-
+*/
 

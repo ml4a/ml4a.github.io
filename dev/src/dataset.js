@@ -4,18 +4,15 @@ function dataset()
 	var channels;
 	var classes;
 	var rows_per_batch;
-	var num_batches;
-	var callback;
-	var training_set=[];
-
-	this.get_training_sample = function(t) {
-		return training_set[t];
-	};
-
-	this.get_test_sample = function(t) {
-		return training_set[t];
-	};
-
+	var num_batches;	
+	var fully_loaded;
+	var loading_batch;
+	var batch_idx, t_batch_idx;
+	var test_batches;
+	var test_batch_only;
+	var sample_idx = {train:0, test:0};
+	var data = {train:[], test:[]};
+	
 	this.get_dim = function() {
 		return dim;
 	};
@@ -28,33 +25,110 @@ function dataset()
 		return classes;
 	};
 
-	this.loadMNIST = function(callback_) {
-		callback = callback_;
-		root_dir = '/dev/datasets/mnist/mnist';
-		dim = 28;
-		channels = 1;
-		rows_per_batch = 3000;
-		num_batches = 7; //20
-		classes = ["0","1","2","3","4","5","6","7","8","9"];
-		for (var i=0; i<num_batches; i++) { 
-			this.load_batch(i);
+	this.get_training_size = function() {
+		return data.train.length;
+	};
+
+	this.get_test_size = function() {
+		return data.test.length;
+	};
+
+	this.get_training_size_all = function() {
+		return (num_batches - test_batches.length) * rows_per_batch;
+	};
+
+	this.get_test_size_all = function() {
+		return (num_batches - test_batches.length) * rows_per_batch;
+	};
+
+
+	this.is_loading = function() {
+		return loading_batch;
+	};
+
+	this.is_fully_loaded = function() {
+		return fully_loaded;
+	};
+
+	this.finished_testing = function() {
+		return sample_idx.test >= test_batches.length * rows_per_batch;
+	};
+
+	this.get_training_sample = function(t) {
+		return data.train[t];
+	};
+
+	this.get_test_sample = function(t) {
+		return data.test[t];
+	};
+
+	this.get_sample_index = function() {
+		return sample_idx;
+	};
+
+	this.get_next_training_sample = function() {
+		if (sample_idx.train < data.train.length) {
+			sample_idx.train += 1;
+			return data.train[sample_idx.train-1];
+		}
+		else {
+			return null;
 		}
 	};
 
-	this.loadCIFAR = function(callback_) {
-		callback = callback_;
+	this.get_next_test_sample = function() {
+		if (sample_idx.test < data.test.length) {
+			sample_idx.test += 1;
+			return data.test[sample_idx.test-1];
+		}
+		else {
+			return null;
+		}
+	};
+
+	this.set_train_index = function(idx) {
+		sample_idx.train = idx;
+	};
+
+	this.set_test_index = function(idx) {
+		sample_idx.test = idx;
+	};
+
+	this.initialize = function() {
+		loading_batch = false;
+		fully_loaded = false;
+		sample_idx.train = 0;
+		sample_idx.test = 0;
+		t_batch_idx = 0;
+		batch_idx = test_batch_only ? test_batches[t_batch_idx] : 0;
+		this.load_batch(batch_idx);
+	};
+
+	this.loadMNIST = function(test_batch_only_) {
+		test_batch_only = test_batch_only_ || false;
+		root_dir = '/dev/datasets/mnist/mnist';
+		dim = 28;
+		channels = 1;
+		rows_per_batch = 3000
+		num_batches = 21;
+		test_batches = [18,19,20];
+		classes = ["0","1","2","3","4","5","6","7","8","9"];
+		this.initialize();
+	}
+
+	this.loadCIFAR = function(test_batch_only_) {
+		test_batch_only = test_batch_only_ || false;
 		root_dir = '/dev/datasets/cifar/cifar10';
 		dim = 32;
 		channels = 3;
 		rows_per_batch = 1000;
-		num_batches = 10; //50;
+		num_batches = 51;
+		test_batches = [41,42,43,44,45,46,47,48,49,50];
 		classes = ["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"];
-		for (var i=0; i<num_batches; i++) { 
-			this.load_batch(i);
-		}
+		this.initialize();
 	};
-
-	this.load_batch = function(batch_idx) {
+	
+	this.load_batch = function(batch_idx, callback) {
 		var batch_path = root_dir+"_batch_"+batch_idx+".png";
 		loadImage(batch_path, function(img) {
 			var w = dim;
@@ -71,14 +145,36 @@ function dataset()
 		      	b_vol.w[nc*i+c] = img.pixels[ix+c] / 255.0; 
 					}	
 	    	}
-	    	var sample = {vol:b_vol, label:b_label};
-	    	training_set.push(sample);
+	    	if (test_batches.indexOf(batch_idx) == -1) {
+		    	data.train.push({idx:data.train.length, vol:b_vol, label:b_label});
+		    }
+		    else {
+		    	data.test.push({idx:data.test.length, vol:b_vol, label:b_label});	
+		    }
 			}
-			console.log("training set size: " +training_set.length);
-			if (training_set.length == num_batches * rows_per_batch && callback != null) {
+			console.log("loaded batch "+batch_idx+". size: {training set:"+data.train.length+", test set:"+data.test.length+")");
+			fully_loaded = ((data.train.length + data.test.length) == num_batches * rows_per_batch);	
+			loading_batch = false;
+			if (callback != null) {
 				callback();
 			}
 		});
+	};
+
+	this.request_next_batch = function(callback){
+		if (!loading_batch) {
+			if (test_batch_only && t_batch_idx < test_batches.length-1) {
+				t_batch_idx += 1;
+				batch_idx = test_batches[t_batch_idx];
+				loading_batch = true;
+				this.load_batch(batch_idx, callback);
+			}
+			else if (batch_idx < num_batches-1) {
+				batch_idx += 1;
+				loading_batch = true;
+				this.load_batch(batch_idx, callback);
+			}
+		}
 	};
 
 	this.get_image = function(sample) {

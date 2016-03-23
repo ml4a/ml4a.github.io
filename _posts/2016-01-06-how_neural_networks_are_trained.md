@@ -7,74 +7,19 @@ date: 2016-01-04
 [http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf]
 
  - review
-   - function graph + output
-     - example
-   - 
-   - turn back if you dont understand
-
+ - function graph + output
  - naive
    - try random ones
  - optimization, hill-climbing analogy
    - go smoothly
-
  - backprop
-   - analytic way
-   - hackers way (karpathy)
-
-
+   - analytic way (chain rule)
+   - [hackers way](karpathy.github.io/neuralnets/)
  - remember to
-   - why sigmoid functions fell out of favor (vanishing gradient)
-
-
-different gradient descent methods
- - SGD
- - momentum
- - NAG
- - adagrad
- - adadelta
- - rmsprop
-
-
-printable version with interactive parts broken out
-
-going down a mountain but its dark. and you can only walk north south or east or west
-
-http://karpathy.github.io/neuralnets/
-
-
-LECTURE 5 how neural nets are trained history 6:00
-
-
-backprop 86, but couldn't train well until 2006. so this is really important, and vindicated them
-
-
-----
-notes
-because perceptron had step function, was non-differentiable, backprop came later
-
-86 - backprop first applied to annns
-rumelhart et al 86
-
-hinton/salakhutinov 2006 - first deep network 
- - use unsupervised pre-training layer (restricted boltzman machine) by layer before using backprop
- - backprop doesn't work well from scratch (because of vanishing gradient?)
+   - why sigmoid functions fell out of favor (vanishing grads)
 
 
 -----------
-
-Learning by data
-
-Cost function
-
------------
-
-
------------
-
-"Acabo de escribir infinita. No he interpolado ese adjetivo por una costumbre retórica; digo que no es ilógico pensar que el mundo es infinito. Quienes lo juzgan limitado, postulan que en lugares remotos los corredores y escaleras y hexágonos pueden inconcebiblemente cesar, lo cual es absurdo. Quienes la imaginan sin límites, olvidan que los tiene el número posible de libros. Yo me atrevo a insinuar esta solución del antiguo problema: La biblioteca es ilimitada y periódica. Si un eterno viajero la atravesara en cualquier dirección, comprobaría al cabo de los siglos que los mismos volúmenes se repiten en el mismo desorden." [Jorge Luis Borges, La Biblioteca de Babel](http://biblio3.url.edu.gt/Libros/borges/babel.pdf) [english](english)
-
-"I have just written the word \"infinite.\" I have not interpolated this adjective out of rhetorical habit; I say that it is not illogical to think that the world is infinite. Those who judge it to be limited postulate that in remote places the corridors and stairways and hexagons can conceivably come to an end -- which is absurd. Those who imagine it to be without limit forget that the possible number of books does have such a limit. I venture to suggest this solution to the ancient problem: The Library is unlimited and cyclical. If an eternal traveler were to cross it in any direction, after centuries he would see that the same volumes were repeated in the same disorder"
-
 
 
 Mountains + backprop (analogy, picture, quotes)
@@ -172,15 +117,24 @@ Recall the following property of a line in 2d: [2d line, m * dx = dy]. In 3d, it
 
 So let's say we want to reduce y by dy. If we calculate the slope m, we can find dx (use w instead?). One way to get this value is to calculate it by hand. But it turns out to be slow, and there is a better way to calculate it, analytically. The proof of this is elegant, but is outside the scope of this chapter. The following resources explain this well. Review [____] if you are interested.
 
-1) Mike Nielsen
+other SGD explanations
+1) Michael Nielsen
 2) Karpathy's hackers NN as the computational graph
-3) harder explanation (on youtube)
+3) harder explanation (on youtube, i have the link somewhere...)
 4) Simplest (videos which explain backprop)
 
 //Once we have observed our loss, we calculate what\'s called the _gradient_ of our network. The gradient i
 
 
-# AlecRad's convergence schemes
+# AlecRad's gradient descent methods
+
+different gradient descent methods
+ - SGD
+ - momentum
+ - NAG
+ - adagrad
+ - adadelta
+ - rmsprop
 
 
 
@@ -189,6 +143,7 @@ So let's say we want to reduce y by dy. If we calculate the slope m, we can find
 Backpropagation, as we\'ve described it, is the core of how neural nets are trained. From here, a few minor refinements are added to make a proper training procedure. The first is to separate our data into a training set and a test set. 
 
 Then cross validation GIF (taking combos of 5 -> train on 1)
+
 
 
 # n-dimensional space is a lonely place (or t-SNE?)
@@ -224,6 +179,9 @@ Beyond, we can't draw at all, but same principle.
 So how does this apply to neural networks?
 
 This is, in principle, what we have to do to solve a neural network. We have some cost function which expresses how poor or inaccurate our classifier is, and the cost is a function of the way we set our weights. In the neural network we drew above, there are 44 weights.
+
+# Learning by data
+
 
 
 # Cost function
@@ -293,3 +251,14 @@ In the previous section, we introduced neural networks and showed an example of 
 
 
 This topic is more mathematically challenging than the previous chapters. In spite of that, our aim is to give a reader with less mathematical training an intuitive if not rigorous understanding of how neural networks are solved. If you are struggling with this chapter, know that it isn't wholly necessary for most of the rest of this book. It is sufficient to understand that there _is_ some way of training a network which can be treated like a black box. If you regard training as a black box but understand the architecture of neural networks presented in previous chapters, you should still be able to continue to the next sections.  That said, it would be very rewarding to understand how training works. May guide finer points, etc, plus it's mathematically elegant...  we will try to supplement the math with visually intuitive and analogies.
+
+notes
+because perceptron had step function, was non-differentiable, backprop came later
+
+86 - backprop first applied to annns
+rumelhart et al 86
+
+hinton/salakhutinov 2006 - first deep network 
+ - use unsupervised pre-training layer (restricted boltzman machine) by layer before using backprop
+ - backprop doesn't work well from scratch (because of vanishing gradient?)
+
