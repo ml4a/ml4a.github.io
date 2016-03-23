@@ -140,15 +140,27 @@ function convnet(dataset_)
       return false;
     }    
     test_idx = sample.idx;
-    console.log(test_idx)
+
+    // problems in firefox?
+    /*
     out_prob = net.forward(sample.vol).w;
-    console.log(out_prob)
     var prob = Math.max.apply(Math, out_prob);
-    console.log(prob);
     a = sample.label;
     p = out_prob.indexOf(prob);    
-    console.log(p);
-    console.log("=======")
+    */
+
+    // this is poor form, but works...
+    out_prob = net.forward(sample.vol).w;
+    var prob = 0;
+    p = 0;
+    for (var i=0; i<out_prob.length; i++) {
+      if (out_prob[i] > prob) {
+        p = i;
+        prob = out_prob[i];
+      }
+    }
+    a = sample.label;
+
     results.confusion[a][p] += 1;
     results.actuals[a] += 1;
     results.predictions[p] += 1;
