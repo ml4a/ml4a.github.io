@@ -103,7 +103,7 @@
         draw_last_predictions(convnet, 2, 5, 5, 202, height-10);
         draw_confusion(convnet, 350, 90, 480, 480, iy, ix, viewTops);
         draw_confusion_samples(convnet, 940, 90, 280, 600, iy, ix);
-        draw_confusion_best(convnet, 12, 1270, 36, 170, 680);
+        draw_confusion_best(convnet, 12, 1242, 45, 170, 680);
 
         push();
         var sample_image = convnet.get_test_sample_image();
@@ -216,7 +216,7 @@
     <div id="explainer">
       <div id="description">
         <a href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-10</a> samples being classified by a convolutional neural network.
-        <br/>Implementation + trained CIFAR-10 model from <a href="http://cs.stanford.edu/people/karpathy/convnetjs/">convnet.js</a>. Visualized with <a href="http://www.p5.js">p5.js</a>.
+        <br/>Implementation + trained CIFAR-10 model from <a href="http://cs.stanford.edu/people/karpathy/convnetjs/">convnet.js</a>. Visualized with <a href="http://www.p5js.org">p5.js</a>.
         <br/>Questions/comments/suggestions → <a href="http://www.twitter.com/genekogan">@genekogan</a>.
       </div>
       <div id="controls">        
