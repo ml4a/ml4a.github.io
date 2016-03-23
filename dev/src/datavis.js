@@ -48,10 +48,12 @@ function draw_confusion(cn, x, y, w, h, iy, ix, is_tops)
 	var n = cn.get_dataset().get_classes().length;
 	var cell_size = {w:w/n, h:h/n};
   var txtSize = 14;
+  
 	var min_precision_wrong = 1.0;
 	var max_precision_wrong = 0.0;
 	var min_precision_right = 1.0;
 	var max_precision_right = 0.0;
+  /*
 	for (var a=0; a<n; a++) {
     for (var p=0; p<n; p++) {
       var raw = results.confusion[a][p] == 0 ? 1 : results.confusion[a][p];
@@ -67,6 +69,10 @@ function draw_confusion(cn, x, y, w, h, iy, ix, is_tops)
 	    }
 		}	
 	}
+  */
+  min_precision_wrong = 0.0;
+  max_precision_wrong = 1.0 - results.correct / results.total;
+
   push();
   textAlign(CENTER);
   translate(x, y);
@@ -95,10 +101,12 @@ function draw_confusion(cn, x, y, w, h, iy, ix, is_tops)
         translate(p * cell_size.w, a * cell_size.h);      
       	stroke(0, 10);
       	if (a == p) {
-  				fill(0, 255, 0, map(precision, min_precision_right, max_precision_right, 90, 255));
+          var alpha = min_precision_right == max_precision_right ? 255 : map(precision, min_precision_right, max_precision_right, 90, 255);
+  				fill(0, 255, 0, alpha);
       	}
         else {
-        	fill(255, 0, 0, map(precision, min_precision_wrong, max_precision_wrong, 0, 200));
+          var alpha = min_precision_wrong == max_precision_wrong ? 0 : map(precision, min_precision_wrong, max_precision_wrong, 0, 255);
+        	fill(255, 0, 0, alpha);
         }
         rect(0, 0, cell_size.w, cell_size.h);
         textSize(txtSize);

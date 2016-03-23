@@ -111,7 +111,7 @@ function dataset()
 		channels = 1;
 		rows_per_batch = 3000
 		num_batches = 21;
-		test_batches = [18,19,20];
+		test_batches = [0,1,2];//[18,19,20];
 		classes = ["0","1","2","3","4","5","6","7","8","9"];
 		this.initialize();
 	}
@@ -123,7 +123,7 @@ function dataset()
 		channels = 3;
 		rows_per_batch = 1000;
 		num_batches = 51;
-		test_batches = [41,42,43,44,45,46,47,48,49,50];
+		test_batches = [0,1,2,3,4,5,6,7,8,9]; //[41,42,43,44,45,46,47,48,49,50];
 		classes = ["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"];
 		this.initialize();
 	};
