@@ -140,10 +140,15 @@ function convnet(dataset_)
       return false;
     }    
     test_idx = sample.idx;
+    console.log(test_idx)
     out_prob = net.forward(sample.vol).w;
+    console.log(out_prob)
     var prob = Math.max.apply(Math, out_prob);
+    console.log(prob);
     a = sample.label;
     p = out_prob.indexOf(prob);    
+    console.log(p);
+    console.log("=======")
     results.confusion[a][p] += 1;
     results.actuals[a] += 1;
     results.predictions[p] += 1;
