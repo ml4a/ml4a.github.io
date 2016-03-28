@@ -1,0 +1,43 @@
+<script>
+  var player;
+  var tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  var div = document.getElementsByTagName('script')[0];
+  div.parentNode.insertBefore(tag, div);
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('{{ include.name }}_player', {
+      height: '390',
+      width: '640',
+      videoId: '{{ include.id }}',
+      events: {}
+    });
+  }
+</script>
+<div id="{{ include.name }}_container" class="yt_container">
+	<div id="{{ include.name }}_player" class="yt_embed"></div>
+	<div id="{{ include.name }}_bookmarks" class="yt_bookmarks">
+		<h2>Contents</h2>
+		<ul>
+		{% for mark in site.data.itp_lectures.bookmarks %}
+			<li>
+				<h3><a href="#" onclick="javascript:player.seekTo({{ mark.m | times:60 | plus:mark.s }});">{{ mark.title }} ({{ mark.m }}:{{ mark.s }})</a></h3>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+<style>
+	.yt_container {
+		border: thick solid #eee;
+	}
+	.yt_embed {
+		display: inline-block;
+		width:65%;
+	}
+	.yt_bookmarks {
+		padding-left:10px;
+		display: inline-block;
+		width:30%;
+		vertical-align:top;
+	}
+</style>

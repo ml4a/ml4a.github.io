@@ -1,0 +1,13 @@
+{
+  	"name": "lecture 1",
+	"description": "hello world",
+	"bookmarks": [
+		{"title":"introduction", "m":0, "s":0}, 
+		{"title":"machine learning and neural networks", "m":11, "s":03}, 
+		{"title":"demo of forward pass and MNIST", "m":23, "s":45}, 
+		{"title":"visualizing the weights", "m":52, "s":17}, 
+		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50}, 
+		{"title":"convolutional neural network demo", "m":81, "s":52}, 
+		{"title":"applications of convnets", "m":103, "s":58}
+	]
+}

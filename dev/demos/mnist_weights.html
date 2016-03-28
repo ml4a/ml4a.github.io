@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ml4a :: MNIST confusion</title>
+
+    <script src="../libraries/jquery-1.8.3.min.js"></script>
+
+    <script src="../libraries/convnet.js" type="text/javascript"></script>
+    <script src="../libraries/util.js" type="text/javascript"></script>
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+    <script src="../libraries/p5.dom.js" type="text/javascript"></script>
+    
+    <script src="../datasets/mnist/mnist_labels.js" type="text/javascript"></script>
+    
+    <script src="../src/dataset.js" type="text/javascript"></script>
+    <script src="../src/convnet.js" type="text/javascript"></script>
+    <script src="../src/datavis.js" type="text/javascript"></script>
+    <script src="../src/nnvis.js" type="text/javascript"></script>
+
+    <script>
+      var dataset;
+      var convnet;
+      var nnvis;
+      var ready = false;
+
+      function setup() {
+        createCanvas(1024, 768);
+        
+        dataset = new dataset();
+        dataset.loadMNIST();        
+        setupSimple();
+
+        nnvis = new nnvis();
+        nnvis.add_layer(784, 30);
+        nnvis.add_layer(10, 10);
+
+        nnvis.set_rectangle(0, 0, 560, 768);
+        nnvis.set_neuron_style(8, false);   
+        nnvis.set_input_label("pixel");
+        nnvis.get_layer(1).set_neuron_style(16, false);     
+        nnvis.set_draw_weight_arrow(false);
+        nnvis.set_draw_input_arrow(true);
+        nnvis.set_neuron_info_visible(false, false);        
+        nnvis.highlight_weights(-1, -1, true); 
+      }
+
+      function setupSimple(){
+        convnet = new convnet(dataset);
+        convnet.add_layer({type:'softmax', num_classes:10});
+        convnet.setup_trainer({learning_rate:0.05, momentum:0.0, batch_size:4, l2_decay:0.0001});
+        //convnet.train_all(finishedTraining);
+      }
+
+      /*
+      function draw_num() {
+        for (var i=0; i<20; i++) {
+          var idx = floor(random(15000));
+          var ds = dataset.get_training_sample(idx);
+          var img_ = convnet.array_to_image(ds.vol);
+          image(img_,5+ i * 30, 30);
+          text(ds.label, 5+i*30+14, 80);
+        }
+      }*/
+
+      function finishedTraining() {
+        ready = true;
+        draw_w2();
+      }
+
+var idx = 0;
+
+      function draw() {
+        
+        if (idx < 60000) {
+          var num = min(1, (idx / 2000.0));
+          var n2 = floor(map(num, 0, 1, 1, 10));
+          for (var i=0; i<n2; i++) {
+            convnet.train_next();
+            idx+=1;
+            console.log(idx + " -> "+n2);
+          }
+        }
+        //draw_w();
+        draw_w2();
+      }
+
+      function draw_w() {
+        background(255);
+        nnvis.draw_network();
+        /*
+        if (frameCount > 100) {
+          var imgt = convnet.get_train_sample_image(5);
+          image(imgt, 20, height/2 - 50, 100, 100);
+        }
+      */
+        for (var i=0; i<10; i++) {
+          var wimg = convnet.get_weights_image(i, 2, false);
+          var y = map(i, 0, 10, 0, 768);
+          image(wimg, 450, y+4, 72, 72);
+        }
+      }
+
+      function draw_w2() {
+        background(127);
+        for (var i=0; i<5; i++) {
+          var wimg = convnet.get_weights_image(i, 5, false);
+          var x = wimg.width*i;//map(i, 0, 5, 0, 800);
+          image(wimg, x+100, 100);
+        }
+        for (var i=5; i<10; i++) {
+          var wimg = convnet.get_weights_image(i, 5, false);
+          var x = wimg.width*(i-5);//map(i-5, 0, 5, 0, 800);
+          image(wimg, x+100, wimg.height+100);
+        }
+      }
+    </script>
+
+    <style> 
+      body {
+        font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
+        padding: 0; 
+        margin: 0;
+      } 
+    </style>
+
+  </head>
+  <body>
+  </body>
+</html>
