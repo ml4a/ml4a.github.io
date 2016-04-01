@@ -1,3 +1,7 @@
+{% assign idx = include.index | plus: 0 %}
+{% assign data = site.data.itp_lectures[idx] %}
+{% assign youtube_id = data.youtube_id %}
+
 <script>
   var player;
   var tag = document.createElement('script');
@@ -5,27 +9,26 @@
   var div = document.getElementsByTagName('script')[0];
   div.parentNode.insertBefore(tag, div);
   function onYouTubeIframeAPIReady() {
-    player = new YT.Player('{{ include.name }}_player', {
+    player = new YT.Player('{{ data.name }}_player', {
       height: '390',
       width: '640',
-      videoId: '{{ include.id }}',
+      videoId: '{{ youtube_id }}',
       events: {}
     });
   }
 </script>
-<div id="{{ include.name }}_container" class="yt_container">
-	<div id="{{ include.name }}_player" class="yt_embed"></div>
-	<div id="{{ include.name }}_bookmarks" class="yt_bookmarks">
-		<h2>Contents</h2>
+
+<div id="{{ data.name }}_container" class="yt_container">
+	<div id="{{ data.name }}_player" class="yt_embed"></div>
+	<div id="{{ data.name }}_bookmarks" class="yt_bookmarks">
 		<ul>
-		{% for mark in site.data.itp_lectures.bookmarks %}
-			<li>
-				<h3><a href="#" onclick="javascript:player.seekTo({{ mark.m | times:60 | plus:mark.s }});">{{ mark.title }} ({{ mark.m }}:{{ mark.s }})</a></h3>
-			</li>
+		{% for b in data.bookmarks %}
+			<li><h4><a href="#" onclick="javascript:player.seekTo({{ b.m | times:60 | plus:b.s }});">{{ b.title }} ({{ b.disp }})</a></h4></li>
 		{% endfor %}
 		</ul>
 	</div>
 </div>
+
 <style>
 	.yt_container {
 		border: thick solid #eee;

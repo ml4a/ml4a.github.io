@@ -1,13 +1,29 @@
-{
+[{
+	"youtube_id": "z0bynQjEpII",
   	"name": "lecture 1",
-	"description": "hello world",
 	"bookmarks": [
-		{"title":"introduction", "m":0, "s":0}, 
-		{"title":"machine learning and neural networks", "m":11, "s":03}, 
-		{"title":"demo of forward pass and MNIST", "m":23, "s":45}, 
-		{"title":"visualizing the weights", "m":52, "s":17}, 
-		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50}, 
-		{"title":"convolutional neural network demo", "m":81, "s":52}, 
-		{"title":"applications of convnets", "m":103, "s":58}
+		{"title":"introduction", "m":0, "s":0, "disp":"0:00"}, 
+		{"title":"machine learning and neural networks", "m":11, "s":03, "disp":"11:03"}, 
+		{"title":"demo osdfsdff forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
+		{"title":"visualizing the weights", "m":52, "s":17, "disp":"52:17"}, 
+		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50, "disp":"1:02:50"}, 
+		{"title":"convolutional neural network demo", "m":81, "s":52, "disp":"1:21:52"}, 
+		{"title":"applications of convnets", "m":103, "s":58, "disp":"1:43:58"}
+	]	
+},{
+	"youtube_id": "lKmkt5LEDS8",
+  	"name": "lecture 2",
+	"bookmarks": [
+		{"title":"Review of neural networks", "m":7, "s":50, "disp":"7:50"}, 
+		{"title":"Walkthrough of a practical ML experiment with ofxLearn", "m":10, "s":47, "disp":"10:47"}, 
+		{"title":"Code resources for setting up ordinary neural nets", "m":22, "s":15, "disp":"22:15"}, 
+		{"title":"Intro to Wekinator", "m":28, "s":12, "disp":"28:12"}, 
+		{"title":"Basic walkthrough and simple example", "m":37, "s":30, "disp":"37:30"}, 
+		{"title":"More complex example w/ FaceOSC", "m":64, "s":52, "disp":"1:04:52"}, 
+		{"title":"FaceTracker -> happy/sad colors", "m":73, "s":26, "disp":"1:13:26"}, 
+		{"title":"Leap Motion input", "m":86, "s":27, "disp":"1:26:27"}, 
+		{"title":"Classification of webcam pixels", "m":101, "s":0, "disp":"1:41:00"}, 
+		{"title":"Dynamic time warping with bark coefficients", "m":117, "s":24, "disp":"1:57:24"}, 
+		{"title":"Critical reading", "m":126, "s":39, "disp":"2:06:39"}
 	]
-}
+}]
