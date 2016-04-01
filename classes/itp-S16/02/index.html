@@ -1,0 +1,152 @@
+---
+layout: default
+title: ITP-NYU - Lecture 02, 3/31/2016
+---
+
+<h1>{{ page.title }}</h1>
+
+{% include youtube_contents.html name='yt_lecture' index=1 width='400' %}
+<br/><a href="https://www.dropbox.com/home/teaching/ML4A/ITP-Spring2016">download lecture video here</a><br/>
+
+
+<h2>Class notes</h2>
+
+<ul>
+<li>Admin
+	<ul>
+		<li>screencasts go here
+			<ul>
+				<li>more activity</li>
+				<li>mini-presentations?</li>
+			</ul>
+		</li>
+		<li>office hours</li>
+		<li>course projects
+			<ul>
+				<li>tools + improving software</li>
+				<li>art/music applications</li>
+				<li>humanistic/sociological/ethical/political/economical</li>
+				<li>what do you think?</li>
+			</ul>
+		</li>
+		<li>software expectations
+			<ul>
+				<li>high level vs low level</li>
+			</ul>
+		</li>
+	</ul>
+</li>
+<li>Review
+	<ul>
+		<li>Forward pass</li>
+		<li>Regression</li>
+		<li>Input vs output mapping</li>
+	</ul>
+</li>	
+<li>Basic workflow using ofxLearn
+	<ul>
+		<li>Training</li>
+		<li>Classification</li>
+		<li>Regression</li>
+		<li>Clustering</li>
+	</ul>
+</li>
+<li>Review coding platforms for neural nets
+	<ul>
+		<li>scikit-learn + pandas
+			<ul>
+				<li><a href="https://github.com/frnsys/ml101">francis tutorials</a></li>
+			</ul>		
+		</li>
+		<li>weka + <a href="https://code.google.com/archive/p/wekaizing/source">wekaizing</a> + wekinator</li>
+		<li>deep learning (later)</li>
+	</ul>
+</li>
+<li>Wekinator
+	<ul>
+		<li>what it is</li>
+		<li>showcase of projects
+			<ul>
+				<li><a href="https://youtu.be/aMYYbelPTuc">Laetitia Sonami</a></li>
+				<li><a href="https://vimeo.com/19980514">Michelle Nagai</a></li>
+				<li><a href="https://www.youtube.com/watch?v=dpW0wRkijQY">Phoenix Perry</a></li>
+			</ul>
+		</li>
+		<li>resources
+			<ul>
+				<li>examples (<a href="http://www.wekinator.org/examples/">wiki</a>)</li>
+				<li><a href="http://www.wekinator.org/detailed-instructions/">instructions</a></li>
+				<li><a href="https://www.youtube.com/channel/UCot7vfr_9hTy2qp3ksTxGmg">youtube examples</a></li>
+				<li><a href="https://www.kadenze.com/courses/machine-learning-for-musicians-and-artists/sessions">kadenze</a></li>
+			</ul>
+		</li>
+		<li>basic workflow and training
+			<ul>
+				<li>configuration of inputs and outputs</li>
+			</ul>
+		</li>
+		<li>simple example (mouse → Processing)</li>
+		<li>more complex example (Kinect → AudioUnit/AbletonOSC)</li>
+		<li>classification example
+			<ul>
+				<li>Processing drum machine</li>
+			</ul>
+		</li>
+		<li>Dynamic time warping
+			<ul>
+				<li>Bark/mfcc → Processing drum machine</li>
+			</ul>
+		</li>
+		<li>demo of inputs
+			<ul>
+				<li>Simple: {Processing Mouse, Webcam}</li>
+				<li>Advanced: {Max (bark bands), FaceOSC, KinectOSC, LeapOSC}</li>
+			</ul>
+		</li>
+		<li>survey of other inputs
+			<ul>
+				<li>{Arduino, Wiiimote, GameTrak, Websockets, KinectV2, QuartzComposer}</li>
+				<li>{myo sensor, OpenBCI/brainscanning?}</li>
+			</ul>
+		</li>
+		<li>demo of outputs
+			<ul>
+				<li>{Processing (generative), Ableton, SuperCollider, Max}</li>
+			</ul>
+		</li>
+		<li>survey of outputs
+			<ul>
+				<li>{ChucK, IFTTT, PD, Unity, QuartzComposer}</li>
+			</ul>
+		</li>
+		<li>switchboard of interactivity</li>
+	</ul>
+</li>
+<li>Kinect2Gesture
+	<ul>
+		<li><a href="https://vimeo.com/143963394">Tutorial</a></li>
+		<li><a href="https://github.com/genekogan/Kinect2Gesture">Code</a></li>
+	</ul>
+</li>
+<li>Critical reading
+	<ul>
+		<li><a href="http://socialmediacollective.org/reading-lists/critical-algorithm-studies/">Critical algorithm studies</a></li>
+		<li>Descartes vs RobotLivesMatter (this is a joke) <a href="https://www.youtube.com/watch?v=rVlhMGQgDkY">(1)</a> <a href="https://www.youtube.com/watch?v=uXcatFp3REg">(2)</a></li>
+		<li>bias, ownership, privacy <a href="http://us8.campaign-archive1.com/?u=bdb368b9a389b010c19dbcd54&id=f2e0882b79">(1)</a> <a href="https://www.reddit.com/r/science/comments/45k2pv/science_ama_series_we_study_how_intelligent/">(2)</a> <a href="www.nature.com/news/robotics-ethics-of-artificial-intelligence-1.17611">(3)</a> <a href="www.nature.com/news/machine-ethics-the-robot-s-dilemma-1.17881">(4)</a></li>
+		<li><a href="https://en.wikipedia.org/wiki/Trolley_problem">trolley problem</a> + driverless cars</li>
+		<li><a href="http://arstechnica.co.uk/security/2016/02/the-nsas-skynet-program-may-be-killing-thousands-of-innocent-people/">skynet</a> + terrorism</li>
+	</ul>
+</li>
+</ul>
+
+
+<h2>Assignment</h2>
+<br/>1) pick a topic to write about
+<br/>2) wekinator example (doesn't have to be complete)
+
+<h2>Code</h2>
+<br/><a href="https://github.com/genekogan/ml4a-ITP-s16">Code for today's class</a>
+
+<p/>
+<p/>
+<p/>
