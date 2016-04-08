@@ -159,7 +159,7 @@ Find underlying structure
 
 # Reinforcement learning
 
-physics demo (balancing a stick) (top banner?). this book will prbbably mostly reference
+physics demo (balancing a stick) (top banner?). this book will probably mostly reference
 
 
 -----
