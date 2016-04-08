@@ -2,13 +2,13 @@
 	"youtube_id": "z0bynQjEpII",
   	"name": "lecture 1",
 	"bookmarks": [
-		{"title":"introduction", "m":0, "s":0, "disp":"0:00"}, 
-		{"title":"machine learning and neural networks", "m":11, "s":03, "disp":"11:03"}, 
-		{"title":"demo osdfsdff forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
-		{"title":"visualizing the weights", "m":52, "s":17, "disp":"52:17"}, 
+		{"title":"Introduction", "m":0, "s":0, "disp":"0:00"}, 
+		{"title":"Machine learning and neural networks", "m":11, "s":03, "disp":"11:03"}, 
+		{"title":"Demo osdfsdff forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
+		{"title":"Visualizing the weights", "m":52, "s":17, "disp":"52:17"}, 
 		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50, "disp":"1:02:50"}, 
-		{"title":"convolutional neural network demo", "m":81, "s":52, "disp":"1:21:52"}, 
-		{"title":"applications of convnets", "m":103, "s":58, "disp":"1:43:58"}
+		{"title":"Convolutional neural network demo", "m":81, "s":52, "disp":"1:21:52"}, 
+		{"title":"Applications of convnets", "m":103, "s":58, "disp":"1:43:58"}
 	]	
 },{
 	"youtube_id": "lKmkt5LEDS8",
@@ -26,4 +26,19 @@
 		{"title":"Dynamic time warping with bark coefficients", "m":117, "s":24, "disp":"1:57:24"}, 
 		{"title":"Critical reading", "m":126, "s":39, "disp":"2:06:39"}
 	]
-}]
+},{
+	"youtube_id": "z6k_RMKExlQ",
+  	"name": "lecture 3",
+	"bookmarks": [
+		{"title":"[Nick Hubbard] Trolley problem", "m":8, "s":15, "disp":"8:15"}, 
+		{"title":"’Animals are machines’ - Rene Descartes", "m":20, "s":30, "disp":"20:30"}, 
+		{"title":"Wekinator custom outputs + Ableton", "m":25, "s":10, "disp":"25:10"}, 
+		{"title":"Wekinator + Audio Units (mac)", "m":40, "s":48, "disp":"40:48"}, 
+		{"title":"Wekinator + audioreactive Jitter", "m":43, "s":17, "disp":"43:17"}, 
+		{"title":"Kinect + gesture recognition options", "m":52, "s":38, "disp":"52:38"}, 
+		{"title":"Limitations of ordinary neural nets", "m":63, "s":16, "disp":"1:03:16"}, 
+		{"title":"Convolutional and pooling layers", "m":84, "s":51, "disp":"1:24:51"}, 
+		{"title":"Convnets: the whole pipeline", "m":109, "s":24, "disp":"1:49:24"}
+	]
+}
+]
