@@ -1,18 +1,27 @@
 [{
 	"youtube_id": "z0bynQjEpII",
-  	"name": "lecture 1",
+	"title": "Introduction, neural networks",
+	"date": "3/24/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_01.png",
 	"bookmarks": [
 		{"title":"Introduction", "m":0, "s":0, "disp":"0:00"}, 
 		{"title":"Machine learning and neural networks", "m":11, "s":03, "disp":"11:03"}, 
-		{"title":"Demo osdfsdff forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
+		{"title":"Demo forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
 		{"title":"Visualizing the weights", "m":52, "s":17, "disp":"52:17"}, 
 		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50, "disp":"1:02:50"}, 
 		{"title":"Convolutional neural network demo", "m":81, "s":52, "disp":"1:21:52"}, 
 		{"title":"Applications of convnets", "m":103, "s":58, "disp":"1:43:58"}
+	],
+	"summary": [
+		"introduction to machine learning",
+		"the whole class in 1 hour",
+		"introduction to neural networks"
 	]	
 },{
 	"youtube_id": "lKmkt5LEDS8",
-  	"name": "lecture 2",
+	"title": "Applications, Wekinator",
+	"date": "3/31/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_02.png",
 	"bookmarks": [
 		{"title":"Review of neural networks", "m":7, "s":50, "disp":"7:50"}, 
 		{"title":"Walkthrough of a practical ML experiment with ofxLearn", "m":10, "s":47, "disp":"10:47"}, 
@@ -25,10 +34,16 @@
 		{"title":"Classification of webcam pixels", "m":101, "s":0, "disp":"1:41:00"}, 
 		{"title":"Dynamic time warping with bark coefficients", "m":117, "s":24, "disp":"1:57:24"}, 
 		{"title":"Critical reading", "m":126, "s":39, "disp":"2:06:39"}
+	],
+	"summary": [
+		"ofxLearn and practical resources for neural nets",
+		"introduction to wekinator"
 	]
 },{
 	"youtube_id": "z6k_RMKExlQ",
-  	"name": "lecture 3",
+	"title": "Convolutional neural networks",
+	"date": "4/7/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_03.png",
 	"bookmarks": [
 		{"title":"[Nick Hubbard] Trolley problem", "m":8, "s":15, "disp":"8:15"}, 
 		{"title":"’Animals are machines’ - Rene Descartes", "m":20, "s":30, "disp":"20:30"}, 
@@ -39,6 +54,11 @@
 		{"title":"Limitations of ordinary neural nets", "m":63, "s":16, "disp":"1:03:16"}, 
 		{"title":"Convolutional and pooling layers", "m":84, "s":51, "disp":"1:24:51"}, 
 		{"title":"Convnets: the whole pipeline", "m":109, "s":24, "disp":"1:49:24"}
+	],
+	"summary": [
+		"critical issues in AI",
+		"more advanced Wekinator examples",
+		"introduction to convolutional neural networks"
 	]
 }
 ]

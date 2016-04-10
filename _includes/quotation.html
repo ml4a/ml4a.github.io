@@ -1,0 +1,7 @@
+{% assign idx = include.index | plus: 0 %}
+{% assign data = site.data.quotes[idx] %}
+
+<div class="quotation">
+	“{{ data.quote }}”
+	<div class="quotation_person"><a href="{{ data.link }}">{{ data.person}}</a></div>
+</div>
