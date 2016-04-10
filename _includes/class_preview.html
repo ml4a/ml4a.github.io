@@ -1,13 +1,14 @@
 {% assign idx = include.index | plus: 0 %}
+{% assign c_idx = idx | plus: 1 %}
 {% assign data = site.data.itp_lectures[idx] %}
 {% assign youtube_id = data.youtube_id %}
 
 <div class="class_main">
 	<div class="class_thumb">
-		<a href=""><img class="thumby" src="{{data.thumbnail}}"></a>
+		<a href="/classes/itp-S16/0{{c_idx}}"><img class="thumby" src="{{data.thumbnail}}"></a>
 	</div>
 	<div class="class_meta">
-		<h2><a href="/classes/itp-S16/0{{idx}}">{{data.date}} :: {{data.title}}</a></h2>
+		<h2><a href="/classes/itp-S16/0{{c_idx}}">{{data.date}} :: {{data.title}}</a></h2>
 		<ul>
 			{% for s in data.summary %}
 				<li>{{ s }}</li> 
