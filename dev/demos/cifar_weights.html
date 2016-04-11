@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>ml4a :: MNIST weights</title>
+    <title>ml4a :: CIFAR weights</title>
 
     <script src="../libraries/jquery-1.8.3.min.js"></script>
 
@@ -11,7 +11,7 @@
     <script src="../libraries/p5.js" type="text/javascript"></script>
     <script src="../libraries/p5.dom.js" type="text/javascript"></script>
     
-    <script src="../datasets/mnist/mnist_labels.js" type="text/javascript"></script>
+    <script src="../datasets/cifar/cifar10_labels.js" type="text/javascript"></script>
     
     <script src="../src/dataset.js" type="text/javascript"></script>
     <script src="../src/convnet.js" type="text/javascript"></script>
@@ -27,11 +27,11 @@
         createCanvas(1024, 768);
         
         dataset = new dataset();
-        dataset.loadMNIST();        
+        dataset.loadCIFAR();        
         setupSimple();
 
         nnvis = new nnvis();
-        nnvis.add_layer(784, 30);
+        nnvis.add_layer(1024, 30);
         nnvis.add_layer(10, 10);
 
         nnvis.set_rectangle(0, 0, 560, 768);

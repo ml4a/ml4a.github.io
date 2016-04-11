@@ -4,10 +4,13 @@ title: "Introduction"
 date: 2016-01-02
 ---
 
+0 0 0 0 0 0 0
+0 0 0 0 0 0 0 
+0 0 0 0 0 0 0
 
 \"Artificial intelligence is anything computers [can\'t do yet](https://en.wikipedia.org/wiki/AI_effect)\" - Douglas Hofstadter, re: Tesler theorem 
 
-\"Machine learning is just applied computational statistics.\" - Chris Wiggins
+\"Machine learning is applied computational statistics.\" - Chris Wiggins
 
 Evidently, the meaning of the terms _artificial intelligence_ and _machine learning_ depend on who you ask.
 	

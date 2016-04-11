@@ -18,23 +18,67 @@
     <script src="../src/datavis.js" type="text/javascript"></script>
 
     <script>
+      var crop_amt = 5;
+      var margin_1 = 40;
+      var margin_2 = 2;
+      var margin_3 = 20;
+      var pixel_size = 10;
+      var conv_pixel_size = 20;
+      var filter_idx = 4;
+      var mouse_active;
+
     	var dataset;
       var convnet;
+      var ready;
+      var pad_amt;
+      var filter_size;
+      var grid_size;
+      var sample_size;
+      var img_sum;
+      var num_filters;
+      var conv_idx;
+      
+      function preload() {
+        img_sum = loadImage("/images/summation.png");
+      }
 
       function setup() {
-        createCanvas(1280, 700);
-        noLoop();  
-
+        createCanvas(700, 250);
+        textAlign(CENTER);
         dataset = new dataset();
-        dataset.loadMNIST();        
-        //setupConvnet();
-        loadPresetNetwork();
-        console.log("setup");
+        dataset.loadMNIST(true, loadPresetNetwork);
+        ready = false;
+        mouse_active = false;
       }
 
       function keyPressed() {
         if (key=='1') {
-          next();
+          convnet.test_next();
+          draw_conv_demo();
+        }
+        else if(key=='2'){
+          filter_idx = (filter_idx + 1) % num_filters;
+          draw_conv_demo();
+        }
+        else if(key=='3'){
+          conv_idx = (conv_idx + 1) % (grid_size * grid_size);
+          draw_conv_demo();
+        }
+      }
+
+      function mouseMoved() {
+        var mx = mouseX - 5;
+        var my = mouseY - 5;
+        var max_size = pixel_size * (sample_size + ceil(filter_size/2));
+        mouse_active = mx > 0 && my > 0 && mx < max_size && my < max_size;
+        if (mouse_active) {
+          var ix = constrain(floor(mx / pixel_size) - floor(filter_size / 2), 0, grid_size-1);
+          var iy = constrain(floor(my / pixel_size) - floor(filter_size / 2), 0, grid_size-1);
+          var new_conv_idx = grid_size * iy + ix;
+          if (conv_idx != new_conv_idx) {
+            conv_idx = new_conv_idx;
+            draw_conv_demo();
+          }
         }
       }
 
@@ -42,57 +86,42 @@
         $.getJSON("../datasets/mnist/mnist_snapshot.json", function(json){
           convnet = new convnet(dataset);
           convnet.load_from_json(json, {method:'adadelta', batch_size:20, l2_decay:0.001});
-          background(255);
-          console.log("dodododit");
-          next();
+          pad_amt = convnet.get_net().layers[1].pad;
+          filter_size = convnet.get_net().layers[1].filters[0].sx;
+          num_filters = convnet.get_net().layers[1].filters.length;
+          grid_size = convnet.get_dataset().get_dim() + 2 * (pad_amt - crop_amt) - filter_size + 1;
+          sample_size = convnet.get_dataset().get_dim() + 2 * (pad_amt - crop_amt);
+          conv_idx = 0;
+          ready = true;
+          convnet.test_next();
+          draw_conv_demo();
         });
       }
 
-      function setupConvnet() {
-        convnet = new convnet(dataset);
-        convnet.add_layer({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
-        convnet.add_layer({type:'pool', sx:2, stride:2});
-        convnet.add_layer({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
-        convnet.add_layer({type:'pool', sx:3, stride:3});
-        convnet.add_layer({type:'softmax', num_classes:10});
-        convnet.setup_trainer({method:'adadelta', batch_size:20, l2_decay:0.001});
-        convnet.train_all(finishedTraining);
+      function pad(img, pad_amt) {
+        var img_ = createImage(img.width + 2 * pad_amt, img.height + 2 * pad_amt);
+        img_.copy(img, 0, 0, img.width, img.height, pad_amt, pad_amt, img.width, img.height);
+        return img_;
       }
 
-      function next() {
-        var tested = convnet.test_next();
-        if (tested) {
-          draw_conv_acts();
-        }
-      }
-
-      function draw() {
-
-      }
-
-      function draw_conv_acts() {
-        var layer = 1;
-        imageMode(CENTER);
-        var n = convnet.get_num_activations(layer);
-        var img = convnet.get_test_sample_image();
-        image(img, 600, 100, 100, 100);
-        for (var i=0; i<n; i++) {
-          var x = map(i, 0, n-1, 100, 1100);
-          var img_w = convnet.get_weights_image(i, 6);
-          var img_a = convnet.get_activations_image(layer, i, 2);
-          image(img_w, x, 200);  
-          image(img_a, x, 280);
-        }
-      }
-
-      function draw_image_grid(img, cw, ch) {
+      function draw_image_grid(img, cw, ch, subset) {
         var cell_size = {w:cw, h:ch};
+        var ix = 0;
+        var iy = 0;
+        var w = img.width;
+        var h = img.height;
+        if (subset != null) {
+          ix = subset[0];
+          iy = subset[1];
+          w = subset[2];
+          h = subset[3];
+        }
         fill(0);
-        rect(0, 0, img.width * cell_size.w, img.height * cell_size.h);
-        for (var i=0; i<img.width; i++) {
-          for (var j=0; j<img.height; j++) {
+        rect(0, 0, w * cell_size.w, h * cell_size.h);
+        for (var i=0; i<w; i++) {
+          for (var j=0; j<h; j++) {
             push();
-            var value = red(img.get(i, j));
+            var value = red(img.get(ix + i, iy + j));
             translate(i * cell_size.w, j * cell_size.h);
             stroke(0);
             fill(255, value);
@@ -103,120 +132,112 @@
       }
 
     	function draw_conv_demo() {
-     		var f = 3;
-        var cell_size = {w:6, h:6};
+        if (!ready) return;
+        background(255);
+
+        // which index        
+        var px = conv_idx % grid_size;
+        var py = floor(conv_idx / grid_size);
         
-        var img = convnet.get_test_sample_image();
-        var img_w = convnet.get_weights_image(f, 1);
-        var img_a = convnet.get_activations_image(1, f, 1);
+        // get image, weights, and activations
+        var img_weight = convnet.get_weights_image(1, filter_idx, 1);
+        var img_sample_ = pad(convnet.get_test_sample_image(), pad_amt);        
+        var img_acts_ = convnet.get_activations_image(1, filter_idx, 1);
 
+        // crop image and activations
+        var img_sample = createImage(img_sample_.width - 2*crop_amt, img_sample_.height - 2*crop_amt);
+        img_sample.copy(img_sample_, crop_amt, crop_amt, img_sample_.width, img_sample_.height, 0, 0, img_sample_.width, img_sample_.height);
+        var img_acts = createImage(img_acts_.width - 2*crop_amt, img_acts_.height - 2*crop_amt);
+        img_acts.copy(img_acts_, crop_amt, crop_amt, img_acts_.width, img_acts_.height, 0, 0, img_acts_.width, img_acts_.height);
 
-        draw_image_grid(img, 8, 8);
-        translate(200, 0);
-        draw_image_grid(img_w, 8, 8);
-        translate(200, 0);
-        draw_image_grid(img_a, 8, 8);
+        // draw        
+        push();
+        translate(5, 5);
 
+        // draw sample image grid 
+        draw_image_grid(img_sample, pixel_size, pixel_size);
 
+        // draw green border around subset
+        push();
+        noFill();
+        stroke(0, 255, 0);
+        strokeWeight(2);
+        rect(pixel_size * px, pixel_size * py, pixel_size * filter_size, pixel_size * filter_size);
+        pop();
 
-        return;
-
-				var fdim = 5;
-
-     		
-
-     		var filter = [];
-				for (var i=0; i<fdim; i++) {
-					var filter_row = [];
-     			for (var j=0; j<fdim; j++) {
-     				filter_row.push(random(1));
-     			}
-     			filter.push(filter_row);
-     		}
-
-     		
-
-     		translate(dim * cell_size.w + 100, 0);
-
-     		// x, y -> row, col
-        /*
-				fill(0);
-     		rect(0, 0, fdim * cell_size.w, fdim * cell_size.h);
-
-     		for (var i=0; i<fdim; i++) {
-     			for (var j=0; j<fdim; j++) {
-     				push();
-     				var value = 255 * filter[i][j];
-     				console.log(value);
-
-     				translate(i * cell_size.w, j * cell_size.h);
-     				stroke(0);
-     				fill(255, value);
-     				rect(0, 0, cell_size.w, cell_size.h);
-     				pop();
-     			}
-     		}
-        */
-
-				var cdim = dim - fdim + 1;
-
+        // draw subset and filter
+        push();
+        translate(img_sample.width * pixel_size + margin_1, 0);
         
-
-
-     		translate(fdim * cell_size.w + 100, 0);
-
-     		// x, y -> row, col
-				
-        for (var f=0; f<8; f++) {
-                  var filter = convnet.get_net().layers[1].filters[f];
-        var sx = filter.sx;
-        var sy = filter.sy;
-
-          push();
-          translate(f * cdim * cell_size.w * 1.1, 0);
-
-        var minv_ = +1e8;
-        var maxv_ = -1e8;
-
-        var values = [];
-
-     		for (var iy=0; iy<cdim; iy++) {
-          var value_row = [];
-     			for (var ix=0; ix<cdim; ix++) {
-            var value = 0;
-            for (var fy=0; fy<sy; fy++) {
-              for (var fx=0; fx<sx; fx++) {
-                var v = red(img_raw.get(ix+fx, iy+fy));
-                var w = filter.w[fx + fy * sx];
-                value += v*w;
-              }
-            }
-            value_row.push(value);
-            minv_ = min(minv_, value);
-            maxv_ = max(maxv_, value);
-     			}
-          values.push(value_row);
-     		}
-        
-
+        draw_image_grid(img_sample, conv_pixel_size, conv_pixel_size, [px, py, filter_size, filter_size]);
+        // draw green border around kernel
+        noFill();
+        stroke(0, 255, 0);
+        strokeWeight(2);
+        rect(0, 0, conv_pixel_size * filter_size, conv_pixel_size * filter_size);
+        noStroke();
         fill(0);
-        rect(0, 0, cdim * cell_size.w, cdim * cell_size.h);
-        for (var iy=0; iy<cdim; iy++) {
-          for (var ix=0; ix<cdim; ix++) {
-            push();
-            translate(ix * cell_size.w, iy * cell_size.h);
-            stroke(0);
-            var v = map(values[iy][ix], minv_, maxv_, 0, 255);
-            fill(255, v);
-            rect(0, 0, cell_size.w, cell_size.h);
-            pop();
-          }
-        }
+        text("image (x)", conv_pixel_size * filter_size / 2, conv_pixel_size * filter_size + 15);
+        pop();
+
+        // draw weights        
+        push();
+        translate(img_sample.width * pixel_size + margin_1, conv_pixel_size * filter_size + margin_3);
+        draw_image_grid(img_weight, conv_pixel_size, conv_pixel_size);
+        noStroke();
+        fill(0);
+        text("filter "+(1+filter_idx)+"/"+num_filters+" (w)", conv_pixel_size * filter_size / 2, conv_pixel_size * filter_size + 15);
+        pop();
+
+        var y1 = conv_pixel_size * filter_size / 2;
+        var y2 = conv_pixel_size * filter_size + margin_3 + conv_pixel_size * filter_size/2;
+        var y3 = (y1 + y2) / 2;
+        
+        // draw summation
+        push();
+        translate(img_sample.width * pixel_size + margin_1 + conv_pixel_size * filter_size + margin_2, 0);
+        noFill();
+        stroke(50);
+        strokeWeight(2);
+        line(5, y1, 60, y3);
+        line(5, y2, 60, y3);
+        line(60, y3, 110, y3);
+        fill(255);
+        ellipse(60, y3, 50, 50);
+        noFill();
+        image(img_sum, 40, y3-12, 40, 25);
+        ellipse(60, y3, 50, 50);        
+        stroke(255, 0, 0);
+        fill(img_acts.get(px, py));
+        rect(110, y3-10, 20, 20);
+        pop();
+
+        // draw activations
+        push();
+        translate(img_sample.width * pixel_size + margin_1 + conv_pixel_size * filter_size + margin_2 + 140, pixel_size * pad_amt);
+        draw_image_grid(img_acts, pixel_size, pixel_size);
+        noFill();
+        stroke(255, 0, 0);
+        strokeWeight(2);
+        rect(px * pixel_size, py * pixel_size, pixel_size, pixel_size);
+        pop();
 
         pop();
-        }
 
+        push();
+        noFill();
+        stroke(255, 0, 0, 50);
+        strokeWeight(3);
+        rect(0, 0, width, height);
+        pop();
     	}
+
+      function draw() {
+        if (!mouse_active && frameCount % 10 == 0) {
+          conv_idx = (conv_idx + 1) % (grid_size * grid_size);
+          draw_conv_demo();
+        }
+      }
 		</script>
 
     <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>

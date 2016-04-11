@@ -192,42 +192,50 @@ function convnet(dataset_)
     window.focus();
   };
 
-  this.array_to_image = function(A, idx, scale, draw_grads) {
-    //var nc = dataset.channels; // check this
-    var s = scale || 1; // scale
-    var dg = draw_grads || false; // draw grads
-    var w = draw_grads ? A.dw : A.w;
-    var mm = maxmin(w);
-    var W = A.sx * s;
-    var H = A.sy * s;
+  this.vol_to_image = function(V, idx, scale, is_weight) {
+    var nx = V.sx;
+    var ny = V.sy;
+    var nz = V.depth;
+    if (nx * ny == 1) {
+      nz = dataset.get_channels();
+      nx = sqrt(V.depth / nz);
+      ny = nx;
+    }
+    var W = scale * nx;
+    var H = scale * ny;
+    var mm = maxmin(V.w);
     var img = createImage(W, H);
     img.loadPixels();    
-    for(var x=0;x<A.sx;x++) {
-      for(var y=0;y<A.sy;y++) {
-        var val = Math.floor(((dg?A.get_grad(x,y,idx):A.get(x,y,idx))-mm.minv)/mm.dv*255);
-        for(var dx=0;dx<s;dx++) {
-          for(var dy=0;dy<s;dy++) {
-            var pp = ((W * (y*s+dy)) + (dx + x*s)) * 4;
-            img.pixels[pp  ] = val;
-            img.pixels[pp+1] = val;
-            img.pixels[pp+2] = val;
-            img.pixels[pp+3] = 255;
+    for(var x=0;x<nx;x++) {
+      for(var y=0;y<ny;y++) {
+        var z = nz * (y * nx + x) + (is_weight ? 0 : idx);
+        var val = [];
+        for(var dz=0;dz<nz;dz++) {
+          val.push(Math.floor(255 * (V.w[z+dz] - mm.minv) / mm.dv));
+        }
+        for(var dx=0;dx<scale;dx++) {
+          for(var dy=0;dy<scale;dy++) {
+            var idx = ((W * (y*scale+dy)) + (dx + x*scale)) * 4;
+            for (var dz=0;dz<3;dz++) {
+              img.pixels[idx+dz] = val[dz % nz];
+            }
+            img.pixels[idx+3] = 255;
           }
         }
       }
-    }    
+    }
     img.updatePixels();
     return img;
   };
 
-  this.get_activations_image = function(layer, idx, scale, draw_grads) {
-    var A = net.layers[layer].out_act;
-    return this.array_to_image(A, idx, scale, draw_grads);
+  this.get_weights_image = function(layer, idx, scale) {
+    var V = net.layers[layer].filters[idx];
+    return this.vol_to_image(V, idx, scale, true);
   };
 
-  this.get_weights_image = function(idx, scale, draw_grads) {
-    var A = net.layers[1].filters[idx];
-    return this.array_to_image(A, idx, scale, draw_grads);
+  this.get_activations_image = function(layer, idx, scale) {
+    var V = net.layers[layer].out_act;
+    return this.vol_to_image(V, idx, scale, false);
   };
 
   this.get_num_activations = function(layer) {

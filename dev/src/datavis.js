@@ -3,8 +3,13 @@ function disp_text(n, d) {
   return t[0] == ' ' ? t.slice(1) : t;
 };
 
-function draw_image_grid(img, x, y, w, h) 
+function draw_image_grid(img, x, y, w, h, sub) 
 {	
+  if (sub != null) {
+
+  }
+console.log("YOYOYOY");
+
 	var dim_x = img.width;
 	var dim_y = img.height;
 	var cell_size = {w:w/dim_x, h:h/dim_y};
@@ -16,11 +21,12 @@ function draw_image_grid(img, x, y, w, h)
 	noFill();
 	stroke(0, 50);
 	strokeWeight(1);
+  console.log("dim "+dim);
 	for (var x=0; x<dim; x++) {
-		line(x * cell_size.w, 0, x * cell_size.w, dim * cell_size.h);
+		//line(x * cell_size.w, 0, x * cell_size.w, dim * cell_size.h);
 	}
 	for (var y=0; y<dim; y++) {
-		line(0, y * cell_size.h, dim * cell_size.w, y * cell_size.h);
+		//line(0, y * cell_size.h, dim * cell_size.w, y * cell_size.h);
 	}
 	stroke(0, 80);
 	rectMode(CORNER);

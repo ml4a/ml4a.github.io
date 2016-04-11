@@ -31,7 +31,7 @@ This scenario may seem disconnected from neural networks, but it turns out to be
 
 Recall that _training_ refers to determining the best set of weights for the network to get the most accuracy out of it. In the previous chapters, we glossed over this process, preferring to look at it as \"magic\" and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
 
-Much of what\'s interesting about neural networks can be understood without knowing precisely how training works. Furthermore, most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
+Much of what\'s interesting about neural networks can be understood without knowing precisely how training works. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
 We\'ll get to gradient descent in a few sections, but first, let\'s understand why choosing weights is hard to begin with. 
 
@@ -262,3 +262,6 @@ hinton/salakhutinov 2006 - first deep network
  - use unsupervised pre-training layer (restricted boltzman machine) by layer before using backprop
  - backprop doesn't work well from scratch (because of vanishing gradient?)
 
+
+
+There are a number of important aspects about training -- you might have thought it's unfair that we predict training set -- after all it can just memorize them -- we'll get to this and other details of training in the [how they are trained].

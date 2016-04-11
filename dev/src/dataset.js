@@ -12,6 +12,7 @@ function dataset()
 	var test_batch_only;
 	var sample_idx = {train:0, test:0};
 	var data = {train:[], test:[]};
+	var callback_main = null;
 	
 	this.get_dim = function() {
 		return dim;
@@ -104,26 +105,32 @@ function dataset()
 		this.load_batch(batch_idx);
 	};
 
-	this.loadMNIST = function(test_batch_only_) {
+	this.loadMNIST = function(test_batch_only_, callback_main_) {
+		if (callback_main_ != null) {
+			callback_main = callback_main_;
+		}
 		test_batch_only = test_batch_only_ || false;
 		root_dir = '/dev/datasets/mnist/mnist';
 		dim = 28;
 		channels = 1;
 		rows_per_batch = 3000
 		num_batches = 21;
-		test_batches = [0,1,2];//[18,19,20];
+		test_batches = [20]; //[0,1,2];//[18,19,20];
 		classes = ["0","1","2","3","4","5","6","7","8","9"];
 		this.initialize();
-	}
+	};
 
-	this.loadCIFAR = function(test_batch_only_) {
+	this.loadCIFAR = function(test_batch_only_, callback_main_) {
+		if (callback_main_ != null) {
+			callback_main = callback_main_;
+		}
 		test_batch_only = test_batch_only_ || false;
 		root_dir = '/dev/datasets/cifar/cifar10';
 		dim = 32;
 		channels = 3;
 		rows_per_batch = 1000;
 		num_batches = 51;
-		test_batches = [0,1,2,3,4,5,6,7,8,9]; //[41,42,43,44,45,46,47,48,49,50];
+		test_batches = [50];//[0,1,2,3,4,5,6,7,8,9]; //[41,42,43,44,45,46,47,48,49,50];
 		classes = ["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"];
 		this.initialize();
 	};
@@ -136,27 +143,30 @@ function dataset()
 			var n = rows_per_batch;
 			img.loadPixels();
 			for (var r=0; r<n; r++) {
-	    	var b_label = labels[n * batch_idx + r];
-	    	var b_vol = new convnetjs.Vol(w, w, nc, 0.0);
-	    	var W = w * w;
-	    	for (var i=0; i<W; i++) {
-	     		var ix = ((W * r) + i) * 4;
-	      	for (var c=0; c<nc; c++) {
-		      	b_vol.w[nc*i+c] = img.pixels[ix+c] / 255.0; 
-					}	
-	    	}
-	    	if (test_batches.indexOf(batch_idx) == -1) {
-		    	data.train.push({idx:data.train.length, vol:b_vol, label:b_label});
-		    }
-		    else {
-		    	data.test.push({idx:data.test.length, vol:b_vol, label:b_label});	
-		    }
+		    	var b_label = labels[n * batch_idx + r];
+		    	var b_vol = new convnetjs.Vol(w, w, nc, 0.0);
+		    	var W = w * w;
+		    	for (var i=0; i<W; i++) {
+		     		var ix = ((W * r) + i) * 4;
+			      for (var c=0; c<nc; c++) {
+				     	b_vol.w[nc*i+c] = img.pixels[ix+c] / 255.0; 
+						}	
+		    	}
+		    	if (test_batches.indexOf(batch_idx) == -1) {
+			    	data.train.push({idx:data.train.length, vol:b_vol, label:b_label});
+			    }
+			    else {
+			    	data.test.push({idx:data.test.length, vol:b_vol, label:b_label});	
+			    }
 			}
 			console.log("loaded batch "+batch_idx+". size: {training set:"+data.train.length+", test set:"+data.test.length+")");
-			fully_loaded = ((data.train.length + data.test.length) == num_batches * rows_per_batch);	
+			fully_loaded = ((data.train.length + data.test.length) == (test_batch_only?test_batches.length:num_batches) * rows_per_batch);	
 			loading_batch = false;
 			if (callback != null) {
 				callback();
+			}
+			if (callback_main != null && fully_loaded) {
+				callback_main();
 			}
 		});
 	};

@@ -5,6 +5,11 @@ date: 2016-01-08
 ---
 
 
+"Practicing is not only playing your instrument, either by yourself or rehearsing with others - it also includes imagining yourself practicing. Your brain forms the same neural connections and muscle memory whether you are imagining the task or actually doing it.
+http://www.brainyquote.com/quotes/authors/y/yoyo_ma.html"
+
+If you've ever tried to learn how to play a musical instrument, you no doubt have experienced the value of repetition.
+
 
 wekinator.org
 
@@ -30,3 +35,36 @@ simple example tutorial
  - saving/loading
 
 swappable components
+
+
+
+Inputs
+ - Max/MSP / PureData
+ - Processing / openFrameworks
+ - VideoInput
+ - FaceOSC
+ - Kinect
+ - data stream
+ - AudioAnalyzer
+ ------
+ - Arduino
+ - AudioIn
+ - GameTrakTether
+ - LeapMotion
+ - MIDI
+ - Wiimote
+ - Websockets
+ - ConvnetOSC (unfinished)
+
+Outputs
+ - Ableton
+ - AudioUnit / VST
+ - SuperCollider
+ - Processing / openFrameworks
+ - Max/MSP / PureData
+ -----
+ - VJing app
+ - Chuck
+ - IFTTT
+ - Unity
+
