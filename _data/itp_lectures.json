@@ -60,5 +60,26 @@
 		"more advanced Wekinator examples",
 		"introduction to convolutional neural networks"
 	]
+},{
+	"youtube_id": "V0glxY6fHTY",
+	"title": "Convnet applications",
+	"date": "4/14/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_04.png",
+	"bookmarks": [
+		{"title":"Stranger Visions and reconstructing data", "m":8, "s":10, "disp":"8:10"},
+		{"title":"Reviewing convnets", "m":13, "s":34, "disp":"13:34"},
+		{"title":"Interpreting and visualizing activations", "m":40, "s":0, "disp":"40:00"},
+		{"title":"Occlusion demo, localization/compression, deconvolution", "m":50, "s":12, "disp":"50:12"},
+		{"title":"Image synthesis and Deepdream", "m":69, "s":53, "disp":"1:09:53"},
+		{"title":"Style transfer", "m":91, "s":03, "disp":"1:31:03"},
+		{"title":"Transfer learning (Convnet -> Wekinator)", "m":108, "s":20, "disp":"1:48:20"},
+		{"title":"t-SNE on convnet activations (and text)", "m":117, "s":20, "disp":"1:57:20"},
+	],
+	"summary": [
+		"interpreting and visualizing convnet activations",
+		"image class synthesis, deepdream, style transfer",
+		"transfer learning",
+		"t-SNE for visualizing images, text"
+	]
 }
 ]
