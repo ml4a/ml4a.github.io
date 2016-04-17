@@ -16,21 +16,24 @@
 			}
 			function init() {
 				scroll = 1.0;
-				glslCanvases[0].setUniform("scale", scroll);
-				setWindowSize();
+				glslCanvases[0].textures["u_tex0"].on('loaded', (args) => {
+					glslCanvases[0].setUniform("scale", scroll);
+					setWindowSize();
+					window.addEventListener("resize", setWindowSize);
+					document.addEventListener("wheel", function(e){
+						scroll = Math.min(7.0, Math.max(0.5, scroll + e.deltaY/500.0));
+						glslCanvases[0].setUniform("scale", scroll);
+					});
+		        });
 			}
-			document.addEventListener("wheel", function(e){
-				scroll = Math.min(7.0, Math.max(0.5, scroll + e.deltaY/500.0));
-				glslCanvases[0].setUniform("scale", scroll);
-			});
-			window.addEventListener("resize", setWindowSize);
 		</script>
 
 		<style>
 			body {
-				background: #0ff;
+				background: #000;
 				margin:0;
 				padding:0;
+				color:#ff0;
 			}
 			.glslCanvas {
 			    margin-left: auto;
@@ -44,9 +47,8 @@
 	</head>
 
 	<body onload="init()">
-		</div>
+		<div id="waiting"><h2>&nbsp;&nbsp;&nbsp;Loading texture! Please wait a few moments...</h2></div>
 		<div id="content">
-			<div id="waiting">we are Loading content! please wait...</div>
 			<canvas class="glslCanvas" data-textures="/images/tsne_caltech256_animals.jpg" width="1" height="1" data-fragment="
 		#ifdef GL_ES
 		precision mediump float;
