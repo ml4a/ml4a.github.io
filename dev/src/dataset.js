@@ -42,7 +42,6 @@ function dataset()
 		return (num_batches - test_batches.length) * rows_per_batch;
 	};
 
-
 	this.is_loading = function() {
 		return loading_batch;
 	};
@@ -113,7 +112,7 @@ function dataset()
 		root_dir = '/dev/datasets/mnist/mnist';
 		dim = 28;
 		channels = 1;
-		rows_per_batch = 3000
+		rows_per_batch = 3000;
 		num_batches = 21;
 		test_batches = [20]; //[0,1,2];//[18,19,20];
 		classes = ["0","1","2","3","4","5","6","7","8","9"];

@@ -185,6 +185,7 @@ function nnvis(net_)
 	var draw_weight_arrow = true;
   var draw_input_arrow = true;
   var input_label = "";
+  var label_max_width;
   
 	this.layer_draw_type = { NORMAL : 1, PIXEL: 2 };
 
@@ -353,42 +354,21 @@ function nnvis(net_)
  			if (layer_draw_types[i] == this.layer_draw_type.PIXEL) {
  				noStroke();
 
-
-
-
-
-
-
  				var img = this.net.get_test_sample_image();
- 				
 				if (img != null) {
 					img.loadPixels();
 				}
  				for (var j=0; j<l.neurons.length; j++) {
  					var x1 = l.neurons[0].get_center().x;
  					var y1 = map(j, 0, l.neurons.length, rectangle.y, rectangle.y+rectangle.h);
- 					
  					if (img != null) {
- 						
- 						// or get color
-
  						fill(img.pixels[4*j], img.pixels[4*j+1], img.pixels[4*j+2]);
 					}
 					else {
 						fill(255);
 					}
-		
-
  					//noStroke();
       		rect(x1-4, y1, 2, 1);    
-
-
-
-
-
-
-
-
 
 
  				}
@@ -466,7 +446,7 @@ function nnvis(net_)
     var classes = this.net.get_dataset().get_classes();
     for (var i=0; i<outv.length; i++) {
       var center = outn[outv[i]].get_center();
-      var x = center.x + 3 * outn[outv[i]].get_radius();
+      var x = center.x + label_max_width + outn[outv[i]].get_radius();
       var y = center.y;
       var w = map(out_prob[outv[i]], 0, 1, 0, 100);
       var h = 20;
@@ -474,8 +454,8 @@ function nnvis(net_)
       noStroke();
       fill(0);
       textSize(12);
-      textAlign(LEFT);
-      text(classes[outv[i]], x - 12, y + 5);
+      textAlign(RIGHT);
+      text(classes[outv[i]], x-4, y + 5);
       if (outv[i] == actual_label) {
         fill(0, 255, 0);
       }
@@ -554,27 +534,17 @@ function nnvis(net_)
   	}
 	};
 
-
-  ////
-
   this.draw_sample = function() {
-
-//    text("press spacebar for next sample", 5, 20);
-
-    //var img = this.net.get_dataset().get_image();
     var img = this.net.get_test_sample_image();
     image(img, 20, 32, 100, 100);
-
   };
 
-
-
-///
 
 	/* initial setup */
 	if (net_ != null) {
 		this.net = net_;
 		this.setup_from_net(this.net);
+    label_max_width = 64;
 		this.get_net = function() {return this.net;}
   };
   this.initialize();
@@ -590,107 +560,3 @@ function disp_text(n, d) {
 	var t = nfs(n, 0, d);
 	return t[0] == ' ' ? t.slice(1) : t;
 };
-
-
-
-/*
-
-function draw_activations(A, scale) {
-  
-  //var s = scale || 2; // scale
-  var s = 1;
-  var draw_grads = false;
-  if(typeof(grads) !== 'undefined') draw_grads = grads;
-  
-  // get max and min activation to scale the maps automatically
-  var w = draw_grads ? A.dw : A.w;
-  var mm = maxmin(w);
-
-  
-  // create the canvas elements, draw and add to DOM
-  for(var d=0;d<A.depth;d++) {
-    var W = A.sx * s;
-    var H = A.sy * s;
-
-    var img2 = createImage(A.sx, A.sy);
-    img2.loadPixels();
-    
-    for(var x=0;x<A.sx;x++) {
-      for(var y=0;y<A.sy;y++) {
-        if(draw_grads) {
-          var dval = Math.floor((A.get_grad(x,y,d)-mm.minv)/mm.dv*255);
-        } else {
-          var dval = Math.floor((A.get(x,y,d)-mm.minv)/mm.dv*255);  
-        }
-        for(var dx=0;dx<s;dx++) {
-          for(var dy=0;dy<s;dy++) {
-            var pp = ((W * (y*s+dy)) + (dx + x*s)) * 4;
-            img2.pixels[pp  ] = dval;  // rgb
-            img2.pixels[pp+1] = dval;  // rgb
-            img2.pixels[pp+2] = dval;  // rgb
-            img2.pixels[pp+3] = 255;   // alpha channel
-          }
-        }
-      }
-    }
-    
-    img2.updatePixels();
-    
-    var yy = floor(d / 14) * 82;// (A.sy + 2);
-    var xx = (d % 14) * 82;//(A.sx + 5);
-    
-    push();
-    translate(xx, yy);
-    noSmooth();
-    image(img2, 0, 0, 80, 80);
-    pop();
-  }
-}
-*/
-
-
-
-
-/*
-/ if (!once) {
-      convnet.train_next(100);
-      //once = true;
-    //}
-    var wimg = convnet.get_weights_image();
-    fill(0);
-    rect(0, 0, 1000, 1000);
-    for (var w=0; w<wimg.length;w++) {
-      var y = w < 5 ? 300 : 420;
-      var x = 106 * (w % 5) + 100;
-      image(wimg[w], x, y, 100, 100);
-    }
-
-    */
-
-
-
-
-
-    /*
-
-    function test_cam() {
-  var ww = 32;
-  var volc = new convnetjs.Vol(ww,ww,3,0.0);
-    var idx = 0;
-    capture.loadPixels();
-    for (var y=0; y<ww; y+=1) {
-      for (var x=0; x<ww; x+=1) {
-        var col = floor(map(x, 0, ww, 0, 640));
-        var row = floor(map(y, 0, ww, 0, 480));
-        var i = row * 640 + col;
-        var r = capture.pixels[0 + i*4];
-        var g = capture.pixels[1 + i*4];
-        var b = capture.pixels[2 + i*4];
-        volc.w[idx++] = r/255.0;
-        volc.w[idx++] = g/255.0;
-        volc.w[idx++] = b/255.0;
-      }
-    }
-    net.forward(volc);
-}
-*/

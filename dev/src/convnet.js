@@ -196,6 +196,7 @@ function convnet(dataset_)
     var nx = V.sx;
     var ny = V.sy;
     var nz = V.depth;
+    var nc = dataset.get_channels();
     if (nx * ny == 1) {
       nz = dataset.get_channels();
       nx = sqrt(V.depth / nz);
@@ -210,16 +211,16 @@ function convnet(dataset_)
       for(var y=0;y<ny;y++) {
         var z = nz * (y * nx + x) + (is_weight ? 0 : idx);
         var val = [];
-        for(var dz=0;dz<nz;dz++) {
+        for(var dz=0;dz<nc;dz++) {
           val.push(Math.floor(255 * (V.w[z+dz] - mm.minv) / mm.dv));
         }
         for(var dx=0;dx<scale;dx++) {
           for(var dy=0;dy<scale;dy++) {
-            var idx = ((W * (y*scale+dy)) + (dx + x*scale)) * 4;
+            var idx_ = ((W * (y*scale+dy)) + (dx + x*scale)) * 4;
             for (var dz=0;dz<3;dz++) {
-              img.pixels[idx+dz] = val[dz % nz];
+              img.pixels[idx_+dz] = val[dz % nc];
             }
-            img.pixels[idx+3] = 255;
+            img.pixels[idx_+3] = 255;
           }
         }
       }
