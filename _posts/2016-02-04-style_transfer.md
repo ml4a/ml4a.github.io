@@ -110,10 +110,24 @@ We can make the algorithm produce images with multiple styles evident by averagi
 **[Picasso x Picasso]**
 
 
+# Tutorial
+
+implementations
+style loss vs content loss
+what do the parameters do
+
 # Style transfer in other domains
 
 
 style is a nebulous term
+
+works by others
+ - deep forger
+ - style studies
+ - starry night in nyc
+ - deepart.io
+ - twitter #stylenet
+
 
 john mccarthy 1955 coined AI
 turing 50 - computing machine and intelligence

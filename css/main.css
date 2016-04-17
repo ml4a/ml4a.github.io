@@ -1,11 +1,23 @@
 body {
-    margin: 60px auto;
-    width: 70%;
     font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
     font-size:13px;
 }
+.navbar {
+    width: 66%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.container {
+    width: 66%;
+    margin-left:auto;
+    margin-right:auto;
+}
+.header {
+    /*background-color:#eee;*/
+    padding:0px;
+    margin:0px;
+}
 nav ul, footer ul {
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -15,11 +27,23 @@ nav ul li, footer ul li {
     margin-right: 20px;
 }
 a {
+    background-color:#333;
+    padding-left:1px;
+    padding-right:1px;
     text-decoration: none;
-    color: #999;
+    color:#fff;
+    font-weight: 500;               
 }
 a:hover {
-    text-decoration: underline;
+    background-color:#1abc9c;
+}
+.center {
+    text-align: center;
+}
+.section {
+    font-size:30px;
+    background-color:#eee;
+    padding:10px;
 }
 h1 {
     font-size: 3em;
@@ -27,7 +51,7 @@ h1 {
 }
 p {
     font-size: 1.5em;
-    line-height: 1.5em;
+    line-height: 1.35em;
     color: #333;
 }
 footer {
@@ -37,7 +61,7 @@ footer {
 
 ul.posts { 
     margin: 20px auto 40px; 
-    font-size: 1.5em;
+    /*font-size: 1.5em;*/
 }
 
 ul.posts li {
@@ -47,4 +71,34 @@ ul.posts li {
 h5 {
     font-size:16px;
     font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
+}
+
+/* how to make the div wider than the parent */
+.embeddable {
+    background-color:#ff0;
+    margin-left:-100px;
+    margin-right:-100px;
+}
+
+
+
+.quotation {
+    background-color:#f9f9f9;
+    margin-left:-20px;
+    margin-right:-20px;  
+    font-family: 'Source Sans Pro', sans-serif; font-weight: 500; color: #000;
+    font-size:18px;
+    line-height:1.6em;
+    padding-left:25px;
+    padding-right:25px;
+    padding-top:12px;
+    padding-bottom:12px;
+    border-right: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+}
+.quotation_person {
+    text-align:right;
+    padding-right:30px;    
+    font-size:20px;
+    margin-top:12px;
 }

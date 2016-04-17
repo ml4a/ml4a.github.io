@@ -21,6 +21,8 @@ date: 2016-01-04
 
 -----------
 
+http://cs231n.github.io/neural-networks-3/ 
+alecrad 2 images
 
 Mountains + backprop (analogy, picture, quotes)
 [ mountains at night, or topographic map ]

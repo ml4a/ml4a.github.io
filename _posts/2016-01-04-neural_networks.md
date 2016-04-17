@@ -68,6 +68,8 @@ In both artificial and biological neural networks, a neuron does not just output
 
 Many activation functions have been proposed, but for now we will describe two in detail: [sigmoid](_) and [ReLU](_). 
 
+...tanh
+
 Historically, the sigmoid function is the oldest and most popular activation function. It is defined as:
 
 $$
@@ -186,8 +188,6 @@ The way we setup a neural network to classify these images is by having the raw 
 The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives ....
 
 **[ DEMO: mnist_forwardpass.html ]**
-
-{% include embed.html %}
 
 
 # Summary
