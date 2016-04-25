@@ -10,7 +10,7 @@
   div.parentNode.insertBefore(tag, div);
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('{{ data.name }}_player', {
-      height: '390',
+      height: '400',
       width: '640',
       videoId: '{{ youtube_id }}',
       events: {}
@@ -19,7 +19,10 @@
 </script>
 
 <div id="{{ data.name }}_container" class="yt_container">
-	<div id="{{ data.name }}_player" class="yt_embed"></div>
+	<div id="{{ data.name }}_playerContainer" class="yt_embed">
+		<div id="{{ data.name }}_player"></div>
+		<br/><a href="https://www.dropbox.com/sh/omb3entv00zse6h/AABdQtAviPWS2Eq6A0fPO54ma?dl=0">download lecture video here</a>
+	</div>
 	<div id="{{ data.name }}_bookmarks" class="yt_bookmarks">
 		<ul>
 		{% for b in data.bookmarks %}
@@ -38,9 +41,9 @@
 		width:65%;
 	}
 	.yt_bookmarks {
-		padding-left:10px;
+		padding-left:22px;
 		display: inline-block;
-		width:30%;
+		width:31%;
 		vertical-align:top;
 	}
 </style>

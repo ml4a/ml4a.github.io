@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Looking inside convnets"
-date: 2016-02-02
+date: 2016-02-04
 ---
 
 

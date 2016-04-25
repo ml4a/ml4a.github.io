@@ -1,12 +1,16 @@
 ---
 layout: default
 title: ITP-NYU - Lecture 01, 3/24/2016
+date: 3/24/2016
 ---
 
-<h1>{{ page.title }}</h1>
+{% assign idx = 0 | plus: 0 %}
+{% assign data = site.data.itp_lectures[idx] %}
 
-{% include youtube_contents.html name='yt_lecture' index=0 id='z0bynQjEpII' width='400' %}
-<br/><a href="https://www.dropbox.com/sh/omb3entv00zse6h/AABdQtAviPWS2Eq6A0fPO54ma?dl=0">download lecture video here</a><br/>
+<h1>ITP-NYU :: {{ page.date }}</h1>
+<h2>{{data.title}}</h2>
+
+{% include youtube_contents.html name='yt_lecture' index=idx width='400' %}
 
 
 <h2>Demos, notes, supplementary materials</h2>

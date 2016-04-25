@@ -1,12 +1,17 @@
 ---
 layout: default
 title: ITP-NYU - Lecture 06, 4/28/2016
+date: 4/28/2016
 ---
 
-<h1>{{ page.title }}</h1>
+{% assign idx = 5 | plus: 0 %}
+{% assign data = site.data.itp_lectures[idx] %}
 
-<!-- {% include youtube_contents.html name='yt_lecture' index=3 width='400' %}
-<br/><a href="https://www.dropbox.com/sh/omb3entv00zse6h/AABdQtAviPWS2Eq6A0fPO54ma?dl=0">download lecture video here</a><br/> -->
+<h1>ITP-NYU :: {{ page.date }}</h1>
+<h2>{{data.title}}</h2>
+
+<!--{% include youtube_contents.html name='yt_lecture' index=idx width='400' %}-->
+
 
 <h2>Class notes</h2>
 
@@ -63,6 +68,35 @@ Artificial general intelligence
 
 
 AlphaGO
+
+https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
+https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/
+
+ policy network -> self-playing -> value network
+ pn + vn => MCTS -> pick move
+ pn + vn = convnets!
+ pn plays against itself
+
+
+1) policy network
+  - trained on millions of games
+    - [ x0x0x00x ] (go Board) => 1-hot vector of new element
+  - predict next move 57% of the time
+  - plays Go at amateur level
+  - con: no way of evaluating value of position
+
+2) value network
+   - pipe in board position, get estimate of value
+   - trained on many games again
+   - improved through self-play
+   - wild! self-improvement
+
+3) MCTS
+   - need to narrow search space
+   - policy network gives candidate moves (high probability next)
+   - seek to some depth and eval with value network
+   - pick move
+
 
  - cell-based board games, basic problem setup
    - chess, checkers, go, 
