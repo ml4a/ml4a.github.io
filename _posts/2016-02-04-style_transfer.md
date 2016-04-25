@@ -23,9 +23,9 @@ L_{total}(\vec p, \vec a, \vec x) = \alpha L_{content}(\vec p,\vec x) + \beta L_
 \end{eqnarray}
 $$
 
-Because the content loss and style loss are both functions of our output image's pixels, it follows that they are in mutual conflict; no output image is likely to optimize both terms simultaneously. Thus, $$\alpha$$ and $$\beta$$ are hyper-parameters that are used to control the relative importance of each term to us. By setting $$\alpha$$ higher than $$\beta$$, the loss function favors minimizing content loss over style loss, while setting $$\beta$$ prioritizes style loss.
+Because the content loss and style loss are both functions of our output image's pixels, it follows that they are in mutual conflict; no output image is likely to optimize both terms simultaneously. So $$\alpha$$ and $$\beta$$ are parameters that are used to control the relative importance of each term to us. By setting $$\alpha$$ higher than $$\beta$$, the loss function favors minimizing content loss over style loss, while setting $$\beta$$ prioritizes style.
 
-Like with Deepdream, the output pixels $$\vec x$$ are determined by an iterative procedure in which at each step, we slightly adjust the output image's pixels so as to decrease the loss. We do this repeatedly until the loss stops diminishing or we are satisfied with the result. We typically initialize the output image randomly with white noise or we copy the content image, as in the case of Deepdream.
+Like with Deepdream, the output pixels $$\vec x$$ are determined by an iterative procedure in which at each step, we slightly adjust the output image's pixels so as to decrease the loss. We do this repeatedly until the loss stops lowering or your mind is blown. We typically initialize the output image randomly with white noise or we copy the content image, as in the case of Deepdream.
 
 The iterative procedure used is the standard gradient descent in which we calculate the gradient of the loss with respect to the pixels, and then adjust them to decrease the loss. This is in fact the same procedure which is used to train neural networks! The only difference is that instead of adjusting weights, we are adjusting pixels. The prior chapter, "How neural networks are trained", explains gradient descent more thoroughly. 
 
@@ -38,6 +38,8 @@ _figure which explains both the iterative process and alpha/beta_
 ## Content loss
 
 Both the content loss and style loss are determined from the activations of a trained convolutional neural network. Recall that a convnet's activations are arranged as a series of feature maps which reflect the presence of different features within the image, where features have a progressively higher-level or more abstract composition at each layer of the convnet. To fully appreciate how the loss terms are derived, it will help to review the prior chapters on convolutional neural networks, and especially how to interpret the activations.
+
+**[ visuals of convnet ]**
 
 The content loss is calculated in the following way. Both the output image and content image are run through a convnet, giving us a set of feature maps for both. The loss at a single layer is the euclidean (L2) distance between the activations of the content image and the activations of the output image.
 
@@ -54,7 +56,7 @@ _
 
 ## Style loss
 
-Like the content loss, style loss is also a function of the convnet's activations, but is slightly more complex. We pass the style image and output image through a convnet and observe their activations. But instead of comparing the raw activations directly, we have another step. For both images, we compute the Gram matrix of the activations at each layer in the network. For a single image, the Gram matrix of its activations at a layer $$l$$ is given by:
+Like the content loss, style loss is also a function of the convnet's activations, but is slightly more complex. We pass the style image and output image through a convnet and observe their activations. But instead of comparing the raw activations directly, we add another step. For both images, we take the Gram matrix of the activations at each layer in the network. For a single image, the Gram matrix of its activations at a layer $$l$$ is given by:
 
 $$
 \begin{eqnarray}
@@ -64,7 +66,7 @@ $$
 
 where $$F_i^l$$ and $$F_j^l$$ are the activations for the i-th and j-th feature maps at layer $$l$$, and $${F_i^l} \cdot {F_j^l}$$ is the dot product between them, _correlation_. In other words, the resulting matrix, $$G^l$$ contains the correlations between every pair of feature maps at layer $$l$$ for that image. 
 
-For reasons regarded as magical by even those who understand the math, this turns out to be a very good representation of our perception of style within images. It captures the tendency of features to co-occur in different parts of the image.
+For reasons that can only be regarded as magic, this turns out to be a very good representation of our perception of style within images. It captures the tendency of features to co-occur in different parts of the image.
 
 After calculating those, we can define the style loss _at a single layer_ $$l$$ as the euclidean (L2) distance between the Gram matrices of the style and output images.
 

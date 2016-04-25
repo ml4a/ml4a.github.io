@@ -73,13 +73,35 @@
 		{"title":"Image synthesis and Deepdream", "m":69, "s":53, "disp":"1:09:53"},
 		{"title":"Style transfer", "m":91, "s":03, "disp":"1:31:03"},
 		{"title":"Transfer learning (Convnet -> Wekinator)", "m":108, "s":20, "disp":"1:48:20"},
-		{"title":"t-SNE on convnet activations (and text)", "m":117, "s":20, "disp":"1:57:20"},
+		{"title":"t-SNE on convnet activations (and text)", "m":117, "s":20, "disp":"1:57:20"}
 	],
 	"summary": [
 		"interpreting and visualizing convnet activations",
 		"image class synthesis, deepdream, style transfer",
 		"transfer learning",
 		"t-SNE for visualizing images, text"
+	]
+},{
+	"youtube_id": "u18NVUvSEsU",
+	"title": "Recurrent neural networks",
+	"date": "4/21/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_05.png",
+	"bookmarks": [
+		{"title":"review feedforward neural networks", "m":2, "s":19, "disp":"2:19"},
+		{"title":"feedforward vs. recurrence", "m":7, "s":38, "disp":"7:38"},
+		{"title":"how recurrent neural nets work", "m":9, "s":06, "disp":"9:06"},
+		{"title":"training RNNs on text (character sequences)", "m":11, "s":32, "disp":"11:32"},
+		{"title":"RNNs and sequence-to-sequence", "m":20, "s":05, "disp":"20:05"},
+		{"title":"image captioning", "m":22, "s":25, "disp":"22:25"},
+		{"title":"advanced architectures and applications", "m":28, "s":12, "disp":"28:12"},
+		{"title":"tutorial: text generation via torch-rnn", "m":34, "s":20, "disp":"34:20 "},
+		{"title":"tutorial: style transfer via neural-style", "m":63, "s":31, "disp":"1:03:31"}
+	],
+	"summary": [
+		"how recurrent neural networks work",
+		"applications, architectures, and case studies of RNNs",
+		"tutorial: generating text",
+		"tutorial: style transfer"
 	]
 }
 ]

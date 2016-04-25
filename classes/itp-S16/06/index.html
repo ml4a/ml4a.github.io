@@ -1,0 +1,96 @@
+---
+layout: default
+title: ITP-NYU - Lecture 06, 4/28/2016
+---
+
+<h1>{{ page.title }}</h1>
+
+<!-- {% include youtube_contents.html name='yt_lecture' index=3 width='400' %}
+<br/><a href="https://www.dropbox.com/sh/omb3entv00zse6h/AABdQtAviPWS2Eq6A0fPO54ma?dl=0">download lecture video here</a><br/> -->
+
+<h2>Class notes</h2>
+
+Agenda
+ - unofficially extending class at SFPC
+   - propose 5/11, 5/18, 5/25
+ - presentations
+   - meta/policies/format
+   - about topics
+ - alt-AI
+
+Terminal procedures
+
+Review recurrent neural nets
+
+GANs
+
+Reinforcement learning
+
+Future of AI
+ - trends in research and society
+ - low-hanging fruits and near-term possible applications
+ - speculations into future directions
+
+How to continue
+ - this class has been an overglorified presentation
+ - you probably have more questions now than you did when you entered
+ - how (and why!) to keep up with research / current events
+ - how to try things out on your own
+
+
+
+Reinforcement learning
+ - Mnih vs. Atari [http://home.uchicago.edu/~arij/journalclub/papers/2015_Mnih_et_al.pdf] [https://www.youtube.com/watch?v=iqXKQf2BOSE]
+
+ - Mario NEAT (genetic algos) [https://www.youtube.com/watch?v=qv6UVOQ0F44]
+ - Mario fun https://www.youtube.com/watch?v=xOCurBYI_gY
+
+Balancing pole
+ - https://www.youtube.com/watch?v=Lt-KLtkDlh8
+
+FlappyBird
+ - https://www.youtube.com/watch?v=xM62SpKAZHU
+
+AlphaGO
+
+Quake, Doom, etc
+
+
+Artificial general intelligence
+ - https://en.wikipedia.org/wiki/AI_takeover
+
+
+
+
+AlphaGO
+
+ - cell-based board games, basic problem setup
+   - chess, checkers, go, 
+   - it's a tree search problem
+
+ - one really nice thing about the AlphaGo program is it uses an ensemble of techniques including convnets which are general enough to give insights about problems that are similarly structured
+
+ - tree search
+ - monte carlo tree search
+ - at first naive: just check every possible move, and check if you win
+   - 10^80 games --> too many to evaluate (more than atoms in universe)
+ - so with chess, you search only some small number of steps, and use some heuristics
+   - with chess, super complicated
+     - easy would be to just count pieces, or more complex, count cells being threatened by your pieces
+     - with IBM, it was like 8000 rules, really expensive to implement
+     - this means it doesn't generalize well, you have to design new rules for different games
+
+ - cool thing about AlphaGo is it uses convolutional neural networks to replace the creation of hand-crafted rules
+   - this is great because it's much more accurate than hand-crafted rules (so we need to make less evaluations)
+   - even better for AGI because it generalizes to other kinds of problems
+
+ - more details
+   
+
+ - it gets harder
+   - go is "information complete", i.e. you have all the info you need looking at the current gameboard and no concept of history is needed
+   - in other games, this is not true. in Doom/quake, we don't see everything at the same time, location of info changes as we change perspective. 
+
+<p/>
+<p/>
+<p/>
