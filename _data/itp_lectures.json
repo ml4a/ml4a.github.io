@@ -94,7 +94,7 @@
 		{"title":"RNNs and sequence-to-sequence", "m":20, "s":05, "disp":"20:05"},
 		{"title":"image captioning", "m":22, "s":25, "disp":"22:25"},
 		{"title":"advanced architectures and applications", "m":28, "s":12, "disp":"28:12"},
-		{"title":"tutorial: text generation via torch-rnn", "m":34, "s":20, "disp":"34:20 "},
+		{"title":"tutorial: text generation via torch-rnn", "m":34, "s":20, "disp":"34:20"},
 		{"title":"tutorial: style transfer via neural-style", "m":63, "s":31, "disp":"1:03:31"}
 	],
 	"summary": [

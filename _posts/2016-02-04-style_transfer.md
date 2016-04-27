@@ -120,6 +120,7 @@ what do the parameters do
 
 # Style transfer in other domains
 
+neural doodle 
 
 style is a nebulous term
 

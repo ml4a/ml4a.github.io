@@ -15,19 +15,53 @@ date: 4/28/2016
 
 <h2>Class notes</h2>
 
-Agenda
+Admin
+ - i don't care about your grades (but i do care about you)
  - unofficially extending class at SFPC
    - propose 5/11, 5/18, 5/25
  - presentations
    - meta/policies/format
    - about topics
+   - you can do them instead at sfpc
  - alt-AI
 
 Terminal procedures
 
 Review recurrent neural nets
+ - https://twitter.com/robinsloan/status/725068953383362560
+
+Generative Models
+ - Autoencoders
+ - GANs
+ - DCGANs
+
+
+In the context of neural networks, generative models refers to those networks which output images. We've seen Deepdream and style transfer already, which can also be regarded as generative, but in contrast, those are produced by an optimization process in which convolutional neural networks are merely used as a sort of analytical tool. In generative models like autoencoders and generative adversarial networks, the convnets output the images themselves. This chapter will look at those two specifically.
+
+## Autoencoders
+
+So far, we've mostly interpreted neural networks as being predictive, i.e. given some inputs, what is the output of  -- where it's going, etc. But this is just a special case of a much more general capacity they have. 
+
+
+
+
+
+
+Autoencoders
+ - encoder -> decoder
+   - why???  world's most expensive identity function
+ - "compression" of latent variable
+ - denoising vs variational
+ - variational = assume a probabilistic model interpretation (KL divergence)
+   - useful because it makes the latent space move around
+ - face examples (VRAE)
+ 
 
 GANs
+
+interesting property of DCGANs
+ - generate tons of labeled images to fill out the image class manifold
+ - then a nearest-neighbors classifier on that outperforms a RBF-SVM
 
 Reinforcement learning
 
@@ -42,7 +76,7 @@ How to continue
  - how (and why!) to keep up with research / current events
  - how to try things out on your own
 
-
+i'm not condoninig
 
 Reinforcement learning
  - Mnih vs. Atari [http://home.uchicago.edu/~arij/journalclub/papers/2015_Mnih_et_al.pdf] [https://www.youtube.com/watch?v=iqXKQf2BOSE]
@@ -66,8 +100,24 @@ Artificial general intelligence
 
 
 
+num tic-tac-toe positions: 765
+planck times since big bang: 10^62
+atoms in universe: 10^80
+num chess positions: 10^120
+num go positions: 10^760
+
+
+
+
 
 AlphaGO
+
+
+96-97 chess
+ - how old?
+ - moves felt like it had purpose
+ - but chess wasn't actually solved yet, kasparov played wrong
+
 
 https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
 https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/
@@ -124,6 +174,12 @@ https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/
  - it gets harder
    - go is "information complete", i.e. you have all the info you need looking at the current gameboard and no concept of history is needed
    - in other games, this is not true. in Doom/quake, we don't see everything at the same time, location of info changes as we change perspective. 
+
+
+artificial general intelligence
+
+Unfortunately, Nature doesn't make science available to the public, but you can download the paper anyway at various links suggested in this Reddit thread.
+
 
 <p/>
 <p/>

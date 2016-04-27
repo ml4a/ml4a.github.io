@@ -6,6 +6,8 @@ date: 2016-01-04
 
 [http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf]
 
+overview of grad descent algorithms: http://sebastianruder.com/optimizing-gradient-descent/index.html
+
  - review
  - function graph + output
  - naive
