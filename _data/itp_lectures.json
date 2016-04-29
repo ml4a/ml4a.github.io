@@ -103,5 +103,27 @@
 		"tutorial: generating text",
 		"tutorial: style transfer"
 	]
+},{
+	"youtube_id": "CRM7HYZYHvo",
+	"title": "Game AI and deep reinforcement learning",
+	"date": "4/28/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_06.png",
+	"bookmarks": [
+		{"title":"the whole class \"in 10 minutes\"", "m":14, "s":33, "disp":"14:33"},
+		{"title":"autoencoders", "m":43, "s":03, "disp":"43:03"},
+		{"title":"generative adversarial networks", "m":53, "s":58, "disp":"53:58"},
+		{"title":"game AI + reinforcement learning", "m":64, "s":59, "disp":"1:04:59"},
+		{"title":"convnets mastering atari games", "m":74, "s":51, "disp":"1:14:51"},
+		{"title":"states, actions, and rewards, Q-learning", "m":88, "s":52, "disp":"1:28:52"},
+		{"title":"super mario craziness, computer tic-tac-toe", "m":100, "s":48, "disp":"1:40:48"},
+		{"title":"computer chess: how DeepBlue works", "m":109, "s":59, "disp":"1:49:59"},
+		{"title":"computer go: how AlphaGo works", "m":124, "s":05, "disp":"2:04:05"},
+	],
+	"summary": [
+		"generative models (autoencoders + GANs)",
+		"game AI + reinforcement learning",
+		"convnets mastering atari games",
+		"computer chess & computer go, how AlphaGo works"
+	]
 }
 ]

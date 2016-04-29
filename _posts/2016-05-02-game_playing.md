@@ -10,13 +10,26 @@ quote
 http://www.starcenter.com/glassbead.pdf
 
 
+http://www.nervanasys.com/demystifying-deep-reinforcement-learning/
+
+http://www.somatic.io/blog/on-alphago-intuition-and-the-master-objective-function?utm_content=buffera3f62&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+https://medium.com/a-year-of-artificial-intelligence/lenny-2-autoencoders-and-word-embeddings-oh-my-576403b0113a#.q9cfvzmpi
+
+
+
 A Game, for example, might start from a given astronomical configuration, or from the actual theme of a Bach fugue, or from a sentence out of Leibniz or the Upanishads, and from this theme, depending on the intentions and talents of the player, it could either further explore and elaborate the initial motif or else enrich its expressiveness by allusions to kindred concepts... It represented an elite, symbolic form of seeking for perfection, a sublime alchemy, an approach to that Mind which beyond all images and multiplicities is one within itself -- in other words, to God.
 Herman Hesse, The Glass Bead Game
 
 I will do my best to play a beautiful and interesting game.
 Lee Se-dol
 
+
+
+
 ==========
+
+http://www.nervanasys.com/demystifying-deep-reinforcement-learning/
 
 http://googleresearch.blogspot.com/2016/01/alphago-mastering-ancient-game-of-go.html
 
@@ -53,7 +66,7 @@ https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
 
 In March 2016, an AI trained to play [Go](https://en.wikipedia.org/wiki/Go_(game)) defeated Lee Se-dol, the 9-dan champion regarded by many as the best player in the history of the ancient board game. For many years, Go was thought intractable for AIs to compete with the top human players. Chess computers had caught up to grandmasters like Gary Kasparov some 20 years before, as when IBM's DeepBlue beat the world's top chess player at the time. But it was clear that DeepBlue's approach could not be scaled to Go. For one thing, the number of legal board positions in Go is vastly greater than in chess. Chess is estimated to have $$10^{120}$$ possible board positions, already far more than the $$10^80$$ atoms in the universe. Go has $$10^{761}$$ possible boards, or $$10^641$$ times _as many as chess_! This inconceivably large number of positions means that brute force search of all possible moves will not work.
 
-As we shall see, AlphaGo, built by Google's DeepMind group, uses an ensemble of techniques from machine learning to create an  ____, including a duo of convolutional neural networks, which we will get to later. But it uses it in tandem with some novel techniques we haven't covered yet. In particular, it uses a form of _reinforcement learning_ to self-improve from experience, a technique commonly used to build AIs which learn how to play and win video games.
+As we shall see, AlphaGo, built by Google's DeepMind group, uses an ensemble of techniques from machine learning to create an  ???, including a duo of convolutional neural networks, which we will get to later. But it uses it in tandem with some novel techniques we haven't covered yet. In particular, it uses a form of _reinforcement learning_ to self-improve from experience, a technique commonly used to build AIs which learn how to play and win video games.
 
 Perhaps the most striking aspect of the AlphaGo system is its near-total reliance on very general algorithms which are not initially given any expert knowledge about Go. This is in contrast to DeepBlue which relied on a hand-crafted evaluation function to measure the utility of board positions. Thus, AlphaGo-like programs may be easier to adapt to other games, or more general scenarios altogether.
 
@@ -127,3 +140,114 @@ MCTS
  - go
 
 
+
+alphago slides
+
+
+
+
+
+96-97 chess
+ - how old?
+ - moves felt like it had purpose
+ - but chess wasn't actually solved yet, kasparov played wrong
+
+
+https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
+https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/
+
+ policy network -> self-playing -> value network
+ pn + vn => MCTS -> pick move
+ pn + vn = convnets!
+ pn plays against itself
+
+
+1) policy network
+  - trained on millions of games
+    - [ x0x0x00x ] (go Board) => 1-hot vector of new element
+  - predict next move 57% of the time
+  - plays Go at amateur level
+  - con: no way of evaluating value of position
+
+2) value network
+   - pipe in board position, get estimate of value
+   - trained on many games again
+   - improved through self-play
+   - wild! self-improvement
+
+3) MCTS
+   - need to narrow search space
+   - policy network gives candidate moves (high probability next)
+   - seek to some depth and eval with value network
+   - pick move
+
+
+Cell based
+ - cell-based board games, basic problem setup
+   - chess, checkers, go, 
+   - it's a tree search problem
+
+ - one really nice thing about the AlphaGo program is it uses an ensemble of techniques including convnets which are general enough to give insights about problems that are similarly structured
+
+ - tree search
+ - monte carlo tree search
+ - at first naive: just check every possible move, and check if you win
+   - 10^80 games --> too many to evaluate (more than atoms in universe)
+ - so with chess, you search only some small number of steps, and use some heuristics
+   - with chess, super complicated
+     - easy would be to just count pieces, or more complex, count cells being threatened by your pieces
+     - with IBM, it was like 8000 rules, really expensive to implement
+     - this means it doesn't generalize well, you have to design new rules for different games
+
+ - cool thing about AlphaGo is it uses convolutional neural networks to replace the creation of hand-crafted rules
+   - this is great because it's much more accurate than hand-crafted rules (so we need to make less evaluations)
+   - even better for AGI because it generalizes to other kinds of problems
+
+ - more details
+
+
+ - it gets harder
+   - go is "information complete", i.e. you have all the info you need looking at the current gameboard and no concept of history is needed
+   - in other games, this is not true. in Doom/quake, we don't see everything at the same time, location of info changes as we change perspective. 
+
+
+artificial general intelligence
+
+Unfortunately, Nature doesn't make science available to the public, but you can download the paper anyway at various links suggested in this Reddit thread.
+
+Reinforcement learning
+ - Mnih vs. Atari [http://home.uchicago.edu/~arij/journalclub/papers/2015_Mnih_et_al.pdf] [https://www.youtube.com/watch?v=iqXKQf2BOSE]
+
+ - Mario NEAT (genetic algos) [https://www.youtube.com/watch?v=qv6UVOQ0F44]
+ - Mario fun https://www.youtube.com/watch?v=xOCurBYI_gY
+
+Balancing pole
+ - https://www.youtube.com/watch?v=Lt-KLtkDlh8
+
+FlappyBird
+ - https://www.youtube.com/watch?v=xM62SpKAZHU
+
+AlphaGO
+
+Quake, Doom, etc
+
+
+Artificial general intelligence
+ - https://en.wikipedia.org/wiki/AI_takeover
+
+How AlphaGo works
+ - tic-tac-toe + tree search
+ - chess + Monte Carlo Tree Search
+ - AlphaGo
+   - convnets + RL + MCTS
+
+Reinforcement learning
+ - https://openai.com/blog/openai-gym-beta/
+
+
+
+http://www.nervanasys.com/demystifying-deep-reinforcement-learning/
+
+challenges 
+ - delayed reward + credit assignment
+ - discount factor: exploration vs exploitation

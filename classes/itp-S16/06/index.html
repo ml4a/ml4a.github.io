@@ -10,177 +10,107 @@ date: 4/28/2016
 <h1>ITP-NYU :: {{ page.date }}</h1>
 <h1>{{data.title}}</h1>
 
-<!--{% include youtube_contents.html name='yt_lecture' index=idx width='400' %}-->
+{% include youtube_contents.html name='yt_lecture' index=idx width='400' %}
+
+
+
 
 
 <h2>Class notes</h2>
 
-Admin
- - i don't care about your grades (but i do care about you)
- - unofficially extending class at SFPC
-   - propose 5/11, 5/18, 5/25
- - presentations
-   - meta/policies/format
-   - about topics
-   - you can do them instead at sfpc
- - alt-AI
+<h3>Admin</h3>
+<ul>
+	<li>unofficially extending class at <a href="http://www.sfpc.io">SFPC</a>
+		<ul>
+			<li>propose 5/11, 5/18... 5/25?</li>
+		</ul>
+	</li>
+	<li>presentations next week
+		<ul>
+	   		<li>meta/policies/format</li>
+	   		<li>you can do them instead at sfpc</li>
+		</ul>
+	</li>
+	<li><a href="http://alt-ai.net/#exhibition">alt-AI exhibition</a></li>
+	<li>Terminal.com procedures</li>
+	<li>ML amplifies privilege
+		<ul>
+	   		<li><a href="http://blog.dominodatalab.com/video-how-machine-learning-amplifies-societal-privilege/">sentiment analysis + automated content</a></li>
+		</ul>
+	</li>
+</ul>
 
-Terminal procedures
+<h3>The whole class in 10 minutes</h3>
+<ul>
+	<li>Review <a href="/classes/itp-S16/04/">convnets and applications</a>, and <a href="/classes/itp-S16/05/">RNNs</a></li>
+	<li>repetition = mental backpropagation</li>
+</ul>
 
-Review recurrent neural nets
- - https://twitter.com/robinsloan/status/725068953383362560
+<h3>Generative Models</h3>
+<ul>
+	<li>Autoencoders</li>
+	<li>Generative adversarial networks
+		<ul>
+	   		<li><a href="http://www.genekogan.com/works/a-book-from-the-sky.html">A Book from the Sky</a></li>
+	   		<li><a href="http://arxiv.org/abs/1511.06434">DCGANs</a> in practice</li>
+		</ul>
+	</li>
+</ul>
 
-Generative Models
- - Autoencoders
- - GANs
- - DCGANs
+<h3>Video game AI + reinforcement learning</h3>
+<ul>
+	<li>Reinforcement learning
+		<ul>
+			<li>Markov decision process + {States, Actions, Rewards}</li>
+			<li>Q-Learning in video games</li>
+			<li>goal: function which advises an action given a state</li>
+		</ul>
+	</li>
+	<li>challenges
+		<ul>
+		   	<li>time matters</li>
+		    <li>reward can be delayed</li>
+		   	<li>exploration vs. exploitation
+				<ul>
+			    	<li>multi-armed bandits</li>
+			     	<li>discount factor</li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li>Applications
+		<ul>
+			<li>maneuver a body (robotics)</li>
+			<li>manage something (investment portfolio, power stations, industrial applications)</li>
+			<li>play games :)</li>
+		 	<li>OpenAI <a href="https://gym.openai.com/">reinforcement learning gym</a></li>
+		</ul>
+	</li>
+</ul>
 
-
-In the context of neural networks, generative models refers to those networks which output images. We've seen Deepdream and style transfer already, which can also be regarded as generative, but in contrast, those are produced by an optimization process in which convolutional neural networks are merely used as a sort of analytical tool. In generative models like autoencoders and generative adversarial networks, the convnets output the images themselves. This chapter will look at those two specifically.
-
-## Autoencoders
-
-So far, we've mostly interpreted neural networks as being predictive, i.e. given some inputs, what is the output of  -- where it's going, etc. But this is just a special case of a much more general capacity they have. 
-
-
-
-
-
-
-Autoencoders
- - encoder -> decoder
-   - why???  world's most expensive identity function
- - "compression" of latent variable
- - denoising vs variational
- - variational = assume a probabilistic model interpretation (KL divergence)
-   - useful because it makes the latent space move around
- - face examples (VRAE)
- 
-
-GANs
-
-interesting property of DCGANs
- - generate tons of labeled images to fill out the image class manifold
- - then a nearest-neighbors classifier on that outperforms a RBF-SVM
-
-Reinforcement learning
-
-Future of AI
- - trends in research and society
- - low-hanging fruits and near-term possible applications
- - speculations into future directions
-
-How to continue
- - this class has been an overglorified presentation
- - you probably have more questions now than you did when you entered
- - how (and why!) to keep up with research / current events
- - how to try things out on your own
-
-i'm not condoninig
-
-Reinforcement learning
- - Mnih vs. Atari [http://home.uchicago.edu/~arij/journalclub/papers/2015_Mnih_et_al.pdf] [https://www.youtube.com/watch?v=iqXKQf2BOSE]
-
- - Mario NEAT (genetic algos) [https://www.youtube.com/watch?v=qv6UVOQ0F44]
- - Mario fun https://www.youtube.com/watch?v=xOCurBYI_gY
-
-Balancing pole
- - https://www.youtube.com/watch?v=Lt-KLtkDlh8
-
-FlappyBird
- - https://www.youtube.com/watch?v=xM62SpKAZHU
-
-AlphaGO
-
-Quake, Doom, etc
-
-
-Artificial general intelligence
- - https://en.wikipedia.org/wiki/AI_takeover
-
-
-
-num tic-tac-toe positions: 765
-planck times since big bang: 10^62
-atoms in universe: 10^80
-num chess positions: 10^120
-num go positions: 10^760
-
-
-
-
-
-AlphaGO
-
-
-96-97 chess
- - how old?
- - moves felt like it had purpose
- - but chess wasn't actually solved yet, kasparov played wrong
-
-
-https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
-https://www.tastehit.com/blog/google-deepmind-alphago-how-it-works/
-
- policy network -> self-playing -> value network
- pn + vn => MCTS -> pick move
- pn + vn = convnets!
- pn plays against itself
-
-
-1) policy network
-  - trained on millions of games
-    - [ x0x0x00x ] (go Board) => 1-hot vector of new element
-  - predict next move 57% of the time
-  - plays Go at amateur level
-  - con: no way of evaluating value of position
-
-2) value network
-   - pipe in board position, get estimate of value
-   - trained on many games again
-   - improved through self-play
-   - wild! self-improvement
-
-3) MCTS
-   - need to narrow search space
-   - policy network gives candidate moves (high probability next)
-   - seek to some depth and eval with value network
-   - pick move
-
-
- - cell-based board games, basic problem setup
-   - chess, checkers, go, 
-   - it's a tree search problem
-
- - one really nice thing about the AlphaGo program is it uses an ensemble of techniques including convnets which are general enough to give insights about problems that are similarly structured
-
- - tree search
- - monte carlo tree search
- - at first naive: just check every possible move, and check if you win
-   - 10^80 games --> too many to evaluate (more than atoms in universe)
- - so with chess, you search only some small number of steps, and use some heuristics
-   - with chess, super complicated
-     - easy would be to just count pieces, or more complex, count cells being threatened by your pieces
-     - with IBM, it was like 8000 rules, really expensive to implement
-     - this means it doesn't generalize well, you have to design new rules for different games
-
- - cool thing about AlphaGo is it uses convolutional neural networks to replace the creation of hand-crafted rules
-   - this is great because it's much more accurate than hand-crafted rules (so we need to make less evaluations)
-   - even better for AGI because it generalizes to other kinds of problems
-
- - more details
-   
-
- - it gets harder
-   - go is "information complete", i.e. you have all the info you need looking at the current gameboard and no concept of history is needed
-   - in other games, this is not true. in Doom/quake, we don't see everything at the same time, location of info changes as we change perspective. 
-
-
-artificial general intelligence
-
-Unfortunately, Nature doesn't make science available to the public, but you can download the paper anyway at various links suggested in this Reddit thread.
+<h3>How AlphaGo works</h3>
+<ul>
+	<li>tic-tac-toe and game trees
+	<li>Chess
+		<ul>
+   			<li>Monte Carlo Tree Search</li>
+   			<li>handcrafted value function</li>
+			<li>DeepBlue vs. Gary Kasparov</li>
+		</ul>
+	</li>
+	<li>Go
+		<ul>
+	   		<li>policy + value convnets</li>
+	   		<li>self-play to train value network</li>
+	   		<li>MCTS + policy + value</li>
+			<li>AlphaGo vs. Lee Se-dol</li>
+		</ul>
+	</li>
+ 	<li>It gets waaaay harder (like Doom)</li>
+</ul>
 
 
 <p/>
 <p/>
 <p/>
+
