@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>ml4a :: MNIST input</title>
+    
+    <script src="../libraries/p5.js" type="text/javascript"></script>
+		<script src="../libraries/util.js" type="text/javascript"></script>
+    
+    <script src="../src/nnvis.js" type="text/javascript"></script>
+    <script src="../src/datavis.js" type="text/javascript"></script>
+    
+    <script>
+    	var to_save = false;
+		  var batch_image_path = "../datasets/mnist/mnist_batch_1.png";
+    	var save_filename = "../datasets/mnist_unrolled.png"
+		  var dim = 28;
+    	var batch_img;	
+    	var img = [];
+
+      var s = 32;
+      var nx = 26;
+      var ny = 6;
+
+    	
+			function preload() {
+				batch_img = loadImage(batch_image_path);
+			}
+
+    	function setup() {
+    		createCanvas(860, 200);
+    		noLoop();
+
+				// load batch image, get sample
+    		batch_img.loadPixels();
+
+        for (var idx=0; idx<nx*ny; idx++) {
+    			var img_raw = createImage(dim, dim);
+    			img_raw.loadPixels();
+    			var n = dim * dim * 4;
+    			for (var i=0; i<n; i++) {
+    				var offset = n * idx;
+    				img_raw.pixels[i] = batch_img.pixels[offset + i];
+       		}
+       		img_raw.updatePixels();
+          img.push(img_raw);
+        }
+
+    	}
+
+    	function draw() {
+     		background(255);
+        var y = 5 + (height - 10) * 0.5;
+        for (var j=0; j<ny; j++) {
+          for (var i=0; i<nx; i++) {
+            var x = 1 + i * (s+1);
+            var y = 1 + j * (s+1);
+            image(img[i + nx * j], x, y, s, s);
+          }
+        }
+    	}
+		</script>
+
+    <style> body {padding: 0; margin: 0;} canvas {vertical-align: top;} </style>
+  </head>
+  <body>
+  </body>
+</html>

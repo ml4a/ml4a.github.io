@@ -1,6 +1,7 @@
 body {
     font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
     font-size:13px;
+    margin:0px;
 }
 .navbar {
     width: 66%;
@@ -57,11 +58,23 @@ h3 {
     font-size: 1.6em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
+h4 {
+    font-size:80px;
+}
+h5 {
+    font-size:26px;
+    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
+}
 p {
     font-size: 1.5em;
     line-height: 1.35em;
     color: #333;
 }
+li {
+    font-size: 1.5em;
+    line-height:1.35em;
+}
+
 footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
@@ -76,14 +89,7 @@ ul.posts li {
     list-style: none;
 }
 
-li {
-	font-size: 15px;
-}
 
-h5 {
-    font-size:16px;
-    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
-}
 
 /* how to make the div wider than the parent */
 .embeddable {
@@ -93,22 +99,69 @@ h5 {
 }
 
 
-
 .quotation {
-    background-color:#f9f9f9;
-    margin-left:-20px;
-    margin-right:-20px;  
-    font-family: 'Source Sans Pro', sans-serif; font-weight: 500; color: #000;
-    font-size:18px;
+    position:absolute;
+    right:0;
+    
+    bottom:0;
+    /*margin-right:200px;
+    margin-top:100px;*/
+    background: rgba(255,255,255,.8);
+    width:40%;
+    height:150px;
+}
+
+.quotation2 {
+    position:absolute;
+
+    background: rgba(255,255,255,.8);
+    width:40%;
+    /*height:150px;*/
+
+
+    /*background-color:#f9f9f9;*/
+    /*margin-left:-20px;
+    margin-right:-20px;  */
+    font-family: 'Source Sans Pro', sans-serif; color: #000;
+    font-size:16px;
+    font-weight:400;
     line-height:1.6em;
-    padding-left:25px;
+    padding-left:55px;
     padding-right:25px;
     padding-top:12px;
     padding-bottom:12px;
     border-right: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
 }
-.quotation_person {
+
+
+
+
+#quote_outer {
+    position: relative; 
+    padding-top: 0px
+}
+
+#quote_inner {
+    position: absolute; 
+    left: 0; 
+    width: 100%; 
+    bottom: 0; 
+    margin-bottom:10px
+}
+
+#quote_content {
+    background: rgba(255,255,255,.8); 
+    width: 530px; 
+    height: 190px; 
+    margin-left:auto; 
+    margin-right: 100px; 
+    font-size:18px; 
+    padding:20px; 
+    border: 1px solid #d5d5d5;
+}
+
+#quote_person {
     text-align:right;
     padding-right:30px;    
     font-size:20px;
