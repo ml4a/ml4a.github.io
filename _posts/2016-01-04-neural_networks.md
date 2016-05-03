@@ -238,21 +238,10 @@ The important thing to realize is that although this network seems a lot more im
 
 # Summary
 
+TBD
+
 # Further reading
 
-
-------
-
-connection to neuro, synapses, neurons, axons. But most machine learning researchers and neuroscientists alike will warn you not to take this analogy to seriously! Though the design and terminology is inspired by the brain, neural networks will hardly give you much insight into how actual brains work. why?...
-
-notes
- - Tedd Hoff soon explored the option of just outputting the weight input in 1960 with “An adaptive “ADALINE” neuron using chemical “memistors” http://www.andreykurenkov.com/writing/a-brief-history-of-neural-nets-and-deep-learning/
- - the thinking machine youtube video: http://www.andreykurenkov.com/writing/a-brief-history-of-neural-nets-and-deep-learning/
-
-References and further reading
  - nielsen
  - kurekenov
-
-
-header
-http://ds-wordpress.haverford.edu/bitbybit/bit-by-bit-contents/chapter-two/2-4-the-difference-engine/
+ 

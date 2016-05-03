@@ -58,9 +58,6 @@ h3 {
     font-size: 1.6em;
     font-family:'Helvetica', 'Arial', 'Sans-Serif';
 }
-h4 {
-    font-size:80px;
-}
 h5 {
     font-size:26px;
     font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
@@ -71,7 +68,7 @@ p {
     color: #333;
 }
 li {
-    font-size: 1.5em;
+    font-size: 1.0em;
     line-height:1.35em;
 }
 
