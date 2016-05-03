@@ -1,32 +1,77 @@
 ---
-layout: post
+layout: chapter
 title: "Neural networks"
 date: 2016-01-04
 ---
 
-{% include quotation.html index=0 %}
-
-Nearly a century before neural networks were first implemented, Ada Lovelace described an ambition to build a "calculus of the nervous system." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until Charles Babbage proposed the _analytical engine_ that we conceived of "calculators" having humanlike cognitive capacities. Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required. Nevertheless, the idea was passed on to the next century when Alan Turing cited it as the inspiration of the Imitation Game, what soon came to be called the "Turing Test." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the golden age of neural networks.
+Nearly a century before neural networks were first implemented, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities. Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required. Nevertheless, the idea was passed on to the next century when [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) cited it as the inspiration for the [Imitation Game](http://phil415.pbworks.com/f/TuringComputing.pdf), what soon came to be called the "[Turing Test](https://en.wikipedia.org/wiki/Turing_test)." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the golden age of neural networks.
 
 ## The once and future king
 
-The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first computed in the late 40s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines.
+The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first formalized in the late 1940s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines. 
 
-**[Figure:: neuron body]**
+Today, most scientists caution against taking this analogy too seriously, as neural networks are strictly designed for solving machine learning problems, rather than accurately depicting the brain. Nevertheless, the metaphor of the core unit of neural networks as a simplified biological neuron has stuck over the decades. The progression from biological neurons to artificial ones can be summarized by the following figures.
 
-Neural networks took a big step forward when Frank Rosenblatt devised the Perceptron in the late 1950s, a type of linear classifier that we saw in the last chapter. Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells connected, potentiometers, and electrical motors, and was effective at learning complex electrical circuits, leading the New York Times in 1958 to gush that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE). [[link](http://www.rmki.kfki.hu/~banmi/elte/Bishop%20-%20Pattern%20Recognition%20and%20Machine%20Learning.pdf)]
+<style>
+#outer {
+	text-align: center;
+	margin-left:-300px;
+	margin-right:-300px;
+	display:inline-block;
+	padding:20px;
+}
+.insert {
+	display: inline-block;
+	margin-left:5px;
+	margin-right:5px;
+	border: 1px solid #ddd;
+	padding:5px;
+}
+.caption {	
+	line-height:150%;
+	color:#666;
+	background-color:#f4f4f4;
+	margin-top:8px;
+}
 
-The early hype would inspire scientists and science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [_Perceptrons_](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various -- [even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html) -- limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace of computational power](https://en.wikipedia.org/wiki/Moore%27s_law). Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the Y2K scare. 
+</style>
+<center>
+<div id="outer">
+	<div class="insert"><img src="/images/neuron-anatomy.jpg" />
+		<div class="caption">
+			Anatomy of a biological neuron
+			<br/>Source: <a href="https://askabiologist.asu.edu/neuron-anatomy">ASU school of life sciences</a>
+		</div>
+	</div>
+	<div class="insert">
+		<img src="/images/neuron-simple.jpg" />
+		<div class="caption">
+			Simplified neuron body within a network
+			<br/>Source: <a href="http://www.generation5.org/content/2000/nn00.asp">Gurney, 1997. An Introduction to Neural Networks</a>
+		</div>
+	</div>
+	<div class="insert">
+		<img src="/images/neuron-artificial.png" />
+		<div class="caption">
+			Artificial neuron (<b>fix this</b>)
+			<br/>&nbsp;
+		</div>
+	</div>	
+</div>
+</center>
 
-Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](_jurgen_)[[2]](_)[[3]](_Perceptrons_), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring support vector machines and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of convolutional and recurrent neural networks, which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
 
-## Scope
+Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/2016/01/03/machine-learning.html). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. It's effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
 
-Neural networks are the only category of supervised learning algorithm this book will cover in detail for now. There are others, including support vector machines, decision trees, bayesian methods, and still more, but we will restrict our attention to neural networks because:
+The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem). 
 
- - They have a simple and intuitive formulation which can be expressed using elementary math operations.
- - Deep neural networks currently represent the current state-of-the-art in several important machine learning tasks, the ones most relevant to this course.
- - Most of the recent creative uses of machine learning have been made using neural networks.
+Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](_jurgen_)[[2]](_)[[3]](_Perceptrons_), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/2016/02/02/convnets.html) and [recurrent neural networks](/2016/02/10/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
+
+Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
+
+ - They have a surprisingly simple and intuitive formulation.
+ - Deep neural networks are tue current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
+ - Most of the recent creative uses of machine learning have been made with neural networks.
 
 
 ## From linear classifiers to neurons
@@ -35,7 +80,7 @@ Recall from the previous chapter that the input to a 2d linear classifier or reg
 
 $$
 \begin{eqnarray}
-f(x_1, x_2) = b + w_1 * x_1 + w_2 * x_2
+f(x_1, x_2) = b + w_1 x_1 + w_2 x_2
 \end{eqnarray}
 $$
 
@@ -43,7 +88,7 @@ More generally, in any number of dimensions, it can be expressed as
 
 $$
 \begin{eqnarray}
-f(X) = b + \sum_i w_i * x_i
+f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
 
@@ -64,22 +109,20 @@ We can get from this formula to a full-fledged neural network by introducing two
 
 ## Activation function
 
-In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an _activation function_, analagous to the rate of [action potential](_) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i*x_i$$, and then transforms it once more before finally outputting it.
+In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an _activation function_, analagous to the rate of [action potential](https://en.wikipedia.org/wiki/Action_potential) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i x_i$$, and then transforms it once more before finally outputting it.
 
-Many activation functions have been proposed, but for now we will describe two in detail: [sigmoid](_) and [ReLU](_). 
+Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU. 
 
-...tanh
-
-Historically, the sigmoid function is the oldest and most popular activation function. It is defined as:
+Historically, the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) function is the oldest and most popular activation function. It is defined as:
 
 $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-$$e$$ denotes the [exponential constant](__), roughly equal to 2.718. A neuron which uses a sigmoid as its activation function is called a _sigmoid neuron_. We first set the variable $$z$$ to our original weighted sum input, and then pass that through the sigmoid function.
+$$e$$ denotes the [exponential constant](https://en.wikipedia.org/wiki/E_(mathematical_constant)), roughly equal to 2.71828. A neuron which uses a sigmoid as its activation function is called a _sigmoid neuron_. We first set the variable $$z$$ to our original weighted sum input, and then pass that through the sigmoid function.
 
 $$
-z = b + \sum_i w_i * x_i \\
+z = b + \sum_i w_i x_i \\
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
@@ -91,28 +134,28 @@ At first, this equation may seem complicated and arbitrary, but it actually has 
 
 We can see that $$\sigma(z)$$ acts as a sort of "squashing" function, condensing our previously unbounded output to the range 0 to 1. In the center, where $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. For large negative values of $$z$$, the $$e^{-z}$$ term in the denominator grows exponentially, and $$\sigma(z)$$ approaches 0. Conversely, large positive values of $$z$$ shrink $$e^{-z}$$ to 0, so $$\sigma(z)$$ approaches 1.
 
-The sigmoid function is continuously differentiable, and its derivative, conveniently, is $$\sigma^\prime(z) = \sigma(z) * (1-\sigma(z))$$. This is important because we have to use calculus to train neural networks, but don't worry about that for now.
+The sigmoid function is continuously differentiable, and its derivative, conveniently, is $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$. This is important because we have to use calculus to train neural networks, but don't worry about that for now.
 
-Sigmoid neurons were the basis of most neural networks for decades, but in recent years, they have fallen out of favor. The reason for this will be explained in more detail later, but in short, they make neural networks that have many layers difficult to train due to the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). Instead, most have shifted to using another type of activation function, the _rectified linear unit_, ReLU for short, introduced by Geoff Hinton et al. Despite its obtuse name, it is very simple.
-
-$$
-R(z) = max(0, z)
-$$
-
-In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. 
+Sigmoid neurons were the basis of most neural networks for decades, but in recent years, they have fallen out of favor. The reason for this will be explained in more detail later, but in short, they make neural networks that have many layers difficult to train due to the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). Instead, most have shifted to using another type of activation function, the _rectified linear unit_, or ReLU for short. Despite its obtuse name, it simply given by $$R(z) = max(0, z)$$.
 
 {:.center}
 ![ReLU](/images/relu.png 'ReLU')
 
-Although newer activation functions are gaining traction in recent years, most deep neural networks these days use ReLU. Regardless of which activation function is used, we can represent a neuron in the form of a _compuational graph_ which shows all of the operations in order, giving us a nice intuitive visual representation of a neuron's behavior.
+In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)). 
 
-**[ FIGURE: computational graph ]**
+Regardless of which activation function is used, we can visualize a single neuron with this standard diagram, giving us a nice intuitive visual representation of a neuron's behavior.
 
-We simplify this diagram as in below, where the presence of the weights, bias, and activation function are encapsulated. This is the standard visualization of a neuron.
+{:.center}
+![ReLU](/images/neuron.png 'Neuron')
 
-**[ FIGURE: standard visualization of neuron, 3 inputs ]**
+The above diagram shows a neuron with three inputs, and outputs a single value $$y$$. As before, we first compute the weighted sum of its inputs, then pass it through an activation function $$\sigma$$.
 
-You may be wondering what the purpose of an activation function is, and why it is preferred to simply outputting the weighted sum, as we do with the linear classifier from the last chapter. The reason is that a weighted sum is _linear_ with respect to its inputs, i.e. it has a flat dependence on each of the inputs. In contrast, non-linear activation functions greatly expand our capacity to model curved or otherwise non-trivial functions. This will become clearer in the next section.
+$$
+z = b + w_1 x_1 + w_2 x_2 + w_3 x_3 \\
+y = \sigma(z)
+$$
+
+You may be wondering what the purpose of an activation function is, and why it is preferred to simply outputting the weighted sum, as we do with the linear classifier from the last chapter. The reason is that a weighted sum is [_linear_](https://en.wikipedia.org/wiki/Linearity) with respect to its inputs, i.e. it has a flat dependence on each of the inputs. In contrast, non-linear activation functions greatly expand our capacity to model curved or otherwise non-trivial functions. This will become clearer in the next section.
 
 # Layers
 
@@ -131,9 +174,10 @@ Note that it may look like the three input neurons send out multiple values beca
 
 The process of a neural network sending an initial input forward through its layers to the output is called _forward propagation_ or a _forward pass_ and any neural network which works this way is called a _feedforward neural network_. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet... 
 
-Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. // You can see a forward pass in action in the following demo. Click 'manual' to pause the demo and go through the steps manually.
+Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. You can see a forward pass in action in the following demo. 
 
-**[ DEMO: demo_forwardpass.html ]**
+{:.center}
+![neural network](/images/temp_demo_forward_pass.png 'forward_pass')
 
 
 # More layers, more expressiveness
@@ -147,8 +191,9 @@ Recall also that activation functions expand our capacity to capture non-linear 
 
 In the demo above, we map a set of inputs to a single output in a forward pass. We can interpret the forward pass as making a prediction about the output, given the input. This is called _regression_ and is one of the primary uses of neural networks. Let's try an example.
 
---
+-----
 
+[[ THIS IS A DRAFT]]
 Random set of dat, 3 cols. 1 regression value
 
 Interactive 3 -> 1
@@ -166,28 +211,29 @@ Now a magic trick, I'll give it a new set of weights. Now let's run the examples
 
 the process of obtaining the correct weights is called training. for now, ignore it, it's a black box. we'll talk about it in the next section.
 
---
+-----
 
 
 What about classification? In the previous chapter, we introduced binary classification by simply thresholding the output at 0; If our output was positive, we'd classify positively, and if it was negative, we'd classify negatively. For neural networks, it would be reasonable to adapt this approach for the final neuron, and classify positively if the output neuron scores above some threshold. For example, we can threshold at 0.5 for sigmoid neurons which are always positive.
 
-But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value.
-
-**[ FIGURE: basic CIFAR classification? maybe just 3 classes for simplicity ]**
+But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
 
 # Classification of handwritten digits
 
 Let's now tackle a real world example of classification using neural networks, the task of recognizing and labeling images of handwritten digits. We are going to use the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which contains 60,000 labeled images of handwritten digits sized 28x28 pixels, whose classification accuracy serves as a common benchmark in machine learning research. Below is a random sample of images found in the dataset.
 
-**[FIGURE:: MNIST ground truth]**
+{:.center}
+![MNIST ground truth](/images/temp_fig_mnist_groundtruth.png 'MNIST ground truth')
 
 The way we setup a neural network to classify these images is by having the raw pixel values be our first layer inputs, and having 10 output classes, one for each of our digit classes from 0 to 9. Since they are grayscale images, each pixel has a brightness value between 0 (black) and 255 (white). All the MNIST images are 28x28, so they contain 784 pixels. We can unroll these into a single array of inputs, like in the following figure.
 
-**[ FIGURE: fig_mnist.html ]**
+{:.center}
+![MNIST](/images/temp_fig_mnist.png 'MNIST')
 
 The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives ....
 
-**[ DEMO: mnist_forwardpass.html ]**
+{:.center}
+![MNIST demo](/images/temp_demo_mnist_forwardpass.png 'MNIST demo')
 
 
 # Summary
