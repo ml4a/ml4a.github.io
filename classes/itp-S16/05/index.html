@@ -7,51 +7,93 @@ date: 4/21/2016
 {% assign idx = 4 | plus: 0 %}
 {% assign data = site.data.itp_lectures[idx] %}
 
-<h1>ITP-NYU :: {{ page.date }}</h1>
+<h1><a href="/classes/itp-S16">ITP-NYU :: {{ page.date }}</a></h1>
 <h1>{{data.title}}</h1>
 
 {% include youtube_contents.html name='yt_lecture' index=idx width='400' %}
 
+
 <h2>Class notes</h2>
 
+<h3>News / admin</h3>
 <ul>
-	<li>Admin
+	<li>take <a href="http://www.patrickhebron.com/learning-machines/">Patrick's class</a> next semester</li>
+	<li>setting up <a href="http://www.terminal.com">terminal</a> instances (offline)</li>
+	<li>Real time style transfer! <a href="https://github.com/yusuketomoto/chainer-fast-neuralstyle">chainer implementation</a> by <a href="https://github.com/yusuketomoto">Yusuke Tomoto</a></li>
+</ul>
+
+<h3>Review feedforward neural networks</h3>
+<ul>
+	<li>"Static" internal state</a>
+	<li>Weights, activations, and applications
 		<ul>
-			<li>take Patrick's class</li>
-			<li>office hours</li>
-			<li>setting up <a href="http://www.terminal.com">terminal</a> instances (offline)</li>
+			<li><a href="/classes/itp-S16/03">Review convolutional neural networks</a></li>
+			<li><a href="/classes/itp-S16/04">Review applications of convnet activations</a></li>
 		</ul>
 	</li>
-	<li>Real time style transfer!
+	<li>Limitations of feedforward neural nets
 		<ul>
-			<li><a href="https://github.com/yusuketomoto/chainer-fast-neuralstyle">chainer implementation</a> by <a href="https://github.com/yusuketomoto">Yusuke Tomoto</a></li>
+			<li>Fixed input and output size</li>
+			<li>Internal state is static</li>
 		</ul>
 	</li>
-	<li>Review feedforward neural networks
-		<ul>
-			<li>Weights, activations, and applications</li>
-			<li>Limitations of feedforward neural nets
-				<ul>
-					<li>Fixed input and output size</li>
-					<li>Internal state is static</li>
-				</ul>
-			</li>
-		</ul>
-	</li>
-	<li>Recurrent neural networks
+</ul>
+
+<h3>Recurrent neural networks</h3>
+<ul>
+	<li>How RNNs work
 		<ul>
 			<li>Hidden state and time steps</li>
 			<li>Operating on sequences as inputs, outputs, or both</li>
 			<li>Variety of architectures and corresponding use cases</li>
-			<li>LSTMs and GRUs</li>
+			<li><a href="http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf">LSTM</a>s and <a href="">GRU</a>s</li>
+			<li><a href="http://karpathy.github.io/2015/05/21/rnn-effectiveness/">The unreasonable effectiveness of recurrent neural networks (@karpathy)</a>
+			</li>
+			<li><a href="http://colah.github.io/posts/2015-08-Understanding-LSTMs/">Understanding LSTMs (@colah)</a></li>
 		</ul>
 	</li>
 	<li>Applications of RNNs
 		<ul>
-			<li>Character-level text prediction</li>
-			<li>Image captioning and localization (and dense captioning)</li>
-			<li>Sequence to unit prediction (e.g. sentiment analysis from audio/text frames)</li>
+			<li>Sampling text, 1 character at a time
+				<ul>
+					<li><a href="https://twitter.com/deepdrumpf">@DeepDrumpf</a></li>
+					<li><a href="http://cs.stanford.edu/people/jcjohns/fake-math/">Fake math by Justin Johnson (LaTeX)</a></li>
+					<li><a href="https://twitter.com/robinsloan/status/725068953383362560">Sci-fi assistant writer (Robin Sloan)</a></li>
+				</ul>
+			</li>
+			<li>Image captioning 
+				<ul>
+					<li><a href="http://cs.stanford.edu/people/karpathy/deepimagesent/">Captioning images</a></li>
+					<li><a href="https://github.com/ryankiros/neural-storyteller">Neural storyteller (Ryan Kiros)</a>
+						<ul>
+							<li><a href="https://medium.com/@samim/generating-stories-about-images-d163ba41e4ed#.eobhq8il1">Generating stories about images</a> (by <a href="http://www.twitter.com/samim">@samim</a>)</li>
+						</ul>
+					</li>
+					<li><a href="http://cs.stanford.edu/people/karpathy/densecap/">Dense captioning (w/ localization)</a></li>
+				</ul>
+			</li>
+			<li>Sequence to unit prediction
+				<ul>
+					<li>sentiment analysis from audio/text frames</li>
+					<li><a href="http://arxiv.org/abs/1511.02793">Generating images from captions</a></li>
+				</ul>
+			</li>
+			<li>More applications
+				<ul>
+					<li><a href="http://blog.otoro.net/2015/12/28/recurrent-net-dreams-up-fake-chinese-characters-in-vector-format-with-tensorflow/">neokanji</a> by <a href="http://www.twitter.com/hardmaru">@hardmaru</a></li>
+					<li><a href="http://arxiv.org/abs/1603.07063">Semantic object parsing</a></li>
+					<li><a href="http://arxiv.org/abs/1308.0850">Handwriting LSTM</a></li>
+					<li><a href="http://arxiv.org/abs/1412.7755">Visual attention</a></li>
+					<li><a href="http://arxiv.org/abs/1502.04623">DRAW</a></li>
+				</ul>
+			</li>
 		</ul>
 	</li>	
 </ul>
 
+<h3>Application tutorials</h3>
+<ul>
+	<li>Using <a href="http://www.terminal.com">terminal.com</a></li>
+	<li>Sampling text with <a href="https://github.com/jcjohnson/torch-rnn">torch-rnn</a></li>
+	<li>Style transfer with <a href="https://github.com/jcjohnson/neural-style">neural-style</a></li>
+</ul>

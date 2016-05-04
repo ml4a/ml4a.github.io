@@ -7,57 +7,62 @@ date: 4/14/2016
 {% assign idx = 3 | plus: 0 %}
 {% assign data = site.data.itp_lectures[idx] %}
 
-<h1>ITP-NYU :: {{ page.date }}</h1>
+<h1><a href="/classes/itp-S16">ITP-NYU :: {{ page.date }}</a></h1>
 <h1>{{data.title}}</h1>
 
 {% include youtube_contents.html name='yt_lecture' index=idx width='400' %}
 
+
 <h2>Class notes</h2>
 
+<h3>News / admin</h3>
 <ul>
-	<li>Admin
+	<li>making up materials from last week</li>
+	<li>office hours
 		<ul>
-			<li>making up materials from last week</li>
-			<li>office hours
-				<ul>
-					<li>unofficial open office hours at <a href="http://www.dbrslabs.com">DBRSLabs</a></li>
-				</ul>
-			</li>
-			<li>course projects</li>
-			<li>theory vs. code</li>
-			<li>it's going to get hairy from here...</li>
+			<li>unofficial open office hours at <a href="http://www.dbrslabs.com">DBRSLabs</a></li>
 		</ul>
 	</li>
-	<li>Critical reading
+	<li>theory vs. code</li>
+</ul>
+
+<h3>Critical reading</h3>
+<ul>
+	<li>bias, ownership, privacy <a href="http://us8.campaign-archive1.com/?u=bdb368b9a389b010c19dbcd54&id=f2e0882b79">(1)</a> <a href="https://www.reddit.com/r/science/comments/45k2pv/science_ama_series_we_study_how_intelligent/">(2)</a></li>
+	<li><a href="http://deweyhagborg.com/projects/stranger-visions">Stranger Visions</a> (Heather Dewey-Hagborg)
 		<ul>
-			<li>bias, ownership, privacy <a href="http://us8.campaign-archive1.com/?u=bdb368b9a389b010c19dbcd54&id=f2e0882b79">(1)</a> <a href="https://www.reddit.com/r/science/comments/45k2pv/science_ama_series_we_study_how_intelligent/">(2)</a></li>
-			<li><a href="http://deweyhagborg.com/projects/stranger-visions">Stranger Visions</a> (Heather Dewey-Hagborg)
-				<ul>
-					<li>data reconstruction from neural nets</li>
-				</ul>
-			</li>
+			<li>data reconstruction from neural nets</li>
 		</ul>
 	</li>
-	<li>Review convnets
+</ul>
+
+<h3>Review convolutional neural networks</h3>
+<ul>
+	<li>Feature abstractions in neural nets
 		<ul>
-			<li>Feature abstractions in neural nets
-				<ul>
-					<li><a href="/dev/demos/cifar_weights.html">CIFAR-10 weights</a></li>
-				</ul>
-			</li>
-			<li>Understanding volumes</li>
-			<li>Convolution + pooling layers</li>
-			<li>What do the activations mean?
-				<ul>
-					<li>n-1 layer</li>
-				</ul>
-			</li>
+			<li><a href="/dev/demos/cifar_weights.html">CIFAR-10 weights</a></li>
 		</ul>
 	</li>
-	<li>Interpreting the activations
+	<li><a href="http://cs231n.stanford.edu/slides/winter1516_lecture2.pdf">Understanding volumes</a></li>
+	<li>Convolution + pooling layers</li>
+	<li>What do the activations mean?
 		<ul>
-			<li>image patches which maximally activate neurons</li>
-			<li>occlusion + classification accuracy</li>
+			<li>n-1 layer</li>
+		</ul>
+	</li>
+	<li><a href="/dev/demos/cifar_confusion.html">CIFAR-10 confusion matrix (live demo)</a></li>
+</ul>
+
+<h3>Applications of convnets</h3>
+<ul>
+	<li>Visualizing and interpreting convnets
+		<ul>
+			<li><a href="http://arxiv.org/abs/1311.2901">Visualizing convnets (Zeiler, Fergus)</a>
+				<ul>
+					<li>image patches which maximally activate neurons</li>
+					<li>occlusion + classification accuracy</li>
+				</ul>
+			</li>
 			<li>applications to localization + segmentation + attention</li>
 			<li>reconstructing images from activations
 				<ul>
@@ -65,6 +70,7 @@ date: 4/14/2016
 				</ul>
 			</li>
 			<li>deconvolution + guided backpropagation</li>
+			<li><a href="http://arxiv.org/pdf/1602.03616.pdf">Deep visualization toolbox (Yosinski, Clune)</a></li>
 		</ul>
 	</li>
 	<li>Image synthesis
@@ -72,14 +78,36 @@ date: 4/14/2016
 			<li>Synthesizing images which excite neurons</li>
 			<li><a href="http://googleresearch.blogspot.com/2015/06/inceptionism-going-deeper-into-neural.html">Deepdream</a>
 				<ul>
+					<li><a href="https://www.reddit.com/r/MachineLearning/comments/3a1ebc/image_generated_by_a_convolutional_network/">Reddit leak</a></li>
 					<li>amplifying activations (set gradient = activations)</li>
+					<li>Regularizing with bilateral filters (<a href="https://www.flickr.com/photos/kylemcdonald/19266856649/in/dateposted/">Kyle McDonald</a> + <a href="http://mtyka.github.io/deepdream/2016/02/05/bilateral-class-vis.html">Mike Tyka</a>)</li>
 				</ul>
 			</li>
-			<li><a href="http://www.genekogan.com/works/style-transfer.html">Style transfer</a>
+			<li>Style transfer
 				<ul>
-					<li>what is "style" to a convnet?</li>
-					<li>balancing content and style resemblance</li>
-					<li>what if content loss is discarded?</li>
+					<li><a href="http://arxiv.org/abs/1508.06576">A neural algorithm of artistic style</a></li>
+					<li>How style transfer works
+						<ul>
+							<li>balancing content and style loss</li>
+							<li>Gram matrices and "style" computation</li>
+						</ul>
+					<li>Applications
+						<ul>				
+							<li><a href="http://www.genekogan.com/works/style-transfer.html">Style transfer experiments</a>
+								<ul>
+									<li><a href="https://vimeo.com/139123754">Alice in Wonderland stylenet</a></li>
+								</ul>
+							</li>
+							<li><a href="http://kylemcdonald.net/stylestudies/">Style transfer studies</a></li>
+							<li><a href="https://deepforger.com/">Deep forger</a></li>
+							<li><a href="https://nucl.ai/blog/neural-doodles/">Neural doodle (semantic style transfer)</a></li>
+						</ul>
+					</li>
+					<li>what if content loss is discarded?
+						<ul>
+							<li><a href="http://bethgelab.org/deeptextures/">Deep Texture</a></li>
+						</ul>
+					</li>
 				</ul>
 			</li>
 		</ul>
@@ -88,15 +116,16 @@ date: 4/14/2016
 		<ul>
 			<li>Low-level vs. high-level features</li>
 			<li>What if you want to train a complex model but have few training examples</li>
-			<li>ConvnetOSC -> Wekinator</li>
+			<li><a href="https://twitter.com/genekogan/status/717743585471422465">ConvnetOSC -> Wekinator</a></li>
 		</ul>
 	</li>
 	<li>t-SNE
 		<ul>
-			<li>use t-SNE on n-1 activations</li>
+			<li><a href="https://lvdmaaten.github.io/tsne/">t-SNE (Laurens van der Maaten)</a></li>
+			<li><a href="https://www.flickr.com/photos/genekogan/24873243915">use t-SNE on n-1 activations</a></li>
 			<li>t-SNE in other contexts
 				<ul>
-					<li><a href="https://github.com/genekogan/wiki-tSNE">wiki-TSNE</a></li>
+					<li><a href="https://github.com/genekogan/wiki-tSNE">wiki-TSNE (text)</a></li>
 				</ul>
 			</li>
 			<li>implementations
@@ -105,53 +134,10 @@ date: 4/14/2016
 					<li><a href="http://scikit-learn.org/stable/modules/generated/sklearn.manifold.TSNE.html">sklearn</a></li>
 				</ul>
 			</li>
-		</ul>
-	</li>
-	<li><strike>Deep learning landscape
-		<ul>
-			<li>Main platforms
+			<li>Misc
 				<ul>
-					<li>Caffe, Theano, Torch, TensorFlow</li>
-					<li>Wrappers :)
-						<ul>
-							<li>Keras, tflearn</li>
-							<li>Lasagne, nolearn</li>
-						</ul>
-					</li>
-					<li>openFrameworks support
-						<ul>
-							<li><a href="https://twitter.com/_mayfa/status/718079116705005569">real-time style transfer (@_mayfa)</a></li>
-							<li><a href="https://github.com/memo/ofxMSATensorFlow">ofxTensorFlow</a></li>
-						</ul>
-					</li>
-				</ul>		
-			</li>
-			<li>Set up
-				<ul>
-					<li>local machine?
-						<ul>
-							<li><b>Pros</b>: free (more or less) and you own it</li>
-							<li><b>Cons</b>: lots of dependencies, install is hard/inconsistent</li>
-						</ul>
-					</li>
-					<li>Amazon EC2, Google Cloud Compute
-						<ul>
-							<li><b>Pros</b>: no install, scales well</li>
-							<li><b>Cons</b>: expensive</li>
-						</ul>
-					</li>
-					<li>Terminal.com
-						<ul>
-							<li><b>Pros</b>: same as Amazon/GCC but even nicer and more features</li>
-							<li><b>Cons</b>: still expensive, and somewhat unreliable GPU support</li>
-						</ul>
-					</li>
-					<li><a href="https://github.com/kylemcdonald/ml-notebook">ml-notebook</a>
-						<ul>
-							<li><b>Pros</b>: best of both worlds (local + easyish to install)</li>
-							<li><b>Cons</b>: no GPU support</li></strike>
-						</ul>
-					</li>	
+					<li><a href="http://colah.github.io/posts/2014-10-Visualizing-MNIST/">Visualizing MNIST (@colah)</a></li>
+					<li><a href="https://indico.io/blog/visualizing-with-t-sne/">Indico visualizations</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -159,6 +145,51 @@ date: 4/14/2016
 </ul>
 
 
-<p/>
-<p/>
-<p/>
+<h3><strike>Deep learning landscape</strike> (not in the video)</h3>
+<ul>
+	<li>Main platforms
+		<ul>
+			<li>Caffe, Theano, Torch, TensorFlow</li>
+			<li>Wrappers :)
+				<ul>
+					<li>Keras, tflearn</li>
+					<li>Lasagne, nolearn</li>
+				</ul>
+			</li>
+			<li>openFrameworks support
+				<ul>
+					<li><a href="https://twitter.com/_mayfa/status/718079116705005569">real-time style transfer (@_mayfa)</a></li>
+					<li><a href="https://github.com/memo/ofxMSATensorFlow">ofxTensorFlow</a></li>
+				</ul>
+			</li>
+		</ul>		
+	</li>
+	<li>Set up
+		<ul>
+			<li>local machine?
+				<ul>
+					<li><b>Pros</b>: free (more or less) and you own it</li>
+					<li><b>Cons</b>: lots of dependencies, install is hard/inconsistent</li>
+				</ul>
+			</li>
+			<li>Amazon EC2, Google Cloud Compute
+				<ul>
+					<li><b>Pros</b>: no install, scales well</li>
+					<li><b>Cons</b>: expensive</li>
+				</ul>
+			</li>
+			<li><a href="http://www.terminal.com">Terminal.com</a>
+				<ul>
+					<li><b>Pros</b>: same as Amazon/GCC but even nicer and more features</li>
+					<li><b>Cons</b>: still expensive, and somewhat unreliable GPU support</li>
+				</ul>
+			</li>
+			<li><a href="https://github.com/kylemcdonald/ml-notebook">ml-notebook</a>
+				<ul>
+					<li><b>Pros</b>: best of both worlds (local + easyish to install)</li>
+					<li><b>Cons</b>: no GPU support</li>
+				</ul>
+			</li>	
+		</ul>
+	</li>
+</ul>

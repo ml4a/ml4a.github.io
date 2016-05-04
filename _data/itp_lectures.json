@@ -36,8 +36,9 @@
 		{"title":"Critical reading", "m":126, "s":39, "disp":"2:06:39"}
 	],
 	"summary": [
-		"ofxLearn and practical resources for neural nets",
-		"introduction to wekinator"
+		"practical resources for simple neural nets",
+		"implementing neural nets in openFrameworks",
+		"introduction to Wekinator"
 	]
 },{
 	"youtube_id": "z6k_RMKExlQ",

@@ -8,26 +8,41 @@
 		<a href="/classes/itp-S16/0{{c_idx}}"><img class="thumby" src="{{data.thumbnail}}"></a>
 	</div>
 	<div class="class_meta">
-		<h3><a href="/classes/itp-S16/0{{c_idx}}">{{data.date}} :: {{data.title}}</a></h3>
+		<a href="/classes/itp-S16/0{{c_idx}}" class="class_title">{{data.title}}</a>
+		<br/>
+		<a href="/classes/itp-S16/0{{c_idx}}" class="class_date">{{data.date}}</a>
+		<span class="class_contents">
 		<ul>
 			{% for s in data.summary %}
 				<li>{{ s }}</li> 
 			{% endfor %}			
 		</ul>
+		</span>
 	</div>
 </div>
 
 <style>
 .class_main {
 	border: thick solid #eee;
-	width:800px;
+	width:720px;
 	margin-top:20px;
 	margin-bottom:20px;
+	padding:4px;
 }
 .class_thumb, .class_meta {
 	display:inline-block;
 	vertical-align:top;
-	padding:8px;
+}
+.class_date {
+	font-size:16px;
+	line-height:175%;
+}
+.class_title {
+	font-size:22px;
+	font-weight:400;
+}
+.class_contents {
+	font-size:14px;
 }
 .class_thumb a {
 	background-color:#fff;
@@ -37,6 +52,7 @@
 	background-color:#1abc9c;
 }
 .class_meta {
-	width:560px;
+	padding-left:15px;
+	width:420px;
 }
 </style>

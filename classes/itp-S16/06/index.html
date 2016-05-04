@@ -7,52 +7,47 @@ date: 4/28/2016
 {% assign idx = 5 | plus: 0 %}
 {% assign data = site.data.itp_lectures[idx] %}
 
-<h1>ITP-NYU :: {{ page.date }}</h1>
+<h1><a href="/classes/itp-S16">ITP-NYU :: {{ page.date }}</a></h1>
 <h1>{{data.title}}</h1>
 
 {% include youtube_contents.html name='yt_lecture' index=idx width='400' %}
 
 
-
-
-
 <h2>Class notes</h2>
 
-<h3>Admin</h3>
+<h3>News / admin</h3>
 <ul>
-	<li>unofficially extending class at <a href="http://www.sfpc.io">SFPC</a>
-		<ul>
-			<li>propose 5/11, 5/18... 5/25?</li>
-		</ul>
-	</li>
-	<li>presentations next week
-		<ul>
-	   		<li>meta/policies/format</li>
-	   		<li>you can do them instead at sfpc</li>
-		</ul>
-	</li>
-	<li><a href="http://alt-ai.net/#exhibition">alt-AI exhibition</a></li>
-	<li>Terminal.com procedures</li>
 	<li>ML amplifies privilege
 		<ul>
 	   		<li><a href="http://blog.dominodatalab.com/video-how-machine-learning-amplifies-societal-privilege/">sentiment analysis + automated content</a></li>
 		</ul>
 	</li>
+	<li>OpenAI <a href="https://gym.openai.com/">reinforcement learning gym</a></li>
+	<li>incredible <a href="https://www.youtube.com/watch?v=Khuj4ASldmU">style transfer video</a> with temporal loss term</li>
+	<li><a href="http://alt-ai.net/#exhibition">alt-AI exhibition</a></li>
 </ul>
 
-<h3>The whole class in 10 minutes</h3>
+<h3>Review: the whole class "in 10 minutes"</h3>
 <ul>
-	<li>Review <a href="/classes/itp-S16/04/">convnets and applications</a>, and <a href="/classes/itp-S16/05/">RNNs</a></li>
+	<li>Esepcailly review <a href="/classes/itp-S16/04/">convnets and applications</a>, and <a href="/classes/itp-S16/05/">RNNs</a></li>
 	<li>repetition = mental backpropagation</li>
 </ul>
 
 <h3>Generative Models</h3>
 <ul>
-	<li>Autoencoders</li>
+	<li>Autoencoders
+		<ul>
+			<li><a href="https://jmetzen.github.io/2015-11-27/vae.html">MNIST variational autoencer in Tensorflow</a></li>
+			<li><a href="https://twitter.com/genekogan/status/654346445307293699">Training autoencoders on subsets of celebrity faces</a></li>
+		</ul>
+	</li>
 	<li>Generative adversarial networks
 		<ul>
+			<li><a href="http://arxiv.org/abs/1511.06434">Deep convolutional generative adversarial networks</a> and <a href="https://github.com/Newmu/dcgan_code">code</a></li>
 	   		<li><a href="http://www.genekogan.com/works/a-book-from-the-sky.html">A Book from the Sky</a></li>
-	   		<li><a href="http://arxiv.org/abs/1511.06434">DCGANs</a> in practice</li>
+	   		<li><a href="https://github.com/mattya/chainer-DCGAN">DCGAN manga (@mattya)</a></li>
+	   		<li><a href="https://twitter.com/vintermann/status/675599478494208000">DCGAN flowers (@vintermann)</a></li>
+	   		<li><a href="http://blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/">VAE + GAN making numbers (@hardmaru)</a></li>
 		</ul>
 	</li>
 </ul>
@@ -62,8 +57,12 @@ date: 4/28/2016
 	<li>Reinforcement learning
 		<ul>
 			<li>Markov decision process + {States, Actions, Rewards}</li>
-			<li>Q-Learning in video games</li>
-			<li>goal: function which advises an action given a state</li>
+			<li>Q-Learning in video games
+				<ul>
+					<li>goal: function which advises an action given a state</li>
+					<li><a href="http://home.uchicago.edu/~arij/journalclub/papers/2015_Mnih_et_al.pdf">Convnets playing Atari games (DeepMind)</a></li>
+				</ul>
+			</li>
 		</ul>
 	</li>
 	<li>challenges
@@ -72,7 +71,7 @@ date: 4/28/2016
 		    <li>reward can be delayed</li>
 		   	<li>exploration vs. exploitation
 				<ul>
-			    	<li>multi-armed bandits</li>
+			    	<li><a href="http://research.microsoft.com/en-us/projects/bandits/">multi-armed bandits</a></li>
 			     	<li>discount factor</li>
 				</ul>
 			</li>
@@ -80,30 +79,34 @@ date: 4/28/2016
 	</li>
 	<li>Applications
 		<ul>
-			<li>maneuver a body (robotics)</li>
+			<li><a href="https://www.youtube.com/watch?v=Lt-KLtkDlh8">maneuver a body (robotics)</a></li>
 			<li>manage something (investment portfolio, power stations, industrial applications)</li>
 			<li>play games :)
 				<ul>
 					<li>arms race? AI vs <a href="https://www.youtube.com/watch?v=r4LbPv6nMzs">impossible super mario levels</a>?</li>
 				</ul>
 			</li>
-		 	<li>OpenAI <a href="https://gym.openai.com/">reinforcement learning gym</a></li>
 		</ul>
 	</li>
 </ul>
 
 <h3>How AlphaGo works</h3>
 <ul>
-	<li>tic-tac-toe and game trees
+	<li>Tic-Tac-Toe 
+		<ul>
+			<li>parsing game trees</li>
+		</ul>
+	</li>
 	<li>Chess
 		<ul>
-   			<li>Monte Carlo Tree Search</li>
+   			<li><a href="https://en.wikipedia.org/wiki/Monte_Carlo_tree_search">Monte Carlo Tree Search</a></li>
    			<li>handcrafted value function</li>
-			<li>DeepBlue vs. Gary Kasparov</li>
+			<li><a href="https://en.wikipedia.org/wiki/Deep_Blue_(chess_computer)">DeepBlue</a> vs. Gary Kasparov</li>
 		</ul>
 	</li>
 	<li>Go
 		<ul>
+			<li><a href="http://www.readcube.com/articles/10.1038/nature16961">AlphaGo Nature paper</a></li>
 	   		<li>policy + value convnets</li>
 	   		<li>self-play to train value network</li>
 	   		<li>MCTS + policy + value</li>
@@ -112,9 +115,4 @@ date: 4/28/2016
 	</li>
  	<li>It gets waaaay harder (like Doom)</li>
 </ul>
-
-
-<p/>
-<p/>
-<p/>
 

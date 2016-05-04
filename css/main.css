@@ -28,15 +28,18 @@ nav ul li, footer ul li {
     margin-right: 20px;
 }
 a {
-    background-color:#333;
+/*    background-color:#333;*/
     padding-left:1px;
     padding-right:1px;
     text-decoration: none;
-    color:#fff;
-    font-weight: 500;               
+	border-bottom: 0.5px dashed #888;
+    color:#000;
+	font-weight:400;
+/*    font-weight: bold;               */
 }
 a:hover {
     background-color:#1abc9c;
+    color:#fff;
 }
 .center {
     text-align: center;
