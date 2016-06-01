@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "How neural networks are trained"
-date: 2016-01-04
 ---
 
 [http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf]
@@ -37,7 +36,7 @@ Recall that _training_ refers to determining the best set of weights for the net
 
 Much of what\'s interesting about neural networks can be understood without knowing precisely how training works. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
-We\'ll get to gradient descent in a few sections, but first, let\'s understand why choosing weights is hard to begin with. 
+We'll get to gradient descent in a few sections, but first, let's understand why choosing weights is hard to begin with. 
 
 [ hypercube ]
 

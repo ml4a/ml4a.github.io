@@ -1,12 +1,22 @@
 ---
-layout: post
+layout: chapter
 title: "Introduction"
-date: 2016-01-02
 ---
 
-0 0 0 0 0 0 0
-0 0 0 0 0 0 0 
-0 0 0 0 0 0 0
+**Introduction: Harold Cohen**
+**Machine learning: 00000**
+**Neural networks: Lovelace**
+**Looking inside neural nets: Brainbow**
+**How neural nets are trained: Topographic map**
+**Convnets: Convnets are everywhere**
+**Looking inside convnets: Visualization/**
+**Deepdream: Mike Tyka**
+**Style transfer: Mona Lisa series**
+**Generative models: Tom White VRAE**
+**Recurrent neural nets: MC Escher**
+
+
+
 
 \"Artificial intelligence is anything computers [can\'t do yet](https://en.wikipedia.org/wiki/AI_effect)\" - Douglas Hofstadter, re: Tesler theorem 
 
@@ -14,7 +24,7 @@ date: 2016-01-02
 
 Evidently, the meaning of the terms _artificial intelligence_ and _machine learning_ depend on who you ask.
 	
-The term artificial intelligence has been in [usage since the 1950s](https://en.wikipedia.org/wiki/History_of_artificial_intelligence), and originally referred to ___. It has been prone to periods of great popular interest, and [pessimism and decreased interest](__ai winter__), in part due to its failure to achieve the sort of techno-utopianism prognosticated by [crackpot speculators](https://en.wikipedia.org/wiki/The_Singularity_Is_Near).
+The term artificial intelligence has been in [usage since the 1950s](https://en.wikipedia.org/wiki/History_of_artificial_intelligence), and originally referred to ___. It has been prone to periods of great popular interest, and [pessimism and decreased interest](__ai winter__), in part due to its failure to quickly achieve the techno-utopianism prognosticated by [opportunistic speculators](https://en.wikipedia.org/wiki/The_Singularity_Is_Near).
 
 Pamela McGoldrick attributes these periodic busts to the notion that \"Practical AI successes, computational programs that actually achieved intelligent behavior, were soon assimilated into whatever application domain they were found to be useful in, and became silent partners alongside other problem-solving approaches, which left AI researchers to deal only with the \'failures.\'\" 
 

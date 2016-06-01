@@ -1,8 +1,17 @@
 ---
-layout: post
+layout: chapter
 title: "Looking inside neural nets"
-date: 2016-01-05
 ---
+
+brainbow by katie matho
+
+
+http://medicalxpress.com/news/2015-10-brain-cells.html img.medicalxpress.com/newman/gfx/news/hires/2015/1-researchersl.png
+
+http://journal.frontiersin.org/article/10.3389/fnana.2014.00103/full
+
+http://catalog.flatworldknowledge.com/bookhub/reader/127?e=stangor-ch03_s01 images.flatworldknowledge.com/stangor/stangor-fig03_003.jpg
+
 
 In the [previous chapter](), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kind of innovations will be necessary to take it to the next level.
 
@@ -12,7 +21,7 @@ In the [previous chapter](), we saw how a neural network can be trained to class
 [printblock analogy?] [borges quote about numbers]
 
 
-Recall that when we input an image into our neural net, we \"unroll\" the pixels into a single row, as shown below. Rather than unrolling the pixels though, let\'s leave them as they are originally, and instead \"roll\" the weights into a single square grid. The two representations below look different, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
+Recall that when we input an image into our neural net, we "unroll" the pixels into a single row, as shown below. Rather than unrolling the pixels though, let's leave them as they are originally, and instead "roll" the weights into a single square grid. The two representations below look different, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
 
 **[Figure: rolled weights + equivalent representation]**
 
@@ -78,7 +87,7 @@ So far we've looked only at neural networks trained on handwritten digits. This 
 
 **[FIGURE:: Random sample from CIFAR-10]**
 
-Right away, it's clear we must contend with the fact that these image classes differ in ways that digits don't. For eample, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, etc. Photos of cats will also be cluttered with other objects, further complicating the problem. 
+Right away, it's clear we must contend with the fact that these image classes differ in ways that digits don't. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, etc. Photos of cats will also be cluttered with other objects, further complicating the problem. 
 
 Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 28%. That's a great deal better than taking random guesses (which would get a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. We can get a more precise sense about the shortcomings of ordinary neural networks by checking their weights.
 
@@ -102,7 +111,7 @@ What happened to the weights when we added a hidden layer into our MNIST network
 
 In some sense, you might say we "forced" the first network to learn those templates because each of the weights associated with each pixel plugged into a single class label. In the more complicated network, the weights between the inputs and the hidden layer affect all of the output neurons. How should we expect the weights to look now?
 
-Let's work backwards from our disadvvantage less info but higher level info
+Let's work backwards from our disadvvantage less info but higher level info -- we can do another set of forward passes on the dataset, and try to evaluate the behavior of the network by 
 
 https://cs231n.github.io/understanding-cnn/
 http://cs.nyu.edu/~fergus/drafts/utexas2.pdf

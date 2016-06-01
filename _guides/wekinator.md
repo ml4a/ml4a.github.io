@@ -1,14 +1,12 @@
 ---
-layout: post
-title: "Wekinator and real-time performance"
-date: 2016-01-08
+layout: guide
+title: "Wekinator"
 ---
-
 
 "Practicing is not only playing your instrument, either by yourself or rehearsing with others - it also includes imagining yourself practicing. Your brain forms the same neural connections and muscle memory whether you are imagining the task or actually doing it.
 http://www.brainyquote.com/quotes/authors/y/yoyo_ma.html"
 
-If you've ever tried to learn how to play a musical instrument, you no doubt have experienced the value of repetition.
+If you've ever tried to learn how to play a musical instrument, you no doubt have experienced the value of repetition. One of the nice things about machines is that they can repeat things much faster
 
 
 wekinator.org

@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Language processing"
-date: 2016-03-01
 ---
 
 
@@ -52,7 +51,12 @@ RNNs annotating?
 word2vec chapter
  - anything2vec http://www.lab41.org/anything2vec/
 
+captioning
+ - NeuralTalk and Walk
 
+Mario RNN
+
+attention + DRAW
 
 
 https://www.youtube.com/watch?v=XG-dwZMc7Ng

@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Game playing"
-date: 2016-05-02
 ---
 
 quote
@@ -17,6 +16,7 @@ http://www.somatic.io/blog/on-alphago-intuition-and-the-master-objective-functio
 https://medium.com/a-year-of-artificial-intelligence/lenny-2-autoencoders-and-word-embeddings-oh-my-576403b0113a#.q9cfvzmpi
 
 
+yan tweet: RL is the cherry on the cake
 
 A Game, for example, might start from a given astronomical configuration, or from the actual theme of a Bach fugue, or from a sentence out of Leibniz or the Upanishads, and from this theme, depending on the intentions and talents of the player, it could either further explore and elaborate the initial motif or else enrich its expressiveness by allusions to kindred concepts... It represented an elite, symbolic form of seeking for perfection, a sublime alchemy, an approach to that Mind which beyond all images and multiplicities is one within itself -- in other words, to God.
 Herman Hesse, The Glass Bead Game
@@ -25,7 +25,7 @@ I will do my best to play a beautiful and interesting game.
 Lee Se-dol
 
 
-
+Tic tac toe -> DeepBlue -> AlphaGo
 
 ==========
 
@@ -37,6 +37,9 @@ Go - alpha mind vs lee sedol
 
 reinforcement learning
  - games that learn by pixels
+
+even harder
+ - doom
 
 UETorch
 
@@ -79,6 +82,9 @@ One of the most clever ways AlphaGo achieved this is by repeatedly playing again
 Initially, the choice of video games as a context for an AI task seems puzzling, as it may seem of little interest to people who aren't gamers. But it turns out it's not video games _per se_ which are of interest to AI researchers, it's a much more general problem we are studying, and video games happen to be an effective way to represent it.
 
 The general problem is of some computational agent in some initially unknown environment, trying to learn -- on the fly -- how to interact with this environment to maximize some reward. Perhaps the agent is trying to navigate this space, locate something valuable in it, or control some unfolding process in some value-maximizing way. This scenario abstractly represents countless real-world applications, and indeed, reflects a type of learning that humans demonstrate rather well. From the time of birth, we often find ourselves in unknown environments, learning from observation, how it responds to our manipulations. This is very different from the kinds of problems this book has covered so far, where all the information was provided up front. 
+
+Atari materials
+ - /Users/gene/bin/misc/stock/Google DeepMind's Deep Q-learning playing Atari Breakout-V1eYniJ0Rnk.mp4
 
 ## Reinforcement learning
 
@@ -227,10 +233,14 @@ Balancing pole
 FlappyBird
  - https://www.youtube.com/watch?v=xM62SpKAZHU
 
+pong
+
 AlphaGO
 
 Quake, Doom, etc
 
+DeepBlue
+ - Kasparov v world
 
 Artificial general intelligence
  - https://en.wikipedia.org/wiki/AI_takeover
@@ -251,3 +261,7 @@ http://www.nervanasys.com/demystifying-deep-reinforcement-learning/
 challenges 
  - delayed reward + credit assignment
  - discount factor: exploration vs exploitation
+
+
+RL agent swinging a pole
+ - swingbot-reinforcement-learning

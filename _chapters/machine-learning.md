@@ -1,18 +1,25 @@
 ---
-layout: post
+layout: chapter
 title: "Machine learning"
-date: 2016-01-03
 ---
 
-You\'ve heard by now that machine learning refers to a broad set of techniques which allow computers to learn from data. But learn what exactly, and how? Let\'s look at several concrete examples in which techniques from machine learning can be applied.
 
-**Example 1**: Suppose you are a climatologist who is trying to devise a computer program which can predict whether or not it will rain on a given day. Turns out this is hard! But we understand intuitively that rain has something to do with the temperature, atmospheric pressure, humidity, wind, cloud cover, location and time of year, and so on.
 
-**Example 2**: Gmail, Yahoo, and other e-mail services provide tools to automatically filter out spam e-mails before they reach your inbox. Like in the rain example, we have a few intuitions about this task. E-mails containing phrases like \"make $$$ now\" or \"free weight loss pills\" are probably suspicious, and we can surely think up a few more. Of course the presence of one suspicious term does not guarantee it\'s spam, and so we can\'t take the naive approach of labeling spam for any e-mail containing any suspicious phrase.
+supervised learning methods include among others, neural networks, which will be the primary category of methods which are included for now. They are neutral as to the interpretation 
 
-One way to approach solving these problems is a \"rule-based\" or \"[expert](https://en.wikipedia.org/wiki/Expert_system)\" approach in which a series of rules are carefully designed and tested at runtime to determine the output. In the spam example, this could take the form of a [decision tree](___). Upon receiving an e-mail, check to see if it\'s from an unknown sender; if it is, check to see if the phrase \"lose weight now!\" appears, and if it does appear and there is a link to an unknown website, classify it as spam. Obviously our decision tree would be much larger and more complicated than this, but it would still be characterized by a sequence of if-then statements leading to a decision.
 
-Such a strategy suffers from two major weaknesses. First, it requires a great deal of expert guidance and hand-engineering which may be time-consuming and costly. Furthermore, spam trigger words and global climate patterns change continuously, and we\'d have to reprogram them every so often for them to remain effective. Secondly, a rule-based approach does not _generalize_. Notice our spam decision tree won\'t help us predict the rain, or vice-versa, nor will they easily apply to other problems we haven\'t talked about. Expert systems like these are domain-specific, and if our task changes even slightly, our carefully crafted algorithm must be reconstructed from scratch.
+At the broadest sense, supervised learning methods maps structured information to structured information.   In so doing, it also forms a representation of the thing in itself. 
+---
+
+You've heard by now that machine learning refers to a broad set of techniques which allow computers to learn from data. But learn what exactly, and how? Let's consider several concrete examples in which techniques from machine learning can be applied.
+
+**Example 1**: Suppose you are a climatologist who is trying to devise a computer program which can predict whether or not it will rain on a given day. Turns out this is hard! But intuitively we understand that rain has something to do with the temperature, atmospheric pressure, humidity, wind, cloud cover, location and time of year, and so on.
+
+**Example 2**: Gmail, Yahoo, and other e-mail services provide tools to automatically filter out spam e-mails before they reach your inbox. Like in the rain example, we have a few intuitions about this task. E-mails containing phrases like "make $$$ now" or "free weight loss pills" are probably suspicious, and we can surely think up a few more. Of course the presence of one suspicious term does not guarantee it's spam, and so we can\'t take the naive approach of labeling spam for any e-mail containing any suspicious phrase.
+
+The way a traditional programmer might go about solving these problems is to carefully design a series of rules or conditional statements which are tested at runtime to determine the result. In the spam example, this could take the form of a [decision tree](___): upon receiving an e-mail, check to see if it's from an unknown sender; if it is, check to see if the phrase "lose weight now!" appears, and if it does appear and there is a link to an unknown website, classify it as spam. Our decision tree would be much larger and more complicated than this, but it would still be characterized by a sequence of if-then statements leading to a decision.
+
+Such a strategy, commonly called a "rule-based" or "[expert system](https://en.wikipedia.org/wiki/Expert_system)," suffers from two major weaknesses. First, it requires a great deal of expert guidance and hand-engineering which may be time-consuming and costly. Furthermore, spam trigger words and global climate patterns change continuously, and we\'d have to reprogram them every so often for them to remain effective. Secondly, a rule-based approach does not generalize. Notice our spam decision tree won't adapt to predicting the rain, or vice-versa, nor will they easily apply to other problems we haven't talked about. Expert systems like these are domain-specific, and if our task changes even slightly, our carefully crafted algorithm must be reconstructed from scratch.
 
 {:.section}
 Learning from past observations

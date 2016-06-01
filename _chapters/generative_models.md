@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Generative models"
-date: 2016-04-02
 ---
 
 
@@ -28,3 +27,6 @@ GANs
 interesting property of DCGANs
  - generate tons of labeled images to fill out the image class manifold
  - then a nearest-neighbors classifier on that outperforms a RBF-SVM
+
+
+hardmaru - GAN + VRAE making

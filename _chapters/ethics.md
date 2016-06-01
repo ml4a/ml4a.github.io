@@ -1,7 +1,6 @@
 ---
-layout: post
-title: "Ethical dimensions"
-date: 2016-03-01
+layout: chapter
+title: "Social, political, and ethical topics"
 ---
 
 http://plato.stanford.edu/entries/consciousness-animal/#hist

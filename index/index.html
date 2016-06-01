@@ -6,7 +6,7 @@ title: Machine Learning for Artists
 
 
 <ul class="posts">
-  {% assign sorted = (site.posts | sort: 'date') %}
+  {% assign sorted = site.chapters %}
 	    {% for post in sorted %}
     <li><p><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></p></li>
   {% endfor %}

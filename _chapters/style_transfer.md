@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Style transfer"
-date: 2016-02-04
 ---
 
 

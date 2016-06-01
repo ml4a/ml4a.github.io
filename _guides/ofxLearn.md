@@ -1,8 +1,8 @@
 ---
-layout: post
-title: "Using neural nets in openFrameworks with ofxLearn"
-date: 2016-01-07
+layout: guide
+title: "ofxLearn"
 ---
+
 
 tutorial on ofxLearn for regression and classification
 + clustering

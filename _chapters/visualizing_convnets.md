@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Looking inside convnets"
-date: 2016-02-04
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 layout: chapter
 title: "Neural networks"
-date: 2016-01-04
 ---
 
 Nearly a century before neural networks were first implemented, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities. Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required. Nevertheless, the idea was passed on to the next century when [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) cited it as the inspiration for the [Imitation Game](http://phil415.pbworks.com/f/TuringComputing.pdf), what soon came to be called the "[Turing Test](https://en.wikipedia.org/wiki/Turing_test)." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the golden age of neural networks.
@@ -12,53 +11,7 @@ The recent resurgence of neural networks is a peculiar story. Intimately connect
 
 Today, most scientists caution against taking this analogy too seriously, as neural networks are strictly designed for solving machine learning problems, rather than accurately depicting the brain. Nevertheless, the metaphor of the core unit of neural networks as a simplified biological neuron has stuck over the decades. The progression from biological neurons to artificial ones can be summarized by the following figures.
 
-<style>
-#outer {
-	text-align: center;
-	margin-left:-300px;
-	margin-right:-300px;
-	display:inline-block;
-	padding:20px;
-}
-.insert {
-	display: inline-block;
-	margin-left:5px;
-	margin-right:5px;
-	border: 1px solid #ddd;
-	padding:5px;
-}
-.caption {	
-	line-height:150%;
-	color:#666;
-	background-color:#f4f4f4;
-	margin-top:8px;
-}
-
-</style>
-<center>
-<div id="outer">
-	<div class="insert"><img src="/images/neuron-anatomy.jpg" />
-		<div class="caption">
-			Anatomy of a biological neuron
-			<br/>Source: <a href="https://askabiologist.asu.edu/neuron-anatomy">ASU school of life sciences</a>
-		</div>
-	</div>
-	<div class="insert">
-		<img src="/images/neuron-simple.jpg" />
-		<div class="caption">
-			Simplified neuron body within a network
-			<br/>Source: <a href="http://www.generation5.org/content/2000/nn00.asp">Gurney, 1997. An Introduction to Neural Networks</a>
-		</div>
-	</div>
-	<div class="insert">
-		<img src="/images/neuron-artificial.png" />
-		<div class="caption">
-			Artificial neuron (<b>fix this</b>)
-			<br/>&nbsp;
-		</div>
-	</div>	
-</div>
-</center>
+{% include neurons.html %}
 
 
 Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/2016/01/03/machine-learning.html). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. It's effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
@@ -192,25 +145,15 @@ Recall also that activation functions expand our capacity to capture non-linear 
 In the demo above, we map a set of inputs to a single output in a forward pass. We can interpret the forward pass as making a prediction about the output, given the input. This is called _regression_ and is one of the primary uses of neural networks. Let's try an example.
 
 -----
-
-[[ THIS IS A DRAFT]]
+// this is a draft. no need to translate this right now
 Random set of dat, 3 cols. 1 regression value
-
 Interactive 3 -> 1
-
 Measure the error. Use L2 error
-
-
 Suppose we are trying to model ___...
-
 We have five observed examples of data.
-
 Give random weights. Not very accurate.
-
 Now a magic trick, I'll give it a new set of weights. Now let's run the examples again, and see that they are all correct now. 
-
 the process of obtaining the correct weights is called training. for now, ignore it, it's a black box. we'll talk about it in the next section.
-
 -----
 
 
@@ -235,13 +178,3 @@ The important thing to realize is that although this network seems a lot more im
 {:.center}
 ![MNIST demo](/images/temp_demo_mnist_forwardpass.png 'MNIST demo')
 
-
-# Summary
-
-TBD
-
-# Further reading
-
- - nielsen
- - kurekenov
- 

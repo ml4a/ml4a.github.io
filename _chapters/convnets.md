@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Convolutional neural networks"
-date: 2016-02-02
 ---
 
 

@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "Recurrent neural networks"
-date: 2016-02-10
 ---
 
 http://handong1587.github.io/deep_learning/2015/10/09/rnn-and-lstm.html
@@ -40,3 +39,8 @@ y = tanh(Ww * h(t))
 
 etc
 https://twitter.com/robinsloan/status/725068953383362560
+
+
+## Etc
+
+Robin Sloan robinsloan-lstm-author.mp4
