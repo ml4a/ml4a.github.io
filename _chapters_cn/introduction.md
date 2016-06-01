@@ -32,8 +32,6 @@ Critique of Paper by \'Deep Learning Conspiracy\'\"](http://people.idsia.ch/~jue
 
 ## 深度学习，“深度学习”
 
-None of these terms have well-defined meanings, and connotations are inconsistently associated with them, especially within the academic community itself. We are interested in machines which _do_ interesting things, and can do them _now_ or may do so in the near future.
-
 上述术语都没有非常完善的定义，并且相关的各种定义可能都不一致，尤其是在学术界内部。我们感兴趣的是那些**做**很有趣的事的机器，并且可以**现在**就做或者在未来即将能做到。
 
 ## 本书的核心理念
