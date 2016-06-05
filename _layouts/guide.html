@@ -3,12 +3,12 @@
 		<head>
 			<title>{{ page.title }}</title>
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/color-brewer.min.css">
 			<meta charset="utf-8">
-			<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 		</head>
-		
+
 		<body>
-		
+
 			<div class="navbar">
 				<nav>
 		    		<ul>
@@ -27,7 +27,7 @@
   					{{ content }}
 				</div>
 			</div>
-			
+
 			<footer>
 	    		<ul>
         			<li><a href="https://ml4a.github.io/about/">about</a></li>
@@ -36,5 +36,24 @@
 				</ul>
 			</footer>
 
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('pre').each(function(i, e) {hljs.highlightBlock(e)});
+                    MathJax.Hub.Config({
+                        tex2jax: {
+                            inlineMath: [["$","$"]],
+                            displayMath: [['$$','$$']],
+                            processEscapes: true
+                        },
+                        "HTML-CSS": {
+                            linebreaks: { automatic: true }
+                        }
+                    });
+                    MathJax.Hub.Startup.onload();
+                });
+            </script>
 		</body>
 	</html>
