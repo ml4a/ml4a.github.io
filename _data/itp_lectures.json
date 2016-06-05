@@ -118,13 +118,37 @@
 		{"title":"states, actions, and rewards, Q-learning", "m":88, "s":52, "disp":"1:28:52"},
 		{"title":"super mario craziness, computer tic-tac-toe", "m":100, "s":48, "disp":"1:40:48"},
 		{"title":"computer chess: how DeepBlue works", "m":109, "s":59, "disp":"1:49:59"},
-		{"title":"computer go: how AlphaGo works", "m":124, "s":05, "disp":"2:04:05"},
+		{"title":"computer go: how AlphaGo works", "m":124, "s":05, "disp":"2:04:05"}
 	],
 	"summary": [
 		"generative models (autoencoders + GANs)",
 		"game AI + reinforcement learning",
 		"convnets mastering atari games",
 		"computer chess & computer go, how AlphaGo works"
+	]
+},{
+	"youtube_id": "7wXnI2poifI",
+	"title": "The Neural Aesthetic",
+	"date": "6/4/2016",
+	"thumbnail": "/images/classes/itp-S16/thumbnail_07.png",
+	"bookmarks": [
+		{"title":"ML circa 2010 + music info retrieval", "m":11, "s":10, "disp":"11:10"},
+		{"title":"from perceptrons to deep neural nets", "m":27, "s":25, "disp":"27:25"},
+		{"title":"convolutional neural networks", "m":64, "s":12, "disp":"1:04:12"},
+		{"title":"convolution demo end to end", "m":81, "s":20, "disp":"1:21:20"},
+		{"title":"visualizing activations and synthesizing classes", "m":94, "s":23, "disp":"1:34:23"},
+		{"title":"deepdream and style transfer", "m":105, "s":35, "disp":"1:45:35"},
+		{"title":"video style transfer with optical flow", "m":124, "s":08, "disp":"2:04:08"},
+		{"title":"t-SNE on images and text", "m":132, "s":41, "disp":"2:12:41"},
+		{"title":"generative models + DCGANs", "m":142, "s":19, "disp":"2:22:19"},
+		{"title":"recurrent neural networks, game AI + RL", "m":151, "s":39, "disp":"2:31:39"},
+		{"title":"recent developments + real-time style transfer", "m":160, "s":48, "disp":"2:40:48"}
+	],
+	"summary": [
+		"Theory of neural networks",
+		"Applications of convnets (deepdream, style transfer, etc)",
+		"Survey of sub-topics and practical resources",
+		"ml4a and how to keep up with the field"
 	]
 }
 ]
