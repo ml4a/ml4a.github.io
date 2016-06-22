@@ -7,6 +7,12 @@ collections:
   chapters_cn:
     output: true
     permalink: /ml4a/cn/:path/
+  chapters_ko:
+    output: true
+    permalink: /ml4a/ko/:path/
+  chapters_es:
+    output: true
+    permalink: /ml4a/es/:path/
   guides:
     output: true
     permalink: /guides/:path/

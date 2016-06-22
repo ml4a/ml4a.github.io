@@ -1,7 +1,6 @@
 ---
-layout: post
+layout: chapter
 title: "引言"
-date: 2016-01-02
 ---
 
 

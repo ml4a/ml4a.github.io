@@ -1,7 +1,6 @@
 ---
 layout: chapter
 title: "神经网络"
-date: 2016-01-04
 ---
 
 

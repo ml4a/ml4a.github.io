@@ -3,13 +3,11 @@ layout: chapter
 title: "Neural networks"
 ---
 
-[中文](/ml4a/cn/neural_networks/)
-
 Nearly a century before neural networks were first implemented, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities. Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required. Nevertheless, the idea was passed on to the next century when [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) cited it as the inspiration for the [Imitation Game](http://phil415.pbworks.com/f/TuringComputing.pdf), what soon came to be called the "[Turing Test](https://en.wikipedia.org/wiki/Turing_test)." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the golden age of neural networks.
 
 ## The once and future king
 
-The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first formalized in the late 1940s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines.
+The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first formalized in the late 1940s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines. 
 
 Today, most scientists caution against taking this analogy too seriously, as neural networks are strictly designed for solving machine learning problems, rather than accurately depicting the brain. Nevertheless, the metaphor of the core unit of neural networks as a simplified biological neuron has stuck over the decades. The progression from biological neurons to artificial ones can be summarized by the following figures.
 
@@ -18,7 +16,7 @@ Today, most scientists caution against taking this analogy too seriously, as neu
 
 Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/2016/01/03/machine-learning.html). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. It's effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
 
-The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem).
+The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem). 
 
 Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](_jurgen_)[[2]](_)[[3]](_Perceptrons_), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/2016/02/02/convnets.html) and [recurrent neural networks](/2016/02/10/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
 
@@ -47,7 +45,7 @@ f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
 
-In the case of regression, $$f(X)$$ gives us our predicted output, given the input vector $$X$$. In the case of classification, our predicted class is given by
+In the case of regression, $$f(X)$$ gives us our predicted output, given the input vector $$X$$. In the case of classification, our predicted class is given by 
 
 $$
 \begin{eqnarray}
@@ -66,7 +64,7 @@ We can get from this formula to a full-fledged neural network by introducing two
 
 In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an _activation function_, analagous to the rate of [action potential](https://en.wikipedia.org/wiki/Action_potential) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i x_i$$, and then transforms it once more before finally outputting it.
 
-Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU.
+Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU. 
 
 Historically, the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) function is the oldest and most popular activation function. It is defined as:
 
@@ -81,7 +79,7 @@ z = b + \sum_i w_i x_i \\
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
-At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$.
+At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$. 
 
 {:.center}
 ![sigmoid](/images/sigmoid.png 'sigmoid')
@@ -96,7 +94,7 @@ Sigmoid neurons were the basis of most neural networks for decades, but in recen
 {:.center}
 ![ReLU](/images/relu.png 'ReLU')
 
-In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)). 
 
 Regardless of which activation function is used, we can visualize a single neuron with this standard diagram, giving us a nice intuitive visual representation of a neuron's behavior.
 
@@ -114,7 +112,7 @@ You may be wondering what the purpose of an activation function is, and why it i
 
 # Layers
 
-Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of _layers_ of neurons, such that all the neurons in each layer connect to the neurons in the next layer.
+Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of _layers_ of neurons, such that all the neurons in each layer connect to the neurons in the next layer. 
 
 {:.center}
 ![neural network](/images/network.png 'neural network')
@@ -127,9 +125,9 @@ Note that it may look like the three input neurons send out multiple values beca
 
 # Forward propagation
 
-The process of a neural network sending an initial input forward through its layers to the output is called _forward propagation_ or a _forward pass_ and any neural network which works this way is called a _feedforward neural network_. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet...
+The process of a neural network sending an initial input forward through its layers to the output is called _forward propagation_ or a _forward pass_ and any neural network which works this way is called a _feedforward neural network_. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet... 
 
-Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. You can see a forward pass in action in the following demo.
+Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. You can see a forward pass in action in the following demo. 
 
 {:.center}
 ![neural network](/images/temp_demo_forward_pass.png 'forward_pass')
@@ -137,7 +135,7 @@ Let's demonstrate a forward pass with this interactive demo. Click the 'Next' bu
 
 # More layers, more expressiveness
 
-Why are hidden layers useful? The reason is that if we have no hidden layers and map directly from inputs to output, each input's contribution on the output is independent of the other inputs. In real-world problems, input variables tend to be highly interdependent and they affect the output in combinatorially intricate ways. The hidden layer neurons allow us to capture subtle interactions among our inputs which affect the final output downstream.
+Why are hidden layers useful? The reason is that if we have no hidden layers and map directly from inputs to output, each input's contribution on the output is independent of the other inputs. In real-world problems, input variables tend to be highly interdependent and they affect the output in combinatorially intricate ways. The hidden layer neurons allow us to capture subtle interactions among our inputs which affect the final output downstream. 
 Another way to interpret this is that the hidden layers represent higher-level "features" or attributes of our data. Each of the neurons in the hidden layer weigh the inputs differently, learning some different intermediary characteristic of the data, and our output neuron is then a function of these instead of the raw inputs. By including more than one hidden layer, we give the network an opportunity to learn multiple levels of abstraction of the original input data before arriving at a final output. This notion of high-level features will become more concrete in the next chapter when we look closely at the hidden layers.
 
 Recall also that activation functions expand our capacity to capture non-linear relationships between inputs and outputs. By chaining multiple non-linear transformations together through layers, this dramatically increases the flexibility and expressiveness of neural networks. The proof of this is complex and beyond the scope of this book, but it can even be shown that any 2-layer neural network with a non-linear activation function (including sigmoid or ReLU) is a [_universal function approximator_](http://www.sciencedirect.com/science/article/pii/0893608089900208), that is it's theoretically capable of expressing any arbitrary input-to-output mapping. This property is what makes neural networks so powerful.
@@ -146,87 +144,25 @@ Recall also that activation functions expand our capacity to capture non-linear 
 
 In the demo above, we map a set of inputs to a single output in a forward pass. We can interpret the forward pass as making a prediction about the output, given the input. This is called _regression_ and is one of the primary uses of neural networks. Let's try an example.
 
-Say we have the datapoint $$[2.4, 1.2, 1.3]$$ that maps to $$0.854$$, and let's say we have a neural network with the following architecture:
+-----
 
-{:.center}
-![neural network](/images/network.png 'neural network')
+[[ THIS IS A DRAFT]]
+Random set of dat, 3 cols. 1 regression value
 
-Let's try a set of random weights. For the first hidden layer, let's say our weights are:
+Interactive 3 -> 1
 
-$$
-\begin{bmatrix}
-0.9 & 0.4 & 0.2 \\
-0.8 & 0.5 & 0.7
-\end{bmatrix}
-$$
+Measure the error. Use L2 error
 
-We'll use sigmoid activation functions for the hidden layer.
 
-And for the output layer, let's say the weights are:
+Suppose we are trying to model ___...
 
-$$
-\begin{bmatrix}
-0.3 & 0.9
-\end{bmatrix}
-$$
+We have five observed examples of data.
 
-Let's input our datapoint and see what output the network gives us.
+Give random weights. Not very accurate.
 
-The output of the first (top-most in the graphic) hidden unit is:
+Now a magic trick, I'll give it a new set of weights. Now let's run the examples again, and see that they are all correct now. 
 
-$$
-\text{sigmoid}((0.9 * 2.4) + (0.4 * 1.2) + (0.2 * 1.3)) = 0.962
-$$
-
-The output of the second hidden unit is:
-
-$$
-\text{sigmoid}((0.8 * 2.4) + (0.5 * 1.2) + (0.7 * 1.3)) = 0.990
-$$
-
-Now we take these and feed it into the output unit (which doesn't have an activation function):
-
-$$
-(0.3 * 0.962) + (0.9 * 0.990) = 1.180
-$$
-
-Not quite right (we wanted to get $$0.854$$)...we can measure our error with the mean squared error (MSE), which is the most common measurement for error in regression problems:
-
-$$
-\begin{aligned}
-\text{error} &= (1.180 - 0.854)^2 \\
-&= 0.106
-\end{aligned}
-$$
-
-Now I'll magically give you the best set of weights. For the hidden layer:
-
-$$
-\begin{bmatrix}
-0.1 & 0.6 & 0.9 \\
-0.9 & 0.7 & -0.2
-\end{bmatrix}
-$$
-
-And for the output layer:
-
-$$
-\begin{bmatrix}
-0.5 & 0.4
-\end{bmatrix}
-$$
-
-Let's try this all again with these new weights:
-
-$$
-\begin{aligned}
-\text{hidden unit 1} &= \text{sigmoid}((0.1 * 2.4) + (0.6 * 1.2) + (0.9 * 1.3)) = 0.975 \\
-\text{hidden unit 2} &= \text{sigmoid}((0.9 * 2.4) + (0.7 * 1.2) + (-0.2 * 1.3)) = 0.917 \\
-\text{output} &= (0.5 * 0.975) + (0.4 * 0.917) = 0.854
-\end{aligned}
-$$
-
-Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.
+the process of obtaining the correct weights is called training. for now, ignore it, it's a black box. we'll talk about it in the next section.
 
 -----
 
@@ -261,4 +197,4 @@ TBD
 
  - nielsen
  - kurekenov
-
+ 
