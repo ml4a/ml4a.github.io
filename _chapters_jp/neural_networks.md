@@ -23,7 +23,7 @@ Despite a number of quiet but significant improvements to neural networks in the
 Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
 
  - They have a surprisingly simple and intuitive formulation.
- - Deep neural networks are tue current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
+ - Deep neural networks are the current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
  - Most of the recent creative uses of machine learning have been made with neural networks.
 
 
