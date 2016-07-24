@@ -1,0 +1,5 @@
+_site/
+.DS_Store
+Gemfile.lock
+
+dev/datasets/*/*.png

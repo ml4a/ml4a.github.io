@@ -1,0 +1,14 @@
+---
+layout: default
+title: SchoolOfMa - Lecture 01, 7/4/2016
+date: 7/4/2016
+---
+
+{% assign class = "neural-aesthetic" %}
+{% assign idx = 0 | plus: 0 %}
+{% assign data = site.data.lectures[class][idx] %}
+
+<h1><a href="/classes/neural-aesthetic">SchoolOfMa :: {{ page.date }}</a></h1>
+<h1>{{data.title}}</h1>
+
+{% include youtube_contents.html class=class index=idx width='400' %}

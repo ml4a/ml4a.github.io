@@ -1,5 +1,6 @@
+{% assign class = include.class %}
 {% assign idx = include.index | plus: 0 %}
-{% assign data = site.data.itp_lectures[idx] %}
+{% assign data = site.data.lectures[class][idx] %}
 {% assign youtube_id = data.youtube_id %}
 
 <script>
@@ -9,7 +10,7 @@
   var div = document.getElementsByTagName('script')[0];
   div.parentNode.insertBefore(tag, div);
   function onYouTubeIframeAPIReady() {
-    player = new YT.Player('{{ data.name }}_player', {
+    player = new YT.Player('yt_player', {
       height: '400',
       width: '640',
       videoId: '{{ youtube_id }}',
@@ -18,12 +19,12 @@
   }
 </script>
 
-<div id="{{ data.name }}_container" class="yt_container">
-	<div id="{{ data.name }}_playerContainer" class="yt_embed">
-		<div id="{{ data.name }}_player"></div>
+<div id="yt_container" class="yt_container">
+	<div id="yt_playerContainer" class="yt_embed">
+		<div id="yt_player"></div>
 		<br/>[<a href="{{data.dropbox}}">download</a>]
 	</div>
-	<div id="{{ data.name }}_bookmarks" class="yt_bookmarks">
+	<div id="yt_bookmarks" class="yt_bookmarks">
 		<ul>
 		{% for b in data.bookmarks %}
 			<li><h4><a href="#" onclick="javascript:player.seekTo({{ b.m | times:60 | plus:b.s }});">{{ b.title }} ({{ b.disp }})</a></h4></li>
