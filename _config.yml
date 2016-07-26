@@ -22,6 +22,9 @@ collections:
   chapters_it:
     output: true
     permalink: /ml4a/it/:path/
+  chapters_pt:
+    output: true
+    permalink: /ml4a/pt/:path/
   guides:
     output: true
     permalink: /guides/:path/
