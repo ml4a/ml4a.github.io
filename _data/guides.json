@@ -1,0 +1,111 @@
+{
+	"fundamentals": {
+		"title": "Fundamentals",
+		"description": "Mathematical precepts for machine learning",
+		"link":"notebooks/fundamentals.ipynb",
+		"summary":[
+			"What is machine learning?",
+			"Vectors, matrices, and tensors",
+			"Functions, derivatives, and gradient descent"
+		]
+	},
+	"simple": {
+		"title": "Simple neural networks",
+		"description": "How to train a simple feedforward neural network",
+		"link":"notebooks/simple_neural_networks.ipynb",
+		"summary":[
+			"Architecture of simple neural net",
+			"Training a neural net on toy data"
+		]
+	},
+	"cnn": {
+		"title": "Convolutional neural networks",
+		"description": "How to train a convolutional neural network",
+		"link":"notebooks/convolutional_neural_networks.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"rnn": {
+		"title": "Recurrent neural networks",
+		"description": "Introduction to recurrent neural nets and LSTMs",
+		"link":"notebooks/recurrent_neural_networks.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"seq2seq": {
+		"title": "Sequence to sequence models",
+		"description": "Using recurrent neural nets for sequence to sequence models",
+		"link":"notebooks/sequence_to_sequence.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"image-search": {
+		"title": "Reverse image search",
+		"description": "How to do reverse image search, i.e. find similar images to query image",
+		"link":"notebooks/image-search.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"image-tsne": {
+		"title": "Clustering images with t-SNE",
+		"description": "How to cluster a collection of images in 2d with a t-SNE",
+		"link":"notebooks/image-tsne.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"audio-tsne": {
+		"title": "Clustering sounds with t-SNE",
+		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
+		"link":"notebooks/audio-tsne.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"text-retrieval": {
+		"title": "Sequence to sequence models",
+		"description": "Using recurrent neural nets for sequence to sequence models",
+		"link":"notebooks/text-retrieval.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"word2vec": {
+		"title": "Word vectors",
+		"description": "Deriving word vectors/embeddings from a text corpus",
+		"link":"notebooks/word2vec_tsne.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"qlearn": {
+		"title": "Q-Learning",
+		"description": "Introduction to Q Learning",
+		"link":"notebooks/q_learning.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	},
+	"qnets": {
+		"title": "Deep Q Networks",
+		"description": "Using deep Q networks for advanced reinforcement learning",
+		"link":"notebooks/deep_q_networks.ipynb",
+		"summary":[
+			"a",
+			"b"
+		]
+	}
+}

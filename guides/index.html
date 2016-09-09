@@ -9,36 +9,16 @@ title: Guides
 </div>
 
 
-<ul>
-	<li><a href="/guides/fundamentals/">Fundamentals</a>
-		<ul>
-    	<li>What is machine learning?</a></li>
-    	<li>Vectors, Matrices (Tensors)</li>
-    	<li>How does a machine learn?</li>
-    	<li>Derivatives</li>
-    	<li>Gradient Descent</li>
-		</ul>
-	</li>
-	<li>Neural Networks
-		<ul>
-    	<li><a href="/guides/simple_neural_networks/">Simple neural networks</a></li>
-    	<li><a href="/guides/convolutional_neural_networks/">Convolutional neural networks</a></li>
-    	<li><a href="/guides/recurrent_neural_networks/">Recurrent neural networks</a></li>
-    	<li><a href="/guides/word2vec_tsne/">Word2Vec and t-SNE</a></li>
-    	<li><a href="/guides/sequence_to_sequence/">Sequence-to-sequence learning</a></li>
-	</ul>
-	</li>
-	<li>Reinforcement Learning
-		<ul>
-    	<li><a href="/guides/q_learning/">Q-learning</a></li>
-    	<li><a href="/guides/deep_q_networks/">Deep Q Networks</a></li>
-		</ul>
-	</li>
-</ul>
-
-<h3>IPython Notebooks</h3>
-<ul>
-	<li>
-		<a href="/guides/notebooks/mnist_conv_net.ipynb">How to train a convolutional neural network with Keras</a>
-	</li>
-</ul>
+{% include guide_preview.html name="fundamentals" %}
+{% include guide_preview.html name="simple" %}
+{% include guide_preview.html name="cnn" %}
+{% include guide_preview.html name="mnist-convnet" %}
+{% include guide_preview.html name="rnn" %}
+{% include guide_preview.html name="seq2seq" %}
+{% include guide_preview.html name="image-search" %}
+{% include guide_preview.html name="image-tsne" %}
+{% include guide_preview.html name="audio-tsne" %}
+{% include guide_preview.html name="text-retrieval" %}
+{% include guide_preview.html name="word2vec" %}
+{% include guide_preview.html name="qlearn" %}
+{% include guide_preview.html name="qnets" %}
