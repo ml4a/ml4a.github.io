@@ -23,8 +23,8 @@
 		"description": "How to train a convolutional neural network",
 		"link":"notebooks/convolutional_neural_networks.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Building neural networks with convolutional and pooling layers for image processing",
+			"Train a convnet to classify MNIST handwritten digits"
 		]
 	},
 	"rnn": {
@@ -32,8 +32,8 @@
 		"description": "Introduction to recurrent neural nets and LSTMs",
 		"link":"notebooks/recurrent_neural_networks.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"RNNs, LSTMs, and context",
+			"Setting up an LSTM to predict characters in text"
 		]
 	},
 	"seq2seq": {
@@ -41,8 +41,8 @@
 		"description": "Using recurrent neural nets for sequence to sequence models",
 		"link":"notebooks/sequence_to_sequence.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"How RNNs operate on sequences on both ends",
+			"Training LSTM for language translation"
 		]
 	},
 	"image-search": {
@@ -50,8 +50,8 @@
 		"description": "How to do reverse image search, i.e. find similar images to query image",
 		"link":"notebooks/image-search.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Extract feature vectors from images with convnets",
+			"Find most similar images to query image"
 		]
 	},
 	"image-tsne": {
@@ -59,8 +59,8 @@
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
 		"link":"notebooks/image-tsne.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Extract feature vectors from images with convnets",
+			"Embed images in 2d space using a t-SNE over their feature vectors"
 		]
 	},
 	"audio-tsne": {
@@ -68,17 +68,18 @@
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
 		"link":"notebooks/audio-tsne.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Extract feature vectors from audio clips with librosa",
+			"Embed audio clips in 2d with a t-SNE over their feature vectors"
 		]
 	},
 	"text-retrieval": {
-		"title": "Sequence to sequence models",
-		"description": "Using recurrent neural nets for sequence to sequence models",
+		"title": "Reverse text search",
+		"description": "Representing text for search by document",
 		"link":"notebooks/text-retrieval.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Text representation: bag-of-words, tf-idf",
+			"Latent semantic analysis",
+			"Search for similar documents"
 		]
 	},
 	"word2vec": {
@@ -86,8 +87,9 @@
 		"description": "Deriving word vectors/embeddings from a text corpus",
 		"link":"notebooks/word2vec_tsne.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Embedding words in vector space",
+			"Geometric operations in word-vector space and analogies",
+			"Generate a t-SNE from a trained word2vec embedding"
 		]
 	},
 	"qlearn": {
@@ -95,17 +97,17 @@
 		"description": "Introduction to Q Learning",
 		"link":"notebooks/q_learning.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Introduction to the reinforcement learning problem",
+			"Implementing a Q-Learner for an agent"
 		]
 	},
 	"qnets": {
-		"title": "Deep Q Networks",
+		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
 		"link":"notebooks/deep_q_networks.ipynb",
 		"summary":[
-			"a",
-			"b"
+			"Deep Q-Networks for larger state spaces",
+			"Implementing and training DQN for paddle-ball game"
 		]
 	}
 }
