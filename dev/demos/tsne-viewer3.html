@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>t-SNE viewer</title>
+
+		<script type="text/javascript" src="/js/GlslCanvas.min.js"></script>
+		<script>
+			var scroll;
+			function setWindowSize() {
+				var w = window.innerWidth;
+				var h = window.innerHeight;
+				glslCanvases[0].canvas.width = w/2;
+				glslCanvases[0].canvas.height = h/2;
+				glslCanvases[0].setUniform("u_resolution", w/2, h/2);
+			}
+			function init() {
+				scroll = 1.0;
+				glslCanvases[0].textures["u_tex0"].on('loaded', (args) => {
+					glslCanvases[0].setUniform("scale", scroll);
+					setWindowSize();
+					window.addEventListener("resize", setWindowSize);
+					document.addEventListener("wheel", function(e){
+						scroll = Math.min(3.0, Math.max(0.25, scroll + e.deltaY/500.0));
+						glslCanvases[0].setUniform("scale", scroll);
+					});
+		        });
+			}
+		</script>
+
+		<style>
+			body {
+				background: #000;
+				margin:0;
+				padding:0;
+				color:#ff0;
+			}
+			.glslCanvas {
+			    margin-left: auto;
+			    margin-right: auto;
+				position: absolute;
+				top: 0;
+				left: 0;
+				font-size:80px;
+			}​
+		</style>
+	</head>
+
+	<body onload="init()">
+		<div id="waiting"><h2>&nbsp;&nbsp;&nbsp;Loading texture! Please wait a few moments...</h2></div>
+		<div id="content">
+			<canvas class="glslCanvas" data-textures="
+			/images/test/tsne_caltech256_all_0_0.jpg,
+			/images/test/tsne_caltech256_all_0_1.jpg,
+			/images/test/tsne_caltech256_all_0_2.jpg,
+			/images/test/tsne_caltech256_all_1_0.jpg,
+			/images/test/tsne_caltech256_all_1_1.jpg,
+			/images/test/tsne_caltech256_all_1_2.jpg,
+			/images/test/tsne_caltech256_all_2_0.jpg,
+			/images/test/tsne_caltech256_all_2_1.jpg,
+			/images/test/tsne_caltech256_all_2_2.jpg" width="1" height="1" data-fragment="
+		#ifdef GL_ES
+		precision mediump float;
+		#endif
+
+		uniform sampler2D u_tex0;
+		uniform sampler2D u_tex1;
+		uniform sampler2D u_tex2;
+		uniform sampler2D u_tex3;
+		uniform sampler2D u_tex4;
+		uniform sampler2D u_tex5;
+		uniform sampler2D u_tex6;
+		uniform sampler2D u_tex7;
+		uniform sampler2D u_tex8;
+
+		uniform vec2 u_resolution;
+
+		uniform vec2 u_tex0Resolution;
+		uniform vec2 u_tex1Resolution;
+		uniform vec2 u_tex2Resolution;
+		uniform vec2 u_tex3Resolution;
+		uniform vec2 u_tex4Resolution;
+		uniform vec2 u_tex5Resolution;
+		uniform vec2 u_tex6Resolution;
+		uniform vec2 u_tex7Resolution;
+		uniform vec2 u_tex8Resolution;
+
+		uniform vec2 u_mouse;
+		uniform float scale;
+
+		void main() {
+			vec2 tex_resolution = u_tex0Resolution.xy / scale;
+	    vec2 st = 3.0 * gl_FragCoord.xy / tex_resolution;
+	    
+			vec2 offset = clamp(-0.05 + 3.1 * u_mouse / u_resolution, 0.0, 3.0);
+			st += offset * (tex_resolution - u_resolution) / (tex_resolution);
+			
+			float h1 = step(1.0, st.x);
+			float h2 = step(2.0, st.x);
+			float v1 = step(1.0, st.y);
+			float v2 = step(2.0, st.y);
+			
+			float x11 = (1.0 - h1) * (1.0 - v1);
+			float x21 = h1 * (1.0 - h2) * (1.0 - v1);
+			float x31 = h2 * (1.0 - v1);
+
+			float x12 = (1.0 - h1) * v1 * (1.0 - v2);
+			float x22 = h1 * (1.0 - h2) * v1 * (1.0 - v2);
+			float x32 = h2 * v1 * (1.0 - v2);
+
+			float x13 = (1.0 - h1) * v1 * v2;
+			float x23 = h1 * (1.0 - h2) * v1 * v2;
+			float x33 = h2 * v1 * v2;
+			
+			vec4 c33 = x33 * texture2D(u_tex6, vec2(st.x-2.0, st.y-2.0));
+			vec4 c32 = x32 * texture2D(u_tex7, vec2(st.x-2.0, st.y-1.0));
+			vec4 c31 = x31 * texture2D(u_tex8, vec2(st.x-2.0, st.y));
+			vec4 c23 = x23 * texture2D(u_tex3, vec2(st.x-1.0, st.y-2.0));
+			vec4 c22 = x22 * texture2D(u_tex4, vec2(st.x-1.0, st.y-1.0));
+			vec4 c21 = x21 * texture2D(u_tex5, vec2(st.x-1.0, st.y));
+			vec4 c13 = x13 * texture2D(u_tex0, vec2(st.x, st.y-2.0));
+			vec4 c12 = x12 * texture2D(u_tex1, vec2(st.x, st.y-1.0));
+			vec4 c11 = x11 * texture2D(u_tex2, vec2(st.x, st.y));
+			
+			gl_FragColor = c11+c12+c13+c21+c22+c23+c31+c32+c33;
+		}"></canvas>
+		</div>		
+	</body>
+</html>
