@@ -3,11 +3,6 @@ layout: chapter
 title: "Deepdream"
 ---
 
-
-On June 16, 2015, an anonymous person posted this mysterious picture to the machine learning subreddit of Reddit.com, simply captioning it with “a convolutional neural network made this," inciting a furious debate over who or what produced it. This particular corner of Reddit was already familiar with many of the generative visuals we saw in the last chapter, but few had seen neural networks ___.
-
-A few days later, Google Research claimed responsibility in a follow-up blog post explaining how the image had been produced. Mordvintsev, Tyka, Olah 
-
 # Inceptionism class visualizations
 
 In the last chapter, we saw how 
