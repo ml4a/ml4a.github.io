@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Keras.js webcam demo</title>
+    <meta name="description" content="">
+    <script src="/demos/keras.js/lib/scale.fix.js"></script>
+    <script src="/demos/keras.js/lib/camvas.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="/css/main.css">    
+  </head>
+  <body>
+    <div id="app">
+      <div class="columns">
+        <div class="column is-9">
+          <component :is="currentView" :has-webgl="hasWebgl"></component>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/material-design-lite/1.2.1/material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.6/d3.min.js"></script>
+    <script src="https://cdn.rawgit.com/posva/vue-mdl/v0.9.4/dist/vue-mdl.min.js"></script>
+    <script src="https://cdn.rawgit.com/blueimp/JavaScript-Load-Image/v2.6.2/js/load-image.all.min.js"></script>
+    <script src="/demos/keras.js/lib/weblas.js"></script>
+    <script src="/demos/keras.js/lib/keras.js"></script>
+    <script src="/demos/keras.js/lib/bundle.js"></script>
+
+  </body>
+</html>
