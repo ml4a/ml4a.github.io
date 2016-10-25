@@ -3,3 +3,4 @@ _site/
 Gemfile.lock
 
 dev/datasets/*/*.png
+demos/datasets/*/*.png
