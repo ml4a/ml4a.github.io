@@ -31,3 +31,6 @@ collections:
   guides:
     output: true
     permalink: /guides/:path/
+  demos:
+    output: true
+    permalink: /demos/:path/
