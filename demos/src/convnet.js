@@ -26,9 +26,26 @@ function convnet(dataset_)
         window.focus();
     };
 
-    this.load_from_json = function(json) {
-        net = new convnetjs.Net();
-        net.fromJSON(json);
+    this.save_summary = function() {
+        var data = JSON.stringify(summary);
+        var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
+        window.open(url, '_blank');
+        window.focus();
+    };
+
+    this.load_summary = function(summary_file, callback) {
+        $.getJSON(summary_file, function(json){
+            summary = json;
+            callback();
+        });
+    };
+
+    this.load_from_json = function(snapshot_file, callback) {
+        $.getJSON(snapshot_file, function(json){
+            net = new convnetjs.Net();
+            net.fromJSON(json);
+            callback();
+        });
     };
 
     function check_if_ready(callback) {

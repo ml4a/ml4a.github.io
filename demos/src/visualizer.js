@@ -1,28 +1,5 @@
-const subscripts = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
+//const subscripts = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
 
-var overwriteObject = function(obj, overwrite){
-	Object.keys(overwrite).forEach(function(key,index) {
-		if (key in obj) {
-			obj[key] = overwrite[key];
-		}
-	});
-};
-
-function clone(obj) {
-    if (null == obj || "object" != typeof obj) return obj;
-    var copy = obj.constructor();
-    for (var attr in obj) {
-        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
-    }
-    return copy;
-};
-
-function getSubscript(idx) {
-	var o = idx%10;
-	var t = Math.floor(idx/10.0)%10;
-	var h = Math.floor(idx/100.0)%100;
-	return (idx<100?'':subscripts[h])+(h==0&&t<1?'':subscripts[t])+(subscripts[o]);
-};
 
 function NetworkVisualization(settings) 
 {	
@@ -70,6 +47,31 @@ function NetworkVisualization(settings)
 
 	function setDefaultConnectionStyle(overwrite){
 		overwriteObject(defaultConnectionStyle, overwrite);
+	};
+
+	var overwriteObject = function(obj, overwrite){
+		Object.keys(overwrite).forEach(function(key,index) {
+			if (key in obj) {
+				obj[key] = overwrite[key];
+			}
+		});
+	};
+
+	function clone(obj) {
+	    if (null == obj || "object" != typeof obj) return obj;
+	    var copy = obj.constructor();
+	    for (var attr in obj) {
+	        if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+	    }
+	    return copy;
+	};
+
+	function getSubscript(idx) {
+		var subscripts = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
+		var o = idx%10;
+		var t = Math.floor(idx/10.0)%10;
+		var h = Math.floor(idx/100.0)%100;
+		return (idx<100?'':subscripts[h])+(h==0&&t<1?'':subscripts[t])+(subscripts[o]);
 	};
 
 	var Neuron = function() 
@@ -365,4 +367,4 @@ function NetworkVisualization(settings)
 
 	// setup positions
 	this.setup();
-}
+};

@@ -1,5 +1,6 @@
-function dataset(datasetName) 
+function dataset(datasetName_) 
 {
+	this.get_name = function(){return datasetName;}
 	this.get_dim = function(){return sw;}
 	this.get_channels = function(){return channels;}
 	this.get_samples_per_batch = function(){return samplesPerBatch;}
@@ -15,7 +16,7 @@ function dataset(datasetName)
 		nBatches = 21;
 		batchPath = "/demos/datasets/mnist/mnist";
 		classes = ["0","1","2","3","4","5","6","7","8","9"];
-		labelsFile = "/demos/datasets/mnist/mnist_labels.js";
+		labelsFile = "/demos/datasets/mnist/mnist_labels.json";
 		initialize();
 	};
 
@@ -25,9 +26,9 @@ function dataset(datasetName)
 		channels = 3;
 		samplesPerBatch = 1000;
 		nBatches = 51;
-		batchPath = "../datasets/cifar/cifar10";
+		batchPath = "/demos/datasets/cifar/cifar10";
 		classes = ["airplane","automobile","bird","cat","deer","dog","frog","horse","ship","truck"];
-		labelsFile = "../datasets/cifar/cifar10_labels.js";
+		labelsFile = "/demos/datasets/cifar/cifar10_labels.json";
 		initialize();
 	};		
 
@@ -42,27 +43,50 @@ function dataset(datasetName)
 	};
 
 	this.load_labels = function(callback) { 
-		$.getScript(labelsFile, function(){
+		$.getJSON(labelsFile, function(json){
+			self.labels = json.labels;
 			labelsLoaded = true;
 			callback();
 		});
 	};
 
-	this.load_next_batch = function(callback) {
-		load_batch(idxBatch+1, callback);
+	this.load_batch = function(idxBatch_, callback) {
+		idxBatch = idxBatch_;
+		if (batchCtx[idxBatch] === undefined) {
+			batchImg.onload = function() {
+				console.log("LOADED BATCH "+idxBatch)
+				batches[idxBatch] = document.createElement('canvas');
+				batches[idxBatch].width = sw * sh;
+				batches[idxBatch].height = samplesPerBatch;   
+				batchCtx[idxBatch] = batches[idxBatch].getContext('2d');
+				batchCtx[idxBatch].drawImage(batchImg, 0, 0);
+				callback();
+			};
+			batchImg.src = batchPath+"_batch_"+idxBatch+".png";
+		} else {
+			console.log("ALREADY LOADED BATCH "+idxBatch)
+			callback();
+		}
 	};
 
-	function load_batch(idxBatch_, callback) {
-		idxBatch = idxBatch_;
-		batchImg.onload = function() {
-			batches[idxBatch] = document.createElement('canvas');
-			batches[idxBatch].width = sw * sh;
-			batches[idxBatch].height = samplesPerBatch;   
-			batchCtx[idxBatch] = batches[idxBatch].getContext('2d');
-			batchCtx[idxBatch].drawImage(batchImg, 0, 0);
-			callback();
+	this.load_next_batch = function(callback) {
+		this.load_batch(idxBatch+1, callback);
+	};
+
+	this.load_multiple_batches = function(idxBatches, callback) {
+		function load_next_batch_from_sequence() {
+			if (idxBatches.length == 0) {
+				callback();
+			} else {
+				var idxBatch_ = idxBatches.splice(0, 1);
+				self.load_batch(idxBatch_, load_next_batch_from_sequence);
+			}
 		};
-		batchImg.src = batchPath+"_batch_"+idxBatch+".png";
+		load_next_batch_from_sequence();
+	};
+
+	this.get_batch_idx_from_sample_idx = function(idxSample) { 
+		return Math.floor(idxSample / samplesPerBatch);
 	};
 
 	function get_batch_sample(idxSample) {
@@ -73,7 +97,7 @@ function dataset(datasetName)
 	  		lastBatch = b;
 	  	}
   		var W = sw * sh;
-  		var y = labels[idxBatch * samplesPerBatch + k];
+  		var y = self.labels[idxBatch * samplesPerBatch + k];
   		var x = new convnetjs.Vol(sw, sh, channels, 0.0);
 		for(var dc=0; dc<channels; dc++) {
 			var idx=0;
@@ -106,53 +130,61 @@ function dataset(datasetName)
 		this.draw_sample(ctx, idxSample, x, y, scale, grid_thickness, crop);
 	};
 
-	this.get_sample_image = function(idx) {
+	this.get_sample_image = function(idx, callback) {
 		var b = Math.floor(idx / samplesPerBatch);
 		var k = idx % samplesPerBatch;
-		console.log("get "+idx+" = "+b+" "+k)
-		var sample = batchCtx[b].getImageData(0, k, sw*sh, 1);
-		return {data:sample.data, sw:sw, sh:sh, channels:channels};
+		if (batchCtx[b] === undefined) {
+			this.load_batch(b, function() {
+				var sample = batchCtx[b].getImageData(0, k, sw*sh, 1);
+				callback({data:sample.data, sw:sw, sh:sh, channels:channels});
+			})
+		}
+		else {
+			var sample = batchCtx[b].getImageData(0, k, sw*sh, 1);
+			callback({data:sample.data, sw:sw, sh:sh, channels:channels});
+		}
 	};
 
 	this.draw_sample = function(ctx, idx, x, y, scale, grid_thickness, crop) {
-		var crop = (crop === undefined) ? {x:0, y:0, w:sw, h:sh, pad:0} : crop;
-		var g = (grid_thickness === undefined) ? 0 : grid_thickness;
-		var ny = crop.h;
-		var nx = crop.w;
-		var sampleImg = this.get_sample_image(idx);
-	 	var newImg = ctx.createImageData(nx * (scale + g), ny * (scale + g));
-		for (var j=0; j<ny; j++) {
-		 	for (var i=0; i<nx; i++) {
-				var y_ = crop.y + j - crop.pad;
-				var x_ = crop.x + i - crop.pad;
-				var idxS = (y_ * sw + x_) * 4;
-				if (y_ < 0 || y_ >= sh || x_ < 0 || x_ >= sw) {
-					idxS = -1;	// in the padding
-				}
-				for (var sj=0; sj<scale+g; sj++) {
-		      		for (var si=0; si<scale+g; si++) {
-						var idxN = ((j * (scale + g) + sj) * nx * (scale + g) + (i * (scale + g) + si)) * 4;
-		      			if (si < scale && sj < scale) {
-			        		newImg.data[idxN  ] = idxS == -1 ? 0   : sampleImg.data[idxS  ];
-			        		newImg.data[idxN+1] = idxS == -1 ? 0   : sampleImg.data[idxS+1];
-			        		newImg.data[idxN+2] = idxS == -1 ? 0   : sampleImg.data[idxS+2];
-			        		newImg.data[idxN+3] = idxS == -1 ? 255 : sampleImg.data[idxS+3];                						
-			        	} else {
-			        		newImg.data[idxN  ] = 127;
-			        		newImg.data[idxN+1] = 127;
-			        		newImg.data[idxN+2] = 127;
-			        		newImg.data[idxN+3] = 255;
-			        	}
-		      		}
-		    	}
-		  	}
-		}
-		ctx.putImageData(newImg, x, y);
+		var sampleImg = this.get_sample_image(idx, function(sampleImg){
+			var crop = (crop === undefined) ? {x:0, y:0, w:sw, h:sh, pad:0} : crop;
+			var g = (grid_thickness === undefined) ? 0 : grid_thickness;
+			var ny = crop.h;
+			var nx = crop.w;
+			var newImg = ctx.createImageData(nx * (scale + g), ny * (scale + g));
+			for (var j=0; j<ny; j++) {
+			 	for (var i=0; i<nx; i++) {
+					var y_ = crop.y + j - crop.pad;
+					var x_ = crop.x + i - crop.pad;
+					var idxS = (y_ * sw + x_) * 4;
+					if (y_ < 0 || y_ >= sh || x_ < 0 || x_ >= sw) {
+						idxS = -1;	// in the padding
+					}
+					for (var sj=0; sj<scale+g; sj++) {
+			      		for (var si=0; si<scale+g; si++) {
+							var idxN = ((j * (scale + g) + sj) * nx * (scale + g) + (i * (scale + g) + si)) * 4;
+			      			if (si < scale && sj < scale) {
+				        		newImg.data[idxN  ] = idxS == -1 ? 0   : sampleImg.data[idxS  ];
+				        		newImg.data[idxN+1] = idxS == -1 ? 0   : sampleImg.data[idxS+1];
+				        		newImg.data[idxN+2] = idxS == -1 ? 0   : sampleImg.data[idxS+2];
+				        		newImg.data[idxN+3] = idxS == -1 ? 255 : sampleImg.data[idxS+3];                						
+				        	} else {
+				        		newImg.data[idxN  ] = 127;
+				        		newImg.data[idxN+1] = 127;
+				        		newImg.data[idxN+2] = 127;
+				        		newImg.data[idxN+3] = 255;
+				        	}
+			      		}
+			    	}
+			  	}
+			}
+			ctx.putImageData(newImg, x, y);
+		});
 	};
 
 	this.draw_sample_grid = function(ctx, rows, cols, scale, margin, label) {
 		var draw_next_sample = function(n, idx, label) {
-		  	if (labels[samplesPerBatch * idxBatch + idx] == label || label == null) {
+		  	if (self.labels[samplesPerBatch * idxBatch + idx] == label || label == null) {
 		    	var y = margin + (sh * scale + margin) * Math.floor(n / cols);
 		    	var x = margin + (sw * scale + margin) * (n % cols);
 		    	self.draw_sample(ctx, idx, x, y, scale);
@@ -163,7 +195,7 @@ function dataset(datasetName)
 		    	draw_next_sample(n, idx+1, label);
 		  	} 
 		  	else if (idxBatch+1 < nBatches) {
-		    	load_batch(idxBatch+1, function() {           
+		    	this.load_batch(idxBatch+1, function() {           
 		    		draw_next_sample(n, 0, label);
 		    	}); 
 		  	}
@@ -173,6 +205,7 @@ function dataset(datasetName)
 
 	// initialize
 	var self = this;
+	var datasetName = datasetName_;
 	var batchPath, idxBatch;
   	var sw, sh, channels, samplesPerBatch, nBatches;
   	var labelsFile, labelsLoaded, classes;
