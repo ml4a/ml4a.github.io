@@ -25,7 +25,7 @@
 	"title": "Neural networks",
 	"date": "7/5/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_02.png",
-	"dropbox": "https://www.dropbox.com/s/6uv9jipzqslb6m3/neural%20aesthetic%20%40%20schoolofma%20--%2002%20neural%20networks.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/ln5ylmvfm6xku6q/neural%20aesthetic%20%40%20schoolofma%20--%2002%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
 		{"title":"From biological to artificial neurons", "m":1, "s":32, "disp":"1:32"},
 		{"title":"Defining artificial neurons and activation functions", "m":13, "s":10, "disp":"13:10"},
@@ -46,7 +46,7 @@
 	"title": "Convolutional neural networks + t-SNE",
 	"date": "7/6/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_03.png",
-	"dropbox": "https://www.dropbox.com/s/z7us13mq82t9u5a/neural%20aesthetic%20%40%20schoolofma%20--%2003%20convnets%20%2B%20t-SNE.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/bcqcmgh4uegek8d/neural%20aesthetic%20%40%20schoolofma%20--%2003%20convnets%20%2B%20t-SNE.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Review of neural networks", "m":9, "s":45, "disp":"9:45"},
 		{"title":"Shortcomings of ordinary neural nets", "m":24, "s":16, "disp":"24:16"},
@@ -70,7 +70,7 @@
 	"title": "Trolley problem, discussion {poor audio}",
 	"date": "7/7/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_04.png",
-	"dropbox": "https://www.dropbox.com/s/sy94mqhlz84ib5g/neural%20aesthetic%20%40%20schoolofma%20--%2004%20trolley%20problem%2C%20ethics.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/f1sr8ogeih5zeuq/neural%20aesthetic%20%40%20schoolofma%20--%2004%20trolley%20problem%2C%20ethics.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Robots as our \"children\"", "m":0, "s":0, "disp":"0:00"},
 		{"title":"The trolley problem", "m":17, "s":33, "disp":"17:33"},
@@ -89,7 +89,7 @@
 	"title": "Wekinator, real-time applications of neural nets",
 	"date": "7/18/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_09.png",
-	"dropbox": "https://www.dropbox.com/s/s8k86d9bm1isg4r/neural%20aesthetic%20%40%20schoolofma%20--%2009%20wekinator%20examples%2C%20modules.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/enudiynnm9kqrt7/neural%20aesthetic%20%40%20schoolofma%20--%2009%20wekinator%20examples%2C%20modules.mp4?dl=1",
 	"bookmarks": [
 		{"title":"The big picture: neural nets map volumes", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Real-time and interactive media-driven uses of neural nets", "m":9, "s":34, "disp":"9:34"},
@@ -109,7 +109,7 @@
 	"title": "Applications of convnets",
 	"date": "7/19/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_10.png",
-	"dropbox": "https://www.dropbox.com/s/fnskigmv1isf6ye/neural%20aesthetic%20%40%20schoolofma%20--%2010%20convnet%20applications.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/lomjxbz3vokmfhl/neural%20aesthetic%20%40%20schoolofma%20--%2010%20convnet%20applications.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Review how convnets work", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Visualizing and interpreting learned features", "m":21, "s":54, "disp":"21:54"},
@@ -133,7 +133,7 @@
 	"title": "Recurrent neural networks",
 	"date": "7/20/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_11.png",
-	"dropbox": "https://www.dropbox.com/s/wl55j21l88erd08/neural%20aesthetic%20%40%20schoolofma%20--%2011%20recurrent%20neural%20networks.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/2gv770ublilrn3k/neural%20aesthetic%20%40%20schoolofma%20--%2011%20recurrent%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Feedforward vs. recurrent", "m":0, "s":0, "disp":"0:00"},
 		{"title":"RNNs predicting characters", "m":7, "s":31, "disp":"7:31"},
@@ -153,7 +153,7 @@
 	"title": "Game AI & reinforcement learning",
 	"date": "7/21/2016",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_12.png",
-	"dropbox": "https://www.dropbox.com/s/cgziah23edbtjcf/neural%20aesthetic%20%40%20schoolofma%20--%2012%20reinforcement%20learning%20%2B%20game%20AI.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/g3neicmofe8r65y/neural%20aesthetic%20%40%20schoolofma%20--%2012%20reinforcement%20learning%20%2B%20game%20AI.mp4?dl=1",
 	"bookmarks": [
 		{"title":"The Glass Bead Game + DeepMind", "m":0, "s":0, "disp":"0:00"},
 		{"title":"What is reinforcement learning?", "m":9, "s":42, "disp":"9:42"},
@@ -194,7 +194,7 @@
 	"title": "Applications, Wekinator",
 	"date": "3/31/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_02.png",
-	"dropbox": "https://www.dropbox.com/s/a1sc7n1yd3s8al6/ml4a%20%40%20itp-nyu%20--%2002%20applications%2C%20wekinator.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/6gg635cbxazsp56/ml4a%20%40%20itp-nyu%20--%2002%20applications%2C%20wekinator.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Review of neural networks", "m":7, "s":50, "disp":"7:50"}, 
 		{"title":"Walkthrough of a practical ML experiment with ofxLearn", "m":10, "s":47, "disp":"10:47"}, 
@@ -218,7 +218,7 @@
 	"title": "Convolutional neural networks",
 	"date": "4/7/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_03.png",
-	"dropbox": "https://www.dropbox.com/s/g993ooiw56jv2mi/ml4a%20%40%20itp-nyu%20--%2003%20convolutional%20neural%20networks.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/9beww4qyq2nyqhe/ml4a%20%40%20itp-nyu%20--%2003%20convolutional%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
 		{"title":"[Nick Hubbard] Trolley problem", "m":8, "s":15, "disp":"8:15"}, 
 		{"title":"’Animals are machines’ - Rene Descartes", "m":20, "s":30, "disp":"20:30"}, 
@@ -240,7 +240,7 @@
 	"title": "Convnet applications",
 	"date": "4/14/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_04.png",
-	"dropbox": "https://www.dropbox.com/s/12obtr8hd82ebz2/ml4a%20%40%20itp-nyu%20--%2004%20convnet%20applications.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/taaxxu6ebth78ay/ml4a%20%40%20itp-nyu%20--%2004%20convnet%20applications.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Stranger Visions and reconstructing data", "m":8, "s":10, "disp":"8:10"},
 		{"title":"Reviewing convnets", "m":13, "s":34, "disp":"13:34"},
@@ -262,7 +262,7 @@
 	"title": "Recurrent neural networks",
 	"date": "4/21/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_05.png",
-	"dropbox": "https://www.dropbox.com/s/yfe4q51e38haemm/ml4a%20%40%20itp-nyu%20--%2005%20recurrent%20neural%20networks.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/ap5tqz56n0m1fu0/ml4a%20%40%20itp-nyu%20--%2005%20recurrent%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
 		{"title":"review feedforward neural networks", "m":2, "s":19, "disp":"2:19"},
 		{"title":"feedforward vs. recurrence", "m":7, "s":38, "disp":"7:38"},
@@ -285,7 +285,7 @@
 	"title": "Game AI and deep reinforcement learning",
 	"date": "4/28/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_06.png",
-	"dropbox": "https://www.dropbox.com/s/0x0v918r9762xsf/ml4a%20%40%20itp-nyu%20--%2006%20reinforcement%20learning%2C%20games%2C%20generative%20models.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/llzkkc9fj926qlr/ml4a%20%40%20itp-nyu%20--%2006%20reinforcement%20learning%2C%20games%2C%20generative%20models.mp4?dl=1",
 	"bookmarks": [
 		{"title":"the whole class \"in 10 minutes\"", "m":14, "s":33, "disp":"14:33"},
 		{"title":"autoencoders", "m":43, "s":03, "disp":"43:03"},
@@ -308,7 +308,7 @@
 	"title": "The Neural Aesthetic",
 	"date": "6/4/2016",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_07.png",
-	"dropbox": "https://www.dropbox.com/s/4blzcghoz72d700/ml4a%20%40%20itp-nyu%20--%20the%20neural%20aesthetic%206.4.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/ilqrbn8i4n66sv7/ml4a%20%40%20itp-nyu%20--%20the%20neural%20aesthetic%206.4.mp4?dl=1",
 	"bookmarks": [
 		{"title":"ML circa 2010 + music info retrieval", "m":11, "s":10, "disp":"11:10"},
 		{"title":"from perceptrons to deep neural nets", "m":27, "s":25, "disp":"27:25"},
