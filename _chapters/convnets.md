@@ -1,6 +1,7 @@
 ---
 layout: chapter
 title: "Convolutional neural networks"
+demo_includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
 
@@ -90,7 +91,8 @@ When you see a head, you see eyes, noses, mouths.
 
 # Convolutional layers
 
-**[Convolution demo]**
+{% include demo_insert.html width=960 height=540 path="/demos/demos/convolution.js" args="'MNIST',true" %}
+
 
 **[Convolution all]**
 

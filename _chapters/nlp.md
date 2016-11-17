@@ -11,6 +11,13 @@ Quote
 
 Trying to get algorithms to make sense of ambiguity of human language, we begin to appreciate just how much we take for granted. We hardly notice the tiny feats of disambiguation our brains do when reading sentences like the ones above.
 
+you shall know the nature of a word by the company it keeps
+
+----
+
+What kinds of language-oriented tasks might we be interested in?
+
+----
 
 This chapter is about applications of machine learning to natural language processing. like ml, NLP is a nebulous term with several precise definitions and most have something to do wth making sense from text. This chapter will take a broad view of NLP
 
@@ -66,3 +73,6 @@ the trophy can't fit into the suitcase because it's too small (it = suitcase)
 
 
 colah word2vec http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/
+
+metal + NLP
+https://www.reddit.com/r/MachineLearning/comments/4r1np7/heavy_metal_and_natural_language_processing_part_1/?utm_source=twitterfeed&utm_medium=twitter

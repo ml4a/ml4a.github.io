@@ -9,6 +9,8 @@ http://home.cogeco.ca/~drheault/ee_readings/West/Descartes.pdf
 http://journalofcosmology.com/Consciousness136.html
 
 
+if you torture the data long enough, it will confess
+
 animals are without feeling or awareness of any kind?
 
 But the greatest of all the prejudices we have retained from infancy is that of believing that brutes think
@@ -144,3 +146,8 @@ andrew ng "Worrying about killer robots is like worrying about overpopulation on
 
 http://www.nature.com/news/machine-ethics-the-robot-s-dilemma-1.17881
 http://www.nature.com/news/robotics-ethics-of-artificial-intelligence-1.17611
+
+
+
+facebook stuff from barca workshop
+JFK, noted hero on the left

@@ -1,9 +1,13 @@
 ---
 layout: chapter
 title: "How neural networks are trained"
+header_image: "/images/headers/topographic_map.jpg"
+header_quote: "lovelace"
 ---
 
 [http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf]
+
+http://www.summitpost.org/ruth-creek-topographic-map/771858
 
 overview of grad descent algorithms: http://sebastianruder.com/optimizing-gradient-descent/index.html
 

@@ -1,6 +1,8 @@
 ---
 layout: chapter
 title: "Style transfer"
+header_image: "/images/headers/monalisa_stylenet.jpg"
+header_quote: "lovelace"
 ---
 
 

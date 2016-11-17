@@ -1,6 +1,8 @@
 ---
 layout: chapter
 title: "Introduction"
+header_image: "/images/headers/cohen_tortue.jpg"
+header_quote: "lovelace"
 ---
 
 **Introduction: Harold Cohen**
@@ -16,6 +18,9 @@ title: "Introduction"
 **Recurrent neural nets: MC Escher**
 
 
+
+http://diccan.com/Images/Cohen_tortue.jpg
+http://diccan.com/History_1970.html
 
 
 \"Artificial intelligence is anything computers [can\'t do yet](https://en.wikipedia.org/wiki/AI_effect)\" - Douglas Hofstadter, re: Tesler theorem 

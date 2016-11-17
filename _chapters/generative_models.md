@@ -1,6 +1,8 @@
 ---
 layout: chapter
 title: "Generative models"
+header_image: "/images/headers/DGN_places.jpg"
+header_quote: "lovelace"
 ---
 
 

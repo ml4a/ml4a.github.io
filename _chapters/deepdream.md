@@ -1,6 +1,8 @@
 ---
 layout: chapter
 title: "Deepdream"
+header_image: "/images/headers/deepdream.jpg"
+header_quote: "lovelace"
 ---
 
 # Inceptionism class visualizations

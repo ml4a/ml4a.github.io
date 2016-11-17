@@ -1,11 +1,15 @@
 ---
 layout: chapter
 title: "Recurrent neural networks"
+header_image: "/images/headers/ascending_descending.jpg"
+header_quote: "lovelace"
 ---
 
 http://handong1587.github.io/deep_learning/2015/10/09/rnn-and-lstm.html
 
 http://uploads1.wikiart.org/images/m-c-escher/ascending-descending.jpg
+
+chris olah's postt on attention
 
 **[quote: RNN bot trained on this text - ml4a.github.io -> link to torch-rnn code ]**
 
