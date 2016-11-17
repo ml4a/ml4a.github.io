@@ -78,6 +78,8 @@ li {
 footer {
     border-top: 1px solid #d5d5d5;
     font-size: .8em;
+    width: 66%;
+    margin:auto;
 }
 
 .figure {
@@ -172,3 +174,62 @@ ul.posts li {
     font-size:20px;
     margin-top:12px;
 }
+
+
+
+
+
+
+.demo_main {
+    margin:auto; 
+    margin-top:24px;
+    margin-bottom:24px;
+    border: 0.5px solid #ccc;
+    padding:5px;
+}
+
+.demo_control_panel {
+	background-color:#ddd; 
+	display:block; 
+	padding:5px;
+	height:20px;
+}
+
+.demo_control_panel_meta {
+    font-weight: bold;
+    font-size:16px;
+    float:left;
+}
+
+.demo_control_panel_options {
+    float:right;
+}
+
+.demo_control_panel_option {
+    float:left;
+    margin-right:10px;
+    margin-left:10px;
+    padding:3px;
+    color:#fff;
+    background-color:#05896a;
+}
+
+.demo_control_panel_option:hover {
+    background-color:#1abc9c;
+    color:#fff;
+    cursor:pointer;
+}
+
+.demo_description_panel {
+    height:120px; 
+    background-color:#eee; 
+    margin:auto; 
+    display:block; 
+    padding:5px; 
+}
+
+
+
+
+
+

@@ -34,3 +34,6 @@ collections:
   demos:
     output: true
     permalink: /demos/:path/
+  terms:
+    output: true
+    permalink: /glossary/:path/
