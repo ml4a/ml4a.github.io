@@ -13,6 +13,7 @@ function dataset()
 	var sample_idx = {train:0, test:0};
 	var data = {train:[], test:[]};
 	var callback_main = null;
+
 	
 	this.get_dim = function() {
 		return dim;
@@ -109,7 +110,8 @@ function dataset()
 			callback_main = callback_main_;
 		}
 		test_batch_only = test_batch_only_ || false;
-		root_dir = '/dev/datasets/mnist/mnist';
+		root_dir = '/demos/datasets/mnist/mnist';
+		// root_dir = 'http://genekogan.github.io/ml4a/mnist';
 		dim = 28;
 		channels = 1;
 		rows_per_batch = 3000;
@@ -124,7 +126,8 @@ function dataset()
 			callback_main = callback_main_;
 		}
 		test_batch_only = test_batch_only_ || false;
-		root_dir = '/dev/datasets/cifar/cifar10';
+		root_dir = '/demos/datasets/cifar/cifar10';
+		// root_dir = 'http://genekogan.github.io/ml4a/cifar';
 		dim = 32;
 		channels = 3;
 		rows_per_batch = 1000;
