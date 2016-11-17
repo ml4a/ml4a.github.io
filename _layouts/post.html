@@ -4,44 +4,6 @@ layout: default
 <h1>{{ page.title }}</h1>
 <!-- <p class="meta">{{ page.date | date_to_string }}</p> -->
 
-
-    <script src="/dev/libraries/jquery-1.8.3.min.js"></script>
-
-    <script src="/dev/libraries/convnet.js" type="text/javascript"></script>
-    <script src="/dev/libraries/util.js" type="text/javascript"></script>
-    <script src="/dev/libraries/p5.js" type="text/javascript"></script>
-    <script src="/dev/libraries/p5.dom.js" type="text/javascript"></script>
-    
-    <script src="/dev/datasets/mnist/mnist_labels.js" type="text/javascript"></script>
-    
-    <script src="/dev/src/dataset.js" type="text/javascript"></script>
-    <script src="/dev/src/convnet.js" type="text/javascript"></script>
-    <script src="/dev/src/datavis.js" type="text/javascript"></script>
-    <script src="/dev/src/nnvis.js" type="text/javascript"></script>
-
-
-
-<script>
-var sketch = function( p ) {
-
-  var x = 100; 
-  var y = 100;
-
-  p.setup = function() {
-    p.createCanvas(700, 410);
-  };
-
-  p.draw = function() {
-    p.background(0);
-    p.fill(255);
-    p.rect(p.mouseX,p.mouseY,50,50);
-  };
-};
-
-//var myp5 = new p5(sketch);
-</script>
-
-
 <div class="post">
   {{ content }}
 </div>
