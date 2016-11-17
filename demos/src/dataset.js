@@ -35,7 +35,7 @@ function dataset(datasetName_)
 	function initialize() {
 		labelsLoaded = false;
 		idxBatch = -1;
-		idxSample = -1;
+		idxSample = 0;
 		lastBatch = -1;
 		batchImg = new Image();
 		batches = [...Array(nBatches)];
@@ -54,7 +54,7 @@ function dataset(datasetName_)
 		idxBatch = idxBatch_;
 		if (batchCtx[idxBatch] === undefined) {
 			batchImg.onload = function() {
-				console.log("LOADED BATCH "+idxBatch)
+				console.log("loaded "+datasetName+" batch "+idxBatch);
 				batches[idxBatch] = document.createElement('canvas');
 				batches[idxBatch].width = sw * sh;
 				batches[idxBatch].height = samplesPerBatch;   
@@ -64,7 +64,6 @@ function dataset(datasetName_)
 			};
 			batchImg.src = batchPath+"_batch_"+idxBatch+".png";
 		} else {
-			console.log("ALREADY LOADED BATCH "+idxBatch)
 			callback();
 		}
 	};
@@ -182,10 +181,12 @@ function dataset(datasetName_)
 		});
 	};
 
+
+
 	this.draw_sample_grid = function(ctx, rows, cols, scale, margin, label) {
 		var draw_next_sample = function(n, idx, label) {
-		  	if (self.labels[samplesPerBatch * idxBatch + idx] == label || label == null) {
-		    	var y = margin + (sh * scale + margin) * Math.floor(n / cols);
+			if (self.labels[idx] == label || label == null) {
+				var y = margin + (sh * scale + margin) * Math.floor(n / cols);
 		    	var x = margin + (sw * scale + margin) * (n % cols);
 		    	self.draw_sample(ctx, idx, x, y, scale);
 		    	n++;
@@ -195,7 +196,7 @@ function dataset(datasetName_)
 		    	draw_next_sample(n, idx+1, label);
 		  	} 
 		  	else if (idxBatch+1 < nBatches) {
-		    	this.load_batch(idxBatch+1, function() {           
+		    	self.load_batch(idxBatch+1, function() {           
 		    		draw_next_sample(n, 0, label);
 		    	}); 
 		  	}

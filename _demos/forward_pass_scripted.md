@@ -1,7 +1,7 @@
 ---
 layout: demo
-title: "Convolution"
-script: "/demos/demos/convolution.js"
+title: "Forward pass"
+script: "/demos/demos/forward_pass_scripted.js"
 width: 720
 height: 560
 args: "'MNIST', true"

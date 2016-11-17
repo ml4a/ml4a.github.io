@@ -1,0 +1,52 @@
+<script src="{{ include.path }}" type="text/javascript"></script>
+
+<script>
+	var parent_div = document.getElementById("post");
+	var width = {{include.width}};;
+	var height = {{include.height}};
+
+
+	var demo_div = document.createElement('div');
+	var control_panel = document.createElement('div');
+	var control_panel_meta = document.createElement('div');
+	var control_panel_options = document.createElement('div');
+	var description_panel = document.createElement('div');
+	var canvas = document.createElement('canvas');
+	control_panel.appendChild(control_panel_meta);
+	control_panel.appendChild(control_panel_options);
+	demo_div.appendChild(control_panel);
+	demo_div.appendChild(description_panel);
+	demo_div.appendChild(canvas);
+	parent_div.appendChild(demo_div);
+	demo_div.className = 'demo_main';
+	demo_div.style.width = width+"px";
+	control_panel.className = 'demo_control_panel';
+	control_panel_meta.className = 'demo_control_panel_meta';
+	control_panel_options.className = 'demo_control_panel_options';
+	control_panel_meta.innerHTML = '{{page.title}}';
+	description_panel.className = 'demo_description_panel';
+	canvas.width = width;
+	canvas.height = height;
+	canvas.style = 'margin:auto; display:block;';
+
+	function set_text_panel(text) {
+		description_panel.innerHTML = text;
+		MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel])
+	}
+	
+	function add_control_panel_action(text, action) {
+		var control_panel_option = document.createElement('div');
+		control_panel_option.className = 'demo_control_panel_option';
+		control_panel_option.innerHTML = text;
+		control_panel_option.onclick = action;
+		control_panel_options.appendChild(control_panel_option);
+	}
+
+	var parent = {demo_div:demo_div, canvas:canvas};
+
+	{% if args %}
+		demo(parent, width, height, {{include.args}});
+	{% else %}
+		demo(parent, width, height);
+	{% endif %}
+</script>

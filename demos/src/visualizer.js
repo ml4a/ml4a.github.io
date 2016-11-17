@@ -141,6 +141,7 @@ function NetworkVisualization(settings)
 	        if (s.leftLabelMargin>0) {
 	        	var angH = Math.PI/10.0;
 	        	ctx.beginPath();
+	        	ctx.lineWidth = 1.0;
 		    	ctx.moveTo(0, 0);
 		    	ctx.lineTo(s.leftLabelMargin-5.0, 0);
 		    	ctx.lineTo(s.leftLabelMargin-10.0*Math.cos(-angH),-10.0*Math.sin(-angH));
@@ -316,6 +317,7 @@ function NetworkVisualization(settings)
 	function drawEllipsis() {
 		ellipsis.forEach(function(e){
 			ctx.beginPath();
+			ctx.fillStyle='rgba(0,0,0,1.0)';
 			ctx.arc(e.x, e.y-e.margin, e.radius, 0, 2*Math.PI, false);
 			ctx.arc(e.x, e.y,    e.radius, 0, 2*Math.PI, false);
 			ctx.arc(e.x, e.y+e.margin, e.radius, 0, 2*Math.PI, false);
