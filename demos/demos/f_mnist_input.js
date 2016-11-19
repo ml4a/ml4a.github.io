@@ -1,11 +1,8 @@
-var demo = function(canvas_, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
+var demo = function(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
-    var canvas = canvas_;
-    //document.getElementById("post").appendChild(canvas);
-//  document.body.appendChild(canvas);
-
+    // parameters
+    var canvas = parent.canvas;
     var ctx = canvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true;
 
 
     function draw_sample_as_grid(sample, x_, y_, cellsize) {

@@ -1,25 +1,8 @@
-/*
 
-var canvas = document.createElement("canvas");
-canvas.width = 1600;
-canvas.height = 1000;
-//document.getElementById("post").appendChild(canvas);
-document.body.appendChild(canvas);
-
-var ctx = canvas.getContext('2d');
-ctx.imageSmoothingEnabled = true;
-
-
-
-
-
-*/
-
-
-
-var demo = function(canvas_, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
+var demo = function(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
-	var canvas = canvas_;
+	// parameters
+	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
 
 	var scale = 4.0;
@@ -58,7 +41,7 @@ var demo = function(canvas_, datasetName_, useSummary_, useSnapshot_ , viewTopSa
 	};
 
 	// setup network
-	var data = new dataset('CIFAR');
+	var data = new dataset('MNIST');
 	var net = new convnet(data);
 	var classes = data.get_classes();
 	var dim = data.get_dim();

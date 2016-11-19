@@ -43,8 +43,7 @@
 	}
 
 	var parent = {demo_div:demo_div, canvas:canvas};
-
-	{% if args %}
+	{% if include.args %}
 		demo(parent, width, height, {{include.args}});
 	{% else %}
 		demo(parent, width, height);

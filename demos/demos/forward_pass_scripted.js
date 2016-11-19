@@ -1,167 +1,9 @@
 var demo = function(parent, width, height)
 {
-
-	var control_panel = document.createElement('div');
-	control_panel.style = "width:"+width+"px; height:20px; background-color:#f0f; margin:auto; display:block; padding:3px; ";	
-	control_panel.innerHTML  = '<b>Forward Pass Demo</b>';
-	control_panel.innerHTML += '<span id="nextLink">next</span>';
-	parent.appendChild(control_panel);
-	
-	
-	$('#nextLink').click(function () {
-	    console.log("I CLICKED NEXT")
-	});
-	
-	
-	var text_panel = document.createElement('div');
-	text_panel.style = "width:"+width+"px; height:120px; background-color:#f00; margin:auto; display:block; padding:3px; ";	
-	var status = "Lets try a set of random weights. For the first hidden layer, lets say our weights are:";
-	status += ""
-	status += "$$";
-	status += "\\begin{bmatrix}";
-	status += "0.9 & 0.4 & 0.2 \\\\";
-	status += "0.8 & 0.5 & 0.7";
-	status += "\\end{bmatrix}";
-	status += "$$";
-	status += ""
-	status += "We'll use sigmoid activation functions for the hidden layer.'";
-	
-	
-	
-	
-	
-	var html = `
-	Lets try a set of random weights. For the first hidden layer, lets say our weights are:
-
-	$$
-	\\begin{bmatrix}
-	0.9 & 0.4 & 0.2 \\\\
-	0.8 & 0.5 & 0.7
-	\\end{bmatrix}
-	$$
-
-	We'll use sigmoid activation functions for the hidden layer.'
-	`;
-	
-	
-	//text_panel.innerHTML = html;
-	parent.appendChild(text_panel);
-	
-	
-	/*
-	And for the output layer, let's say the weights are:
-
-	$$
-	\begin{bmatrix}
-	0.3 & 0.9
-	\end{bmatrix}
-	$$
-
-	
-	
-	
-	
-	
-	Let's input our datapoint $[2.4, 1.2, 1.3]$ and see what output the network gives us.
-	
-	
-	
-	The output of the first (top-most in the graphic) hidden unit is:
-
-	$$
-	\text{sigmoid}((0.9 * 2.4) + (0.4 * 1.2) + (0.2 * 1.3)) = 0.962
-	$$
-	
-	
-	
-	
-	The output of the second hidden unit is:
-
-	$$
-	\text{sigmoid}((0.8 * 2.4) + (0.5 * 1.2) + (0.7 * 1.3)) = 0.990
-	$$
-	
-	
-	
-	Now we take these and feed it into the output unit (which doesn't have an activation function):
-
-	$$
-	(0.3 * 0.962) + (0.9 * 0.990) = 1.180
-	$$
-	
-	
-	
-	
-	
-	
-	
-	Not quite right (we wanted to get $$0.854$$)...we can measure our error with the mean squared error (MSE), which is the most common measurement for error in regression problems:
-
-	$$
-	\begin{aligned}
-	\text{error} &= (1.180 - 0.854)^2 \\
-	&= 0.106
-	\end{aligned}
-	$$
-	
-	
-	
-	
-	
-	
-	
-	
-	Now I'll magically give you the best set of weights. For the hidden layer:
-
-	$$
-	\begin{bmatrix}
-	0.1 & 0.6 & 0.9 \\
-	0.9 & 0.7 & -0.2
-	\end{bmatrix}
-	$$
-
-	And for the output layer:
-
-	$$
-	\begin{bmatrix}
-	0.5 & 0.4
-	\end{bmatrix}
-	$$
-	
-	
-	
-	
-	
-	
-	Let's try this all again with these new weights:
-
-	$$
-	\begin{aligned}
-	\text{hidden unit 1} &= \text{sigmoid}((0.1 * 2.4) + (0.6 * 1.2) + (0.9 * 1.3)) = 0.975 \\
-	\text{hidden unit 2} &= \text{sigmoid}((0.9 * 2.4) + (0.7 * 1.2) + (-0.2 * 1.3)) = 0.917 \\
-	\text{output} &= (0.5 * 0.975) + (0.4 * 0.917) = 0.854
-	\end{aligned}
-	$$
-	
-	
-	
-	
-	
-	Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.
-	
-	
-	
-	
-	
-	*/
-	
 	// setup canvas
-	var canvas = document.createElement("canvas");
-	canvas.width = width;
-	canvas.height = height;
-	canvas.style = 'margin:auto; display:block;';
-	parent.appendChild(canvas);
+	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
+
 	
 	// settings
 	var c1 = 'rgba(0,0,0,0.7)';
@@ -298,6 +140,12 @@ var demo = function(parent, width, height)
 
 
 	// control flow
+	function prev() {
+	    idx = (idx + steps.length - 1) % steps.length;
+	    steps[idx]();
+	    redraw();
+	};
+
 	function next() {
 	    idx = (idx + 1) % steps.length;
 	    steps[idx]();
@@ -305,16 +153,13 @@ var demo = function(parent, width, height)
 	};
 
 	function redraw() {
-	    ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
 	    net.draw(5, 5);
 	}
 	
-	/*
-	window.addEventListener("keydown", function(e) { 
-	    if (e.keyCode == 49) {next();} 
-	}, false);
-	*/
-	
-	//canvas.addEventListener("mousemove", mouseMoved, false);
+	// add control panels
+	add_control_panel_action('prev', prev);
+	add_control_panel_action('next', next);
+
 	next();	
 };

@@ -146,15 +146,15 @@ function dataset(datasetName_)
 
 	this.draw_sample = function(ctx, idx, x, y, scale, grid_thickness, crop) {
 		var sampleImg = this.get_sample_image(idx, function(sampleImg){
-			var crop = (crop === undefined) ? {x:0, y:0, w:sw, h:sh, pad:0} : crop;
+			var crop_ = (crop === undefined) ? {x:0, y:0, w:sw, h:sh, pad:0} : crop;
 			var g = (grid_thickness === undefined) ? 0 : grid_thickness;
-			var ny = crop.h;
-			var nx = crop.w;
+			var ny = crop_.h;
+			var nx = crop_.w;
 			var newImg = ctx.createImageData(nx * (scale + g), ny * (scale + g));
 			for (var j=0; j<ny; j++) {
 			 	for (var i=0; i<nx; i++) {
-					var y_ = crop.y + j - crop.pad;
-					var x_ = crop.x + i - crop.pad;
+					var y_ = crop_.y + j - crop_.pad;
+					var x_ = crop_.x + i - crop_.pad;
 					var idxS = (y_ * sw + x_) * 4;
 					if (y_ < 0 || y_ >= sh || x_ < 0 || x_ >= sw) {
 						idxS = -1;	// in the padding

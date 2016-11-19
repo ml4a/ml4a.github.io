@@ -4,7 +4,6 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
 
-
 	var datasetName = (datasetName_ === undefined) ? 'MNIST' : datasetName_;
 	var useSummary = (useSummary_ === undefined) ? false : useSummary_;
 	var useSnapshot = (useSnapshot_ === undefined) ? true : useSnapshot_;
