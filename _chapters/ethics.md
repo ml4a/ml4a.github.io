@@ -8,6 +8,8 @@ http://people.whitman.edu/~herbrawt/classes/339/Descartes.pdf
 http://home.cogeco.ca/~drheault/ee_readings/West/Descartes.pdf
 http://journalofcosmology.com/Consciousness136.html
 
+https://arxiv.org/abs/1611.04135
+
 
 if you torture the data long enough, it will confess
 
@@ -87,11 +89,17 @@ Asymmetric access in public / private sphere to resources.
 
 # Surveillance and profiling
 
-Terror tuesdays
+Terror tuesdays, skynet
 
 # Genetic surveillance
 
 HDH has explored this since her work with stranger visions, and subsequent ones.
+
+# Predicting crime from faces
+
+https://arxiv.org/abs/1611.04135
+l'homme criminel
+Propublica recrimination article
 
 # Diversity in research and adjacent fields
 
