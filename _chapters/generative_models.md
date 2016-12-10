@@ -32,3 +32,5 @@ interesting property of DCGANs
 
 
 hardmaru - GAN + VRAE making
+
+https://openai.com/blog/generative-models/
