@@ -5,7 +5,6 @@
 	var width = {{include.width}};;
 	var height = {{include.height}};
 
-
 	var demo_div = document.createElement('div');
 	var control_panel = document.createElement('div');
 	var control_panel_meta = document.createElement('div');
@@ -23,7 +22,7 @@
 	control_panel.className = 'demo_control_panel';
 	control_panel_meta.className = 'demo_control_panel_meta';
 	control_panel_options.className = 'demo_control_panel_options';
-	control_panel_meta.innerHTML = '{{page.title}}';
+	control_panel_meta.innerHTML = 'Demo: {{page.title}} &nbsp;&nbsp; [<a href="/demos/forward_pass/">demo page</a>] &nbsp;&nbsp; [<a href="____">view source</a>]';
 	description_panel.className = 'demo_description_panel';
 	canvas.width = width;
 	canvas.height = height;

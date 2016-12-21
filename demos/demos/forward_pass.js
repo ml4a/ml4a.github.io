@@ -1,3 +1,10 @@
+/*
+ - make sure fake y != actual y
+ - act layer in last layer?
+ - reformat text
+
+*/
+
 function demo(parent, width, height)
 {
 	// setup canvas
@@ -22,6 +29,7 @@ function demo(parent, width, height)
 	        radius: 50,
 	        labelSize: 32,
 	        biasLabelSize: 16,
+	        labelText: ''
 	    },
 	    connectionStyle: {
 	        color: c1,
@@ -29,26 +37,22 @@ function demo(parent, width, height)
 	        arrowWidth: 5,
 	        thickness: t1,
 	        labelSize: 16,
-	        labelLerp: 0.02
+	        labelLerp: 0.02,
+	        labelText: ''
 	    }
 	};
 
-	// simulate neural net
-	function initialize_network(correct_values) {
-	    a = settings.architecture;
-	    input = [2.4,1.2,1.3];
-	    if (correct_values) {
-			weights = [[[0.1,0.9], [0.6,0.7], [0.9,-0.2]], [[0.5], [0.4]]];
-			biases = [[0.0,0.0,0.0], [0.4,-0.5], [0.7]];
+	function forward_pass(use_correct_weights) {
+		if (use_correct_weights) {
+	    	weights = correct_weights
+	    	biases = correct_biases
 	    } else {
-			weights = [[[0.9,0.8], [0.4,0.5], [0.2,0.7]], [[0.3], [0.9]]];
-			biases = [[0.0,0.0,0.0], [0.2,0.6], [0.3]];
+			weights = [[...Array(3).keys()].map(i => [...Array(2).keys()].map(i => Math.round(-10+20*Math.random())/10)), [...Array(2).keys()].map(i => [...Array(1).keys()].map(i => Math.round(-10+20*Math.random())/10))];
+	    	biases = [[...Array(3).keys()].map(i => Math.round(-10+20*Math.random())/10), [...Array(2).keys()].map(i => Math.round(-10+20*Math.random())/10), [...Array(1).keys()].map(i => Math.round(-10+20*Math.random())/10)];
 	    }
 	    acts = [...Array(a.length).keys()].map(i => [...Array(a[i]).keys()].map(k => 0));
 	    z = [...Array(a.length).keys()].map(i => [...Array(a[i]).keys()].map(k => 0));
 	    acts[0] = input;
-
-	    // forward pass
 	    for (var l=1; l<a.length; l++) {
 	        for (var n=0; n<acts[l].length; n++) {
 	            z[l][n] = 0;
@@ -56,16 +60,35 @@ function demo(parent, width, height)
 	                z[l][n] += weights[l-1][n1][n] * acts[l-1][n1];
 	            }
 	            z[l][n] += biases[l][n];
+	            z[l][n] = Math.round(100.0*z[l][n])/100; // round
 	            acts[l][n] = 1.0 / (1.0 + Math.exp(-z[l][n])); // sigmoid
+	            acts[l][n] = Math.round(100.0*acts[l][n])/100; // round
 	        }
 	    }
 	};
 
+	// simulate neural net
+	function initialize_network() {
+	    a = settings.architecture;
+	    input = [Math.round(30.0*Math.random())/10, Math.round(30*Math.random())/10, Math.round(30*Math.random())/10];
+	    correct_weights = [[...Array(3).keys()].map(i => [...Array(2).keys()].map(i => Math.round(-10+20*Math.random())/10)), [...Array(2).keys()].map(i => [...Array(1).keys()].map(i => Math.round(-10+20*Math.random())/10))]
+	    correct_biases = [[...Array(3).keys()].map(i => Math.round(-10+20*Math.random())/10), [...Array(2).keys()].map(i => Math.round(-10+20*Math.random())/10), [...Array(1).keys()].map(i => Math.round(-10+20*Math.random())/10)]
+		forward_pass(true);
+	    y_correct = Math.round(100.0*acts[acts.length-1][0])/100;
+	};
+
+	function get_mse(x1, x2) {
+		return (x2-x1)*(x2-x1);
+	};
+
 	// create visualization
 	var idx = -1;
-	var a, inputs, weights, biases, acts, z;
+	var a, inputs, correct_weights, correct_biases, y_correct;
+	var weights, biases, acts, z;
 	var net = new NetworkVisualization(settings);
 	net.setHeightBounds([0.07,0.93],1);
+
+	// initialize
 	initialize_network();
 
 	// convenience function for steps below
@@ -125,15 +148,14 @@ function demo(parent, width, height)
 		                    color: c2,
 		                    thickness: t2}, l-1, n2);
 		                net.setConnectionStyle({
-		                    labelText:'w = '+weights[l-1][n2][n].toFixed(2), 
+		                    labelText:'w = '+weights[l-1][n2][n].toFixed(1), 
 		                    color: c2,
 		                    thickness: t2}, l-1, n2, n);
 		            }
 		        }
 	        }
 		}
-	}
-
+	};
 
 	function display_values_layer1() {
 		net.setNeuronStyle({labelText:'', thickness: t1});
@@ -162,144 +184,188 @@ function demo(parent, width, height)
 
 	// animation steps
 	var steps = [];
-
 	
 	// segment 0 
-	steps.push(function(){
-	    set_text_panel('\
-			Suppose we have a dataset with one point: \
-			$$x=\\begin{bmatrix} 2.4 & 1.2 & 1.3 \\end{bmatrix} \\qquad y=0.854$$\
-			We can attempt to fit a 3x2x1 neural network with sigmoid activation functions, as seen below.');
+	steps.push({
+		action: function(){
+			acts[2][0] = y_correct;
+			while (get_mse(acts[2][0], y_correct) < 0.1) {	// make sure to pick weights whose forward pass is actually sufficiently incorrect
+				forward_pass(false);
+			};
+			set_text_panel('Suppose we have a dataset with one point: \
+				$$x=\\begin{bmatrix} '+input[0].toFixed(1)+' & '+input[1].toFixed(1)+' & '+input[2].toFixed(1)+' \\end{bmatrix} \\qquad y='+y_correct.toFixed(2)+'$$\
+				We can attempt to fit a 3x2x1 neural network with sigmoid activation functions, as seen below.');
+		},
+		draw: function() {},
 	});
 
 	// segment 1 (1 step): annotate all net labels
-	steps.push(function(){
-	    initialize_network(false);
-	    display_values_layer1();
-	    set_text_panel('\
-			Let\'s try a set of random weights and biases. For the first hidden layer, let\'s say our weights and biases are: \
-			$$w=\\begin{bmatrix} 0.9 & 0.4 & 0.2 \\\\ 0.8 & 0.5 & 0.7 \\end{bmatrix} \\qquad b=\\begin{bmatrix} 0.2 & 0.6 \\end{bmatrix} $$');
+	steps.push({
+		action: function(){
+			set_text_panel('\
+				Let\'s try a set of random weights and biases. For the first hidden layer, let\'s say our weights and biases are: \
+				$$w=\\begin{bmatrix} '+weights[0][0][0].toFixed(1)+' & '+weights[0][1][0].toFixed(1)+' & '+weights[0][2][0].toFixed(1)+' \\\\ '+weights[0][0][1].toFixed(1)+' & '+weights[0][1][1].toFixed(1)+' & '+weights[0][2][1].toFixed(1)+' \\end{bmatrix} \\qquad b=\\begin{bmatrix} '+biases[1][0].toFixed(1)+' & '+biases[1][1].toFixed(1)+' \\end{bmatrix} $$');
+		},
+		draw: function() {
+		    display_values_layer1();
+		}
 	});
 
-	steps.push(function(){
-		display_values_layer2();
-		set_text_panel('\
-			And for the output layer, let\'s say the weights are: \
-			$$ \
-			w=\\begin{bmatrix} \
-			0.3 & 0.9 \
-			\\end{bmatrix} \
-			$$\
-			And we let the final output neuron\'s bias be $b=0.3$');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				And for the output layer, let\'s say the weights are: \
+				$$ \
+				w=\\begin{bmatrix} \
+				'+weights[1][0][0]+' & '+weights[1][1][0].toFixed(1)+' \
+				\\end{bmatrix} \
+				$$\
+				And we let the final output neuron\'s bias be $b='+biases[2][0].toFixed(1)+'$');
+		},
+		draw: function() {
+			display_values_layer2();
+		}
 	});
 
-	steps.push(function(){
-		for (var n=0; n<acts[0].length; n++) {
-	        net.setNeuronStyle({labelText: acts[0][n].toFixed(2)}, 0, n);
-	    }
-		set_text_panel('\
-			Let\'s input our datapoint $x=\\begin{bmatrix}2.4 & 1.2 & 1.3\\end{bmatrix}$ and see what output the network gives us.');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				Let\'s input our datapoint $x=\\begin{bmatrix}'+input[0].toFixed(1)+' & '+input[1].toFixed(1)+' & '+input[2].toFixed(1)+'\\end{bmatrix}$ and see what output the network gives us.');
+		},
+		draw: function() {
+			for (var n=0; n<acts[0].length; n++) {
+		        net.setNeuronStyle({labelText: acts[0][n].toFixed(2)}, 0, n);
+		    }
+		}
 	});
 
-	steps.push(function(){
-		display_hidden_calculation(1, 0);
-		set_text_panel('\
-			The output of the first (top-most in the graphic) hidden unit is: \
-			$$ z = (0.9 \\cdot 2.4) + (0.4 \\cdot 1.2) + (0.2 \\cdot 1.3) + 0.2 = 3.1 $$ \
-			$$ \\sigma(3.1) = 0.96 $$');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				The output of the first (top-most in the graphic) hidden unit is: \
+				$$ z = ('+weights[0][0][0].toFixed(1)+' \\cdot '+input[0].toFixed(1)+') + ('+weights[0][1][0].toFixed(1)+' \\cdot '+input[1].toFixed(1)+') + ('+weights[0][2][0].toFixed(1)+' \\cdot '+input[2].toFixed(1)+') + '+biases[1][0].toFixed(1)+' = '+z[1][0].toFixed(1)+' $$ \
+				$$ \\sigma('+z[1][0].toFixed(1)+') = '+acts[1][0].toFixed(2)+' $$');
+		},
+		draw: function() {
+			display_hidden_calculation(1, 0);
+		}
 	});
 	
-	steps.push(function(){
-		display_hidden_calculation(1, 1);
-		set_text_panel('\
-			The output of the second hidden unit is: \
-			$$ z = (0.9 \\cdot 2.4) + (0.4 \\cdot 1.2) + (0.2 \\cdot 1.3) + 0.2 = 4.03 $$ \
-			$$ \\sigma(4.03) = 0.98 $$');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				The output of the second hidden unit is: \
+				$$ z = ('+weights[0][0][1].toFixed(1)+' \\cdot '+input[0].toFixed(1)+') + ('+weights[0][1][1].toFixed(1)+' \\cdot '+input[1].toFixed(1)+') + ('+weights[0][2][1].toFixed(1)+' \\cdot '+input[2].toFixed(1)+') + '+biases[1][1].toFixed(1)+' = '+z[1][1].toFixed(1)+' $$ \
+				$$ \\sigma('+z[1][1].toFixed(1)+') = '+acts[1][1].toFixed(2)+' $$');
+		},
+		draw: function() {
+			display_hidden_calculation(1, 1);
+		}
 	});
 	
-	steps.push(function(){
-		display_hidden_calculation(2, 0);
-		set_text_panel('\
-			Now we take these and feed it into the output unit (which doesn\'t have an activation function): \
-			$$ z = (0.3 \\cdot 0.96) + (0.9 \\cdot 0.98) + 0.3 = 1.47 $$ \
-			$$ \\sigma(1.47) = 0.81 $$');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				Now we take these and feed it into the output unit (which doesn\'t have an activation function): \
+				$$ z = ('+weights[1][0][0].toFixed(1)+' \\cdot '+acts[1][0].toFixed(2)+') + ('+weights[1][1][0].toFixed(1)+' \\cdot '+acts[1][1].toFixed(2)+') + '+biases[2][0].toFixed(1)+' = '+z[2][0].toFixed(1)+' $$ \
+				$$ \\sigma('+z[2][0].toFixed(2)+') = '+acts[2][0].toFixed(2)+' $$');
+		},
+		draw: function() {
+			display_hidden_calculation(2, 0);
+		}
 	});
 	
-	steps.push(function(){
-		set_text_panel('\
-			Not quite right (we wanted to get $0.854$)...we can measure our error with the mean squared error (MSE), which is the most common measurement for error in regression problems: \
-			$$ \
-			\\begin{aligned} \
-			\\text{error} &= (0.81 - 0.854)^2 \\\\ \
-			\\text{error} &= 0.106 \
-			\\end{aligned} \
-			$$');
+	steps.push({
+		action: function() {
+			var error = get_mse(acts[2][0],y_correct);
+			set_text_panel('\
+				Not quite right (we wanted to get $'+y_correct+'$)...we can measure our error with the mean squared error (MSE), which is the most common measurement for error in regression problems: \
+				$$ \
+				\\begin{aligned} \
+				\\text{mse} &= ('+y_correct.toFixed(2)+' - '+acts[2][0].toFixed(2)+')^2 \\\\ \
+				\\text{mse} &= '+error.toFixed(3)+' \
+				\\end{aligned} \
+				$$');
+		},
+		draw: function() {}
 	});
 	
-	steps.push(function(){
-		initialize_network(true);
-		display_values_layer1();
-		display_values_layer2();		
-		set_text_panel('\
-			Now I\'ll magically give you the best set of weights. For the hidden layer: \
-			$$ \
-			w=\\begin{bmatrix} \
-			0.1 & 0.6 & 0.9 \\\\ \
-			0.9 & 0.7 & -0.2 \
-			\\end{bmatrix} \\qquad b=\\begin{bmatrix}0.4 -0.5\\end{bmatrix}\
-			$$ \
-			And for the output layer: \
-			$$ \
-			w=\\begin{bmatrix} \
-			0.5 & 0.4 \
-			\\end{bmatrix} \\qquad b=0.7 \
-			$$');
+	steps.push({
+		action: function() {
+			forward_pass(true);
+			set_text_panel('\
+				Now I\'ll magically give you the best set of weights. For the hidden layer: \
+				$$ \
+				w=\\begin{bmatrix} \
+				'+weights[0][0][0].toFixed(1)+' & '+weights[0][1][0].toFixed(1)+' & '+weights[0][2][0].toFixed(1)+' \\\\ \
+				'+weights[0][0][1].toFixed(1)+' & '+weights[0][1][1].toFixed(1)+' & '+weights[0][2][1].toFixed(1)+' \
+				\\end{bmatrix} \\qquad b=\\begin{bmatrix}'+biases[1][0]+'  '+biases[1][1]+'\\end{bmatrix}\
+				$$ \
+				And for the output layer: \
+				$$ \
+				w=\\begin{bmatrix} \
+				'+weights[1][0][0].toFixed(1)+' & '+weights[1][1][0].toFixed(1)+' \
+				\\end{bmatrix} \\qquad b='+biases[2][0].toFixed(1)+' \
+				$$');
+		},
+		draw: function() {
+			display_values_layer1();
+			display_values_layer2();		
+		}
 	});
 
-	steps.push(function(){
-		display_everything();
-		set_text_panel('\
-			Let\'s try this all again with these new weights: \
-			$$ \
-			\\begin{aligned} \
-			\\text{hidden unit 1} &= \\text{sigmoid}((0.1 * 2.4) + (0.6 * 1.2) + (0.9 * 1.3)) = 0.975 \\\\ \
-			\\text{hidden unit 2} &= \\text{sigmoid}((0.9 * 2.4) + (0.7 * 1.2) + (-0.2 * 1.3)) = 0.917 \\\\ \
-			\\text{output} &= (0.5 * 0.975) + (0.4 * 0.917) = 0.854 \
-			\\end{aligned} \
-			$$');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				Let\'s try this all again with these new weights: \
+				$$ \
+				\\begin{aligned} \
+				\\text{hidden unit 1} &= \\sigma(('+weights[0][0][0].toFixed(1)+' * '+input[0].toFixed(1)+') + ('+weights[0][1][0].toFixed(1)+' * '+input[1].toFixed(1)+') + ('+weights[0][2][0].toFixed(1)+' * '+input[2].toFixed(1)+') + '+biases[1][0].toFixed(1)+') = '+acts[1][0].toFixed(2)+' \\\\ \
+				\\text{hidden unit 2} &= \\sigma(('+weights[0][0][1].toFixed(1)+' * '+input[0].toFixed(1)+') + ('+weights[0][1][1].toFixed(1)+' * '+input[1].toFixed(1)+') + ('+weights[0][2][1].toFixed(1)+' * '+input[2].toFixed(1)+') + '+biases[1][1].toFixed(1)+') = '+acts[1][1].toFixed(2)+' \\\\ \
+				\\text{output} &= \\sigma(('+weights[1][0][0].toFixed(1)+' * '+acts[1][0].toFixed(2)+') + ('+weights[1][1][0].toFixed(2)+' * '+acts[1][1].toFixed(2)+') + '+biases[2][0].toFixed(1)+') = '+acts[2][0].toFixed(2)+' \
+				\\end{aligned} \
+				$$');
+		},
+		draw: function() {
+			display_everything();
+		}
 	});
 
-	steps.push(function(){
-		set_text_panel('\
-			Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.');
+	steps.push({
+		action: function() {
+			set_text_panel('\
+				Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.');
+		},
+		draw: function() {}
 	});
-
-	/*
-	// segment 4 (1 step): show everything
-	steps.push(function(){
-	    net.setNeuronStyle({thickness: t1});
-	    net.setConnectionStyle({thickness: t1});
-	    set_all_weights_and_labels_visible();
-	});
-	*/
 
 	// control flow
 	function prev() {
-	    idx = (idx + steps.length - 1) % steps.length;
-	    steps[idx]();
-	    redraw();
+		if (idx > 0) {
+		    idx--;
+		    redraw();
+		}
 	};
 
 	function next() {
-	    idx = (idx + 1) % steps.length;
-	    steps[idx]();
+		idx++;
+		if (idx == steps.length) {
+			idx = 0;
+			initialize_network();
+		}
 	    redraw();
 	};
 
 	function redraw() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		net.resetSettings();
+		steps[idx].action();
+		for (var i=0; i<=idx; i++) {
+			steps[i].draw();
+		}
+	    //steps[idx]();
+	    ctx.clearRect(0, 0, canvas.width, canvas.height);
 	    net.draw(5, 5);
-	}
+	};
 	
 	// add control panels
 	add_control_panel_action('prev', prev);
