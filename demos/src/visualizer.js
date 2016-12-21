@@ -49,6 +49,11 @@ function NetworkVisualization(settings)
 		overwriteObject(defaultConnectionStyle, overwrite);
 	};
 
+	this.resetSettings = function() {
+		this.setNeuronStyle(defaultNeuronStyle);
+		this.setConnectionStyle(defaultConnectionStyle);
+	};
+
 	var overwriteObject = function(obj, overwrite){
 		Object.keys(overwrite).forEach(function(key,index) {
 			if (key in obj) {
@@ -347,6 +352,7 @@ function NetworkVisualization(settings)
 
 	// initialize
 	var self = this;
+	var originalSettings = settings;
 	var ctx = settings.context;
 	var width = settings.width;
 	var height = settings.height;
