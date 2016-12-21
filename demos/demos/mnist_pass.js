@@ -200,8 +200,9 @@ var demo = function(parent, width, height, datasetName_, useSummary_, useSnapsho
 	    test_next_sample();
 	};
 
-	//preloadModel(ready);
+	preloadModel(ready);
+	/*
 	createModel(function() {
 	    net.train(50000, ready);
-	});
+	});*/
 };
