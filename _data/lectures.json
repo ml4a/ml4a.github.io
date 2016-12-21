@@ -1,4 +1,127 @@
-{"neural-aesthetic":[{
+{"opendot":[{
+	"youtube_id": "yHOmMCY589Y",
+	"title": "Why machine learning for artists",
+	"date": "11/21/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_01.png",
+	"dropbox": "https://www.dropbox.com/s/vz5qlb6ee2ffjhp/neural%20aesthetic%20%40%20schoolofma%20--%2001%20machine%20learning%20for%20artists.mp4?dl=1",
+	"bookmarks": [
+		{"title":"Introduction, about the class", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Neither democrats nor dictators; Why ML for artists", "m":8, "s":4, "disp":"8:04"},
+		{"title":"Early history of AI & ML through 1980s", "m":15, "s":37, "disp":"15:37"},
+		{"title":"Emergence of deep learning", "m":31, "s":48, "disp":"31:48"},
+		{"title":"Critical issues in AI", "m":52, "s":20, "disp":"52:20"},
+		{"title":"Neural networks and the brain analogy", "m":66, "s":36, "disp":"1:06:36"},
+		{"title":"Showcase of art projects using ML", "m":68, "s":59, "disp":"1:08:59"},
+		{"title":"Resources + ml4a.github.io", "m":86, "s":46, "disp":"1:26:46"}
+	],
+	"summary": [
+		"Overview of the class, why ML for artists",
+		"Micro-history of AI, machine learning, and deep learning",
+		"Some examples of artistic ML works",
+		"Resources + ml4a.github.io"
+	]	
+},{
+	"youtube_id": "sAs0YUwxAoY",
+	"title": "Neural networks",
+	"date": "11/21/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_02.png",
+	"dropbox": "https://www.dropbox.com/s/ln5ylmvfm6xku6q/neural%20aesthetic%20%40%20schoolofma%20--%2002%20neural%20networks.mp4?dl=1",
+	"bookmarks": [
+		{"title":"Supervised and unsupervised machine learning", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Introduction to neurons and neural networks", "m":2, "s":48, "disp":"2:48"},
+		{"title":"An example: classifying images of handwritten digits", "m":14, "s":23, "disp":"14:23"},
+		{"title":"Visualizing the weights during training", "m":19, "s":46, "disp":"19:46"},
+		{"title":"The big picture: generalizing supervised learning and performance applications", "m":35, "s":9, "disp":"35:09"}
+	],
+	"summary": [
+		"How neural networks work",
+		"Visualizing neural networks during training",
+		"General applications of neural nets"
+	]
+},{
+	"youtube_id": "Y3UuIER66FQ",
+	"title": "Real-time ML for performance",
+	"date": "11/21/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_03.png",
+	"dropbox": "https://www.dropbox.com/s/bcqcmgh4uegek8d/neural%20aesthetic%20%40%20schoolofma%20--%2003%20convnets%20%2B%20t-SNE.mp4?dl=1",
+	"bookmarks": [
+		{"title":"Machine learning for real-time performance, music, and art", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Basic Wekinator + Processing app", "m":10, "s":19, "disp":"10:19"},
+		{"title":"Sound example: controlling an FM Synth", "m":56, "s":37, "disp":"56:37"},
+		{"title":"FaceOSC controlling FM Synth", "m":73, "s":43, "disp":"1:13:43"},
+		{"title":"Putting it altogether! FaceOSC controlling Ableton", "m":86, "s":58, "disp":"1:26:58"},
+		{"title":"FaceOSC controlling AudioUnits", "m":89, "s":25, "disp":"1:29:25"}
+	],
+	"summary": [
+		"Basic Processing + Wekinator application",
+		"Using neural nets to control audio synths",
+		"Making music with a face tracker"
+	]
+},{
+	"youtube_id": "vCIDk-bS_zQ",
+	"title": "Convolutional neural networks + t-SNE",
+	"date": "11/22/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_04.png",
+	"dropbox": "https://www.dropbox.com/s/f1sr8ogeih5zeuq/neural%20aesthetic%20%40%20schoolofma%20--%2004%20trolley%20problem%2C%20ethics.mp4?dl=1",
+	"bookmarks": [
+		{"title":"Recap of day 1", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Limitations of ordinary neural nets", "m":5, "s":46, "disp":"5:46"},
+		{"title":"How convolutional neural networks work", "m":11, "s":13, "disp":"11:13"},
+		{"title":"Convnet demo", "m":24, "s":27, "disp":"24:27"},
+		{"title":"Probing and visualizing convnet activations", "m":38, "s":22, "disp":"38:22"},
+		{"title":"Transfer learning and reverse image search demo", "m":44, "s":50, "disp":"44:50"},
+		{"title":"Organizing and visualizing image sets with t-SNE", "m":53, "s":51, "disp":"53:51"},
+		{"title":"Visualizing text documents with t-SNE", "m":57, "s":7, "disp":"57:07"},
+		{"title":"Audio t-SNE", "m":59, "s":28, "disp":"59:28"},
+		{"title":"Assigning image t-SNEs to grids", "m":61, "s":2, "disp":"1:01:02"}
+	],
+	"summary": [
+		"How convnets work",
+		"Activations are useful; reverse image search",
+		"t-SNE for organizing image collections",
+		"t-SNE in text and audio domains"
+	]
+},{
+	"youtube_id": "L3OOWqir-9g",
+	"title": "Applications of t-SNE",
+	"date": "11/23/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_05.png",
+	"dropbox": "https://www.dropbox.com/s/enudiynnm9kqrt7/neural%20aesthetic%20%40%20schoolofma%20--%2009%20wekinator%20examples%2C%20modules.mp4?dl=1",
+	"bookmarks": [
+		{"title":"About Image-to-Image translation paper", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Make your own live image classifier with ConvnetOSC and Wekinator", "m":11, "s":10, "disp":"11:10"},
+		{"title":"Make your own Audio t-SNE in openFrameworks", "m":22, "s":12, "disp":"22:12"},
+		{"title":"Bohemian Rhapsody segmented t-SNE", "m":33, "s":0, "disp":"33:00"},
+		{"title":"Class discussion of techniques, style transfer in other domains", "m":35, "s":22, "disp":"35:22"}
+	],
+	"summary": [
+		"Discussion of image-to-image translation",
+		"Transfer learning with convnets",
+		"How to make audio t-SNEs"
+	]
+},{
+	"youtube_id": "E2r3_oddwEc",
+	"title": "Applications of deep learning",
+	"date": "11/23/2016",
+	"thumbnail": "/images/classes/opendot/thumbnail_06.png",
+	"dropbox": "https://www.dropbox.com/s/lomjxbz3vokmfhl/neural%20aesthetic%20%40%20schoolofma%20--%2010%20convnet%20applications.mp4?dl=1",
+	"bookmarks": [
+		{"title":"Generative visual applications of convnets", "m":0, "s":0, "disp":"0:00"},
+		{"title":"Class visualization and deepdream", "m":2, "s":28, "disp":"2:28"},
+		{"title":"Deepdream implementations and code", "m":10, "s":14, "disp":"10:14"},
+		{"title":"Style transfer & examples", "m":12, "s":12, "disp":"12:12"},
+		{"title":"Video style transfer", "m":21, "s":29, "disp":"21:29"},
+		{"title":"Special cases of style transfer and image-to-image mapping", "m":26, "s":6, "disp":"26:06"},
+		{"title":"Recurrent neural networks and LSTMs", "m":32, "s":28, "disp":"32:28"},
+		{"title":"Dense captioning and sequence-based applications", "m":46, "s":50, "disp":"46:50"}
+	],
+	"summary": [
+		"Generative images; Deepdream and style transfer",
+		"Image to image mapping",
+		"LSTMs, text generation, and dense captioning"
+	]
+}],
+"neural-aesthetic":[{
 	"youtube_id": "kc2XOUEyhDM",
 	"title": "Machine learning for artists",
 	"date": "7/4/2016",
