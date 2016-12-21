@@ -3,7 +3,7 @@
 	"title": "Why machine learning for artists",
 	"date": "11/21/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_01.png",
-	"dropbox": "https://www.dropbox.com/s/vz5qlb6ee2ffjhp/neural%20aesthetic%20%40%20schoolofma%20--%2001%20machine%20learning%20for%20artists.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/fxz3pbyoj2se91j/opendot_11.21_01.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Introduction, about the class", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Neither democrats nor dictators; Why ML for artists", "m":8, "s":4, "disp":"8:04"},
@@ -25,7 +25,7 @@
 	"title": "Neural networks",
 	"date": "11/21/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_02.png",
-	"dropbox": "https://www.dropbox.com/s/ln5ylmvfm6xku6q/neural%20aesthetic%20%40%20schoolofma%20--%2002%20neural%20networks.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/x1mozy0kxn75g2m/opendot_11.21_02.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Supervised and unsupervised machine learning", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Introduction to neurons and neural networks", "m":2, "s":48, "disp":"2:48"},
@@ -43,7 +43,7 @@
 	"title": "Real-time ML for performance",
 	"date": "11/21/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_03.png",
-	"dropbox": "https://www.dropbox.com/s/bcqcmgh4uegek8d/neural%20aesthetic%20%40%20schoolofma%20--%2003%20convnets%20%2B%20t-SNE.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/qlk1v6db0r6yxd1/opendot_11.21_03.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Machine learning for real-time performance, music, and art", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Basic Wekinator + Processing app", "m":10, "s":19, "disp":"10:19"},
@@ -62,7 +62,7 @@
 	"title": "Convolutional neural networks + t-SNE",
 	"date": "11/22/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_04.png",
-	"dropbox": "https://www.dropbox.com/s/f1sr8ogeih5zeuq/neural%20aesthetic%20%40%20schoolofma%20--%2004%20trolley%20problem%2C%20ethics.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/r6ud3p7ry0dmcak/opendot_11.22_01.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Recap of day 1", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Limitations of ordinary neural nets", "m":5, "s":46, "disp":"5:46"},
@@ -86,7 +86,7 @@
 	"title": "Applications of t-SNE",
 	"date": "11/23/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_05.png",
-	"dropbox": "https://www.dropbox.com/s/enudiynnm9kqrt7/neural%20aesthetic%20%40%20schoolofma%20--%2009%20wekinator%20examples%2C%20modules.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/535vx1ua4jox605/opendot_11.23_01.mp4?dl=1",
 	"bookmarks": [
 		{"title":"About Image-to-Image translation paper", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Make your own live image classifier with ConvnetOSC and Wekinator", "m":11, "s":10, "disp":"11:10"},
@@ -104,7 +104,7 @@
 	"title": "Applications of deep learning",
 	"date": "11/23/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_06.png",
-	"dropbox": "https://www.dropbox.com/s/lomjxbz3vokmfhl/neural%20aesthetic%20%40%20schoolofma%20--%2010%20convnet%20applications.mp4?dl=1",
+	"dropbox": "https://www.dropbox.com/s/4730zse93xy3o22/opendot_11.23_02.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Generative visual applications of convnets", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Class visualization and deepdream", "m":2, "s":28, "disp":"2:28"},
