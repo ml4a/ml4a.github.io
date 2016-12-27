@@ -98,3 +98,7 @@ http://www.r2d3.us/visual-intro-to-machine-learning-part-1/
 A primer (img) https://www.datarobot.com/blog/a-primer-on-deep-learning/
 DeepLearning.tv
 https://www.youtube.com/channel/UC9OeZkIwhzfv-_Cb7fCikLQ
+
+http://www.computervisionblog.com/2015/01/from-feature-descriptors-to-deep.html
+
+yann introduction videos https://code.facebook.com/pages/1902086376686983

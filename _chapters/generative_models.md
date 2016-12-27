@@ -68,3 +68,5 @@ https://github.com/Evolving-AI-Lab/synthesizing
 Fast Scene Understanding with Generative Models https://www.youtube.com/watch?v=4tc84kKdpY4 (nice video)
 
 hardmaru images from latent vectors (GAN + VAE) blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/
+
+autoencoders book chapter http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/

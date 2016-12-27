@@ -224,7 +224,7 @@ http://brohrer.github.io/how_convolutional_neural_networks_work.html
 t-SNE own MD?
  - https://github.com/oreillymedia/t-SNE-tutorial
  - http://paperscape.org/
-
+ - visualizing with https://indico.io/blog/visualizing-with-t-sne/
 
  keras transfer learning on images https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
 
@@ -243,3 +243,4 @@ t-SNE own MD?
  http://cnnlocalization.csail.mit.edu/
 
  guide to convolution arithmetic https://arxiv.org/abs/1603.07285
+

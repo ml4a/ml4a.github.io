@@ -68,7 +68,7 @@ http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/
 
 image captioning for mortals https://indico.io/blog/neural-image-captioning-for-mortals/
 https://github.com/karpathy/neuraltalk2
-densecap
+densecap http://cs.stanford.edu/people/karpathy/deepimagesent/
 
 DRAW (nice image) https://github.com/jbornschein/draw
 https://github.com/skaae/lasagne-draw
@@ -89,3 +89,15 @@ RNN tutorial http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-pa
 colah understanding lstm http://colah.github.io/posts/2015-08-Understanding-LSTMs/
 
 Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) https://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/
+
+semantic object parsing https://twitter.com/evolvingstuff/status/713149843481317376
+https://twitter.com/alexjc/status/716549734371102720/photo/1
+
+https://handong1587.github.io/deep_learning/2015/10/09/rnn-and-lstm.html
+
+lstm explained http://apaszke.github.io/lstm-explained.html
+deep dive into RNN nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/
+
+generative choreography http://peltarion.com/creative-ai
+
+RNN + super mario https://medium.com/@ageitgey/machine-learning-is-fun-part-2-a26a10b68df3#.j4sxifd25

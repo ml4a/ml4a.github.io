@@ -177,3 +177,7 @@ TBD
  - kurekenov
 
 http://neuralnetworksanddeeplearning.com/
+
+neural nets demystified https://www.youtube.com/watch?v=GlcnxUlrtek
+
+visualiziation of forward pass http://experiments.mostafa.io/public/ffbpann/

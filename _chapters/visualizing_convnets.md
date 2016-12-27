@@ -36,3 +36,8 @@ zeiler: https://www.youtube.com/watch?v=ghEmQSxT6tw
 keras how convnets see the world https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
 
 Saliency Maps and Guided Backpropagation on Lasagne https://github.com/Lasagne/Recipes/blob/master/examples/Saliency%20Maps%20and%20Guided%20Backpropagation.ipynb
+
+aubun visualizing lenet classes http://www.auduno.com/2015/07/29/visualizing-googlenet-classes/
+peeking inside convnets http://www.auduno.com/2016/06/18/peeking-inside-convnets/
+
+multifaceted feature vis https://arxiv.org/pdf/1602.03616v1.pdf

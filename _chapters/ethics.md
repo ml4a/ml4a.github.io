@@ -174,6 +174,7 @@ AI safety https://openai.com/blog/concrete-ai-safety-problems/
 AI safety (google brain) https://arxiv.org/pdf/1606.06565.pdf
 
 WIML
+gender diversity http://stanford.edu/~sorathan/papers/SAILORS-SIGCSE2016.pdf
 
 chatbots argue https://www.youtube.com/watch?v=WnzlbyTZsQY
 
@@ -187,3 +188,5 @@ http://blogs.nvidia.com/blog/2016/02/24/enrollment-in-machine-learning/
 fairness in ML delip rao https://docs.google.com/presentation/d/11vNi2CxPMV_wFhfhpXBK8qe1o4KN59hNVaPeD4zagNA/edit#slide=id.g11be5e1541_1_68
 
 Chances are your Models are Racist, Sexist, or both deliprao.com/archives/129
+
+fighting cancer www.futuretimeline.net/blog/2016/04/16-2.htm#.WGKCFrYrJE7

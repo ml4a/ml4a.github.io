@@ -268,3 +268,4 @@ RL agent swinging a pole
 
 http://www.theverge.com/2016/3/10/11192774/demis-hassabis-interview-alphago-google-deepmind-ai
 
+john schulman https://www.youtube.com/watch?v=oPGVsoBonLM
