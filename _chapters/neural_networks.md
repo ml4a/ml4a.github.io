@@ -134,9 +134,7 @@ The process of a neural network sending an initial input forward through its lay
 
 Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. You can see a forward pass in action in the following demo.
 
-{% include todo.html note="fix numbers or automate: buttons 'view demo', 'view code'" %}
-
-{% include demo_insert.html width=710 height=490 path="/demos/demos/forward_pass.js" %}
+{% include demo_insert.html width=710 height=490 path="/demos/demos/simple_forward_pass.js" parent_div="post" %}
 
 # More layers, more expressiveness
 
@@ -166,7 +164,7 @@ The way we setup a neural network to classify these images is by having the raw 
 
 The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives ........
 
-{% include demo_insert.html width=960 height=540 path="/demos/demos/mnist_pass.js" args="'MNIST',true" %}
+{% include demo_insert.html width=832 height=490 path="/demos/demos/forward_pass.js" args="'MNIST',true" parent_div="post" %}
 
 
 # Summary
@@ -178,3 +176,4 @@ TBD
  - nielsen
  - kurekenov
 
+http://neuralnetworksanddeeplearning.com/

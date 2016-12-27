@@ -85,3 +85,16 @@ etc
 
  - These notes and the accompanying course will be less rigorous than CS231n, and others. Those courses assume a certain level of mathematical proficiency and the majority of students have some background, if not a degree, in computer science.
 In contrast, this course will make as few assumptions as possible about background preparation. In practice, this necessarily entails some sacrifice; nothing beats having a ___. But many important aspects of machine learning can be well understood with nothing more than high school-level mathematics and good analogies and abstractions. It is both possible and desirable to be able to engage with the subject at this level, whereas they may otherwise not approach it at all. An example of this in practice -- backpropagation
+
+
+lin algebra online class https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab
+http://setosa.io/ev/eigenvectors-and-eigenvalues/
+
+A 'Brief' History of Neural Nets and Deep Learning, Part 1 www.andreykurenkov.com/writing/a-brief-history-of-neural-nets-and-deep-learning/
+
+Visual intro:
+http://www.r2d3.us/visual-intro-to-machine-learning-part-1/
+
+A primer (img) https://www.datarobot.com/blog/a-primer-on-deep-learning/
+DeepLearning.tv
+https://www.youtube.com/channel/UC9OeZkIwhzfv-_Cb7fCikLQ

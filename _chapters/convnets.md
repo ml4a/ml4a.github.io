@@ -4,11 +4,10 @@ title: "Convolutional neural networks"
 demo_includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
-header: densecap
+<!--header: densecap
+https://twitter.com/VisualGenome/status/682997407659982848 -->
 
-https://twitter.com/VisualGenome/status/682997407659982848
-
-
+<!--
 notes 
  - volumes should really be covered before this. this can review volumes
 Convnets
@@ -54,11 +53,10 @@ resnet (microsoft)
 batchnorm? 
 localization - resnet 2015 dropped SOA from 25->9% localization error
 
----------
 
 a common criticism of . one of the first concerted efforts to visualize convnets
 
-
+-->
 
 
 Convolutional neural networks -- CNNs or convnets for short -- are at the heart of most applications of deep learning, having emerged in recent years as the most prominent strain of research within academia. They have revolutionized computer vision, achieving state-of-the-art benchmarks in a number of critical tasks, and have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
@@ -117,7 +115,9 @@ The process of convolving the image with a single filter is given by the followi
 
 {% include todo.html note="rebuild mouse demo, button for changing filter/weight, click on filters" %}
 
-{% include demo_insert.html width=960 height=540 path="/demos/demos/convolution.js" args="'MNIST',true" %}
+{% include demo_insert.html width=890 height=320 path="/demos/demos/convolution.js" args="'MNIST',true" %}
+
+{% include demo_insert.html width=960 height=480 path="/demos/demos/convolution_all.js" args="'MNIST',true" %}
 
 In the above demo, we are showing a single convolutional layer on an MNIST digit. In this particular network at this layer, we have exactly 8 filters, and below we show each of the corresponding 8 activation maps.
 
@@ -169,10 +169,7 @@ Let's zoom out from what we just looked at and see the bigger picture. From this
 
 
 
-
-------------------------------------------
-
-# etc
+## etc
 
 etc
 lecun 89 -> first CNN according to zeiler (schmidhuber?)
@@ -217,3 +214,32 @@ cnns are the current top record holders in both image and speech classification.
 
 cnns inherit everything from ordinary neural networks but build on top of them with several innovations which greatly improve its predictive accuracy as well as opening up a great many applications of cnns besides for ordinary regression and classification such as
 ---
+
+
+http://brohrer.github.io/how_convolutional_neural_networks_work.html
+
+
+
+
+t-SNE own MD?
+ - https://github.com/oreillymedia/t-SNE-tutorial
+ - http://paperscape.org/
+
+
+ keras transfer learning on images https://blog.keras.io/building-powerful-image-classification-models-using-very-little-data.html
+
+
+ semantic image classification https://github.com/torrvision/crfasrnn
+
+ how to use t-SNE effectively: http://distill.pub/2016/misread-tsne/
+ visualizing mnist with tsne http://colah.github.io/posts/2014-10-Visualizing-MNIST/
+
+ colah convnets
+ http://colah.github.io/posts/2014-07-Conv-Nets-Modular/
+ http://colah.github.io/posts/2014-07-Understanding-Convolutions/
+ http://colah.github.io/posts/2014-12-Groups-Convolution/
+
+ localization
+ http://cnnlocalization.csail.mit.edu/
+
+ guide to convolution arithmetic https://arxiv.org/abs/1603.07285

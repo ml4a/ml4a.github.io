@@ -35,3 +35,18 @@ To date, style transfer has been demonstrated only with images, but in a more ge
 
 https://www.audiolabs-erlangen.de/resources/MIR/2015-ISMIR-LetItBee
 
+img: https://tryolabs.com/blog/2016/12/06/major-advancements-deep-learning-2016/
+
+wavenets
+audio style transfer soundnet: http://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/
+
+spectral style transfer for human motion https://www.youtube.com/watch?v=NYDeH-knnAI
+
+https://arxiv.org/pdf/1601.04589v1.pdf
+
+https://github.com/alexjc/neural-doodle
+
+real-time stylenet www.gitxiv.com/posts/xKq9nLKRBpbKeMeb4/precomputed-real-time-texture-synthesis-with-markovian
+justin's paper: https://arxiv.org/pdf/1603.08155v1.pdf
+
+Artistic style transfer for videos https://www.youtube.com/watch?v=vQk_Sfl7kSc

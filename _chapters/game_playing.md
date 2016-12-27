@@ -265,3 +265,6 @@ challenges
 
 RL agent swinging a pole
  - swingbot-reinforcement-learning
+
+http://www.theverge.com/2016/3/10/11192774/demis-hassabis-interview-alphago-google-deepmind-ai
+

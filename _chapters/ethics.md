@@ -159,3 +159,31 @@ http://www.nature.com/news/robotics-ethics-of-artificial-intelligence-1.17611
 
 facebook stuff from barca workshop
 JFK, noted hero on the left
+
+http://www.nextplatform.com/2016/09/14/next-wave-deep-learning-applications/
+https://www.technologyreview.com/s/602317/self-driving-cars-can-learn-a-lot-by-playing-grand-theft-auto
+
+ml fairness http://blog.mrtz.org/
+how ml decision making is unfair: https://medium.com/@mrtz/how-big-data-is-unfair-9aa544d739de#.mwmwj32du
+
+know your terrorist credit score https://re-publica.de/16/session/know-your-terrorist-credit-score
+
+https://vimeo.com/163292139
+
+AI safety https://openai.com/blog/concrete-ai-safety-problems/
+AI safety (google brain) https://arxiv.org/pdf/1606.06565.pdf
+
+WIML
+
+chatbots argue https://www.youtube.com/watch?v=WnzlbyTZsQY
+
+Building Machines That Learn and Think Like People https://arxiv.org/pdf/1604.00289v1.pdf
+
+The Hidden Dangers of AI for Queer and Trans People https://modelviewculture.com/pieces/the-hidden-dangers-of-ai-for-queer-and-trans-people
+
+enrollment up 600%
+http://blogs.nvidia.com/blog/2016/02/24/enrollment-in-machine-learning/
+
+fairness in ML delip rao https://docs.google.com/presentation/d/11vNi2CxPMV_wFhfhpXBK8qe1o4KN59hNVaPeD4zagNA/edit#slide=id.g11be5e1541_1_68
+
+Chances are your Models are Racist, Sexist, or both deliprao.com/archives/129

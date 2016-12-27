@@ -41,3 +41,6 @@ Iterations
  - https://www.flickr.com/photos/graphific/sets/72157657250972188
  - https://github.com/Quasimondo/deepdream/blob/master/DeepDream%20-%20augmented%20version%20by%20Mario%20Klingemann.ipynb
 
+
+
+tensorflow deepdream https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/tutorials/deepdream

@@ -48,3 +48,44 @@ https://twitter.com/robinsloan/status/725068953383362560
 ## Etc
 
 Robin Sloan robinsloan-lstm-author.mp4
+
+LSTM vis http://lstm.seas.harvard.edu/
+
+Olah Attention + augmented rnn http://distill.pub/2016/augmented-rnns/
+
+Graves RNN class + RNN hallucinations https://www.youtube.com/watch?v=-yX1SYeDHbg&feature=youtu.be&t=41m50s
+
+A long list of links to tutorials, code, and resources for using RNNs and LSTMs
+http://handong1587.github.io/deep_learning/2015/10/09/rnn-and-lstm.html
+
+RNNs in Tensorflow http://www.wildml.com/2016/08/rnns-in-tensorflow-a-practical-guide-and-undocumented-features/
+
+Language modeling a billion words http://torch.ch/blog/2016/07/25/nce.html
+
+http://deeplearning4j.org/lstm.html
+http://nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural-networks/
+
+
+image captioning for mortals https://indico.io/blog/neural-image-captioning-for-mortals/
+https://github.com/karpathy/neuraltalk2
+densecap
+
+DRAW (nice image) https://github.com/jbornschein/draw
+https://github.com/skaae/lasagne-draw
+
+teaching RNNs about monet http://blog.manugarri.com/teaching-recurrent-neural-networks-about-monet/
+
+neural-storyteller:
+https://github.com/ryankiros/skip-thoughts
+https://github.com/ryankiros/neural-storyteller 
+https://medium.com/@samim/generating-stories-about-images-d163ba41e4ed#.isfi2qr5f
+
+WORD-RNN https://github.com/larspars/word-rnn
+
+karpathy visualizing and understanding RNN https://skillsmatter.com/skillscasts/6611-visualizing-and-understanding-recurrent-networks
+
+RNN tutorial http://www.wildml.com/2015/10/recurrent-neural-networks-tutorial-part-3-backpropagation-through-time-and-vanishing-gradients/
+
+colah understanding lstm http://colah.github.io/posts/2015-08-Understanding-LSTMs/
+
+Anyone Can Learn To Code an LSTM-RNN in Python (Part 1: RNN) https://iamtrask.github.io/2015/11/15/anyone-can-code-lstm/

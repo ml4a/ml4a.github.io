@@ -76,3 +76,51 @@ colah word2vec http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/
 
 metal + NLP
 https://www.reddit.com/r/MachineLearning/comments/4r1np7/heavy_metal_and_natural_language_processing_part_1/?utm_source=twitterfeed&utm_medium=twitter
+
+https://github.com/explosion/spaCy/tree/master/examples/keras_parikh_entailment
+
+http://sebastianruder.com/secret-word2vec/index.html
+
+https://civisanalytics.com/blog/data-science/2016/09/22/neural-network-visualization/
+
+
+lda2vec Chris Moody hybrid word2vec and LDA  http://multithreaded.stitchfix.com/blog/2016/05/27/lda2vec/#topic=38&lambda=1&term=
+
+historical word embeddings http://nlp.stanford.edu/projects/histwords/
+
+textsum https://github.com/tensorflow/models/tree/master/textsum
+
+http://wiki.dbpedia.org/Datasets/NLP%20https://datahub.io/dataset?tags=nlp
+
+doc2vec http://nbviewer.jupyter.org/github/fbkarsdorp/doc2vec/blob/master/doc2vec.ipynb
+
+Language modeling a billion words http://torch.ch/blog/2016/07/25/nce.html
+
+demystifying word2vec https://buss_jan.gitbooks.io/word2vec/content/chapter2.html
+https://github.com/facebookresearch/fastText
+
+keras word2vec https://blog.keras.io/using-pre-trained-word-embeddings-in-a-keras-model.html
+https://github.com/tensorflow/tensorflow/blob/master/tensorflow/examples/tutorials/word2vec/word2vec_basic.py
+
+hotel reviews: https://blog.monkeylearn.com/machine-learning-1m-hotel-reviews-finds-interesting-insights/
+
+https://github.com/thoppe/transorthogonal-linguistics
+rejecting gender binary http://bookworm.benschmidt.org/posts/2015-10-30-rejecting-the-gender-binary.html
+
+Voynich Manuscript: word vectors and t-SNE visualization of some patterns blog.christianperone.com/2016/01/voynich-manuscript-word-vectors-and-t-sne-visualization-of-some-patterns/
+
+kcimc synonyms + antonyms
+https://gist.github.com/kylemcdonald/3463caf86ffca5c950c2
+https://gist.github.com/kylemcdonald/3463caf86ffca5c950c2
+https://gist.github.com/kylemcdonald/9bedafead69145875b8c#file-_tsne-pdf
+
+CNN sentence classificaiton https://github.com/yoonkim/CNN_sentence
+
+Chris Olah Word2Vec + tSNE http://colah.github.io/posts/2014-07-NLP-RNNs-Representations/
+
+paragraph vectors: https://arxiv.org/pdf/1507.07998.pdf
+
+text_analytics_on_mpp doc2vec from newsgroups https://github.com/vatsan/text_analytics_on_mpp/blob/master/neural_language_models/01_news_groups_doc2vec.ipynb
+
+Harvard NLP https://github.com/harvardnlp
+Stanford NLP

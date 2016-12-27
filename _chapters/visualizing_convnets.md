@@ -25,3 +25,14 @@ reconstructing images from activations
 
 attention
 localization
+
+http://yosinski.com/deepvis
+https://www.youtube.com/watch?v=AgkfIQ4IGaM
+
+deconvnets http://cs.nyu.edu/~fergus/drafts/utexas2.pdf
+
+zeiler: https://www.youtube.com/watch?v=ghEmQSxT6tw
+
+keras how convnets see the world https://blog.keras.io/how-convolutional-neural-networks-see-the-world.html
+
+Saliency Maps and Guided Backpropagation on Lasagne https://github.com/Lasagne/Recipes/blob/master/examples/Saliency%20Maps%20and%20Guided%20Backpropagation.ipynb

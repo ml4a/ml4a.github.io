@@ -272,3 +272,10 @@ hinton/salakhutinov 2006 - first deep network
 
 
 There are a number of important aspects about training -- you might have thought it's unfair that we predict training set -- after all it can just memorize them -- we'll get to this and other details of training in the [how they are trained].
+
+Chris Olah Backprop: http://colah.github.io/posts/2015-08-Backprop/
+Chris Olah: neural net topology http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
+Karpathy Neural nets for hackers http://karpathy.github.io/neuralnets/
+
+backprop step by step example https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+step by step 2 http://experiments.mostafa.io/public/ffbpann/

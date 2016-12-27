@@ -34,3 +34,37 @@ interesting property of DCGANs
 hardmaru - GAN + VRAE making
 
 https://openai.com/blog/generative-models/
+
+img: https://tryolabs.com/blog/2016/12/06/major-advancements-deep-learning-2016/
+generative models: https://zo7.github.io/blog/2016/09/25/generating-faces.html
+whats wrong with auto encoders https://danielwaterworth.github.io/posts/what's-wrong-with-autoencoders.html
+
+http://web.mit.edu/vondrick/tinyvideo/
+
+unreasonable confusion of VAEs https://jaan.io/unreasonable-confusion/
+
+text to image https://github.com/paarthneekhara/text-to-image
+
+GANS explained http://kvfrans.com/generative-adversial-networks-explained/?utm_content=buffere4050&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+deep image completion http://bamos.github.io/2016/08/09/deep-completion/
+seeing beyond edges of image http://liipetti.net/erratic/2016/12/11/seeing-beoynd-the-edges-of-the-image/
+
+transfiguring portraits: http://homes.cs.washington.edu/~kemelmi/Transfiguring_Portraits_Kemelmacher_SIGGRAPH2016.pdf
+
+soumith + yann https://code.facebook.com/posts/1587249151575490/a-path-to-unsupervised-learning-through-adversarial-networks/
+
+end to end neural style with gans http://dmlc.ml/mxnet/2016/06/20/end-to-end-neural-style.html
+
+eyescream eyescream
+
+generating faces with torch http://torch.ch/blog/2015/11/13/gan.html
+
+VAE https://ift6266h15.files.wordpress.com/2015/04/20_vae.pdf
+
+CONDITIONAL IMAGE SYNTHESIS WITH AUXILIARY CLASSIFIER GANS https://arxiv.org/pdf/1610.09585.pdf
+https://github.com/Evolving-AI-Lab/synthesizing
+
+Fast Scene Understanding with Generative Models https://www.youtube.com/watch?v=4tc84kKdpY4 (nice video)
+
+hardmaru images from latent vectors (GAN + VAE) blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/
