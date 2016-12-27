@@ -2,10 +2,10 @@
 layout: demo
 title: "Convolution"
 script: "/demos/demos/convolution.js"
-width: 720
-height: 560
+width: 900
+height: 320
 args: "'MNIST', true"
-script_includes: "'mathjax', 'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
 ---
 
 

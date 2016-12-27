@@ -1,10 +1,10 @@
 ---
 layout: demo
 title: "CIFAR confusion matrix"
-script: "/demos/demos/confusion_cifar.js"
-width: 1024
-height: 560
-args: "'MNIST', true"
+script: "/demos/demos/confusion_matrix.js"
+width: 960
+height: 600
+args: "'CIFAR', true"
 script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
 ---
 

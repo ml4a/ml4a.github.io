@@ -11,6 +11,7 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 	var testAll = (testAll_ === undefined) ? true : testAll_;
 	var numTrain = (numTrain_ === undefined) ? 10000 : numTrain_;
 	var numTest = (numTest_ === undefined) ? 5000 : numTest_;
+
 	var mx = 100;
 	var my = 90;
 	var mcw = 45;

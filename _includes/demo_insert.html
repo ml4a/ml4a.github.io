@@ -36,12 +36,11 @@
 
 	function set_text_panel(description_panel_, text) {
 		description_panel_.innerHTML = text;
-		MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel_])
 	};
 
 	function set_control_panel_height(description_panel_, height) {
 		description_panel_.style.height = height+"px";
-		description_panel_.style.padding = "5px"; 
+		description_panel_.style.padding = "15px"; 
 	};
 	
 	function add_control_panel_action(text, action) {
