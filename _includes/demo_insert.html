@@ -36,6 +36,9 @@
 
 	function set_text_panel(description_panel_, text) {
 		description_panel_.innerHTML = text;
+		{% if include.script_includes contains 'mathjax' %}
+		MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel]);
+		{% endif %}
 	};
 
 	function set_control_panel_height(description_panel_, height) {
