@@ -134,7 +134,7 @@ The process of a neural network sending an initial input forward through its lay
 
 Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-left corner to proceed. You can see a forward pass in action in the following demo.
 
-{% include demo_insert.html width=710 height=490 path="/demos/demos/simple_forward_pass.js" parent_div="post" %}
+{% include demo_insert.html width=710 height=490 path="/demos/demos/simple_forward_pass.js" parent_div="post" mathjax=true %}
 
 # More layers, more expressiveness
 
