@@ -194,7 +194,7 @@ function demo(parent, width, height)
 			};
 			set_text_panel(parent.description_panel_div, 'Suppose we have a dataset with one point: \
 				$$x=\\begin{bmatrix} '+input[0].toFixed(1)+' & '+input[1].toFixed(1)+' & '+input[2].toFixed(1)+' \\end{bmatrix} \\qquad y='+y_correct.toFixed(2)+'$$\
-				We can attempt to fit a 3x2x1 neural network with sigmoid activation functions, as seen below.');
+				We can attempt to fit a 3x2x1 neural network with sigmoid activation functions, as seen below.', true);
 		},
 		draw: function() {},
 	});
@@ -204,7 +204,7 @@ function demo(parent, width, height)
 		action: function(){
 			set_text_panel(parent.description_panel_div, '\
 				Let\'s try a set of random weights and biases. For the first hidden layer, let\'s say our weights and biases are: \
-				$$w=\\begin{bmatrix} '+weights[0][0][0].toFixed(1)+' & '+weights[0][1][0].toFixed(1)+' & '+weights[0][2][0].toFixed(1)+' \\\\ '+weights[0][0][1].toFixed(1)+' & '+weights[0][1][1].toFixed(1)+' & '+weights[0][2][1].toFixed(1)+' \\end{bmatrix} \\qquad b=\\begin{bmatrix} '+biases[1][0].toFixed(1)+' & '+biases[1][1].toFixed(1)+' \\end{bmatrix} $$');
+				$$w=\\begin{bmatrix} '+weights[0][0][0].toFixed(1)+' & '+weights[0][1][0].toFixed(1)+' & '+weights[0][2][0].toFixed(1)+' \\\\ '+weights[0][0][1].toFixed(1)+' & '+weights[0][1][1].toFixed(1)+' & '+weights[0][2][1].toFixed(1)+' \\end{bmatrix} \\qquad b=\\begin{bmatrix} '+biases[1][0].toFixed(1)+' & '+biases[1][1].toFixed(1)+' \\end{bmatrix} $$', true);
 		},
 		draw: function() {
 		    display_values_layer1();
@@ -220,7 +220,7 @@ function demo(parent, width, height)
 				'+weights[1][0][0]+' & '+weights[1][1][0].toFixed(1)+' \
 				\\end{bmatrix} \
 				$$\
-				And we let the final output neuron\'s bias be $b='+biases[2][0].toFixed(1)+'$');
+				And we let the final output neuron\'s bias be $b='+biases[2][0].toFixed(1)+'$', true);
 		},
 		draw: function() {
 			display_values_layer2();
@@ -230,7 +230,7 @@ function demo(parent, width, height)
 	steps.push({
 		action: function() {
 			set_text_panel(parent.description_panel_div, '\
-				Let\'s input our datapoint $x=\\begin{bmatrix}'+input[0].toFixed(1)+' & '+input[1].toFixed(1)+' & '+input[2].toFixed(1)+'\\end{bmatrix}$ and see what output the network gives us.');
+				Let\'s input our datapoint $x=\\begin{bmatrix}'+input[0].toFixed(1)+' & '+input[1].toFixed(1)+' & '+input[2].toFixed(1)+'\\end{bmatrix}$ and see what output the network gives us.', true);
 		},
 		draw: function() {
 			for (var n=0; n<acts[0].length; n++) {
@@ -244,7 +244,7 @@ function demo(parent, width, height)
 			set_text_panel(parent.description_panel_div, '\
 				The output of the first (top-most in the graphic) hidden unit is: \
 				$$ z = ('+weights[0][0][0].toFixed(1)+' \\cdot '+input[0].toFixed(1)+') + ('+weights[0][1][0].toFixed(1)+' \\cdot '+input[1].toFixed(1)+') + ('+weights[0][2][0].toFixed(1)+' \\cdot '+input[2].toFixed(1)+') + '+biases[1][0].toFixed(1)+' = '+z[1][0].toFixed(1)+' $$ \
-				$$ \\sigma('+z[1][0].toFixed(1)+') = '+acts[1][0].toFixed(2)+' $$');
+				$$ \\sigma('+z[1][0].toFixed(1)+') = '+acts[1][0].toFixed(2)+' $$', true);
 		},
 		draw: function() {
 			display_hidden_calculation(1, 0);
@@ -256,7 +256,7 @@ function demo(parent, width, height)
 			set_text_panel(parent.description_panel_div, '\
 				The output of the second hidden unit is: \
 				$$ z = ('+weights[0][0][1].toFixed(1)+' \\cdot '+input[0].toFixed(1)+') + ('+weights[0][1][1].toFixed(1)+' \\cdot '+input[1].toFixed(1)+') + ('+weights[0][2][1].toFixed(1)+' \\cdot '+input[2].toFixed(1)+') + '+biases[1][1].toFixed(1)+' = '+z[1][1].toFixed(1)+' $$ \
-				$$ \\sigma('+z[1][1].toFixed(1)+') = '+acts[1][1].toFixed(2)+' $$');
+				$$ \\sigma('+z[1][1].toFixed(1)+') = '+acts[1][1].toFixed(2)+' $$', true);
 		},
 		draw: function() {
 			display_hidden_calculation(1, 1);
@@ -268,7 +268,7 @@ function demo(parent, width, height)
 			set_text_panel(parent.description_panel_div, '\
 				Now we take these and feed it into the output unit (which doesn\'t have an activation function): \
 				$$ z = ('+weights[1][0][0].toFixed(1)+' \\cdot '+acts[1][0].toFixed(2)+') + ('+weights[1][1][0].toFixed(1)+' \\cdot '+acts[1][1].toFixed(2)+') + '+biases[2][0].toFixed(1)+' = '+z[2][0].toFixed(1)+' $$ \
-				$$ \\sigma('+z[2][0].toFixed(2)+') = '+acts[2][0].toFixed(2)+' $$');
+				$$ \\sigma('+z[2][0].toFixed(2)+') = '+acts[2][0].toFixed(2)+' $$', true);
 		},
 		draw: function() {
 			display_hidden_calculation(2, 0);
@@ -285,7 +285,7 @@ function demo(parent, width, height)
 				\\text{mse} &= ('+y_correct.toFixed(2)+' - '+acts[2][0].toFixed(2)+')^2 \\\\ \
 				\\text{mse} &= '+error.toFixed(3)+' \
 				\\end{aligned} \
-				$$');
+				$$', true);
 		},
 		draw: function() {}
 	});
@@ -306,7 +306,7 @@ function demo(parent, width, height)
 				w=\\begin{bmatrix} \
 				'+weights[1][0][0].toFixed(1)+' & '+weights[1][1][0].toFixed(1)+' \
 				\\end{bmatrix} \\qquad b='+biases[2][0].toFixed(1)+' \
-				$$');
+				$$', true);
 		},
 		draw: function() {
 			display_values_layer1();
@@ -324,7 +324,7 @@ function demo(parent, width, height)
 				\\text{hidden unit 2} &= \\sigma(('+weights[0][0][1].toFixed(1)+' * '+input[0].toFixed(1)+') + ('+weights[0][1][1].toFixed(1)+' * '+input[1].toFixed(1)+') + ('+weights[0][2][1].toFixed(1)+' * '+input[2].toFixed(1)+') + '+biases[1][1].toFixed(1)+') = '+acts[1][1].toFixed(2)+' \\\\ \
 				\\text{output} &= \\sigma(('+weights[1][0][0].toFixed(1)+' * '+acts[1][0].toFixed(2)+') + ('+weights[1][1][0].toFixed(2)+' * '+acts[1][1].toFixed(2)+') + '+biases[2][0].toFixed(1)+') = '+acts[2][0].toFixed(2)+' \
 				\\end{aligned} \
-				$$');
+				$$', true);
 		},
 		draw: function() {
 			display_everything();
@@ -334,7 +334,7 @@ function demo(parent, width, height)
 	steps.push({
 		action: function() {
 			set_text_panel(parent.description_panel_div, '\
-				Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.');
+				Voilà! We got the answer we wanted - so the weights of the network effectively control what it outputs.', true);
 		},
 		draw: function() {}
 	});

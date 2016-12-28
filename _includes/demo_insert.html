@@ -34,11 +34,11 @@
 	canvas.height = height;
 	canvas.style = 'margin:auto; display:block;';
 
-	function set_text_panel(description_panel_, text) {
+	function set_text_panel(description_panel_, text, refresh_mathjax) {
 		description_panel_.innerHTML = text;
-		{% if include.mathjax %}
-		MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel]);
-		{% endif %}
+		if (refresh_mathjax) {
+			MathJax.Hub.Queue(["Typeset", MathJax.Hub, description_panel_]);
+		}
 	};
 
 	function set_control_panel_height(description_panel_, height) {

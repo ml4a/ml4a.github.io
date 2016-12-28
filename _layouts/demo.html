@@ -34,11 +34,8 @@
 			<script src="/demos/src/visualizer.js" type="text/javascript"></script>
 		{% endif %}
 
-		{% if page.script_includes contains 'mathjax' %}
-			{% include demo_insert.html width=page.width height=page.height path=page.script args=page.args mathjax=true %}	
-		{% else %}
-			{% include demo_insert.html width=page.width height=page.height path=page.script args=page.args %}	
-		{% endif %}
+		{% include demo_insert.html width=page.width height=page.height path=page.script args=page.args %}	
+
   	</body>
 
 	<footer>
