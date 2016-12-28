@@ -1,11 +1,11 @@
 ---
 layout: demo
 title: "Convolution all filters"
-script: "/demos/demos/convolution_all.js"
+script: "/demos/demos/convolution.js"
 width: 940
 height: 460
 args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet'"
 ---
 
 

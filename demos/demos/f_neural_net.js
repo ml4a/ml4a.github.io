@@ -1,10 +1,10 @@
 function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
-    // parameters
+    // canvas
     var canvas = parent.canvas;
     var ctx = canvas.getContext('2d');
 
-
+    // parameters
     var settings = {
         context: ctx,
         width:600, 

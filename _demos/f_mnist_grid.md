@@ -1,11 +1,11 @@
 ---
 layout: demo
 title: "MNIST sample"
-script: "/demos/demos/f_mnist_grid.js"
-width: 1600
-height: 720
-args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script: "/demos/demos/data_sample.js"
+width: 800
+height: 480
+args: "'MNIST', 5, 7, 2, 10, 4"
+script_includes: "'jquery', 'dataset'"
 ---
 
 

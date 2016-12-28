@@ -4,7 +4,6 @@ var demo = function(parent, width, height, datasetName_, useSummary_, useSnapsho
     var canvas = parent.canvas;
     var ctx = canvas.getContext('2d');
 
-
     function draw_sample_as_grid(sample, x_, y_, cellsize) {
         var nx = sample.sw;
         var ny = sample.sh;
@@ -89,7 +88,7 @@ var demo = function(parent, width, height, datasetName_, useSummary_, useSnapsho
     });
 
     net.setNeuronStyle({
-        leftLabelSize: 12,
+        leftLabelSize: 18,
         leftLabelText: 'pixel',
         leftLabelMargin: 20,
         leftLabelCounter: true}, 0);
@@ -108,7 +107,7 @@ var demo = function(parent, width, height, datasetName_, useSummary_, useSnapsho
 
         arrow(ctx, 175, 205, 314, 10)
         draw_sample_as_grid(sample, 208, 10, {x:25, y:22});
-        net.draw(980, 10);
+        net.draw(1000, 10);
         var xm = (x1 + x2) / 2;
         var ym = (y1 + y2) / 2;
         bezier(ctx, x1, ym, xm, ym, x1, y1, xm, y1);

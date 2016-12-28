@@ -4,8 +4,8 @@ title: "Convolution"
 script: "/demos/demos/convolution.js"
 width: 900
 height: 320
-args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+args: "'MNIST', false"
+script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet'"
 ---
 
 

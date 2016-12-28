@@ -2,10 +2,10 @@
 layout: demo
 title: "MNIST input"
 script: "/demos/demos/f_mnist_input.js"
-width: 1280
-height: 700
+width: 1250
+height: 660
 args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script_includes: "'jquery', 'dataset', 'visualizer'"
 ---
 
 

@@ -1,9 +1,8 @@
 function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
-    // parameters
+    // canvas
     var canvas = parent.canvas;
     var ctx = canvas.getContext('2d');
-
 
     function getSubscript(idx) {
         var subscripts = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
@@ -12,7 +11,6 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
         var h = Math.floor(idx/100.0)%100;
         return (idx<100?'':subscripts[h])+(h==0&&t<1?'':subscripts[t])+(subscripts[o]);
     };
-
 
     var draw_input_grid = function(x_, y_, cellsize, nx, ny, nvx, nvy, text) {
         var ellipsis = function(x, y, direction) {
@@ -111,18 +109,6 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
         ctx.restore();
     };
 
-    function bezier(ctx, x1, y1, x2, y2, x3, y3, x4, y4) {
-        ctx.beginPath();
-        ctx.lineWidth = 3.0;
-        ctx.moveTo(x1,y1);
-        ctx.bezierCurveTo(
-            x2,y2,
-            x3,y3,
-            x4,y4);
-        ctx.stroke();
-        ctx.closePath();
-    };
-
     var settings_vis1 = {
         context: ctx,
         width: 420, 
@@ -164,8 +150,6 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
             thickness: 1
         }
     };
-
-
 
     var vis1 = new NetworkVisualization(settings_vis1);
     var vis2 = new NetworkVisualization(settings_vis2);

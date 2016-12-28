@@ -1,6 +1,3 @@
-//const subscripts = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
-
-
 function NetworkVisualization(settings) 
 {	
 	var defaultNeuronStyle = {

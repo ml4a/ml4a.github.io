@@ -5,5 +5,5 @@ script: "/demos/demos/confusion_matrix.js"
 width: 960
 height: 560
 args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet'"
 ---

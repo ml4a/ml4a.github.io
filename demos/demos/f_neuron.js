@@ -1,9 +1,8 @@
-function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
+function demo(parent, width, height) 
 {
-    // parameters
+    // canvas
     var canvas = parent.canvas;
     var ctx = canvas.getContext('2d');
-
 
     var settings = {
         context: ctx,
@@ -32,7 +31,7 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
     net.setNeuronStyle({labelText:"X₂"}, 0, 1);
     net.setNeuronStyle({labelText:"X₃"}, 0, 2);
     net.setNeuronStyle({biasLabelSize:36, biasLabelText:"b"}, 1, 0);
-    net.draw(0, 0);
+    net.draw(5, 5);
 
     ctx.save();
     ctx.translate(settings.width + 16, 0.5 * settings.height - 5);

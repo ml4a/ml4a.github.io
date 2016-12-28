@@ -1,11 +1,11 @@
 ---
 layout: demo
 title: "CIFAR sample"
-script: "/demos/demos/f_cifar_grid.js"
-width: 1024
-height: 560
-args: "'MNIST', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+script: "/demos/demos/data_sample.js"
+width: 800
+height: 480
+args: "'CIFAR', 5, 7, 2, 10, 4"
+script_includes: "'jquery', 'dataset'"
 ---
 
 
