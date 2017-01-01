@@ -1,6 +1,9 @@
 name: Gene Kogan
 markdown: kramdown
 collections:
+  pages:
+    output: true
+    permalink: /:path/
   chapters:
     output: true
     permalink: /ml4a/:path/
