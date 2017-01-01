@@ -7,7 +7,7 @@ title: "DoodleClassifier"
 
 DoodleClassifier is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which lets you train a classifier to accurately recognize drawings ("doodles") from a camera.
 
-It was first used in a project called [DoodleTunes](https://vimeo.com/197026662) by [Andreas Refsgaard](https://andreasrefsgaard.dk/) and [Gene Kogan](https://www.genekogan.com/), which used the app to recognize doodles of musical instruments and turn them into music being made in Ableton Live. It was inspired by the [QuickDraw app](https://quickdraw.withgoogle.com/) made by [Jonas Jongejan, Henry Rowley, and collaborators at Google Creative Lab](https://www.youtube.com/watch?v=X8v1GWzZYJ4).
+It was first used in a project called [DoodleTunes](https://vimeo.com/197026662) by [Andreas Refsgaard](https://andreasrefsgaard.dk/) and [Gene Kogan](https://www.genekogan.com/), which used the app to recognize doodles of musical instruments and turn them into music being made in Ableton Live. It was inspired by the [QuickDraw app](https://quickdraw.withgoogle.com/) made by [Jonas Jongejan, Henry Rowley, Takashi Kawashima, Jongmin Kim, and Nick Fox-Gieg at Google Creative Lab](https://www.youtube.com/watch?v=X8v1GWzZYJ4).
 
 <center>
 <iframe src="https://player.vimeo.com/video/197026662" width="800" height="450" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -76,3 +76,9 @@ The video below shows this whole process. Once you get used to the process, it s
 <center>
 <iframe src="https://player.vimeo.com/video/196944929?color=1abc9c" width="800" height="500" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </center>
+
+
+## Ideas
+
+http://cybertron.cg.tu-berlin.de/eitz/projects/classifysketch/
+http://sketchy.eye.gatech.edu/
