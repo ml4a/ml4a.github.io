@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: "Looking inside neural nets"
-demo_includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
+includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
 header_quote: "lovelace"
 ---

@@ -1,61 +1,8 @@
-<!DOCTYPE html>
-	<html>
-		<head>
-			<title>{{ page.title }}</title>
-			<link rel="stylesheet" type="text/css" href="/css/main.css">
-			<link rel="icon" href="/images/favicon.png">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/color-brewer.min.css">
-			<meta charset="utf-8">
-		</head>
+---
+layout: default
+---
 
-		<body>
-
-			<div class="navbar">
-				<nav>
-		    		<ul>
-		        		<li><a href="/index/">ml4a</a></li>
-								<li><a href="/guides">guides</a></li>
-			        	<li><a href="/demos">demos</a></li>
-			        	<li><a href="/classes">classes</a></li>
-			        	<li><a href="https://github.com/ml4a">code</a></li>
-			        	<li><a href="https://www.twitter.com/ml4a_">@</a></li>
-		    		</ul>
-				</nav>
-			</div>
-
-			<div class="container">
-				<h1>{{ page.title }}</h1>
-				<div class="post">
-  					{{ content }}
-				</div>
-			</div>
-
-			<footer>
-	    		<ul>
-        			<li><a href="https://ml4a.github.io/about/">about</a></li>
-        			<li><a href="https://ml4a.github.io/archive/">archive</a></li>
-	        		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
-				</ul>
-			</footer>
-
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-			<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    $('pre').each(function(i, e) {hljs.highlightBlock(e)});
-                    MathJax.Hub.Config({
-                        tex2jax: {
-                            inlineMath: [["$","$"]],
-                            displayMath: [['$$','$$']],
-                            processEscapes: true
-                        },
-                        "HTML-CSS": {
-                            linebreaks: { automatic: true }
-                        }
-                    });
-                    MathJax.Hub.Startup.onload();
-                });
-            </script>
-		</body>
-	</html>
+<h1>{{ page.title }}</h1>
+<div class="post">
+	{{ content }}
+</div>

@@ -1,75 +1,8 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">			
-		<title>{{ page.title }}</title>
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		<link rel="icon" href="/images/favicon.png">
-		
-		{% if page.demo_includes contains 'mathjax' %}
-			<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-			<script>
-				MathJax.Hub.Config({
-					jax: ["input/TeX","output/HTML-CSS"],
-					tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-				});
-			</script>
-		{% endif %}
-		{% if page.demo_includes contains 'jquery' %}
-			<script src="/demos/libraries/jquery-1.8.3.min.js"></script>
-		{% endif %}
-		{% if page.demo_includes contains 'convnetjs' %}
-			<script src="/demos/libraries/convnet.js" type="text/javascript"></script>
-			<script src="/demos/libraries/util.js" type="text/javascript"></script>
-		{% endif %}
-		{% if page.demo_includes contains 'dataset' %}
-			<script src="/demos/src/dataset.js" type="text/javascript"></script>
-		{% endif %}
-		{% if page.demo_includes contains 'convnet' %}
-			<script src="/demos/src/convnet.js" type="text/javascript"></script>
-		{% endif %}
-		{% if page.demo_includes contains 'visualizer' %}
-			<script src="/demos/src/visualizer.js" type="text/javascript"></script>
-		{% endif %}
-	
-	</head>
-	
-	<body>
+---
+layout: default
+---
 
-		{% assign quote = site.data.quotes.lovelace %}
-
-		<!-- not ready yet -->
-		<!--{% include header.html quote=quote image_path=page.header_image %}--> 
-
-		<div class="navbar">
-			<nav>
-		    	<ul>
-					<li><a href="/index/">ml4a</a></li>
-					<li><a href="/guides/">guides</a></li>
-					<li><a href="/demos/">demos</a></li>
-					<li><a href="/classes/">classes</a></li>
-					<li><a href="https://github.com/ml4a">code</a></li>
-					<li><a href="https://www.twitter.com.com/ml4a_">@</a></li>
-		    	</ul>
-			</nav>
-		</div>
-
-		<div class="container">
-			<h1>{{ page.title }}</h1>
-			
-			<div id="post" class="post">
-					{{ content }}
-			</div>
-
-		</div>
-		
-		<footer>
-    		<ul>
-				<li><a href="https://ml4a.github.io/about/">about</a></li>
-				<li><a href="https://ml4a.github.io/archive/">archive</a></li>
-				<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
-			</ul>
-		</footer>
-
-	</body>
-</html>
+<h1>{{ page.title }}</h1>
+<div id="post" class="post">
+	{{ content }}
+</div>

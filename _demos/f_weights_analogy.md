@@ -4,7 +4,7 @@ title: "Weights analogy"
 script: "/demos/demos/f_weights_analogy.js"
 width: 840
 height: 620
-script_includes: "'jquery', 'visualizer'"
+includes: "'jquery', 'visualizer'"
 ---
 
 

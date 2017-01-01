@@ -5,7 +5,7 @@ script: "/demos/demos/forward_pass.js"
 width: 932
 height: 500
 args: "'CIFAR', true"
-script_includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
 ---
 
 

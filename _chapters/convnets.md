@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: "Convolutional neural networks"
-demo_includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
+includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
 <!--header: densecap

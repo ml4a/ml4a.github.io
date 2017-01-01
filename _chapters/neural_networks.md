@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: "Neural networks"
-demo_includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
+includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/analytical_engine.jpg"
 header_quote: "lovelace"
 ---

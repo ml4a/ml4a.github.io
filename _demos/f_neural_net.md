@@ -5,5 +5,5 @@ script: "/demos/demos/f_neural_net.js"
 width: 680
 height: 500
 args: "'MNIST', true"
-script_includes: "'jquery', 'visualizer'"
+includes: "'jquery', 'visualizer'"
 ---
