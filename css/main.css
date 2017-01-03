@@ -51,19 +51,19 @@ a:hover {
 }
 h1 {
     font-size: 3em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+/*    font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 h2 {
     font-size: 2.2em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+/*    font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 h3 {
     font-size: 1.6em;
-    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+/*    font-family:'Helvetica', 'Arial', 'Sans-Serif';*/
 }
 h5 {
     font-size:26px;
-    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;
+/*    font-family: 'Source Sans Pro', sans-serif; font-weight: 200; color: #000;*/
 }
 p {
     font-size: 1.5em;

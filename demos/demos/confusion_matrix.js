@@ -1,65 +1,58 @@
-function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
+function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
-	// parameters
+	// canvas
 	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
 
+	// parameters
 	var datasetName = (datasetName_ === undefined) ? 'MNIST' : datasetName_;
-	var useSummary = (useSummary_ === undefined) ? false : useSummary_;
-	var useSnapshot = (useSnapshot_ === undefined) ? true : useSnapshot_;
+	var summaryFile = (summaryFile_ === undefined) ? '/demos/datasets/mnist/mnist_summary.json' : summaryFile_;
+	var snapshotFile = (snapshotFile_ === undefined) ? true : snapshotFile_;
 	var viewTopSamples = (viewTopSamples_ === undefined) ? false : viewTopSamples_;
 	var testAll = (testAll_ === undefined) ? true : testAll_;
 	var numTrain = (numTrain_ === undefined) ? 10000 : numTrain_;
 	var numTest = (numTest_ === undefined) ? 5000 : numTest_;
 
-	var mx = 100;
-	var my = 90;
 	var mcw = 45;
 	var mch = 36;
+	var samples_grid_margin = 2;
+	var sample_scale = 1.0;
 	var selected = {a:2, p:2};
 
 	// variables
 	var data, net, classes, nc, dim;
+	var cellsize, mx, my;
 
-	function preloadModel(callback) {
-		var snapshot;
-		if (datasetName == 'MNIST') {
-			snapshot = '/demos/datasets/mnist/mnist_snapshot.json';
-		} else if (datasetName == 'CIFAR') {
-			snapshot = '/demos/datasets/cifar/cifar10_snapshot.json';
-		}
+	function preloadModel(datasetName_, snapshotFile, callback) {
+		datasetName = datasetName_;
 		data = new dataset(datasetName);
-	    net = new convnet(data);
 	    classes = data.get_classes();
 		nc = classes.length;
 		dim = data.get_dim();
-	    net.load_from_json(snapshot, callback);
+	    net = new convnet(data);
+	    net.load_from_json(snapshotFile, callback);
 	};
 
-	function loadFromSummary(callback) {
-		var summary_file;
-		if (datasetName == 'MNIST') {
-			summary_file = '/demos/datasets/mnist/mnist_summary.json';
-		} else if (datasetName == 'CIFAR') {
-			summary_file = '/demos/datasets/cifar/cifar10_summary.json';
-		}
+	function loadFromSummary(datasetName_, summaryFile, callback) {
+		datasetName = datasetName_;
 		data = new dataset(datasetName);
-	    net = new convnet(data);
-		classes = data.get_classes();
+	    classes = data.get_classes();
 		nc = classes.length;
 		dim = data.get_dim();			
-	    net.load_summary(summary_file, callback);
+	    net = new convnet(data);
+	    net.load_summary(summaryFile, callback);
 	};
 
-	function createModel(callback) {
+	function createModel(datasetName_, callback) {
+		datasetName = datasetName_;
 		data = new dataset(datasetName);
-		net = new convnet(data);
-		net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
-		net.add_layer({type:'softmax', num_classes:10});
-		net.setup_trainer({method:'adadelta', learning_rate:0.5, batch_size:8, l2_decay:0.0001});
 		classes = data.get_classes();
 		nc = classes.length;
 		dim = data.get_dim();
+		net = new convnet(data);
+		net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+		net.add_layer({type:'softmax', num_classes:nc});
+		net.setup_trainer({method:'adadelta', learning_rate:0.5, batch_size:8, l2_decay:0.0001});
 		callback();
 	};
 
@@ -127,8 +120,7 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 	        ctx.fillText(count, cellsize.x/2.0, cellsize.y/2.0);
 	        ctx.restore();
 	    }
-
-		var summary = net.get_summary();    
+	    var summary = net.get_summary();    
 		
 		ctx.save();
 	    ctx.translate(x_, y_);  
@@ -191,15 +183,8 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 				if (tops.length == 0) return;
 				ctx.fillStyle = (a==p) ? 'rgba(0,255,0,'+tops[0].prob+')' : 'rgba(255,0,0,'+tops[0].prob+')';
 		    	ctx.fillRect(p * cellsize.x, a * cellsize.y, cellsize.x, cellsize.y);
-		    	data.draw_sample(ctx, tops[0].idx, x_ + p * cellsize.x + margin, y_ + a * cellsize.y + margin, scale);
+		    	data.draw_sample(ctx, tops[0].idx, x_ + p * cellsize.x + samples_grid_margin, y_ + a * cellsize.y + samples_grid_margin, scale);
 		    }
-
-	    	var margin = 2;
-			var cellsize = {
-				x:data.get_dim() * scale + 2 * margin, 
-				y: data.get_dim() * scale + 2 * margin
-			};
-
 	    	ctx.save();
 		    ctx.translate(x_, y_);  
 		    draw_confusion_matrix_box(cellsize);
@@ -214,8 +199,8 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
     	};
 
     	var summary = net.get_summary();   
-
-		// get inexes of batches we are drawing rom
+    	
+		// get inexes of batches we are drawing from
 		var batch_idxs = [];
 		for (var p=0; p<nc; p++) {
 	    	for (var a=0; a<nc; a++) {
@@ -225,6 +210,7 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 		    	}
 		    }
 		}
+
 		batch_idxs = batch_idxs.filter(function(item, i, ar){ return ar.indexOf(item) === i; });
 	    data.load_multiple_batches(batch_idxs, draw_confusion_matrix_samples_grid);
 	};
@@ -286,14 +272,16 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 	};
 
 	function update_canvas() {
+		toggleView(viewTopSamples);
 		ctx.fillStyle = 'rgba(255,255,255,1.0)';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+		draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
 		if (viewTopSamples) {
-			draw_confusion_matrix_samples(mx, my, 1.0);
+			draw_confusion_matrix_samples(mx, my, sample_scale);
 		} else {
 			draw_confusion_matrix(mx, my, {x:mcw, y:mch}, 16);
-		    draw_confusion_samples(mx + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
 		}
+		//draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
 	};
 
 	function test_all() {
@@ -311,27 +299,47 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 		var canvas_rect = canvas.getBoundingClientRect();
 		var mouse_x = evt.clientX - canvas_rect.left;
 	    var mouse_y = evt.clientY - canvas_rect.top;
-		var mx_ = Math.floor((mouse_x - mx) / mcw);
-		var my_ = Math.floor((mouse_y - my) / mch);
+		var mx_ = Math.floor((mouse_x - mx) / cellsize.x);
+		var my_ = Math.floor((mouse_y - my) / cellsize.y);
 		if (mx_ >= 0 && mx_ < nc && my_ >= 0 && my_ <nc &&
 			(mx_ != selected.p || my_ != selected.a)) {
 			selected = {a: my_, p: mx_};    
-	   		draw_confusion_samples(mx + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2.0);
+			update_canvas();
 		}
 	};
 
+	function toggleView(viewTopSamples_) {
+		viewTopSamples = viewTopSamples_;
+		if (viewTopSamples) {
+			cellsize = {x:data.get_dim() * sample_scale + 2 * samples_grid_margin, y:data.get_dim() * sample_scale + 2 * samples_grid_margin};
+			mx = 130;
+			my = 130;
+		} else {
+			cellsize = {x:mcw,y:mch};
+			mx = 100;
+			my = 90;
+		}
+	};
 
-	if (!viewTopSamples) {
-		canvas.addEventListener("mousemove", mouseMoved, false);
-	}
+	add_control_panel_menu(["MNIST ordinary","MNIST convnet","CIFAR ordinary","CIFAR convnet"], function() {
+		if 		(this.value == "MNIST ordinary") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary.json', update_canvas);}
+		else if (this.value == "MNIST convnet") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary.json', update_canvas);}
+		else if (this.value == "CIFAR ordinary") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary.json', update_canvas);}
+		else if (this.value == "CIFAR convnet") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary.json', update_canvas);}
+	});
+
+	add_control_panel_menu(["View numbers","View top samples"], function() {
+		viewTopSamples = (this.value == "View top samples");
+		update_canvas();
+	});
 
 	// mode 1: load everything from summary file
-	if (useSummary) {
-		loadFromSummary(update_canvas);
+	if (summaryFile !== undefined) {
+		loadFromSummary(datasetName, summaryFile, update_canvas);
 	}
 	// mode 2: load pretrained model and test samples on client
-	else if (useSnapshot) {
-		preloadModel(testAll ? test_all : test_individually);
+	else if (snapshot !== undefined) {
+		preloadModel(datasetName, shapshot, testAll ? test_all : test_individually);
 	} 
 	// mode 3: create and train own model and test samples on client
 	else {
@@ -343,5 +351,7 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
 			}
 		});		
 	};	
+
+	canvas.addEventListener("mousemove", mouseMoved, false);
 };
 

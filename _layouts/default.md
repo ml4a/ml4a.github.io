@@ -59,11 +59,21 @@
 		
 		<footer>
     		<ul>
-        		<li><a href="https://ml4a.github.io/about/">about</a></li>
-        		<li><a href="https://ml4a.github.io/contribute/">contribute</a></li>
+        		<li><a href="/about/">about</a></li>
+        		<li><a href="/contribute/">contribute</a></li>
         		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
 			</ul>
 		</footer>
 
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-33352395-1', 'auto');
+			ga('send', 'pageview');
+		</script>
+
+</script>
 	</body>
 </html>

@@ -54,6 +54,14 @@
 		control_panel_options.appendChild(control_panel_option);
 	};
 
+	function add_control_panel_menu(options, action) {
+		var control_panel_menu = document.createElement('select');
+		control_panel_menu.className = 'demo_control_panel_option';
+		options.forEach(function(o) {control_panel_menu.innerHTML+=("<option>"+o+"</option>")});
+		$(control_panel_menu).on('change', action);
+		control_panel_options.appendChild(control_panel_menu);
+	};
+
 	var parent = {demo_div:demo_div, description_panel_div:description_panel, canvas:canvas};
 
 	{% if include.args %}
