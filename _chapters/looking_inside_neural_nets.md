@@ -14,14 +14,13 @@ http://medicalxpress.com/news/2015-10-brain-cells.html img.medicalxpress.com/new
 http://journal.frontiersin.org/article/10.3389/fnana.2014.00103/full
 
 http://catalog.flatworldknowledge.com/bookhub/reader/127?e=stangor-ch03_s01 images.flatworldknowledge.com/stangor/stangor-fig03_003.jpg
+[printblock analogy?] [borges quote about numbers]
 -->
 
-In the [previous chapter](), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kinds of innovations will be necessary to take it to the next level.
+In the [previous chapter](/ml4a/neural_networks), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kinds of innovations will be necessary to take it to the next level.
 
  
 # Visualizing weights
-
-<!--[printblock analogy?] [borges quote about numbers]-->
 
 Let's take a network trained to classify MNIST handwritten digits, except unlike in the last chapter, we will map directly from the input layer to the output layer with no hidden layers in between. Thus our network looks like this.
 
@@ -35,7 +34,7 @@ Recall that when we input an image into our neural net, we "unroll" the pixels i
 {:.center}
 ![Subset of weights](/images/figures/weights_analogy_1.png 'Subset of weights')
 
-Rather than unrolling the pixels though, let's instead "roll" the weights into a single square grid. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
+Rather than unrolling the pixels though, let's instead view the weights as a $$28x28$$ grid where the weights are arranged exactly like their corresponding pixels. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
 
 {:.center}
 ![weights analogy](/images/figures/weights_analogy_2.png 'weights analogy')
@@ -70,10 +69,9 @@ Let's look more closely at the performance of the last neural network of the pre
 
 Hover your mouse over each cell to get a sampling of the top instances from each cell, ordered by the network's confidence (probability) for the prediction.
 
-{% include todo.html note="save models of non-convnets for correct confusion matrix" %}
 {% include todo.html note="add description to confusion matrices" %}
 
-{% include demo_insert.html width=960 height=540 path="/demos/demos/confusion_matrix.js" args="'MNIST',true" parent_div="post" %}
+{% include demo_insert.html width=960 height=540 path="/demos/demos/confusion_matrix.js" args="'MNIST','/demos/datasets/mnist/mnist_summary_2layers.json'" parent_div="post" %}
 
 {% include todo.html note="fix overflow in right table" %}
 
@@ -100,38 +98,47 @@ Let's repeat the earlier experiment with observing the weights of a 1-layer neur
 {:.center}
 ![Weights for CIFAR-10](/images/figures/rolled_weights_cifar.png 'Rolled weights for CIFAR-10')
 
-Compared to the MNIST weights, these have far less definition to them. Certain details make intuitive sense, e.g. airplanes and ships are bluish on the outer edges of the images, reflecting the tendency for those images to have blue skies or waters around them. The weights image does, to some extent, reflect an average of images belonging to that class, so we can expect blobby average colors to come out of the much less internally consistent image classes. But the "templates" we saw with MNIST are far less evident here.
+Compared to the MNIST weights, these have far less definition to them. Certain details make intuitive sense, e.g. airplanes and ships are mostly blue on the outer edges of the images, reflecting the tendency for those images to have blue skies or waters around them. The weights image does, to some extent, reflect an average of images belonging to that class, so we can expect blobby average colors to come out, as before. But because the CIFAR classes are much less internally consistent, the "templates" we saw with MNIST are far less evident.
 
-Let's take a look at the confusion matrix associated with this CIFAR-10 classifier. 
+Let's take a look at the confusion matrix associated with this CIFAR-10 classifier.
 
-{% include todo.html note="confusing because this confusion matrix is from a convnet with decent accuracy" %}
+{% include demo_insert.html width=960 height=540 path="/demos/demos/confusion_matrix.js" args="'CIFAR','/demos/datasets/cifar/cifar10_summary_2layers.json'" parent_div="post" %}
 
-{% include demo_insert.html width=960 height=540 path="/demos/demos/confusion_matrix.js" args="'CIFAR',true" parent_div="post" %}
-
+Not surprisingly, performance is very weak, reaching only 37% accuracy. It's clear our simple 1-layer neural network is not capable of capturing the complexity of this dataset. One way we can improve its performance somewhat is by introducing a hidden layer.
 
 # Hidden layers and composition
 
 <!--
 Hidden layers are essential here. One obvious way they can help is best exemplified by the weight image for the horse class. The vague template of a horse is discernible, but it appears as though there is a head on each side of the horse. Evidently, the horses in CIFAR-10 seem to be usually facing one way or the other. If we create a hidden layer, a horse classifier could benefit by allowing the network to learn a "right-facing horse" or a "left-facing horse" inside the intermediate layer -->
 
-What would happen if we add a hidden layer into our neural network for MNIST handwritten digits? As in the demo of the last chapter, our net had a hidden layer of 15 neurons, which in turn connected to the final 10 output neurons. Recall that the network diagram looks like this now.
-
-{% include todo.html note="784->15->10" %}
-
-It's clear that our simple "template" metaphor in the 1-layer network above doesn't apply in this case, because we no longer have the 784 input pixels connecting directly to the output classes. In some sense, you could say that we had "forced" our original 1-layer network to learn those templates because each of the weights associated with each pixel plugged into a single class label. But in the more complicated network that we have now, the weights between the inputs and the hidden layer affect all of the output neurons. How should we expect the weights to look now?
-
-We can still visualize the weights of the first layer in an interpretable way because they still align with the original images. Looking at all 15 of them, we see the following:
-
-{% include todo.html note="visualized weights in 2-layer net" %}
+So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
 
 {:.center}
-![Hidden Weights for MNIST](/images/figures/hidden_layer_weights.png 'Hidden Weights for MNIST')
+![2-layer neural network for MNIST](/images/figures/mnist_2layers.png '2-layer neural network for MNIST')
 
-{% include todo.html note="elaborate on this section" %}
+Our simple "template" metaphor in the 1-layer network above doesn't apply to this case, because we no longer have the 784 input pixels connecting directly to the output classes. In some sense, you could say that we had "forced" our original 1-layer network to learn those templates because each of the weights plugged into a single class label, and only affected that class. But in the more complicated network that we have introduced now, the weights going into the hidden layer layer affect all of the output neurons in the next layer. So how should we expect the weights to be affected?
+
+One way to interpret what's going on is to visualize the weights in the first layer, as before, but also look at how their activations are subsequently combined in the second layer to obtain class scores. Recall that an image will generate a high activation in a particular neuron in the first layer if the image is largely sympathetic with that filter. So the ten neurons in the hidden layer reflect the presence of those ten features in the original image. In the output layer, a single neuron, corresponding to a class label, is a weighted combination of those previous ten hidden activations. Let's look at them below.
+
+{% include demo_insert.html width=950 height=660 path="/demos/demos/f_mnist_weights.js" args="'MNIST', 1, '/demos/datasets/mnist/mnist_2layers.json'" parent_div="post" %}
+
+Let's start with the first layer weights, visualized at the top. They don't look like the image class "templates" anymore, but rather more abstract. Some look like pseudo-digits, and others appear to components of digits present: half loops, diagonal lines, holes, and so on.
+
+The rows which follow correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten neurons in the hidden layer. So for example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are low (where the hole in zeros usually goes). The `1` class is almost a mirror of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
+
+The advantage of this approach is flexibility. For each class, there is a wider array of input patterns that stimulate the corresponding output neuron. Each class can be stimulated by the presence of several abstract features from the previous hidden layer, or some combination of them. Those high-level features themselves are determined by the first layer weights. Essentially, we can learn different kinds of zeros, different kinds of ones, and so on for each class. 
+
+# Generalizing our knowledge
+
+Neural networks can improve their performance with hidden layers, but only to an extent. 
+
+Let's generalize some of what we've seen. In the case of both 1-layer and 2-layer neural networks, each layer is essentially providing a similar function: they transform data into a "higher-level" representation of it, 
+
+
+Every layer of the neural networks we have seen so far, whether hidden or not, can be said to be a nonlinear function of the previous layer's activations, mapping them to some "higher-level" abstraction. For example, in our single layer of our 1-layer MNIST classifier, we are mapping "low-level" pixels into digit classes. In the 2-layer network, we map the pixels into "higher-level" features (strokes, loops, etc) in the first layer, and then map those features into the even higher-level digits in the next layer.
+
 
 {% include todo.html note="summary / further reading" %}
-
-
 
 
 <!--
@@ -164,6 +171,7 @@ ideas
  Some intuitions would be helpful at this point. Remember that in our toy linear classifier introduced in the previous chapter, we could interpret the score as being a weighted sum of our input variables, where the weights denote the influence of each input to the final score. So if a particular input variable has a positive correlation with the classifier, we should expect it would have a high positive weight. In this larger example, we now effectively have 10 classifiers (they are no longer linear, but the weight principle should remain true). 
 -->
 
-
+<!--
 Tinker With a Neural Network Right Here in Your Browser. (viegas, wattenberg)
 http://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.62418&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false
+-->
