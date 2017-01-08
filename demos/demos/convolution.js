@@ -71,9 +71,9 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	function loadPresetNetwork(callback) {		
 		var snapshot;
 		if (datasetName == 'MNIST') {
-			snapshot = '/demos/datasets/mnist/mnist_snapshot.json';
+			snapshot = '/demos/datasets/mnist/mnist_snapshot_convnet.json';
 		} else if (datasetName == 'CIFAR') {
-			snapshot = '/demos/datasets/cifar/cifar10_snapshot.json';
+			snapshot = '/demos/datasets/cifar/cifar10_snapshot_convnet.json';
 		}
 		data = new dataset(datasetName);
 	    net = new convnet(data);

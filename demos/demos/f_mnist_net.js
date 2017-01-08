@@ -9,8 +9,8 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
         context: ctx,
         width: 1200, 
         height: 720,
-        architecture: [784,15,10],
-        visible: [25,15,10],
+        architecture: [784,10,10],
+        visible: [25,10,10],
         neuronStyle: {
             color: 'rgba(0,0,0,1.0)',
             thickness: 1,
@@ -29,8 +29,8 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
         leftLabelCounter: true,
         leftLabelMargin: 30,
         leftLabelSize: 20}, 0);
-    net.setNeuronStyle({radius:21}, 1);
-    net.setNeuronStyle({radius:25}, 2);
+    net.setNeuronStyle({radius:28	}, 1);
+    net.setNeuronStyle({radius:28}, 2);
 
     net.draw(80, 0);
 

@@ -40,3 +40,13 @@ title: Demos
 
 
 
+<!--
+
+demos
+ - simple fwd pass		
+ - forward pass (CIFAR, MNIST)
+ - confusion (CIFAR, MNIST x2)
+ - convolution (all + one)
+
+
+-->

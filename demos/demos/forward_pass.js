@@ -1,11 +1,11 @@
-var demo = function(parent, width, height, datasetName_, useSnapshot_, testAll_, numTrain_, numTest_) 
+var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, numTrain_, numTest_) 
 {	
 	// setup canvas
 	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
 
 	var datasetName = (datasetName_ === undefined) ? 'MNIST' : datasetName_;
-	var useSnapshot = (useSnapshot_ === undefined) ? false : useSnapshot_;
+	var snapshot = (snapshot_ === undefined) ? '/demos/datasets/mnist/mnist_snapshot_2layers.json' : snapshot_;
 	var numTrain = (numTrain_ === undefined) ? 30000 : numTrain_;
 	var numTest = (numTest_ === undefined) ? 500 : numTest_;
 
@@ -21,13 +21,8 @@ var demo = function(parent, width, height, datasetName_, useSnapshot_, testAll_,
 	var vis, vis_settings, max_label_width, x1, y1, x2, y2, xm, ym;
 
 
-	function preloadModel(callback) {
-	    var snapshot;
-	    if (datasetName == 'MNIST') {
-	        snapshot = '/demos/datasets/mnist/mnist_snapshot.json';
-	    } else if (datasetName == 'CIFAR') {
-	        snapshot = '/demos/datasets/cifar/cifar10_snapshot.json';
-	    }
+	function preloadModel(datasetName_, snapshot, callback) {
+		datasetName = datasetName_;
 	    data = new dataset(datasetName);
 	    net = new convnet(data);
 	    classes = data.get_classes();
@@ -36,38 +31,21 @@ var demo = function(parent, width, height, datasetName_, useSnapshot_, testAll_,
 	    net.load_from_json(snapshot, callback);
 	};
 
-	function loadFromSummary(callback) {
-	    var summary_file;
-	    if (datasetName == 'MNIST') {
-	        summary_file = '/demos/datasets/mnist/mnist_summary.json';
-	    } else if (datasetName == 'CIFAR') {
-	        summary_file = '/demos/datasets/cifar/cifar10_summary.json';
-	    }
-	    data = new dataset(datasetName);
-	    net = new convnet(data);
-	    classes = data.get_classes();
-	    nc = classes.length;
-	    dim = data.get_dim();           
-	    net.load_summary(summary_file, callback);
-	};
-
 	function createModel(callback) {
 	    data = new dataset(datasetName);
 	    net = new convnet(data);
-	    net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+	    net.add_layer({type:'fc', num_neurons:10, activation:'sigmoid'});
 	    net.add_layer({type:'softmax', num_classes:10});
-	    net.setup_trainer({method:'adadelta', learning_rate:0.5, batch_size:8, l2_decay:0.0001});
+	    net.setup_trainer({method:'adadelta', learning_rate:0.1, batch_size:8, l2_decay:0.0001});
 	    classes = data.get_classes();
 	    nc = classes.length;
 	    dim = data.get_dim();
 	    callback();
 	};
 
-
 	function test_all() {
 	    net.test(numTest, update_canvas);
 	};
-
 
 	function test_next_sample_auto(result) {
 	    update_canvas(result);
@@ -129,7 +107,7 @@ var demo = function(parent, width, height, datasetName_, useSnapshot_, testAll_,
 	    // settings
 	    vis_settings = {
 	        context: ctx,
-	        width: 540, 
+	        width: 540 - (datasetName=='CIFAR'?60:0), 
 	        height: 480,
 	        architecture: [num_inputs, 10, nc],
 	        visible: [15, 10, nc],
@@ -176,8 +154,14 @@ var demo = function(parent, width, height, datasetName_, useSnapshot_, testAll_,
 	};
 
 	add_control_panel_action('next', test_next_sample);
-	if (useSnapshot) {
-		preloadModel(ready);
+	
+	add_control_panel_menu(["MNIST","CIFAR"], function() {
+		if 		(this.value == "MNIST") {preloadModel('MNIST', '/demos/datasets/mnist/mnist_snapshot_2layers.json', ready);}
+		else if (this.value == "CIFAR") {preloadModel('CIFAR', '/demos/datasets/cifar/cifar10_snapshot_2layers.json', ready);}
+	});
+
+	if (snapshot !== undefined) {
+		preloadModel(datasetName, snapshot, ready);
 	} else {
 		createModel(function() {
 		    net.train(numTrain, ready);

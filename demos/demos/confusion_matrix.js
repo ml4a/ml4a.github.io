@@ -10,8 +10,8 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	var snapshotFile = (snapshotFile_ === undefined) ? true : snapshotFile_;
 	var viewTopSamples = (viewTopSamples_ === undefined) ? false : viewTopSamples_;
 	var testAll = (testAll_ === undefined) ? true : testAll_;
-	var numTrain = (numTrain_ === undefined) ? 10000 : numTrain_;
-	var numTest = (numTest_ === undefined) ? 5000 : numTest_;
+	var numTrain = (numTrain_ === undefined) ? 40000 : numTrain_;
+	var numTest = (numTest_ === undefined) ? 10000 : numTest_;
 
 	var mcw = 45;
 	var mch = 36;
@@ -52,7 +52,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 		net = new convnet(data);
 		net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
 		net.add_layer({type:'softmax', num_classes:nc});
-		net.setup_trainer({method:'adadelta', learning_rate:0.5, batch_size:8, l2_decay:0.0001});
+		net.setup_trainer({method:'adadelta', learning_rate:0.01, batch_size:8, l2_decay:0.0001});
 		callback();
 	};
 
@@ -315,23 +315,27 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 			mx = 130;
 			my = 130;
 		} else {
-			cellsize = {x:mcw,y:mch};
+			cellsize = {x:mcw, y:mch};
 			mx = 100;
 			my = 90;
 		}
 	};
 
 	add_control_panel_menu(["MNIST ordinary","MNIST convnet","CIFAR ordinary","CIFAR convnet"], function() {
-		if 		(this.value == "MNIST ordinary") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary.json', update_canvas);}
+		if 		(this.value == "MNIST ordinary") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary_2layers.json', update_canvas);}
 		else if (this.value == "MNIST convnet") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary.json', update_canvas);}
-		else if (this.value == "CIFAR ordinary") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary.json', update_canvas);}
-		else if (this.value == "CIFAR convnet") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary.json', update_canvas);}
+		else if (this.value == "CIFAR ordinary") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary_2layers.json', update_canvas);}
+		else if (this.value == "CIFAR convnet") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary_convnet.json', update_canvas);}
 	});
 
 	add_control_panel_menu(["View numbers","View top samples"], function() {
 		viewTopSamples = (this.value == "View top samples");
 		update_canvas();
 	});
+
+	add_control_panel_action("save", function(){
+		net.save_summary();
+	})
 
 	// mode 1: load everything from summary file
 	if (summaryFile !== undefined) {
@@ -343,7 +347,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	} 
 	// mode 3: create and train own model and test samples on client
 	else {
-		createModel(function() {
+		createModel(datasetName, function() {
 			if (testAll) {
 				net.train(numTrain, test_all);
 			} else {

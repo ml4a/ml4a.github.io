@@ -2,10 +2,10 @@
 layout: demo
 title: "MNIST weights"
 script: "/demos/demos/f_mnist_weights.js"
-width: 1024
-height: 560
-args: "'MNIST', true"
-includes: "'jquery', 'convnetjs', 'dataset', 'convnet', 'visualizer'"
+width: 1020
+height: 660
+args: "'MNIST', 1"
+includes: "'jquery', 'convnetjs', 'dataset', 'convnet'"
 ---
 
 

@@ -19,7 +19,7 @@ function convnet(dataset_)
         trainer = new convnetjs.SGDTrainer(net, trainer_params);
     };
 
-    this.save_dataset = function() {
+    this.save_to_json = function() {
         var data = JSON.stringify(net.toJSON());
         var url = 'data:text/json;charset=utf8,' + encodeURIComponent(data);
         window.open(url, '_blank');
@@ -112,22 +112,23 @@ function convnet(dataset_)
         check_if_ready(test_next_sample);
     };
 
-    this.draw_sample = function(ctx, x_, y_, scale) {
+    this.draw_sample = function(ctx, x_, y_, scale, grid_thickness) {
         var V = net.layers[0].out_act;
-        draw_volume(ctx, x_, y_, scale, V, 0, false);
+        draw_volume(ctx, x_, y_, scale, V, 0, false, grid_thickness);
     };
 
-    this.draw_filter = function(ctx, layer, idx, x_, y_, scale) {
+    this.draw_filter = function(ctx, layer, idx, x_, y_, scale, grid_thickness) {
         var V = net.layers[layer].filters[idx];
-        draw_volume(ctx, x_, y_, scale, V, idx, true);
+        draw_volume(ctx, x_, y_, scale, V, idx, true, grid_thickness);
     };
 
-    this.draw_activations = function(ctx, layer, idx, x_, y_, scale) {
+    this.draw_activations = function(ctx, layer, idx, x_, y_, scale, grid_thickness) {
 	    var V = net.layers[layer].out_act;
-        draw_volume(ctx, x_, y_, scale, V, idx, false);
+        draw_volume(ctx, x_, y_, scale, V, idx, false, grid_thickness);
     };
 
-    function draw_volume(ctx, x_, y_, scale, V, idx, is_weight) {
+    function draw_volume(ctx, x_, y_, scale, V, idx, is_weight, grid_thickness) {
+        var g = (grid_thickness === undefined) ? 0 : grid_thickness;
 		var nx = V.sx;
         var ny = V.sy;
         var nz = V.depth;
@@ -137,20 +138,28 @@ function convnet(dataset_)
             nx = Math.sqrt(V.depth / nz);
             ny = nx;
         }
-        var W = scale * nx;
-        var H = scale * ny;
+        var W = (scale + g) * nx;
+        var H = (scale + g) * ny;
         var mm = maxmin(V.w);
         var img = ctx.createImageData(W, H);          
         for(var x=0; x<nx; x++) {
             for(var y=0; y<ny; y++) {
                 var z = nz * (y * nx + x) + (is_weight ? 0 : idx);
-                for(var dx=0; dx<scale; dx++) {
-                    for(var dy=0; dy<scale; dy++) {
-                        var idx_ = ((W * (y*scale+dy)) + (dx + x*scale)) * 4;
-                        for (var c=0; c<3; c++) {
-                            img.data[idx_+c] = Math.floor(255 * (V.w[z+c%nc] - mm.minv) / mm.dv);
+                for(var dx=0; dx<scale+g; dx++) {
+                    for(var dy=0; dy<scale+g; dy++) {
+                        var idx_ = ((W * (y*(scale+g)+dy)) + (dx + x*(scale+g))) * 4;
+                        if (dy < scale && dx < scale) {
+                            for (var c=0; c<3; c++) {
+                                img.data[idx_+c] = Math.floor(255 * (V.w[z+c%nc] - mm.minv) / mm.dv);
+                            }
+                            img.data[idx_+3] = 255;
                         }
-                        img.data[idx_+3] = 255;
+                        else {
+                            img.data[idx_  ] = 127;
+                            img.data[idx_+1] = 127;
+                            img.data[idx_+2] = 127;
+                            img.data[idx_+3] = 255;
+                        }
                     }
                 }
             }
