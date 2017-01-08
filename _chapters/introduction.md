@@ -102,3 +102,5 @@ https://www.youtube.com/channel/UC9OeZkIwhzfv-_Cb7fCikLQ
 http://www.computervisionblog.com/2015/01/from-feature-descriptors-to-deep.html
 
 yann introduction videos https://code.facebook.com/pages/1902086376686983
+
+http://deeplearninggallery.com/
