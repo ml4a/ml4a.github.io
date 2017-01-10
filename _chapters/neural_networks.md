@@ -23,7 +23,7 @@ Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikip
 
 The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem).
 
-Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](_jurgen_)[[2]](_)[[3]](_Perceptrons_), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/ml4a/convnets.html) and [recurrent neural networks](/ml4a/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
+Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/ml4a/convnets.html) and [recurrent neural networks](/ml4a/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
 
 Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
 
@@ -147,7 +147,7 @@ Recall also that activation functions expand our capacity to capture non-linear 
 
 What about classification? In the previous chapter, we introduced binary classification by simply thresholding the output at 0; If our output was positive, we'd classify positively, and if it was negative, we'd classify negatively. For neural networks, it would be reasonable to adapt this approach for the final neuron, and classify positively if the output neuron scores above some threshold. For example, we can threshold at 0.5 for sigmoid neurons which are always positive.
 
-But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
+But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](/ml4a/how_neural_networks_are_trained/). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
 
 # Classification of handwritten digits
 
@@ -161,23 +161,17 @@ The way we setup a neural network to classify these images is by having the raw 
 {:.center}
 ![MNIST](/images/figures/mnist-input.png 'MNIST')
 
+The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives all the inputs from the first layer. For the output layer, we'll now have _ten_ neurons rather than just one, with full connections between it and the hidden layer, as before. Each of the ten output neurons is assigned to one class label; the first one is for  the digit `0`, the second for `1`, and so on.
 
-The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives ........
+After the neural network has been trained -- something we'll talk about in more detail [in a future chapter](/ml4a/how_neural_networks_are_trained/) -- we can predict the digit associated with unknown samples by running them through the same network and observing the output values. The predicted digit is that whose output neuron has the highest value at the end. The following demo shows this in action.
 
-{% include demo_insert.html width=832 height=490 path="/demos/demos/forward_pass.js" args="'MNIST',true" parent_div="post" %}
-
-
-# Summary
-
-TBD
+{% include demo_insert.html width=832 height=490 path="/demos/demos/forward_pass.js" args="'MNIST','/demos/datasets/mnist/mnist_snapshot_2layers.json'" parent_div="post" %}
 
 # Further reading
 
- - nielsen
- - kurekenov
-
-http://neuralnetworksanddeeplearning.com/
-
+nielsen http://neuralnetworksanddeeplearning.com/
+kurekenov
 neural nets demystified https://www.youtube.com/watch?v=GlcnxUlrtek
-
 visualiziation of forward pass http://experiments.mostafa.io/public/ffbpann/
+scholarpedia http://www.scholarpedia.org/article/Deep_Learning#First_Deep_Learners
+MIT tech reviw https://www.technologyreview.com/s/513696/deep-learning/
