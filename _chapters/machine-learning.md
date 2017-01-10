@@ -111,7 +111,7 @@ A flat plane in 3d is analogous to a line in 2d, and is thus called \"linear.\" 
 {:.section}
 Dimension X
 
-In practive, we have many many dimensions, but it works the same.
+In practice, we have many many dimensions, but it works the same.
 
 
 {:.section}
