@@ -124,3 +124,5 @@ text_analytics_on_mpp doc2vec from newsgroups https://github.com/vatsan/text_ana
 
 Harvard NLP https://github.com/harvardnlp
 Stanford NLP
+
+https://lamyiowce.github.io/word2viz/
