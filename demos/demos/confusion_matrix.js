@@ -333,10 +333,6 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 		update_canvas();
 	});
 
-	add_control_panel_action("save", function(){
-		net.save_summary();
-	})
-
 	// mode 1: load everything from summary file
 	if (summaryFile !== undefined) {
 		loadFromSummary(datasetName, summaryFile, update_canvas);
