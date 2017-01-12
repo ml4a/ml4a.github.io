@@ -1,3 +1,6 @@
+// augmentation
+
+
 function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
 	// canvas
@@ -285,6 +288,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	};
 
 	function test_all() {
+		console.log("test "+numTest)
 		net.test(numTest, update_canvas);
 	};
 
@@ -332,14 +336,16 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 		viewTopSamples = (this.value == "View top samples");
 		update_canvas();
 	});
+	
+	add_control_panel_action("save", function() {net.save_summary();})
 
 	// mode 1: load everything from summary file
 	if (summaryFile !== undefined) {
 		loadFromSummary(datasetName, summaryFile, update_canvas);
 	}
 	// mode 2: load pretrained model and test samples on client
-	else if (snapshot !== undefined) {
-		preloadModel(datasetName, shapshot, testAll ? test_all : test_individually);
+	else if (snapshotFile !== undefined) {
+		preloadModel(datasetName, snapshotFile, testAll ? test_all : test_individually);
 	} 
 	// mode 3: create and train own model and test samples on client
 	else {

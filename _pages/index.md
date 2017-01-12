@@ -14,7 +14,7 @@ title: Machine Learning for Artists
   -->
 
 <li><p><a href="/ml4a/introduction/" title="Introduction">Introduction</a></p></li>
-<li><p><a href="/ml4a/machine-learning/" title="Machine learning">Machine learning</a></p></li>
+<li><p><a href="/ml4a/machine_learning/" title="Machine learning">Machine learning</a></p></li>
 <li><p><a href="/ml4a/neural_networks/" title="Neural networks">Neural networks</a></p></li>
 <li><p><a href="/ml4a/looking_inside_neural_nets/" title="Looking inside neural nets">Looking inside neural nets</a></p></li>
 <li><p><a href="/ml4a/how_neural_networks_are_trained/" title="How neural networks are trained">How neural networks are trained</a></p></li>

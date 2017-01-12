@@ -266,7 +266,7 @@ function demo(parent, width, height)
 	steps.push({
 		action: function() {
 			set_text_panel(parent.description_panel_div, '\
-				Now we take these and feed it into the output unit (which doesn\'t have an activation function): \
+				Now we take these and feed it into the output unit: \
 				$$ z = ('+weights[1][0][0].toFixed(1)+' \\cdot '+acts[1][0].toFixed(2)+') + ('+weights[1][1][0].toFixed(1)+' \\cdot '+acts[1][1].toFixed(2)+') + '+biases[2][0].toFixed(1)+' = '+z[2][0].toFixed(1)+' $$ \
 				$$ \\sigma('+z[2][0].toFixed(2)+') = '+acts[2][0].toFixed(2)+' $$', true);
 		},
