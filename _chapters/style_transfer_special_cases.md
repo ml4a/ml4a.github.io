@@ -52,3 +52,6 @@ justin's paper: https://arxiv.org/pdf/1603.08155v1.pdf
 Artistic style transfer for videos https://www.youtube.com/watch?v=vQk_Sfl7kSc
 
 colorization http://tinyclouds.org/colorize/
+
+
+maks/semantic segmentation https://youtu.be/XTbLOjVF-y4?t=19m19s

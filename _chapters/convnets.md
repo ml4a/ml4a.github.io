@@ -5,6 +5,10 @@ includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
 <!--header: densecap
+
+
+https://youtu.be/XTbLOjVF-y4?t=9m50s
+
 https://twitter.com/VisualGenome/status/682997407659982848 -->
 
 <!--
@@ -115,13 +119,11 @@ The process of convolving the image with a single filter is given by the followi
 
 {% include todo.html note="rebuild mouse demo, button for changing filter/weight, click on filters" %}
 
-{% include demo_insert.html width=890 height=320 path="/demos/demos/convolution.js" args="'MNIST',false" parent_div="post" %}
-
-{% include demo_insert.html width=960 height=480 path="/demos/demos/convolution_all.js" args="'MNIST',true" parent_div="post" %}
+{% include demo_insert.html path="/demos/convolution/" parent_div="post" %}
 
 In the above demo, we are showing a single convolutional layer on an MNIST digit. In this particular network at this layer, we have exactly 8 filters, and below we show each of the corresponding 8 activation maps.
 
-{% include todo.html note="figure showing all the responses" %}
+{% include demo_insert.html path="/demos/convolution_all/" parent_div="post" %}
 
 Each of the pixels of these activation maps can be thought of as a single neuron in the next layer of the network. Thus in our example, since we have 8 filters generating $25 * 25$ sized maps, we have $8 * 25 * 25 = 5000$ neurons in the next layer. The significance of each neuron is how present a small feature is in the image at a particular location.
 
@@ -147,7 +149,7 @@ Let's zoom out from what we just looked at and see the bigger picture. From this
 
 ## Improving CIFAR-10 accuracy
 
-{% include demo_insert.html width=960 height=540 path="/demos/demos/confusion_matrix.js" args="'CIFAR','/demos/datasets/cifar/cifar10_summary_2layers.json'" parent_div="post" %}
+{% include demo_insert.html path="/demos/confusion_cifar/" parent_div="post" %}
 
 
 ## Convnet architectures

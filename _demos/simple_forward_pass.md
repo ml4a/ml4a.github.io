@@ -1,9 +1,9 @@
 ---
 layout: demo
-title: "Forward pass"
+title: "Simple forward pass"
 script: "/demos/demos/simple_forward_pass.js"
-width: 720
-height: 500
+width: 710
+height: 490
 includes: "'mathjax', 'jquery', 'visualizer'"
 ---
 

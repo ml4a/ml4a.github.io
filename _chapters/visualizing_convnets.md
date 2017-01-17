@@ -41,3 +41,5 @@ aubun visualizing lenet classes http://www.auduno.com/2015/07/29/visualizing-goo
 peeking inside convnets http://www.auduno.com/2016/06/18/peeking-inside-convnets/
 
 multifaceted feature vis https://arxiv.org/pdf/1602.03616v1.pdf
+
+https://youtu.be/XTbLOjVF-y4?t=12m48s
