@@ -126,3 +126,127 @@ Harvard NLP https://github.com/harvardnlp
 Stanford NLP
 
 https://lamyiowce.github.io/word2viz/
+
+
+
+===========
+
+
+Datasets
+- Common schema for datasets
+- dowloading images from google [python] [js]
+- Freely available datasets
+- Extracting/scraping data from the web
+- Data "mungling"
+
+Feature extraction and word embeddings
+ - Bag of words
+ - tf-idf
+ - latent dirichlet, lsa
+ - word2vec, doc2vec
+
+Organizing, retrieving documents
+ - document classification
+ - clustering and visualizing documents
+ - document retrieval, similarity ranking
+ - combining with filters
+
+NLP tasks
+ - sentiment analysis
+ - named entity recognition
+ - quote attribution
+ - anomaly detection
+
+
+Speculative NLP tasks
+ - fact-checking (https://fullfact.org/blog/2016/aug/automated-factchecking/)
+
+*    - topic-modeling (tfidf, lsa, lda)
+*    - document retrieval/similarity/visualization
+*    - word2vec
+*    - sentiment analysis
+*    - skip-thoughts/doc2vec/lda2vec
+
+
+ https://www.quora.com/What-are-good-resources-tutorials-to-learn-Keras-deep-learning-library-in-Python
+ http://u.cs.biu.ac.il/~yogo/nnlp.pdf
+ http://rare-technologies.com/making-sense-of-word2vec/
+ http://lxmls.it.pt/2014/socher-lxmls.pdf
+ http://nlp.stanford.edu/courses/NAACL2013/NAACL2013-Socher-Manning-DeepLearning.pdf
+ http://nlp.stanford.edu/~socherr/SocherBengioManning-DeepLearning-ACL2012-20120707-NoMargin.pdf
+ https://github.com/jtoy/awesome-tensorflow/
+
+ db
+ http://www-nlp.stanford.edu/links/statnlp.html
+ https://datahub.io/dataset?tags=nlp
+ http://wiki.dbpedia.org/Datasets/NLP
+ extract wikipedia https://github.com/bwbaugh/wikipedia-extractor
+
+
+links
+- debiasing embeddings http://arxiv.org/pdf/1607.06520.pdf
+- https://github.com/facebookresearch/fastText
+- http://nlp.stanford.edu/projects/glove/   
+NLP topics
+- semantic hashing for fast document retrieval (use auto encoder to learn binary addresses for documents, then use it as a memory address for a hash map and look for documents in nearby memory cells — very fast
+
+ideas
+- skipgram retrieval
+
+
+syntaxNet
+https://research.googleblog.com/2016/05/announcing-syntaxnet-worlds-most.html
+
+
+Syllabus
+======
+
+dimensionality reduction
+- explanation of manifolds
+- PCA + SVD
+- eigenfaces
+
+text representations
+- tf-idf + bag-of-words
+- lsa/lda
+
+applications of text representations
+- document retrieval/similarity
+- document clustering/visualization
+- topic modeling
+
+word vectors
+
+paragraph vectors / skip-thoughts
+- nearest skip-thought retrieval
+- next skip-thought prediction
+
+NLP tasks
+- named entity recognition
+- POS tagging
+- sentiment analysis
+- translation
+- summarization
+- 
+speculative nlp tasks
+- stylometry / deanonymization
+
+etc
+- semantic hashing + fast retrieval
+- summarization TextSum
+ 
+NOTEBOOKS
+- document retrieval
+    - tf-idf
+    - lsa/lda
+- document clustering, organization, visualization
+    - unsupervised: t-SNE
+    - topic modeling
+    - classification: neural net
+- word2vec + t-SNE
+- skip-thought vectors
+
+SOFTWARE
+- gensim, sklearn
+
+https://github.com/explosion/spaCy/tree/master/examples/keras_parikh_entailment

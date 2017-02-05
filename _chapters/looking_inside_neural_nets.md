@@ -144,6 +144,9 @@ mtyka recent stylenet
 http://arxiv.org/pdf/1602.03616v1.pdf
 
 
+http://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.46965&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false
+
+
 2 layer softmax
 now we see combination of higher level parts
 

@@ -190,3 +190,46 @@ fairness in ML delip rao https://docs.google.com/presentation/d/11vNi2CxPMV_wFhf
 Chances are your Models are Racist, Sexist, or both deliprao.com/archives/129
 
 fighting cancer www.futuretimeline.net/blog/2016/04/16-2.htm#.WGKCFrYrJE7
+
+ 
+
+questions of interest to investigative journalists
+- how does content recommendation in social media influence public opinion?
+- what effect do autonomous financial micro transactions have on global economics?
+- what is the future of “predictive policing” in law enforcement?
+- how do we deal with job loss as sectors of the workforce are automated (e.g. professional drivers, factory technicians)
+- how does bias in training data affect the quality of ML systems? how do we regulate them?
+- what are the consequences (good and bad) of openness in AI research and development?
+
+emphasis on techniques for activists, journalists, citizen scientists
+
+machine learning has many implications on security, privacy, encryption. neural nets encode information so they can be used for e.g., generating encryption keys, compressing data, etc. so question is how reliable are they? can original info be recovered/decoded? can they be fooled/tampered? 
+
+machine learning can de-anonymize (e.g. infer identities from writing style) and de-ambiguate (infer unstated political affiliations, sexual orientation, etc from social media). the same exact algorithms can be used by activists to expose wrongdoing by crawling publicly-released (or leaked) masses of data which are impractical to scan through by journalists.
+
+machine learning runs micro and macroeconomics. financial policy, investment banking, credit rating, etc are all dominated by machine learning, and transactions are increasingly made without human oversight, usually in milliseconds.
+
+pre-crime type stuff (like in minority report) is real. trolley problem type ethics are more relevant to this. so if you cover silicon valley, you may ask how driverless car companies deal with these questions, how datasets are collected and labeled, what contingency plans are when they fail or implicate people falsely. 
+
+
+
+automated fact-checking
+- report https://fullfact.org/media/uploads/full_fact-the_state_of_automated_factchecking_aug_2016.pdf
+- paper http://journals.plos.org/plosone/article/asset?id=10.1371/journal.pone.0128193.PDF
+
+
+self-driving cars: https://www.technologyreview.com/s/602273/fully-autonomous-cars-are-unlikely-says-americas-top-transportation-safety-official/
+
+
+social bot interference in global politics http://firstmonday.org/ojs/index.php/fm/article/view/6161/5300
+
+Kate Crawford :: Social Media, Financial Algorithms and the Hack Crash = http://papers.ssrn.com/sol3/papers.cfm?abstract_id=2602857
+
+pound plunges 6% in 2 minutes (rogue automated algo)
+https://www.ft.com/content/dfb375be-8c23-11e6-8cb7-e7ada1d123b1
+2010 flash crash https://en.wikipedia.org/wiki/2010_Flash_Crash
+
+
+Over the last few years, machine learning technologies have trickled out of research labs and into our daily lives. They are widely used in internet and social media applications like content filtering and recommendation, investment and finance, scientific research, and increasingly in unexpected places, such as law enforcement via so-called predictive policing. Many jobs done by humans are increasingly being automated as well; as these machines continue to claim more responsibilities from us, their influence on our lives will continue to grow indefinitely, pushing us to investigate and educate ourselves about how they work, so we can make informed decisions about how to integrate them into society.
+
+

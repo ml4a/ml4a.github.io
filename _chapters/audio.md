@@ -42,3 +42,14 @@ http://blog.fastforwardlabs.com/post/145708386938/machine-listening-interview-wi
 million song db
 
 audiofingerprint t-SNe https://github.com/kylemcdonald/AudioNotebooks/blob/master/Fingerprints%20to%20t-SNE.ipynb
+
+sampleRNN
+https://openreview.net/forum?id=SkxKPDv5xl
+https://github.com/soroushmehr/sampleRNN_ICLR2017
+https://soundcloud.com/samplernn/sets
+
+
+- header image = deep-texture musical notes
+- midi + LSTM 
+- GRUV + wavenets
+- MIR

@@ -255,6 +255,11 @@ Reinforcement learning
  - https://openai.com/blog/openai-gym-beta/
 
 
+https://www.quantamagazine.org/20160329-why-alphago-is-really-such-a-big-deal/
+
+
+Poker playing
+ - https://www.reddit.com/r/IAmA/comments/5qi3i9/we_are_professional_poker_players_currently/
 
 http://www.nervanasys.com/demystifying-deep-reinforcement-learning/
 

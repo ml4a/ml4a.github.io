@@ -70,3 +70,13 @@ Fast Scene Understanding with Generative Models https://www.youtube.com/watch?v=
 hardmaru images from latent vectors (GAN + VAE) blog.otoro.net/2016/04/01/generating-large-images-from-latent-vectors/
 
 autoencoders book chapter http://ufldl.stanford.edu/tutorial/unsupervised/Autoencoders/
+
+gen models -
+describe probability distributions and data manifolds
+2d line manifold, or plane in 3d, then go to eigenfaces
+neural net modeling prob distribution
+very sparse
+
+we sometimes use the word astronomical to describe very large quantities. but no nimberassociated with astronmy, like the number of atoms in the universe, even begins to approach ___
+
+GAN papers https://github.com/zhangqianhui/AdversarialNetsPapers
