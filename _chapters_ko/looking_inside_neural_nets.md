@@ -132,24 +132,3 @@ As we saw, hidden layers can improve accuracy, but only to a limited extent. Add
 ## Further reading
 
 {% include todo.html note="summary / further reading" %}
-
-<!--
-
-https://cs231n.github.io/understanding-cnn/
-http://cs.nyu.edu/~fergus/drafts/utexas2.pdf
-http://arxiv.org/pdf/1312.6034v2.pdf
-http://www.matthewzeiler.com/pubs/cvpr2010/cvpr2010.pdf
-deepvis
-mtyka recent stylenet
-http://arxiv.org/pdf/1602.03616v1.pdf
-
-
-2 layer softmax
-now we see combination of higher level parts
-
-deepvis, looks for text even though we didnt ask it
-
-
-Tinker With a Neural Network Right Here in Your Browser. (viegas, wattenberg)
-http://playground.tensorflow.org/#activation=tanh&batchSize=10&dataset=circle&regDataset=reg-plane&learningRate=0.03&regularizationRate=0&noise=0&networkShape=4,2&seed=0.62418&showTestData=false&discretize=false&percTrainData=50&x=true&y=true&xTimesY=false&xSquared=false&ySquared=false&cosX=false&sinX=false&cosY=false&sinY=false&collectStats=false&problem=classification&initZero=false&hideText=false
--->

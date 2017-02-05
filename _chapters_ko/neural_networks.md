@@ -159,9 +159,3 @@ After the neural network has been trained -- something we'll talk about in more 
 
 # Further reading
 
-nielsen http://neuralnetworksanddeeplearning.com/
-kurekenov
-neural nets demystified https://www.youtube.com/watch?v=GlcnxUlrtek
-visualiziation of forward pass http://experiments.mostafa.io/public/ffbpann/
-scholarpedia http://www.scholarpedia.org/article/Deep_Learning#First_Deep_Learners
-MIT tech reviw https://www.technologyreview.com/s/513696/deep-learning/
