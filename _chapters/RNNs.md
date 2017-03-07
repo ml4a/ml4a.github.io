@@ -101,3 +101,6 @@ deep dive into RNN nikhilbuduma.com/2015/01/11/a-deep-dive-into-recurrent-neural
 generative choreography http://peltarion.com/creative-ai
 
 RNN + super mario https://medium.com/@ageitgey/machine-learning-is-fun-part-2-a26a10b68df3#.j4sxifd25
+
+next gen text
+https://twitter.com/robinsloan/status/832710183432237056

@@ -48,6 +48,10 @@ https://openreview.net/forum?id=SkxKPDv5xl
 https://github.com/soroushmehr/sampleRNN_ICLR2017
 https://soundcloud.com/samplernn/sets
 
+char2wav
+http://josesotelo.com/speechsynthesis/
+https://github.com/sotelo/parrot
+
 
 - header image = deep-texture musical notes
 - midi + LSTM 

@@ -250,3 +250,7 @@ SOFTWARE
 - gensim, sklearn
 
 https://github.com/explosion/spaCy/tree/master/examples/keras_parikh_entailment
+
+sebastian ruder blog: http://sebastianruder.com/word-embeddings-softmax/index.html#hierarchicalsoftmax
+
+https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md

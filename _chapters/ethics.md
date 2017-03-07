@@ -233,3 +233,7 @@ https://www.ft.com/content/dfb375be-8c23-11e6-8cb7-e7ada1d123b1
 Over the last few years, machine learning technologies have trickled out of research labs and into our daily lives. They are widely used in internet and social media applications like content filtering and recommendation, investment and finance, scientific research, and increasingly in unexpected places, such as law enforcement via so-called predictive policing. Many jobs done by humans are increasingly being automated as well; as these machines continue to claim more responsibilities from us, their influence on our lives will continue to grow indefinitely, pushing us to investigate and educate ourselves about how they work, so we can make informed decisions about how to integrate them into society.
 
 
+deblurring faces
+https://arxiv.org/pdf/1702.00783.pdf
+https://arstechnica.com/information-technology/2017/02/google-brain-super-resolution-zoom-enhance/
+http://gigazine.net/news/20170208-pixel-recursive-super-resolution/

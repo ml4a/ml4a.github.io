@@ -40,7 +40,7 @@ header_quote: "lovelace"
 Iterations
  - https://www.flickr.com/photos/graphific/sets/72157657250972188
  - https://github.com/Quasimondo/deepdream/blob/master/DeepDream%20-%20augmented%20version%20by%20Mario%20Klingemann.ipynb
-
+ - https://www.flickr.com/photos/kylemcdonald/19398261955/in/photolist-uzecWk-vHg1Tg-vccvpa-uwNFpP-vc4VUE-uwCZTU-vHg8gM-veuBi9-vxukzi-vyaask-vxQeh8-vHfZSt-uzefjM-veuN19-uKT92b-vEzRYY-uL2MhX-vGiMvL-uz4wTQ-vGTx5M-vEzPiN-uL2GVF-vGTA1M-vx8fvB-vGTuoK-uwNEAe-vccuMt-vtDCKF-vc4USQ-vrkPZ3-vc569u-uwCZPq-vu13UP-uwCZKh-uwNEVT-uwD1u3-vu135n-uwNE4T-uwNE8a-uwNEdv-vmxFeB
 
 
 tensorflow deepdream https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/tutorials/deepdream

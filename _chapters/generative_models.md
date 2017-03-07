@@ -45,7 +45,7 @@ unreasonable confusion of VAEs https://jaan.io/unreasonable-confusion/
 
 text to image https://github.com/paarthneekhara/text-to-image
 
-GANS explained http://kvfrans.com/generative-adversial-networks-explained/?utm_content=buffere4050&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+GANS explained http://kvfrans.com/generative-adversial-networks-explained/
 
 deep image completion http://bamos.github.io/2016/08/09/deep-completion/
 seeing beyond edges of image http://liipetti.net/erratic/2016/12/11/seeing-beoynd-the-edges-of-the-image/
@@ -80,3 +80,8 @@ very sparse
 we sometimes use the word astronomical to describe very large quantities. but no nimberassociated with astronmy, like the number of atoms in the universe, even begins to approach ___
 
 GAN papers https://github.com/zhangqianhui/AdversarialNetsPapers
+
+http://www.creativeai.net/posts/SFq7mQorZrw4cg6ij/artgan-artwork-synthesis-with-conditional-categorial-gans
+
+
+https://medium.com/@devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f#.okeu6cwzn
