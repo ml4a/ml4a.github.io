@@ -1,10 +1,11 @@
 ---
 layout: chapter
 title: "How neural networks are trained"
+includes: []
 header_image: "/images/headers/topographic_map.jpg"
 header_quote: "lovelace"
 ---
-
+<!--
 [http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf]
 
 http://www.summitpost.org/ruth-creek-topographic-map/771858
@@ -24,79 +25,126 @@ overview of grad descent algorithms: http://sebastianruder.com/optimizing-gradie
    - why sigmoid functions fell out of favor (vanishing grads)
 
 
------------
+intro + mountain
+why finding weights hard
+ - hypercubes and sampling
+ - curse of dimensionality + egg shell
+gradient descent by backprop
+ - simple example (bowl)
+loss functions
+ - MSE / quadratic cost (sum (y-a)^2)
+cross-validation
+regularization
+ - L2
+ - dropout
 
-http://cs231n.github.io/neural-networks-3/ 
-alecrad 2 images
+-->
 
-Mountains + backprop (analogy, picture, quotes)
-[ mountains at night, or topographic map ]
 
-Imagine you are a mountain climber on top of a mountain, and night has fallen. You need to get to your base camp at the bottom of the mountain, but in the darkness with your dinky flashlight, you can\'t see more than a few feet of the ground in front of you. So how do you get down? One strategy is to look in every direction to see which way the ground steeps downward the most, and then step forward slightly in that direction. Repeat this process many times, and you will gradually go further and further downhill. You may sometimes get stuck in a small trough or valley, in which case you can back up a bit, or perhaps keep going in the same direction for a bit longer to get out of it, but in general, this strategy will slowly get you to the bottom of the mountain eventually.
+Imagine you are a mountain climber on top of a mountain, and night has fallen. You need to get to your base camp at the bottom of the mountain, but in the darkness with your dinky flashlight, you can't see more than a few feet of the ground in front of you. So how do you get down? One strategy is to look in every direction to see which way the ground steeps downward the most, and then step forward in that direction. Repeat this process many times, and you will gradually go farther and farther downhill. You may sometimes get stuck in a small trough or valley, in which case you can back up a bit, or perhaps keep going in the same direction for a bit longer to get out of it, but in general, this strategy will slowly get you to the bottom of the mountain eventually.
 
 This scenario may seem disconnected from neural networks, but it turns out to be a good analogy for the way they are trained. So good in fact, that one of the actual methods used, _gradient descent_, sounds much like what we just described. 
 
-Recall that _training_ refers to determining the best set of weights for the network to get the most accuracy out of it. In the previous chapters, we glossed over this process, preferring to look at it as \"magic\" and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
+Recall that _training_ refers to determining the best set of weights for the network to get the most accuracy out of it. In the previous chapters, we glossed over this process, preferring to look at it as "magic" and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
 
-Much of what\'s interesting about neural networks can be understood without knowing precisely how training works. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
+Much of what's interesting about neural networks can be understood without knowing precisely how training works. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
 We'll get to gradient descent in a few sections, but first, let's understand why choosing weights is hard to begin with. 
 
-[ hypercube ]
+# Why training is hard
 
-# A needle in a hyper-dimensional haystack
+{% include todo.html note="hypercube/hypersphere" %}
 
-The weights of a neural network with hidden layers are highly interdependent. If we tweak a single weight, it will impact not only the neuron it propagates to directly, but also all the neurons in the next layer as well, and thus affect all the outputs. 
+## A needle in a hyper-dimensional haystack
 
-revision to above
---
-Consider the connection highlighted in red seen in the following neural network with two hidden layers. So if we wish to make a small change to that weight to correct for some error found in one output neuron, we must consider how it will impact all the other neurons as well. We may wish to compensate for any unwanted changes by tweaking all those other weights as well. But for the same reason, doing so will change the network's behavior even more. Thus we see that weights are highly interdependent and changing them cannot be done in isolation.
---
+The weights of a neural network with hidden layers are highly interdependent. To see why, consider the highlighted connection in the first layer of the two layer network below. If we tweak the weight on that connection slightly, it will impact not only the neuron it propagates to directly, but also _all_ of the neurons in the next layer as well, and thus affect all the outputs. 
 
-[ highlight in red the pathways of a single weight change]. 
+{% include todo.html note="figure with connection tweak" %}
 
-So we know we can\'t solve the weights one at a time; we have to search the entire space of possible weight combinations simultaneously. How do we do this?
+For this reason, we know we can't obtain the best set of weights one at a time; we will have to search the entire space of possible weight combinations simultaneously. How do we do this?
 
-We\'ll start with the simplest, most naive approach to picking them: random guesses. We set all the weights in our network to some random value, and evaluate its error. Repeat this many times, keeping track of the results, and then keep the set of weights that gave us the lowest error. After all, computers are fast; maybe we can get a decent solution by brute force. For a network with just a few dozen neurons, this would work fine. We can try millions of guesses quickly and should get a decent candidate from them. But in most real-world applications we have a lot more weights than that. Consider our handwriting example from [the previous chapter](__). There are around 12,000 weights in it. The best combination of weights among that many is now a needle in a haystack, except that haystack has 12,000 dimensions! 
+We'll start with the simplest, most naive approach to picking them: random guesses. We set all the weights in our network to random values, and evaluate its accuracy on some dataset. Repeat this many times, keeping track of the results, and then keep the set of weights that gave us the most accurate results. This seems to make some intuitive sense. After all, computers are fast; maybe we can get a decent solution by brute force. For a network with just a few dozen neurons, this would work fine. We can try millions of guesses quickly and should get a decent candidate from them. But in most real-world applications we have a lot more weights than that. Consider our handwriting example from [the previous chapter](ml4a/neural_networks/). There are around 12,000 weights in it. The best combination of weights among that many is now a needle in a haystack, except that haystack has 12,000 dimensions! 
 
-You might be thinking that 12,000-dimensional haystack is only 4,000 times bigger than the more familiar 3-dimensional haystack, so it ought to take _only_ 4,000 times as much time to stumble upon the best weights. But in reality the proportion is immeasurably(?) greater than that, and we\'ll see why in the next section. 
+You might be thinking that 12,000-dimensional haystack is "only 4,000 times bigger" than the more familiar 3-dimensional haystack, so it ought to take _only_ 4,000 times as much time to stumble upon the best weights. But in reality the proportion is incomprehensibly greater than that, and we'll see why in the next section. 
 
-# n-dimensional space is a lonely place
+## n-dimensional space is a lonely place
 
-How many examples in a training set do we need to expect a reasonably good accuracy in a classifier or regressor? Let\'s use an example.
+If our strategy is brute force random search, we may ask how many guesses will we have to take to obtain a reasonably good set of weights. Intuitively, we should expect that we need to take enough guesses to sample the whole space of possible guesses densely; with no prior knowledge, the correct weights could be hiding anywhere, so it makes sense to try to sample the space as much as possible.
 
+To keep things simple, let's consider two very small 1-layer neural networks, the first one with 2 neurons, and the second one with 3 neurons. We are also ignoring the bias for the moment.
 
-** replace pollster with just searching w-space. more connected.
-** maybe curse of dimensionality moved into machine learning section
+{% include todo.html note="2 and 3 neuron networks" %}
 
-Suppose you are a pollster and you are interviewing voters so you can better understand the political leanings of different demographics. At first, you are just collecting their age and income. To get a good cross section, you need to interview young and old, poor and rich alike, and each combination thereof. Add another axis, like education (e.g. how many years schooling), and your combinatorial space grows larger.
+In the first network, there are 2 weights to find. How many guesses should we take to be confident that one of them will lead to a good fit? One way to approach this question is to imagine the 2-dimensional space of possible weight combinations and exhaustively search through every combination to some level of granularity. Perhaps we can take each axis and divide it into 10 segments. Then our guesses would be every combination of the two; 100 in all. The figure below illustates this.
 
-Let\'s divide each of these axes into 10 discrete bins. To get a representative dataset, we\'d like to sample from every combination of bins. With just age and income, that means we need to find 100 people. Adding the education axis, our requirement has ballooned up to 1000 samples.
+{% include todo.html note="figure: sampling to 10 bins, 100 possible guesses" %}
 
-[ 2d bin sample] [ 3d bin sample ]
+Not so bad. Sampling at such density covers most of the space pretty well. If we divide the axes into 100 segments instead of 10, then we have to make 100*100=10,000 guesses, and cover the space very densely. 10,000 guesses is still pretty small; any computer will get through that in less than a second. 
 
-In general, if we want to sample to this level of precision, then we need $$10^N$$ samples for an $$N$$-dimensional dataset. In practice, we usually can\'t afford such precise requirements, but the gist of it is still true. In order to represent the data well, we need to sample the space densely, or else we won't have enough information to model it accurately in sparser regions.
+How about the second network? Here we have three weights instead of two, and therefore a 3-dimensional space to search through. If we want to sample this space to the same level of granularity that we sampled our 2d network, we again divide each axis into 10 segments. Now we have 10 * 10 * 10 = 1,000 guesses to make. This is depicted in the below figure. 
 
-In machine learning, we call this principle _the curse of dimensionality_. Simply put, adding more columns to your dataset blows up the number of data samples we require to get good generalization for any model learned from it.
+{% include todo.html note="figure: sampling to 10 bins, 1000 possible guesses" %}
 
+1000 guesses is a piece of cake, we might say. At a granularity of 100 segments, we would have 100 * 100 * 100 = 1,000,000 guesses. 1,000,000 guesses is still no problem, but now perhaps we are getting nervous. What happens when we scale up this approach to more realistic sized networks? We can see that the number of possible guesses blows up exponentially with respect to the number of weights we have. In general, if we want to sample to a granularity of 10 segments per axis, then we need $$10^N$$ samples for an $$N$$-dimensional dataset. 
 
+So what happens when we try to use this approach to train our network for classifying MNIST digits from the [first chapter](/ml4a/neural_networks/)? Recall that network has 784 input neurons, 15 neurons in 1 hidden layer, and 10 neurons in the output layer. Thus, there are 784*15 + 15*10 = 11,910 weights. Add 25 biases to the mix, and we have to simultaneously guess through 11,935 dimensions of parameters. That means we'd have to take $$10^11935$$ guesses... That's a 1 with almost 12,000 zeros after it! That is an unimaginably large number; to put it in perspective, there are only $$10^80$$ atoms in the entire universe. No supercomputer can ever hope to perform that many calculations. In fact, if we took all of the computers existing in the world today, and left them running until the Earth crashed into the sun, we still wouldn't even come close! And just consider that modern deep neural networks frequently have tens or hundreds of millions of weights.
+
+##  The curse of dimensionality
+
+This principle is closely related to what we call in machine learning [_the curse of dimensionality_](https://en.wikipedia.org/wiki/Curse_of_dimensionality). Every dimension we add into a search space exponentially blows up the number of samples we require to get good generalization for any model learned from it. The curse of dimensionality is more often applied to datasets; simply put, the more columns or variables a dataset is represented with, the exponentially more samples from that dataset we need to understand it. In our case, we are thinking about the weights rather than the inputs, but the principle remains the same; high-dimensional space is enormous!
+
+{% include todo.html note="more on COD" %}
+
+The gist of this exercise is that in order to represent the data well, we need to sample the space densely, or else we won't have enough information to model it accurately in its sparsest regions.
 
 A vivid illustration of this is put forth by __. Sphere, egg, thin shell. !
 
 In other words, 99.999% of the \"volume\" in hyper-sphere of 100 dimensions is enclosed in the tiny outer shell of it. Imagine if that were true of eggshells in eggs. 
 
 
+Obviously there needs to be some more elegant solution to this problem than random guesses, and indeed there are a number of them. Today, neural networks are generally trained using backpropagation / grad descent.
+
+
+<!--
+Suppose you are a pollster and you are interviewing voters so you can better understand the political leanings of different demographics. At first, you are just collecting their age and income. To get a good cross section, you need to interview young and old, poor and rich alike, and each combination thereof. Add another axis, like education (e.g. how many years schooling), and your combinatorial space grows larger.
+
+Let's divide each of these axes into 10 discrete bins. To get a representative dataset, we'd like to sample from every combination of bins. With just age and income (2d), that means we need to find 100 people. Adding the education axis, our requirement has ballooned up to 1000 samples.
+-->
+
+{% include todo.html note="roatate and label axes" %}
+{% include figure.html path="/images/figures/sampling.png" caption="Left: a 2d square sampled to 10% density requires 10² = 100 points.<br/>Right: a 3d cube sampled to 10% density requires 10³ = 1000 points." %}
+
+
+
+
+
+
+
 But the problem is scale; let's say we restrict our weights to be between 0 and 1 and sample them at intervals of 0.1, giving us 10 possible values each weight can take on. That means even in our basic network above, there are 10^86 possible weight combinations to try. That's a trillion times more than there are atoms in the universe! Now consider how many combinations there are to try in deep neural networks with hundreds of thousands or millions of weights...
 
-the curse of dimensionality
 
-Obviously there needs to be some more elegant solution to this problem. And the best one we've found so far is backpropagation.
+# Gradient Descent
+
+The problem we posed above of finding parameters to satisfy some objective function is not specific to neural networks. Indeed it is a very general problem found in mathematical optimization, and the problem has been known to us for centuries. Today, most problems in multivariable function optimization rely on an algorithm called _gradient descent_ to find a solution much faster than taking random guesses. 
+
+In this section we are going to introduce
+
+Gradient descent is an algori.  
+
+
+
+
+
 
 # Backpropagation
 
-Backpropagation stands for \"backward propagation of errors,\" or backprop for short, and it is the way we train neural networks, i.e. how we determine the weights. Although backprop does not guarantee finding the optimal solution, it is generally effective at converging to a good solution in a reasonable amount of time. 
+So now we know we can use gradient descent to solve neural networks. Simple put,  we calculate the gradient of the loss function with respect to the parameters, then do a small weight update in the direction of the gradient. But now we have another problem: how should we calculate the gradient? If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
 
-The way backpropagation works is that you initialize the network with some set of weights, then you repeat the following sequence until you are satisfied with the network\'s performance: 
+So what is backpropagation? Backpropagation, or backprop for short, is short for "backward propagation of errors" 
+
+, and it is the way we train neural networks, i.e. how we determine the weights. Although backprop does not guarantee finding the optimal solution, it is generally effective at converging to a good solution in a reasonable amount of time. 
+
+The way backpropagation works is that you initialize the network with some set of weights, then you repeat the following sequence until you are satisfied with the network's performance: 
 
 1) Take a batch of your data, run it through your network and calculate the error, that is the difference between what the network outputs and what we _want_ it to output, which is the correct values we have in our test set.
 
@@ -118,7 +166,7 @@ If we change the weights very slightly, we should observe the L2-loss will chang
 
 # Descending the mountain
 
-Let\'s reconnect what we have right now back to our analogy with the mountain climber. Suppose we have a simple network with just two weights. We can think of the the climber\'s position on the mountain, i.e. the latitude and longitude, as our two weights. And the elevation at that point is our network\'s loss with those two weight values. We can reduce the loss by a bit by adjusting our position slightly, in each of the two cardinal directions. Which way should we go?
+Let's reconnect what we have right now back to our analogy with the mountain climber. Suppose we have a simple network with just two weights. We can think of the the climber's position on the mountain, i.e. the latitude and longitude, as our two weights. And the elevation at that point is our network's loss with those two weight values. We can reduce the loss by a bit by adjusting our position slightly, in each of the two cardinal directions. Which way should we go?
 
 Recall the following property of a line in 2d: [2d line, m * dx = dy]. In 3d, it is also true that m1 * dx + m2 * dy = dz. 
 
@@ -130,7 +178,7 @@ other SGD explanations
 3) harder explanation (on youtube, i have the link somewhere...)
 4) Simplest (videos which explain backprop)
 
-//Once we have observed our loss, we calculate what\'s called the _gradient_ of our network. The gradient i
+//Once we have observed our loss, we calculate what's called the _gradient_ of our network. The gradient i
 
 
 # AlecRad's gradient descent methods
@@ -144,10 +192,13 @@ different gradient descent methods
  - rmsprop
 
 
+{% include figure.html path="/images/figures/opt2.gif" caption="Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
+
+
 
 # Setting up a training procedure
 
-Backpropagation, as we\'ve described it, is the core of how neural nets are trained. From here, a few minor refinements are added to make a proper training procedure. The first is to separate our data into a training set and a test set. 
+Backpropagation, as we've described it, is the core of how neural nets are trained. From here, a few minor refinements are added to make a proper training procedure. The first is to separate our data into a training set and a test set. 
 
 Then cross validation GIF (taking combos of 5 -> train on 1)
 
@@ -237,7 +288,7 @@ split into a test set. The reason why is that if we evaluate our ML algorithm's 
 
 Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyper-parameters. Hyper-parameters (personally I think they should have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
 
-These have to be set before we begin training, but it\'s not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyper-parameters which worked the best.
+These have to be set before we begin training, but it's not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyper-parameters which worked the best.
 
 But this is dangerous because we risk setting the hyper-parameters to be the values which optimize _that particular_ test set, rather than an arbitrary or unknown one.
 
@@ -279,3 +330,8 @@ Karpathy Neural nets for hackers http://karpathy.github.io/neuralnets/
 
 backprop step by step example https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
 step by step 2 http://experiments.mostafa.io/public/ffbpann/
+
+https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimensionality.pdfs
+
+http://cs231n.github.io/neural-networks-3/ 
+alecrad 2 images
