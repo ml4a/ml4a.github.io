@@ -237,3 +237,15 @@ deblurring faces
 https://arxiv.org/pdf/1702.00783.pdf
 https://arstechnica.com/information-technology/2017/02/google-brain-super-resolution-zoom-enhance/
 http://gigazine.net/news/20170208-pixel-recursive-super-resolution/
+
+Using Deep Learning and Google Street View to Estimate the Demographic Makeup of the US
+https://arxiv.org/abs/1702.06683
+
+https://arxiv.org/abs/1602.02697
+
+https://twitter.com/hen_drik/status/841643896899850240
+
+https://intelligence.org/files/PredictingAI.pdf
+http://www.openphilanthropy.org/focus/global-catastrophic-risks/potential-risks-advanced-artificial-intelligence/ai-timelines
+
+https://iamtrask.github.io/2017/03/17/safe-ai/

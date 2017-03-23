@@ -104,3 +104,5 @@ RNN + super mario https://medium.com/@ageitgey/machine-learning-is-fun-part-2-a2
 
 next gen text
 https://twitter.com/robinsloan/status/832710183432237056
+
+https://metamind.io/research/learning-when-to-skim-and-when-to-read

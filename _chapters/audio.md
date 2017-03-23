@@ -57,3 +57,5 @@ https://github.com/sotelo/parrot
 - midi + LSTM 
 - GRUV + wavenets
 - MIR
+
+google youtube dataset https://research.google.com/audioset/

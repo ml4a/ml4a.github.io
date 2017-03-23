@@ -276,3 +276,5 @@ http://www.theverge.com/2016/3/10/11192774/demis-hassabis-interview-alphago-goog
 john schulman https://www.youtube.com/watch?v=oPGVsoBonLM
 
 agent cooperation https://deepmind.com/blog/understanding-agent-cooperation/
+
+nakamura vs rybka https://www.chess.com/article/view/computers-in-chess-good-or-evil-part-two
