@@ -1,7 +1,7 @@
 ---
 layout: chapter
 title: "How neural networks are trained"
-includes: []
+includes: [mathjax]
 header_image: "/images/headers/topographic_map.jpg"
 header_quote: "lovelace"
 ---
@@ -115,30 +115,110 @@ Let's divide each of these axes into 10 discrete bins. To get a representative d
 {% include figure.html path="/images/figures/sampling.png" caption="Left: a 2d square sampled to 10% density requires 10² = 100 points.<br/>Right: a 3d cube sampled to 10% density requires 10³ = 1000 points." %}
 
 
-
-
-
-
-
 But the problem is scale; let's say we restrict our weights to be between 0 and 1 and sample them at intervals of 0.1, giving us 10 possible values each weight can take on. That means even in our basic network above, there are 10^86 possible weight combinations to try. That's a trillion times more than there are atoms in the universe! Now consider how many combinations there are to try in deep neural networks with hundreds of thousands or millions of weights...
 
 
 # Gradient Descent
 
-The problem we posed above of finding parameters to satisfy some objective function is not specific to neural networks. Indeed it is a very general problem found in mathematical optimization, and the problem has been known to us for centuries. Today, most problems in multivariable function optimization rely on an algorithm called _gradient descent_ to find a solution much faster than taking random guesses. 
+The problem we posed above of finding parameters to satisfy some objective function is not specific to machine learning. Indeed it is a very general problem found in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), and the problem has been known to us for a long time. Today, many problems in multivariable function optimization -- including training neural networks -- generally rely on a very effective algorithm called _gradient descent_ to find a good solution much faster than taking random guesses. 
 
-In this section we are going to introduce
+To introduce the concept of gradient descent, we will again forget about neural networks for a minute, and start instead with a smaller problem: solving a linear regression. 
 
-Gradient descent is an algori.  
+Suppose we are given a set of 7 points, in the chart on the left. To the right of the chart is a scatterplot of our points.
+
+{::nomarkdown}
+<div style="text-align:center;">
+	<div style="display:inline-block; vertical-align:middle; margin-right:100px;">
+		<table width="200" style="border: 1px solid black;">
+		  	<tbody>
+				<tr>
+					<td><script type="math/tex">x</script></td>
+					<td><script type="math/tex">y</script></td>
+				</tr>
+				<tr><td>2.4</td><td>1.7</td></tr>
+				<tr><td>2.8</td><td>1.85</td></tr>
+				<tr><td>3.2</td><td>1.79</td></tr>
+				<tr><td>3.6</td><td>1.95</td></tr>
+				<tr><td>4.0</td><td>2.1</td></tr>
+				<tr><td>4.2</td><td>2.0</td></tr>
+				<tr><td>5.0</td><td>2.7</td></tr>
+			</tbody>
+		</table>
+	</div>
+	<div style="display:inline-block; vertical-align:middle;">
+		<img src="/images/figures/lin_reg_scatter.png">
+	</div>
+</div>
+{:/nomarkdown}
+
+The goal of linear regression is to find a line which best fits these points. Recall that the general equation for a line is $$ f(x) = m \cdot x + b $$, where $$m$$ is the slope of the line, and $$b$$ is the y-intercept of the line. Thus, solving a linear regression is determining the best values for $$m$$ and $$b$$, such that $$f(x)$$ gets as close to $$y$$ as possible. Let's try a few random ones.
+
+{%include todo.html note="change y to f(x) for clarity" %}
+
+{% include figure.html path="/images/figures/lin_reg_randomtries.png" caption="" %}
+
+Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a _cost function_.
+
+### Cost function
+
+The cost is a measure of the amount of error our linear regression makes on a dataset. Although many cost functions have been proposed, all of them essentially penalize us on distance between the predicted value of a given $$x$$ and its actual value. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
+
+{% include figure.html path="/images/figures/lin_reg_error.png" caption="" %}
+
+One very common cost function is called _mean squared error_ (MSE), which is given by:
+
+$$ MSE = \frac{1}{2n} \sum_i{(y_i - f(x_i))^2} $$
+
+$$ MSE = \frac{1}{2n} \sum_i{(y_i - (mx_i + b))^2} $$
+
+This is simply taking all the error bars we found above, squaring their lengths, and calculating their average. Actually, we take half the average (notice the $$ \frac{1}{2n} $$ multiplier), but this is simply done for convenience for when we have to take its derivative.
+
+We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 1, the second.... Not surprisingly, the third function has the lowest. 
+
+We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some range and graph it. 
 
 
+{% include figure.html path="/images/figures/lin_reg_mse.png" caption="" %}
+
+The graph above plots the cost as . It looks like a sort of elongated bowl. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar bowl shape. Since we are trying to minimize the cost, we can see that our goal is to figure out where the lowest point in the bowl lies.
+
+we want to get to bottom. but we don't actually know where it is
+
+try something random:
+
+calculate gradient
+
+go down a bit, lather rinse repeat
+
+more complex cost plot
+[ andrew ng's image ]
+
+## Complicating things a bit
+
+### Neural networks are not linear
+
+The linear regression we performed above gives 
+
+In fact, there are methods for quickly computing the minimum analytically or numerically without doing gradient descent. But because of activation functions, neural nets are not linear, and their loss functions are not convex. 
+
+[ bumpy image ]
+
+### Local minima
+
+
+### Stochastic gradient descent
+
+Mini-batches
 
 
 
 
 # Backpropagation
 
-So now we know we can use gradient descent to solve neural networks. Simple put,  we calculate the gradient of the loss function with respect to the parameters, then do a small weight update in the direction of the gradient. But now we have another problem: how should we calculate the gradient? If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
+So now we know we can use gradient descent to solve for the weights of neural networks. Simply put, we calculate the gradient of the loss function with respect to the parameters, then do a small weight update in the direction of the gradient. But now we have another problem: how should we actually calculate the gradient? Naively, we can do it numerically using the 
+
+
+ If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
 
 So what is backpropagation? Backpropagation, or backprop for short, is short for "backward propagation of errors" 
 
@@ -286,7 +366,7 @@ split into a test set. The reason why is that if we evaluate our ML algorithm's 
 
 2) Training + validation + test set
 
-Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyper-parameters. Hyper-parameters (personally I think they should have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
+Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyper-parameters. Hyper-parameters (personally I think they shoul gd have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
 
 These have to be set before we begin training, but it's not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyper-parameters which worked the best.
 
@@ -335,3 +415,15 @@ https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimension
 
 http://cs231n.github.io/neural-networks-3/ 
 alecrad 2 images
+
+LBGFS, Adam
+
+Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
+
+
+implementation of gradient descent for linear regression: https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
+
+
+Image [16] : http://cs229.stanford.edu/notes/cs229-notes1.pdf
+
+nice implementation: https://crsmithdev.com/blog/ml-linear-regression/
