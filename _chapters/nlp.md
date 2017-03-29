@@ -252,5 +252,11 @@ SOFTWARE
 https://github.com/explosion/spaCy/tree/master/examples/keras_parikh_entailment
 
 sebastian ruder blog: http://sebastianruder.com/word-embeddings-softmax/index.html#hierarchicalsoftmax
+http://sebastianruder.com/word-embeddings-1/index.html
++ others
 
 https://github.com/facebookresearch/fastText/blob/master/pretrained-vectors.md
+
+
+https://nlp.stanford.edu/projects/histwords/
+https://github.com/williamleif/histwords

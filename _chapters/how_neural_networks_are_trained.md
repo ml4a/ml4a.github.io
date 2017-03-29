@@ -122,9 +122,11 @@ But the problem is scale; let's say we restrict our weights to be between 0 and 
 
 The problem we posed above of finding parameters to satisfy some objective function is not specific to machine learning. Indeed it is a very general problem found in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), and the problem has been known to us for a long time. Today, many problems in multivariable function optimization -- including training neural networks -- generally rely on a very effective algorithm called _gradient descent_ to find a good solution much faster than taking random guesses. 
 
-To introduce the concept of gradient descent, we will again forget about neural networks for a minute, and start instead with a smaller problem: solving a linear regression. 
+To introduce the concept of gradient descent, we will again forget about neural networks for a minute, and start instead with a smaller problem, which we will scale up gradually.
 
-Suppose we are given a set of 7 points, in the chart on the left. To the right of the chart is a scatterplot of our points.
+### A more simple example first: linear regression
+
+Suppose we are given a set of 7 points, those in the chart to the bottom left. To the right of the chart is a scatterplot of our points.
 
 {::nomarkdown}
 <div style="text-align:center;">
@@ -151,17 +153,17 @@ Suppose we are given a set of 7 points, in the chart on the left. To the right o
 </div>
 {:/nomarkdown}
 
-The goal of linear regression is to find a line which best fits these points. Recall that the general equation for a line is $$ f(x) = m \cdot x + b $$, where $$m$$ is the slope of the line, and $$b$$ is the y-intercept of the line. Thus, solving a linear regression is determining the best values for $$m$$ and $$b$$, such that $$f(x)$$ gets as close to $$y$$ as possible. Let's try a few random ones.
+The goal of linear regression is to find a line which best fits these points. Recall that the general equation for a line is $$ f(x) = m \cdot x + b $$, where $$m$$ is the slope of the line, and $$b$$ is its y-intercept. Thus, solving a linear regression is determining the best values for $$m$$ and $$b$$, such that $$f(x)$$ gets as close to $$y$$ as possible. Let's try out a few random candidates.
 
 {%include todo.html note="change y to f(x) for clarity" %}
 
-{% include figure.html path="/images/figures/lin_reg_randomtries.png" caption="" %}
+{% include figure.html path="/images/figures/lin_reg_randomtries.png" caption="Three randomly-chosen line candidates" %}
 
 Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a _cost function_.
 
 ### Cost function
 
-The cost is a measure of the amount of error our linear regression makes on a dataset. Although many cost functions have been proposed, all of them essentially penalize us on distance between the predicted value of a given $$x$$ and its actual value. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
+The cost is a measure of the amount of error our linear regression makes on a dataset. Although many cost functions have been proposed, all of them essentially penalize us on distance between the predicted value of a given $$x$$ and its actual value in our dataset. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
 
 {% include figure.html path="/images/figures/lin_reg_error.png" caption="" %}
 
@@ -171,27 +173,34 @@ $$ MSE = \frac{1}{2n} \sum_i{(y_i - f(x_i))^2} $$
 
 $$ MSE = \frac{1}{2n} \sum_i{(y_i - (mx_i + b))^2} $$
 
-This is simply taking all the error bars we found above, squaring their lengths, and calculating their average. Actually, we take half the average (notice the $$ \frac{1}{2n} $$ multiplier), but this is simply done for convenience for when we have to take its derivative.
+With MSE, we simply take all the error bars, square their lengths, and calculate their average. Actually, we take half the average (notice the $$ \frac{1}{2n} $$ multiplier), but this is simply done for convenience for when we have to take its derivative.
 
-We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 1, the second.... Not surprisingly, the third function has the lowest. 
+We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 0.17, the second one is 0.08, and the third gets down to 0.02. Not surprisingly, the third function has the lowest MSE. 
 
-We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some range and graph it. 
+We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some neighborhood and compare them. Consider the figure below, which uses two different visualizations of the mean squared error in the range where the slope $$m$$ is between -2 and 4, and the intercept $$p$$ is between -6 and 8.
 
+{%include todo.html note="change p to b, and multiply by 0.5" %}
+{% include figure.html path="/images/figures/lin_reg_mse.png" caption="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le b \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
 
-{% include figure.html path="/images/figures/lin_reg_mse.png" caption="" %}
+Looking at the two graphs above, we can see that our MSE is shaped like an elongated bowl, which appears to flatten out in an oval very roughly centered in the neighborhood around $$ (m,b) \approx (0.5, 1.0) $$. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar shape. Since we are trying to minimize the MSE, we can see that our goal is to figure out where the lowest point in the bowl lies.
 
-The graph above plots the cost as . It looks like a sort of elongated bowl. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar bowl shape. Since we are trying to minimize the cost, we can see that our goal is to figure out where the lowest point in the bowl lies.
+So how do we actually calculate that point at the bottom? If you have taken an introductory course in calculus, you know you can easily do it by solving for the [critical points](https://en.wikipedia.org/wiki/Critical_point_(mathematics)) where the partial derivatives of each parameter are 0 (so the function is therefore flat), and then simply keep whichever one has the lowest value. But in practice, when we have many more than two parameters, this turns out to be very computationally difficult to do. Things will get even more complicated when we fit points with neural networks because they are not linear and their cost functions are not simply bowl-shaped. Thus, the gradient descent algorithm was invented in order to arrive at the lowest point in a more reliable way across linear and nonlinear methods alike.
 
-we want to get to bottom. but we don't actually know where it is
+### How gradient descent proceeds
 
-try something random:
+Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters. We then figure out which direction the cost function steeps downward the most, and step slightly in that direction. We repeat this process over and over until we are satisfied we have found the lowest point.
+
+To figure out which direction the cost steeps downward the most, it is necessary to calculate the [_gradient_](https://en.wikipedia.org/wiki/Gradient) of the cost function with respect to all of the parameters. A gradient is a multidimensional generalization of a derivative; it is a vector containing each of the partial derivatives of the function with respect to each variable. In other words, it is a vector which contains the slope of the cost function along every axis. 
+
+nice link: https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/
 
 calculate gradient
 
 go down a bit, lather rinse repeat
 
-more complex cost plot
-[ andrew ng's image ]
+{% include todo.html note="save locally" %}
+![ andrew ng's image ](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image%20[16].png)
+
 
 ## Complicating things a bit
 

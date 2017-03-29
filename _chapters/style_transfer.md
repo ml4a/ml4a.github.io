@@ -157,3 +157,6 @@ olga russakovsky
 richard socher
 
 audio style transfer igor ulyanov
+
+https://arxiv.org/abs/1703.07511
+https://arxiv.org/pdf/1307.3581.pdf
