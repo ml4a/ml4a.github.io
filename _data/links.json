@@ -1,0 +1,19 @@
+[{
+	"name": "Tensorflow tutorials",
+	"author": "P.K. Mital",
+  	"description": "Tutorials on tensorflow by PK Mital: regression, convnets, autoencoders",
+  	"href": "https://github.com/pkmital/tensorflow_tutorials",
+  	"tags": ["tensorflow", "tutorials", "code"]
+},{
+	"name": "DRAW",
+	"author": "Eric Jang",
+  	"description": "TensorFlow Implementation of \"DRAW: A Recurrent Neural Network For Image Generation\"",
+  	"href": "https://github.com/ericjang/draw",
+  	"tags": ["tensorflow", "code", "RNNs" ]
+},{
+	"name": "What should we learn from past AI forecasts?",
+	"author": "Luke Muehlhauser",
+  	"description": "Analysis of past AI predictions",
+  	"href": "http://www.openphilanthropy.org/focus/global-catastrophic-risks/potential-risks-advanced-artificial-intelligence/what-should-we-learn-past-ai-forecasts",
+  	"tags": ["STS"]
+}]
