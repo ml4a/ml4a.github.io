@@ -160,3 +160,5 @@ audio style transfer igor ulyanov
 
 https://arxiv.org/abs/1703.07511
 https://arxiv.org/pdf/1307.3581.pdf
+
+https://harishnarayanan.org/writing/artistic-style-transfer/

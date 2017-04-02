@@ -12,6 +12,19 @@ http://www.summitpost.org/ruth-creek-topographic-map/771858
 
 overview of grad descent algorithms: http://sebastianruder.com/optimizing-gradient-descent/index.html
 
+http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html
+http://eli.thegreenplace.net/2016/understanding-gradient-descent/
+
+http://ozzieliu.com/2016/02/09/gradient-descent-tutorial/
+http://cs231n.github.io/optimization-2/
+
+http://cs229.stanford.edu/notes/cs229-notes1.pdf
+http://cs231n.github.io/neural-networks-3/
+
+http://www.stat.ucdavis.edu/~chohsieh/teaching/ECS289G_Fall2015/lecture3.pdf
+
+compare netwon's method / LBGFS
+
  - review
  - function graph + output
  - naive

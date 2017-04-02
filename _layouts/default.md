@@ -64,7 +64,7 @@
         		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
 			</ul>
 		</footer>
-
+<!--
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -74,7 +74,7 @@
 		  ga('create', 'UA-90023713-1', 'auto');
 		  ga('send', 'pageview');
 		</script>
-
+-->
 </script>
 	</body>
 </html>

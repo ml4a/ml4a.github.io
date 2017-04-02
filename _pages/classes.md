@@ -29,7 +29,7 @@ title: ml4a classes
 		<a href="/classes/neural-aesthetic/" class="class_title">The Neural Aesthetic</a>
 		<span class="class_contents">
 		<ul>
-			<li>Summer 2016</li>
+			<li>July 2016</li>
 			<li><a href="http://schoolofma.org/neural-aesthetic/">School Of Machines, Making, and Make-Believe</a>, Berlin</li>
 			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
 			<li>8 lectures, ~18 hours</li> 
