@@ -12,6 +12,7 @@ title: Guides
 {% include guide_preview.html name="fundamentals" %}
 {% include guide_preview.html name="simple" %}
 {% include guide_preview.html name="cnn" %}
+{% include guide_preview.html name="transfer-learning" %}
 {% include guide_preview.html name="rnn" %}
 {% include guide_preview.html name="seq2seq" %}
 {% include guide_preview.html name="image-search" %}

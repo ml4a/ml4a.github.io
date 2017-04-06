@@ -27,6 +27,15 @@
 			"Train a convnet to classify MNIST handwritten digits"
 		]
 	},
+	"transfer-learning": {
+		"title": "Transfer learning",
+		"description": "Training accurate image classifiers on small datasets",
+		"link":"notebooks/transfer-learning.ipynb",
+		"summary":[
+			"Using powerful pre-trained networks as feature extractors",
+			"Training own image classifier on top of a pre-trained network"
+		]
+	},
 	"rnn": {
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
