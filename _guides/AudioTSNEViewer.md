@@ -25,7 +25,7 @@ The openFrameworks application only requires one addon: [ofxJSON](https://github
 
 The analysis uses [librosa](https://librosa.github.io) and proceeds in the following way for each audio clip: it extracts the first 13 [MFCCs](https://en.wikipedia.org/wiki/Mel-frequency_cepstrum) as well as their first and second-order deltas for each 512-sample frame in the clip, and then takes the mean of each of these across the frames to derive a 39-element feature vector which characterizes the clip. Regardless of the length of the clip, only the first second is analyzed. To do similarity analysis on longer lengths of audio, [more sophisticated methods are needed](http://www.ismir.net/).
 
-After all of the clips are analyzed, t-SNE is used to reduce the dimensionality of your `N x 26` features matrix to `N x 2` (where `N` is the number of clips). This allows us to use the resulting 2d coordinates as our embedding assignments for the clips. 
+After all of the clips are analyzed, t-SNE is used to reduce the dimensionality of your `N x 39` features matrix to `N x 2` (where `N` is the number of clips). This allows us to use the resulting 2d coordinates as our embedding assignments for the clips. 
 
 There are two ways to run the analysis. One is to go through the [Python guide](https://github.com/ml4a/ml4a-guides/blob/master/notebooks/audio-tsne.ipynb) and save the generated JSON at the end of the notebook. Alternatively, a convenient command-line tool `tSNE-audio.py` is included in the `scripts` folder of `ml4a-ofx`. The first option is recommended to get a better understanding of how the analysis works, in which case you may shift there and come back with the JSON file and resume to the next section. 
 
@@ -59,7 +59,7 @@ python tSNE-audio.py --input_file /Users/JaneDoe/Downloads/MyAudio.mp3 --output_
 
 With the second option, the input audio file will be split into many discrete audio chunks and saved into the directory specified by `--output_audio_dir`. 
 
-You may optionally set the perplexity of the t-SNE using the `--perplexity` argument (defaults to 30), or the learning rate using `--learning_rate` (default 150). 
+You may optionally set the perplexity of the t-SNE using the `--perplexity` argument (defaults to 30), or the learning rate using `--learning_rate` (default 150). If you'd like to learn more about what perplexity and learning rate do in t-SNE, read [how to use t-SNE effectively](http://distill.pub/2016/misread-tsne/).
 
 Note, you can also optionally change the number of dimensions for the t-SNE with the parameter `--num_dimensions` (defaults to 2) but this ofApp is currently setup to just read 2 columns at the moment.
 

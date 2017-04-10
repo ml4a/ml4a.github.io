@@ -43,7 +43,7 @@ for example:
 python tSNE-images.py --images_path ../datasets/animals/ --output_path ../apps/ImageTSNEViewer/bin/data/points.json
 </code>
 
-You may optionally set the perplexity of the t-SNE using the `--perplexity` argument (defaults to 30), or the learning rate using `--learning_rate` (default 150). 
+You may optionally set the perplexity of the t-SNE using the `--perplexity` argument (defaults to 30), or the learning rate using `--learning_rate` (default 150). If you'd like to learn more about what perplexity and learning rate do in t-SNE, read [how to use t-SNE effectively](http://distill.pub/2016/misread-tsne/).
 
 Note, you can also optionally change the number of dimensions for the t-SNE with the parameter `--num_dimensions` (defaults to 2) but this ofApp is currently setup to just read 2 columns at the moment.
 
