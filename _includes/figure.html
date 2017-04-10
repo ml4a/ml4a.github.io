@@ -1,8 +1,17 @@
 {% assign path = include.path %}
+{% assign webm = include.webm %}
 {% assign caption = include.caption %}
 
 <div class="figure_outer">
-	<div class="figure_insert"><img src="{{path}}" />
+	<div class="figure_insert">
+		{% if path %}
+		<img src="{{path}}" />
+		{% endif %}
+		{% if webm %}
+		<video controls="controls" onclick="this.play()">
+			<source src="{{webm}}" type='video/webm;codecs="vp8,vorbis"'>
+		</video>
+		{% endif %}
 		{% if caption %}
 		<div class="figure_caption">
 			{{caption}}
