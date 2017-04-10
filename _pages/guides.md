@@ -22,3 +22,24 @@ title: Guides
 {% include guide_preview.html name="word2vec" %}
 {% include guide_preview.html name="qlearn" %}
 {% include guide_preview.html name="qnets" %}
+
+
+<p>
+
+<br/><a href="/guides/AudioTSNEViewer/">AudioTSNEViewer</a>
+<br/><a href="/guides/ConvnetClassifier/">ConvnetClassifier</a>
+<br/><a href="/guides/ConvnetOSC/">ConvnetOSC</a>
+<br/><a href="/guides/ConvnetViewer/">ConvnetViewer</a>
+<br/><a href="/guides/DoodleClassifier/">DoodleClassifier</a>
+<br/><a href="/guides/FaceClassifier/">FaceClassifier</a>
+<br/><a href="/guides/FaceDTW/">FaceDTW</a>
+<br/><a href="/guides/FaceRegressor/">FaceRegressor</a>
+<br/><a href="/guides/ImageTSNEViewer/">ImageTSNEViewer</a>
+<br/><a href="/guides/Pix2Pix/">Pix2Pix</a>
+<br/><a href="/guides/ReverseImageSearchFast/">ReverseImageSearchFast</a>
+<br/><a href="/guides/ReverseObjectSearchFast/">ReverseObjectSearchFast</a>
+<br/><a href="/guides/SimpleRegression/">SimpleRegression</a>
+<br/><a href="/guides/Wekinator/">Wekinator</a>
+<br/><a href="/guides/YoloLive/">YoloLive</a>
+</p>
+
