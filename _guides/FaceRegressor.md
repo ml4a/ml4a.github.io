@@ -8,7 +8,7 @@ FaceRegressor is an [openFrameworks](http://www.openframeworks.cc) application, 
 FaceRegressor is based on [ofxFaceTracker2](https://github.com/HalfdanJ/ofxFaceTracker2) and [ofxGrt](https://github.com/nickgillian/ofxGrt). It has been used by [Andreas Refsgaard](https://andreasrefsgaard.dk/) as part of integrating machine learning into the [Eye Conductor](https://andreasrefsgaard.dk/project/eye-conductor/) project. 
 
 {:.center}
-![faceRegressor gif](http://andreasrefsgaard.dk/wp-content/uploads/2016/12/FaceRegression.gif)
+![faceRegressor gif](http://andreasrefsgaard.dk/wp-content/uploads/2017/04/FaceRegressor.gif)
 
 
 ## Applications
@@ -24,21 +24,21 @@ The application in itself is very minimal, but can be expanded to control parame
 
 ## Training instructions
 
-1. Set the height and width of the rectangle using [+], [-], [1] and [2] keys.
+1. Set the height and width of the rectangle using the sliders
 
-2. Press [r] to record some training samples containing your selected facial features (gestures, orientation and/or raw points) and the height and width of the rectangle.
+2. Click record and prepare a distinct facial expression. Once recording, your training examples will contain containing your selected facial features (gestures, orientation and/or raw points) and the current width and height of the rectangle.
 
-3. Repeat step 1) and 2) with different rectangle width and height and different facial expressions / head orientations
+3. Repeat step 1-2 with different width and height values for the rectangle and different expressions
 
-4. Press [t] to train the model.
+4. Click train to train the model
 
-5. See the changes in rectangle width and height based on your facial orientation and expression.
+5. Move your face and see the changes in rectangle width and height
 
 
 The video below takes you through the steps of the training process.
 
 <center>
-<iframe src="https://player.vimeo.com/video/197501274" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+<iframe src="https://player.vimeo.com/video/212934622" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </center>
 
 
