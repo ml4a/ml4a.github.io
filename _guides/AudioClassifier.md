@@ -33,20 +33,20 @@ The video below takes you through the steps of the training process.
 </center>
 
 
-### Threshold mode
+## Threshold mode
 When *Threshold Mode* is on, the app will only react to sounds louder (RMS) than *volThreshold*. 
 
 Additionally the *Threshold timer (ms)* will block any new inputs for a number of milliseconds.
 
 Threshold mode effects both when training new examples and classifing new inputs. 
 
-### OSC Output
-By default the app outputs OSC to localhost, port 8000, adress ""/classification"". This can be changed in ofApp.h.
+## OSC Output
+By default the app outputs OSC to localhost, port 8000, adress "/classification". This can be changed in ofApp.h.
 
-### Key inputs
+## Key inputs
 As an alternative to using the GUI you can use the following key inputs:
 
-* 1-9: Set Class Label
+* 1-9: set the class label
 * s: save model
 * l: load model
 * t: train classifier
