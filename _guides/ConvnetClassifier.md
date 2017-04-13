@@ -16,6 +16,21 @@ ConvnetClassifier has been used by [Bjørn Karmann](http://bjoernkarmann.dk/) in
 </center>
 
 
+## OSC Output
+By default the app outputs OSC to localhost, port 8000, adress "/classification". This can be changed in ofApp.h.
+
+
+## Key inputs
+As an alternative to using the GUI you can use the following key inputs:
+
+* 1-9: set the class label
+* s: save model
+* l: load model
+* t: train classifier
+* c: clear examples
+* r: toggle recording
+
+
 ## Training instructions
 
 1. Make sure your camera sees your intended visuals for class 1. Click [record] to toggle recording of training examples.
