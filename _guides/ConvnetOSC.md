@@ -4,9 +4,6 @@ title: "ConvnetOSC"
 ---
 ### What is it?
 
-<<<<<<< HEAD
-ai experiments video
-=======
 ConvnetOSC is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which sends ConvNet activations as a 4096-bit input vector over OSC. Used in combination with [Wekinator](http://www.wekinator.org/) ConvnetOSC lets you train a classifier to recognise whatever objects, persons, postures, drawings and other visuals you show it through your webcam. It can also be used for regression. 
 
 {:.center}
