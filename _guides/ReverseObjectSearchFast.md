@@ -1,9 +1,7 @@
 ---
 layout: guide
-title: "ReverseObjectSearchFast"
+title: "Reverse Object Search Fast"
 ---
-
-### What is it?
 
 This app demonstrates how to quickly do object detection on an image and retrieve `k` nearest neighbors to each of the found objects. It is mostly identical to [ReverseImageSearchFast](https://github.com/ml4a/ml4a-ofx/tree/master/apps/ReverseImageSearchFast), except that it operates over multiple subsets of the image (detected objects) simultaneously rather than over the whole image itself.
 

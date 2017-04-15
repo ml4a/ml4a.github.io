@@ -57,7 +57,7 @@ If you are building the application from source, just make sure the variable `pa
 
 You should get something that looks like this.
 
-{% include figure.html path="/images/guides/image-tsne.jpg" caption="t-SNE of images arranged by content similarity, using convnet fc2 activations" %}
+{% include figure.html path="/images/guides/image-tsne.jpg" caption="t-SNE of images arranged by content similarity, using convnet fc2 activations as feature vectors." %}
 
 The application lets you move around the t-SNE by dragging the mouse around. You may also zoom in and out by scrolling the mouse up and down, or adjusting the `scale` parameter.
 
