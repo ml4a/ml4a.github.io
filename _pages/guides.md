@@ -19,7 +19,7 @@ title: Guides
 {% include guide_preview.html name="image-tsne" %}
 {% include guide_preview.html name="audio-tsne" %}
 {% include guide_preview.html name="text-retrieval" %}
-{% include guide_preview.html name="" %}
+{% include guide_preview.html name="neural-painter" %}
 {% include guide_preview.html name="word2vec" %}
 {% include guide_preview.html name="qlearn" %}
 {% include guide_preview.html name="qnets" %}
