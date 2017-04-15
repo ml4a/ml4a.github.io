@@ -91,6 +91,16 @@
 			"Search for similar documents"
 		]
 	},
+	"neural-painter": {
+		"title": "Neural net painter",
+		"description": "Fun experiment teaching a neural net to \"paint\" an image",
+		"link":"notebooks/neural-net-painter.ipynb",
+		"summary":[
+			"Regression of x,y -> r,g,b from an image",
+			"Generating \"paintings\" from learned model",
+			"Making videos by interpolating between multiple painters"
+		]
+	},
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
