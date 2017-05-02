@@ -59,3 +59,8 @@ https://github.com/sotelo/parrot
 - MIR
 
 google youtube dataset https://research.google.com/audioset/
+
+nsynth https://magenta.tensorflow.org/datasets/nsynth
+
+https://arxiv.org/pdf/1704.01279.pdf
+magenta

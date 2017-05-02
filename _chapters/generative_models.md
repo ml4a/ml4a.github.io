@@ -85,3 +85,5 @@ http://www.creativeai.net/posts/SFq7mQorZrw4cg6ij/artgan-artwork-synthesis-with-
 
 
 https://medium.com/@devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f#.okeu6cwzn
+
+https://github.com/carpedm20/DiscoGAN-pytorch
