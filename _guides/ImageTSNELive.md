@@ -24,7 +24,7 @@ Clicking "analyze directory" will prompt you to select a folder of images to sea
 
 ### Or load a pre-existing t-SNE
 
-Instead you can have it load a JSON file created from the script `tSNE-images.py` in the scripts folder (follow the instructions in the [corresponding guide](____)) or from the [associated notebook in ml4a-guides](___). You can do this by clicking "____ load json_____".
+Instead you can have it load a JSON file created from the script `tSNE-images.py` in the scripts folder (follow the instructions in the [corresponding guide](/guides/ImageTSNEViewer/)) or from the [associated notebook in ml4a-guides](https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb). You can do this by clicking "load result from json".
 
 ## Viewer application
 
@@ -48,18 +48,10 @@ There are also several parameters which control the analysis.
 image-tsne-live-gui
 ### Export JSON
 
-By clicking "save json" the app will save a JSON file of the t-SNE coordinates and the corresponding image file paths, and save it to a file called 'out.json'  ....
+By clicking "save result to json" the app will save a JSON file of the t-SNE coordinates and the corresponding image file paths. You can load it back when you reopen the application in the same way by clicking "load result from json". 
 
 To keep it compatible with the above-mentioned applications and scripts, this export does not save the grid positions, only the original t-SNE, and it recalculates the grid position upon being loaded into the app.
 
-__ must create this
-__ name it aftr the folder?
-
-
-__ option to load JSON from menu
-__ option to save JSON
-
-
 ### Export screenshot
 
-By clicking "save screenshot" the app will generate a PNG image of the selected view, called `out.png`, and save it to the application's data folder.
+By clicking "save screenshot" the app will generate a PNG image of the selected view, and save it to a path of your choosing from the save window prompt.
