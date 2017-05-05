@@ -46,6 +46,8 @@ There are also several parameters which control the analysis.
 - `save result to json` will export the current layout to a new JSON file.
 - `save screenshot` will save a PNG of the current view of the t-SNE.
 image-tsne-live-gui
+
+
 ### Export JSON
 
 By clicking "save result to json" the app will save a JSON file of the t-SNE coordinates and the corresponding image file paths. You can load it back when you reopen the application in the same way by clicking "load result from json". 
