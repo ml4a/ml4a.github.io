@@ -14,3 +14,8 @@ YOLO stands for "you only look once," referring to the way the object detection 
 This addon requires [ofxDarknet](___) to be compiled with [CUDA](__) support. As such, this application will not currently work on any machine which does not have an NVIDIA graphics card and CUDA properly installed. Directions for installing ofxDarknet can be found on [the GitHub readme](___).
 
 Additionally, the app requires [ofxScreenGrab]() for using the screen pixels as an input source, although this may be removed if you don't intend to use that an input source.
+
+
+yolo-screen1.png
+yolo-screen2.png
+yolo-screen3.png

@@ -3,7 +3,7 @@ layout: guide
 title: "Reverse Object Search Fast"
 ---
 
-This app demonstrates how to quickly do object detection on an image and retrieve `k` nearest neighbors to each of the found objects. It is mostly identical to [ReverseImageSearchFast](https://github.com/ml4a/ml4a-ofx/tree/master/apps/ReverseImageSearchFast), except that it operates over multiple subsets of the image (detected objects) simultaneously rather than over the whole image itself.
+This app demonstrates how to quickly do object detection on an image and retrieve `k` nearest neighbors to each of the found objects. It is mostly identical to [Reverse Image Search Fast](/guides/ReverseImageSearchFast), except that it operates over multiple subsets of the image (detected objects) simultaneously rather than over the whole image itself.
 
 The below screenshot shows the basic functionality. A query image (top-center) is analyzed, and a number of objects are detected ("soup bowl", "club sandwich", etc). Below it is a row of similar images for each object. Similar images are computed from possibly hundreds of thousands of candidates, loaded from disk, and displayed on the app in less than 1 second, creating opportunities to be used in real-time.
 
@@ -12,9 +12,10 @@ The below screenshot shows the basic functionality. A query image (top-center) i
 
 ## How it works
 ---
+
 A large dataset of images is pre-analyzed by a convolutional neural network trained to detect and label salient objects found in each image. The detected objects are recorded, along with their original file paths, bounding boxes, probabilities/confidences, and feature vectors (a 1024-length vector extracted from the second to last layer of a ["YOLO" convnet](http://pjreddie.com/darknet/yolo/)). 
 
-After all feature vectors are extracted, they are transformed into a lower dimensional subspace (for dimensionality reduction) using a [random matrix projection](http://stats.stackexchange.com/questions/235632/pca-vs-random-projection). It can optionally be done with principal component analysis instead, which is probably a bit more accurate, but runtime can be very high for a large corpus.
+After all feature vectors are extracted, they are transformed into a lower dimensional representation (for dimensionality reduction) using a [random matrix projection](http://stats.stackexchange.com/questions/235632/pca-vs-random-projection). It can optionally be done with principal component analysis instead, which is probably a bit more accurate, but runtime can be very high for a large corpus.
 
 After feature extraction and dimensionality reduction, the results are serialized into a `.dat` file so you can load them back later.  
 
@@ -106,3 +107,8 @@ There are several parameters to be aware of:
 
 Another thing to be aware of is that it's often a good idea to save smaller resolution/lower qualities images of your dataset, because if the image is large, then loading several dozen from disk for each detection may take much more runtime than the actual similarity calculation.
 
+## Why it's useful and ideas for future development
+
+{% include todo.html note="elaborate..." %} 
+
+Besides for the obvious use cases, like real-time substitution of objects in a video stream, there are more practical uses for this procedure. Being able to quickly retrieve a set of nearest neighbor objects can facilitate the rapid labeling (or relabeling) of related objects for developing new datasets.
