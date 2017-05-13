@@ -7,17 +7,54 @@ https://docs.google.com/document/d/1S_2TDvyuuUHK63APZ9wGjUKtcZoeA044jAJroKwkgH0/
 
 This tutorial will guide you on how to use the pix2pix software for learning image transformation functions between a parallel dataset of corresponding image pairs.
 
+## What does pix2pix do?
 
-What does pix2pix do?
+pix2pix implements a generic image-to-image translation using conditional adversarial networks. Given a training set which contains pairs of related images ("A" and "B"), a pix2pix model learns how to convert an image of type "A" into an image of type "B", or vice-versa. For example, suppose we have pairs of images, where A is a black & white image and B is an RGB-color version of A, e.g. the following:
 
-pix2pix implements a generic image-to-image translation using conditional adversarial networks. Functionally, this means it can be trained to convert one type of image into another type of image, learning the relationship between two related types of images.  A very good description of what pix2pix does can be found here, as well as an online demo.
+(color and black and white imags)
 
-The nice thing about pix2pix is that it is generic -- it does not require pre-defining the relationship between the two types of images. In contrast, previous methods for doing image translation were limited to a set of pre-defined tasks -- for example, converting grayscale images to color, upsampling (converting a low-resolution image into a high-resolution one), etc. pix2pix makes no assumptions about the relationship and instead learns the objective during training, making it highly flexible, and adaptable. 
+A pix2pix network could be trained on a training set of such corresponding pairs to learn how to make full-color from black & white images. Once a pix2pix network has been trained on such a dataset, it could then be used to color arbitrary black & white images. For example, below, we apply the learned colorization model on a black & white image from our test set, and generate a colored version of it. For comparison, we show the actual color image that it came with, to see how well the network is able to reconstruct the original color image (called the "target").
+
+{% include figure_multi.md path1="/images/guides/pix2pix/mountains_bw.jpg" caption1="input" path2="/images/guides/pix2pix/mountains_color.jpg" caption2="odjfsdhf" path3="/images/guides/pix2pix/mountains_colorized.jpg" caption3="output (made with <a href=\"http://demos.algorithmia.com/colorize-photos/\">colorize-it</a>"%}
+
+
+
+As we see above, the output is not identical to the input, but the network does a fairly decent job. We should expect that it will be able to color new, previously unseen black & white images to around the same accuracy. 
+
+## Generalizing a bit
+
+In fact, many important image processing tasks can be framed as image to image translation tasks of this sort. Deblurring or denoising images can be framed in this way, and indeed there had been a great deal of past research in learning various specific image-to-image translation tasks like those and others. The nice thing about pix2pix is that it is generic; it does not require pre-defining the relationship between the two types of images. It makes no assumptions about the relationship and instead learns the objective during training, by simply comparing the defined inputs and outputs. This makes pix2pix highly flexible and adaptable to a wide variety of situations, including ones where it is not easy to verbally define the task we want to model. 
+
+We get a good sense of this by considering a more complicated example, that of the [facades]() dataset which pix2pix has a download link for. Let's look at a small sample of images from the facades dataset.
+
+(facades examples)
+
+We have on one side photographs of building facades, and on the other side, their corresponding label maps which have been hand-labeled by human beings. The label maps are color-coded according to the object its representing, i.e. walls, windows, and doors. We can train pix2pix to generate the facade pictures from the label maps. If we do that, we can then attempt to generate an output from a test input, and compare the output to the original target image in the test dataset.
+
+(facades input, target, output)
+
+The output has numerous features that are different from the target, and has a somewhat different color, and is especially guessing in the regions where the labels are sparse. But it gets most of the main architectural features in the right place. This leads us to believe that we can mock up whole new label maps and create realistic looking facades from them! This could be very useful for an architect; they can sketch a design for a building and then quickly prototype textures for it (perhaps choosing from several dozen since they are so easy to produce).
+
+Of course, we could have trained the network in the other direction as well; train it to generate the label maps _from_ the real images. This can be very useful as well; suppose you are in charge of a startup which is generating special types of label maps from satellite images. This provides a way to do it quickly and cheaply. 
+
+## Getting creative with it
+
+The beauty about a trained pix2pix network is that it will generate an output from any arbitrary input. So far, we've looked at examples for which we already knew the correct output (the target), so that we could visually compare them. But the network will take in just about anything once it's trained, giving us some space to be creative. Let's look at some examples.
+
+
+
+
+
+
+
+
+
+
 
 Another advantage of pix2pix is that it requires a relatively small number of examples -- for a low-complexity task, perhaps only 100-200 samples, and usually less than 1000, in contrast to networks which often requires tens or even hundreds of thousands of samples. The downside is that the model loses some generality, perhaps overfitting to the training samples, and thus can feel a bit repetitive. Still, those practical advantages make it extremely easy to deploy for a wide variety of images, enabling rapid experimentation.
 
 
-More formally
+## More formally
 
 In using pix2pix, there are two modes. The first is training a model from a dataset of known samples, and the second is testing the model by generating new transformations from previously unseen samples.
 
@@ -36,14 +73,18 @@ Once you have successfully run the installer for CUDA, you can find it on your s
  - Mac/Linux: /usr/local/cuda/
  - Windows: C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v8.0
 
-In order for your system to find CUDA, it has to be located in your PATH variables, and in LD_LIBRARY_PATH for Mac/Linux. The installer should do this automatically
+In order for your system to find CUDA, it has to be located in your PATH variables, and in LD_LIBRARY_PATH for Mac/Linux. The installer should do this automatically.
+
+
+// in case it doesn't
+
 
 
 Install cuDNN
 
 cuDNN is an add-on for CUDA which specifically implements operations for deep neural nets. It is not required to run Tensorflow but is highly recommended, as it makes many of the programs much more resource-efficient, and is probably required for pix2pix.  
 
-You have to register first with NVIDIA (easy) to get access to the download. You should download the latest version for your platform unless you have an older version of CUDA. At time of this writing, cuDNN 5.1 works with CUDA 8.0+. 
+You have to register first with NVIDIA (easy) to get access to the download. You should download the latest version for your platform unless you have an older version of CUDA. At time of this writing, cuDNN 5.1 works with CUDA 8.0+, although cuDNN 6.0+ should work as well. 
 
 Once you’ve download cuDNN, you will see it contains several files in folders called “include”, “lib” or “lib64”, and “bin” (if on windows). Copy these files into those same folders inside of where you have CUDA installed (see step 1)
 
@@ -124,5 +165,72 @@ An explanation of the arguments:
 
 Here is an example from a test, running unknown samples (which have targets) through the generated model. Compare the generated output (2nd image) against its target (3rd image). 
 
+## Examples
+
+### Facades
+
+The original pix2pix repository comes with several downloadable examples, one of which is a dataset of around 600 building facades, along with their corres
 
 
+
+Mario faces
+Jasper
+Invisible Cities
+Kurzweil
+Sketch2Cat
+Trump face
+
+
+## Sketches to objects
+
+
+
+## Sketch2Cat
+A very good description of what pix2pix does can be found here, as well as an online demo.
+
+
+## Invisible Cities
+
+One collaborative work (of which the writer of this guide was involved in) was a project called ["Invisible Cities"](http://opendot.github.io/ml4a-invisible-cities/), made during an ml4a workshop at [OpenDot Lab]() in Milan, Italy. The project was completed in the same week that the original paper and repository was released, demonstrating how quickly one can create an applied work from it.
+
+In Invisible Cities, a collection of map tiles and their corrsponding satellite images from multiple cities were downloaded from the [MapBox API](). A pix2pix model was trained to convert the map tiles into the satellite images. 
+
+(reconstruction)
+
+(style transfer)
+
+More examples can be found in the gallery of the [main page]().
+
+
+## [Jasper van Loenen's Neural city](https://jaspervanloenen.com/neural-city/)
+
+[Jaspaer van]
+
+## FaceTracker -> Face
+
+// francoise hardy
+<iframe width="853" height="480" src="https://www.youtube.com/embed/af_9LXhcebY?rel=0" frameborder="0" allowfullscreen></iframe>
+
+// faces
+<iframe width="853" height="480" src="https://www.youtube.com/embed/qRKZsmSuuj0?rel=0" frameborder="0" allowfullscreen></iframe>
+
+
+
+
+
+
+{::nomarkdown}
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">Full person-to-person image translation with machine learning! Applying <a href="https://twitter.com/hashtag/pix2pix?src=hash">#pix2pix</a> to video <a href="https://twitter.com/branger_briz">@branger_briz</a> <a href="https://twitter.com/phillip_isola">@phillip_isola</a> <a href="https://twitter.com/genekogan">@genekogan</a> <a href="https://twitter.com/kaihuchen">@kaihuchen</a> <a href="https://t.co/oFrzj1qcqt">pic.twitter.com/oFrzj1qcqt</a></p>&mdash; Brannon Dorsey (@brannondorsey) <a href="https://twitter.com/brannondorsey/status/806283494041223168">December 6, 2016</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+
+<blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr">First try at generating streetview-like cityscapes <a href="https://twitter.com/hashtag/deeplearning?src=hash">#deeplearning</a> <a href="https://twitter.com/hashtag/pix2pix?src=hash">#pix2pix</a> <a href="https://t.co/SP3WiAHL0M">pic.twitter.com/SP3WiAHL0M</a></p>&mdash; Jasper van Loenen (@JaspervanLoenen) <a href="https://twitter.com/JaspervanLoenen/status/841633164846084097">March 14, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet" data-conversation="none" data-lang="en"><p lang="und" dir="ltr"><a href="https://t.co/1bLslNgm2x">pic.twitter.com/1bLslNgm2x</a></p>&mdash; Jasper van Loenen (@JaspervanLoenen) <a href="https://twitter.com/JaspervanLoenen/status/849617223647985665">April 5, 2017</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+{:/nomarkdown}

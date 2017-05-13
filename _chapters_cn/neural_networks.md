@@ -17,7 +17,9 @@ header_quote: "lovelace"
 
 今天，大多数科学家警示我们不要过度使用类比，因为神经网络仅是被设计来解决机器学习的问题的，并非精确描绘人脑。然而，把神经网络核心单元比作简化的生物神经元的隐喻已深植人们的脑海。生物神经元到人工神经元的发展可以总结为下述图像。
 
-{% include neurons.html %}
+{% include figure_multi.md path1="/images/neuron-anatomy.jpg"
+caption1="Anatomy of a biological neuron<br/>Source: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
+caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="Artificial neuron<br/>&nbsp;" %}
 
 [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) 在 20 世纪 50 年代后期发明了[感知器（Perceptron）](https://en.wikipedia.org/wiki/Perceptron)，也就是我们在[上一章](/ml4a/machine_learning/)看到的线性分类器，这对于神经网络是很大的进步。被美国海军公开资助的 Mark 1 感知器是用一串光电管，电位器，和电机来实现图像识别功能。它能高效地执行复杂的电路操作，以至于纽约时报在 1958 年预测这个机器不久就能“[走路，说话，观察，书写，自我复制和意识到自身的存在](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE)”。
 
