@@ -2,7 +2,7 @@
 	"fundamentals": {
 		"title": "Fundamentals of machine learning",
 		"description": "Mathematical precepts for machine learning",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/fundamentals.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/fundamentals.ipynb",
 		"thumb":"/images/guides_thumbs/fundamentals.jpg",
 		"summary":[
 			"What is machine learning?",
@@ -13,7 +13,7 @@
 	"simple": {
 		"title": "Ordinary neural networks",
 		"description": "How to train a simple feedforward neural network",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/simple_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/simple_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
 			"Architecture of simple neural net",
@@ -23,7 +23,7 @@
 	"cnn": {
 		"title": "Convolutional neural networks",
 		"description": "How to train a convolutional neural network",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/convolutional_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/convolutional_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/convnets.jpg",
 		"summary":[
 			"Building neural networks with convolutional and pooling layers for image processing",
@@ -33,7 +33,7 @@
 	"transfer-learning": {
 		"title": "Transfer learning",
 		"description": "Training accurate image classifiers on small datasets",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/transfer-learning.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb",
 		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
 		"summary":[
 			"Using powerful pre-trained networks as feature extractors",
@@ -43,7 +43,7 @@
 	"rnn": {
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/recurrent_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
 			"RNNs, LSTMs, and context",
@@ -53,7 +53,7 @@
 	"seq2seq": {
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/sequence_to_sequence.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb",
 		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
 			"How RNNs operate on sequences on both ends",
@@ -63,7 +63,7 @@
 	"image-search": {
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/image-search.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-search.ipynb",
 		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -73,7 +73,7 @@
 	"image-path": {
 		"title": "Find shortest path between two images",
 		"description": "How to find the shortest path between two images",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/image-path.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb",
 		"thumb":"/images/guides_thumbs/image-path.jpg",
 		"summary":[
 			"Construct a graph of images connected via k nearest neighbors",
@@ -83,7 +83,7 @@
 	"image-tsne": {
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/image-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -93,7 +93,7 @@
 	"audio-tsne": {
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/audio-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/audio-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from audio clips with librosa",
@@ -103,7 +103,7 @@
 	"text-retrieval": {
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/text-retrieval.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb",
 		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
 			"Text representation: bag-of-words, tf-idf",
@@ -114,7 +114,7 @@
 	"neural-painter": {
 		"title": "Neural net painter",
 		"description": "Fun experiment teaching a neural net to \"paint\" an image",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/neural-net-painter.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb",
 		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
 		"summary":[
 			"Regression of x,y -> r,g,b from an image",
@@ -125,7 +125,7 @@
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/word2vec_tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/word2vec_tsne.ipynb",
 		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
 			"Embedding words in vector space",
@@ -136,7 +136,7 @@
 	"qlearn": {
 		"title": "Q-Learning",
 		"description": "Introduction to Q Learning",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/q_learning.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb",
 		"thumb":"/images/guides_thumbs/q-learning.jpg",
 		"summary":[
 			"Introduction to the reinforcement learning problem",
@@ -146,7 +146,7 @@
 	"qnets": {
 		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/deep_q_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb",
 		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
 		"summary":[
 			"Deep Q-Networks for larger state spaces",
