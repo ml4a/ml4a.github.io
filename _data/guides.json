@@ -1,8 +1,9 @@
 {
 	"fundamentals": {
-		"title": "Fundamentals",
+		"title": "Fundamentals of machine learning",
 		"description": "Mathematical precepts for machine learning",
 		"link":"notebooks/fundamentals.ipynb",
+		"thumb":"/images/guides_thumbs/fundamentals.jpg",
 		"summary":[
 			"What is machine learning?",
 			"Vectors, matrices, and tensors",
@@ -10,9 +11,10 @@
 		]
 	},
 	"simple": {
-		"title": "Simple neural networks",
+		"title": "Ordinary neural networks",
 		"description": "How to train a simple feedforward neural network",
 		"link":"notebooks/simple_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
 			"Architecture of simple neural net",
 			"Training a neural net on toy data"
@@ -22,6 +24,7 @@
 		"title": "Convolutional neural networks",
 		"description": "How to train a convolutional neural network",
 		"link":"notebooks/convolutional_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/convnets.jpg",
 		"summary":[
 			"Building neural networks with convolutional and pooling layers for image processing",
 			"Train a convnet to classify MNIST handwritten digits"
@@ -31,6 +34,7 @@
 		"title": "Transfer learning",
 		"description": "Training accurate image classifiers on small datasets",
 		"link":"notebooks/transfer-learning.ipynb",
+		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
 		"summary":[
 			"Using powerful pre-trained networks as feature extractors",
 			"Training own image classifier on top of a pre-trained network"
@@ -40,6 +44,7 @@
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
 		"link":"notebooks/recurrent_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
 			"RNNs, LSTMs, and context",
 			"Setting up an LSTM to predict characters in text"
@@ -49,6 +54,7 @@
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
 		"link":"notebooks/sequence_to_sequence.ipynb",
+		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
 			"How RNNs operate on sequences on both ends",
 			"Training LSTM for language translation"
@@ -58,15 +64,27 @@
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
 		"link":"notebooks/image-search.ipynb",
+		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
 			"Find most similar images to query image"
+		]
+	},
+	"image-path": {
+		"title": "Find shortest path between two images",
+		"description": "How to find the shortest path between two images",
+		"link":"notebooks/image-path.ipynb",
+		"thumb":"/images/guides_thumbs/image-path.jpg",
+		"summary":[
+			"Construct a graph of images connected via k nearest neighbors",
+			"Determine shortest path through the graph between two query images"
 		]
 	},
 	"image-tsne": {
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
 		"link":"notebooks/image-tsne.ipynb",
+		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
 			"Embed images in 2d space using a t-SNE over their feature vectors"
@@ -76,6 +94,7 @@
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
 		"link":"notebooks/audio-tsne.ipynb",
+		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from audio clips with librosa",
 			"Embed audio clips in 2d with a t-SNE over their feature vectors"
@@ -85,6 +104,7 @@
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
 		"link":"notebooks/text-retrieval.ipynb",
+		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
 			"Text representation: bag-of-words, tf-idf",
 			"Latent semantic analysis",
@@ -95,6 +115,7 @@
 		"title": "Neural net painter",
 		"description": "Fun experiment teaching a neural net to \"paint\" an image",
 		"link":"notebooks/neural-net-painter.ipynb",
+		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
 		"summary":[
 			"Regression of x,y -> r,g,b from an image",
 			"Generating \"paintings\" from learned model",
@@ -105,6 +126,7 @@
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
 		"link":"notebooks/word2vec_tsne.ipynb",
+		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
 			"Embedding words in vector space",
 			"Geometric operations in word-vector space and analogies",
@@ -115,6 +137,7 @@
 		"title": "Q-Learning",
 		"description": "Introduction to Q Learning",
 		"link":"notebooks/q_learning.ipynb",
+		"thumb":"/images/guides_thumbs/q-learning.jpg",
 		"summary":[
 			"Introduction to the reinforcement learning problem",
 			"Implementing a Q-Learner for an agent"
@@ -124,9 +147,144 @@
 		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
 		"link":"notebooks/deep_q_networks.ipynb",
+		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
 		"summary":[
 			"Deep Q-Networks for larger state spaces",
 			"Implementing and training DQN for paddle-ball game"
 		]
+	},
+
+
+
+
+
+
+
+
+	"AudioTSNEViewer": {
+		"title": "Audio t-SNE viewer",
+		"description": "Audio t-SNE viewer",
+		"link":"/guides/AudioTSNEViewer",
+		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+	"ConvnetClassifier": {
+		"title": "Convnet classifier",
+		"description": "Convnet classifier",
+		"link":"/guides/AudioTSNEViewer",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"DoodleClassifier": {
+		"title": "Doodle classifier",
+		"description": "Doodle classifier",
+		"link":"/guides/DoodleClassifier",
+		"thumb":"/images/guides_thumbs/doodle-classifier.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"FaceClassifier": {
+		"title": "Face classifier",
+		"description": "Face classifier",
+		"link":"/guides/FaceClassifier",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"FaceRegressor": {
+		"title": "Face regressor",
+		"description": "Face regressor",
+		"link":"/guides/FaceRegressor",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"ImageTSNEViewer": {
+		"title": "Image t-SNE viewer",
+		"description": "Image t-SNE viewer",
+		"link":"/guides/ImageTSNEViewer",
+		"thumb":"/images/guides_thumbs/image-tsne.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"ImageTSNELive": {
+		"title": "Image t-SNE live",
+		"description": "Image t-SNE live",
+		"link":"/guides/ImageTSNELive",
+		"thumb":"/images/guides_thumbs/image-tsne-live.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+	"Pix2Pix": {
+		"title": "pix2pix tutorial",
+		"description": "pix2pix tutorial",
+		"link":"/guides/Pix2Pix",
+		"thumb":"/images/guides_thumbs/pix2pix.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	}, 
+	"ReverseImageSearchFast": {
+		"title": "Reverse image search",
+		"description": "Reverse image search",
+		"link":"/guides/ReverseImageSearchFast",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+	"ReverseObjectSearchFast": {
+		"title": "Reverse object search",
+		"description": "Reverse object search",
+		"link":"/guides/ReverseObjectSearchFast",
+		"thumb":"/images/guides_thumbs/reverse-object-search.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+	"YoloLive": {
+		"title": "Yolo (fast object detection) live",
+		"description": "Yolo (fast object detection) live",
+		"link":"/guides/YoloLive",
+		"thumb":"/images/guides_thumbs/yolo-live.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+
+
+
+
+
+	"Contribute": {
+		"title": "Contribute!",
+		"description": "Contribute!",
+		"link":"_",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"How to contribute a guide to ml4a"
+		]
 	}
+
+
 }
