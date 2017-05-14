@@ -5,13 +5,12 @@
 {% assign title = guide.title %}
 {% assign description = guide.description %}
 {% assign summary = guide.summary %}
-{% assign rootlink = "https://github.com/ml4a/ml4a-guides/tree/master/" %}
 {% assign link = guide.link %}
 {% assign thumb = guide.thumb %}
 
 
 <div class="project">
-	<a href="{{rootlink}}{{link}}">
+	<a href="{{link}}">
 		<img src="{{thumb}}">
 		<div class="overlay">
 			<div class="overlay_title">
