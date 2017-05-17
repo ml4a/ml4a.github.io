@@ -174,7 +174,7 @@
 	"ConvnetClassifier": {
 		"title": "Convnet classifier",
 		"description": "Convnet classifier",
-		"link":"/guides/AudioTSNEViewer",
+		"link":"/guides/ConvnetClassifier",
 		"thumb":"/images/guides_thumbs/default.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
