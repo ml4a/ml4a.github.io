@@ -157,15 +157,32 @@
 
 
 
-
-
-
-
+	
+	"AudioClassifier": {
+		"title": "Audio classifier",
+		"description": "Audio classifier",
+		"link":"/guides/AudioClassifier",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
 	"AudioTSNEViewer": {
 		"title": "Audio t-SNE viewer",
 		"description": "Audio t-SNE viewer",
 		"link":"/guides/AudioTSNEViewer",
 		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
+		"summary":[
+			"t-SNE a set of audio samples or segments of a song",
+			"Navigate an interactive playback application of audio samples"
+		]
+	},
+	"ConvnetOSC": {
+		"title": "ConvnetOSC",
+		"description": "ConvnetOSC",
+		"link":"/guides/ConvnetOSC",
+		"thumb":"/images/guides_thumbs/default.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
