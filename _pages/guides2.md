@@ -101,10 +101,9 @@ title: Guides
 {% include guide_preview2.md name="qnets" %}
 
 
-
-
-
+{% include guide_preview2.md name="AudioClassifier" %}
 {% include guide_preview2.md name="AudioTSNEViewer" %}
+{% include guide_preview2.md name="ConvnetOSC" %}
 {% include guide_preview2.md name="ConvnetClassifier" %}
 {% include guide_preview2.md name="DoodleClassifier" %}
 {% include guide_preview2.md name="FaceClassifier" %}

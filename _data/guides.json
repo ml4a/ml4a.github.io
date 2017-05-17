@@ -154,9 +154,6 @@
 		]
 	},
 
-
-
-
 	
 	"AudioClassifier": {
 		"title": "Audio classifier",
@@ -164,18 +161,17 @@
 		"link":"/guides/AudioClassifier",
 		"thumb":"/images/guides_thumbs/audio-classifier.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Analyze MFCC distribution of incoming microphone audio",
+			"Train a real-time multi-class classifier of sounds"
 		]
 	},
 	"AudioTSNEViewer": {
 		"title": "Audio t-SNE viewer",
 		"description": "Audio t-SNE viewer",
 		"link":"/guides/AudioTSNEViewer",
-		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
+		"thumb":"/images/guides_thumbs/audio-tsne-viewer.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Navigate an interactive playback application of audio samples embedded in 2d via t-SNE algorithm (pre-analyzed)"
 		]
 	},
 	"ConvnetOSC": {
@@ -184,8 +180,8 @@
 		"link":"/guides/ConvnetOSC",
 		"thumb":"/images/guides_thumbs/convnetOSC.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Extract feature vector from real-time webcam stream",
+			"Send image feature vector over OSC"
 		]
 	},
 	"ConvnetClassifier": {
@@ -194,8 +190,8 @@
 		"link":"/guides/ConvnetClassifier",
 		"thumb":"/images/guides_thumbs/convnet-classifier.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Extract feature vectors from incoming webcam stream",
+			"Train a real-time multi-class classifier of images"
 		]
 	}, 
 	"DoodleClassifier": {
@@ -204,8 +200,8 @@
 		"link":"/guides/DoodleClassifier",
 		"thumb":"/images/guides_thumbs/doodle-classifier.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Train an image classifier to recognize different categories of your drawings (doodles)",
+			"Send classification results over OSC to drive some interactive application"
 		]
 	}, 
 	"FaceClassifier": {
@@ -214,8 +210,8 @@
 		"link":"/guides/FaceClassifier",
 		"thumb":"/images/guides_thumbs/face-classifier.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Use face tracker to analyze facial expressions or poses",
+			"Train a real-time multi-class classifier of facial expressions"
 		]
 	}, 
 	"FaceRegressor": {
@@ -224,8 +220,8 @@
 		"link":"/guides/FaceRegressor",
 		"thumb":"/images/guides_thumbs/face-regressor.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Use face tracker to analyze facial expressions or poses",
+			"Train real-time regression to control sliders according to facial expression"
 		]
 	}, 
 	"ImageTSNEViewer": {
@@ -234,8 +230,7 @@
 		"link":"/guides/ImageTSNEViewer",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Navigate an interactive viewer of images embedded in 2d via t-SNE algorithm (pre-analyzed)"
 		]
 	}, 
 	"ImageTSNELive": {
@@ -244,8 +239,8 @@
 		"link":"/guides/ImageTSNELive",
 		"thumb":"/images/guides_thumbs/image-tsne-live.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"t-SNE and assign to grid a dataset of images (in-application)",
+			"Navigate an interactive viewer containing the arranged images"
 		]
 	},
 	"Pix2Pix": {
@@ -254,18 +249,18 @@
 		"link":"/guides/Pix2Pix",
 		"thumb":"/images/guides_thumbs/pix2pix.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"A tutorial on neural image translation with pix2pix",
+			"A survey of creative works using pix2pix"
 		]
 	}, 
 	"ReverseImageSearchFast": {
-		"title": "Reverse image search",
+		"title": "Reverse image search (fast)",
 		"description": "Reverse image search",
 		"link":"/guides/ReverseImageSearchFast",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/reverse-image-search-fast.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Extract feature vector in real-time from an image/video/webcam/screengrabber",
+			"Quickly retrieve k nearest neighbors to that image"
 		]
 	},
 	"ReverseObjectSearchFast": {
@@ -274,8 +269,8 @@
 		"link":"/guides/ReverseObjectSearchFast",
 		"thumb":"/images/guides_thumbs/reverse-object-search.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Detect salient objects in image/video/webcam stream",
+			"Quickly retrieve k nearest neighbors of each detected object"
 		]
 	},
 	"YoloLive": {
@@ -284,19 +279,13 @@
 		"link":"/guides/YoloLive",
 		"thumb":"/images/guides_thumbs/yolo-live.jpg",
 		"summary":[
-			"t-SNE a set of audio samples or segments of a song",
-			"Navigate an interactive playback application of audio samples"
+			"Detect salient objects in image/video/webcam/screengrabber"
 		]
 	},
-
-
-
-
-
 	"Contribute": {
 		"title": "Contribute!",
 		"description": "Contribute!",
-		"link":"_",
+		"link":"/guides/Contribute/",
 		"thumb":"/images/guides_thumbs/default.jpg",
 		"summary":[
 			"How to contribute a guide to ml4a"
