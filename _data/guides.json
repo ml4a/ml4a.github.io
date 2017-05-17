@@ -162,7 +162,7 @@
 		"title": "Audio classifier",
 		"description": "Audio classifier",
 		"link":"/guides/AudioClassifier",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/audio-classifier.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
@@ -182,7 +182,7 @@
 		"title": "ConvnetOSC",
 		"description": "ConvnetOSC",
 		"link":"/guides/ConvnetOSC",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/convnetOSC.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
@@ -192,7 +192,7 @@
 		"title": "Convnet classifier",
 		"description": "Convnet classifier",
 		"link":"/guides/ConvnetClassifier",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/convnet-classifier.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
@@ -212,7 +212,7 @@
 		"title": "Face classifier",
 		"description": "Face classifier",
 		"link":"/guides/FaceClassifier",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/face-classifier.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
@@ -222,7 +222,7 @@
 		"title": "Face regressor",
 		"description": "Face regressor",
 		"link":"/guides/FaceRegressor",
-		"thumb":"/images/guides_thumbs/default.jpg",
+		"thumb":"/images/guides_thumbs/face-regressor.jpg",
 		"summary":[
 			"t-SNE a set of audio samples or segments of a song",
 			"Navigate an interactive playback application of audio samples"
