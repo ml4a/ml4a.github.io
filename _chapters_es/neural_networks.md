@@ -14,11 +14,21 @@ Nevertheless, the idea was passed on to the next century when [Alan Turing](http
 
 ## The once and future king
 
+## El rey del presente y del futuro
+
+El resurgimiento reciente de las redes neuronales es una historia peculiar. Íntimamente conectadas a los primeros días de la inteligencia artificial, las redes neuronales se formalizaron a finales de los años 40s en la forma de máquinas tipo-B de Turing y basadas en investigaciones de plasticidad neuronal conducidas por neurocientíficos y psicólogos cognitivos que estudiaban el proceso de aprendizaje en los seres humanos. A medida que se descubrió cómo se desarrolla el cerebro, los científicos de la computación comenzaron a experimentar con versiones idealizadas de acción potencial y retropropagación neural para simular el proceso en máquinas.
+
 The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first formalized in the late 1940s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines.
+
+Hoy en día, la mayoría de los científicos nos advierten que deberíamos tener cuidado con esta analogía, ya que las redes neuronales fueron diseñadas para resolver problemas de "machine learning" y no para representar el cerebro con precisión. Sin embargo, la idea de que una neurona biológica simplificada representa la unidad central de una red neuronal es una metáfora que ha perdurado a través de las décadas. La progresión de las neuronas biológicas a las neuronas artificiales se puede resumir con la siguiente gráfica.
 
 Today, most scientists caution against taking this analogy too seriously, as neural networks are strictly designed for solving machine learning problems, rather than accurately depicting the brain. Nevertheless, the metaphor of the core unit of neural networks as a simplified biological neuron has stuck over the decades. The progression from biological neurons to artificial ones can be summarized by the following figures.
 
 {% include neurons.html %}
+
+--> revisar - capitulo anterior?
+
+Las redes neuronales dieron un gran paso adelante cuando Frank Rosenblatt diseño el Perceptron, un tipo de clasificador linear que cubrimos en el capítulo anterior, a finales de los años cincuenta. Financiado públicamente por la Armada de los Estados Unidos, el perceptrón Mark 1 fue diseñado para reconocer imágenes a partir de una serie de fotocélulas, potenciómetros y motores eléctricos. Fue tan efectivo completando circuitos eléctricos complejos que en 1958 el periódico New York Times predijo que una máquina pronto podría "caminar, hablar, ver, escribir, reproducirse y ser consciente de su propia existencia".
 
 Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/ml4a/machine_learning/). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. Its effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
 
