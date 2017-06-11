@@ -36,6 +36,11 @@ The early hype would inspire science fiction writers for decades to come, but th
 
 Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/ml4a/convnets.html) and [recurrent neural networks](/ml4a/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
 
+Aunque se han propuesto muchos algoritmos de aprendizaje automático a lo largo de los años, nos enfocaremos en la redes neuronales ya que:
+
+- Tienen una formulación sorprendentemente simple e intuitiva.
+- Las redes neuronales de aprendizaje profundo (en inglés, deep neural networks) representan las técnicas más avanzadas 
+
 Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
 
  - They have a surprisingly simple and intuitive formulation.
