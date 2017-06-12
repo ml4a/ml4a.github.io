@@ -6,10 +6,15 @@ header_image: "/images/headers/analytical_engine.jpg"
 header_quote: "lovelace"
 ---
 
+aprendizaje de máquinas = machine learning
+neural networks = redes neuronales
+machines = máquinas
+input = la entrada
+
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió una ambición por construir un "[cálculo del sistema nervioso(http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque analogías especulativas sobre mentes y máquinas , no fue hasta que el profesor de Ada, Charles Baggage, propuso la Máquina analítica que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que lo ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el Juego de Imitación. Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
-Nearly a century before neural networks were first conceived, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until Ada's teacher [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities. 
-Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required. 
+Nearly a century before neural networks were first conceived, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until Ada's teacher [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities.
+Ada would not live to see her dream of building the engine come to fruition, as engineers of the time were unable to produce the complex circuitry her schematics required.
 Nevertheless, the idea was passed on to the next century when [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) cited it as the inspiration for the [Imitation Game](http://phil415.pbworks.com/f/TuringComputing.pdf), what soon came to be called the "[Turing Test](https://en.wikipedia.org/wiki/Turing_test)." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the first golden age of neural networks.
 
 ## The once and future king
@@ -26,11 +31,11 @@ Today, most scientists caution against taking this analogy too seriously, as neu
 
 {% include neurons.html %}
 
---> revisar - capitulo anterior?
-
 Las redes neuronales dieron un gran paso adelante cuando Frank Rosenblatt diseño el Perceptron, un tipo de clasificador linear que cubrimos en el capítulo anterior, a finales de los años cincuenta. Financiado públicamente por la Armada de los Estados Unidos, el perceptrón Mark 1 fue diseñado para reconocer imágenes a partir de una serie de fotocélulas, potenciómetros y motores eléctricos. Fue tan efectivo completando circuitos eléctricos complejos que en 1958 el periódico New York Times predijo que una máquina pronto podría "caminar, hablar, ver, escribir, reproducirse y ser consciente de su propia existencia".
 
 Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/ml4a/machine_learning/). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. Its effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
+
+Este tipo de logros inspiró por décadas a escritores de ciencia ficción, aun cuando la emoción dentro de la comunidad académica fue mucho más reservada. En 1969 el libro de Marvin Minsky y Seymour Papert, Perceptrons, demostró varias limitaciones de las redes neuronales, lo cual condujo inadvertidamente a una disminución de interés por parte del mundo académico y el público general. Ambos habían asumido erróneamente que las computadoras seguirían avanzando al mismo ritmo vertiginoso que el poder computacional. Incluso Turing una vez dijo que las máquinas poseerían una inteligencia comparable a la humana para el año 2000 - el mismo año que tuvimos el susto Y2K.
 
 The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem).
 
@@ -39,7 +44,8 @@ Despite a number of quiet but significant improvements to neural networks in the
 Aunque se han propuesto muchos algoritmos de aprendizaje automático a lo largo de los años, nos enfocaremos en la redes neuronales ya que:
 
 - Tienen una formulación sorprendentemente simple e intuitiva.
-- Las redes neuronales de aprendizaje profundo (en inglés, deep neural networks) representan las técnicas más avanzadas 
+- Las redes neuronales de aprendizaje profundo (en inglés, deep neural networks) constituyen la tecnología de vanguardia para varias de las tareas que discutiremos en este libro.
+- La mayoría de las aplicaciones creativas del aprendizaje de máquinas se han hecho con redes neuronales.
 
 Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
 
@@ -50,6 +56,8 @@ Although many learning algorithms have been proposed over the years, we will mos
 
 ## From linear classifiers to neurons
 
+Recuerda del capítulo anterior que la entrada a un regressor o un clasificador lineal en 2d tiene la forma:
+
 Recall from the previous chapter that the input to a 2d linear classifier or regressor has the form:
 
 $$
@@ -58,6 +66,8 @@ f(x_1, x_2) = b + w_1 x_1 + w_2 x_2
 \end{eqnarray}
 $$
 
+Si lo extendemos a cualquier número de dimensions, se puede expresar como:
+
 More generally, in any number of dimensions, it can be expressed as
 
 $$
@@ -65,6 +75,8 @@ $$
 f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
+
+En el caso de la regresión, $$f(X)$$ nos da el resultado predicho, dado el vector de entrada $$X$$. En el caso de la clasificación, la clase predicha está dada por:
 
 In the case of regression, $$f(X)$$ gives us our predicted output, given the input vector $$X$$. In the case of classification, our predicted class is given by
 
@@ -143,7 +155,7 @@ Note that it may look like the three input neurons send out multiple values beca
 
 The process of a neural network sending an initial input forward through its layers to the output is called _forward propagation_ or a _forward pass_ and any neural network which works this way is called a _feedforward neural network_. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet...
 
-Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-right corner to proceed. 
+Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-right corner to proceed.
 
 {% include demo_insert.html path="/demos/simple_forward_pass/" parent_div="post" %}
 
@@ -163,7 +175,7 @@ But what if we have multiple classes? One option might be to create intervals in
 # Classification of handwritten digits
 
 Let's now tackle a real world example of classification using neural networks, the task of recognizing and labeling images of handwritten digits. We are going to use the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which contains 60,000 labeled images of handwritten digits sized 28x28 pixels, whose classification accuracy serves as a common benchmark in machine learning research. Below is a random sample of images found in the dataset.
-	
+
 {% include figure.html path="/images/figures/fig_mnist_groundtruth.png" caption="A random sample of MNIST handwritten digits" %}
 
 The way we setup a neural network to classify these images is by having the raw pixel values be our first layer inputs, and having 10 output classes, one for each of our digit classes from 0 to 9. Since they are grayscale images, each pixel has a brightness value between 0 (black) and 255 (white). All the MNIST images are 28x28, so they contain 784 pixels. We can unroll these into a single array of inputs, like in the following figure.
