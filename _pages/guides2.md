@@ -79,8 +79,6 @@ title: Guides
 <div id="platforms">
 	<div class="platform">Keras</div>
 	<div class="platform">openFrameworks</div>
-	<div class="platform">Processing</div>
-	<div class="platform">p5.js</div>
 </div>
 
 
@@ -105,9 +103,11 @@ title: Guides
 {% include guide_preview2.md name="AudioTSNEViewer" %}
 {% include guide_preview2.md name="ConvnetOSC" %}
 {% include guide_preview2.md name="ConvnetClassifier" %}
+{% include guide_preview2.md name="ConvnetRegressor" %}
 {% include guide_preview2.md name="DoodleClassifier" %}
 {% include guide_preview2.md name="FaceClassifier" %}
 {% include guide_preview2.md name="FaceRegressor" %}
+{% include guide_preview2.md name="Gobot" %}
 {% include guide_preview2.md name="ImageTSNEViewer" %}
 {% include guide_preview2.md name="ImageTSNELive" %}
 {% include guide_preview2.md name="Pix2Pix" %}

@@ -194,6 +194,16 @@
 			"Train a real-time multi-class classifier of images"
 		]
 	}, 
+	"ConvnetRegressor": {
+		"title": "Convnet regressor",
+		"description": "Convnet regressor",
+		"link":"/guides/ConvnetRegressor",
+		"thumb":"/images/guides_thumbs/convnet-regressor.jpg",
+		"summary":[
+			"Extract feature vectors from incoming webcam stream",
+			"Control a set of sliders via regression over feature vectors"
+		]
+	}, 
 	"DoodleClassifier": {
 		"title": "Doodle classifier",
 		"description": "Doodle classifier",
@@ -222,6 +232,16 @@
 		"summary":[
 			"Use face tracker to analyze facial expressions or poses",
 			"Train real-time regression to control sliders according to facial expression"
+		]
+	},
+	"Gobot": {
+		"title": "Gobot",
+		"description": "Gobot",
+		"link":"/guides/Gobot",
+		"thumb":"/images/guides_thumbs/goboard.jpg",
+		"summary":[
+			"Scrape screen pixels and detect Go board position",
+			"Have a convnet make move recommendations for human player"
 		]
 	}, 
 	"ImageTSNEViewer": {
