@@ -7,7 +7,7 @@ This tutorial will guide you on how to use the [pix2pix](https://phillipi.github
 
 ## What does pix2pix do?
 
-pix2pix implements a generic [image-to-image translation using conditional adversarial networks](https://arxiv.org/pdf/1611.07004v1.pdf). Given a training set which contains pairs of related images ("A" and "B"), a pix2pix model learns how to convert an image of type "A" into an image of type "B", or vice-versa. For example, suppose we have pairs of images, where A is a black & white image and B is an RGB-color version of A, e.g. the following:
+pix2pix implements a generic [image-to-image translation using conditional adversarial networks](https://arxiv.org/abs/1611.07004). Given a training set which contains pairs of related images ("A" and "B"), a pix2pix model learns how to convert an image of type "A" into an image of type "B", or vice-versa. For example, suppose we have pairs of images, where A is a black & white image and B is an RGB-color version of A, e.g. the following:
 
 {% include figure_multi.md path1="/images/guides/pix2pix/mountains_data_input.jpg" caption1="Color image \"B\"" path2="/images/guides/pix2pix/mountains_data_output.jpg" caption2="Corresponding black & white image \"A\"" %}
 
@@ -19,7 +19,7 @@ As we see above, the output is not identical to the input, but the network does 
 
 ## Generalizing a bit
 
-In fact, many important image processing tasks can be framed as image to image translation tasks of this sort. Deblurring or denoising images can be framed in this way, and indeed there had been a great deal of past research in learning various specific image-to-image translation tasks like those and others. The nice thing about pix2pix is that it is generic; it does not require pre-defining the relationship between the two types of images. It makes no assumptions about the relationship and instead learns the objective during training, by comparing the defined inputs and outputs during training, and inferring the objective. This makes pix2pix highly flexible and adaptable to a wide variety of situations, including ones where it is not easy to verbally or explicitly define the task we want to model. 
+Many important image processing tasks can be framed as image to image translation tasks of this sort. Deblurring or denoising images can be framed in this way, and indeed there had been a great deal of past research in learning various specific image-to-image translation tasks like those and others. The nice thing about pix2pix is that it is generic; it does not require pre-defining the relationship between the two types of images. It makes no assumptions about the relationship and instead learns the objective during training, by comparing the defined inputs and outputs during training, and inferring the objective. This makes pix2pix highly flexible and adaptable to a wide variety of situations, including ones where it is not easy to verbally or explicitly define the task we want to model. 
 
 We get a good sense of this by considering a more complicated example, that of the [CMP facades](http://cmp.felk.cvut.cz/~tylecr1/facade/) dataset which pix2pix has a download link for. Let's look at a small sample of images from the facades dataset.
 

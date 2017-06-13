@@ -1,6 +1,6 @@
 ---
 layout: guide
-title: "convnetClassifier"
+title: "Convnet Classifier"
 ---
 ### What is it?
 
