@@ -10,6 +10,7 @@ aprendizaje de máquinas = machine learning
 neural networks = redes neuronales
 machines = máquinas
 input = la entrada
+bias = sesgo
 
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió una ambición por construir un "[cálculo del sistema nervioso(http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque analogías especulativas sobre mentes y máquinas , no fue hasta que el profesor de Ada, Charles Baggage, propuso la Máquina analítica que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que lo ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el Juego de Imitación. Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
@@ -88,6 +89,8 @@ $$
       \end{array} \right.
 \tag{1}\end{eqnarray}
 $$
+
+Podemos interpretar que cada peso, $$w_i$$, representa la influencia relativa de la entrada por la cual se multiplica, $$x_i$$. A menudo al término $$b$$ se le llama sesgo (en inglés bias), ya que controla que tan predispuesta está la neurona a disparar un 1 o un 0 independiente de los pesos. Un sesgo alto hace que la neurona requira una entrada más alta para generar una salida de 1. Un sesgo bajo lo hace más fácil. 
 
 Each weight, $$w_i$$, can be interpreted as signifying the relative influence of the input that it's multiplied by, $$x_i$$. The $$b$$ term in the equation is often called the _bias_, because it controls how predisposed the neuron is to firing a 1 or 0, irrespective of the weights. A high bias makes the neuron require a larger input to output a 1, and a lower one makes it easier.
 
