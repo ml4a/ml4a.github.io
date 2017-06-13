@@ -5,8 +5,7 @@ title: "Reverse Image Search (Fast)"
 
 This app demonstrates how to quickly retrieve the k-nearest neighbors to an image query. It is the same concept as what's given in the [Reverse Image Search](/guides/ReverseImageSearch/), except that it can make queries on previously-unseen images at nearly real-time, whereas the former is only a viewer for a fixed set of images pre-analyzed by a Python script. It is also mostly identical to [Reverse Object Search Fast](/guides/ReverseObjectSearchFast/), except that it operates over the entire image rather than over detected objects within the image.
 
-{% include todo.html note="header image" %}
-<!-- ![ReverseObjectSearchFast setup](/images/guides/reverseobjectsearch_food.jpg "ReverseObjectSearchFast setup") -->
+{% include figure_multi.md path1="/images/guides/RIS_tennis.jpg" caption1="Live reverse image search at ~1 fps" %}
 
 
 ## How it works
@@ -74,7 +73,7 @@ Unzip them and place the images into side-by-side folders 'train', 'test', and '
 
 Next, download the saved vectors. It can be downloaded from Dropbox via the following link:
 
-{% include todo.html note="host mscoco_images_145k_rp100.dat" %}
+[https://drive.google.com/drive/folders/0B3WXSfqxKDkFRE05MXY1U3c0YVU](https://drive.google.com/drive/folders/0B3WXSfqxKDkFRE05MXY1U3c0YVU)
 	
 Afterwards, you may load them as usual following the method in the previous section. Make sure `baseDir` is pointing towards the parent folder of `train`, `test`, and `val`.
 

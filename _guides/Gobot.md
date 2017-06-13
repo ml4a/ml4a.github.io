@@ -14,7 +14,7 @@ Below is a short snippet of a game played with my AI helper.
 </center>
 
 
-#### Installation
+## Installation
 
 To build from source, you need the following addons.
 
@@ -25,7 +25,7 @@ To build from source, you need the following addons.
 Or the built application can be downloaded from [ml4a-ofx releases](https://github.com/ml4a/ml4a-ofx/releases).
 
 
-#### Instructions
+## Instructions
 
 After launching Gobot, you will see an empty Go board. At this point, you want to launch a new game on [online-go](https://www.online-go.com), and maximize the window.
 
