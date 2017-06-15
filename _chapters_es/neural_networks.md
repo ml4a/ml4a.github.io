@@ -10,7 +10,11 @@ aprendizaje de máquinas = machine learning
 neural networks = redes neuronales
 machines = máquinas
 input = la entrada
+output = la salida
 bias = sesgo
+activation function = función de activación
+weighted sum = suma ponderada
+sigmoid function = función sigmoide
 
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió una ambición por construir un "[cálculo del sistema nervioso(http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque analogías especulativas sobre mentes y máquinas , no fue hasta que el profesor de Ada, Charles Baggage, propuso la Máquina analítica que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que lo ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el Juego de Imitación. Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
@@ -94,13 +98,23 @@ Podemos interpretar que cada peso, $$w_i$$, representa la influencia relativa de
 
 Each weight, $$w_i$$, can be interpreted as signifying the relative influence of the input that it's multiplied by, $$x_i$$. The $$b$$ term in the equation is often called the _bias_, because it controls how predisposed the neuron is to firing a 1 or 0, irrespective of the weights. A high bias makes the neuron require a larger input to output a 1, and a lower one makes it easier.
 
+Podemos obtener una verdadera red neuronal a partir de esta fórmula si introducimos dos inovaciones. La primera es la adición de una función de activación, la cual transforma nuestra discirimador lineal en lo que se llama una _neurona_, o "_unidad_" (para disociarlo de analogías del cerebro). La segunda inovación consiste organizar las neuronas de una manera particular, una arquitectura de neuronas conectadas secuencialmente en _capas_. Cubriremos estas dos inovaciones en orden.
+
 We can get from this formula to a full-fledged neural network by introducing two innovations. The first is the addition of an _activation function_, which turns our linear discriminator into what's called a _neuron_, or a "_unit_" (to dissociate them from the brain analogy). The second innovation is an architecture of neurons which are connected sequentially in _layers_. We will introduce these innovations in that order.
+
+## Función de activación
 
 ## Activation function
 
+Tanto en las redes neuronales artificiales como biológicas, una neurona no sólo transmite la entrada que recibe. Existe un paso adicional, una _función de activación_, que es análoga a la tasa de potencial de acción disparando en el cerebro. La función de activación utiliza la misma suma ponderada de la entrada anterior, $$z = b + \sum_i w_i x_i$$, y la transforma una vez más como salida.
+
 In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an _activation function_, analagous to the rate of [action potential](https://en.wikipedia.org/wiki/Action_potential) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i x_i$$, and then transforms it once more before finally outputting it.
 
+Se han propuesto muchas funciones de activación, pero por ahora describiremos solamente dos en detalle: la sigmoide y ReLU.
+
 Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU.
+
+Históricamente, la función sigmoide es la función de activación mas antiguia y popular. Se define como:
 
 Historically, the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) function is the oldest and most popular activation function. It is defined as:
 
