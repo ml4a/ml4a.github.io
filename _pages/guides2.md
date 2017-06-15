@@ -95,6 +95,7 @@ title: Guides
 {% include guide_preview2.md name="text-retrieval" %}
 {% include guide_preview2.md name="neural-painter" %}
 {% include guide_preview2.md name="word2vec" %}
+{% include guide_preview2.md name="eigenfaces" %}
 {% include guide_preview2.md name="qlearn" %}
 {% include guide_preview2.md name="qnets" %}
 
