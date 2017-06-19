@@ -15,6 +15,8 @@ bias = sesgo
 activation function = función de activación
 weighted sum = suma ponderada
 sigmoid function = función sigmoide
+input neuron = neurona de entrada
+output neuron = neurona de salida
 
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió una ambición por construir un "[cálculo del sistema nervioso(http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque analogías especulativas sobre mentes y máquinas , no fue hasta que el profesor de Ada, Charles Baggage, propuso la Máquina analítica que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que lo ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el Juego de Imitación. Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
@@ -58,6 +60,8 @@ Although many learning algorithms have been proposed over the years, we will mos
  - Deep neural networks are the current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
  - Most of the recent creative uses of machine learning have been made with neural networks.
 
+
+## De clasificadores lineales a neuronas
 
 ## From linear classifiers to neurons
 
@@ -122,6 +126,8 @@ $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
+$$e$$ denota la constante exponencial, que es aproximadamente igual a 2,71828. Una neurona que utiliza la sigmóide como función de activación se le llama _neurona sigmoide_. Primero establecemos que la variable $$z$$ equivale a nuestra suma ponderada de entrada y después la pasamos a través de la función sigmóide. 
+
 $$e$$ denotes the [exponential constant](https://en.wikipedia.org/wiki/E_(mathematical_constant)), roughly equal to 2.71828. A neuron which uses a sigmoid as its activation function is called a _sigmoid neuron_. We first set the variable $$z$$ to our original weighted sum input, and then pass that through the sigmoid function.
 
 $$
@@ -129,23 +135,38 @@ z = b + \sum_i w_i x_i \\
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
+Aunque la ecuación parece complicada y arbitraria, en realidad tiene una forma bastante simple. La podemos ver si trazamos el valor de $$\sigma(z)$$ como función de la entrada $$z$$.
+
 At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$.
 
 {% include figure.html path="/images/figures/sigmoid.png" caption="Sigmoid activation function" %}
 
+Podemos ver que $$\sigma(z)$$ actúa como una especie de función "aplastadora", comprimiendo nuestra salida a un rango de 0 a 1. En el centro, donde $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. Para valores negativos grandes de $$z$$, el término $$e^{-z}$$ en el denominador crece exponencialmente, y $$\sigma(z)$$ se aproxima a 0. Al contrario, valores positivos grandes de $$z$$ reducen $$e^{-z}$$ hacia 0, y $$\sigma(z)$$ se aproxima a 1. 
+
 We can see that $$\sigma(z)$$ acts as a sort of "squashing" function, condensing our previously unbounded output to the range 0 to 1. In the center, where $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. For large negative values of $$z$$, the $$e^{-z}$$ term in the denominator grows exponentially, and $$\sigma(z)$$ approaches 0. Conversely, large positive values of $$z$$ shrink $$e^{-z}$$ to 0, so $$\sigma(z)$$ approaches 1.
 
+La función sigmoide es continuamente diferenciable, y su derivada convenientemente es $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$. Este detalle indica que tenemos que usar cálculo para entrenar una red neuronal - pero no nos preocuparemos por eso en este capítulo. 
+
 The sigmoid function is continuously differentiable, and its derivative, conveniently, is $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$. This is important because we have to use calculus to train neural networks, but don't worry about that for now.
+
+Las funciones sigmóides fueron la base de la mayoría de las redes neuronales por muchas décadas, aunque en años recientes han perdido popularidad. Explicaremos la razón en detalle en los próximos capítulos, pero la versión corta es que las redes neuronales de muchas capas se vuelven muy difíciles de entrenar dado el problema de desaparición de gradiente. En su lugar, la mayoría de las redes neuronales actuales usan otro tipo de función de activación llamada "rectified linear unit" o ReLU. A pesar del nombre complicado, se define simplemente como $$R(z) = max(0, z)$$.
 
 Sigmoid neurons were the basis of most neural networks for decades, but in recent years, they have fallen out of favor. The reason for this will be explained in more detail later, but in short, they make neural networks that have many layers difficult to train due to the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). Instead, most have shifted to using another type of activation function, the _rectified linear unit_, or ReLU for short. Despite its obtuse name, it is simply defined as $$R(z) = max(0, z)$$.
 
 {% include figure.html path="/images/figures/relu.png" caption="ReLU activation function" %}
 
+En otras palabras, las ReLUs permiten el paso de todos los valores positivos sin cambiarlos, pero asigna todos los valores negativos a 0. Aunque existen funciones de activación aún más recientes, la mayoría de las redes neuronales de hoy utilizan ReLU o una de sus variantes.
+
 In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+
+Independiente de la función de activación que utilizemos, podemos visualizar una neurona individual con el siguiente diagrama, una visual representativa e intuitiva del comportamiento de una neurona. 
 
 Regardless of which activation function is used, we can visualize a single neuron with this standard diagram, giving us a nice intuitive visual representation of a neuron's behavior.
 
 {% include figure.html path="/images/figures/neuron.png" caption="An artificial neuron" %}
+
+Este diagrama muestra una neurona con tres entradas, que genera un único valor como salida. Como en el caso anterior, primero calculamos la suma ponderada de sus entradas, y después pasamos la suma a través de una función de activacion sigmoide.
+
 
 The above diagram shows a neuron with three inputs, and outputs a single value $$y$$. As before, we first compute the weighted sum of its inputs, then pass it through an activation function $$\sigma$$.
 
@@ -154,19 +175,34 @@ z = b + w_1 x_1 + w_2 x_2 + w_3 x_3 \\
 y = \sigma(z)
 $$
 
+Quizás te estás preguntando cuál es el propósito de una función de activación, y por qué preferimos usarla en vez de la suma ponderada - como lo hacemos con el clasificador lineal del capítulo anterior. La razón es que la suma ponderada es lineal con respecto a sus entradas. En cambio, las funciones de activación no-lineales nos ayudan a modelar funciones curvas o no triviales. Esto quedará más claro en la siguiente sección. 
+
 You may be wondering what the purpose of an activation function is, and why it is preferred to simply outputting the weighted sum, as we do with the linear classifier from the last chapter. The reason is that the weighted sum, $$z$$, is [_linear_](https://en.wikipedia.org/wiki/Linearity) with respect to its inputs, i.e. it has a flat dependence on each of the inputs. In contrast, non-linear activation functions greatly expand our capacity to model curved or otherwise non-trivial functions. This will become clearer in the next section.
 
+# Capas
+
 # Layers
+
+Ahora que hemos descrito una neurona, podemos definir una red neuronal. Una red neuronal consiste en una serie de _capas_ de neuronas. Específicamente,  todas las neuronas de una capa se conectan a las neuronas de la siguiente capa. 
 
 Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of _layers_ of neurons, such that all the neurons in each layer connect to the neurons in the next layer.
 
 {% include figure.html path="/images/figures/neural-net.png" caption="A 2-layer neural network" %}
 
+Un detalle es que cuanto contamos el número de capas en una red neuronal, sólo contamos las capas con entradas (omitimos la primera _capa de entrada_). La figura anterior representa una red neuronal de 2 capas con 1 capa oculta. Contiene 3 neuronas de entrada, 2 neuronas en la capa oculta, y 1 neurona de salida. 
+
 Note that when we count the number of layers in a neural network, we only count the layers with connections flowing into them (omitting our first, or _input layer_). So the above figure is of a 2-layer neural network with 1 _hidden layer_. It contains 3 input neurons, 2 neurons in its hidden layer, and 1 output neuron.
+
+Nuestro cálculo comienza con la capa de entrada a la izquierda, de la cual pasamos valores a la capa oculta. De ahí, la capa oculta envía valores de salida a la última capa, que contiene el valor final. 
 
 Our computation starts with the input layer on the left, from which we pass the values to the hidden layer, and then in turn, the hidden layer will send its output values to the last layer, which contains our final value.
 
+Aunque pareciera que cada una de las tres neuronas de entrada envía múltiples valores de salida a la capa oculta, en realidad solamente hay un valor de salida por neurona. Las neuronas siempre producen 1 valor, independientemente de cuántas conexiones de salida tengan. 
+
+
 Note that it may look like the three input neurons send out multiple values because each of them are connected to both of the neurons in the hidden layer. But really there is still only one output value per neuron, it just gets copied along each of its output connections. Neurons always output one value, no matter how many subsequent neurons it sends it to.
+
+# Regresión
 
 # Regression
 
