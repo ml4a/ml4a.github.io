@@ -17,6 +17,8 @@ weighted sum = suma ponderada
 sigmoid function = función sigmoide
 input neuron = neurona de entrada
 output neuron = neurona de salida
+forward propagation = propagación hacia delante
+feedforward neural network = red neuronal prealimentada
 
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió una ambición por construir un "[cálculo del sistema nervioso(http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque analogías especulativas sobre mentes y máquinas , no fue hasta que el profesor de Ada, Charles Baggage, propuso la Máquina analítica que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que lo ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el Juego de Imitación. Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
@@ -206,18 +208,33 @@ Note that it may look like the three input neurons send out multiple values beca
 
 # Regression
 
+Llamamos _propagación hacia delante_ (en inglés, forward propagation o forward pass) al proceso por la cual una red neuronal envía su entrada a través de sus capas hacia la salida. A las redes neuronales que funcionan de esta manera se les llama _red neuronal prealimentada_ (en inglés, feedforward neural network). Ya pronto veremos que algunas redes neuronales permiten que los datos fluyan en círculos. 
+
 The process of a neural network sending an initial input forward through its layers to the output is called _forward propagation_ or a _forward pass_ and any neural network which works this way is called a _feedforward neural network_. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet...
+
+Por ahora demostraremos una propagación hacia delante con este ejemplo interactivo. Dale click al botón 'Siguiente' en la esquina superior derecha para continuar. 
 
 Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-right corner to proceed.
 
 {% include demo_insert.html path="/demos/simple_forward_pass/" parent_div="post" %}
 
+# Más capas, más potencial de expresión
+
 # More layers, more expressiveness
 
+¿Por qué son tan útiles las capas ocultas? La razón es que si no tuvieramos capas ocultas y tuvieramos que trazar una conexión directa entre nuestras entradas y nuestra salida - la contribución de cada entrada hacia el valor de salida sería independiente de las otras entrdas. En la mayoría de los problemas del mundo real, las variables de entrada tienden a ser altamente interdependientes y afectan la salida de forma combinatoria y compleja. Las neuronas de las capas ocultas nos permiten capturar interacciones sutiles entre nuestras entradas.
+
 Why are hidden layers useful? The reason is that if we have no hidden layers and map directly from inputs to output, each input's contribution on the output is independent of the other inputs. In real-world problems, input variables tend to be highly interdependent and they affect the output in combinatorially intricate ways. The hidden layer neurons allow us to capture subtle interactions among our inputs which affect the final output downstream.
+
+Otra manera de interpretar esta idea es que las capas ocultas representan "características" a nivel superior o atributos de nuestros datos. Cada una de las neuronas de una capa oculta sopesa sus entradas de forma diferente, y de esta manera aprende características diferentes de los datos. Nuestra neurona de salida logra capturar estas características intermediarias, no sólo las entradas originales. Al incluir más de una capa oculta, permitimos que la red neuronal pueda aprender sobre varios niveles de abstracción de los datos. En el próximo capítulo aprenderemos más sobre las capas ocultas y sobr esta noción de "características" de alto nivel.
+
 Another way to interpret this is that the hidden layers represent higher-level "features" or attributes of our data. Each of the neurons in the hidden layer weigh the inputs differently, learning some different intermediary characteristic of the data, and our output neuron is then a function of these instead of the raw inputs. By including more than one hidden layer, we give the network an opportunity to learn multiple levels of abstraction of the original input data before arriving at a final output. This notion of high-level features will become more concrete [in the next chapter when we look closely at the hidden layers](/ml4a/looking_inside_neural_nets/).
 
+Recuerda también que las funciones de activación también pueden apliar nuestra capacidad 
+
 Recall also that activation functions expand our capacity to capture non-linear relationships between inputs and outputs. By chaining multiple non-linear transformations together through layers, this dramatically increases the flexibility and expressiveness of neural networks. The proof of this is complex and beyond the scope of this book, but it can even be shown that any 2-layer neural network with a non-linear activation function (including sigmoid or ReLU) and enough hidden units is a [_universal function approximator_](http://www.sciencedirect.com/science/article/pii/0893608089900208), that is it's theoretically capable of expressing any arbitrary input-to-output mapping. This property is what makes neural networks so powerful.
+
+# Clasificación
 
 # Classification
 
@@ -240,5 +257,7 @@ The important thing to realize is that although this network seems a lot more im
 After the neural network has been trained -- something we'll talk about in more detail [in a future chapter](/ml4a/how_neural_networks_are_trained/) -- we can predict the digit associated with unknown samples by running them through the same network and observing the output values. The predicted digit is that whose output neuron has the highest value at the end. The following demo shows this in action; click "next" to flip through more predictions.
 
 {% include demo_insert.html path="/demos/forward_pass_mnist/" parent_div="post" %}
+
+# Recursos adicionales
 
 # Further reading
