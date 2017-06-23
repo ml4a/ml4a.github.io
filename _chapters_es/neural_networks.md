@@ -218,7 +218,7 @@ Let's demonstrate a forward pass with this interactive demo. Click the 'Next' bu
 
 {% include demo_insert.html path="/demos/simple_forward_pass/" parent_div="post" %}
 
-# Más capas, más potencial de expresión
+# Más capas, más capacidad de expresión
 
 # More layers, more expressiveness
 
@@ -230,7 +230,7 @@ Otra manera de interpretar esta idea es que las capas ocultas representan "carac
 
 Another way to interpret this is that the hidden layers represent higher-level "features" or attributes of our data. Each of the neurons in the hidden layer weigh the inputs differently, learning some different intermediary characteristic of the data, and our output neuron is then a function of these instead of the raw inputs. By including more than one hidden layer, we give the network an opportunity to learn multiple levels of abstraction of the original input data before arriving at a final output. This notion of high-level features will become more concrete [in the next chapter when we look closely at the hidden layers](/ml4a/looking_inside_neural_nets/).
 
-Recuerda también que las funciones de activación también pueden apliar nuestra capacidad 
+Recuerda también que las funciones de activación permiten capturar relaciones no linealeas entre entradas y salidas. Si encadenamos múltiples transformaciones no lineales a través de las capas, aumentamos la flexibilidad y capacidad de expresión de la red neuronal. Aunque la prueba es compleja y mucho más avanzada de lo que podemos cubrir en este libro, se puede demostrar que cualquier red neuronal de 2 capas con una función de activación no lineal (incluyendo la sigmoide o ReLU) y con suficientes neuronas ocultas es un _aproximador de función universal_ (en inglés, universal function approximator), es decir teóricamente es capaz de expresar cualquier mapeo arbitrario de entrada-a-salida. Las redes neuronales son poderosas precisamente por esta propiedad. 
 
 Recall also that activation functions expand our capacity to capture non-linear relationships between inputs and outputs. By chaining multiple non-linear transformations together through layers, this dramatically increases the flexibility and expressiveness of neural networks. The proof of this is complex and beyond the scope of this book, but it can even be shown that any 2-layer neural network with a non-linear activation function (including sigmoid or ReLU) and enough hidden units is a [_universal function approximator_](http://www.sciencedirect.com/science/article/pii/0893608089900208), that is it's theoretically capable of expressing any arbitrary input-to-output mapping. This property is what makes neural networks so powerful.
 
@@ -238,21 +238,35 @@ Recall also that activation functions expand our capacity to capture non-linear 
 
 # Classification
 
+¿Qué sucede con la clasificación? En el capítulo anterior, introducimos la clasificación binaria al fijar un umbral para la salida en 0. Si nuestra salida era positiva, la clasificábamos como positiva; si nuestra salida era negativa, la clasificábamos como negativa. Podríamos adaptar este método para la neurona final de una red neuronal y clasificar la salida de acuerdo a algún umbral. Por ejemplo, podreiamos establecer un umbral de 0.5 para las neuronas sigmoides que fueran positivas. (check)
+
 What about classification? In the previous chapter, we introduced binary classification by simply thresholding the output at 0; If our output was positive, we'd classify positively, and if it was negative, we'd classify negatively. For neural networks, it would be reasonable to adapt this approach for the final neuron, and classify positively if the output neuron scores above some threshold. For example, we can threshold at 0.5 for sigmoid neurons which are always positive.
+
+¿Ahora qué sucede si tenemos varias categorías? Podríamos hacer que diferentes intervalos de valores en la neurona de salida correspondieran a diferentes categorías, aunque este método resultaría problemático por razones que cubriremos en el capítulo de la formación de redes neuronales. En vez, la mejor manera de adaptar una red neuronal para la clasificación es dejar que cada neurona de salida corresponda a una categoría singular. Al realizar una propagación hacia delante, nuestra predicción llegaría a ser la neurona con el valor más alto. Veamos un ejemplo. 
 
 But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](/ml4a/how_neural_networks_are_trained/). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
 
+# Clasificación de dígitos escritos a mano
+
 # Classification of handwritten digits
+
+Exploremos un problema real de clasificación: cómo reconocer y etiquetar dígitos escritos a mano. Usaremos un conjunto de datos llamado MNIST, que contiene 60,000 imágenes de dígitos, cada una etiquetada midiendo 28x28 píxeles. La exactitud de clasificación de MNIST se usa como un punto de referencia común en el mundo del aprendizaje de máquinas. A continuación presentamos una muestra aleatoria de imágnees de este conjunto de datos:
 
 Let's now tackle a real world example of classification using neural networks, the task of recognizing and labeling images of handwritten digits. We are going to use the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which contains 60,000 labeled images of handwritten digits sized 28x28 pixels, whose classification accuracy serves as a common benchmark in machine learning research. Below is a random sample of images found in the dataset.
 
 {% include figure.html path="/images/figures/fig_mnist_groundtruth.png" caption="A random sample of MNIST handwritten digits" %}
 
+Para clasificar estas imágenes podemos configurar una red neuronal de tal modo que las entradas de nuestra primera capa sean los valores de cada píxel. La red también debe contar con 10 neuronas de salida, una para cada categoría de dígito de 0 a 9. Como estamos trabajando con imágenes a escala de grises, cada píxel tiene un valor de luminosidad entre 0 (negro) y 255 (blanco). Todas las imágenes de MNIST son de 28x28, contienen 784 píxeles en total. Podemos organizar todos estos píxeles en una sola matriz de entradas, como en el siguiente diagrama:  
+
 The way we setup a neural network to classify these images is by having the raw pixel values be our first layer inputs, and having 10 output classes, one for each of our digit classes from 0 to 9. Since they are grayscale images, each pixel has a brightness value between 0 (black) and 255 (white). All the MNIST images are 28x28, so they contain 784 pixels. We can unroll these into a single array of inputs, like in the following figure.
 
 {% include figure.html path="/images/figures/mnist-input.png" caption="How to input an image into a neural network" %}
 
+Aunque esta red parece mucho más complicada que nuestra simpre red 3x2x1 del capítulo anterior, funciona de la misma manera, con muchas más neuronas. Cada una de las neuronas de la primera capa oculta recibe todas de las entradas de la primera capa. En la capa de salida ahora tenemos _diez_ neuronas en vez de una, pero igual que en el ejemplo anterior, conectamos todas esas neuronas con la capa oculta anterior. Asignamos una etiqueta a cada una de las neuronas de salida; la primera corresponde al dígito `0`, la segunda para el dígito `1`, y así sucesivamente. 
+
 The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives all the inputs from the first layer. For the output layer, we'll now have _ten_ neurons rather than just one, with full connections between it and the hidden layer, as before. Each of the ten output neurons is assigned to one class label; the first one is for  the digit `0`, the second for `1`, and so on.
+
+Después de entrenar nuestra red -- algo que cubriremos en detalle en otro capítulo -- podemos predecir el dígito de cualquier muestra desconocida al pasar la muestra por la misma red y observar el valor de salida. La neurona de salida con el valor más alto corresponde al dígito predicho. El siguiente ejemplo demuestra el proceso; dale clic al botón "siguiente" para ver más predicciones. 
 
 After the neural network has been trained -- something we'll talk about in more detail [in a future chapter](/ml4a/how_neural_networks_are_trained/) -- we can predict the digit associated with unknown samples by running them through the same network and observing the output values. The predicted digit is that whose output neuron has the highest value at the end. The following demo shows this in action; click "next" to flip through more predictions.
 
