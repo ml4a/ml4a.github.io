@@ -2,6 +2,7 @@
 	"fundamentals": {
 		"title": "Fundamentals of machine learning",
 		"description": "Mathematical precepts for machine learning",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/fundamentals.ipynb",
 		"thumb":"/images/guides_thumbs/fundamentals.jpg",
 		"summary":[
@@ -13,6 +14,7 @@
 	"simple": {
 		"title": "Ordinary neural networks",
 		"description": "How to train a simple feedforward neural network",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/simple_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
@@ -23,6 +25,7 @@
 	"cnn": {
 		"title": "Convolutional neural networks",
 		"description": "How to train a convolutional neural network",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/convolutional_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/convnets.jpg",
 		"summary":[
@@ -33,6 +36,7 @@
 	"transfer-learning": {
 		"title": "Transfer learning",
 		"description": "Training accurate image classifiers on small datasets",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb",
 		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
 		"summary":[
@@ -43,6 +47,7 @@
 	"rnn": {
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
@@ -53,6 +58,7 @@
 	"seq2seq": {
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb",
 		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
@@ -63,6 +69,7 @@
 	"eigenfaces": {
 		"title": "Eigenfaces",
 		"description": "Understand dimensionality reduction and generate weird faces",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/Eigenfaces.ipynb",
 		"thumb":"/images/guides_thumbs/eigenfaces.jpg",
 		"summary":[
@@ -73,6 +80,7 @@
 	"image-search": {
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-search.ipynb",
 		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
@@ -83,6 +91,7 @@
 	"image-path": {
 		"title": "Find shortest path between two images",
 		"description": "How to find the shortest path between two images",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb",
 		"thumb":"/images/guides_thumbs/image-path.jpg",
 		"summary":[
@@ -93,6 +102,7 @@
 	"image-tsne": {
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
@@ -103,6 +113,7 @@
 	"audio-tsne": {
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/audio-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
@@ -113,6 +124,7 @@
 	"text-retrieval": {
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb",
 		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
@@ -124,6 +136,7 @@
 	"neural-painter": {
 		"title": "Neural net painter",
 		"description": "Fun experiment teaching a neural net to \"paint\" an image",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb",
 		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
 		"summary":[
@@ -135,6 +148,7 @@
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/word2vec_tsne.ipynb",
 		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
@@ -146,6 +160,7 @@
 	"qlearn": {
 		"title": "Q-Learning",
 		"description": "Introduction to Q Learning",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb",
 		"thumb":"/images/guides_thumbs/q-learning.jpg",
 		"summary":[
@@ -156,6 +171,7 @@
 	"qnets": {
 		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
+		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb",
 		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
 		"summary":[
@@ -168,6 +184,7 @@
 	"AudioClassifier": {
 		"title": "Audio classifier",
 		"description": "Audio classifier",
+		"category": "openframeworks",
 		"link":"/guides/AudioClassifier",
 		"thumb":"/images/guides_thumbs/audio-classifier.jpg",
 		"summary":[
@@ -178,6 +195,7 @@
 	"AudioTSNEViewer": {
 		"title": "Audio t-SNE viewer",
 		"description": "Audio t-SNE viewer",
+		"category": "openframeworks",
 		"link":"/guides/AudioTSNEViewer",
 		"thumb":"/images/guides_thumbs/audio-tsne-viewer.jpg",
 		"summary":[
@@ -187,6 +205,7 @@
 	"ConvnetOSC": {
 		"title": "ConvnetOSC",
 		"description": "ConvnetOSC",
+		"category": "openframeworks",
 		"link":"/guides/ConvnetOSC",
 		"thumb":"/images/guides_thumbs/convnetOSC.jpg",
 		"summary":[
@@ -197,6 +216,7 @@
 	"ConvnetClassifier": {
 		"title": "Convnet classifier",
 		"description": "Convnet classifier",
+		"category": "openframeworks",
 		"link":"/guides/ConvnetClassifier",
 		"thumb":"/images/guides_thumbs/convnet-classifier.jpg",
 		"summary":[
@@ -207,6 +227,7 @@
 	"ConvnetRegressor": {
 		"title": "Convnet regressor",
 		"description": "Convnet regressor",
+		"category": "openframeworks",
 		"link":"/guides/ConvnetRegressor",
 		"thumb":"/images/guides_thumbs/convnet-regressor.jpg",
 		"summary":[
@@ -217,6 +238,7 @@
 	"DoodleClassifier": {
 		"title": "Doodle classifier",
 		"description": "Doodle classifier",
+		"category": "openframeworks",
 		"link":"/guides/DoodleClassifier",
 		"thumb":"/images/guides_thumbs/doodle-classifier.jpg",
 		"summary":[
@@ -227,6 +249,7 @@
 	"FaceClassifier": {
 		"title": "Face classifier",
 		"description": "Face classifier",
+		"category": "openframeworks",
 		"link":"/guides/FaceClassifier",
 		"thumb":"/images/guides_thumbs/face-classifier.jpg",
 		"summary":[
@@ -237,6 +260,7 @@
 	"FaceRegressor": {
 		"title": "Face regressor",
 		"description": "Face regressor",
+		"category": "openframeworks",
 		"link":"/guides/FaceRegressor",
 		"thumb":"/images/guides_thumbs/face-regressor.jpg",
 		"summary":[
@@ -247,6 +271,7 @@
 	"Gobot": {
 		"title": "Gobot",
 		"description": "Gobot",
+		"category": "openframeworks",
 		"link":"/guides/Gobot",
 		"thumb":"/images/guides_thumbs/goboard.jpg",
 		"summary":[
@@ -257,6 +282,7 @@
 	"ImageTSNEViewer": {
 		"title": "Image t-SNE viewer",
 		"description": "Image t-SNE viewer",
+		"category": "openframeworks",
 		"link":"/guides/ImageTSNEViewer",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
@@ -266,6 +292,7 @@
 	"ImageTSNELive": {
 		"title": "Image t-SNE live",
 		"description": "Image t-SNE live",
+		"category": "openframeworks",
 		"link":"/guides/ImageTSNELive",
 		"thumb":"/images/guides_thumbs/image-tsne-live.jpg",
 		"summary":[
@@ -276,6 +303,7 @@
 	"Pix2Pix": {
 		"title": "pix2pix tutorial",
 		"description": "pix2pix tutorial",
+		"category": "openframeworks",
 		"link":"/guides/Pix2Pix",
 		"thumb":"/images/guides_thumbs/pix2pix.jpg",
 		"summary":[
@@ -286,6 +314,7 @@
 	"ReverseImageSearchFast": {
 		"title": "Reverse image search (fast)",
 		"description": "Reverse image search",
+		"category": "openframeworks",
 		"link":"/guides/ReverseImageSearchFast",
 		"thumb":"/images/guides_thumbs/reverse-image-search-fast.jpg",
 		"summary":[
@@ -296,6 +325,7 @@
 	"ReverseObjectSearchFast": {
 		"title": "Reverse object search",
 		"description": "Reverse object search",
+		"category": "openframeworks",
 		"link":"/guides/ReverseObjectSearchFast",
 		"thumb":"/images/guides_thumbs/reverse-object-search.jpg",
 		"summary":[
@@ -306,6 +336,7 @@
 	"YoloLive": {
 		"title": "Yolo (fast object detection) live",
 		"description": "Yolo (fast object detection) live",
+		"category": "openframeworks",
 		"link":"/guides/YoloLive",
 		"thumb":"/images/guides_thumbs/yolo-live.jpg",
 		"summary":[
@@ -315,6 +346,7 @@
 	"Contribute": {
 		"title": "Contribute!",
 		"description": "Contribute!",
+		"category": "python openframeworks",
 		"link":"/guides/Contribute/",
 		"thumb":"/images/guides_thumbs/default.jpg",
 		"summary":[

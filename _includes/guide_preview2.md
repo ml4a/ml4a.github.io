@@ -4,12 +4,13 @@
 {% assign guide = site.data.guides[name] %}
 {% assign title = guide.title %}
 {% assign description = guide.description %}
+{% assign category = guide.category %}
 {% assign summary = guide.summary %}
 {% assign link = guide.link %}
 {% assign thumb = guide.thumb %}
 
 
-<div class="project">
+<div class="project {{category}}">
 	<a href="{{link}}">
 		<img src="{{thumb}}">
 		<div class="overlay">
@@ -29,3 +30,4 @@
 		</div>
 	</a>
 </div>
+

@@ -77,8 +77,9 @@ title: Guides
 
 
 <div id="platforms">
-	<div class="platform">Keras</div>
-	<div class="platform">openFrameworks</div>
+	<div id="platform_all" class="platform"><a href="javascript:displayAll();">All</a></div>
+	<div id="platform_python" class="platform"><a href="javascript:displayByKey('python');">Keras / Tensorflow</a></div>
+	<div id="platform_openframeworks" class="platform"><a href="javascript:displayByKey('openframeworks');">openFrameworks</a></div>
 </div>
 
 
@@ -119,3 +120,29 @@ title: Guides
 
 {% include guide_preview2.md name="Contribute" %}
 
+
+
+
+
+
+<script>
+function displayAll() {
+	var d = document.getElementsByClassName("project");
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
+};
+function hideAll() {
+	var d = document.getElementsByClassName("project");
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "none"; }	
+};
+function displayByKey(keyword) {
+	hideAll();
+	d = document.getElementsByClassName("project "+keyword);
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
+	// document.getElementsByClassName("platform").forEach(function (d){
+	// 	d.style.border = "1px solid #000";
+	// });
+	document.getElementById("platform_"+keyword).style.border = "3px solid #0a0";
+//	document.getElementsByClassName("displayAll")[0].style.display = "block";
+};
+
+</script>
