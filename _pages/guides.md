@@ -126,9 +126,16 @@ title: Guides
 
 
 <script>
+function highlightButton(keyword){
+	document.getElementById("platform_python").style.border = "none";
+	document.getElementById("platform_openframeworks").style.border = "none";
+	document.getElementById("platform_all").style.border = "none";
+	document.getElementById("platform_"+keyword).style.border = "1px solid #1abc9c";
+}
 function displayAll() {
 	var d = document.getElementsByClassName("project");
 	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
+	highlightButton('all');
 };
 function hideAll() {
 	var d = document.getElementsByClassName("project");
@@ -138,11 +145,8 @@ function displayByKey(keyword) {
 	hideAll();
 	d = document.getElementsByClassName("project "+keyword);
 	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
-	// document.getElementsByClassName("platform").forEach(function (d){
-	// 	d.style.border = "1px solid #000";
-	// });
-	document.getElementById("platform_"+keyword).style.border = "3px solid #0a0";
-//	document.getElementsByClassName("displayAll")[0].style.display = "block";
+	highlightButton(keyword);
 };
+displayAll();
 
 </script>
