@@ -3,44 +3,146 @@ layout: default
 title: Guides
 ---
 
-<div style="background-color:#FAAFBE;width:85%;margin-left:auto;margin-right:auto;padding:15px">
-	<h3><a href="https://github.com/ml4a/ml4a-guides">ml4a-guides</a> are a collection of practical resources for working with machine learning software, including code and tutorials.
-	</h3>
+<style>
+.project {
+    width:280px;
+    height:200px;
+    margin:10px;
+    padding:0px;
+    position:relative;
+    display:inline-block;
+    text-align:left;
+}
+
+.overlay {
+	width:100%;
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    display:inline-block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    color:white;
+}
+
+.overlay_title {
+    font-size:1.25em;
+    background:rgba(0,0,0,0.7);
+    padding:7px;
+}
+/*
+.overlay_description {
+    font-size:1.1em;
+    background:rgba(0,0,0,0.7);
+    margin-top:0px;
+    padding:4px;
+    width: 100%;
+    border-top: 1px solid rgba(255,255,255,0.45);
+}*/
+.overlay_summary {
+    font-size:0.95em;
+    background:rgba(0,0,0,0.7);
+    display: none;
+    margin-top:8px;
+    /*padding:10px;*/
+    width: 100%;
+}
+.project a:hover .overlay_summary {
+    display:inline-block;
+}
+.overlay .overlay_summary li {
+    padding:2px;
+}
+
+
+
+#platforms {
+	margin-top:10px;
+	margin-bottom:20px;
+}
+.platform {
+	border: 1px solid #aaa;
+	padding-bottom: 8px;
+	padding-top: 8px;
+	padding-left: 24px;
+	padding-right: 24px;
+	margin: 2px;
+	display:inline-block;
+}
+
+</style>
+
+
+
+<div id="platforms">
+	<div id="platform_all" class="platform"><a href="javascript:displayAll();">All</a></div>
+	<div id="platform_python" class="platform"><a href="javascript:displayByKey('python');">Keras / Tensorflow</a></div>
+	<div id="platform_openframeworks" class="platform"><a href="javascript:displayByKey('openframeworks');">openFrameworks</a></div>
 </div>
 
 
-{% include guide_preview.html name="fundamentals" %}
-{% include guide_preview.html name="simple" %}
-{% include guide_preview.html name="cnn" %}
-{% include guide_preview.html name="transfer-learning" %}
-{% include guide_preview.html name="rnn" %}
-{% include guide_preview.html name="seq2seq" %}
-{% include guide_preview.html name="image-search" %}
-{% include guide_preview.html name="image-tsne" %}
-{% include guide_preview.html name="audio-tsne" %}
-{% include guide_preview.html name="text-retrieval" %}
-{% include guide_preview.html name="neural-painter" %}
-{% include guide_preview.html name="word2vec" %}
-{% include guide_preview.html name="qlearn" %}
-{% include guide_preview.html name="qnets" %}
+{% include guide_preview2.md name="fundamentals" %}
+{% include guide_preview2.md name="simple" %}
+{% include guide_preview2.md name="cnn" %}
+{% include guide_preview2.md name="transfer-learning" %}
+{% include guide_preview2.md name="rnn" %}
+{% include guide_preview2.md name="seq2seq" %}
+{% include guide_preview2.md name="image-search" %}
+{% include guide_preview2.md name="image-path" %}
+{% include guide_preview2.md name="image-tsne" %}
+{% include guide_preview2.md name="audio-tsne" %}
+{% include guide_preview2.md name="text-retrieval" %}
+{% include guide_preview2.md name="neural-painter" %}
+{% include guide_preview2.md name="word2vec" %}
+{% include guide_preview2.md name="eigenfaces" %}
+{% include guide_preview2.md name="qlearn" %}
+{% include guide_preview2.md name="qnets" %}
 
 
-<p>
+{% include guide_preview2.md name="AudioClassifier" %}
+{% include guide_preview2.md name="AudioTSNEViewer" %}
+{% include guide_preview2.md name="ConvnetOSC" %}
+{% include guide_preview2.md name="ConvnetClassifier" %}
+{% include guide_preview2.md name="ConvnetRegressor" %}
+{% include guide_preview2.md name="DoodleClassifier" %}
+{% include guide_preview2.md name="FaceClassifier" %}
+{% include guide_preview2.md name="FaceRegressor" %}
+{% include guide_preview2.md name="Gobot" %}
+{% include guide_preview2.md name="ImageTSNEViewer" %}
+{% include guide_preview2.md name="ImageTSNELive" %}
+{% include guide_preview2.md name="Pix2Pix" %}
+{% include guide_preview2.md name="ReverseImageSearchFast" %}
+{% include guide_preview2.md name="ReverseObjectSearchFast" %}
+{% include guide_preview2.md name="YoloLive" %}
 
-<br/><a href="/guides/AudioTSNEViewer/">AudioTSNEViewer</a>
-<br/><a href="/guides/ConvnetClassifier/">ConvnetClassifier</a>
-<!--<br/><a href="/guides/ConvnetOSC/">ConvnetOSC</a>-->
-<!--<br/><a href="/guides/ConvnetViewer/">ConvnetViewer</a>-->
-<br/><a href="/guides/DoodleClassifier/">DoodleClassifier</a>
-<br/><a href="/guides/FaceClassifier/">FaceClassifier</a>
-<!--<br/><a href="/guides/FaceDTW/">FaceDTW</a>-->
-<br/><a href="/guides/FaceRegressor/">FaceRegressor</a>
-<br/><a href="/guides/ImageTSNEViewer/">ImageTSNEViewer</a>
-<br/><a href="/guides/Pix2Pix/">Pix2Pix</a>
-<!--<br/><a href="/guides/ReverseImageSearchFast/">ReverseImageSearchFast</a>-->
-<br/><a href="/guides/ReverseObjectSearchFast/">ReverseObjectSearchFast</a>
-<!--<br/><a href="/guides/SimpleRegression/">SimpleRegression</a>-->
-<!--<br/><a href="/guides/Wekinator/">Wekinator</a>-->
-<br/><a href="/guides/YoloLive/">YoloLive</a>
-</p>
 
+{% include guide_preview2.md name="Contribute" %}
+
+
+
+
+
+
+<script>
+function displayAll() {
+	var d = document.getElementsByClassName("project");
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
+};
+function hideAll() {
+	var d = document.getElementsByClassName("project");
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "none"; }	
+};
+function displayByKey(keyword) {
+	hideAll();
+	d = document.getElementsByClassName("project "+keyword);
+	for(var i = 0; i < d.length; i++){ d[i].style.display = "inline-block"; }
+	// document.getElementsByClassName("platform").forEach(function (d){
+	// 	d.style.border = "1px solid #000";
+	// });
+	document.getElementById("platform_"+keyword).style.border = "3px solid #0a0";
+//	document.getElementsByClassName("displayAll")[0].style.display = "block";
+};
+
+</script>
