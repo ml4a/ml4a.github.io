@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Guides
+redirect_from: /guides2/
 ---
 
 <style>
@@ -83,6 +84,8 @@ title: Guides
 </div>
 
 
+{% include guide_preview2.md name="Contribute" %}
+
 {% include guide_preview2.md name="fundamentals" %}
 {% include guide_preview2.md name="simple" %}
 {% include guide_preview2.md name="cnn" %}
@@ -100,7 +103,6 @@ title: Guides
 {% include guide_preview2.md name="qlearn" %}
 {% include guide_preview2.md name="qnets" %}
 
-
 {% include guide_preview2.md name="AudioClassifier" %}
 {% include guide_preview2.md name="AudioTSNEViewer" %}
 {% include guide_preview2.md name="ConvnetOSC" %}
@@ -116,9 +118,6 @@ title: Guides
 {% include guide_preview2.md name="ReverseImageSearchFast" %}
 {% include guide_preview2.md name="ReverseObjectSearchFast" %}
 {% include guide_preview2.md name="YoloLive" %}
-
-
-{% include guide_preview2.md name="Contribute" %}
 
 
 
