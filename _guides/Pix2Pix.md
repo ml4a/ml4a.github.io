@@ -7,7 +7,7 @@ This tutorial will guide you on how to use the [pix2pix](https://phillipi.github
 
 ## What does pix2pix do?
 
-pix2pix implements a generic [image-to-image translation using conditional adversarial networks](https://arxiv.org/abs/1611.07004). Given a training set which contains pairs of related images ("A" and "B"), a pix2pix model learns how to convert an image of type "A" into an image of type "B", or vice-versa. For example, suppose we have pairs of images, where A is a black & white image and B is an RGB-color version of A, e.g. the following:
+pix2pix is shorthand for an implementation of a generic [image-to-image translation using conditional adversarial networks](https://arxiv.org/abs/1611.07004), originally introduced by [Phillip Isola](http://people.eecs.berkeley.edu/~isola/) et al. Given a training set which contains pairs of related images ("A" and "B"), a pix2pix model learns how to convert an image of type "A" into an image of type "B", or vice-versa. For example, suppose we have pairs of images, where A is a black & white image and B is an RGB-color version of A, e.g. the following:
 
 {% include figure_multi.md path1="/images/guides/pix2pix/mountains_data_input.jpg" caption1="Color image \"B\"" path2="/images/guides/pix2pix/mountains_data_output.jpg" caption2="Corresponding black & white image \"A\"" %}
 
