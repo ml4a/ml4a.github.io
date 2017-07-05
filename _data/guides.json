@@ -70,7 +70,7 @@
 		"title": "Eigenfaces",
 		"description": "Understand dimensionality reduction and generate weird faces",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/Eigenfaces.ipynb",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb",
 		"thumb":"/images/guides_thumbs/eigenfaces.jpg",
 		"summary":[
 			"Run principal component analysis to compress a dataset of faces",
