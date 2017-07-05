@@ -61,6 +61,9 @@ https://github.com/sotelo/parrot
 google youtube dataset https://research.google.com/audioset/
 
 nsynth https://magenta.tensorflow.org/datasets/nsynth
+https://magenta.tensorflow.org/nsynth-instrument
 
 https://arxiv.org/pdf/1704.01279.pdf
 magenta
+
+http://imanmalik.com/cs/2017/06/05/neural-style.html

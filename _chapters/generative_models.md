@@ -87,3 +87,9 @@ http://www.creativeai.net/posts/SFq7mQorZrw4cg6ij/artgan-artwork-synthesis-with-
 https://medium.com/@devnag/generative-adversarial-networks-gans-in-50-lines-of-code-pytorch-e81b79659e3f#.okeu6cwzn
 
 https://github.com/carpedm20/DiscoGAN-pytorch
+
+https://tryolabs.com/blog/2016/12/06/major-advancements-deep-learning-2016/
+
+
+http://gkalliatakis.com/blog/delving-deep-into-gans
+https://github.com/ppwwyyxx/tensorpack/tree/master/examples/GAN

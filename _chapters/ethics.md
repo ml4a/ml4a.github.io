@@ -249,5 +249,7 @@ https://intelligence.org/files/PredictingAI.pdf
 http://www.openphilanthropy.org/focus/global-catastrophic-risks/potential-risks-advanced-artificial-intelligence/ai-timelines
 
 https://iamtrask.github.io/2017/03/17/safe-ai/
+https://iamtrask.github.io/2017/06/05/homomorphic-surveillance/
 
 easily fooled: http://karpathy.github.io/2015/03/30/breaking-convnets/
+
