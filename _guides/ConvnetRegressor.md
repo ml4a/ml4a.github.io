@@ -4,7 +4,7 @@ title: "Convnet Regressor"
 ---
 ### What is it?
 
-ConvnetRegressor is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which lets you train a neural network to control one or more continuous variables (sliders) with your webcam. The app learns a regression to predict the slider values, from a set of example input/output pairs collected via webcam stream. It is closely related to [ConvnetClassifier](/guides/ConvnetClassifier), which is the same as ConvnetRegressor, except that it does classification over discrete categories rather than continous variables.
+ConvnetRegressor is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which lets you train a neural network to control one or more continuous variables (sliders) with your webcam. The app learns a regression to predict the slider values, from a set of example input/output pairs collected via webcam stream. It is closely related to [ConvnetClassifier](/guides/ConvnetClassifier), which is the same as ConvnetRegressor, except that it does classification over discrete categories rather than continuous variables.
 
 {% include todo.html note="ableton time trial" %}
 
@@ -33,7 +33,7 @@ The OSC destination (IP address and port), and the message to bind the predictio
 
 ## Setup and training considerations
 
-ConvnetRegressor is a very versatile application that can be used in a wide variety of setups. However, to optimise accuracy, some simple rules of thumbs are:
+ConvnetRegressor is a very versatile application that can be used in a wide variety of setups. However, to optimize accuracy, some simple rules of thumbs are:
 
 * Ensure variety in your training data: Say you want to associate a set of sliders with someone holding an object in their hands; try to record training samples that shows the person holding the object in different postures and positions, close to the camera, far from the camera, in both hands etc. 
 

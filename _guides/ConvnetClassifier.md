@@ -4,12 +4,12 @@ title: "Convnet Classifier"
 ---
 ### What is it?
 
-ConvnetClassifier is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which lets you train a classifier to recognise whatever objects, persons, postures, drawings and other visuals you show it through your webcam. 
+ConvnetClassifier is an [openFrameworks](http://www.openframeworks.cc) application, part of the [ml4a-ofx collection](https://github.com/ml4a/ml4a-ofx/), which lets you train a classifier to recognize whatever objects, persons, postures, drawings and other visuals you show it through your webcam. 
 
 {:.center}
 ![convnetClassifier gif](http://andreasrefsgaard.dk/wp-content/uploads/2017/04/ConvnetClassifier.gif)
 
-ConvnetClassifier has been used by [Bjørn Karmann](http://bjoernkarmann.dk/) in his [Objectifier](http://bjoernkarmann.dk/objectifier) project, which empowers people to train objects in their daily environment to respond to their unique behaviours.
+ConvnetClassifier has been used by [Bjørn Karmann](http://bjoernkarmann.dk/) in his [Objectifier](http://bjoernkarmann.dk/objectifier) project, which empowers people to train objects in their daily environment to respond to their unique behaviors.
 
 <center>
 <iframe src="https://player.vimeo.com/video/195086230" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
@@ -17,7 +17,7 @@ ConvnetClassifier has been used by [Bjørn Karmann](http://bjoernkarmann.dk/) in
 
 
 ## OSC Output
-By default the app outputs OSC to localhost, port 8000, adress "/classification". This can be changed in ofApp.h.
+By default the app outputs OSC to localhost, port 8000, address "/classification". This can be changed in ofApp.h.
 
 
 ## Key inputs
@@ -51,7 +51,7 @@ The video below takes you through the steps of the training process.
 
 
 ## Setup and training considerations
-ConvnetClassifier is a very versatile application that can be used in a wide variety of setups. However, to optimise correct classification, some simple rules of thumbs are:
+ConvnetClassifier is a very versatile application that can be used in a wide variety of setups. However, to optimize correct classification, some simple rules of thumbs are:
 
 * Ensure variety in your training data: Say you want to classify whether someone is holding an object in their hands, try to record training samples that shows the person holding the object in different postures and positions, close to the camera, far from the camera, in both hands etc. 
 
