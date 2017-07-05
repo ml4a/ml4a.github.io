@@ -84,40 +84,41 @@ redirect_from: /guides2/
 </div>
 
 
-{% include guide_preview2.md name="Contribute" %}
+{% include guide_preview.md name="Contribute" %}
 
-{% include guide_preview2.md name="fundamentals" %}
-{% include guide_preview2.md name="simple" %}
-{% include guide_preview2.md name="cnn" %}
-{% include guide_preview2.md name="transfer-learning" %}
-{% include guide_preview2.md name="rnn" %}
-{% include guide_preview2.md name="seq2seq" %}
-{% include guide_preview2.md name="image-search" %}
-{% include guide_preview2.md name="image-path" %}
-{% include guide_preview2.md name="image-tsne" %}
-{% include guide_preview2.md name="audio-tsne" %}
-{% include guide_preview2.md name="text-retrieval" %}
-{% include guide_preview2.md name="neural-painter" %}
-{% include guide_preview2.md name="word2vec" %}
-{% include guide_preview2.md name="eigenfaces" %}
-{% include guide_preview2.md name="qlearn" %}
-{% include guide_preview2.md name="qnets" %}
+{% include guide_preview.md name="fundamentals" %}
+{% include guide_preview.md name="simple" %}
+{% include guide_preview.md name="cnn" %}
+{% include guide_preview.md name="transfer-learning" %}
+{% include guide_preview.md name="rnn" %}
+{% include guide_preview.md name="seq2seq" %}
+{% include guide_preview.md name="image-search" %}
+{% include guide_preview.md name="image-path" %}
+{% include guide_preview.md name="image-tsne" %}
+{% include guide_preview.md name="audio-tsne" %}
+{% include guide_preview.md name="text-retrieval" %}
+{% include guide_preview.md name="neural-painter" %}
+{% include guide_preview.md name="word2vec" %}
+{% include guide_preview.md name="eigenfaces" %}
+{% include guide_preview.md name="qlearn" %}
+{% include guide_preview.md name="qnets" %}
 
-{% include guide_preview2.md name="AudioClassifier" %}
-{% include guide_preview2.md name="AudioTSNEViewer" %}
-{% include guide_preview2.md name="ConvnetOSC" %}
-{% include guide_preview2.md name="ConvnetClassifier" %}
-{% include guide_preview2.md name="ConvnetRegressor" %}
-{% include guide_preview2.md name="DoodleClassifier" %}
-{% include guide_preview2.md name="FaceClassifier" %}
-{% include guide_preview2.md name="FaceRegressor" %}
-{% include guide_preview2.md name="Gobot" %}
-{% include guide_preview2.md name="ImageTSNEViewer" %}
-{% include guide_preview2.md name="ImageTSNELive" %}
-{% include guide_preview2.md name="Pix2Pix" %}
-{% include guide_preview2.md name="ReverseImageSearchFast" %}
-{% include guide_preview2.md name="ReverseObjectSearchFast" %}
-{% include guide_preview2.md name="YoloLive" %}
+{% include guide_preview.md name="AudioClassifier" %}
+{% include guide_preview.md name="AudioTSNEViewer" %}
+{% include guide_preview.md name="ConvnetOSC" %}
+{% include guide_preview.md name="ConvnetClassifier" %}
+{% include guide_preview.md name="ConvnetRegressor" %}
+{% include guide_preview.md name="ConvnetViewer" %}
+{% include guide_preview.md name="DoodleClassifier" %}
+{% include guide_preview.md name="FaceClassifier" %}
+{% include guide_preview.md name="FaceRegressor" %}
+{% include guide_preview.md name="Gobot" %}
+{% include guide_preview.md name="ImageTSNEViewer" %}
+{% include guide_preview.md name="ImageTSNELive" %}
+{% include guide_preview.md name="Pix2Pix" %}
+{% include guide_preview.md name="ReverseImageSearchFast" %}
+{% include guide_preview.md name="ReverseObjectSearchFast" %}
+{% include guide_preview.md name="YoloLive" %}
 
 
 

@@ -235,6 +235,17 @@
 			"Control a set of sliders via regression over feature vectors"
 		]
 	}, 
+	"ConvnetViewer": {
+		"title": "Convnet viewer",
+		"description": "Convnet viewer",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetViewer",
+		"thumb":"/images/guides_thumbs/convnets.jpg",
+		"summary":[
+			"Analyze an image or webcam stream with a convnet",
+			"View the network's activation maps layer-by-layer"
+		]
+	}, 
 	"DoodleClassifier": {
 		"title": "Doodle classifier",
 		"description": "Doodle classifier",
