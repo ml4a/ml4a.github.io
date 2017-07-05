@@ -60,7 +60,7 @@
 		<footer>
     		<ul>
         		<li><a href="/about/">about</a></li>
-        		<li><a href="/contribute/">contribute</a></li>
+        		<li><a href="/guides/Contribute/">contribute</a></li>
         		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
 			</ul>
 		</footer>
