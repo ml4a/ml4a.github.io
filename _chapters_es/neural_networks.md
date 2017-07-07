@@ -6,7 +6,7 @@ header_image: "/images/headers/analytical_engine.jpg"
 header_quote: "lovelace"
 ---
 
-Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió su ambición por construir un "[cálculo del sistema nervioso](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque la filosofía de la computación ha explorado analogías especulativas sobre mentes y máquinas desde hace mucho años, no fue hasta que el profesor de Ada, [Charles Baggage](https://en.wikipedia.org/wiki/Charles_Babbage), propuso la [Máquina analítica](https://en.wikipedia.org/wiki/Analytical_Engine) que empezamos a concebir de las "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que los ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el [Juego de Imitación](http://phil415.pbworks.com/f/TuringComputing.pdf), lo cual pronto llegó a llamarse el "[Test de Turing](https://en.wikipedia.org/wiki/Turing_test)." Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
+Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió su ambición por construir un "[cálculo del sistema nervioso](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque la filosofía de la computación ha explorado analogías especulativas sobre mentes y máquinas desde hace mucho años, no fue hasta que el profesor de Ada, [Charles Baggage](https://en.wikipedia.org/wiki/Charles_Babbage), propuso la [Máquina analítica](https://en.wikipedia.org/wiki/Analytical_Engine) que empezamos a concebir "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que los ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el [Juego de Imitación](http://phil415.pbworks.com/f/TuringComputing.pdf), lo cual pronto llegó a llamarse el "[Test de Turing](https://en.wikipedia.org/wiki/Turing_test)." Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
 ## El rey del presente y del futuro
 
@@ -73,7 +73,7 @@ $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-$$e$$ denota la [constante exponencial](https://en.wikipedia.org/wiki/E_(mathematical_constant)), que es aproximadamente igual a 2,71828. Una neurona que utiliza la sigmóide como función de activación se le llama _neurona sigmoide_. Primero establecemos que la variable $$z$$ equivale a nuestra suma ponderada de entrada y después la pasamos a través de la función sigmóide. 
+$$e$$ denota la [constante exponencial](https://en.wikipedia.org/wiki/E_(mathematical_constant)), que es aproximadamente igual a 2,71828. Una neurona que utiliza la sigmoide como función de activación se le llama _neurona sigmoide_. Primero establecemos que la variable $$z$$ equivale a nuestra suma ponderada de entrada y después la pasamos a través de la función sigmoide. 
 
 $$
 z = b + \sum_i w_i x_i \\
@@ -105,7 +105,7 @@ z = b + w_1 x_1 + w_2 x_2 + w_3 x_3 \\
 y = \sigma(z)
 $$
 
-Quizás te estás preguntando cuál es el propósito de una función de activación, y por qué preferimos usarla en vez de la suma ponderada -- como lo hacemos con el clasificador lineal del capítulo anterior. La razón es que la suma ponderada, $$z$$, es [_lineal_](https://en.wikipedia.org/wiki/Linearity) con respecto a sus entradas. En cambio, las funciones de activación no-lineales nos ayudan a modelar funciones curvas o no triviales. Esto quedará más claro en la siguiente sección. 
+Quizás te estás preguntando cuál es el propósito de una función de activación, y por qué preferimos usarla en lugar de de la suma ponderada -- como lo hacemos con el clasificador lineal del capítulo anterior. La razón es que la suma ponderada, $$z$$, es [_lineal_](https://en.wikipedia.org/wiki/Linearity) con respecto a sus entradas. En cambio, las funciones de activación no-lineales nos ayudan a modelar funciones curvas o no triviales. Esto quedará más claro en la siguiente sección. 
 
 # Capas
 
@@ -121,7 +121,7 @@ Aunque pareciera que cada una de las tres neuronas de entrada envía múltiples 
 
 # Regresión
 
-Llamamos _propagación hacia delante_ (en inglés, forward propagation o forward pass) al proceso por la cual una red neuronal envía su entrada a través de sus capas hacia la salida. A las redes neuronales que funcionan de esta manera se les llama _red neuronal prealimentada_ (en inglés, feedforward neural network). Ya pronto veremos que algunas redes neuronales permiten que los datos fluyan en círculos. 
+Llamamos _propagación hacia delante_ (en inglés, forward propagation o forward pass) al proceso por el cual una red neuronal envía su entrada a través de sus capas hacia la salida. A las redes neuronales que funcionan de esta manera se les llama _red neuronal prealimentada_ (en inglés, feedforward neural network). Ya pronto veremos que algunas redes neuronales permiten que los datos fluyan en círculos. 
 
 Por ahora demostraremos una propagación hacia delante con este ejemplo interactivo. Dale click al botón 'Siguiente' en la esquina superior derecha para continuar. 
 
@@ -133,7 +133,7 @@ Por ahora demostraremos una propagación hacia delante con este ejemplo interact
 
 Otra manera de interpretar esta idea es que las capas ocultas representan "características" a nivel superior o atributos de nuestros datos. Cada una de las neuronas de una capa oculta sopesa sus entradas de forma diferente, y de esta manera aprende características diferentes de los datos. Nuestra neurona de salida logra capturar estas características intermediarias, no sólo las entradas originales. Al incluir más de una capa oculta, permitimos que la red neuronal pueda aprender sobre varios niveles de abstracción de los datos. En el [próximo capítulo](/ml4a/looking_inside_neural_nets/) aprenderemos más sobre las capas ocultas y sobre esta noción de características de alto nivel.
 
-Recuerda también que las funciones de activación permiten capturar relaciones no linealeas entre entradas y salidas. Si encadenamos múltiples transformaciones no lineales a través de las capas, aumentamos la flexibilidad y capacidad de expresión de la red neuronal. Aunque la prueba es compleja y mucho más avanzada de lo que podemos cubrir en este libro, se puede demostrar que cualquier red neuronal de 2 capas con una función de activación no lineal (incluyendo la sigmoide o ReLU) y con suficientes neuronas ocultas es un [_aproximador de función universal_](http://www.sciencedirect.com/science/article/pii/0893608089900208) (en inglés, universal function approximator), es decir teóricamente es capaz de expresar cualquier mapeo arbitrario de entrada-a-salida. Las redes neuronales son poderosas precisamente por esta propiedad. 
+Recuerda también que las funciones de activación permiten capturar relaciones no lineales entre entradas y salidas. Si encadenamos múltiples transformaciones no lineales a través de las capas, aumentamos la flexibilidad y capacidad de expresión de la red neuronal. Aunque la prueba es compleja y mucho más avanzada de lo que podemos cubrir en este libro, se puede demostrar que cualquier red neuronal de 2 capas con una función de activación no lineal (incluyendo la sigmoide o ReLU) y con suficientes neuronas ocultas es un [_aproximador de función universal_](http://www.sciencedirect.com/science/article/pii/0893608089900208) (en inglés, universal function approximator), es decir teóricamente es capaz de expresar cualquier mapeo arbitrario de entrada-a-salida. Las redes neuronales son poderosas precisamente por esta propiedad. 
 
 # Clasificación
 
@@ -151,7 +151,7 @@ Para clasificar estas imágenes podemos configurar una red neuronal de tal modo 
 
 {% include figure.html path="/images/figures/mnist-input.png" caption="How to input an image into a neural network" %}
 
-Aunque esta red parece mucho más complicada que nuestra simpre red 3x2x1 del capítulo anterior, funciona de la misma manera, con muchas más neuronas. Cada una de las neuronas de la primera capa oculta recibe todas de las entradas de la primera capa. En la capa de salida ahora tenemos _diez_ neuronas en vez de una, pero igual que en el ejemplo anterior, conectamos todas esas neuronas con la capa oculta anterior. Asignamos una etiqueta a cada una de las neuronas de salida; la primera corresponde al dígito `0`, la segunda al dígito `1`, y así sucesivamente. 
+Aunque esta red parece mucho más complicada que nuestra simpre red 3x2x1 del capítulo anterior, funciona de la misma manera, con muchas más neuronas. Cada una de las neuronas de la primera capa oculta recibe todas de las entradas de la primera capa. En la capa de salida ahora tenemos _diez_ neuronas en lugar de de una, pero igual que en el ejemplo anterior, conectamos todas esas neuronas con la capa oculta anterior. Asignamos una etiqueta a cada una de las neuronas de salida; la primera corresponde al dígito `0`, la segunda al dígito `1`, y así sucesivamente. 
 
 Después de entrenar nuestra red -- algo que cubriremos en detalle en [otro capítulo](/ml4a/how_neural_networks_are_trained/) -- podemos predecir el dígito de cualquier muestra desconocida al pasar la muestra por la misma red y observar el valor de salida. La neurona de salida con el valor más alto corresponde al dígito predicho. El siguiente ejemplo demuestra el proceso; dale clic al botón "siguiente" para ver más predicciones. 
 
