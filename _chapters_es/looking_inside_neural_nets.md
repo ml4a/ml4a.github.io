@@ -8,7 +8,11 @@ header_quote: "lovelace"
 
 En el [capítulo anterior](/ml4a/neural_networks), vimos como entrenar una red neuronal para clasificar dígitos escritos a mano con una precisión de alrededor de 90%. En este capítulos vamos a evaluar el rendimiento de la red con más cuidado y también examinar su estado interno para desarollar una intuición sobre lo que en realidad está sucediendo. Más adelante en el capítulo, nos toparemos con los límites de esta red neuronal al intentar entrenarla con un conjunto de datos de objectos como perros, automóbiles y barcos. De esta manera anticiparemos qué tipo de inovaciones serán necesarias para mejorar nuestra red y llevarla al siguiente nivel.
  
+## Visualizar pesos
+
 ## Visualizing weights
+
+Consideremos una red entrenada para clasificar dígitos MNIST escritos a mano, excepto que a diferencia del capítulo anterior, haremos un mapeo directo desde la capa de entrada hasta la capa de salida de tal manera que nuestra red neuronal no tendrá capas ocultas. La red se verá de la siguiente manera:
 
 Let's take a network trained to classify MNIST handwritten digits, except unlike in the last chapter, we will map directly from the input layer to the output layer with no hidden layers in between. Thus our network looks like this.
 
@@ -16,19 +20,27 @@ Let's take a network trained to classify MNIST handwritten digits, except unlike
 
 {% include todo.html note="label output neurons" %}
 
+Recuerda que cuando pasamos una imagen a través de la red neuronal, podemos visualizar el diagrama de la red al "desenrollar" los píxeles de la imágen en una sola columna de neuronas, demostrado en la figura de la izquierda. Concentrémonos en las conexiones de la primera neurona de salida, que llamaremos $$z$$. Etiquetaremos cada una de las neuronas de entrada y sus pesos correspondientes como $$x_i$$ y $$w_i$$.
+
 Recall that when we input an image into our neural net, we visualize the network diagram by "unrolling" the pixels into a single column of neurons, as shown in the below figure on the left. Let's focus on just the connections plugged into the first output neuron, which we will label $$z$$, and label each of the input neurons and their corresponding weights as $$x_i$$ and $$w_i$$.
 
 {% include figure.html path="/images/figures/weights_analogy_1.png" caption="Highlighting the weights connections to a single output neuron" %}
 
 {% include todo.html note="label $z$ on the left" %}
 
+Ahora veamos los pesos en una cuadrícula de 28x28, donde la posición de cada peso coincide con su píxel correspondiente. La representación anterior a la derecha se ve diferente a la siguiente figura, aunque ambas expresan la misma ecuación $$z=b+\sum{w x}$$.
+
 Rather than unrolling the pixels though, let's instead view the weights as a 28x28 grid where the weights are arranged exactly like their corresponding pixels. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
 
 {% include figure.html path="/images/figures/weights_analogy_2.png" caption="Another way to visualize the pixel-weights multiplication for each output neuron" %}
 
+Ahora imaginemos una red neuronal entrenada con esta arquitectura y visualizemos los pesos aprendidos que sirven de entrada a la primera neurona de salida, la cula es responsable de clasificar el dígito 0. Representaremos los pesos más bajos de negro y los más altos de blanco. 
+
 Now let's take a trained neural network with this architecture, and visualize the learned weights feeding into the first output neuron, which is the one responsible for classifying the digit 0. We color-code them so the lowest weight is black, and the highest is white.
 
 {% include figure.html path="/images/figures/rolled_weights_mnist_0.png" caption="Visualizing the weights for the 0-neuron of an MNIST classifier" %}
+
+Mira con cuidado... se parece un poco a un 0 borrozo? La razon por la que aparece así quedará claro si pensamos en lo que esta neurona está haciendo. Debido a que es "responsable" de clasificar 0s, su objetivo es generar un valor alto para los 0s y un vaor bajo para los dígitos que no sean 0. La neurona podrá obtener salidas altas para los 0s si asocia pesos altos con píxeles que _tienden_ a ser altos en imagenes de 0s. De la misma manera, puede obtener salidas relativamente bajas para dígitos que no sean 0 al asociar pesos bajos con píxeles que tienden a ser altos en imágenes de dígitos que non son 0. Por ejemplo, el centro relativamente negro de la imágen de los pesos se da ya que la mayoría de las imágenes de 0s no corresponden con esta área (dado el hueco dentro del 0).
 
 Squint your eyes a bit... does it look a bit like a blurry 0? The reason why it appears this way becomes more clear if we think about what that neuron is doing. Because it is "responsible" for classifying 0s, its goal is to output a high value for 0s and a low value for non-0s. It can get high outputs for 0s by having large weights aligned to pixels which _tend_ to usually be high in images of 0s. Simultaneously, it can obtain relatively low outputs for non-0s by having small weights aligned to pixels which tend to be high in images of non-0s and low in images of 0s. The relatively black center of the weights image comes from the fact that images of 0s tend to be off here (the hole inside the 0), but are usually higher for the other digits.
 
@@ -42,7 +54,7 @@ We can interpret these weights as forming templates of the output classes. This 
 
 This raises many more questions than it provides answers, such as what happens to the weights when we add hidden layers? As we will soon see, the answer to this will build upon what we saw in the previous section in an intuitive way. But before we get to that, it will help to examine the performance of our neural network, and in particular, consider what sorts of mistakes it tends to make.
 
-## 0op5, 1 d14 17 2ga1n
+## 0op5, l0 h1ce 0tra v3z
 
 Occasionally, our network will make mistakes that we can sympathize with. To my eye, it's not obvious that the first digit below is 9. One could easily mistake it for a 4, as our network did. Similarly, one could understand why the second digit, a 3, was misclassified by the network as an 8. The mistakes on the third and fourth digits below are more glaring. Almost any person would immediately recognize them as a 3 and a 2, respectively, yet our machine misinterpreted the first as a 5, and is nearly clueless on the second.
 
@@ -118,6 +130,6 @@ By adding a hidden layer into a neural network, we give it a chance to learn fea
 
 As we saw, hidden layers can improve accuracy, but only to a limited extent. Adding more and more layers stops improving accuracy quickly, and comes at a computational cost -- we can't simply ask our neural network to memorize every possible version of an image class through its hidden layers. It turns out there is a better way, using [convolutional neural networks](/ml4a/convnets), which will be covered in a later chapter.
 
-## Further reading
+## Recursos adicionales
 
 {% include todo.html note="summary / further reading" %}
