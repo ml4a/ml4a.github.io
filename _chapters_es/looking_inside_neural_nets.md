@@ -44,23 +44,38 @@ Mira con cuidado... se parece un poco a un 0 borrozo? La razon por la que aparec
 
 Squint your eyes a bit... does it look a bit like a blurry 0? The reason why it appears this way becomes more clear if we think about what that neuron is doing. Because it is "responsible" for classifying 0s, its goal is to output a high value for 0s and a low value for non-0s. It can get high outputs for 0s by having large weights aligned to pixels which _tend_ to usually be high in images of 0s. Simultaneously, it can obtain relatively low outputs for non-0s by having small weights aligned to pixels which tend to be high in images of non-0s and low in images of 0s. The relatively black center of the weights image comes from the fact that images of 0s tend to be off here (the hole inside the 0), but are usually higher for the other digits.
 
+Veamos los pesos que la red neuronal aprendió para cada una de las neuronas de salida. Como sospechamos, cada una se ve como una versión borroza de los diez dígitos. Parece que hubiesemos tomado el promedio de muchas imágenes de cada dígito.  
+
 Let's look at the weights learned for all 10 of the output neurons. As suspected, they all look like somewhat blurry versions of our ten digits. They appear almost as though we averaged many images belonging to each digit class.
 
 {% include figure.html path="/images/figures/rolled_weights_mnist.png" caption="Visualizing the weights for all the output neurons of an MNIST classifier" %}
 
+Supongamos que usemos una imágen de un 2 como entrada. Podemos anticipar que la neurona responsable de clasificar los 2 tendrá un valor alto porque sus pesos son tales que corresponden con los píxeles que tienden a representar un 2. En el caso de otras neuronas, _algunos_ de los pesos también corresponderan a píxeles altos. Sin embargo, coincidirán mucho menos y esos valores altos serán negados por pesos bajos en la neurona del 2. La función de activación no cambia eso, porque es monótona con respecto a la entrada - es decir, cuanto mayor la entrada, mayor será la salida.    
+
 Suppose we receive an input from an image of a 2. We can anticipate that the neuron responsible for classifying 2s should have a high value because its weights are such that high weights tend to align with pixels tending to be high in 2s. For other neurons, _some_ of the weights will also line up with high-valued pixels, making their scores somewhat higher as well. However, there is much less overlap, and many of the high-valued pixels in those images will be negated by low weights in the 2 neuron. The activation function does not change this, because it is monotonic with respect to the input, that is, the higher the input, the higher the output.
 
+Podemos interpretar que los pesos están formando modelos de las clases de salida. Esto es realmente fascinante porque nunca le _dijimos_ a nuestra red de antemano lo que era un dígito y sin embargo logró parecerse a esa clase de objectos. Nos sugiere lo que es verdaderamente especial en las redes neuronales: forman _representaciones_ de los objectos con la cual son entrenados - y resulta que estas representaciones pueden llegar a ser aún más útiles que para la clasificación y predicción. Hablaremos más sobre esta capacidad de representación cuando estudiemos las redes neuronales convolucionales más adelante...   
+
 We can interpret these weights as forming templates of the output classes. This is really fascinating because we never _told_ our network anything in advance about what these digits are or what they mean, yet they came to resemble those object classes anyway. This is a hint of what's really special about the internals of neural networks: they form _representations_ of the objects they are trained on, and it turns out these representations can be useful for much more than simple classification or prediction. We will take this representational capacity to the next level when we begin to study [convolutional neural networks](/ml4a/convnets/) but let's not get ahead of ourselves yet...
+
+Quizás esta discusión te ha generado más preguntas que respuestas. Por ejemplo, que ocurre con los pesos cuando añadimos capas ocultas? La respuesta a esto se basará en al que vimos en la sección anterior. Pero antes de llegar a eso, será beneficioso examinar el rendimiento de nuestra red neuronal, y en particular considerar qué tipo de errores tiende a cometer. 
+
 
 This raises many more questions than it provides answers, such as what happens to the weights when we add hidden layers? As we will soon see, the answer to this will build upon what we saw in the previous section in an intuitive way. But before we get to that, it will help to examine the performance of our neural network, and in particular, consider what sorts of mistakes it tends to make.
 
 ## 0op5, l0 h1ce 0tra v3z
 
+De vez en cuando nuestra red neuronal cometerá errores con los que podremos simpatizar. A mi parecer, no se me hace tan obvio que el primer dígito en la siguiente imagen sea un 9. Se parece a un 4, que fue lo que nuestra red pensó que era. De la misma manera, podemos entender por qué el segundo dígito, un 3, fue clasificado erróneamente como un 8. Por otro lado, los errores del tercer y cuarto dígito son más serios. Cualquier persona podría reconocerlos como un 3 y un 2, respectivamente. Sin embargo, nuestra red neuronal pensó que el tercer dígito era un 5 y no tiene mucha idea sobre el cuarto dígito. 
+
 Occasionally, our network will make mistakes that we can sympathize with. To my eye, it's not obvious that the first digit below is 9. One could easily mistake it for a 4, as our network did. Similarly, one could understand why the second digit, a 3, was misclassified by the network as an 8. The mistakes on the third and fourth digits below are more glaring. Almost any person would immediately recognize them as a 3 and a 2, respectively, yet our machine misinterpreted the first as a 5, and is nearly clueless on the second.
 
 {% include figure.html path="/images/figures/mnist-mistakes.png" caption="A selection of mistakes by our 1-layer MNIST network. The two on the left are understandable; the two on the right are more obvious errors." %}
 
+Investiguemos el rendimiento de la red neuronal del capítulo anterior, que logró alcanzar una precisión de 90% con los dígitos MNIST. Una manera de hacer esto es con una matriz de confusión, una manera de listar nuestras predicciones en una tabla. En la siguiente matriz de confusión, las 10 filas corresponden a las etiquetas reales del conjunto de datos MNIST y las columnas representan las etiquetas predichas. Por ejemplo, la celda en la cuarta fila y la sexta columna nos dice que hubo 71 casos donde un 3 real fue etiquetado por la red neuronal como un 5. La diagonal verde en esta matriz nos muestra la cantidad de predicciones correctas. Todas las otras celdas muestran errores. 
+
 Let's look more closely at the performance of the last neural network of the previous chapter, which achieved 90% accuracy on MNIST digits. One way we can do this is by looking at a confusion matrix, a table which breaks down our predictions into a table. In the following confusion matrix, the 10 rows correspond to the actual labels of the MNIST dataset, and the columns represent the predicted labels. For example, the cell at the 4th row and 6th column shows us that there were 71 instances in which an actual 3 was mislabeled by our neural network as a 5. The green diagonal of our confusion matrix shows us the quantities of correct predictions, whereas every other cell shows mistakes.
+
+Coloque el cursor del ratón sobre cada celda para obtener una muestra de las instancias que representa esa celda, ordenadas en base a la confianza (probabilidad) de cada predicción.  
 
 Hover your mouse over each cell to get a sampling of the top instances from each cell, ordered by the network's confidence (probability) for the prediction.
 
@@ -70,12 +85,17 @@ Hover your mouse over each cell to get a sampling of the top instances from each
 
 {% include todo.html note="fix overflow in right table" %}
 
+También podemos aprender algo importante al trazar la muestra más alta de cada celda de la matriz de confusión, como puedes ver a continuación: 
+
 We can also get some nice insights by plotting the top sample for each cell of the confusion matrix, as seen below.
 
 {% include figure.html path="/images/figures/mnist-confusion-samples.png" caption="Top-confidence samples from an MNIST confusion matrix" %}
 
+Esto nos da una impresión de cómo la red aprende a hacer ciertas predicciones. En las primeras dos columnas podemos ver que la red parece estar buscando los círculos que predicen un 0 y las líneas delgadas que predicen un 1. La red se confunde cuando otros dígitos presentan esas mismas características.
+
 This gives us an impression of how the network learns to make certain kinds of predictions. Looking at first two columns, we see that our network appears to be looking for big loops to predict 0s, and thin lines to predict 1s, mistaking other digits if they happen to have those features.
 
+## Como romper nuestra red neuronal
 
 ## Breaking our neural network
 
