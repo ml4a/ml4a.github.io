@@ -4,6 +4,13 @@ title: "Convolutional neural networks"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
+learn-features.png
+
+umontreal image:
+https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/
+-> http://www.iro.umontreal.ca/~bengioy/talks/DL-Tutorial-NIPS2015.pdf
+
+http://blog.csdn.net/sparkkkk/article/details/65937088
 <!--header: densecap
 
 
@@ -151,6 +158,8 @@ Their system was the first convolutional network to be applied to an industrial-
 2013-onwards: 
 
 {% include todo.html note="AlexNet section" %}
+
+{% include figure_multi.md path1="/images/figures/alexnet.jpg" caption1="AlexNet" %}
 
 
 ## Convolutional layers
