@@ -5,30 +5,29 @@
 {% assign path3 = include.path3 %}
 {% assign caption3 = include.caption3 %}
 
-<div class="figure_outer">
+<div class="figure_multi">
 	{% if path1 %}
-	<div class="figure_insert">
-		<img src="{{path1}}" />
-		<div class="figure_caption">
-			{{caption1}}
-		</div>
+	<div class="figure_inner">
+		<figure>
+		    <img src="{{path1}}" />
+			<figcaption>{{caption1}}</figcaption>
+		</figure>
 	</div>
 	{% endif %}
 	{% if path2 %}
-	<div class="figure_insert">
-		<img src="{{path2}}" />
-		<div class="figure_caption">
-			{{caption2}}
-		</div>
+	<div class="figure_inner">
+		<figure>
+		    <img src="{{path2}}" />
+			<figcaption>{{caption2}}</figcaption>
+		</figure>
 	</div>
 	{% endif %}
 	{% if path3 %}
-	<div class="figure_insert">
-		<img src="{{path3}}" />
-		<div class="figure_caption">
-			{{caption3}}
-		</div>
+	<div class="figure_inner">
+		<figure>
+		    <img src="{{path3}}" />
+			<figcaption>{{caption3}}</figcaption>
+		</figure>
 	</div>
 	{% endif %}
 </div>
-

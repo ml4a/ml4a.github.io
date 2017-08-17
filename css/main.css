@@ -82,10 +82,11 @@ footer {
     margin:auto;
 }
 
+/*
 .figure {
     display: block;
     margin: 0 auto;
-}
+}*/
 
 ul.posts {
     margin: 20px auto 40px;
@@ -98,27 +99,36 @@ ul.posts li {
 
 
 /* figures */
-.figure_outer {
+.figure_multi {
     text-align: center;
     margin-left:-300px;
-    margin-right:-300px;
-    padding:10px;
+    margin-right:-300px;    
     margin-top:20px;
     margin-bottom:20px;
+    padding:10px;    
 }
-.figure_insert {
+.figure_inner {
     display: inline-block;
     margin-left:5px;
     margin-right:5px;
     border: 0.5px solid #ddd;
     padding:5px;
 }
-.figure_caption {   
+figure {
+    display: table;
+    width: 1px; 
+    margin: 0px;
+}
+figcaption {
+    display: table-row;
     line-height:150%;
     color:#666;
     background-color:#f4f4f4;
     margin-top:2px; 
+    padding:0px;
 }
+
+
 
 
 /* how to make the div wider than the parent */

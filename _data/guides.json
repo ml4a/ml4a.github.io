@@ -235,6 +235,17 @@
 			"Control a set of sliders via regression over feature vectors"
 		]
 	}, 
+	"ConvnetPredictor": {
+		"title": "Convnet predictor",
+		"description": "Convnet predictor",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetPredictor",
+		"thumb":"/images/guides_thumbs/convnet-predictor.jpg",
+		"summary":[
+			"Extract feature vectors from incoming webcam stream",
+			"Control a set of sliders via regression/classification of feature vectors"
+		]
+	}, 
 	"ConvnetViewer": {
 		"title": "Convnet viewer",
 		"description": "Convnet viewer",
@@ -277,6 +288,17 @@
 		"summary":[
 			"Use face tracker to analyze facial expressions or poses",
 			"Train real-time regression to control sliders according to facial expression"
+		]
+	},
+	"FacePredictor": {
+		"title": "Face predictor",
+		"description": "Face predictor",
+		"category": "openframeworks",
+		"link":"/guides/FacePredictor",
+		"thumb":"/images/guides_thumbs/face-predictor.jpg",
+		"summary":[
+			"Use face tracker to analyze facial expressions or poses",
+			"Train real-time regression and classification to control sliders according to facial expression"
 		]
 	},
 	"Gobot": {
