@@ -54,19 +54,17 @@ regularization
 -->
 
 
-Imagine you are a mountain climber on top of a mountain, and night has fallen. You need to get to your base camp at the bottom of the mountain, but in the darkness with your dinky flashlight, you can't see more than a few feet of the ground in front of you. So how do you get down? One strategy is to look in every direction to see which way the ground steeps downward the most, and then step forward in that direction. Repeat this process many times, and you will gradually go farther and farther downhill. You may sometimes get stuck in a small trough or valley, in which case you can back up a bit, or perhaps keep going in the same direction for a bit longer to get out of it, but in general, this strategy will slowly get you to the bottom of the mountain eventually.
+Imagine you are a mountain climber on top of a mountain, and night has fallen. You need to get to your base camp at the bottom of the mountain, but in the darkness with only your dinky flashlight, you can't see more than a few feet of the ground in front of you. So how do you get down? One strategy is to look in every direction to see which way the ground steeps downward the most, and then step forward in that direction. Repeat this process many times, and you will gradually go farther and farther downhill. You may sometimes get stuck in a small trough or valley, in which case you can follow your momentum for a bit longer to get out of it. Caveats aside, this strategy will eventually get you to the bottom of the mountain.
 
-This scenario may seem disconnected from neural networks, but it turns out to be a good analogy for the way they are trained. So good in fact, that one of the actual methods used, _gradient descent_, sounds much like what we just described. 
+This scenario may seem disconnected from neural networks, but it turns out to be a good analogy for the way they are trained. So good in fact, that the primary technique for doing so, [_gradient descent_](https://en.wikipedia.org/wiki/Gradient_descent), sounds much like what we just described. 
 
-Recall that _training_ refers to determining the best set of weights for the network to get the most accuracy out of it. In the previous chapters, we glossed over this process, preferring to look at it as "magic" and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
+Recall that _training_ refers to determining the best set of weights for maximizing a neural network's accuracy. In the previous chapters, we glossed over this process, preferring to keep it inside of a black box, and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
 
-Much of what's interesting about neural networks can be understood without knowing precisely how training works. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically advanced (involving calculus), you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how to use neural nets, but because the topic itself is one of the most interesting in neural network research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
+Neural networks can be used without knowing precisely how training works, just as on can operate a flashlight without knowing how the electronics inside it work. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically rigorous, you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how neural nets can be applied and reconfigured, but because the topic itself is one of the most interesting in research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
 We'll get to gradient descent in a few sections, but first, let's understand why choosing weights is hard to begin with. 
 
 # Why training is hard
-
-{% include todo.html note="hypercube/hypersphere" %}
 
 ## A needle in a hyper-dimensional haystack
 
@@ -74,9 +72,9 @@ The weights of a neural network with hidden layers are highly interdependent. To
 
 {% include todo.html note="figure with connection tweak" %}
 
-For this reason, we know we can't obtain the best set of weights one at a time; we will have to search the entire space of possible weight combinations simultaneously. How do we do this?
+For this reason, we know we can't obtain the best set of weights by optimizing one at a time; we will have to search the entire space of possible weight combinations simultaneously. How do we do this?
 
-We'll start with the simplest, most naive approach to picking them: random guesses. We set all the weights in our network to random values, and evaluate its accuracy on some dataset. Repeat this many times, keeping track of the results, and then keep the set of weights that gave us the most accurate results. This seems to make some intuitive sense. After all, computers are fast; maybe we can get a decent solution by brute force. For a network with just a few dozen neurons, this would work fine. We can try millions of guesses quickly and should get a decent candidate from them. But in most real-world applications we have a lot more weights than that. Consider our handwriting example from [the previous chapter](ml4a/neural_networks/). There are around 12,000 weights in it. The best combination of weights among that many is now a needle in a haystack, except that haystack has 12,000 dimensions! 
+Let's start with the simplest, most naive approach to picking them: random guesses. We set all the weights in our network to random values, and evaluate its accuracy on our dataset. Repeat this many times, keeping track of the results, and then keep the set of weights that gave us the most accurate results. At first this may seem like a reasonable approach. After all, computers are fast; maybe we can get a decent solution by brute force. For a network with just a few dozen neurons, this would work fine. We can try millions of guesses quickly and should get a decent candidate from them. But in most real-world applications we have a lot more weights than that. Consider our handwriting example from [the previous chapter](ml4a/neural_networks/). There are around 12,000 weights in it. The best combination of weights among that many is now a needle in a haystack, except that haystack has 12,000 dimensions! 
 
 You might be thinking that 12,000-dimensional haystack is "only 4,000 times bigger" than the more familiar 3-dimensional haystack, so it ought to take _only_ 4,000 times as much time to stumble upon the best weights. But in reality the proportion is incomprehensibly greater than that, and we'll see why in the next section. 
 
@@ -88,56 +86,28 @@ To keep things simple, let's consider two very small 1-layer neural networks, th
 
 {% include todo.html note="2 and 3 neuron networks" %}
 
-In the first network, there are 2 weights to find. How many guesses should we take to be confident that one of them will lead to a good fit? One way to approach this question is to imagine the 2-dimensional space of possible weight combinations and exhaustively search through every combination to some level of granularity. Perhaps we can take each axis and divide it into 10 segments. Then our guesses would be every combination of the two; 100 in all. The figure below illustates this.
+In the first network, there are 2 weights to find. How many guesses should we take to be confident that one of them will lead to a good fit? One way to approach this question is to imagine the 2-dimensional space of possible weight combinations and exhaustively search through every combination to some level of granularity. Perhaps we can take each axis and divide it into 10 segments. Then our guesses would be every combination of the two; 100 in all. Not so bad; sampling at such density covers most of the space pretty well. If we divide the axes into 100 segments instead of 10, then we have to make 100*100=10,000 guesses, and cover the space very densely. 10,000 guesses is still pretty small; any computer will get through that in less than a second. The following figure shows sampling two parameters to 10 and 100 bins.
 
-{% include todo.html note="figure: sampling to 10 bins, 100 possible guesses" %}
+{% include todo.html note="figure: sampling to 10 bins = 100 possible guesses and 100 bins = 1000 possible guesses" %}
 
-Not so bad. Sampling at such density covers most of the space pretty well. If we divide the axes into 100 segments instead of 10, then we have to make 100*100=10,000 guesses, and cover the space very densely. 10,000 guesses is still pretty small; any computer will get through that in less than a second. 
+How about the second network? Here we have three weights instead of two, and therefore a 3-dimensional space to search through. If we want to sample this space to the same level of granularity that we sampled our 2d network, we again divide each axis into 10 segments. Now we have 10 * 10 * 10 = 1,000 guesses to make. Both the 2d and 3d scenarios are depicted in the below figure. 
 
-How about the second network? Here we have three weights instead of two, and therefore a 3-dimensional space to search through. If we want to sample this space to the same level of granularity that we sampled our 2d network, we again divide each axis into 10 segments. Now we have 10 * 10 * 10 = 1,000 guesses to make. This is depicted in the below figure. 
+{% include todo.html note="roatate and label axes" %}
+{% include figure_multi.md path1="/images/figures/sampling.png" caption1="Left: a 2d square sampled to 10% density requires 10² = 100 points. Right: a 3d cube sampled to 10% density requires 10³ = 1000 points." %}
 
-{% include todo.html note="figure: sampling to 10 bins, 1000 possible guesses" %}
+1,000 guesses is a piece of cake, we might say. At a granularity of 100 segments, we would have $$100 * 100 * 100 = 1000000$$ guesses. 1,000,000 guesses is still no problem, but now perhaps we are getting nervous. What happens when we scale up this approach to more realistic sized networks? We can see that the number of possible guesses blows up exponentially with respect to the number of weights we have. In general, if we want to sample to a granularity of 10 segments per axis, then we need $$10^N$$ samples for an $$N$$-dimensional dataset. 
 
-1000 guesses is a piece of cake, we might say. At a granularity of 100 segments, we would have 100 * 100 * 100 = 1,000,000 guesses. 1,000,000 guesses is still no problem, but now perhaps we are getting nervous. What happens when we scale up this approach to more realistic sized networks? We can see that the number of possible guesses blows up exponentially with respect to the number of weights we have. In general, if we want to sample to a granularity of 10 segments per axis, then we need $$10^N$$ samples for an $$N$$-dimensional dataset. 
-
-So what happens when we try to use this approach to train our network for classifying MNIST digits from the [first chapter](/ml4a/neural_networks/)? Recall that network has 784 input neurons, 15 neurons in 1 hidden layer, and 10 neurons in the output layer. Thus, there are 784*15 + 15*10 = 11,910 weights. Add 25 biases to the mix, and we have to simultaneously guess through 11,935 dimensions of parameters. That means we'd have to take $$10^11935$$ guesses... That's a 1 with almost 12,000 zeros after it! That is an unimaginably large number; to put it in perspective, there are only $$10^80$$ atoms in the entire universe. No supercomputer can ever hope to perform that many calculations. In fact, if we took all of the computers existing in the world today, and left them running until the Earth crashed into the sun, we still wouldn't even come close! And just consider that modern deep neural networks frequently have tens or hundreds of millions of weights.
-
-##  The curse of dimensionality
+So what happens when we try to use this approach to train our network for classifying MNIST digits from the [first chapter](/ml4a/neural_networks/)? Recall that network has 784 input neurons, 15 neurons in 1 hidden layer, and 10 neurons in the output layer. Thus, there are $$784*15 + 15*10 = 11910$$ weights. Add 25 biases to the mix, and we have to simultaneously guess through 11,935 dimensions of parameters. That means we'd have to take $$10^{11935}$$ guesses... That's a 1 with almost 12,000 zeros after it! That is an unimaginably large number; to put it in perspective, there are only $$10^{80}$$ atoms in the entire universe. No supercomputer can ever hope to perform that many calculations. In fact, if we took all of the computers existing in the world today, and left them running until the Earth crashed into the sun, we still wouldn't even come close! And just consider that modern deep neural networks frequently have tens or hundreds of millions of weights.
 
 This principle is closely related to what we call in machine learning [_the curse of dimensionality_](https://en.wikipedia.org/wiki/Curse_of_dimensionality). Every dimension we add into a search space exponentially blows up the number of samples we require to get good generalization for any model learned from it. The curse of dimensionality is more often applied to datasets; simply put, the more columns or variables a dataset is represented with, the exponentially more samples from that dataset we need to understand it. In our case, we are thinking about the weights rather than the inputs, but the principle remains the same; high-dimensional space is enormous!
 
-{% include todo.html note="more on COD" %}
+{% include further_reading.md title="curse of dimensionality / eggshell example" %}
 
-The gist of this exercise is that in order to represent the data well, we need to sample the space densely, or else we won't have enough information to model it accurately in its sparsest regions.
+{% include todo.html note="clean up COD paragraph" %}
 
-A vivid illustration of this is put forth by __. Sphere, egg, thin shell. !
+Obviously there needs to be some more elegant solution to this problem than random guesses, and indeed there are a number of them. Today, neural networks are generally trained using a variation of the gradient descent algorithm. To introduce the concept of gradient descent, we will again forget about neural networks for a minute, and start instead with a smaller problem, which we will scale up gradually.
 
-In other words, 99.999% of the \"volume\" in hyper-sphere of 100 dimensions is enclosed in the tiny outer shell of it. Imagine if that were true of eggshells in eggs. 
-
-
-Obviously there needs to be some more elegant solution to this problem than random guesses, and indeed there are a number of them. Today, neural networks are generally trained using backpropagation / grad descent.
-
-
-<!--
-Suppose you are a pollster and you are interviewing voters so you can better understand the political leanings of different demographics. At first, you are just collecting their age and income. To get a good cross section, you need to interview young and old, poor and rich alike, and each combination thereof. Add another axis, like education (e.g. how many years schooling), and your combinatorial space grows larger.
-
-Let's divide each of these axes into 10 discrete bins. To get a representative dataset, we'd like to sample from every combination of bins. With just age and income (2d), that means we need to find 100 people. Adding the education axis, our requirement has ballooned up to 1000 samples.
--->
-
-{% include todo.html note="roatate and label axes" %}
-{% include figure.html path="/images/figures/sampling.png" caption="Left: a 2d square sampled to 10% density requires 10² = 100 points.<br/>Right: a 3d cube sampled to 10% density requires 10³ = 1000 points." %}
-
-
-But the problem is scale; let's say we restrict our weights to be between 0 and 1 and sample them at intervals of 0.1, giving us 10 possible values each weight can take on. That means even in our basic network above, there are 10^86 possible weight combinations to try. That's a trillion times more than there are atoms in the universe! Now consider how many combinations there are to try in deep neural networks with hundreds of thousands or millions of weights...
-
-
-# Gradient Descent
-
-The problem we posed above of finding parameters to satisfy some objective function is not specific to machine learning. Indeed it is a very general problem found in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), and the problem has been known to us for a long time. Today, many problems in multivariable function optimization -- including training neural networks -- generally rely on a very effective algorithm called _gradient descent_ to find a good solution much faster than taking random guesses. 
-
-To introduce the concept of gradient descent, we will again forget about neural networks for a minute, and start instead with a smaller problem, which we will scale up gradually.
-
-### A more simple example first: linear regression
+# A simpler example first: linear regression
 
 Suppose we are given a set of 7 points, those in the chart to the bottom left. To the right of the chart is a scatterplot of our points.
 
@@ -168,9 +138,9 @@ Suppose we are given a set of 7 points, those in the chart to the bottom left. T
 
 The goal of linear regression is to find a line which best fits these points. Recall that the general equation for a line is $$ f(x) = m \cdot x + b $$, where $$m$$ is the slope of the line, and $$b$$ is its y-intercept. Thus, solving a linear regression is determining the best values for $$m$$ and $$b$$, such that $$f(x)$$ gets as close to $$y$$ as possible. Let's try out a few random candidates.
 
-{%include todo.html note="change y to f(x) for clarity" %}
+{% include todo.html note="change y to f(x) for clarity" %}
 
-{% include figure.html path="/images/figures/lin_reg_randomtries.png" caption="Three randomly-chosen line candidates" %}
+{% include figure_multi.md path1="/images/figures/lin_reg_randomtries.png" caption1="Three randomly-chosen line candidates" %}
 
 Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a _cost function_.
 
@@ -178,41 +148,107 @@ Pretty clearly, the first two lines don't fit our data very well. The third one 
 
 The cost is a measure of the amount of error our linear regression makes on a dataset. Although many cost functions have been proposed, all of them essentially penalize us on distance between the predicted value of a given $$x$$ and its actual value in our dataset. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
 
-{% include figure.html path="/images/figures/lin_reg_error.png" caption="" %}
+{% include figure_multi.md path1="/images/figures/lin_reg_error.png" caption1="" %}
 
-One very common cost function is called _mean squared error_ (MSE), which is given by:
+One very common cost function is called _mean squared error_ (MSE). To calculate MSE, we simply take all the error bars, square their lengths, and calculate their average. 
 
-$$ MSE = \frac{1}{2n} \sum_i{(y_i - f(x_i))^2} $$
+$$ MSE = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} $$
 
-$$ MSE = \frac{1}{2n} \sum_i{(y_i - (mx_i + b))^2} $$
-
-With MSE, we simply take all the error bars, square their lengths, and calculate their average. Actually, we take half the average (notice the $$ \frac{1}{2n} $$ multiplier), but this is simply done for convenience for when we have to take its derivative.
+$$ MSE = \frac{1}{n} \sum_i{(y_i - (mx_i + b))^2} $$
 
 We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 0.17, the second one is 0.08, and the third gets down to 0.02. Not surprisingly, the third function has the lowest MSE. 
 
 We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some neighborhood and compare them. Consider the figure below, which uses two different visualizations of the mean squared error in the range where the slope $$m$$ is between -2 and 4, and the intercept $$p$$ is between -6 and 8.
 
 {%include todo.html note="change p to b, and multiply by 0.5" %}
-{% include figure.html path="/images/figures/lin_reg_mse.png" caption="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le b \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
+{% include figure_multi.md path1="/images/figures/lin_reg_mse.png" caption1="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le b \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
 
 Looking at the two graphs above, we can see that our MSE is shaped like an elongated bowl, which appears to flatten out in an oval very roughly centered in the neighborhood around $$ (m,b) \approx (0.5, 1.0) $$. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar shape. Since we are trying to minimize the MSE, we can see that our goal is to figure out where the lowest point in the bowl lies.
 
-So how do we actually calculate that point at the bottom? If you have taken an introductory course in calculus, you know you can easily do it by solving for the [critical points](https://en.wikipedia.org/wiki/Critical_point_(mathematics)) where the partial derivatives of each parameter are 0 (so the function is therefore flat), and then simply keep whichever one has the lowest value. But in practice, when we have many more than two parameters, this turns out to be very computationally difficult to do. Things will get even more complicated when we fit points with neural networks because they are not linear and their cost functions are not simply bowl-shaped. Thus, the gradient descent algorithm was invented in order to arrive at the lowest point in a more reliable way across linear and nonlinear methods alike.
+### Adding more dimensions
 
-### How gradient descent proceeds
+The above example is quite minimal, having just one independent variable, $$x$$, and thus two parameters, $$m$$ and $$b$$. What happens when there are more variables? In general, if there are $$n$$ variables, a linear function of them can be written out as:
 
-Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters. We then figure out which direction the cost function steeps downward the most, and step slightly in that direction. We repeat this process over and over until we are satisfied we have found the lowest point.
+$$f(x) = b + w_1 \cdot x_1 + w_2 \cdot x_2 + ... + w_n \cdot x_n $$
+
+Or in matrix notation, we can summarize it as:
+
+$$
+f(x) = b + W^T X
+\;\;\;\;\;\;\;\;where\;\;\;\;\;\;\;\;
+W = 
+\begin{bmatrix}
+w_1\\w_2\\\vdots\\w_n\\\end{bmatrix}
+\;\;\;\;and\;\;\;\;
+X = 
+\begin{bmatrix}
+x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
+$$
+
+This may seem at first to complicate our problm horribly, but it turns out that the formulation of the problem remains exactly the same in 2, 3, or any number of dimensions. Although it is impossible for us to draw it now, there exists a cost function which appears like a bowl in some number of dimensions -- a hyper-bowl! And as before, our goal is to find the lowest part of that bowl, objectively the smallest value that the cost function can have with respect to some parameter selection and dataset.
+
+So how do we actually calculate where that point at the bottom is exactly? There are numerous ways to do so, with the most common approach being the [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) method, which solves it analytically. When there are only one or two parameters to solve, this can be done by hand, and is commonly taught in an introductory course on statistics or linear algebra. 
+
+Alas, ordinary least squares however cannot be used to optimize neural networks however, and so solving the above linear regression will be left as an exercise left to the reader. Instead we will introduce a much more powerful and general technique for solving both our linear regression, and neural networks: that of gradient descent.
+
+### The curse of nonlinearity
+
+Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^T X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^T X) $$. 
+
+This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the cost function. Rather than having a bowl shape, the cost function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex cost function ensures we hav a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
+
+By introducing the nonlinearity, we give neural networks much more "flexibility" in moeling arbitrary functions, at the expense of losing this convenience. The price we pay is that there is no easy way to find the minimum in one step analytically anymore (i.e. by deriving neat equations for them). In this case, we are forced to use a multi-step numerical method to arrive at the solution instead. Although several alternative approaches exist, gradient descent remains the most popular and effective. The next section will go over how it works.
+
+# Gradient Descent
+
+The general problem we've been dealing with -- that of finding parameters to satisfy some objective function -- is not specific to machine learning. Indeed it is a very general problem found in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), known to us for a long time, and encountered in far more scenarios than just neural networks. Today, many problems in multivariable function optimization -- including training neural networks -- generally rely on a very effective algorithm called _gradient descent_ to find a good solution much faster than taking random guesses. 
+
+
+### The gradient descent method
+
+Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters, and start there. We then figure out which direction the cost function steeps downward the most (with respect to changing the parameters), and step slightly in that direction. We repeat this process over and over until we are satisfied we have found the lowest point.
 
 To figure out which direction the cost steeps downward the most, it is necessary to calculate the [_gradient_](https://en.wikipedia.org/wiki/Gradient) of the cost function with respect to all of the parameters. A gradient is a multidimensional generalization of a derivative; it is a vector containing each of the partial derivatives of the function with respect to each variable. In other words, it is a vector which contains the slope of the cost function along every axis. 
 
-nice link: https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/
+Although we've already said that the most convenient way to solve linear regression is via ordinary least squares or some other single-step method, let's quickly turn our attention back to linear regression to see a simple example of using gradient descent to solve a linear regression. 
 
-calculate gradient
+Recall the mean squared error loss we introduced in the previous section, which we will denote as $J$.
 
-go down a bit, lather rinse repeat
+$$ J = \frac{1}{n} \sum_i{(y_i - (mx_i + b))^2} $$
+
+There are two parameters we are trying to optimize: $m$ and $b$. Let's calculate the partial derivative of $J$ with respect to each of them. 
+
+$$ \frac{\partial J}{\partial m} = \frac{2}{n} \sum_i{x_i \cdot (y_i - (mx_i + b))} $$
+
+$$ \frac{\partial J}{\partial b} = \frac{2}{n} \sum_i{(y_i - (mx_i + b))} $$
+
+How far in that direction should we step? This turns out to be an important consideration, and in ordinary gradient descent, this is left as a hyperparameter to decide manually. This hyperparameter -- known as the _learning rate_ -- is generally the most important and sensitive hyperparameter to set and is often denoted as $$\alpha$$. If $$\alpha$$ is set too low, it may take an unacceptably long time to get to the bottom. If $$\alpha$$ is too high, we may overshoot the correct path or even climb upwards. 
+
+Denoting the assignment operation as $:=$, we can write the update steps for the two parameters as follows.
+
+$$ m := m - \alpha \cdot \frac{\partial J}{\partial m} $$
+
+$$ b := b - \alpha \cdot \frac{\partial J}{\partial b} $$
+
+If we take this approach to solving the simple linear regression we posed above, we will get something that looks like this:
+
+{% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="Example of gradient descent for linear regression with two parameters. We take a random guess at the parameters, and iteratively update our position by taking a small step against the direction of the gradent, until we are at the bottom of the cost function." %}
+
+And if there are more dimensions? If we denote all of our parameters as $w_i$, thus giving us the form
+$f(x) = b + W^T X $, then we can extrapolate the above example to the multimensional case. This can be written down more succinctly using gradient notation. Recall that the gradient of $J$, which we will denote as $\nabla J$, is the vector containing each of the partial derivatives. Thus we can represent the above update step more succinctly as:
+
+$$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\partial w_2}, \cdots, \frac{\partial J}{\partial w_N} \Biggr) $$
+
+$$ W := W - \alpha \nabla J(W) $$
+
+{% include figure_multi.md path1="http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image%20[16].png" caption1="Example of gradient descent for non-convex cost function (such as a neural network), with two parameters $\theta_0$ and $\theta_1$. Source: <a href=\"http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html\">Andrew Ng</a>." %}
 
 {% include todo.html note="save locally" %}
-![ andrew ng's image ](http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image%20[16].png)
+
+{% include further_reading.md title="Implementation of linear regression in python" author="Chris Smith" link="https://crsmithdev.com/blog/ml-linear-regression/" %} 
+
+
+{% include further_reading.md title="link" author="?" link="https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/" %} 
 
 
 ## Complicating things a bit
@@ -230,17 +266,24 @@ In fact, there are methods for quickly computing the minimum analytically or num
 
 ### Stochastic gradient descent
 
-Mini-batches
+### Mini-batches
 
 
-
+etc
+ - gradient check vs backprop
+ - grid hyperparam search
+ - batches, mini-batches, SGD
+ - momentum and other varieties
+ - regularization (l2/dropout)
+ - batchnorm
+ - preprocessing (norm, standard), weight init
 
 # Backpropagation
 
 So now we know we can use gradient descent to solve for the weights of neural networks. Simply put, we calculate the gradient of the loss function with respect to the parameters, then do a small weight update in the direction of the gradient. But now we have another problem: how should we actually calculate the gradient? Naively, we can do it numerically using the 
 
 
- If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
+If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
 
 So what is backpropagation? Backpropagation, or backprop for short, is short for "backward propagation of errors" 
 
@@ -294,7 +337,7 @@ different gradient descent methods
  - rmsprop
 
 
-{% include figure.html path="/images/figures/opt2.gif" caption="Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
+{% include figure_multi.md path1="/images/figures/opt2.gif" caption1="Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
 
 
 
@@ -449,3 +492,5 @@ implementation of gradient descent for linear regression: https://spin.atomicobj
 Image [16] : http://cs229.stanford.edu/notes/cs229-notes1.pdf
 
 nice implementation: https://crsmithdev.com/blog/ml-linear-regression/
+
+https://distill.pub/2017/momentum/?utm_content=bufferd4ee6&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
