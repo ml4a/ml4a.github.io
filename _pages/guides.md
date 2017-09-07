@@ -108,12 +108,11 @@ redirect_from: /guides2/
 {% include guide_preview.md name="ConvnetOSC" %}
 {% include guide_preview.md name="ConvnetClassifier" %}
 {% include guide_preview.md name="ConvnetRegressor" %}
-<!--{% include guide_preview.md name="ConvnetPredictor" %}-->
 {% include guide_preview.md name="ConvnetViewer" %}
 {% include guide_preview.md name="DoodleClassifier" %}
 {% include guide_preview.md name="FaceClassifier" %}
 {% include guide_preview.md name="FaceRegressor" %}
-<!--{% include guide_preview.md name="FacePredictor" %}-->
+
 {% include guide_preview.md name="Gobot" %}
 {% include guide_preview.md name="ImageTSNEViewer" %}
 {% include guide_preview.md name="ImageTSNELive" %}
@@ -128,6 +127,9 @@ redirect_from: /guides2/
 
 
 <script>
+//{% include guide_preview.md name="FacePredictor" %}
+//{% include guide_preview.md name="ConvnetPredictor" %}
+
 function highlightButton(keyword){
 	document.getElementById("platform_python").style.border = "none";
 	document.getElementById("platform_openframeworks").style.border = "none";
