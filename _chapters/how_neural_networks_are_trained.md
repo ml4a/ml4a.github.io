@@ -12,6 +12,7 @@ http://www.summitpost.org/ruth-creek-topographic-map/771858
 
 overview of grad descent algorithms: http://sebastianruder.com/optimizing-gradient-descent/index.html
 
+
 http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html
 http://eli.thegreenplace.net/2016/understanding-gradient-descent/
 
@@ -60,9 +61,9 @@ This scenario may seem disconnected from neural networks, but it turns out to be
 
 Recall that _training_ refers to determining the best set of weights for maximizing a neural network's accuracy. In the previous chapters, we glossed over this process, preferring to keep it inside of a black box, and look at what already trained networks could do. In this chapter, we are going to look more closely at the process of training, and we shall see that it works much like the climber analogy we just described.
 
-Neural networks can be used without knowing precisely how training works, just as on can operate a flashlight without knowing how the electronics inside it work. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically rigorous, you may be tempted to skip this chapter, and indeed most of the remaining content in this book can be understood without it. But the intrepid reader is encouraged to proceed with this chapter, not only because it gives valuable insights into how neural nets can be applied and reconfigured, but because the topic itself is one of the most interesting in research. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
+Neural networks can be used without knowing precisely how training works, just as one can operate a flashlight without knowing how the electronics inside it work. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically rigorous, you may be tempted to set it aside and rush to applications of neural networks. But the intrepid reader knows this to be a mistake, not only because it gives valuable insights into how neural nets can be applied and reconfigured, but because the topic itself is one of the most interesting in research today. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
-We'll get to gradient descent in a few sections, but first, let's understand why choosing weights is hard to begin with. 
+We'll get to gradient descent, backpropagation, and all the techniques involved in a few sections, but first, let's understand why training is hard to begin with. 
 
 # Why training is hard
 
@@ -80,7 +81,7 @@ You might be thinking that 12,000-dimensional haystack is "only 4,000 times bigg
 
 ## n-dimensional space is a lonely place
 
-If our strategy is brute force random search, we may ask how many guesses will we have to take to obtain a reasonably good set of weights. Intuitively, we should expect that we need to take enough guesses to sample the whole space of possible guesses densely; with no prior knowledge, the correct weights could be hiding anywhere, so it makes sense to try to sample the space as much as possible.
+If our strategy is brute force random search, we may ask how many guesses will we have to take before we obtain a reasonably good set of weights. Intuitively, we should expect that we need to take enough guesses to sample the whole space of possible guesses densely; with no prior knowledge, the correct weights could be hiding anywhere, so it makes sense to try to sample the space as much as possible.
 
 To keep things simple, let's consider two very small 1-layer neural networks, the first one with 2 neurons, and the second one with 3 neurons. We are also ignoring the bias for the moment.
 
@@ -142,28 +143,27 @@ The goal of linear regression is to find a line which best fits these points. Re
 
 {% include figure_multi.md path1="/images/figures/lin_reg_randomtries.png" caption1="Three randomly-chosen line candidates" %}
 
-Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a _cost function_.
+Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a _loss function_.
 
-### Cost function
+### Loss function
 
-The cost is a measure of the amount of error our linear regression makes on a dataset. Although many cost functions have been proposed, all of them essentially penalize us on distance between the predicted value of a given $$x$$ and its actual value in our dataset. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
+The loss function -- sometimes called a _cost function_ -- is a measure of the amount of error our linear regression makes on a dataset. Although many loss functions exist, all of them essentially penalize us on the distance between the predicted value of a given $$x$$ and its actual value in our dataset. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
 
 {% include figure_multi.md path1="/images/figures/lin_reg_error.png" caption1="" %}
 
-One very common cost function is called _mean squared error_ (MSE). To calculate MSE, we simply take all the error bars, square their lengths, and calculate their average. 
+One very common loss function is called _mean squared error_ (MSE). To calculate MSE, we simply take all the error bars, square their lengths, and take their average. 
 
 $$ MSE = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} $$
 
 $$ MSE = \frac{1}{n} \sum_i{(y_i - (mx_i + b))^2} $$
 
-We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 0.17, the second one is 0.08, and the third gets down to 0.02. Not surprisingly, the third function has the lowest MSE. 
+We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 0.17, the second one is 0.08, and the third gets down to 0.02. Not surprisingly, the third function has the lowest MSE, confirming our guess that it was the line of best fit. 
 
-We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some neighborhood and compare them. Consider the figure below, which uses two different visualizations of the mean squared error in the range where the slope $$m$$ is between -2 and 4, and the intercept $$p$$ is between -6 and 8.
+We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some neighborhood and compare them. Consider the figure below, which uses two different visualizations of the mean squared error in the range where the slope $$m$$ is between -2 and 4, and the intercept $$b$$ is between -6 and 8.
 
-{%include todo.html note="change p to b, and multiply by 0.5" %}
-{% include figure_multi.md path1="/images/figures/lin_reg_mse.png" caption1="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le b \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
+{% include figure_multi.md path1="/images/figures/lin_reg_mse.png" caption1="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le p \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
 
-Looking at the two graphs above, we can see that our MSE is shaped like an elongated bowl, which appears to flatten out in an oval very roughly centered in the neighborhood around $$ (m,b) \approx (0.5, 1.0) $$. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar shape. Since we are trying to minimize the MSE, we can see that our goal is to figure out where the lowest point in the bowl lies.
+Looking at the two graphs above, we can see that our MSE is shaped like an elongated bowl, which appears to flatten out in an oval very roughly centered in the neighborhood around $$ (m,p) \approx (0.5, 1.0) $$. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar shape. Since we are trying to minimize the MSE, we can see that our goal is to figure out where the lowest point in the bowl lies.
 
 ### Adding more dimensions
 
@@ -185,7 +185,26 @@ X =
 x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
 $$
 
-This may seem at first to complicate our problm horribly, but it turns out that the formulation of the problem remains exactly the same in 2, 3, or any number of dimensions. Although it is impossible for us to draw it now, there exists a cost function which appears like a bowl in some number of dimensions -- a hyper-bowl! And as before, our goal is to find the lowest part of that bowl, objectively the smallest value that the cost function can have with respect to some parameter selection and dataset.
+One trick we can use to simplify this is to think of our bias $b$ as being simply another weight, which is always being multiplied by a "dummy" input value of 1. In other words, we let:
+
+$$
+f(x) = W^T X
+\;\;\;\;\;\;\;\;where\;\;\;\;\;\;\;\;
+W = 
+\begin{bmatrix}
+b\\w_1\\w_2\\\vdots\\w_n\\\end{bmatrix}
+\;\;\;\;and\;\;\;\;
+X = 
+\begin{bmatrix}
+1\\x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
+$$
+
+This is convenient both notationally, since now our function is more simply expressed as $f(x) = W^T X$, and conceptually, since we can now think of the bias as just another weight. In practice, it's just one more parameter that needs to be optimized, and it is not very different ________
+
+
+
+
+Adding many more dimensions may seem at first to complicate our problem horribly, but it turns out that the formulation of the problem remains exactly the same in 2, 3, or any number of dimensions. Although it is impossible for us to draw it now, there exists a loss function which appears like a bowl in some number of dimensions -- a hyper-bowl! And as before, our goal is to find the lowest part of that bowl, objectively the smallest value that the loss function can have with respect to some parameter selection and dataset.
 
 So how do we actually calculate where that point at the bottom is exactly? There are numerous ways to do so, with the most common approach being the [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) method, which solves it analytically. When there are only one or two parameters to solve, this can be done by hand, and is commonly taught in an introductory course on statistics or linear algebra. 
 
@@ -195,9 +214,9 @@ Alas, ordinary least squares however cannot be used to optimize neural networks 
 
 Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^T X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^T X) $$. 
 
-This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the cost function. Rather than having a bowl shape, the cost function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex cost function ensures we hav a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
+This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the loss function. Rather than having a bowl shape, the loss function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex loss function ensures we hav a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
 
-By introducing the nonlinearity, we give neural networks much more "flexibility" in moeling arbitrary functions, at the expense of losing this convenience. The price we pay is that there is no easy way to find the minimum in one step analytically anymore (i.e. by deriving neat equations for them). In this case, we are forced to use a multi-step numerical method to arrive at the solution instead. Although several alternative approaches exist, gradient descent remains the most popular and effective. The next section will go over how it works.
+By introducing the nonlinearity, we give neural networks much more "flexibility" in modeling arbitrary functions, at the expense of losing this convenience. The price we pay is that there is no easy way to find the minimum in one step analytically anymore (i.e. by deriving neat equations for them). In this case, we are forced to use a multi-step numerical method to arrive at the solution instead. Although several alternative approaches exist, gradient descent remains the most popular and effective. The next section will go over how it works.
 
 # Gradient Descent
 
@@ -206,9 +225,9 @@ The general problem we've been dealing with -- that of finding parameters to sat
 
 ### The gradient descent method
 
-Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters, and start there. We then figure out which direction the cost function steeps downward the most (with respect to changing the parameters), and step slightly in that direction. We repeat this process over and over until we are satisfied we have found the lowest point.
+Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters, and start there. We then figure out which direction the loss function steeps downward the most (with respect to changing the parameters), and step slightly in that direction. We repeat this process over and over until we are satisfied we have found the lowest point.
 
-To figure out which direction the cost steeps downward the most, it is necessary to calculate the [_gradient_](https://en.wikipedia.org/wiki/Gradient) of the cost function with respect to all of the parameters. A gradient is a multidimensional generalization of a derivative; it is a vector containing each of the partial derivatives of the function with respect to each variable. In other words, it is a vector which contains the slope of the cost function along every axis. 
+To figure out which direction the loss steeps downward the most, it is necessary to calculate the [_gradient_](https://en.wikipedia.org/wiki/Gradient) of the loss function with respect to all of the parameters. A gradient is a multidimensional generalization of a derivative; it is a vector containing each of the partial derivatives of the function with respect to each variable. In other words, it is a vector which contains the slope of the loss function along every axis. 
 
 Although we've already said that the most convenient way to solve linear regression is via ordinary least squares or some other single-step method, let's quickly turn our attention back to linear regression to see a simple example of using gradient descent to solve a linear regression. 
 
@@ -232,7 +251,7 @@ $$ b := b - \alpha \cdot \frac{\partial J}{\partial b} $$
 
 If we take this approach to solving the simple linear regression we posed above, we will get something that looks like this:
 
-{% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="Example of gradient descent for linear regression with two parameters. We take a random guess at the parameters, and iteratively update our position by taking a small step against the direction of the gradent, until we are at the bottom of the cost function." %}
+{% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="Example of gradient descent for linear regression with two parameters. We take a random guess at the parameters, and iteratively update our position by taking a small step against the direction of the gradent, until we are at the bottom of the loss function." %}
 
 And if there are more dimensions? If we denote all of our parameters as $w_i$, thus giving us the form
 $f(x) = b + W^T X $, then we can extrapolate the above example to the multimensional case. This can be written down more succinctly using gradient notation. Recall that the gradient of $J$, which we will denote as $\nabla J$, is the vector containing each of the partial derivatives. Thus we can represent the above update step more succinctly as:
@@ -241,47 +260,188 @@ $$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\part
 
 $$ W := W - \alpha \nabla J(W) $$
 
-{% include figure_multi.md path1="http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr_files/Image%20[16].png" caption1="Example of gradient descent for non-convex cost function (such as a neural network), with two parameters $\theta_0$ and $\theta_1$. Source: <a href=\"http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html\">Andrew Ng</a>." %}
+The above formula is the canonical formula for ordinary gradient descent. It is guaranteed to get you the best set of parameters for a linear regression, or indeed for any linear optimization problem. If you understand the significance of this formula, you understand "in a nutshell" how neural networks are trained. In practice however, certain things complicate this process in neural networks and the next section will get into how we deal with them.
 
-{% include todo.html note="save locally" %}
+
+# Applying gradient descent to neural nets
+
+### The problem of convexity
+
+In the previous section, we showed how to run gradient descent on a simple linear regression problem, and declared that doing so is guaranteed to find the correct parameters. This is true for optimizing a linear model as we did, but it's not true for neural networks, due to the nonlinearity introduced by their activation functions. Consequently, the loss function of a neural net is not "bowl-shaped", and it is not convex. Instead, its loss function is much more complex, with many hills and valleys and curves and other irregularities. This means there are many "local minima" i.e. parameterizations where the loss is the lowest in its immediate neighborhood, but not necessarily the absolute minimum (or "global minimum"). This means that if we run gradient descent, we might accidentally get stuck in a local minimum.
+
+{% include figure_multi.md path1="/images/figures/non_convex_function.png" caption1="Example of non-convex loss surface with two parameters. Note that in deep neural networks, we're dealing with millions of parameters, but the basic principle stays the sam. Source: <a href=\"http://videolectures.net/site/normal_dl/tag=983679/deeplearning2015_bengio_theoretical_motivations_01.pdf\">Yoshua Bengio</a>." %}
+
+For theoretical reasons beyond the scope of this book, it turns out that this is not a major problem in deep learning, because when there are enough hidden units alongside some other criteria, most local minima are "good enough," being reasonably close to the absolute minimum. According to [Dauphin et al](https://arxiv.org/abs/1406.2572), a bigger challenge than local minima are [saddle points](https://en.wikipedia.org/wiki/Saddle_point), along which the gradient becomes very close to 0. For an explanation of why this is true, see [this lecture](http://videolectures.net/deeplearning2015_bengio_theoretical_motivations/) by [Yoshua Bengio](http://www.iro.umontreal.ca/~bengioy/yoshua_en/) (beginning at section 28, 1:09:41).
+
+Despite the fact that local minima are not a major problem, we'd still prefer to overcome them to the extent they are any problem at all. One way of doing this is to modify the way gradient descent works, which is what the next section is about.
+
+
+### Stochastic, batch, and mini-batch gradient descent
+
+Besides for local minima, "vanilla" gradient descent has another major problem: it's too slow. A neural net may have hundreds of millions of parameters; this means a single example from our dataset requires hundreds of millions of operations to evaluate. Subsequntly, gradient descent evaluated over all of the points in our dataset -- also known as "batch gradient descent" -- is a very expensive and slow operation. Moreover, because every dataset has inherent redundancy, it can be shown that a large enough subset of points can approximate the full gradient anyway, making batch gradient descent unnecessary.
+
+It turns out that we can combat both this problem _and_ the problem of local minima using a modified version of gradient descent called [stochastic gradient descent (SGD)](https://en.wikipedia.org/wiki/Stochastic_gradient_descent). With SGD, we shuffle our dataset, and then go through each sample individually, calculating the gradient with respect to that single point, and performing a weight update for each. This may seem like a bad idea at first because a single example may be an outlier and not necessarily give a good approximation of the actual gradient. But it turns out that if do this for each sample of our dataset in some random order, the overall fluctations of the gradient update path will average out and converge towards a good solution. Moreover, SGD helps us get out of local minima and saddle points by making the updates more "jerky" and erratic, which can be enough to get unstuck if we find ourselves in the bottom of a valley. 
+
+SGD is particularly useful in cases where the loss surface is especially irregular. But in general, the usual approach is to use what is called 
+mini-batch gradient descent (MB-GD), in which the whole dataset is randomly subdivided into $$N$$ equally-sized mini-batches of $$K$$ samples each. $$K$$ may be a small positive number, or it can be in the dozens or hundreds; it depends on the specific architecture and application. Note that if $$K=1$$, then you have SGD, and if $$K$$ is the size of the whole dataset, it is batch gradient descent. 
+
+With MB-GD, we have the best of both worlds; the gradient is smoother and more stable than SGD, and reasonably close to the full gradient, but we have a massive speed-up from not having to evaluate every sample in the dataset for each update. MB-GD is also computed very efficiently owing to parallelizable matrix operations. <!--Note: sometimes people use SGD to refer to both mini-batch gradient descent and one sample at a time.-->
+
+{% include figure_multi.md path1="/images/figures/bumpy_gradient_descent.png" caption1="Example of gradient descent for non-convex loss function (such as a neural network), with two parameters $\theta_0$ and $\theta_1$. Source: <a href=\"http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html\">Andrew Ng</a>." %}
+
+In practice, MB-GD and SGD work well at efficiently optimizing the loss function of a neural network. However, they have weaknesses as well.
+
+ - The aforementioned problem of saddle points; we can get stuck in a parameterization where the loss function plateaus, and the gradient gets very close to 0.
+ - The learning rate remains a hyperparameter which must be set manually, which can be difficult to do. A learning rate which is too low leads to slow convergence, and one which is too high may overshoot the correct path. 
+
+### Momentum
+
+[Momentum](https://distill.pub/2017/momentum/) refers to a family of gradient descent variants where the weight update has inertia. In other words, the weight update is no longer a function of just the gradient at the current time step, but is gradually adjusted from the rate of the previous update. 
+
+Recall that in standard gradient descent, we calculate the gradient $$\nabla J(W)$$ and use the following parameter update formula with learning rate $$\alpha$$. 
+
+$$ W_{t} := W_{t} - \alpha \nabla J(W_{t}) $$
+
+Note that we've appended the $$t$$ subscript to denote the current time step, which was previously omitted. In contrast, the generic formula for gradient descent with momentum is the following:
+
+$$ z_{t} := \beta z_{t-1} + \nabla J(W_{t-1}) $$
+
+$$ W_{t} := W_{t-1} - \alpha z_{t} $$
+
+In the parameter update, we've replaced the gradient $$\nabla J(W_{t})$$ with a more complex function $$z_{t}$$ that takes into account the gradient in past time steps. The higher $$\beta$$ is set, the more momentum our parameter update is. If we set $$\beta = 0$$, then the formula reverts to ordinary gradient descent. $$\alpha$$ controls the overall learning rate of the process, as before.
+
+You can think of the update path as being like a ball rolling downhill. Even if it gets to a region where the gradient changes significantly, it will continue going in roughly the same direction under its own momentum, only changing gradually along the path of the gradient. Momentum helps us escape saddle points and local minima by rolling out them from speed built up from previous updates. It also helps counteract against the common problem of zig-zagging found along locally irregular loss surfaces where the gradient steeps strongly along some directions and not others.
+
+One alternative to the standard momentum formula is Nesterov accelerated gradient descent, given below:
+
+$$ z_{t} := \beta z_{t-1} + \nabla J(W_{t-1} - \beta z_{t-1} ) $$
+
+The only change is, rather than valuating the gradient where we currently are ($$W_{t-1}$$), we instead evaluate it at approximately where we will be at the next time step ($$W_{t-1} - \beta z_{t-1}$$), given the buildup of momentum carrying us in that direction. Calculating the gradient at that point instead of where we are currently lets us anticipate the loss surface ahead better and tune the momentum term accordingly. An illustration is given below:
+
+{% include figure_multi.md path1="/images/figures/nesterov_acceleration.jpg" caption1="Nesterov momentum \"looks ahead\" to the approximate position we will be in the next update to calculate the gradient term in the update. Source: <a href=\"https://cs231n.github.io/neural-networks-3/\">Stanford CS231n</a>." %}
+
+Momentum methods work pretty well, but like MB-GD and SGD use a single formula for the entire gradient, despite any internal asymmetries among parameters. In contrast, methods which adapt to each element in the gradient have some advantages, which will be looked at in the next section. The following article at [distill.pub](https://distill.pub) looks at momentum in much more mathematical depth and nicely illustrates why it works. 
+
+{% include further_reading.md title="Why momentum works" author="Gabriel Goh" link="https://distill.pub/2017/momentum/" %} 
+
+### Adaptive methods
+
+Momentum comes in many flavors, and in general, finding fast, efficient, and accurate strategies for updating the parameters during gradient descent is a core objective of scientific research in the area, and a full discussion of them is out of the scope of this book. This section will instead quickly survey several of the more prominent variations in practical implementation, and refer to other materials online for a more comprehensive review.
+
+One of the bigger annoyances in the training process is setting the learning rate $$\alpha$$. Typically, an initial $$\alpha$$ is set at the beginning, and is left to decay gradually over some number of time steps, letting it converge more precisely to a good solution. $$\alpha$$ is the same for each individual parameter.
+
+This is unsatisfactory because it assumes that the learning rate must follow a set schedule which is identical for each individual parameter, irrespective of the particular characteristics of the loss surface at a given time step. Additionally, it's unclear how to set $$\alpha$$ and its decay rate in the first place. Momentum and Nesterov momentum help to reduce this burden by giving the update rate some dependence on local observations rather than the "one-size-fits-all" approach of vanilla gradient descent. Still, the choice of $$\alpha$$ and the inflexibility across parameters is seen as a problem.
+
+A number of methods address this shortcoming by adapting the learning rate to each parameter individually, based on the assumption that there is a lot of variance of the loss across all the parameters. The simplest per-parameter update method is [AdaGrad](http://jmlr.org/papers/v12/duchi11a.html) (standing for "Adaptive subGradient"). With AdaGrad, each parameter is updated individually according to its own gradient, but with a new coefficient which attempts to equalize the learning rate between parameters which tend towards large gradients and those that tend to small ones. AdaGrad is defined in the following formula (Note: for the sake of avoiding confusion, note the subscript $$i$$ refers to index of the weight, rather than the time step as before
+).
+
+$$ w_{i} := w_{i} - \frac{\alpha}{\sqrt{G_{i}+\epsilon}} \frac{\partial J}{\partial w_{i}} $$
+
+$$\sqrt{G_{i}+\epsilon}$$ represents the sum of the squares of the gradient for that paramter for each step since training began (the $$\epsilon$$ term is just some very small number, e.g. $$10^{-8}$$, to avoid division-by-zero). By dividing $$\alpha$$ for each parameter according to that quantity, we effectively slow down the learning rate for those parameters which have enjoyed large gradients up to that point, and conversely, speed up learning for parameters with minor or sparse gradients.
+
+AdaGrad mostly eliminates the need to treat the initial learning rate $$\alpha$$ as a hyperparameter, but it has its own challenges as well. The typical problem with AdaGrad is that learning may stop prematurely as $$G_{i}$$ accumulates for each parameter over time and reduces the magnitude of the updates. A variant of AdaGrad, [AdaDelta](https://arxiv.org/abs/1212.5701), addresses this by effectivly restricting the window of the gradient accumulation term to the most recent updates. Another adaptive method which is very similar to AdaDelta is [RMSprop](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf). RMSprop -- proposed by [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/) during his Coursera class but otherwise unpublished -- similarly shortsights the update by summing the squares of the previous updates, but does so in a simpler way by using a standard [easing](http://easings.net) formula with a decay rate (which ends up being a hyperparameter). Thus, for both AdaDelta and RMSprop the update is not just adaptive with respect to parameters, but it's adaptive with respect to time as well, instead of having the learning rate decay monotonically until stopping.
+
+### Adam and comparison of update methods
+
+The last method worth mentioning in this chapter, and one of the most recent to be proposed, is [Adam](http://arxiv.org/abs/1412.6980), whose name is derived from adaptive moment estimation. Adam gives us the best of both worlds between adaptive methods and momentum-based methods. Like AdaDelta and RMSprop, Adam adapts the learning rate for each parameter according to a sliding window of past gradients, but it has a momentum component to smooth the path over time steps.
+
+Still more methods exist, and a full discussion of them is out of the scope of this chapter. A more complete discussion of them, including derivations and practical tips, can be found in [this blog post by Sebastian Ruder](http://ruder.io/optimizing-gradient-descent/index.html).
+
+This nice visualization, courtesy of [Alec Radford](https://twitter.com/alecrad), shows the characteristic behavior among the different gradient update methods discussed so far. Notice that momentum-based methods, Momentum and Nesterov accelerated gradient descent (NAG), tend to overshoot the optimal path by "rolling downhill" too fast, whereas standard SGD moves in the right path, but too slowly. Adaptive methods -- AdaGrad, AdaDelta, and RMSProp (and we could add Adam to it as well) -- tend to have the per-parameter flexibility to avoid both of those trappings.
+
+{% include figure_multi.md path1="/images/figures/opt2a.gif" caption1="Contour plot of gradient update methods converging on good parameters. Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" path2="/images/figures/opt1a.gif" caption2="Comparison of gradient update methods escaping from a saddle point. Notice that SGD gets stuck. Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
+
+So which optimization method works best? There's no simple answer to this, and the answer largely depends on the characteristics of your data and other training constraints and considerations. Nevertheless, Adam has emerged as a promising method to at least start with. When data is sparse or unevenly distributed, the purely adaptive methods tend to work best. A full discussion of when to use each method is beyond the scop of this chapter, and is best found in the academic papers on optimizers, or in practical summaries such as [this one by Yoshua Bengio](https://arxiv.org/pdf/1206.5533v2.pdf).
+
+For further reading on gradient descent optimization, see the following:
+
+{% include further_reading.md title="An overview of gradient descent optimization algorithms" author="Sebastian Ruder" link="http://ruder.io/optimizing-gradient-descent/index.html" %} 
+
+{% include further_reading.md title="Optimizing convolutional networks (CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/neural-networks-3/" %} 
+
+
+# Hyperparameter selection and evaluation
+
+### Cross-validation
+
+### Parameter searching
+
+grid param search
+AutoML
+NEAT
+
+{% include further_reading.md title="link" author="?" link="https://cs231n.github.io/neural-networks-3/" %} 
+
+
+## Overfitting and regularization
+
+In all machine learning algorithms, including neural networks, there is a common problem which has to be dealt with, which is the problem of _overfitting_. 
+
+Recall from the previous section that our goal is to minimize the error in unknown samples, i.e. the test set, which we do by setting the parameters in such a way that we minimize loss in our known samples (the training set). Sometimes we notice that we have low error in the training set, but the error in the test set is much higher. This suggests that we are _overfitting_, a phenomenon which is common to all machine learning algorithms and must be dealt with. Let's see an example.
+
+The two graphs below show the same set of training samples observed, the blue circles. In both, we attempt to learn the best possible polynomial curve through them. The one on the left we see a smooth curve go through the points, accumulating some reasonable amount of error. The one on the right oscillates wildly but goes through all of the points precisely, accruing almost zero error. Ostensibly, the one on the right must be better because it has no error, but clearly something's wrong.
+
+The one on left...
+
+[1) smooth model] [2) wavy overfit model] (from bishop) 
+
+The way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known samples (since it happens to know their values ahead of time). 
+
+It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, jean jackets, and __. Perhaps you even have a close family member whom this describes.
+
+Researchers have devised various ways of combating overfitting (neural networks, not wardrobes). We are going to look at the few most important ones.
+
+
+
+
+## Regularization
+
+Regularization refers to imposing constraints on our neural network besides for just minimizing the error, which can generally be interpreted as \"smoothing\" or \"flattening\" the model function. As we saw in the polynomial fitting regression example, a model which has such wild swings is probably overfitting, and one way we can tell it has wild swings is if it has large coefficients (weights for neural nets). So we can modify our loss function to have an additional term to penalize large weights, and in practice, this is usually the following.
+
+Use a penalty term
+In the above example, we see we must have high coefficients. We want to penalize high coefficients. One way of doing that is by adding a regulariation term to the loss. One tha tworks well is L2 squared loss.  It looks like this.
+
+We see that this term increases when the weights are large numbers, regardless if positive or negative. By adding this to our loss function, we give ourselves an incentive to find models with small w's, because they keep that term small.
+
+But now we have a new dilemma. Mutual conflict between the terms.
+
+
+### L1/L2 regularization
+
+### Dropout
+
+### Bathnorm
+
+### preprocessing (norm, standard), weight init
+
+
+
+
+# Backpropagation
+
+
+
+
+
+
+------------
+
+
+
+
+
 
 {% include further_reading.md title="Implementation of linear regression in python" author="Chris Smith" link="https://crsmithdev.com/blog/ml-linear-regression/" %} 
 
 
 {% include further_reading.md title="link" author="?" link="https://betterexplained.com/articles/vector-calculus-understanding-the-gradient/" %} 
 
+{% include further_reading.md title="link" author="?" link="http://ruder.io/optimizing-gradient-descent/" %} 
 
-## Complicating things a bit
-
-### Neural networks are not linear
-
-The linear regression we performed above gives 
-
-In fact, there are methods for quickly computing the minimum analytically or numerically without doing gradient descent. But because of activation functions, neural nets are not linear, and their loss functions are not convex. 
-
-[ bumpy image ]
-
-### Local minima
-
-
-### Stochastic gradient descent
-
-### Mini-batches
-
-
-etc
- - gradient check vs backprop
- - grid hyperparam search
- - batches, mini-batches, SGD
- - momentum and other varieties
- - regularization (l2/dropout)
- - batchnorm
- - preprocessing (norm, standard), weight init
 
 # Backpropagation
 
 So now we know we can use gradient descent to solve for the weights of neural networks. Simply put, we calculate the gradient of the loss function with respect to the parameters, then do a small weight update in the direction of the gradient. But now we have another problem: how should we actually calculate the gradient? Naively, we can do it numerically using the 
-
 
 If we use Newton's method to numerically calculate the gradient, it would require us doing two forward passes for every single weight in our network to do a single weight update. If we have thousands or millions of weights, and need to do millions of weight updates to arrive at a good solution, there's no way this can take us a reasonable amount of time. Until we discovered the backpropagation algorithm and applied it successfully to neural networks, this was the main bottleneck preventing neural networks from achieving their potential.
 
@@ -326,19 +486,6 @@ other SGD explanations
 //Once we have observed our loss, we calculate what's called the _gradient_ of our network. The gradient i
 
 
-# AlecRad's gradient descent methods
-
-different gradient descent methods
- - SGD
- - momentum
- - NAG
- - adagrad
- - adadelta
- - rmsprop
-
-
-{% include figure_multi.md path1="/images/figures/opt2.gif" caption1="Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
-
 
 
 # Setting up a training procedure
@@ -381,45 +528,16 @@ Beyond, we can't draw at all, but same principle.
 
 So how does this apply to neural networks?
 
-This is, in principle, what we have to do to solve a neural network. We have some cost function which expresses how poor or inaccurate our classifier is, and the cost is a function of the way we set our weights. In the neural network we drew above, there are 44 weights.
+This is, in principle, what we have to do to solve a neural network. We have some loss function which expresses how poor or inaccurate our classifier is, and the loss is a function of the way we set our weights. In the neural network we drew above, there are 44 weights.
 
 # Learning by data
 
 
 
-# Cost function
+# Loss function
 
 Sum(L1 / L2 error)
 
-
-# Overfitting
-
-In all machine learning algorithms, including neural networks, there is a common problem which has to be dealt with, which is the problem of _overfitting_. 
-
-Recall from the previous section that our goal is to minimize the error in unknown samples, i.e. the test set, which we do by setting the parameters in such a way that we minimize loss in our known samples (the training set). Sometimes we notice that we have low error in the training set, but the error in the test set is much higher. This suggests that we are _overfitting_, a phenomenon which is common to all machine learning algorithms and must be dealt with. Let's see an example.
-
-The two graphs below show the same set of training samples observed, the blue circles. In both, we attempt to learn the best possible polynomial curve through them. The one on the left we see a smooth curve go through the points, accumulating some reasonable amount of error. The one on the right oscillates wildly but goes through all of the points precisely, accruing almost zero error. Ostensibly, the one on the right must be better because it has no error, but clearly something's wrong.
-
-The one on left blah blah.
-
-[1) smooth model] [2) wavy overfit model] (from bishop) 
-
-The way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known samples (since it happens to know their values ahead of time). 
-
-It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, jean jackets, and __. Perhaps you even have a close family member whom this describes.
-
-Researchers have devised various ways of combating overfitting (neural networks, not wardrobes). We are going to look at the few most important ones.
-
-0) Regularization
-
-Regularization refers to imposing constraints on our neural network besides for just minimizing the error, which can generally be interpreted as \"smoothing\" or \"flattening\" the model function. As we saw in the polynomial fitting regression example, a model which has such wild swings is probably overfitting, and one way we can tell it has wild swings is if it has large coefficients (weights for neural nets). So we can modify our loss function to have an additional term to penalize large weights, and in practice, this is usually the following.
-
-Use a penalty term
-In the above example, we see we must have high coefficients. We want to penalize high coefficients. One way of doing that is by adding a regulariation term to the loss. One tha tworks well is L2 squared loss.  It looks like this.
-
-We see that this term increases when the weights are large numbers, regardless if positive or negative. By adding this to our loss function, we give ourselves an incentive to find models with small w's, because they keep that term small.
-
-But now we have a new dilemma. Mutual conflict between the terms.
 
 Dropout
 
@@ -431,20 +549,20 @@ split into a test set. The reason why is that if we evaluate our ML algorithm's 
 
 2) Training + validation + test set
 
-Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyper-parameters. Hyper-parameters (personally I think they shoul gd have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
+Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyperparameters. hyperparameters (personally I think they shoul gd have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
 
-These have to be set before we begin training, but it's not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyper-parameters which worked the best.
+These have to be set before we begin training, but it's not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyperparameters which worked the best.
 
-But this is dangerous because we risk setting the hyper-parameters to be the values which optimize _that particular_ test set, rather than an arbitrary or unknown one.
+But this is dangerous because we risk setting the hyperparameters to be the values which optimize _that particular_ test set, rather than an arbitrary or unknown one.
 
-We can get around this by partitioning our training data again -- now into a reduced training set and a _validation set_, which is basically a second test set where the labels are withheld. Thus we choose the hyper-parameters which give us the lowest error on the validation set, but the error we report is still on the actual test set, whose true labels we have still never revealed to our algorithm during training time.
+We can get around this by partitioning our training data again -- now into a reduced training set and a _validation set_, which is basically a second test set where the labels are withheld. Thus we choose the hyperparameters which give us the lowest error on the validation set, but the error we report is still on the actual test set, whose true labels we have still never revealed to our algorithm during training time.
 
 
 
 # 
 
 So we use a training set and test set. 
-But if we have hyper-parameters (personally I think they should be called meta-parameters), we need to use a validation set as well. This gives us a second line of defense against overfitting.
+But if we have hyperparameters (personally I think they should be called meta-parameters), we need to use a validation set as well. This gives us a second line of defense against overfitting.
 
 
 
@@ -494,3 +612,8 @@ Image [16] : http://cs229.stanford.edu/notes/cs229-notes1.pdf
 nice implementation: https://crsmithdev.com/blog/ml-linear-regression/
 
 https://distill.pub/2017/momentum/?utm_content=bufferd4ee6&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+
+https://crsmithdev.com/blog/ml-linear-regression/
+http://briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1
+https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
