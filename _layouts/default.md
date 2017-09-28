@@ -3,9 +3,9 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{ page.title }}</title>
-	{% if page.includes contains 'mathjax' %}
 		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		<link rel="icon" href="/images/favicon.png">
+		<link rel="icon" href="/images/favicon.png">	
+	{% if page.includes contains 'mathjax' %}
 		<script type="text/x-mathjax-config">
 		MathJax.Hub.Config({
   			CommonHTML: {scale: 100},
