@@ -3,15 +3,17 @@
 	<head>
 		<meta charset="utf-8">
 		<title>{{ page.title }}</title>
+	{% if page.includes contains 'mathjax' %}
 		<link rel="stylesheet" type="text/css" href="/css/main.css">
 		<link rel="icon" href="/images/favicon.png">
-	{% if page.includes contains 'mathjax' %}
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-		<script>
-			MathJax.Hub.Config({
-				jax: ["input/TeX","output/HTML-CSS"],
-				tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-			});
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+  			CommonHTML: {scale: 100},
+  			jax: ["input/TeX","output/HTML-CSS"],
+  			tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+		});
+		</script>
+		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 		</script>
 	{% endif %}
 	{% if page.includes contains 'jquery' %}
@@ -52,6 +54,10 @@
 			</nav>
 		</div>
 
+
+<style>
+
+</style>
 		<span id="end-nav"></span>
 		<div class="container">
 			{{ content }}

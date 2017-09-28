@@ -129,6 +129,11 @@ figcaption {
 }
 
 
+/* equations */
+.mjx-chtml.MJXc-display {
+    font-size:1.4em !important;
+}
+
 
 
 /* how to make the div wider than the parent */

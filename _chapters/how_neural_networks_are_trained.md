@@ -360,35 +360,60 @@ For further reading on gradient descent optimization, see the following:
 {% include further_reading.md title="Optimizing convolutional networks (CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/neural-networks-3/" %} 
 
 
-# Hyperparameter selection and evaluation
+# Hyperparameters and evaluation
 
-### Cross-validation
+Now that we understand the notion of optimizing the parameters of a network, we are ready to summarize the full procedure. The naive way to train our final model would be to run the gradient descent procedure over our full data. But we run into a problem if we do this: how do we evaluate the accuracy of our model? Since we've used up all our labeled data for training, the only way to evaluate it is to run the model on our training set again, and measure the difference between the output and the "ground truth" (the given labels). To understand why this is a bad practice, it is necessary to understand the phenomenon of overfitting.
 
-### Parameter searching
+### Overfitting
 
-grid param search
-AutoML
-NEAT
+Overfitting describes the situation in which your model is over-optimized to accurately predict the training set, at the expense of generalizing to unknown data (which is the objective of learning in the first place). This can happen because the model greatly twists itself to perfectly conform to the training set, even capturing its underlying noise. 
+
+An example of this can be seen in the below graph. We are given 11 data points in black, and two functions are trained to fit it. One is a straight line, which roughly captures the data. The other is a very curvy line, which perfectly captures the data with no error. The latter is most likely overfitting and would have a poor performance on unknown points.
+
+{% include figure_multi.md path1="/images/figures/overfitting.png" caption1="An example of overfitting. The straight line is simple and roughly captures the data points with some error. The curvy line has 0 error but is very complex and likely does not generalize well. Source: <a href=\"https://en.wikipedia.org/wiki/Overfitting\">Wikipedia</a>." %}
+
+How can we avoid overfitting? The simplest solution is to split our dataset into a training set and a test set. The training set is used for the optimization procedure we described above, but we evaluate the accuracy of our model by forwarding the test set to the trained model and measuring its accuracy. Because the test set is held out from training, this prevents the model from "cheating," i.e. memorizing the samples it will be quizzed on later. During training, we can monitor the accuracy of the model on the training set and test set. The longer we train, the more likely our training accuracy is to go higher and higher, but at some point, it is likely the test set will stop improving. This is a cue to stop training at that point. We should generally expect that training accuracy is higher than test accuracy, but if it is much higher, that is a clue that we have overfit.
+
+### Cross-validation and hyperparameter section
+
+The procedure above is a good start to combat overfitting, but it turns out to be not enough. There remain a number of crucial decisions to make before optimization begins. What model architecture should we use? How many layers and hidden units should there be? How should we set the learning rate and other hyperparameters? 
+
+The solution to this is to split the data into three sets rather than two: a training set, a validation set, and a test set. Typically you will see splits where the training set accounts for 70 or 80% of the full data, and the test and validation are equally split among the rest. Now, you train on the training set, and evaluate on the validation set in order to find the optimal hyperparameters and know when to stop training (typically when validation set accuracy stops improving). Sometimes, cross-fold validation is preferred; in this type of setup, the training and validation set is split into some number (e.g. 10) equally-sized partitions, and each partition takes turns being the validation set. Other times, one validation set is used persistently. After validation, the final evaluation is carried out on the test data, which has been held out the whole time leading up to the end.
+
 
 {% include further_reading.md title="link" author="?" link="https://cs231n.github.io/neural-networks-3/" %} 
 
+{% include todo.html note="NEAT, AutoML, etc" %}
 
-## Overfitting and regularization
+### Regularization
 
-In all machine learning algorithms, including neural networks, there is a common problem which has to be dealt with, which is the problem of _overfitting_. 
+Regularization refers to imposing constraints on our neural network in order to prevent overfitting or otherwise discourage undesirable properties. One way overfitting occurs is when the magnitude of the weights grows too large; it is this property that allows the shape of the network output function to curve so wildly as to capture the underlying noise of a training set, as we saw in the above example.  
 
-Recall from the previous section that our goal is to minimize the error in unknown samples, i.e. the test set, which we do by setting the parameters in such a way that we minimize loss in our known samples (the training set). Sometimes we notice that we have low error in the training set, but the error in the test set is much higher. This suggests that we are _overfitting_, a phenomenon which is common to all machine learning algorithms and must be dealt with. Let's see an example.
+One way to regularize is to modify our objective function by adding an additional term which penalizes large weights. Denoting our neural network as $$f$$, recall that the loss function we are optimizing is the mean squared error:
 
-The two graphs below show the same set of training samples observed, the blue circles. In both, we attempt to learn the best possible polynomial curve through them. The one on the left we see a smooth curve go through the points, accumulating some reasonable amount of error. The one on the right oscillates wildly but goes through all of the points precisely, accruing almost zero error. Ostensibly, the one on the right must be better because it has no error, but clearly something's wrong.
+$$ J = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} $$
 
-The one on left...
+We can penalize large weights by appending our loss function with the L2-regularization term, denoted here as $R(f)$:
 
-[1) smooth model] [2) wavy overfit model] (from bishop) 
+$$ R(f) = \frac{1}{2} \lambda \sum{w^2} $$
 
+This term is simply the sum of the squares of all of the weights, multiplied by a new hyperparameter $\lambda$ which controls the overall magnitude (and therefore influence) of the regularization term. The $\frac{1}{2}$ multiplier is simply used for convenience when taking its derivative. Adding it to our original loss function, we now have:
+
+$$ J = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} + R(f) $$
+
+
+\"smoothing\" or \"flattening\" the model function. As we saw in the polynomial fitting regression example, a model which has such wild swings is probably overfitting, and one way we can tell it has wild swings is if it has large coefficients (weights for neural nets). So we can modify our loss function to have an additional term to penalize large weights, and in practice, this is usually the following.
+
+
+### Dropout
+
+Dropout is a technique, introduced by [Nitish Srivastava et al](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf) in 2014. 
+
+{% include figure_multi.md path1="/images/figures/dropout.png" caption1="During training, dropout randomly deactivates some neurons as a method for combatting overfitting. Source: <a href=\"http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf\">Srivastava et al</a>." %}
+
+### ) overfitting _
 The way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known samples (since it happens to know their values ahead of time). 
-
 It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, jean jackets, and __. Perhaps you even have a close family member whom this describes.
-
 Researchers have devised various ways of combating overfitting (neural networks, not wardrobes). We are going to look at the few most important ones.
 
 
@@ -396,7 +421,6 @@ Researchers have devised various ways of combating overfitting (neural networks,
 
 ## Regularization
 
-Regularization refers to imposing constraints on our neural network besides for just minimizing the error, which can generally be interpreted as \"smoothing\" or \"flattening\" the model function. As we saw in the polynomial fitting regression example, a model which has such wild swings is probably overfitting, and one way we can tell it has wild swings is if it has large coefficients (weights for neural nets). So we can modify our loss function to have an additional term to penalize large weights, and in practice, this is usually the following.
 
 Use a penalty term
 In the above example, we see we must have high coefficients. We want to penalize high coefficients. One way of doing that is by adding a regulariation term to the loss. One tha tworks well is L2 squared loss.  It looks like this.
@@ -420,8 +444,9 @@ But now we have a new dilemma. Mutual conflict between the terms.
 # Backpropagation
 
 
-
-
+etc
+ - choice of loss function (categorical cross-entropy)
+ - use L or C instead of J
 
 
 ------------
