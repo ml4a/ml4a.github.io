@@ -127,8 +127,8 @@ redirect_from: /guides2/
 
 
 <script>
-//{% include guide_preview.md name="FacePredictor" %}
-//{% include guide_preview.md name="ConvnetPredictor" %}
+/*{% include guide_preview.md name="FacePredictor" %}
+{% include guide_preview.md name="ConvnetPredictor" %}*/
 
 function highlightButton(keyword){
 	document.getElementById("platform_python").style.border = "none";
