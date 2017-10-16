@@ -52,6 +52,76 @@ regularization
  - L2
  - dropout
 
+
+
+
+ misc content
+===========
+
+other SGD explanations
+1) Michael Nielsen
+2) Karpathy's hackers NN as the computational graph
+3) harder explanation (on youtube, i have the link somewhere...)
+4) Simplest (videos which explain backprop)
+
+notes
+because perceptron had step function, was non-differentiable, backprop came later
+
+86 - backprop first applied to annns
+rumelhart et al 86
+
+hinton/salakhutinov 2006 - first deep network 
+ - use unsupervised pre-training layer (restricted boltzman machine) by layer before using backprop
+ - backprop doesn't work well from scratch (because of vanishing gradient?)
+
+
+
+There are a number of important aspects about training -- you might have thought it's unfair that we predict training set -- after all it can just memorize them -- we'll get to this and other details of training in the [how they are trained].
+
+Chris Olah Backprop: http://colah.github.io/posts/2015-08-Backprop/
+Chris Olah: neural net topology http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
+Karpathy Neural nets for hackers http://karpathy.github.io/neuralnets/
+
+backprop step by step example https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
+step by step 2 http://experiments.mostafa.io/public/ffbpann/
+
+https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimensionality.pdfs
+
+http://cs231n.github.io/neural-networks-3/ 
+alecrad 2 images
+
+LBGFS, Adam
+
+Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
+
+
+implementation of gradient descent for linear regression: https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
+
+
+Image [16] : http://cs229.stanford.edu/notes/cs229-notes1.pdf
+
+nice implementation: https://crsmithdev.com/blog/ml-linear-regression/
+
+https://distill.pub/2017/momentum/?utm_content=bufferd4ee6&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
+
+
+https://crsmithdev.com/blog/ml-linear-regression/
+http://briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1
+https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
+
+
+
+sections
+ - Batchnorm
+ - preprocessing (norm, standard), weight init
+ - Backpropagation
+ - choice of loss function (categorical cross-entropy)
+ - regularization via input noise
+
+todo
+ - use L or C instead of J
+
+
 -->
 
 
@@ -63,7 +133,7 @@ Recall that _training_ refers to determining the best set of weights for maximiz
 
 Neural networks can be used without knowing precisely how training works, just as one can operate a flashlight without knowing how the electronics inside it work. Most modern machine learning libraries have greatly automated the training process. Owing to those things and this topic being more mathematically rigorous, you may be tempted to set it aside and rush to applications of neural networks. But the intrepid reader knows this to be a mistake, not only because it gives valuable insights into how neural nets can be applied and reconfigured, but because the topic itself is one of the most interesting in research today. The ability to train large neural networks eluded us for many years and has only recently become feasible, making it one of the great success stories in the history of AI.
 
-We'll get to gradient descent, backpropagation, and all the techniques involved in a few sections, but first, let's understand why training is hard to begin with. 
+The aim of this chapter is to give an intuitive, if not rigorous understanding of how neural networks are solved. Visuals are preferred over equations wherever possibl, and external links for further reading and refinement will be offered along the way. We'll get to gradient descent, backpropagation, and all the techniques involved in a few sections, but first, let's understand why training is hard to begin with. 
 
 # Why training is hard
 
@@ -372,14 +442,15 @@ An example of this can be seen in the below graph. We are given 11 data points i
 
 {% include figure_multi.md path1="/images/figures/overfitting.png" caption1="An example of overfitting. The straight line is simple and roughly captures the data points with some error. The curvy line has 0 error but is very complex and likely does not generalize well. Source: <a href=\"https://en.wikipedia.org/wiki/Overfitting\">Wikipedia</a>." %}
 
+The way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known data. It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, denim jackets, and platform shoes. Perhaps you even have a close family member whom this describes.
+
 How can we avoid overfitting? The simplest solution is to split our dataset into a training set and a test set. The training set is used for the optimization procedure we described above, but we evaluate the accuracy of our model by forwarding the test set to the trained model and measuring its accuracy. Because the test set is held out from training, this prevents the model from "cheating," i.e. memorizing the samples it will be quizzed on later. During training, we can monitor the accuracy of the model on the training set and test set. The longer we train, the more likely our training accuracy is to go higher and higher, but at some point, it is likely the test set will stop improving. This is a cue to stop training at that point. We should generally expect that training accuracy is higher than test accuracy, but if it is much higher, that is a clue that we have overfit.
 
 ### Cross-validation and hyperparameter section
 
-The procedure above is a good start to combat overfitting, but it turns out to be not enough. There remain a number of crucial decisions to make before optimization begins. What model architecture should we use? How many layers and hidden units should there be? How should we set the learning rate and other hyperparameters? 
+The procedure above is a good start to combat overfitting, but it turns out to be not enough. There remain a number of crucial decisions to make before optimization begins. What model architecture should we use? How many layers and hidden units should there be? How should we set the learning rate and other hyperparameters? We could simply try different settings, and pick the one that has the best performance on the test set. But the problem is we risk setting the hyperparameters to be those values which optimize only _that particular_ test set, rather than an arbitrary or unknown one.
 
-The solution to this is to split the data into three sets rather than two: a training set, a validation set, and a test set. Typically you will see splits where the training set accounts for 70 or 80% of the full data, and the test and validation are equally split among the rest. Now, you train on the training set, and evaluate on the validation set in order to find the optimal hyperparameters and know when to stop training (typically when validation set accuracy stops improving). Sometimes, cross-fold validation is preferred; in this type of setup, the training and validation set is split into some number (e.g. 10) equally-sized partitions, and each partition takes turns being the validation set. Other times, one validation set is used persistently. After validation, the final evaluation is carried out on the test data, which has been held out the whole time leading up to the end.
-
+The solution to this is to partition the data into three sets instead of two: a training set, a validation set, and a test set. Typically you will see splits where the training set accounts for 70 or 80% of the full data, and the test and validation are equally split among the rest. Now, you train on the training set, and evaluate on the validation set in order to find the optimal hyperparameters and know when to stop training (typically when validation set accuracy stops improving). Sometimes, cross-fold validation is preferred; in this type of setup, the training and validation set is split into some number (e.g. 10) equally-sized partitions, and each partition takes turns being the validation set. Other times, one validation set is used persistently. After validation, the final evaluation is carried out on the test data, which has been held out the whole time leading up to the end.
 
 {% include further_reading.md title="link" author="?" link="https://cs231n.github.io/neural-networks-3/" %} 
 
@@ -401,55 +472,47 @@ This term is simply the sum of the squares of all of the weights, multiplied by 
 
 $$ J = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} + R(f) $$
 
+The effect of this regularization term is is that we help gradint descent find a parameterization which does accumulate large weights and have such wild swings as we saw above.
 
-\"smoothing\" or \"flattening\" the model function. As we saw in the polynomial fitting regression example, a model which has such wild swings is probably overfitting, and one way we can tell it has wild swings is if it has large coefficients (weights for neural nets). So we can modify our loss function to have an additional term to penalize large weights, and in practice, this is usually the following.
-
+Other regularization terms exist, including [L1-distance](https://en.wikipedia.org/wiki/Taxicab_geometry) or the "Manhattan distance." Each of these have slightly different properties but have approximately the same effect.
 
 ### Dropout
 
-Dropout is a technique, introduced by [Nitish Srivastava et al](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf) in 2014. 
+Dropout is another technique for regularization, recently introduced by [Nitish Srivastava et al](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf) in 2014. During training, when dropout is applied to a layer, some percentage of its neurons (a hyperparameter, with common values being between 20 and 50%) are randomly "dropped out" or deactivated, along with their connections. Which neurons are dropped out are constantly shuffled randomly during training. The effect of this is to reduce the network's tendency to come to over-depend on some neurons, since it can't rely on them being available all the time. This forces the network to learn a more balanced representation, and helps combat overfitting. It is depicted below, from its original publication.
 
 {% include figure_multi.md path1="/images/figures/dropout.png" caption1="During training, dropout randomly deactivates some neurons as a method for combatting overfitting. Source: <a href=\"http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf\">Srivastava et al</a>." %}
 
-### ) overfitting _
-The way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known samples (since it happens to know their values ahead of time). 
-It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, jean jackets, and __. Perhaps you even have a close family member whom this describes.
-Researchers have devised various ways of combating overfitting (neural networks, not wardrobes). We are going to look at the few most important ones.
 
 
 
 
-## Regularization
-
-
-Use a penalty term
-In the above example, we see we must have high coefficients. We want to penalize high coefficients. One way of doing that is by adding a regulariation term to the loss. One tha tworks well is L2 squared loss.  It looks like this.
-
-We see that this term increases when the weights are large numbers, regardless if positive or negative. By adding this to our loss function, we give ourselves an incentive to find models with small w's, because they keep that term small.
-
-But now we have a new dilemma. Mutual conflict between the terms.
-
-
-### L1/L2 regularization
-
-### Dropout
-
-### Bathnorm
-
-### preprocessing (norm, standard), weight init
 
 
 
 
-# Backpropagation
 
 
-etc
- - choice of loss function (categorical cross-entropy)
- - use L or C instead of J
 
 
-------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -502,143 +565,3 @@ Recall the following property of a line in 2d: [2d line, m * dx = dy]. In 3d, it
 
 So let's say we want to reduce y by dy. If we calculate the slope m, we can find dx (use w instead?). One way to get this value is to calculate it by hand. But it turns out to be slow, and there is a better way to calculate it, analytically. The proof of this is elegant, but is outside the scope of this chapter. The following resources explain this well. Review [____] if you are interested.
 
-other SGD explanations
-1) Michael Nielsen
-2) Karpathy's hackers NN as the computational graph
-3) harder explanation (on youtube, i have the link somewhere...)
-4) Simplest (videos which explain backprop)
-
-//Once we have observed our loss, we calculate what's called the _gradient_ of our network. The gradient i
-
-
-
-
-# Setting up a training procedure
-
-Backpropagation, as we've described it, is the core of how neural nets are trained. From here, a few minor refinements are added to make a proper training procedure. The first is to separate our data into a training set and a test set. 
-
-Then cross validation GIF (taking combos of 5 -> train on 1)
-
-
-
-# n-dimensional space is a lonely place (or t-SNE?)
-
-
-validation set, cross-validation
-regularization, overfitting
-how to prevent overfitting
- - simple way is reduce representational power via fewer layers or neurons in hidden layers
- - better is using l2 or other kinds of regularization, dropout, input noise
- - neural nets w/ hidden layers are non-convex so they have local minima, but deep ones have less suboptimal (better) local minima than shallow ones
-
-
-...
-
-
-At this point, you may be thinking, "why not just take a big hop to the middle of that bowl?"  The reason is that we don't know where it is! Recall that 
-
-
-
-Animation:
-
-LHS varying slope of linear regressor, with vertical lines showing error
-red bar showing amount of error
-RHS graph error vs slope
-
-2D analogue with jet-color 
-
-In 3D, this becomes difficult to draw but the principle remains the same. We are going in the spatial direction towards our minimum point.
-
-Beyond, we can't draw at all, but same principle.
-
-So how does this apply to neural networks?
-
-This is, in principle, what we have to do to solve a neural network. We have some loss function which expresses how poor or inaccurate our classifier is, and the loss is a function of the way we set our weights. In the neural network we drew above, there are 44 weights.
-
-# Learning by data
-
-
-
-# Loss function
-
-Sum(L1 / L2 error)
-
-
-Dropout
-
-1) Training + test set
-
-crucial. No supervised algo proceeds without it.
-split into a test set. The reason why is that if we evaluate our ML algorithm's effectiveness on a set that it was also trained on, we are giving the machine an opportunity to just memorize the training set, basically cheating.  This won't generalize
-
-
-2) Training + validation + test set
-
-Dividing our data into a training set and test set may seem bulletproof, but it has a weakness: setting the hyperparameters. hyperparameters (personally I think they shoul gd have been called meta-parameters) are all the variables we have to set besides for the weights. Things like the number of hidden layers and how many neurons they have, the regularization strength, the learning rate, and others that are specific to various other algorithms.  
-
-These have to be set before we begin training, but it's not obvious what the optimal numbers should be. So it may seem reasonable to try a bunch of them, train each of the resulting architectures on the same training set data, measure the error on the test set, and keep the hyperparameters which worked the best.
-
-But this is dangerous because we risk setting the hyperparameters to be the values which optimize _that particular_ test set, rather than an arbitrary or unknown one.
-
-We can get around this by partitioning our training data again -- now into a reduced training set and a _validation set_, which is basically a second test set where the labels are withheld. Thus we choose the hyperparameters which give us the lowest error on the validation set, but the error we report is still on the actual test set, whose true labels we have still never revealed to our algorithm during training time.
-
-
-
-# 
-
-So we use a training set and test set. 
-But if we have hyperparameters (personally I think they should be called meta-parameters), we need to use a validation set as well. This gives us a second line of defense against overfitting.
-
-
-
-misc content
-===========
-In the previous section, we introduced neural networks and showed an example of how they will make accurate predictions when they have the right combination of weights. But we glossed over something crucial: how those weights are actually found! The process of determining the weights is called _training_, and that is what the rest of this chapter is about.
-
-
-This topic is more mathematically challenging than the previous chapters. In spite of that, our aim is to give a reader with less mathematical training an intuitive if not rigorous understanding of how neural networks are solved. If you are struggling with this chapter, know that it isn't wholly necessary for most of the rest of this book. It is sufficient to understand that there _is_ some way of training a network which can be treated like a black box. If you regard training as a black box but understand the architecture of neural networks presented in previous chapters, you should still be able to continue to the next sections.  That said, it would be very rewarding to understand how training works. May guide finer points, etc, plus it's mathematically elegant...  we will try to supplement the math with visually intuitive and analogies.
-
-notes
-because perceptron had step function, was non-differentiable, backprop came later
-
-86 - backprop first applied to annns
-rumelhart et al 86
-
-hinton/salakhutinov 2006 - first deep network 
- - use unsupervised pre-training layer (restricted boltzman machine) by layer before using backprop
- - backprop doesn't work well from scratch (because of vanishing gradient?)
-
-
-
-There are a number of important aspects about training -- you might have thought it's unfair that we predict training set -- after all it can just memorize them -- we'll get to this and other details of training in the [how they are trained].
-
-Chris Olah Backprop: http://colah.github.io/posts/2015-08-Backprop/
-Chris Olah: neural net topology http://colah.github.io/posts/2014-03-NN-Manifolds-Topology/
-Karpathy Neural nets for hackers http://karpathy.github.io/neuralnets/
-
-backprop step by step example https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
-step by step 2 http://experiments.mostafa.io/public/ffbpann/
-
-https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimensionality.pdfs
-
-http://cs231n.github.io/neural-networks-3/ 
-alecrad 2 images
-
-LBGFS, Adam
-
-Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
-
-
-implementation of gradient descent for linear regression: https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/
-
-
-Image [16] : http://cs229.stanford.edu/notes/cs229-notes1.pdf
-
-nice implementation: https://crsmithdev.com/blog/ml-linear-regression/
-
-https://distill.pub/2017/momentum/?utm_content=bufferd4ee6&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer
-
-
-https://crsmithdev.com/blog/ml-linear-regression/
-http://briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1
-https://spin.atomicobject.com/2014/06/24/gradient-descent-linear-regression/

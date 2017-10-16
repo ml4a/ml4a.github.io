@@ -18,7 +18,13 @@ body {
     padding:0px;
     margin:0px;
 }
+
+ul, li {
+    font-size:1.4em;
+}
+
 nav ul, footer ul {
+    font-size:1.3em;
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -27,6 +33,9 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
+
+
+
 a {
 /*    background-color:#333;*/
     padding-left:1px;

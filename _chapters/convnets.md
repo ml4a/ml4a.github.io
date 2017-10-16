@@ -4,6 +4,7 @@ title: "Convolutional neural networks"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 ---
 
+<!--header: densecap
 learn-features.png
 
 umontreal image:
@@ -11,14 +12,13 @@ https://algobeans.com/2016/01/26/introduction-to-convolutional-neural-network/
 -> http://www.iro.umontreal.ca/~bengioy/talks/DL-Tutorial-NIPS2015.pdf
 
 http://blog.csdn.net/sparkkkk/article/details/65937088
-<!--header: densecap
+
 
 
 https://youtu.be/XTbLOjVF-y4?t=9m50s
 
-https://twitter.com/VisualGenome/status/682997407659982848 -->
+https://twitter.com/VisualGenome/status/682997407659982848 
 
-<!--
 notes 
  - volumes should really be covered before this. this can review volumes
 Convnets
@@ -67,35 +67,37 @@ localization - resnet 2015 dropped SOA from 25->9% localization error
 
 a common criticism of . one of the first concerted efforts to visualize convnets
 
+
+
+
+
 -->
 
 
-Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, having emerged in recent years as the most prominent strain of research within academia. They have revolutionized computer vision, achieving state-of-the-art results in fundamental tasks, and have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
+Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, emerging in recent years as the most prominent strain of neural networks. They have revolutionized computer vision, achieving state-of-the-art results in fundamental tasks, and have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
 
 - recognizing and labeling objects, locations, and people in images
 - converting speech into text and generating audio of natural sounds
-- describing images and videos using natural language
+- describing images and videos in natural language
 - tracking roads and detecting obstacles in self-driving cars
 - analyzing videogame screens to guide autonomous agents in them
 - "hallucinating" generative images via image modeling
 
-{% include todo.html note="pictures/citations for applications?" %}
-
-Although convnets had been around since the 1980s and have their roots in earlier neuroscience research, they have only recently achieved fame in the wider scientific community for a series of remarkable successes in important scientific problems across multiple domains. They extend neural networks primarily by introducing a new kind of layer, designed to improve the network's ability to cope with variations in position, scale, and viewpoint. Additionally, they will become increasingly deep, containing upwards of dozens or even hundreds of layers, forming detailed compositional models of images, sounds, as well as game boards and other spatial data structures.
+Although convnets have been around since the 1980s and have their roots in earlier neuroscience research, they have only recently achieved fame in the wider scientific community for a series of remarkable successes in important scientific problems across multiple domains. They extend neural networks primarily by introducing a new kind of layer, designed to improve the network's ability to cope with variations in position, scale, and viewpoint. Additionally, they have become increasingly deep, containing upwards of dozens or even hundreds of layers, forming detailed compositional models of images, sounds, as well as game boards and other spatial data structures.
 
 Because of their success at vision-oriented tasks, they have been adopted by interactive and new media artists, allowing their installations not only to detect movement, but to actively identify, describe, and track objects in physical spaces.
 
-The next few chapters will focus on convnets and their applications, with this one formulating them and how they ar trained, the [next one]() describing their properties, and subsequent chaptrs focusing on their creative and artistic applications.
+The next few chapters will focus on convnets and their applications, with this one formulating them and how they are trained, the [next one]() describing their properties, and subsequent chapters focusing on their creative and artistic applications.
 
 
-## Why ordinary neural nets fail
+## Weaknesses of ordinary neural nets 
 
 To understand the innovations convnets offer, it helps to first review the weaknesses of ordinary neural networks, which are covered in more detail in the prior chapter [Looking inside neural nets/](/ml4a/looking_inside_neural_networks/). 
 
 Recall that in a trained one-layer ordinary neural network, the weights between the input pixels and the output neurons end up looking like templates for each output class. This is because they are constrained to capture all the information about each class in a single layer. Each of these templates looks like an average of samples belonging to that class.
 
-{:.center}
-![weights review](/images/figures/mnist_cifar_weights_review.png 'weights review')
+{% include figure_multi.md path1="/images/figures/mnist_cifar_weights_review.png" caption1="Weights review" %}
+
 
 In the case of the MNIST dataset, we see that the templates are relatively discernible and thus effective, but for CIFAR-10, they are much more difficult to recognize. The reason is that the image categories in CIFAR-10 have a great deal more internal variation than MNIST. Images of dogs may contain dogs which are curled up or outstretched, have different fur colors, be cluttered with other objects, and various other distortions. Forced to learn all of these variations in one layer, our network simply forms a weak template of dogs, and fails to accurately recognize unseen ones.
 
@@ -113,28 +115,25 @@ Suppose I show you a picture of a car that you've never seen before. Chances are
 
 A convnet tries to do something similar: learn the individual parts of objects and store them in individual neurons, then add them up to recognize the larger object. This approach is advantageous for two reasons. One is that we can capture a greater variety of a particular object within a smaller number of neurons. For example, suppose we memorize 10 templates for different types of wheels, 10 templates for doors, and 10 for windshields. We thus capture $10 * 10 * 10 = 1000$ different cars for the price of only 30 templates. This is much more efficient than keeping around 1000 separate templates for cars, which contain much redundancy within them. But even better, we can reuse the smaller templates for different object classes. Wagons also have wheels. Houses also have doors. Ships also have windshields. We can construct a set of many more object classes as various combinations of these smaller parts, and do so very efficiently.
 
-## Antecedents and inspirations to convnets
+# Antecedents and history of convnets
 
-Before formally showing how convnets detect these kinds of features, let's take a look at some of the important precedents to them, to understand the evolution of our methods for combating the problems we described earlier.
+Before formally showing how convnets detect these kinds of features, let's take a look at some of the important antecedents to them, to understand the evolution of our methods for combating the problems we described earlier.
 
-### Experiments of Hubel & Wiesel (1960s)
+## Experiments of Hubel & Wiesel (1960s)
 
 During the 1960s, neurophysiologists [David Hubel](https://en.wikipedia.org/wiki/David_H._Hubel) and [Torsten Wiesel](https://en.wikipedia.org/wiki/Torsten_Wiesel) conducted a series of experiments to investigate the properties of the visual cortices of animals. In [one of the most notable experiments](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1359523/), they measured the electrical responses from a cat's brain while stimulating it with simple patterns on a television screen. What they found was that neurons in the early visual cortex are organized in a hierarchical fashion, where the first cells connected to the cat's retinas are responsible for detecting simple patterns like edges and bars, followed by later layers responding to more complex patterns by combining the earlier neuronal activities.
 
-{:.center}
-![Hubel + Wiesel](/images/figures/hubel-wiesel.jpg 'Hubel + Wiesel')
+{% include figure_multi.md path1="/images/figures/hubel-wiesel.jpg" caption1="Hubel + Wiesel" %}
 
 Later experiments on [macaque monkeys](http://www.cns.nyu.edu/~tony/vns/readings/hubel-wiesel-1977.pdf) revealed similar structures, and continued to refine an emering understanding of mammallian visual processing. Their experiments would provide an early inspiration to artificial intelligence researchers seeking to construct well-defined computational frameworks for computer vision.
 
 [Hubel & Wisel: Receptive fields, binocular interaction and functional architecture in the cat's visual cortex](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1359523/)
 
-
-### Fukushima's Neocognitron (1982)
+## Fukushima's Neocognitron (1982)
 
 Hubel and Wiesel's experiments were directly cited as inspiration by [Kunihiko Fukushima](http://personalpage.flsi.or.jp/fukushima/index-e.html) in devising the [Neocognitron](http://www.cs.princeton.edu/courses/archive/spr08/cos598B/Readings/Fukushima1980.pdf), a neural network  which attempted to mimic these hierarchical and compositional properties of the visual cortex. The neocognitron was the first neural network architecture to use hierarchical layers where each layer is responsible for detecting a pattern from the output of the previous one, using a sliding filter to locate it anywhere in the image.
 
-{:.center}
-![neocognitron](/images/figures/neocognitron.jpg 'neocognitron')
+{% include figure_multi.md path1="/images/figures/neocognitron.jpg" caption1="Neocognitron" %}
 
 Although the neocognitron achieved some success in pattern recognition tasks, it was limited by the lack of a training algorithm to learn the filters. This meant that the pattern detectors were manually engineered for the specific task, using a variety of heuristics and techniques from computer vision. At the time, [backpropagation](/ml4a/how_neural_networks_are_trained/) had not yet been applied to train neural nets, and thus there was no easy way to optimize neocognitrons or reuse them on different vision tasks.
 
@@ -142,34 +141,37 @@ Although the neocognitron achieved some success in pattern recognition tasks, it
 - [Scholarpedia article on neocognitron](http://www.scholarpedia.org/article/Neocognitron)
 
 
-### LeNet (1998)
+## LeNet (1998)
 
-During the 1990s, a [team at AT&T Labs](https://www.youtube.com/watch?v=FwFduRA_L6Q) led by [Yann LeCun](http://yann.lecun.com/) trained a convolutional network, nicknamed ["LeNet"](http://yann.lecun.com/exdb/lenet/), to classify images of handwritten digits to an accuracy of 99.3%. Their system was used for a time to automatically read the numbers in 10-20% of checks printed in the US. LeNet had 7 layers, including 2 convolutional layers, with the architecture summarized in the below figure.
+During the 1990s, a [team at AT&T Labs](https://www.youtube.com/watch?v=FwFduRA_L6Q) led by [Yann LeCun](http://yann.lecun.com/) trained a convolutional network, nicknamed ["LeNet"](http://yann.lecun.com/exdb/lenet/), to classify images of handwritten digits to an accuracy of 99.3%. Their system was used for a time to automatically read the numbers in 10-20% of checks printed in the US. LeNet had 7 layers, including two convolutional layers, with the architecture summarized in the below figure.
 
-{:.center}
-![neocognitron](/images/figures/lenet.png 'LeNet')
+{% include figure_multi.md path1="/images/figures/lenet.png" caption1="LeNet" %}
 
-Their system was the first convolutional network to be applied to an industrial-scale application. Despite this triumph, many computer scientists believed that neural networks would be incapable of scaling to recognition tasks involving larger or more complex images. For this reason, machine learning would continue to be dominated by other algorithms for more than another decade.
+Their system was the first convolutional network to be applied to an industrial-scale application. Despite this triumph, many computer scientists believed that neural networks would be incapable of scaling up to recognition tasks involving more classes, higher resolution, or more complex content. For this reason, computer vision would continue to be mostly carried out by other algorithms for more than another decade.
 
-### AlexNet (2012)
+## AlexNet (2012)
 
-2010: ImageNet
-2012: AlexNet
-2013-onwards: 
+Convolutional networks began to take over computer vision -- and by extension, machine learning more generally -- in the early 2010s. In 2009, researchers at the [computer science department at Princeton University](https://www.cs.princeton.edu/), led by [Fei-Fei Li](http://vision.stanford.edu/feifeili/), compiled the [ImageNet database](http://www.image-net.org/), a large-scale dataset containing over [14 million](http://image-net.org/about-stats) labeled images which were manually annotated into 1000 classes using [Mechanical Turk](https://www.mturk.com/mturk/welcome). ImageNet was by far the largest such dataset ever released and quickly became a staple of the research community. A year later, the [ImageNet Large Scale Visual Recognition Challenge (ILSVRC)](http://www.image-net.org/challenges/LSVRC/) was launched as an annual competition for computer vision researchers working with ImageNet. The ILSVRC welcomed researchers to compete on a number of important benchmarks, including classification, localization, detection, and others -- tasks which will be described in more detail later in this chapter. 
 
-{% include todo.html note="AlexNet section" %}
+{% include figure_multi.md path1="/images/figures/mechanicalturk-imagenet.png" caption1="The [Mechanical Turk](https://www.mturk.com/mturk/welcome) backend used to provide labels for ImageNet. Source: [Dave Gershgorn](https://qz.com/1034972/the-data-that-changed-the-direction-of-ai-research-and-possibly-the-world/)" %}
+
+For the first two years of the competition, the winning entries all used what were then standard approaches to computer vision, and did not involve the use of convolutional networks. The top-winning entries in the classification tasks had a top-5 error (did not guess the correct class in top-5 predictions) between 25 and 28%. In 2012, a team from the [University of Toronto](http://web.cs.toronto.edu/) led by Geoffrey Hinton, Ilya Sutskever, and Alex Krizhevsky submitted a [deep convolutional neural network nicknamed "AlexNet"](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks) which won the competition by a dramatic margin of over 40%. AlexNet broke the previous record for top-5 classification error from 26% down to 15%. 
 
 {% include figure_multi.md path1="/images/figures/alexnet.jpg" caption1="AlexNet" %}
 
+Starting the following year, nearly all entries to ILSVRC were deep convolutional networks, and classification error has steadily tumbled down to nearly 2% in 2017, the last year of ILSVRC. Convnets [now even outperform humans](https://karpathy.github.io/2014/09/02/what-i-learned-from-competing-against-a-convnet-on-imagenet/) in ImageNet classification. These monumental results have largely fueled the excitement about deep learning that would follow, and many consider them to have revolutionized computer vision as a field. Furthermore, many important research breakthroughs that are now common in network architectures -- such as [residual layers](https://arxiv.org/abs/1512.03385) --  were introduced as entries to ILSVRC.
+
+{% include todo.html note="ImageNet timeline" %}
+
+# How convnets work
+
+Despite having their own proper name, convnets are not categorically different from the neural networks we have seen so far. In fact, they inherit all of the functionality of those earlier nets, and improve them mainly by introducing a new type of layer, namely a _convolutional layer_, along with a number of other innovations emulating and refining the ideas introduced by neocognitron. Thus any neural network which contains at least one convolutional layer can be regarded as a convnet.
 
 ## Convolutional layers
 
-Despite having their own proper name, convnets are not categorically different from the neural networks we have seen so far. In fact, they inherit all of the functionality of those, and innovate upon it by introducing a new type of layer, namely a _convolutional layer_, emulating and refining the innovative structures of the neocognitron. Thus any neural network which contains at least one convolutional layer can be regarded as a convnet. Prior to this chapter, we've just looked at _fully-connected layers_, in which each neuron is connected to every neuron in the previous layer. Convolutional layers break this assumption.
+Prior to this chapter, we've just looked at _fully-connected layers_, in which each neuron is connected to every neuron in the previous layer. Convolutional layers break this assumption. They are actually mathematically very similar to fully-connected layers, differing only in the architecture. Let's first recall that in a fully-connected layer, we compute the value of a neuron $z$ as a weighted sum of all the previous layer's neurons, $z=b+\sum{w x}$.
 
-Convolutional layers are actually mathematically very similar to fully-connected layers, differing only in the architecture. Let's first recall that in a fully-connected layer, we compute the value of a neuron $z$ as a weighted sum of all the previous layer's neurons, $z=b+\sum{w x}$.
-
-{:.center}
-![weights analogy](/images/figures/weights_analogy_2.png 'weights analogy')
+{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="Weights analogy" %}
 
 We can interpret the set of weights as a _feature detector_ which is trying to detect the presence of a particular feature. We can visualize these feature detectors, as we did previously for MNIST and CIFAR. In a 1-layer fully-connected layer, the "features" are simply the the image classes themselves, and thus the weights appear as templates for the entire classes. 
 
@@ -195,10 +197,7 @@ Before we explain the significance of the convolutional layers, let's also quick
 
 The pooling operation is used to downsample the activation maps, usually by a factor of 2 in both dimensions. The most common way of doing this is _max pooling_ which merges the pixels in adjacent 2x2 cells by taking the maximum value among them. The figure below shows an example of this.
 
-{:.center}
-![max pooling](/images/figures/max-pooling.png 'max pooling')
-
-{% include todo.html note="citation/link" %}
+{% include figure_multi.md path1="/images/figures/max-pooling.png" caption1="Max pooling" %}
 
 The advantage of pooling is that it gives us a way to compactify the amount of data without losing too much information, and create some invariance to translational shift in the original image. The operation is also very cheap since there are no weights or parameters to learn.
 
@@ -215,8 +214,7 @@ What happens if the original image is color? In this case, our analogy scales ve
 
 {% include todo.html note="formula for xy size of volumes" %}
 
-{:.center}
-![volumes](/images/figures/cnn_volumes.jpg 'volumes')
+{% include figure_multi.md path1="/images/figures/cnn_volumes.jpg" caption1="Volume" %}
 
 We can think of the stacked activation maps as a sort-of "image."  It's no longer really an image of course because there are 20 channels instead of just 3. But it's worth seeing the equivalent representations; the input image is a volume of size 32x32x3, and the output from the first convolutional layer is a volume of size 26x26x20. Seeing the equivalence of these forms is crucial because it will help us understand the gist of the next section.
 
@@ -226,7 +224,7 @@ Ok, here's where things are going to get really tricky! The whole chapter has be
 
 {% include todo.html note="convnet w/ three convs visualization" %}
 
-### What do multiple convolutional layers give us?
+# What do multiple convolutional layers give us?
 
 In the first convolutional layer, we deployed 8 activation feature detectors to find small multi-pixel patterns in the original image, giving us a volume of information corresponding to the presence of those features inside the image, which was subsequently pooled into a 12x12x8 resulting volume. Then we did another convolution on that volume. What is this second convolution achieving? Recall that the first conv is detecting patterns in the pixels of the original input image. In that case, it follows that the second conv is detecting patterns in the "pixels" of the volume resulting from the first conv (and pool). But those "pixels" aren't actually the original image pixels, but rather they signify the presence of the first layer features. So therefore, the second conv is detecting patterns among the features found
 
@@ -236,23 +234,61 @@ In the first convolutional layer, we deployed 8 activation feature detectors to 
 {% include demo_insert.html path="/demos/confusion_cifar/" parent_div="post" %}
 
 
-## Convnet architectures
-
-{% include todo.html note="images of LeNet, ZFNet, ResNet" %}
-
-{% include todo.html note="hyperparameter selection" %}
-
 ## Applications of convnets
 
-{% include todo.html note="image localization, captioning, etc" %}
+<!--
+Applications:
 
-## Place in deep learning
+CV: 
+ - localization, segmentation, object detection
+ - self driving cars,
+ - captioning
+ - handwriting generation
 
-{% include todo.html note="history, etc" %}
+audio
+ - speech to text
+ - wavenets
+ 
+etc
+ - AlphaGo
+-->
+
+Since the early 2010s, convnets have ascended to become the most widely used deep learning algorithms for a variety of applications. Once considered successful only for a handful of specific computer vision tasks, they are now also depoloyed for audio, text, and other types of data processing. They owe their versatility to the automation of feature extraction, something which was once the most time-consuming and costly process necessary for applying a learning algorithm to a new task. By incorporating feature extraction itself into the training process, it's now possible to reappropriate a convnet's architecture, often with very few changes, into a totally different task or even domain, and retrain it. 
+
+Although a full review of these is out of the scope of this chapter, this section will highlight a number of them.
+
+## In computer vision
+
+Besides for image classification, convnets can be trained to perform a number of tasks which give us more granular information about images. One task closly associated with classification is that of localization: assigning a bounding rectangle for the primary subject of the classification. This task is typically posed as a regression alongisde the classification, where the network must acurately predict the coordinates of the box (x, y, width, and height). 
+
+This task can be extended more ambitiously to the task of object detection. In object detection, rather than classifying and localizing a singl subject in the image, we allow for the presence of multiple objects to be located and classified within the image. The below image summarizes these three associated tasks.
+
+{% include figure_multi.md path1="/images/figures/localization-detection.png" caption1="Classification, localization, and detection are the building blocks of more sophisticated computer vision systems. Source: <a href=\"http://cs231n.stanford.edu/slides/2016/winter1516_lecture8.pdf\">Stanford CS231n</a>" %}
+
+Object detection has only become recently possible. One of the major limitations holding it back -- besides for its increased complexity compared to single-class classification -- was a lack of available data. Even the imagenet dataset, which was used to take classification to the next level, was unable to do anything about detection because it had no bounding rectangle information. But more recnt datasets like [MS-COCO](http://cocodataset.org/) have enabled us to pursue localization and detection, as it contains much richer data describing its roughly 330,000 images.
+
+All of the early attempts at training convnets to do multiple object detection mostly of using localization to identify potential bounding boxes, then simply applied classification to all of those boxes, and kept the ones in which it had the most confidence. This approach however is slow because it requires at least one forward pass of the network for each of the dozens or even hundreds of candidates. In certain situations, the slowness is unacceptable. For example, an autonomous vehicle needs to be able to identify roads, pedestrians, and obstacles in real-time. For obvious reasons, it cannot wait so long, and thus demands real-time speed. 
+
+Recently, a powerful framework developed by [Josph Redmon](https://pjreddie.com/) called [YOLO](https://pjreddie.com/darknet/yolo/) has been proposed. YOLO -- which stands for "you only look once" -- restricts the network to only "look" at the image a single time, i.e. it is permitted a single forward pass of the network to obtain all the information it needs, hence the name. It has in some circumstances achieved a 40-90 frames-per-second speed on multiple object detection, making it capable of being depoloyed in real-time scenarios demanding such responsiveness. The approach is to divide the image into a grid of equally-sized regions, and have each one predict a candidate object along with its classification and bounding box. At the end, those regions with the highest confidence are kept. The figure below summarizes this approach.
+
+{% include figure_multi.md path1="/images/figures/yolo-pipeline.png" caption1="Real-time object detection is possible by training a network to output classifications and localizations for all found objects simultaneously. Source: <a href=\"https://arxiv.org/pdf/1506.02640.pdf\">You Only Look Once: Unified, Real-Time Object Detection (Redmon et al)</a>" %}
+
+{% include figure_multi.md path1="/images/figures/yolo-examples.png" caption1="Some examples of YOLO detecting objects in image. Source: <a href=\"https://arxiv.org/pdf/1612.08242.pdf\">YOLO9000: Better, Faster, Stronger (Redmon)</a>" %}
+
+Still more tasks relevant to computer vision have been introduced or improved in the last few years, including the closely related image segmentation task, and systems specialized for retrieving text from images. Another class of tasks involves annotating images with natural language by combining convnets with recurrent neural networks. This chapter will leave those to be found in future chapters, or within the included links for further reading. 
+
+Perhaps one of the most surprising aspects about convnets is their versatility, and their success in the audio domain. Although most introductions to convnets (like this chapter) emphasize computer vision, convnets have been achieving state-of-the-art results in the audio domain for just as long. Convnets are routinely used for [speech recogntion](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.224.2749&rep=rep1&type=pdf) and other audio information retrieval work, supplanting older approaches over the last few years as well. Prior to the ascendancy of neural networks into the audio domain, speech-to-text was typically done using a [hidden markov model](https://en.wikipedia.org/wiki/Hidden_Markov_model) along with handcrafted audio feature extraction done using conventional [digital signal processing](https://en.wikipedia.org/wiki/Digital_signal_processing).
+
+A more recent use case for convnets in audio is that of [WaveNet](https://deepmind.com/blog/wavenet-generative-model-raw-audio/), introduced by researchers at [DeepMind](https://deepmind.com/) in late-2016. WaveNets are capable of learning how to synthesize audio by training on large amounts of raw audio. WaveNets have been used by [Magenta](https://magenta.tensorflow.org) to create custom [digital audio synthesizers](https://magenta.tensorflow.org/nsynth) and are now used to generate the voice of [Google Assistant](https://deepmind.com/blog/wavenet-launches-google-assistant/). 
+
+{% include figure_multi.md path1="/images/figures/CD-CNN-HMM.png" caption1="Diagram depicting CD-CNN-HMM, an architecture used for speech recognition. The convnet is used to learn features from a waveform's spectral representation. Source: <a href=\"http://recognize-speech.com/acoustic-model/knn/comparing-different-architectures/convolutional-neural-networks-cnns\">Speech Recognition Wiki</a>" path2="/images/figures/wavenet.gif" caption2="WaveNets are used to create a generative model for probabilistically producing audio one sample at a time. Source: <a href=\"https://deepmind.com/blog/wavenet-generative-model-raw-audio/\">DeepMind</a>" %}
 
 
+Generative applications of convnets, including in the image domain and associated with computer vision, as well as those that also make use of recurrent neural networks, are also left to future chapters. 
 
+further reading: https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/object_localization_and_detection.html
 
+<!--
 
 
 ## etc
@@ -296,9 +332,11 @@ Starting in 2012, CNNs became the top-performing algorithms for the task of imag
 This dramatic improvement in our ability to design programs which accurately classify pictures has pushed the boundaries in a variety of higher-level applications, including:
 
 ---
+
 cnns are the current top record holders in both image and speech classification. if you get through this you will fully understand at least in principle the current heavyweight champion algorithms known as of now in machine learning predictive  
 
 cnns inherit everything from ordinary neural networks but build on top of them with several innovations which greatly improve its predictive accuracy as well as opening up a great many applications of cnns besides for ordinary regression and classification such as
+
 ---
 
 
@@ -341,3 +379,5 @@ Before convolutional neural networks had taken over image classification, featur
 # What else can convnets do?
 
 detection - yolo
+
+-->
