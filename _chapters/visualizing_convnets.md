@@ -3,6 +3,11 @@ layout: chapter
 title: "Looking inside convnets"
 ---
 
+<!--
+http://www.cs.toronto.edu/~guerzhoy/321/lec/W07/HowConvNetsSee.pdf
+-->
+
+
 {% include todo.html note="header=dog conv filters" %}
 
 
@@ -88,3 +93,11 @@ http://yosinski.com/deepvis https://www.youtube.com/watch?v=AgkfIQ4IGaM
 https://youtu.be/XTbLOjVF-y4?t=12m48s
 
 https://jacobgil.github.io/deeplearning/class-activation-maps
+
+http://arxiv.org/pdf/1312.6034v2.pdf
+
+http://arxiv.org/pdf/1602.03616v1.pdf
+
+{% include further_reading.md title="Slides: Deconvolutional networks and visualization" author="Matt Zeiler" link="http://cs.nyu.edu/~fergus/drafts/utexas2.pdf" %} 
+
+{% include further_reading.md title="Understanding Neural Networks Through Deep Visualization" author="Jason Yosinski, Jeff Clune, Anh Nguyen, Thomas Fuchs, and Hod Lipson" link="http://yosinski.com/deepvis" %}

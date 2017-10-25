@@ -92,7 +92,7 @@ The next few chapters will focus on convnets and their applications, with this o
 
 ## Weaknesses of ordinary neural nets 
 
-To understand the innovations convnets offer, it helps to first review the weaknesses of ordinary neural networks, which are covered in more detail in the prior chapter [Looking inside neural nets/](/ml4a/looking_inside_neural_networks/). 
+To understand the innovations convnets offer, it helps to first review the weaknesses of ordinary neural networks, which are covered in more detail in the prior chapter [Looking inside neural nets](/ml4a/looking_inside_neural_networks/). 
 
 Recall that in a trained one-layer ordinary neural network, the weights between the input pixels and the output neurons end up looking like templates for each output class. This is because they are constrained to capture all the information about each class in a single layer. Each of these templates looks like an average of samples belonging to that class.
 
