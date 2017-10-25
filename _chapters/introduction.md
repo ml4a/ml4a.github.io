@@ -1,8 +1,8 @@
 ---
 layout: chapter
 title: "Introduction"
-header_image: "/images/headers/cohen_tortue.jpg"
-header_quote: "lovelace"
+header_image_hide_: "/images/headers/cohen_tortue.jpg"
+header_text_hide: "__"
 ---
 
 **Introduction: Harold Cohen**
