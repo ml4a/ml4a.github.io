@@ -3,6 +3,7 @@ layout: chapter
 title: "Style transfer special cases"
 ---
 
+stylenet-original.png
 
 In the [previous chapter](), we learned about the technique of [style transfer]() for recomposing images in the style of other images. Since the technique was first demonstrated by [Gatys et al](), there have been a number of notable follow-ups to the original research, which this chapter will survey. 
 
@@ -45,6 +46,7 @@ spectral style transfer for human motion https://www.youtube.com/watch?v=NYDeH-k
 https://arxiv.org/pdf/1601.04589v1.pdf
 
 https://github.com/alexjc/neural-doodle
+neural-doodle2.png
 
 real-time stylenet www.gitxiv.com/posts/xKq9nLKRBpbKeMeb4/precomputed-real-time-texture-synthesis-with-markovian
 justin's paper: https://arxiv.org/pdf/1603.08155v1.pdf
@@ -55,3 +57,9 @@ colorization http://tinyclouds.org/colorize/
 
 
 maks/semantic segmentation https://youtu.be/XTbLOjVF-y4?t=19m19s
+
+
+
+colorless style transfer
+colorless-style-transfer.png
+
