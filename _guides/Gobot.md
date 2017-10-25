@@ -5,7 +5,7 @@ title: "Gobot"
 
 [Code here](https://github.com/ml4a/ml4a-ofx/tree/master/apps/Gobot)
 
-This application assists you in playing competitve Go online. It uses a [convolutional neural policy network](https://pjreddie.com/darknet/darkgo-go-in-darknet/) to "recommend" (i.e. predict) the next move a human player should make. The app uses a screengrabber and OpenCV template matching to scrape board position from your browser and automatically detect the current board position at any point in time. At this time, the CV detection is made specifically to detect pieces from [online-go.com](https://www.online-go.com). It can allegedly play at the level of a [1-dan](https://en.wikipedia.org/wiki/Go_ranks_and_ratings).
+This application assists you in playing competitive Go online. It uses a [convolutional neural policy network](https://pjreddie.com/darknet/darkgo-go-in-darknet/) to "recommend" (i.e. predict) the next move a human player should make. The app uses a screengrabber and OpenCV template matching to scrape board position from your browser and automatically detect the current board position at any point in time. At this time, the CV detection is made specifically to detect pieces from [online-go.com](https://www.online-go.com). It can allegedly play at the level of a [1-dan](https://en.wikipedia.org/wiki/Go_ranks_and_ratings).
 
 Below is a short snippet of a game played with my AI helper.
 
