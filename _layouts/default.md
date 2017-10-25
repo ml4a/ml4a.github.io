@@ -36,10 +36,12 @@
 
 	<body>
 
-		<!-- not ready yet -->
-		<!--{% assign quote = site.data.quotes.lovelace %}-->
-		<!--{% include header.html quote=quote image_path=page.header_image %}--> 
-
+		<!-- header -->
+		{% if page.header_image %}
+			{% include header.html text=page.header_text image=page.header_image %} 
+		{%endif %}
+		
+		<!-- navbar -->
 		<div class="navbar">
 			<nav>
 	    		<ul>
@@ -54,15 +56,13 @@
 			</nav>
 		</div>
 
-
-<style>
-
-</style>
+		<!-- main content -->
 		<span id="end-nav"></span>
 		<div class="container">
 			{{ content }}
 		</div>
 		
+		<!-- footer -->
 		<footer>
     		<ul>
         		<li><a href="/about/">about</a></li>
@@ -70,6 +70,7 @@
         		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
 			</ul>
 		</footer>
+
 <!--
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -81,6 +82,7 @@
 		  ga('send', 'pageview');
 		</script>
 -->
+
 </script>
 	</body>
 </html>

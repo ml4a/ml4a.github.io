@@ -191,37 +191,35 @@ figcaption {
 
 
 
-#quote_outer {
+#header_outer {
     position: relative;
-    padding-top: 0px
+    padding-top: 0px;
+	width: 100%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#quote_inner {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 0;
-    margin-bottom:10px
+#header_outer img {
+	width:100%;
+	max-width:1440px;
 }
 
-#quote_content {
+#header_inner {
     background: rgba(255,255,255,.8);
-    width: 530px;
-    height: 190px;
-    margin-left:auto;
-    margin-right: 100px;
-    font-size:18px;
-    padding:20px;
+    position: absolute;
+    bottom: 0;
+	right: 16%;
+	width: 25%;
+    min-width: 300px;
+    max-width: 600px;
+    margin-bottom: 16px;
+    font-size: 1.15em;
+    padding: 20px;
+	text-align: left;
+	line-height: 120%;
     border: 1px solid #d5d5d5;
 }
-
-#quote_person {
-    text-align:right;
-    padding-right:30px;
-    font-size:20px;
-    margin-top:12px;
-}
-
 
 
 
