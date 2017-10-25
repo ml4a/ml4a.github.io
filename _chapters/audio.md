@@ -67,3 +67,6 @@ https://arxiv.org/pdf/1704.01279.pdf
 magenta
 
 http://imanmalik.com/cs/2017/06/05/neural-style.html
+
+
+https://medium.com/@samim/musical-novelty-search-2177c2a249cc

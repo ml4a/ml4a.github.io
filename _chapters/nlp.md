@@ -262,3 +262,11 @@ https://nlp.stanford.edu/projects/histwords/
 https://github.com/williamleif/histwords
 
 https://www.youtube.com/playlist?list=PL3FW7Lu3i5Jsnh1rnUwq_TcylNr7EkRe6
+
+https://juliasilge.com/blog/gender-pronouns/
+
+http://ruder.io/optimizing-gradient-descent/index.html#adam
+
+https://code.facebook.com/posts/1978007565818999/a-novel-approach-to-neural-machine-translation/
+
+https://github.com/oxford-cs-deepnlp-2017/lectures

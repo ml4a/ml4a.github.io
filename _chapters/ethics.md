@@ -253,3 +253,4 @@ https://iamtrask.github.io/2017/06/05/homomorphic-surveillance/
 
 easily fooled: http://karpathy.github.io/2015/03/30/breaking-convnets/
 
+how many jobs lost: http://www.marketwatch.com/amp/story/guid/A6E401F0-463F-11E7-980C-8D853B065349

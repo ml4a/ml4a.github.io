@@ -44,3 +44,8 @@ Iterations
 
 
 tensorflow deepdream https://github.com/tensorflow/tensorflow/tree/master/tensorflow/examples/tutorials/deepdream
+
+
+building-dreams.png
+mtyka_deepdream_pelican.jpg
+mtyka_deepdream1_leatherbackturtles.jpg
