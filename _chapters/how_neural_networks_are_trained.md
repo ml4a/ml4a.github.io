@@ -3,26 +3,17 @@ layout: chapter
 title: "How neural networks are trained"
 includes: [mathjax]
 header_image: "/images/headers/topographic_map.jpg"
-header_quote: "lovelace"
+header_text: "A <a href=\"http://www.summitpost.org/ruth-creek-topographic-map/771858\">topographic map</a> depicts elevation with contour lines connecting places at equal heights."
 ---
 <!--
-header:http://www.summitpost.org/ruth-creek-topographic-map/771858
-
-
-conclusion section
-
-LBGFS, Adam
 
 Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
 
-sections
+todo/more sections?
+ - LBGFS, Adam
  - Batchnorm
  - preprocessing (norm, standard), weight init
  - choice of loss function (categorical cross-entropy)
- - regularization via input noise
- - conclusion
-
-todo
  - use L or C instead of J
 
 -->
@@ -390,7 +381,7 @@ $$ \frac{\partial J}{\partial w_i} \approx \frac{J(W + \epsilon e_i) - J(W)}{\ep
 
 Where $e_i$ is a one-hot vector (all zeros except 1 at index $i$) and $\epsilon$ is a some very small number. Technically this will work, but it presents us with a major problem: speed. To get a single element of the gradient, it's necessary to calculate the the loss function at both $W + \epsilon e_i$ and $W$. For $W$ it's only necessary to do this once, but we need $J(W + \epsilon e_i)$ for every single weight $w_i$. Typical deep neural nets have millions or even hundreds of millions of weights. This would entail doing millions of forward passes, each of which has millions of operations, just to do a single weight update. This is totally impractical for training neural nets.
 
-So how do we do it? In fact, until the development of [backpropagation](https://en.wikipedia.org/wiki/Backpropagation), this was a major impediment to training neural networks. The question of who invented backpropagation ("backprop" for short) is a contentious issue, and it seems that a number of people have re-invented it at different times throughout history, or stumbled upon similar concepts applied to different problems. Although largely associated with neural networks, backprop can be used on any problem that involves calculating a gradient on a continously differentiable multivariate function, and as such, its development was somewhat parallel to the development of neural networks in general. In 2014, [Jürgen Schmidhuber](http://www.idsia.ch/~juergen) compiled a [review of the relevant work that went into developing backprop](http://people.idsia.ch/~juergen/who-invented-backpropagation.html). 
+So how do we do it? In fact, until the development of [backpropagation](https://en.wikipedia.org/wiki/Backpropagation), this was a major impediment to training neural networks. The question of who invented backpropagation ("backprop" for short) is a [contentious issue](https://plus.google.com/100849856540000067209/posts/9BDtGwCDL7D), and it seems that a number of people have re-invented it at different times throughout history, or stumbled upon similar concepts applied to different problems. Although largely associated with neural networks, backprop can be used on any problem that involves calculating a gradient on a continously differentiable multivariate function, and as such, its development was somewhat parallel to the development of neural networks in general. In 2014, [Jürgen Schmidhuber](http://www.idsia.ch/~juergen) compiled a [review of the relevant work that went into developing backprop](http://people.idsia.ch/~juergen/who-invented-backpropagation.html). 
 
 Backpropagation was first applied to the task of optimizing neural networks by gradient descent in a [landmark paper in 1986](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf) by [David Rumelhart](https://en.wikipedia.org/wiki/David_Rumelhart), [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/), and [Ronald J. Williams](http://www.ccs.neu.edu/home/rjw/). Subsequent work was done in the 80s and 90s by [Yann LeCun](http://yann.lecun.com/ex/research/index.html), who first applied it to convolutional networks. The success of neural networks was largely enabled by their efforts along with their teams.
 

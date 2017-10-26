@@ -63,8 +63,6 @@ So far we've looked only at neural networks trained to identify handwritten digi
 
 {% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="A random sample from CIFAR-10 image set" %}
 
-{% include todo.html note="new demo, refresh for new random sample" %}
-
 Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem. 
 
 Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
@@ -82,9 +80,6 @@ Let's take a look at the confusion matrix associated with this CIFAR-10 classifi
 Not surprisingly, its performance is very poor, reaching only 37% accuracy. Clearly, our simple 1-layer neural network is not capable of capturing the complexity of this dataset. One way we can improve its performance somewhat is by introducing a hidden layer. The next section will analyze the effects of doing that.
 
 ## Adding hidden layers
-
-<!--
-Hidden layers are essential here. One obvious way they can help is best exemplified by the weight image for the horse class. The vague template of a horse is discernible, but it appears as though there is a head on each side of the horse. Evidently, the horses in CIFAR-10 seem to be usually facing one way or the other. If we create a hidden layer, a horse classifier could benefit by allowing the network to learn a "right-facing horse" or a "left-facing horse" inside the intermediate layer -->
 
 So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
 
