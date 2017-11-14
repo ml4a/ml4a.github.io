@@ -25,8 +25,8 @@ title: Machine Learning for Artists
   -->
 <li><a href="/ml4a/introduction/" class="draft" title="Introduction">Introduction</a> [30%, eta ~Feb 2018]</li>
 <li><a href="/ml4a/machine_learning/" class="draft" title="Machine learning">Machine learning</a> [40%, eta ~Feb 2018]</li>
-<li><a href="/ml4a/neural_networks/" title="Neural networks">Neural networks</li>
-<li><a href="/ml4a/looking_inside_neural_nets/" title="Looking inside neural nets">Looking inside neural nets</li>
+<li><a href="/ml4a/neural_networks/" title="Neural networks">Neural networks</a></li>
+<li><a href="/ml4a/looking_inside_neural_nets/" title="Looking inside neural nets">Looking inside neural nets</a></li>
 <li><a href="/ml4a/how_neural_networks_are_trained/" class="draft" title="How neural networks are trained">How neural networks are trained</a> [90%, eta ~Nov 2017]</li>
 
 <li><a href="/ml4a/convnets/" class="draft" title="Convolutional neural networks">Convolutional neural networks</a> [80%, eta ~Nov 2017]</li>
