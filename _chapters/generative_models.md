@@ -113,6 +113,7 @@ https://jaan.io/what-is-variational-autoencoder-vae-tutorial/
 
 http://www.inference.vc/my-notes-on-the-numerics-of-gans/
 
+
 ## DCGAN
 
 lsun_bedrooms_five_epoch_samples.png
@@ -190,4 +191,5 @@ sketchrnn.png
 
 
 
-
+# Progressive growing gans
+https://www.youtube.com/watch?v=_KI50AOLSPY
