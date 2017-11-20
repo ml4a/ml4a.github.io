@@ -26,6 +26,7 @@ title: Demos
 <h4>Demos</h4>
 <ul>
 	<li><a href="https://ml4a.github.io/demos/keras.js">Live webcam classifier (using keras.js)</a></li>	
+	<li><a href="/demos/tsne-viewer/">t-SNE grid viewer</a></li>
 	<li><a href="/dev/demos/demo_forwardpass.html">Simple forward pass</a> || <a href="/demos/simple_forward_pass/">(new)</a></li>
 	<li><a href="/dev/demos/mnist_forwardpass.html">MNIST forward pass</a> || <a href="/demos/forward_pass_mnist/">(new)</a></li>
 	<li><a href="/dev/demos/cifar_forwardpass.html">CIFAR-10 forward pass</a> || <a href="/demos/forward_pass_cifar/">(new)</a></li>
@@ -35,7 +36,6 @@ title: Demos
 	<li><a href="/dev/demos/cifar_confusion.html">CIFAR-10 confusion matrix</a> || <a href="/demos/confusion_cifar/">(new)</a></li>
 	<li><a href="/dev/demos/mnist_weights.html">MNIST weights</a></li>
 	<li><a href="/dev/demos/cifar_weights.html">CIFAR-10 weights</a></li>
-	<li><a href="/dev/demos/tsne-viewer/">t-SNE grid viewer</a></li>
 </ul>
 
 
