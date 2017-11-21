@@ -171,3 +171,7 @@ After the neural network has been trained -- something we'll talk about in more 
 {% include further_reading.md title="Demo: Visualization of artificial neural networks" author="Mostafa Abdelraouf" link="http://experiments.mostafa.io/public/ffbpann/" %} 
 
 {% include further_reading.md title="Video: Neural Networks Demystified" author="Welch Labs" link="https://www.youtube.com/watch?v=bxe2T-V8XRs" %} 
+
+## Next chapter
+
+In the next chapter, [looking inside neural networks](/ml4a/looking_inside_neural_nets/), we will analyze the internal states of neural networks more closely, building up intuitions on what sorts of information they capture, as well as pointing out the flaws of basic neural nets, building up motivation for introducing more complex features such as convolutional layers to be explored in later chapters.

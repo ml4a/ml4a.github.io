@@ -105,8 +105,12 @@ By adding a hidden layer into a neural network, we give it a chance to learn fea
 
 As we saw, hidden layers can improve accuracy, but only to a limited extent. Adding more and more layers stops improving accuracy quickly, and comes at a computational cost -- we can't simply ask our neural network to memorize every possible version of an image class through its hidden layers. It turns out there is a better way, using [convolutional neural networks](/ml4a/convnets), which will be covered in a later chapter. 
 
-## Further reading
+# Further reading
 
 {% include further_reading.md title="Demo: Tinker with a neural network" author="Daniel Smilkov and Shan Carter" link="http://playground.tensorflow.org" %} 
 
 {% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %} 
+
+## Next chapter
+
+In the next chapter, we will learn about a critical topic that we've glossed over up until now, [how neural networks are trained](/ml4a/how_neural_networks_are_trained/): the process by which neural nets are constructed and trained on data, using a technique called gradient descent via backpropagation. We will build up our knowledge starting from simple linear regression, and working our way up through examples, and elaborating on the various aspects of training which researchers must deal with.
