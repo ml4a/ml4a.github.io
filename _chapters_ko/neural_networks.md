@@ -1,39 +1,32 @@
----
-layout: chapter
-title: "신경망"
-includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
-header_image: "/images/headers/analytical_engine.jpg"
-header_text: "“It were much to be desired, that when mathematical processes pass through the human brain instead of through the medium of inanimate mechanism, it were equally a necessity of things that the reasonings connected with operations should hold the same just place as a clear and well-defined branch of the subject of analysis, a fundamental but yet independent ingredient in the science, which they must do in studying the engine.” <a href=\"https://books.google.de/books?id=b8YUDAAAQBAJ&pg=PA16&lpg=PA16\">Sketch of the Analytical Engine (1843), Ada Lovelace</a>"
----
+
 
 [中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
 
-신경망이 처음 고안된 것은 거의 100여년 전으로 [에이다 러브레이스](http://findingada.com/)는 "[신경 시스템의 수학 모델](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)"을 만들고자 하는 꿈을 가졌습니다. 뇌와 기계 사이의 추측성 비유는 계산 자체의 역사만큼이나 오래되었지만 에이다의 선생이었던 [찰스 배비지](https://ko.wikipedia.org/wiki/%EC%B0%B0%EC%8A%A4_%EB%B0%B0%EB%B9%84%EC%A7%80)가 [해석 기관](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%84%9D%EA%B8%B0%EA%B4%80)을 제안하기 전까지는 "계산기"를 사람같은 인지 능력을 가진 것으로 상상하지는 못했습니다. 그 당시 기술자들은 그녀가 고안한 복잡한 회로를 만들 능력이 없었기 때문에 에이다는 생전에 이 기관이 실제로 구현되는 것을 보지 못했습니다. 그럼에도 불구하고, 이 아이디어는 다음 세기를 거쳐 전달되었고 [앨런 튜링](https://ko.wikipedia.org/wiki/%EC%95%A8%EB%9F%B0_%ED%8A%9C%EB%A7%81)이 "[튜링 테스트](https://en.wikipedia.org/wiki/Turing_test)"이라고 불리게 된 [모방 게임](http://phil415.pbworks.com/f/TuringComputing.pdf)을 소개할 때 이로부터 영감을 받았다고 인용하였습니다. 극단적으로 단순한 계산에 대한 그의 고찰은 첫 번째 인공 지능의 붐을 촉발시켰고 신경망의 첫 번째 전성기를 마련하였습니다.
+신경망이 처음 고안된 것은 거의 100여년 전으로 [에이다 러브레이스](http://findingada.com/)는 "[신경 시스템에 대한 수학 모델](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)"을 만들고자 하는 꿈을 가졌습니다. 뇌와 기계 사이의 추측성 비유는 계산 자체의 역사만큼이나 오래되었지만, 에이다의 선생님이었던 [찰스 배비지](https://ko.wikipedia.org/wiki/%EC%B0%B0%EC%8A%A4_%EB%B0%B0%EB%B9%84%EC%A7%80)가 [해석 기관](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%84%9D%EA%B8%B0%EA%B4%80)을 제안하기 전까지는 "계산기"를 사람같은 인지 능력을 가진 것으로 상상하지는 못했습니다. 그 당시 기술자들은 그녀가 고안한 복잡한 회로를 만들 능력이 없었기 때문에 에이다는 생전에 이 기관이 실제로 구현되는 것을 보지 못했습니다. 그럼에도 불구하고, 이 아이디어는 다음 세기를 거쳐 전달되었고 [앨런 튜링](https://ko.wikipedia.org/wiki/%EC%95%A8%EB%9F%B0_%ED%8A%9C%EB%A7%81)이 "[튜링 테스트](https://en.wikipedia.org/wiki/Turing_test)"이라고 불리게 된 [모방 게임](http://phil415.pbworks.com/f/TuringComputing.pdf)을 소개할 때 여기에서 영감을 받았다고 인용하였습니다. 극단적으로 단순한 계산에 대한 그의 고찰은 첫 번째 인공 지능의 붐을 촉발시켰고 신경망의 첫 번째 전성기를 마련하였습니다.
 
 ## 신경망의 탄생과 재탄생
 
-최근 신경망의 부활은 독특한 스토리를 가집니다. 초기 AI에 밀접하게 연관된 신경망은 1940년대 후반에 튜링의 [B타입 기계](https://en.wikipedia.org/wiki/Unorganized_machine) 형식으로 처음 형태를 갖추었고 인간의 학습 과정을 연구하는 신경 과학자와 인지 신경학자들의 [신경가소성](https://en.wikipedia.org/wiki/Hebbian_theory)에 대한 초기 연구에 의존했습니다. 뇌의 발전 메커니즘이 밝혀짐에 따라 컴퓨터 과학자들은 기계에서 이 과정을 시뮬레이션하기 위해 활동 전위와 신경 역전파의 이상적인 모델을 실험했습니다.
+최근 신경망의 부활은 독특한 스토리를 가집니다. 초기 AI에 밀접하게 연관된 신경망은 1940년대 후반에 튜링의 [B타입 기계](https://en.wikipedia.org/wiki/Unorganized_machine) 형식으로 처음 형태를 갖추었고, 인간의 학습 과정을 연구하는 신경 과학자와 인지 신경학자들의 [신경가소성](https://en.wikipedia.org/wiki/Hebbian_theory)에 대한 초기 연구에 의존했습니다. 뇌의 발전 메커니즘이 밝혀짐에 따라 컴퓨터 과학자들은 기계에서 이 과정을 시뮬레이션하기 위해 활동 전위와 신경 역전파를 이상화한 모델을 실험했습니다.
 
-오늘날 대부분의 과학자들은 너무 심각하게 이와 같이 비유하는 것을 경계합니다. 왜냐하면 신경망은 뇌를 정확히 묘사하기 위한 것이 아니라 머신러닝 문제를 해결하기 위해서만 고안되었기 때문입니다. 반면 완전히 다른 분야인 [계산 신경과학](https://en.wikipedia.org/wiki/Computational_neuroscience)은 뇌를 정확히 모델링하는 도전을 지속하고 있습니다. 그럼에도 불구하고, 단순화된 생물학적 뉴런으로 신경망의 핵심 유닛을 비유하는 것이 수십년 동안 계속되었습니다. 생물학적 뉴런에서 인공 뉴런으로 진화는 다음 그림으로 요약될 수 있습니다.
+오늘날 대부분의 과학자들은 너무 심각하게 이와 같이 비유하는 것을 경계합니다. 왜냐하면 신경망은 뇌를 정확히 묘사하기 위한 것이 아니라 머신러닝 문제를 해결하기 위해서만 고안되었기 때문입니다. 반면 완전히 다른 분야인 [계산 신경과학](https://en.wikipedia.org/wiki/Computational_neuroscience)은 뇌를 정확히 모델링하는 도전을 지속하고 있습니다. 그럼에도 불구하고, 신경망의 핵심 유닛을 단순화된 생물학적 뉴런으로 비유하는 것이 수십년 동안 계속되었습니다. 생물학적 뉴런에서 인공 뉴런으로의 변화는 다음 그림으로 요약할 수 있습니다.
 
 {% include figure_multi.md path1="/images/neuron-anatomy.jpg"
 caption1="Anatomy of a biological neuron<br/>Source: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
 caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="Artificial neuron<br/>&nbsp;" %}
 
- 1950년 [프랭크 로젠블라트](https://en.wikipedia.org/wiki/Frank_Rosenblatt)가 [이전 장](/ml4a/ko/machine_learning/)에서 보았던 선형 분류기의 한 종류인 [퍼셉트론](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%85%89%ED%8A%B8%EB%A1%A0)을 고안했을 때 신경망의 발전에 큰 진전이 있었습니다. 미국 해군으로 부터 재정을 지원받아 Mark 1 퍼셉트론이 광전지, 전위차계, 전기 모터를 사용해 이미지 인식을 수행하도록 설계되었습니다. 복잡한 전기 회로로 완성한 효율성으로 1958년 뉴욕 타임즈는 기계가 곧 ["걷고, 말하고, 보고, 쓰고, 스스로 재생산하며 자신의 존재를 인지한다"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE)고 예상했습니다.
+ 1950년대 후반에 [프랭크 로젠블라트](https://en.wikipedia.org/wiki/Frank_Rosenblatt)가 [이전 장](/ml4a/machine_learning/)에서 보았던 선형 분류기의 한 종류인 [퍼셉트론](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%85%89%ED%8A%B8%EB%A1%A0)을 고안하여 신경망의 발전에 큰 진전을 이루었습니다. 미국 해군으로 부터 재정을 지원받아 Mark 1 퍼셉트론이 광전지, 전위차계, 전기 모터를 사용해 이미지 인식을 수행하도록 설계되었습니다. 복잡한 전기 회로에서 얻은 효과를 보고 1958년 뉴욕 타임즈는 기계가 곧 ["걷고, 말하고, 보고, 쓰고, 스스로 재생산하며 자신의 존재를 인지할"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE) 것이라고 예상했습니다.
 
-초기 이런 선전은 공상 과학 소설가들에게 수십년간 영감을 주었지만 학계안에서는 흥분이 많이 사라졌습니다. 마빈 민스키와 시모어 페퍼트의 1969년 책 [퍼셉트론](https://en.wikipedia.org/wiki/Perceptrons_(book))에서 여러가지--[심지어 아주 간단한](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)--제약 사항을 시연했습니다. 이는 우연히 컴퓨터가 [엄청난 속도](https://ko.wikipedia.org/wiki/%EB%AC%B4%EC%96%B4%EC%9D%98_%EB%B2%95%EC%B9%99)의 연산 능력을 갖출 것이라고 잘 못 가정한 학계와 일반 대중 모두에게 [관심의 쇠락](https://en.wikipedia.org/wiki/AI_winter)를 이끌었습니다. 튜링 조차도 스스로 기계가 2000년에는 인간 수준의 지능을 가질 것이라고 말했습니다. [Y2K 문제](https://ko.wikipedia.org/wiki/2000%EB%85%84_%EB%AC%B8%EC%A0%9C)가 있었던 해입니다.
+이런 초기의 높은 인기는 공상 과학 소설가들에게 수십년간 영감을 주었지만, 학계안에서는 흥분이 많이 사그라들었습니다. 마빈 민스키와 시모어 페퍼트의 1969년 책 [퍼셉트론](https://en.wikipedia.org/wiki/Perceptrons_(book))에서 여러가지--[심지어 아주 간단한](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)--제약 사항을 시연했습니다. 이는 무심코 컴퓨터가 [엄청난 속도](https://ko.wikipedia.org/wiki/%EB%AC%B4%EC%96%B4%EC%9D%98_%EB%B2%95%EC%B9%99)의 연산 능력으로 게속 발전할 것이라고 잘 못 가정한 학계와 일반 대중 모두의 [관심을 낮추게](https://en.wikipedia.org/wiki/AI_winter) 하였습니다. 튜링 조차도 기계가 [Y2K 문제](https://ko.wikipedia.org/wiki/2000%EB%85%84_%EB%AC%B8%EC%A0%9C)가 있었던 2000년에는 인간 수준의 지능을 가질 것이라고 말했습니다.
 
-Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/ml4a/convnets.html) and [recurrent neural networks](/ml4a/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
+80년대와 90년대에 조용하지만 여러가지 놀라운 발전에도 불구하고 [[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf), 2000년대 까지는 비주류였고 대부분의 상용이나 산업용 애플리케이션에는 [서포트 벡터 머신](https://ko.wikipedia.org/wiki/%EC%84%9C%ED%8F%AC%ED%8A%B8_%EB%B2%A1%ED%84%B0_%EB%A8%B8%EC%8B%A0)이나 다른 알고리즘들이 선호되었습니다. [2009년에 시작해서](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) 특히 [2012년부터 크게 성장하면서](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/) 신경망은 다시 한번 ML 알고리즘을 압도하게 되었습니다. 이들의 부활은 시청각 분야의 주요 문제에 대해 이전의 최고 성능을 (이따금 아주 놀라운 수준으로) 능가하는 [합성곱 신경망](/ml4a/convnets.html)과 [순환 신경망](/ml4a/RNNs.html)의 탄생에 의해 크게 도움 받았습니다. 하지만 더 흥미로운 것은, 이전에 없던 새로운 애플리케이션과 특히 예술가들이나 AI 분야 밖의 사람들의 흥미를 끄는 특징을 가지고 있다는 것입니다. 이 책은 지금 부터 몇 장에 걸쳐 특별히 합성곱 신경망에 대해 자세히 살펴 보겠습니다.
 
-Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
+많은 학습 알고리즘들이 수년간 제안되었지만 신경망에 대부분 촛점을 맞추도록 하겠습니다. 왜냐하면:
 
- - They have a surprisingly simple and intuitive formulation.
- - Deep neural networks are the current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
- - Most of the recent creative uses of machine learning have been made with neural networks.
-
+ - 아주 간단하고 직관적인 공식으로 표현됩니다.
+ - 심층 신경망은 이 책과 관련이 많은 중요한 여러가지 머신러닝 문제에서 최고의 성능을 냅니다.
+ - 최근 머신러닝을 예술 분야에 접목한 것은 대부분 신경망을 사용했습니다.
 
 ## From linear classifiers to neurons
 
