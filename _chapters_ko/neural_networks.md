@@ -34,9 +34,9 @@ caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://w
  - 심층 신경망은 이 책과 관련이 많은 중요한 여러가지 머신러닝 문제에서 최고의 성능을 냅니다.
  - 최근 머신러닝을 예술 분야에 접목한 것은 대부분 신경망을 사용했습니다.
 
-## From linear classifiers to neurons
+## 선형 분류기에서 부터 뉴런까지
 
-Recall from the previous chapter that the input to a 2d linear classifier or regressor has the form:
+이전 장에서 배웠던 것을 다시 보면, 2d 선형 분류기나 회귀 모델로의 입력은 다음과 같은 형태를 가집니다:
 
 $$
 \begin{eqnarray}
@@ -44,7 +44,7 @@ f(x_1, x_2) = b + w_1 x_1 + w_2 x_2
 \end{eqnarray}
 $$
 
-More generally, in any number of dimensions, it can be expressed as
+더 일반적으로 임의의 차원에 대해서는 다음과 같이 표현됩니다
 
 $$
 \begin{eqnarray}
@@ -52,16 +52,18 @@ f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
 
-In the case of regression, $$f(X)$$ gives us our predicted output, given the input vector $$X$$. In the case of classification, our predicted class is given by
+회귀의 경우에는 입력 벡터 $$X$$가 주어졌을 때, $$f(X)$$가 예측 출력입니다. 분류에서는 예측 클래스가 다음과 같습니다.
 
 $$
 \begin{eqnarray}
-  \mbox{classification} & = & \left\{ \begin{array}{ll}
+  \mbox{분류} & = & \left\{ \begin{array}{ll}
   	  1 & \mbox{if } f(X) \gt 0 \\
       0 & \mbox{if } f(X) \leq 0
       \end{array} \right.
 \tag{1}\end{eqnarray}
 $$
+
+각 가중치 $$w_i$$는 $$x_i$$가 곱해져 입력의 상대적 영향을 의미하는 것으로 해석할 수 있습니다. 이 식에서 $$b$$ 항은 가중치와 상관없이 뉴런이 1 또는 0이 되는 성향을 제어하기 때문에 편향이라고 종종 부릅니다. 높은 편향은 뉴런
 
 Each weight, $$w_i$$, can be interpreted as signifying the relative influence of the input that it's multiplied by, $$x_i$$. The $$b$$ term in the equation is often called the bias, because it controls how predisposed the neuron is to firing a 1 or 0, irrespective of the weights. A high bias makes the neuron require a larger input to output a 1, and a lower one makes it easier.
 
