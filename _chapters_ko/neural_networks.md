@@ -19,8 +19,8 @@ header_text: "“It were much to be desired, that when mathematical processes pa
 오늘날 대부분의 과학자들은 너무 심각하게 이와 같이 비유하는 것을 경계합니다. 왜냐하면 신경망은 뇌를 정확히 묘사하기 위한 것이 아니라 머신러닝 문제를 해결하기 위해서만 고안되었기 때문입니다. 반면 완전히 다른 분야인 [계산 신경과학](https://en.wikipedia.org/wiki/Computational_neuroscience)은 뇌를 정확히 모델링하는 도전을 지속하고 있습니다. 그럼에도 불구하고, 신경망의 핵심 유닛을 단순화된 생물학적 뉴런으로 비유하는 것이 수십년 동안 계속되었습니다. 생물학적 뉴런에서 인공 뉴런으로의 변화는 다음 그림으로 요약할 수 있습니다.
 
 {% include figure_multi.md path1="/images/neuron-anatomy.jpg"
-caption1="Anatomy of a biological neuron<br/>Source: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
-caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="Artificial neuron<br/>&nbsp;" %}
+caption1="생물학적 뉴런의 해부도<br/>소스: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
+caption2="네트워크에서의 단순화된 뉴런<br/>소스: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="인공 뉴런<br/>&nbsp;" %}
 
  1950년대 후반에 [프랭크 로젠블라트](https://en.wikipedia.org/wiki/Frank_Rosenblatt)가 [이전 장](/ml4a/machine_learning/)에서 보았던 선형 분류기의 한 종류인 [퍼셉트론](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%85%89%ED%8A%B8%EB%A1%A0)을 고안하여 신경망의 발전에 큰 진전을 이루었습니다. 미국 해군으로 부터 재정을 지원받아 Mark 1 퍼셉트론이 광전지, 전위차계, 전기 모터를 사용해 이미지 인식을 수행하도록 설계되었습니다. 복잡한 전기 회로에서 얻은 효과를 보고 1958년 뉴욕 타임즈는 기계가 곧 ["걷고, 말하고, 보고, 쓰고, 스스로 재생산하며 자신의 존재를 인지할"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE) 것이라고 예상했습니다.
 
@@ -63,34 +63,32 @@ $$
 \tag{1}\end{eqnarray}
 $$
 
-각 가중치 $$w_i$$는 $$x_i$$가 곱해져 입력의 상대적 영향을 의미하는 것으로 해석할 수 있습니다. 이 식에서 $$b$$ 항은 가중치와 상관없이 뉴런이 1 또는 0이 되는 성향을 제어하기 때문에 편향이라고 종종 부릅니다. 높은 편향은 뉴런
+각 가중치 $$w_i$$는 $$x_i$$가 곱해져 입력의 상대적 영향을 의미하는 것으로 해석할 수 있습니다. 이 식에서 $$b$$ 항은 가중치와 상관없이 뉴런이 1 또는 0이 되는 성향을 제어하기 때문에 편향이라고 종종 부릅니다. 높은 편향은 뉴런이 출력 1을 만들기 위해 더 많은 입력을 필요로 한다는 의미이고 낮은 편향은 더 쉽게 출력 1을 만든다는 뜻입니다.
 
-Each weight, $$w_i$$, can be interpreted as signifying the relative influence of the input that it's multiplied by, $$x_i$$. The $$b$$ term in the equation is often called the bias, because it controls how predisposed the neuron is to firing a 1 or 0, irrespective of the weights. A high bias makes the neuron require a larger input to output a 1, and a lower one makes it easier.
+두 가지 혁신을 통해 이 공식으로 부터 완전한 신경망을 얻을 수 있습니다. 첫 번째는 선형 식별기를 뉴런 또는 (뇌와 비유하지 않으려면) 유닛으로 부르게 만든 활성화 함수의 추가입니다. 두 번째 혁신은 레이어 안에서 순서대로 뉴런을 연결하는 구조입니다. 차례대로 이 혁신들을 소개하겠습니다.
 
-We can get from this formula to a full-fledged neural network by introducing two innovations. The first is the addition of an activation function, which turns our linear discriminator into what's called a neuron, or a "unit" (to dissociate them from the brain analogy). The second innovation is an architecture of neurons which are connected sequentially in layers. We will introduce these innovations in that order.
+## 활성화 함수
 
-## Activation function
+인공 신경망과 생물학적 신경망 모두 뉴런이 받은 입력을 그대로 출력하지 않습니다. 대신 뇌의 [활동 전위](https://ko.wikipedia.org/wiki/%ED%99%9C%EB%8F%99%EC%A0%84%EC%9C%84) 발화율에 대응하는 활성화 함수라고 부르는 한 가지 단계를 더 거칩니다. 활성화 함수는 이전 단계에서 나온 가중치 합, $$z = b + \sum_i w_i x_i$$을 입력으로 받아 최종적으로 출력하기 전에 이를 다시 한번 변형시킵니다.
 
-In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an activation function, analagous to the rate of [action potential](https://en.wikipedia.org/wiki/Action_potential) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i x_i$$, and then transforms it once more before finally outputting it.
+많은 활성화 함수가 제안되었지만 여기서는 시그모이드(sigmoid)와 ReLU 두 함수를 자세히 설명하겠습니다.
 
-Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU.
-
-Historically, the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) function is the oldest and most popular activation function. It is defined as:
+역사적으로 봤을 때, [시그모이드](https://en.wikipedia.org/wiki/Sigmoid_function) 함수는 오래되었고 가장 널리 사용되는 활성화 함수입니다. 이 함수는 다음과 같이 정의됩니다:
 
 $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-$$e$$ denotes the [exponential constant](https://en.wikipedia.org/wiki/E_(mathematical_constant)), roughly equal to 2.71828. A neuron which uses a sigmoid as its activation function is called a sigmoid neuron. We first set the variable $$z$$ to our original weighted sum input, and then pass that through the sigmoid function.
+$$e$$는 [자연 상수](https://ko.wikipedia.org/wiki/E_(%EC%83%81%EC%88%98))이며 대략 2.71828 입니다. 시그모이드 함수를 활성화 함수로 사용하는 뉴런을 시그모이드 뉴런이라고 부릅니다. 변수 $$z$$에 가중치 합을 입력으로 넣고 시그모이드 함수를 통과시킵니다.
 
 $$
 z = b + \sum_i w_i x_i \\
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
-At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$.
+처음에는 이 식이 복잡하고 규칙이 없는 것처럼 보일 수 있지만, 사실 입력 $$z$$에 대한 함수로 $$\sigma(z)$$의 값을 그래프로 그리면 매우 간단한 모양을 가집니다.
 
-{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="Sigmoid activation function" %}
+{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="시그모이드 활성화 함수" %}
 
 We can see that $$\sigma(z)$$ acts as a sort of "squashing" function, condensing our previously unbounded output to the range 0 to 1. In the center, where $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. For large negative values of $$z$$, the $$e^{-z}$$ term in the denominator grows exponentially, and $$\sigma(z)$$ approaches 0. Conversely, large positive values of $$z$$ shrink $$e^{-z}$$ to 0, so $$\sigma(z)$$ approaches 1.
 
