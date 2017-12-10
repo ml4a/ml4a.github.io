@@ -18,7 +18,13 @@ body {
     padding:0px;
     margin:0px;
 }
+
+ul, li {
+    font-size:1.4em;
+}
+
 nav ul, footer ul {
+    font-size:1.3em;
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -27,6 +33,9 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
+
+
+
 a {
 /*    background-color:#333;*/
     padding-left:1px;
@@ -82,10 +91,11 @@ footer {
     margin:auto;
 }
 
+/*
 .figure {
     display: block;
     margin: 0 auto;
-}
+}*/
 
 ul.posts {
     margin: 20px auto 40px;
@@ -98,27 +108,41 @@ ul.posts li {
 
 
 /* figures */
-.figure_outer {
+.figure_multi {
     text-align: center;
     margin-left:-300px;
-    margin-right:-300px;
-    padding:10px;
+    margin-right:-300px;    
     margin-top:20px;
     margin-bottom:20px;
+    padding:10px;    
 }
-.figure_insert {
+.figure_inner {
     display: inline-block;
     margin-left:5px;
     margin-right:5px;
     border: 0.5px solid #ddd;
     padding:5px;
 }
-.figure_caption {   
+figure {
+    display: table;
+    width: 1px; 
+    margin: 0px;
+}
+figcaption {
+    display: table-row;
     line-height:150%;
     color:#666;
     background-color:#f4f4f4;
     margin-top:2px; 
+    padding:0px;
 }
+
+
+/* equations */
+.mjx-chtml.MJXc-display {
+    font-size:1.4em !important;
+}
+
 
 
 /* how to make the div wider than the parent */
@@ -167,37 +191,35 @@ ul.posts li {
 
 
 
-#quote_outer {
+#header_outer {
     position: relative;
-    padding-top: 0px
+    padding-top: 0px;
+	width: 100%;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-#quote_inner {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    bottom: 0;
-    margin-bottom:10px
+#header_outer img {
+	width:100%;
+	max-width:1440px;
 }
 
-#quote_content {
+#header_inner {
     background: rgba(255,255,255,.8);
-    width: 530px;
-    height: 190px;
-    margin-left:auto;
-    margin-right: 100px;
-    font-size:18px;
-    padding:20px;
+    position: absolute;
+    bottom: 0;
+	right: 16%;
+	width: 25%;
+    min-width: 300px;
+    max-width: 600px;
+    margin-bottom: 16px;
+    font-size: 1.15em;
+    padding: 20px;
+	text-align: left;
+	line-height: 120%;
     border: 1px solid #d5d5d5;
 }
-
-#quote_person {
-    text-align:right;
-    padding-right:30px;
-    font-size:20px;
-    margin-top:12px;
-}
-
 
 
 

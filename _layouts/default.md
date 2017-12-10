@@ -4,14 +4,16 @@
 		<meta charset="utf-8">
 		<title>{{ page.title }}</title>
 		<link rel="stylesheet" type="text/css" href="/css/main.css">
-		<link rel="icon" href="/images/favicon.png">
+		<link rel="icon" href="/images/favicon.png">	
 	{% if page.includes contains 'mathjax' %}
-		<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-		<script>
-			MathJax.Hub.Config({
-				jax: ["input/TeX","output/HTML-CSS"],
-				tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
-			});
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+  			CommonHTML: {scale: 100},
+  			jax: ["input/TeX","output/HTML-CSS"],
+  			tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+		});
+		</script>
+		<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 		</script>
 	{% endif %}
 	{% if page.includes contains 'jquery' %}
@@ -34,10 +36,12 @@
 
 	<body>
 
-		<!-- not ready yet -->
-		<!--{% assign quote = site.data.quotes.lovelace %}-->
-		<!--{% include header.html quote=quote image_path=page.header_image %}--> 
-
+		<!-- header -->
+		{% if page.header_image %}
+			{% include header.html text=page.header_text image=page.header_image %} 
+		{%endif %}
+		
+		<!-- navbar -->
 		<div class="navbar">
 			<nav>
 	    		<ul>
@@ -47,23 +51,27 @@
 		        	<li><a href="/demos/">demos</a></li>
 		        	<li><a href="/classes/">classes</a></li>
 		        	<li><a href="https://github.com/ml4a">code</a></li>
+		        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtMjcxMjUwNDQ0NDAzLWVmMTFmMTc3ZDJlYTExNGE1ZmQ4NTk1NGJhZWI3ODJmYWI2ZjgxYmQ3NWMzOWU3NTE3ZDYxOTBkMDg5Nzg5M2I">slack</a></li>
 		        	<li><a href="https://www.twitter.com/ml4a_">@</a></li>
 	    		</ul>
 			</nav>
 		</div>
 
+		<!-- main content -->
 		<span id="end-nav"></span>
 		<div class="container">
 			{{ content }}
 		</div>
 		
+		<!-- footer -->
 		<footer>
     		<ul>
         		<li><a href="/about/">about</a></li>
-        		<li><a href="/contribute/">contribute</a></li>
+        		<li><a href="/guides/Contribute/">contribute</a></li>
         		<li><a href="https://github.com/ml4a">github.com/ml4a</a></li>
 			</ul>
 		</footer>
+
 <!--
 		<script>
 		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -75,6 +83,7 @@
 		  ga('send', 'pageview');
 		</script>
 -->
+
 </script>
 	</body>
 </html>

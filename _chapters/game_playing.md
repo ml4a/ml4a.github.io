@@ -278,3 +278,7 @@ john schulman https://www.youtube.com/watch?v=oPGVsoBonLM
 agent cooperation https://deepmind.com/blog/understanding-agent-cooperation/
 
 nakamura vs rybka https://www.chess.com/article/view/computers-in-chess-good-or-evil-part-two
+
+https://pathak22.github.io/noreward-rl/resources/icml17.pdf
+
+https://pathak22.github.io/noreward-rl/

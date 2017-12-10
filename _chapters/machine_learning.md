@@ -1,8 +1,8 @@
 ---
 layout: chapter
 title: "Machine learning"
-header_image: "/images/headers/mnist_zeros.png"
-header_quote: "lovelace"
+header_image_hide_: "/images/headers/mnist_zeros.png"
+header_text_hide: "_"
 ---
 
 

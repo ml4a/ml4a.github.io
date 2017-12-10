@@ -3,6 +3,10 @@ layout: default
 title: ml4a classes
 ---
 
+
+{% include class_preview.html class="misc" index=0 %}
+
+
 <div class="class_main">
 	<div class="class_thumb">
 		<a href="/classes/opendot/"><img class="thumby" src="/images/classes/opendot/thumbnail_06.png"></a>

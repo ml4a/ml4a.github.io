@@ -1,8 +1,10 @@
 {
 	"fundamentals": {
-		"title": "Fundamentals",
+		"title": "Fundamentals of machine learning",
 		"description": "Mathematical precepts for machine learning",
-		"link":"notebooks/fundamentals.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/fundamentals.ipynb",
+		"thumb":"/images/guides_thumbs/fundamentals.jpg",
 		"summary":[
 			"What is machine learning?",
 			"Vectors, matrices, and tensors",
@@ -10,9 +12,11 @@
 		]
 	},
 	"simple": {
-		"title": "Simple neural networks",
+		"title": "Ordinary neural networks",
 		"description": "How to train a simple feedforward neural network",
-		"link":"notebooks/simple_neural_networks.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/simple_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
 			"Architecture of simple neural net",
 			"Training a neural net on toy data"
@@ -21,16 +25,31 @@
 	"cnn": {
 		"title": "Convolutional neural networks",
 		"description": "How to train a convolutional neural network",
-		"link":"notebooks/convolutional_neural_networks.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/convolutional_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/convnets.jpg",
 		"summary":[
 			"Building neural networks with convolutional and pooling layers for image processing",
 			"Train a convnet to classify MNIST handwritten digits"
 		]
 	},
+	"transfer-learning": {
+		"title": "Transfer learning",
+		"description": "Training accurate image classifiers on small datasets",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb",
+		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
+		"summary":[
+			"Using powerful pre-trained networks as feature extractors",
+			"Training own image classifier on top of a pre-trained network"
+		]
+	},
 	"rnn": {
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
-		"link":"notebooks/recurrent_neural_networks.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb",
+		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
 			"RNNs, LSTMs, and context",
 			"Setting up an LSTM to predict characters in text"
@@ -39,25 +58,53 @@
 	"seq2seq": {
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
-		"link":"notebooks/sequence_to_sequence.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb",
+		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
 			"How RNNs operate on sequences on both ends",
 			"Training LSTM for language translation"
 		]
 	},
+	"eigenfaces": {
+		"title": "Eigenfaces",
+		"description": "Understand dimensionality reduction and generate weird faces",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb",
+		"thumb":"/images/guides_thumbs/eigenfaces.jpg",
+		"summary":[
+			"Run principal component analysis to compress a dataset of faces",
+			"Generate new faces by inverting the projection"
+		]
+	},
 	"image-search": {
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
-		"link":"notebooks/image-search.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-search.ipynb",
+		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
 			"Find most similar images to query image"
 		]
 	},
+	"image-path": {
+		"title": "Find shortest path between two images",
+		"description": "How to find the shortest path between two images",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb",
+		"thumb":"/images/guides_thumbs/image-path.jpg",
+		"summary":[
+			"Construct a graph of images connected via k nearest neighbors",
+			"Determine shortest path through the graph between two query images"
+		]
+	},
 	"image-tsne": {
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
-		"link":"notebooks/image-tsne.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb",
+		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
 			"Embed images in 2d space using a t-SNE over their feature vectors"
@@ -66,7 +113,9 @@
 	"audio-tsne": {
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
-		"link":"notebooks/audio-tsne.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/audio-tsne.ipynb",
+		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from audio clips with librosa",
 			"Embed audio clips in 2d with a t-SNE over their feature vectors"
@@ -75,17 +124,33 @@
 	"text-retrieval": {
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
-		"link":"notebooks/text-retrieval.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb",
+		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
 			"Text representation: bag-of-words, tf-idf",
 			"Latent semantic analysis",
 			"Search for similar documents"
 		]
 	},
+	"neural-painter": {
+		"title": "Neural net painter",
+		"description": "Fun experiment teaching a neural net to \"paint\" an image",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb",
+		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
+		"summary":[
+			"Regression of x,y -> r,g,b from an image",
+			"Generating \"paintings\" from learned model",
+			"Making videos by interpolating between multiple painters"
+		]
+	},
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
-		"link":"notebooks/word2vec_tsne.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/word2vec_tsne.ipynb",
+		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
 			"Embedding words in vector space",
 			"Geometric operations in word-vector space and analogies",
@@ -95,7 +160,9 @@
 	"qlearn": {
 		"title": "Q-Learning",
 		"description": "Introduction to Q Learning",
-		"link":"notebooks/q_learning.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb",
+		"thumb":"/images/guides_thumbs/q-learning.jpg",
 		"summary":[
 			"Introduction to the reinforcement learning problem",
 			"Implementing a Q-Learner for an agent"
@@ -104,10 +171,221 @@
 	"qnets": {
 		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
-		"link":"notebooks/deep_q_networks.ipynb",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb",
+		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
 		"summary":[
 			"Deep Q-Networks for larger state spaces",
 			"Implementing and training DQN for paddle-ball game"
 		]
+	},
+
+	
+	"AudioClassifier": {
+		"title": "Audio classifier",
+		"description": "Audio classifier",
+		"category": "openframeworks",
+		"link":"/guides/AudioClassifier",
+		"thumb":"/images/guides_thumbs/audio-classifier.jpg",
+		"summary":[
+			"Analyze MFCC distribution of incoming microphone audio",
+			"Train a real-time multi-class classifier of sounds"
+		]
+	},
+	"AudioTSNEViewer": {
+		"title": "Audio t-SNE viewer",
+		"description": "Audio t-SNE viewer",
+		"category": "openframeworks",
+		"link":"/guides/AudioTSNEViewer",
+		"thumb":"/images/guides_thumbs/audio-tsne-viewer.jpg",
+		"summary":[
+			"Navigate an interactive playback application of audio samples embedded in 2d via t-SNE algorithm (pre-analyzed)"
+		]
+	},
+	"ConvnetOSC": {
+		"title": "ConvnetOSC",
+		"description": "ConvnetOSC",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetOSC",
+		"thumb":"/images/guides_thumbs/convnetOSC.jpg",
+		"summary":[
+			"Extract feature vector from real-time webcam stream",
+			"Send image feature vector over OSC"
+		]
+	},
+	"ConvnetClassifier": {
+		"title": "Convnet classifier",
+		"description": "Convnet classifier",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetClassifier",
+		"thumb":"/images/guides_thumbs/convnet-classifier.jpg",
+		"summary":[
+			"Extract feature vectors from incoming webcam stream",
+			"Train a real-time multi-class classifier of images"
+		]
+	}, 
+	"ConvnetRegressor": {
+		"title": "Convnet regressor",
+		"description": "Convnet regressor",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetRegressor",
+		"thumb":"/images/guides_thumbs/convnet-regressor.jpg",
+		"summary":[
+			"Extract feature vectors from incoming webcam stream",
+			"Control a set of sliders via regression over feature vectors"
+		]
+	}, 
+	"ConvnetPredictor": {
+		"title": "Convnet predictor",
+		"description": "Convnet predictor",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetPredictor",
+		"thumb":"/images/guides_thumbs/convnet-predictor.jpg",
+		"summary":[
+			"Extract feature vectors from incoming webcam stream",
+			"Control a set of sliders via regression/classification of feature vectors"
+		]
+	}, 
+	"ConvnetViewer": {
+		"title": "Convnet viewer",
+		"description": "Convnet viewer",
+		"category": "openframeworks",
+		"link":"/guides/ConvnetViewer",
+		"thumb":"/images/guides_thumbs/convnets.jpg",
+		"summary":[
+			"Analyze an image or webcam stream with a convnet",
+			"View the network's activation maps layer-by-layer"
+		]
+	}, 
+	"DoodleClassifier": {
+		"title": "Doodle classifier",
+		"description": "Doodle classifier",
+		"category": "openframeworks",
+		"link":"/guides/DoodleClassifier",
+		"thumb":"/images/guides_thumbs/doodle-classifier.jpg",
+		"summary":[
+			"Train an image classifier to recognize different categories of your drawings (doodles)",
+			"Send classification results over OSC to drive some interactive application"
+		]
+	}, 
+	"FaceClassifier": {
+		"title": "Face classifier",
+		"description": "Face classifier",
+		"category": "openframeworks",
+		"link":"/guides/FaceClassifier",
+		"thumb":"/images/guides_thumbs/face-classifier.jpg",
+		"summary":[
+			"Use face tracker to analyze facial expressions or poses",
+			"Train a real-time multi-class classifier of facial expressions"
+		]
+	}, 
+	"FaceRegressor": {
+		"title": "Face regressor",
+		"description": "Face regressor",
+		"category": "openframeworks",
+		"link":"/guides/FaceRegressor",
+		"thumb":"/images/guides_thumbs/face-regressor.jpg",
+		"summary":[
+			"Use face tracker to analyze facial expressions or poses",
+			"Train real-time regression to control sliders according to facial expression"
+		]
+	},
+	"FacePredictor": {
+		"title": "Face predictor",
+		"description": "Face predictor",
+		"category": "openframeworks",
+		"link":"/guides/FacePredictor",
+		"thumb":"/images/guides_thumbs/face-predictor.jpg",
+		"summary":[
+			"Use face tracker to analyze facial expressions or poses",
+			"Train real-time regression and classification to control sliders according to facial expression"
+		]
+	},
+	"Gobot": {
+		"title": "Gobot",
+		"description": "Gobot",
+		"category": "openframeworks",
+		"link":"/guides/Gobot",
+		"thumb":"/images/guides_thumbs/goboard.jpg",
+		"summary":[
+			"Scrape screen pixels and detect Go board position",
+			"Have a convnet make move recommendations for human player"
+		]
+	}, 
+	"ImageTSNEViewer": {
+		"title": "Image t-SNE viewer",
+		"description": "Image t-SNE viewer",
+		"category": "openframeworks",
+		"link":"/guides/ImageTSNEViewer",
+		"thumb":"/images/guides_thumbs/image-tsne.jpg",
+		"summary":[
+			"Navigate an interactive viewer of images embedded in 2d via t-SNE algorithm (pre-analyzed)"
+		]
+	}, 
+	"ImageTSNELive": {
+		"title": "Image t-SNE live",
+		"description": "Image t-SNE live",
+		"category": "openframeworks",
+		"link":"/guides/ImageTSNELive",
+		"thumb":"/images/guides_thumbs/image-tsne-live.jpg",
+		"summary":[
+			"t-SNE and assign to grid a dataset of images (in-application)",
+			"Navigate an interactive viewer containing the arranged images"
+		]
+	},
+	"Pix2Pix": {
+		"title": "pix2pix tutorial",
+		"description": "pix2pix tutorial",
+		"category": "openframeworks",
+		"link":"/guides/Pix2Pix",
+		"thumb":"/images/guides_thumbs/pix2pix.jpg",
+		"summary":[
+			"A tutorial on neural image translation with pix2pix",
+			"A survey of creative works using pix2pix"
+		]
+	}, 
+	"ReverseImageSearchFast": {
+		"title": "Reverse image search (fast)",
+		"description": "Reverse image search",
+		"category": "openframeworks",
+		"link":"/guides/ReverseImageSearchFast",
+		"thumb":"/images/guides_thumbs/reverse-image-search-fast.jpg",
+		"summary":[
+			"Extract feature vector in real-time from an image/video/webcam/screengrabber",
+			"Quickly retrieve k nearest neighbors to that image"
+		]
+	},
+	"ReverseObjectSearchFast": {
+		"title": "Reverse object search",
+		"description": "Reverse object search",
+		"category": "openframeworks",
+		"link":"/guides/ReverseObjectSearchFast",
+		"thumb":"/images/guides_thumbs/reverse-object-search.jpg",
+		"summary":[
+			"Detect salient objects in image/video/webcam stream",
+			"Quickly retrieve k nearest neighbors of each detected object"
+		]
+	},
+	"YoloLive": {
+		"title": "Yolo (fast object detection) live",
+		"description": "Yolo (fast object detection) live",
+		"category": "openframeworks",
+		"link":"/guides/YoloLive",
+		"thumb":"/images/guides_thumbs/yolo-live.jpg",
+		"summary":[
+			"Detect salient objects in image/video/webcam/screengrabber"
+		]
+	},
+	"Contribute": {
+		"title": "Contribute!",
+		"description": "Contribute!",
+		"category": "python openframeworks",
+		"link":"/guides/Contribute/",
+		"thumb":"/images/guides_thumbs/default.jpg",
+		"summary":[
+			"How to contribute a guide to ml4a"
+		]
 	}
+
+
 }

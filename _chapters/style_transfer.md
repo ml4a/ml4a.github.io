@@ -122,6 +122,7 @@ what do the parameters do
 # Style transfer in other domains
 
 neural doodle 
+neural-doodle2.png
 
 style is a nebulous term
 

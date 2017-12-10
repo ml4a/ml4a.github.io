@@ -17,13 +17,15 @@ header_quote: "lovelace"
 
 今天，大多数科学家警示我们不要过度使用类比，因为神经网络仅是被设计来解决机器学习的问题的，并非精确描绘人脑。然而，把神经网络核心单元比作简化的生物神经元的隐喻已深植人们的脑海。生物神经元到人工神经元的发展可以总结为下述图像。
 
-{% include neurons.html %}
+{% include figure_multi.md path1="/images/neuron-anatomy.jpg"
+caption1="Anatomy of a biological neuron<br/>Source: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
+caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="Artificial neuron<br/>&nbsp;" %}
 
 [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) 在 20 世纪 50 年代后期发明了[感知器（Perceptron）](https://en.wikipedia.org/wiki/Perceptron)，也就是我们在[上一章](/ml4a/machine_learning/)看到的线性分类器，这对于神经网络是很大的进步。被美国海军公开资助的 Mark 1 感知器是用一串光电管，电位器，和电机来实现图像识别功能。它能高效地执行复杂的电路操作，以至于纽约时报在 1958 年预测这个机器不久就能“[走路，说话，观察，书写，自我复制和意识到自身的存在](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE)”。
 
 之前的大肆宣传使得科幻作家们相信这在未来几十年就会成真，但学术圈远比他们淡定。Marvin Minsky 和 Seymour Papert 1969 年的文章 [感知器（Perceptrons）](https://en.wikipedia.org/wiki/Perceptrons_(book))中，描绘了许多——[即便是非常琐碎的](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)——限制，不经意间导致公众和学术圈对人工智能的[兴趣减弱](https://en.wikipedia.org/wiki/AI_winter)，他错误地假设电脑的计算能力会继续以 [极快而危险的速度增长](https://en.wikipedia.org/wiki/Moore%27s_law)。即便是图灵自己也预言在 2000 年机器会具备类人的智力水平——恰好在[千年虫问题](https://en.wikipedia.org/wiki/Year_2000_problem)引起恐慌的这一年。
 
-尽管在 80 和 90 年代神经网络有一系列不显眼但重大的进步[[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://deeplearning.cs.cmu.edu/pdfs/Hochreiter97_lstm.pdf)，它们在 2000 年初时都处在二线，而大多数商业和工业中的机器学习应用都偏好[支持矢量机（support vector machines）](https://en.wikipedia.org/wiki/Support_vector_machine)和许多其他手段。[从 2009 年](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf)，尤其是[ 2012  年开始](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/)，神经网络重新成为机器学习算法的主旋律。神经网络的复兴很大程度上是由于[卷积神经网络](/2016/02/02/convnets.html)和 [递归神经网络](/2016/02/10/RNNs.html)的出现所带来的，它们在解决视觉和听觉的关键问题时，显著地（甚至是戏剧性地）超过了之前最厉害的方法。但更有趣的是，它们有许多之前没有见过的新应用和属性，尤其是一些应用完全激起了艺术家们和各种圈子的人的兴趣。这本书会在现在开始的几个章节详细讲到卷积神经网络。
+尽管在 80 和 90 年代神经网络有一系列不显眼但重大的进步[[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://www.bioinf.jku.at/publications/older/2604.pdf)，它们在 2000 年初时都处在二线，而大多数商业和工业中的机器学习应用都偏好[支持矢量机（support vector machines）](https://en.wikipedia.org/wiki/Support_vector_machine)和许多其他手段。[从 2009 年](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf)，尤其是[ 2012  年开始](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/)，神经网络重新成为机器学习算法的主旋律。神经网络的复兴很大程度上是由于[卷积神经网络](/2016/02/02/convnets.html)和 [递归神经网络](/2016/02/10/RNNs.html)的出现所带来的，它们在解决视觉和听觉的关键问题时，显著地（甚至是戏剧性地）超过了之前最厉害的方法。但更有趣的是，它们有许多之前没有见过的新应用和属性，尤其是一些应用完全激起了艺术家们和各种圈子的人的兴趣。这本书会在现在开始的几个章节详细讲到卷积神经网络。
 
 尽管这些年提出了许多机器学习算法，我们还是主要学习神经网络，是因为：
  
@@ -91,7 +93,7 @@ $$
 
 一开始，这个方程可能看起来很复杂且任意，但是它其实有一个非常简单的外形。如果我们把输入值 $$z$$ 换成  $$\sigma(z)$$ 就会看得到。
 
-{% include figure.html path="/images/figures/sigmoid.png" caption="Sigmoid activation function" %}
+{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="Sigmoid activation function" %}
 
 我们可以看到 $$\sigma(z)$$ 的效果类似于一种“压缩函数”，把之前无界的输出值的范围压缩为 0 到 1。在中心，当$$z = 0$$， $$\sigma(0) = 1/(1+e^{0}) = 1/2$$。当 $$z$$ 等于很大的负数，分母中的 $$e^{-z}$$ 呈几何级数增长，此时 $$\sigma(z)$$ 趋近于 0。相反地，当 $$z$$ 等于很大的正数，$$e^{-z}$$ 趋近于 0，此时  $$\sigma(z)$$ 趋近于 1。
 
@@ -99,13 +101,13 @@ sigmoid 函数是连续可微的，而它的导数，很简单地，是 $$\sigma
 
 过去几十年中，sigmoid 神经元是大多数神经网络的基础，但是近几年它已然失宠。原因我们稍后详解，简单来说就是，人们创造了有很多层的神经网络，因为[vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem)很难用 sigmoid 方法来训练神经网络。因而，大多数转而使用其他激活函数，修正线性单元（rectified linear unit），简称为 ReLU。尽管名字有点拗口，它的公式简单表述为 $$R(z) = max(0, z)$$。
 
-{% include figure.html path="/images/figures/relu.png" caption="ReLU activation function" %}
+{% include figure_multi.md path1="/images/figures/relu.png" caption1="ReLU activation function" %}
 
 换句话说，ReLUs 令所有的正数保持原样，但是会把所有的负数变为 0。尽管新的激活函数正在发展，大多数深度神经网络还是在用 ReLU 或者它的一个[很接近的变体](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))。
 
 不论用的是哪种激活函数，我们都可以用这个标准图来可视化一个神经元，它直观地展示了一个神经元的行为。
 
-{% include figure.html path="/images/figures/neuron.png" caption="An artificial neuron" %}
+{% include figure_multi.md path1="/images/figures/neuron.png" caption1="An artificial neuron" %}
 
 上述图表展示了一个有三个输入值，一个输出值  $$y$$ 的神经元。一如既往，我们先计算输入值的加权总和，然后令这个值通过激活函数 $$\sigma$$。
 
@@ -121,7 +123,7 @@ $$
 
 我们已经讲过了神经元，现在可以给出神经网络的定义了。一个神经网络是由一系列层层（layers）排列的神经元组成的，每一层的神经元都与相邻层级的神经元相关联。
 
-{% include figure.html path="/images/figures/neural-net.png" caption="A 2-layer neural network" %}
+{% include figure_multi.md path1="/images/figures/neural-net.png" caption1="A 2-layer neural network" %}
 
 注意当我们在计算一个神经网络中有多少神经层的时候，我们只计算那些有连接流入它们的那些神经层（略掉第一，或者说是输入层（input layer））。因此，上图中应该有两层神经网络并且其中之一是隐层（hidden layer）。它包含三个输入神经元，两个神经元在隐层，还有一个输出神经元。
 
@@ -168,23 +170,25 @@ $$
 
 现在让我们来解决一些真实世界中，使用神经网络进行分类的例子：识别和标记手写数字的图像。我们将会用到 [MNIST 数据集](http://yann.lecun.com/exdb/mnist/)，这个数据集有 60,000 标记过的手写数字图像，每个大小 28x28 像素。能多大程度对这个数据集精确分类是机器学习研究通用的一个基准评效测试。下面是一些数据集中随机的样本图片。
 
-{% include figure.html path="/images/figures/fig_mnist_groundtruth.png" caption="A random sample of MNIST handwritten digits" %}
+{% include figure_multi.md path1="/images/figures/fig_mnist_groundtruth.png" caption1="A random sample of MNIST handwritten digits" %}
 
 我们要搭一个神经网络来对这些图像进行分类，方法是，在第一层输入层给出初始的图像像素数据，然后设定 10 个输出类别，分别是从 0 到 9。因为这些都是灰度图像，每个像素都有从 0（黑） 到 255（白） 的亮度值。所有的 MNIST 都是 28x28，所以它们每个有 784 个像素。我们可以把 784 个像素的数据展开成一个数列，依次输入，如下图所示。
 
-{% include figure.html path="/images/figures/mnist-input.png" caption="How to input an image into a neural network" %}
+{% include figure_multi.md path1="/images/figures/mnist-input.png" caption1="How to input an image into a neural network" %}
 
 最重要的事是，要注意尽管这似乎比之前章节简单的 3x2x1 网络酷炫很多，它和之前的原理是一模一样的，仅仅是多了许多神经元而已。每个第一层隐层的神经元接收到……
 
 
 {% include demo_insert.html name="MNIST forward pass" parent_div="post" %}
 
-# 总结
-
-TBD
 
 # 推荐阅读
 
- - nielsen
- - kurekenov
+{% include further_reading.md title="Neural Networks and Deep Learning" author="Michael Nielsen" link="http://neuralnetworksanddeeplearning.com/" %} 
+
+{% include further_reading.md title="A 'Brief' History of Neural Nets and Deep Learning" author="Andrey Kurenkov" link="http://www.andreykurenkov.com/writing/a-brief-history-of-neural-nets-and-deep-learning/" %} 
+
+{% include further_reading.md title="Demo: Visualization of artificial neural networks" author="Mostafa Abdelraouf" link="http://experiments.mostafa.io/public/ffbpann/" %} 
+
+{% include further_reading.md title="Video: Neural Networks Demystified" author="Welch Labs" link="https://www.youtube.com/watch?v=bxe2T-V8XRs" %} 
  

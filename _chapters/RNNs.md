@@ -106,3 +106,12 @@ next gen text
 https://twitter.com/robinsloan/status/832710183432237056
 
 https://metamind.io/research/learning-when-to-skim-and-when-to-read
+
+http://www.topbots.com/exploring-lstm-tutorial-part-1-recurrent-neural-network-deep-learning/
+https://medium.com/towards-data-science/memory-attention-sequences-37456d271992
+
+
+densecap.png
+neural-storyteller.jpg
+neural-storyteller2.png
+samim-neural-storyteller.jpg

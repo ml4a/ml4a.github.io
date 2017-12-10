@@ -1,14 +1,9 @@
-{% assign image_path = include.image_path %}
-{% assign quote = include.quote %}
+{% assign image = include.image %}
+{% assign text = include.text %}
 
-<div id="quote_outer">
-	<img src="{{ image_path }}" />
-	<div id="quote_inner">
-		<div id="quote_content">
-			“{{ quote.text }}”
-			<div id="quote_person">
-				<a href="{{ site.data.quotes[0].link }}">{{ quote.person}}</a>
-			</div>
-		</div>
+<div id="header_outer">
+	<img src="{{ image }}" />
+	<div id="header_inner">
+		{{ text }}
 	</div>
 </div>

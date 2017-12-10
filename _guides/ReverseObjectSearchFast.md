@@ -1,11 +1,9 @@
 ---
 layout: guide
-title: "ReverseObjectSearchFast"
+title: "Reverse Object Search Fast"
 ---
 
-### What is it?
-
-This app demonstrates how to quickly do object detection on an image and retrieve `k` nearest neighbors to each of the found objects. It is mostly identical to [ReverseImageSearchFast](https://github.com/ml4a/ml4a-ofx/tree/master/apps/ReverseImageSearchFast), except that it operates over multiple subsets of the image (detected objects) simultaneously rather than over the whole image itself.
+This app demonstrates how to quickly do object detection on an image and retrieve `k` nearest neighbors to each of the found objects. It is mostly identical to [Reverse Image Search Fast](/guides/ReverseImageSearchFast), except that it operates over multiple subsets of the image (detected objects) simultaneously rather than over the whole image itself.
 
 The below screenshot shows the basic functionality. A query image (top-center) is analyzed, and a number of objects are detected ("soup bowl", "club sandwich", etc). Below it is a row of similar images for each object. Similar images are computed from possibly hundreds of thousands of candidates, loaded from disk, and displayed on the app in less than 1 second, creating opportunities to be used in real-time.
 
@@ -14,9 +12,10 @@ The below screenshot shows the basic functionality. A query image (top-center) i
 
 ## How it works
 ---
+
 A large dataset of images is pre-analyzed by a convolutional neural network trained to detect and label salient objects found in each image. The detected objects are recorded, along with their original file paths, bounding boxes, probabilities/confidences, and feature vectors (a 1024-length vector extracted from the second to last layer of a ["YOLO" convnet](http://pjreddie.com/darknet/yolo/)). 
 
-After all feature vectors are extracted, they are transformed into a lower dimensional subspace (for dimensionality reduction) using a [random matrix projection](http://stats.stackexchange.com/questions/235632/pca-vs-random-projection). It can optionally be done with principal component analysis instead, which is probably a bit more accurate, but runtime can be very high for a large corpus.
+After all feature vectors are extracted, they are transformed into a lower dimensional representation (for dimensionality reduction) using a [random matrix projection](http://stats.stackexchange.com/questions/235632/pca-vs-random-projection). It can optionally be done with principal component analysis instead, which is probably a bit more accurate, but runtime can be very high for a large corpus.
 
 After feature extraction and dimensionality reduction, the results are serialized into a `.dat` file so you can load them back later.  
 
@@ -79,13 +78,9 @@ Unzip them and place the images into side-by-side folders 'train', 'test', and '
 
 Next, download the saved vectors. There are 5 options, which vary according to their dimensionality: 16, 32, 64, 128, and 256. The tradeoff is that the bigger ones are more accurate, but are larger, take longer to load into memory, and query times are longer as well. I find 32 to be a good compromise but your results and the demands of your use case may vary.
 
-All can be downloaded from Dropbox via the following links: 
+All can be downloaded from Dropbox via the following link: 
 
-- [mscoco_145k_rp16 (265 MB)](https://www.dropbox.com/s/k1pnanmyt62jn1q/mscoco_145k_rp16.dat?dl=0)
-- [mscoco_145k_rp32 (497 MB)](https://www.dropbox.com/s/y7uzxqfskes1n8t/mscoco_145k_rp32.dat?dl=0)
-- [mscoco_145k_rp64 (964 MB)](https://www.dropbox.com/s/x9df05b1xt35mbo/mscoco_145k_rp64.dat?dl=0)
-- [mscoco_145k_rp128 (1.9 GB)](https://www.dropbox.com/s/udf9qpu47r5rfpt/mscoco_145k_rp128.dat?dl=0)
-- [mscoco_145k_rp256 (3.8 GB)](https://www.dropbox.com/s/ipla5lwylojsxbo/mscoco_145k_rp256.dat?dl=0)
+[https://drive.google.com/drive/folders/0B3WXSfqxKDkFRE05MXY1U3c0YVU](https://drive.google.com/drive/folders/0B3WXSfqxKDkFRE05MXY1U3c0YVU)
 
 Afterwards, you may load them as usual following the method in the previous section. Make sure `baseDir` is pointing towards the parent folder of `train`, `test`, and `val`.
 
@@ -108,3 +103,8 @@ There are several parameters to be aware of:
 
 Another thing to be aware of is that it's often a good idea to save smaller resolution/lower qualities images of your dataset, because if the image is large, then loading several dozen from disk for each detection may take much more runtime than the actual similarity calculation.
 
+## Why it's useful and ideas for future development
+
+{% include todo.html note="elaborate..." %} 
+
+Besides for the obvious use cases, like real-time substitution of objects in a video stream, there are more practical uses for this procedure. Being able to quickly retrieve a set of nearest neighbor objects can facilitate the rapid labeling (or relabeling) of related objects for developing new datasets.

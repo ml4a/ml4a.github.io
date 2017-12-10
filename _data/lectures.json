@@ -1,10 +1,39 @@
-{"opendot":[{
+{"misc":[{
+	"youtube_id": "mbkbMvMxLmg",
+	"title": "From principal components to puppyslugs",
+	"date": "6/21/2017",
+	"thumbnail": "/images/classes/misc/thumbnail_01.png",
+	"dropbox": "",
+	"bookmarks": [
+		{"title":"Generative models", "m":4, "s":10, "disp":"4:10"},
+		{"title":"Why sampling images is hard", "m":5, "s":58, "disp":"5:58"},
+		{"title":"Principal component analysis", "m":9, "s":57, "disp":"9:57"},
+		{"title":"Eigenfaces", "m":15, "s":15, "disp":"15:15"},
+		{"title":"Neural networks", "m":29, "s":28, "disp":"29:28"},
+		{"title":"Representation learning and feature extraction", "m":48, "s":26, "disp":"48:26"},
+		{"title":"Autoencoders", "m":61, "s":31, "disp":"1:01:31"},
+		{"title":"Generative adversarial networks", "m":67, "s":31, "disp":"1:07:31"},
+		{"title":"BEGAN, InfoGAN, DiscoGAN, StackGAN, ArtGAN", "m":77, "s":44, "disp":"1:17:44"},
+		{"title":"Deep generator networks", "m":81, "s":50, "disp":"1:21:50"},
+		{"title":"Conditional GANs (pix2pix)", "m":86, "s":25, "disp":"1:26:25"},
+		{"title":"CycleGANs, horse2zebra", "m":94, "s":27, "disp":"1:34:27"},
+		{"title":"Skip-thought vectors and WaveNets", "m":97, "s":11, "disp":"1:37:11"},
+		{"title":"Class synthesis, deepdream, and puppyslugs", "m":101, "s":08, "disp":"1:41:08"}
+	],
+	"summary": [
+		"Generative modeling of images",
+		"Principal component analysis and Eigenfaces",
+		"Autoencoders, generative adversarial networks, pix2pix",
+		"Deepdream, class synthesis, and puppyslugs",
+		"Taught by <a href=\"https://twitter.com/genekogan\">@genekogan</a>"
+	]}
+],
+"opendot":[{
 	"youtube_id": "yHOmMCY589Y",
 	"title": "Why machine learning for artists",
 	"date": "11/21/2016",
 	"thumbnail": "/images/classes/opendot/thumbnail_01.png",
 	"dropbox": "https://www.dropbox.com/s/fxz3pbyoj2se91j/opendot_11.21_01.mp4?dl=1",
-	
 	"bookmarks": [
 		{"title":"Introduction, about the class", "m":0, "s":0, "disp":"0:00"},
 		{"title":"Neither democrats nor dictators; Why ML for artists", "m":8, "s":4, "disp":"8:04"},

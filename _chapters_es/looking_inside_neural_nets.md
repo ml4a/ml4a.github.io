@@ -12,11 +12,11 @@ En el [capítulo anterior](/ml4a/neural_networks), vimos cómo entrenar una red 
 
 Consideremos una red entrenada para clasificar dígitos MNIST escritos a mano, excepto que a diferencia del capítulo anterior, haremos un mapeo directo desde la capa de entrada hasta la capa de salida de tal manera que nuestra red neuronal no tendrá capas ocultas. La red se verá de la siguiente manera:
 
-{% include figure.html path="/images/figures/mnist_1layer.png" caption="Red neuronal de 1 capa para MNIST" %}
+{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="Red neuronal de 1 capa para MNIST" %}
 
 Recuerda que cuando pasamos una imagen a través de la red neuronal, podemos visualizar el diagrama de la red al "desenrollar" los píxeles de la imágen en una sola columna de neuronas, demostrado en la figura de la izquierda. Concentrémonos en las conexiones de la primera neurona de salida, que llamaremos $$z$$. Etiquetaremos cada una de las neuronas de entrada y sus pesos correspondientes como $$x_i$$ y $$w_i$$.
 
-{% include figure.html path="/images/figures/weights_analogy_1.png" caption="Las conexiones de pesos hacia una neurona de salida" %}
+{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="Las conexiones de pesos hacia una neurona de salida" %}
 
 Ahora veamos los pesos en una cuadrícula de 28x28, donde la posición de cada peso coincide con su píxel correspondiente. La representación anterior a la derecha se ve diferente a la siguiente figura, aunque ambas expresan la misma ecuación $$z=b+\sum{w x}$$.
 
@@ -24,7 +24,7 @@ Ahora veamos los pesos en una cuadrícula de 28x28, donde la posición de cada p
 
 Ahora imaginemos una red neuronal entrenada con esta arquitectura y visualizemos los pesos aprendidos que sirven de entrada a la primera neurona de salida, la cual es responsable de clasificar el dígito 0. Representaremos los pesos más bajos de negro y los más altos de blanco. 
 
-{% include figure.html path="/images/figures/rolled_weights_mnist_0.png" caption="Visualizando los pesos para la neurona 0 de un clasificador MNIST" %}
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="Visualizando los pesos para la neurona 0 de un clasificador MNIST" %}
 
 Mira con cuidado... se parece un poco a un 0 borrozo? La razón por la que parece así quedará claro si pensamos en lo que esta neurona está haciendo. Debido a que es "responsable" de clasificar 0s, su objetivo es generar un valor alto para los 0s y un valor bajo para los dígitos que no sean 0. La neurona podrá obtener salidas altas para los 0s si asocia pesos altos con píxeles que _tienden_ a ser altos en imágenes de 0s. De la misma manera, puede obtener salidas relativamente bajas para dígitos que no son 0 al asociar pesos bajos con píxeles que tienden a ser altos en imágenes de dígitos que non son 0. Por ejemplo, el centro relativamente negro de la imágen de los pesos se da ya que la mayoría de las imágenes de 0s no corresponden con esta área (dado el agujero del 0).
 
@@ -33,6 +33,7 @@ Veamos los pesos que la red neuronal aprendió para cada una de las neuronas de 
 {% include figure.html path="/images/figures/rolled_weights_mnist.png" caption="Visualizando los pesos para todas las neuronas de salida del clasificador MNIST" %}
 
 Supongamos que usemos una imágen de un 2 como entrada. Podemos anticipar que la neurona responsable de clasificar los 2 tendrá un valor alto porque sus pesos son tales que corresponden con los píxeles que tienden a representar un 2. En el caso de otras neuronas, _algunos_ de los pesos también corresponderán a píxeles altos. Sin embargo, coincidirán mucho menos y esos valores altos serán negados por pesos bajos en la neurona del 2. La función de activación no cambia eso, porque es monótona con respecto a la entrada - es decir, cuanto mayor la entrada, mayor será la salida.    
+
 Podemos interpretar que los pesos están formando modelos de las clases de salida. Esto es realmente fascinante porque nunca le _dijimos_ a nuestra red de antemano lo que era un dígito y sin embargo logró parecerse a esa clase de objectos. Esto sugiere lo verdaderamente especial en las redes neuronales: forman _representaciones_ de los objectos con la cual son entrenados - y resulta que estas representaciones no sólo son útiles para la clasificación y predicción. Hablaremos más sobre esta capacidad de representación cuando lleguemos a las [redes neuronales convolucionales](/ml4a/convnets/) más adelante... 
 
 Quizás esta discusión te ha generado más preguntas que respuestas. Por ejemplo, qué ocurre con los pesos cuando añadimos capas ocultas? La respuesta a esto se basará en algo que vimos en la sección anterior. Pero antes de llegar a eso, será beneficioso examinar el rendimiento de nuestra red neuronal, y en particular considerar qué tipo de errores tiende a cometer. 
@@ -41,7 +42,7 @@ Quizás esta discusión te ha generado más preguntas que respuestas. Por ejempl
 
 De vez en cuando nuestra red neuronal cometerá errores con los que podremos simpatizar. A mi parecer, no se me hace tan obvio que el primer dígito en la siguiente imagen sea un 9. Se parece a un 4, que fue lo que nuestra red pensó que era. De la misma manera, podemos entender por qué el segundo dígito, un 3, fue clasificado erróneamente como un 8. Por otro lado, los errores del tercer y cuarto dígito son más serios. Cualquier persona podría reconocerlos como un 3 y un 2, respectivamente. Sin embargo, nuestra red neuronal pensó que el tercer dígito era un 5 y no tiene mucha idea sobre el cuarto dígito. 
 
-{% include figure.html path="/images/figures/mnist-mistakes.png" caption="Una selección de errores cometidos por nuestra red de 1 capa MNIST. Los dos de la izquierda son de esperarse; los dos de la derecha son más preocupantes." %}
+{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="Una selección de errores cometidos por nuestra red de 1 capa MNIST. Los dos de la izquierda son de esperarse; los dos de la derecha son más preocupantes." %}
 
 Investiguemos el rendimiento de la red neuronal del capítulo anterior, que logró alcanzar una precisión de 90% con los dígitos MNIST. Una manera de hacer esto es con una matriz de confusión: una manera de listar nuestras predicciones en una tabla. En la siguiente matriz de confusión, las 10 filas corresponden a las etiquetas reales del conjunto de datos MNIST y las columnas representan las etiquetas predichas. Por ejemplo, la celda en la cuarta fila y la sexta columna nos dice que hubo 71 casos donde un 3 real fue etiquetado por la red neuronal como un 5. La diagonal verde en esta matriz nos muestra la cantidad de predicciones correctas. Todas las otras celdas muestran errores. 
 
@@ -51,7 +52,7 @@ Coloque el cursor del ratón sobre cada celda para obtener una muestra de las in
 
 También podemos aprender algo importante al trazar la muestra más alta de cada celda de la matriz de confusión, como puedes ver a continuación: 
 
-{% include figure.html path="/images/figures/mnist-confusion-samples.png" caption="Muestras de máxima confianza de una matriz de confusión MNIST" %}
+{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="Muestras de máxima confianza de una matriz de confusión MNIST" %}
 
 Esto nos da una impresión de cómo la red aprende a hacer ciertas predicciones. En las primeras dos columnas podemos ver que la red parece estar buscando los círculos que predicen un 0 y las líneas delgadas que predicen un 1. La red se confunde cuando otros dígitos presentan esas mismas características.
 
@@ -59,7 +60,7 @@ Esto nos da una impresión de cómo la red aprende a hacer ciertas predicciones.
 
 Hasta ahora sólo hemos visto redes neuronales entrenadas para identificar dígitos. Aunque hay mucho que aprender con este ejemplo, en realidad es un caso bastante simple: sólo tenemos 10 clases, bien definidas y con relativamente poca variación interna entre ellas. En la mayoría de los casos del mundo real, estamos tratando de clasificar imágenes en circunstancias menos ideales. Veamos el rendimiento de esta misma red neuronal aplicado a [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), otro conjunto de datos etiquetados de 60.000 imágenes a color (de 32x32 píxeles) de aviones, automóviles, pájaros, gatos, venados, perros, ranas, caballos, barcos y camiones. Aquí está una muestra aleatoria de imágenes de CIFAR-10.
 
-{% include figure.html path="/images/figures/cifar-grid.png" caption="Una muestra aleatoria del conjunto de imágenes CIFAR-10" %}
+{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="Una muestra aleatoria del conjunto de imágenes CIFAR-10" %}
 
 De inmediato, nos queda claro que estas clases de imágenes son muy diferentes a las que llevamos investigando. Por ejemplo, los gatos pueden aparecer orientados en diferentes direcciones, presentar colores y pelaje diferente, estar estirados o encogidos, y muchas otras variaciones que los dígitos escritos a mano no presentaron. 
 
@@ -67,7 +68,8 @@ Efectivamente, si entrenamos una red neuronal de dos capas con estas imágenes, 
 
 Repitamos el experimento anterior de observar los pesos de una red neuronal de sólo 1 capa sin capas ocultas, excepto que esta vez utilizaremos las imágenes de CIFAR-10. Los pesos aparecen a continuación. 
 
-{% include figure.html path="/images/figures/rolled_weights_cifar.png" caption="Visualizando los pesos para un clasificador CIFAR-10 de 1 capa" %} 
+{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="Visualizando los pesos para un clasificador CIFAR-10 de 1 capa" %}
+
 
 Comparados a los pesos de MNIST, éstos tienen menos rasgos discernibles. Algunos detalles sí tienen sentido: los aviones y los barcos presentan tonos azules en el borde exterior, lo cual refleja que estas imágenes tienden a tener cielos azules o agua a su alrededor. Ya que la imágen de ponderaciones para cualquiera de estas clases está relacionada con un promedio de las imágenes pertenecientes a esa clase, podemos esperar que salgan colores promedios. Sin embargo ya que las clases de CIFAR-10 son mucho menos consistentes internamente, es más díficil reconocer patrones discernibles. 
 
@@ -81,7 +83,7 @@ Su rendimiento es muy pobre - alcanza apenas un 37% de precisión. Claramente nu
 
 Hasta ahora nos hemos enfocado en redes neurales de una capa, donde las entradas se conectan directamente a las salidas. ¿Cual es el efecto de las capas ocultas en las redes neuronales? Intentemos insertar una capa intermedia de 10 neuronas a nuestra red de MNIST. Nuestra red se vería de la siguiente manera.
 
-{% include figure.html path="/images/figures/mnist_2layers.png" caption="Una red de dos capas para MNIST" %}
+{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="Una red de dos capas para MNIST" %}
 
 En cierto sentido, se podría decir que "forzamos" a nuestra red original de 1 capa a aprender modelos para cada clase porque cada uno de los pesos se conectó directamente a una sola clase. En este caso ya no tenemos los 784 píxeles de entrada conectándose directamente a las clases de salida. Esta red es más complicada ya que los pesos en la capa oculta afectan _todas las diez_ neuronas de la capa de salida. ¿Cómo se ven esos pesos ahora?
 
