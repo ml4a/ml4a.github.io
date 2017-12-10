@@ -82,7 +82,7 @@ $$
 
 Aunque la ecuación parece complicada y arbitraria, en realidad tiene una forma bastante simple. La podemos ver si trazamos el valor de $$\sigma(z)$$ como función de la entrada $$z$$.
 
-{% include figure.html path="/images/figures/sigmoid.png" caption="Sigmoid activation function" %}
+{% include figure.html path="/images/figures/sigmoid.png" caption="Función de activacion sigmoide" %}
 
 Podemos ver que $$\sigma(z)$$ actúa como una especie de función "aplastadora", comprimiendo nuestra salida a un rango de 0 a 1. En el centro, donde $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. Para valores negativos grandes de $$z$$, el término $$e^{-z}$$ en el denominador crece exponencialmente, y $$\sigma(z)$$ se aproxima a 0. Al contrario, valores positivos grandes de $$z$$ reducen $$e^{-z}$$ hacia 0, y $$\sigma(z)$$ se aproxima a 1. 
 
@@ -90,13 +90,13 @@ La función sigmoide es continuamente diferenciable, y su derivada convenienteme
 
 Las funciones sigmóides fueron la base de la mayoría de las redes neuronales por muchas décadas, aunque en años recientes han perdido popularidad. Explicaremos la razón en detalle en los próximos capítulos, pero la versión corta es que las redes neuronales de muchas capas se vuelven muy difíciles de entrenar dado el [problema de desaparición de gradiente](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). En su lugar, la mayoría de las redes neuronales actuales usan otro tipo de función de activación llamada _rectified linear unit_ o ReLU. A pesar del nombre complicado, se define simplemente como $$R(z) = max(0, z)$$.
 
-{% include figure.html path="/images/figures/relu.png" caption="ReLU activation function" %}
+{% include figure.html path="/images/figures/relu.png" caption="Función de activacion ReLU" %}
 
 En otras palabras, las ReLUs permiten el paso de todos los valores positivos sin cambiarlos, pero asigna todos los valores negativos a 0. Aunque existen funciones de activación aún más recientes, la mayoría de las redes neuronales de hoy utilizan ReLU o [una de sus variantes](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
 
 Independiente de la función de activación que utilizemos, podemos visualizar una neurona individual con el siguiente diagrama, una visual representativa e intuitiva del comportamiento de una neurona. 
 
-{% include figure.html path="/images/figures/neuron.png" caption="An artificial neuron" %}
+{% include figure.html path="/images/figures/neuron.png" caption="Una neurona artificial" %}
 
 Este diagrama muestra una neurona con tres entradas, que genera un único valor $$y$$ como salida. Como en el caso anterior, primero calculamos la suma ponderada de sus entradas, y después pasamos la suma a través de una función de activacion sigmoide $$\sigma$$.
 
@@ -111,7 +111,7 @@ Quizás te estás preguntando cuál es el propósito de una función de activaci
 
 Ahora que hemos descrito una neurona, podemos definir una red neuronal. Una red neuronal consiste en una serie de _capas_ de neuronas. Específicamente,  todas las neuronas de una capa se conectan a las neuronas de la siguiente capa. 
 
-{% include figure.html path="/images/figures/neural-net.png" caption="A 2-layer neural network" %}
+{% include figure.html path="/images/figures/neural-net.png" caption="Una red neuronal de 2 capas" %}
 
 Un detalle es que cuanto contamos el número de capas en una red neuronal, sólo contamos las capas con entradas (omitimos la primera _capa de entrada_). La figura anterior representa una red neuronal de 2 capas con 1 _capa oculta_. Contiene 3 neuronas de entrada, 2 neuronas en la capa oculta, y 1 neurona de salida. 
 
@@ -145,11 +145,11 @@ Recuerda también que las funciones de activación permiten capturar relaciones 
 
 Exploremos un problema real de clasificación: cómo reconocer y etiquetar dígitos escritos a mano. Usaremos un conjunto de datos llamado [MNIST](http://yann.lecun.com/exdb/mnist/), que contiene 60,000 imágenes de dígitos, cada una etiquetada y midiendo 28x28 píxeles. La exactitud de clasificación de MNIST se usa como un punto de referencia común en el mundo del aprendizaje de máquinas. A continuación presentamos una muestra aleatoria de imágenes de este conjunto de datos:
 
-{% include figure.html path="/images/figures/fig_mnist_groundtruth.png" caption="A random sample of MNIST handwritten digits" %}
+{% include figure.html path="/images/figures/fig_mnist_groundtruth.png" caption="Una muestra aleatoria de dígitos escritos a manos de MNIST" %}
 
 Para clasificar estas imágenes podemos configurar una red neuronal de tal modo que las entradas de nuestra primera capa sean los valores de cada píxel. La red también debe contar con 10 neuronas de salida, una para cada categoría de dígito de 0 a 9. Como estamos trabajando con imágenes a escala de grises, cada píxel tiene un valor de luminosidad entre 0 (negro) y 255 (blanco). Todas las imágenes de MNIST son de 28x28, asi que contienen 784 píxeles en total. Podemos organizar todos estos píxeles en una sola matriz de entradas, como en el siguiente diagrama:  
 
-{% include figure.html path="/images/figures/mnist-input.png" caption="How to input an image into a neural network" %}
+{% include figure.html path="/images/figures/mnist-input.png" caption="Como introducir una imagen en una red neuronal" %}
 
 Aunque esta red parece mucho más complicada que nuestra simpre red 3x2x1 del capítulo anterior, funciona de la misma manera, con muchas más neuronas. Cada una de las neuronas de la primera capa oculta recibe todas de las entradas de la primera capa. En la capa de salida ahora tenemos _diez_ neuronas en lugar de de una, pero igual que en el ejemplo anterior, conectamos todas esas neuronas con la capa oculta anterior. Asignamos una etiqueta a cada una de las neuronas de salida; la primera corresponde al dígito `0`, la segunda al dígito `1`, y así sucesivamente. 
 
