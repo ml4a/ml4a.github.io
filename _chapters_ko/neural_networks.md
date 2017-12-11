@@ -90,32 +90,34 @@ $$
 
 At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$.
 
-{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="Sigmoid activation function" %}
+{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="시그모이드 활성화 함수" %}
 
-We can see that $$\sigma(z)$$ acts as a sort of "squashing" function, condensing our previously unbounded output to the range 0 to 1. In the center, where $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. For large negative values of $$z$$, the $$e^{-z}$$ term in the denominator grows exponentially, and $$\sigma(z)$$ approaches 0. Conversely, large positive values of $$z$$ shrink $$e^{-z}$$ to 0, so $$\sigma(z)$$ approaches 1.
+무한대의 출력을 0에서 1사이로 응축시키므로 $$\sigma(z)$$를 압축 함수의 하나로 볼 수 있습니다. $$z = 0$$인 가운데에서는 $$\sigma(0) = 1/(1+e^{0}) = 1/2$$입니다. $$z$$가 아주 큰 음수이면, 분모의 $$e^{-z}$$가 아주 커져서 $$\sigma(z)$$가 0에 수렴합니다. 반대로, $$z$$가 아주 큰 양수이면 $$e^{-z}$$가 0에 가까지므로, $$\sigma(z)$$가 1에 수렴합니다.
 
-The sigmoid function is continuously differentiable, and its derivative, conveniently, is $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$. This is important because we have to use calculus to train neural networks, but don't worry about that for now.
+시그모이드 함수는 연속 미분 가능하고, 도함수는 간단하게 $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$입니다. 신경망을 훈련시키려면 미적분을 사용해야 하기 때문에 이런 도함수가 중요합니다만 당장은 너무 신경쓰지 마세요.
 
-Sigmoid neurons were the basis of most neural networks for decades, but in recent years, they have fallen out of favor. The reason for this will be explained in more detail later, but in short, they make neural networks that have many layers difficult to train due to the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). Instead, most have shifted to using another type of activation function, the rectified linear unit, or ReLU for short. Despite its obtuse name, it is simply defined as $$R(z) = max(0, z)$$.
+시그모이드 뉴런은 수십년간 대부분 신경망의 기본이었습니다만, 최근 몇 년동안 크게 선호도가 줄어 들었습니다. 그 이유는 나중에 자세히 설명하겠지만 간단히 말하면, 이 함수가 [그래디언트 소실 문제](https://en.wikipedia.org/wiki/Vanishing_gradient_problem)를 가지고 있어서 많은 레이어를 가진 신경망을 훈련시키기 어렵게 만들기 때문입니다. 대신에 대부분 다른 종류의 활성화 함수인 ReLU를 사용하고 있습니다. 이름을 봐서는 감을 잡기 어렵지만, 이 함수는 간단하게 $$R(z) = max(0, z)$$로 정의됩니다.
 
-{% include figure_multi.md path1="/images/figures/relu.png" caption1="ReLU activation function" %}
+{% include figure_multi.md path1="/images/figures/relu.png" caption1="ReLU 활성화 함수" %}
 
-In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+다른 말로 하면, ReLU는 모든 양수 값은 그냥 통과시키지만, 음수 값은 0으로 만듭니다. 새로운 활성화 함수가 관심을 얻고 있음에도, 요즘 대부분 심층 신경망은 ReLU와 그 [변종](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))들 중 하나를 사용합니다.
 
-Regardless of which activation function is used, we can visualize a single neuron with this standard diagram, giving us a nice intuitive visual representation of a neuron's behavior.
+어떤 활성화 함수를 사용하던지 간에, 기본적인 다음 그림으로 뉴런 하나의 행동을 직관적이고 시각적으로 표현할 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/neuron.png" caption1="An artificial neuron" %}
+{% include figure_multi.md path1="/images/figures/neuron.png" caption1="인공 뉴런" %}
 
-The above diagram shows a neuron with three inputs, and outputs a single value $$y$$. As before, we first compute the weighted sum of its inputs, then pass it through an activation function $$\sigma$$.
+위 그림은 세 개의 입력과 하나의 값 $$y$$를 출력하는 뉴런을 보여 줍니다. 이전에 했던 것 처럼, 먼저 입력의 가중치 합을 계산하고, 그 다음 이를 활성화 함수 $$\sigma$$에 통과시키겠습니다.
 
 $$
 z = b + w_1 x_1 + w_2 x_2 + w_3 x_3 \\
 y = \sigma(z)
 $$
 
-You may be wondering what the purpose of an activation function is, and why it is preferred to simply outputting the weighted sum, as we do with the linear classifier from the last chapter. The reason is that the weighted sum, $$z$$, is [_linear_](https://en.wikipedia.org/wiki/Linearity) with respect to its inputs, i.e. it has a flat dependence on each of the inputs. In contrast, non-linear activation functions greatly expand our capacity to model curved or otherwise non-trivial functions. This will become clearer in the next section.
+아마 활성화 함수의 목적이 무엇인지, 왜 이전 장의 선형 분류기에서는 가중치 합을 그냥 출력했는지 궁금해할 것 같습니다. 가중치 합 $$z$$는 입력에 대한 [_선형성_](https://ko.wikipedia.org/wiki/%EC%84%A0%ED%98%95%EC%84%B1), 즉 각 입력에 대해 단순한 의존성을 가집니다. 이와 반대로, 비선형 활성화 함수는 곡선이나 다른 복잡한 함수를 모델링할 수 있습니다. 다음 절에서 좀 더 자세히 나옵니다.
 
-# Layers
+# 레이어
+
+
 
 Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of layers of neurons, such that all the neurons in each layer connect to the neurons in the next layer.
 
