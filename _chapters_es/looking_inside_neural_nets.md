@@ -1,10 +1,12 @@
 ---
 layout: chapter
-title: "Looking inside neural nets"
+title: "Un vistazo dentro de las redes neuronales"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
-header_quote: "lovelace"
+header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbioscapes.com/gallery/images/743\"> by Dr. Katie Matho</a>. A <a href=\"https://en.wikipedia.org/wiki/Brainbow\">brainbow</a> is a neuroimaging technique in which individual neurons are stained and visualized using fluorescent proteins."
 ---
+
+[inglés](/ml4a/looking_inside_neural_nets/)
 
 En el [capítulo anterior](/ml4a/neural_networks), vimos cómo entrenar una red neuronal para clasificar dígitos escritos a mano con una precisión de alrededor de 90%. En este capítulos vamos a evaluar el rendimiento de la red con más cuidado y también examinar su estado interno para desarollar una intuición sobre lo que en realidad está sucediendo. Más adelante en el capítulo, nos toparemos con los límites de esta red neuronal al intentar entrenarla con un conjunto de datos de objectos como perros, automóbiles y barcos. De esta manera anticiparemos qué tipo de inovaciones serán necesarias para mejorar nuestra red y llevarla al siguiente nivel.
  
