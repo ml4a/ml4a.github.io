@@ -115,56 +115,53 @@ $$
 
 # 레이어
 
+뉴런에 대해 설명했으니 이제 뉴럴 네트워크를 정의할 수 있습니다. 뉴럴 네트워크는 뉴런으로 구성된 연속된 레이어로 구성되어 있습니다. 각 레이어의 뉴런은 다음 레이어의 뉴런에 모두 연결되어 있습니다.
 
+{% include figure_multi.md path1="/images/figures/neural-net.png" caption1="2개 레이어로 된 뉴럴 네트워크" %}
 
-Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of layers of neurons, such that all the neurons in each layer connect to the neurons in the next layer.
+뉴럴 네트워크에서 레이어의 수를 헤아릴 때, 입력이 있는 레이어만 카운트합니다(즉, 첫 번째 입력 레이어는 제외합니다). 그러므로 위의 그림은 1개의 히든 레이어를 가진 2레이어 뉴럴 네트워크입니다. 이 뉴럴 네트워크는 3개의 입력 뉴런, 히든 레이어에 2개의 뉴런, 1개의 출력 뉴런을 가지고 있습니다.
 
-{% include figure_multi.md path1="/images/figures/neural-net.png" caption1="A 2-layer neural network" %}
+왼쪽의 입력층에서 부터 계산이 시작되어 히든 레이어로 결과를 전달하고, 다음엔 히든 레이어의 출력 값을 마지막 레이어에 보내어 최종 결과를 얻습니다.
 
-Note that when we count the number of layers in a neural network, we only count the layers with connections flowing into them (omitting our first, or input layer). So the above figure is of a 2-layer neural network with 1 hidden layer. It contains 3 input neurons, 2 neurons in its hidden layer, and 1 output neuron.
+세 개의 입력 뉴런이 히든 레이어의 뉴런 두 개에 모두 연결되어 있기 때문에 여러 개의 값을 보내는 것 같습니다. 하지만 뉴런마다 하나의 출력 값만 있으며, 출력의 연결마다 값이 복사되는 것 뿐입니다. 얼마나 많은 뉴런이 그 값을 받던지 간에 상관없이 뉴런은 항상 하나의 값만 출력합니다.
 
-Our computation starts with the input layer on the left, from which we pass the values to the hidden layer, and then in turn, the hidden layer will send its output values to the last layer, which contains our final value.
+# 회귀
 
-Note that it may look like the three input neurons send out multiple values because each of them are connected to both of the neurons in the hidden layer. But really there is still only one output value per neuron, it just gets copied along each of its output connections. Neurons always output one value, no matter how many subsequent neurons it sends it to.
+뉴럴 네트워크가 초기 입력을 레이어를 거쳐 출력까지 전달하는 과정을 정방향 전파(forward propagation) 또는 정방향 패스(forward pass)라고 부릅니다. 그리고 이런 방식의 신경망을 피드포워드 뉴럴 네트워크(feedforward neural network)라고 부릅니다. 이제 곧 보게되겠지만 데이터가 순환되는 구조의 뉴럴 네트워크도 있습니다만, 아직 너무 앞서 나가지 않는게 좋겠습니다...
 
-# Regression
-
-The process of a neural network sending an initial input forward through its layers to the output is called forward propagation or a forward pass and any neural network which works this way is called a feedforward neural network. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet...
-
-Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-right corner to proceed. 
+인터렉티브한 데모를 사용해 정방향 패스를 시연해 보죠. 오른쪽 위 모서리의 'Next' 버튼을 누르면 시작됩니다.
 
 {% include demo_insert.html path="/demos/simple_forward_pass/" parent_div="post" %}
 
-# More layers, more expressiveness
+# 더 많은 레이어, 더 풍부한 표현력
 
-Why are hidden layers useful? The reason is that if we have no hidden layers and map directly from inputs to output, each input's contribution on the output is independent of the other inputs. In real-world problems, input variables tend to be highly interdependent and they affect the output in combinatorially intricate ways. The hidden layer neurons allow us to capture subtle interactions among our inputs which affect the final output downstream.
-Another way to interpret this is that the hidden layers represent higher-level "features" or attributes of our data. Each of the neurons in the hidden layer weigh the inputs differently, learning some different intermediary characteristic of the data, and our output neuron is then a function of these instead of the raw inputs. By including more than one hidden layer, we give the network an opportunity to learn multiple levels of abstraction of the original input data before arriving at a final output. This notion of high-level features will become more concrete [in the next chapter](/ml4a/looking_inside_neural_nets/) when we look closely at the hidden layers.
+왜 히든 레이어가 유용할까요? 그 이유는 히든 레이어가 없고 입력과 출력을 바로 연결하면, 각 입력이 다른 입력과 독립적으로 출력에 기여하기 때문입니다. 실제로는 입력 값이 매우 상호 의존적이고 서로 결합되어 복잡한 구조로 출력에 영향을 미칩니다. 히든 레이어의 뉴런이 최종 출력에 영향을 미치는 입력간의 미묘한 상호작용을 잡아낼 수 있습니다. 이를 이해하는 다른 방법은 히든 레이어가 데이터에 있는 고수준의 "특성"이나 속성을 표현한다고 보는 것입니다. 히든 레이어의 뉴런마다 입력에 다른 가중치를 반영하여 데이터에서 조금 다른 중간적인 특징을 학습하게 되고, 그러면 출력 뉴런은 원본 입력이 아니라 이들의 함수가 됩니다. 하나의 히든 레이어보다 더 많은 레이어를 추가하면, 네트워크가 최종 출력에 도달하기 전에 원본 입력 데이터의 여러 추상 단계를 학습할 기회를 가집니다. 고수준 특성에 대한 개념은 [다음 장](/ml4a/looking_inside_neural_nets/)에서 히든 레이어에 대해 자세히 살펴 보면 더 명확해 질 것입니다.
 
-Recall also that activation functions expand our capacity to capture non-linear relationships between inputs and outputs. By chaining multiple non-linear transformations together through layers, this dramatically increases the flexibility and expressiveness of neural networks. The proof of this is complex and beyond the scope of this book, but it can even be shown that any 2-layer neural network with a non-linear activation function (including sigmoid or ReLU) and enough hidden units is a [universal function approximator](http://www.sciencedirect.com/science/article/pii/0893608089900208), that is it's theoretically capable of expressing any arbitrary input-to-output mapping. This property is what makes neural networks so powerful.
+활성화 함수도 입력과 출력 사이의 비선형 관계를 잡아내는 데 일조한다는 걸 기억하세요. 레이어를 통과하면서 여러 비선형 변형이 연결되면, 뉴럴 네트워크의 표현력과 유연성이 매우 크게 증가됩니다. 이에 대한 정의는 복잡하고 이 책의 범위를 넘어서지만, 비선형 활성화 함수(시그모이드나 ReLU)와 충분한 히든 유닛으로 구성된 2 레이어 뉴럴 네트워크가 있다면 어떤 [범용 함수](http://www.sciencedirect.com/science/article/pii/0893608089900208)도 근사할 수 있다는 것이 증명되었습니다. 즉 이론적으로 어떤 임의의 입력과 출력의 연결을 표현할 수 있습니다. 이런 성질이 뉴럴 네트워크를 강력하게 만들었습니다.
 
-# Classification
+# 분류
 
-What about classification? In the previous chapter, we introduced binary classification by simply thresholding the output at 0; If our output was positive, we'd classify positively, and if it was negative, we'd classify negatively. For neural networks, it would be reasonable to adapt this approach for the final neuron, and classify positively if the output neuron scores above some threshold. For example, we can threshold at 0.5 for sigmoid neurons which are always positive.
+분류는 어떻게 할까요? 이전 장에서 출력 0을 임계값으로 하는 간단한 이진 분류를 소개했습니다. 출력이 양수이면 양성이라고 분류하고, 음수이면 음성으로 분류했습니다. 뉴럴 네트워크에서 최종 뉴런에 이런 방식을 적용하는 것이 타당해 보입니다. 출력이 어떤 임계값보다 높은 점수를 출력하면 양성으로 분류하는 것입니다. 예를 들어, 항상 양수를 출력하는 시그모이드 뉴런에 대해서는 0.5를 임계값으로 할 수 있습니다.
 
-But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](/ml4a/how_neural_networks_are_trained/). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
+하지만 여러개의 클래스가 있을 때 어떻게 할까요? 한 가지 방법은 출력 뉴런의 값에 클래스에 상응하는 간격을 만드는 것입니다. 하지만 이는 [뉴럴 네트워크가 훈련되는 방법](/ml4a/how_neural_networks_are_trained/)에서 배우게 되겠지만 문제가 있습니다. 대신에 클래스마다 출력 뉴런 하나를 배정해서 뉴럴 네트워크가 분류를 수행할 수 있습니다. 정방향 패스를 진행해서 가장 높은 값을 내는 뉴런에 상응하는 클래스가 예측이 됩니다. 예제를 한 번 살펴 보죠.
 
-# Classification of handwritten digits
+# 손글씨 숫자 분류
 
-Let's now tackle a real world example of classification using neural networks, the task of recognizing and labeling images of handwritten digits. We are going to use the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which contains 60,000 labeled images of handwritten digits sized 28x28 pixels, whose classification accuracy serves as a common benchmark in machine learning research. Below is a random sample of images found in the dataset.
+그럼 뉴럴 네트워크를 사용해서 손글씨 숫자 이미지를 인식하는 실제 예제를 다루어 보죠. 여기서는 [MNIST 데이터셋](http://yann.lecun.com/exdb/mnist/)을 사용하겠습니다. 이 데이터셋은 28x28 픽셀 크기의 레이블된 손글씨 숫자 이미지 60,000개를 담고 있으며, 머신러닝 연구에서 분류 정확도 벤치마크에 널리 사용됩니다.
 	
-{% include figure_multi.md path1="/images/figures/fig_mnist_groundtruth.png" caption1="A random sample of MNIST handwritten digits" %}
+{% include figure_multi.md path1="/images/figures/fig_mnist_groundtruth.png" caption1="MNIST 손글씨 숫자 샘플" %}
 
-The way we setup a neural network to classify these images is by having the raw pixel values be our first layer inputs, and having 10 output classes, one for each of our digit classes from 0 to 9. Since they are grayscale images, each pixel has a brightness value between 0 (black) and 255 (white). All the MNIST images are 28x28, so they contain 784 pixels. We can unroll these into a single array of inputs, like in the following figure.
+이런 이미지를 분류하기 위한 뉴럴 네트워크는 원본 픽셀을 첫 번째 레이어의 입력으로 전달하고, 숫자 클래스 0에서 9까지마다 하나씩 10개의 출력 클래스를 가집니다. 흑백 이미지이기 때문에 각 픽셀은 0(검정색)에서 255(흰색)까지의 밝기 값을 가집니다. 모든 MNIST 이미지는 28x28이므로 784 픽셀로 구성됩니다. 이를 다음 그림처럼 하나의 입력 배열로 풀어 낼수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/mnist-input.png" caption1="How to input an image into a neural network" %}
+{% include figure_multi.md path1="/images/figures/mnist-input.png" caption1="이미지를 뉴럴 네트워크에 입력하는 방법" %}
 
-The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives all the inputs from the first layer. For the output layer, we'll now have _ten_ neurons rather than just one, with full connections between it and the hidden layer, as before. Each of the ten output neurons is assigned to one class label; the first one is for  the digit `0`, the second for `1`, and so on.
+중요한 것은 이 네트워크는 이전 장에 있는 단순한 3x2x1 네트워크보다 더 인상적으로 보이지만, 뉴런의 개수만 많을 뿐 하는 일은 정확히 동일하다는 것입니다. 첫 번째 히든 레이어의 각 뉴런은 이전처럼 첫 번째 레이어로 부터 모든 입력을 받습니다. 10개의 출력 뉴런은 각각 하나의 클래스 레이블에 할당됩니다. 첫 번째는 숫자 `0`, 두 번째는 `1` 등의 식입니다.
 
-After the neural network has been trained -- something we'll talk about in more detail [in a future chapter](/ml4a/how_neural_networks_are_trained/) -- we can predict the digit associated with unknown samples by running them through the same network and observing the output values. The predicted digit is that whose output neuron has the highest value at the end. The following demo shows this in action; click "next" to flip through more predictions.
+뉴럴 네트워크가 훈련이 되고 나면 -- [이어지는 장](/ml4a/how_neural_networks_are_trained/)에서 조금 더 자세하게 이야기할 것이 있지만 --, 새로운 샘플을 같은 네트워크에 통과시키고 출력 값을 확인해서 숫자를 예측할 수 있습니다. 예측된 숫자는 가장 높은 출력 값을 가지는 뉴런이 됩니다. 다음 데모는 이 작업을 보여 줍니다. "next"를 누르면 새로운 샘플의 예측을 만듭니다.
 
 {% include demo_insert.html path="/demos/forward_pass_mnist/" parent_div="post" %}
 
-# Further reading
+# 더 읽을 거리
 
 {% include further_reading.md title="Neural Networks and Deep Learning" author="Michael Nielsen" link="http://neuralnetworksanddeeplearning.com/" %} 
 
@@ -174,6 +171,6 @@ After the neural network has been trained -- something we'll talk about in more 
 
 {% include further_reading.md title="Video: Neural Networks Demystified" author="Welch Labs" link="https://www.youtube.com/watch?v=bxe2T-V8XRs" %} 
 
-## Next chapter
+## 다음 장
 
-In the next chapter, [looking inside neural networks](/ml4a/looking_inside_neural_nets/), we will analyze the internal states of neural networks more closely, building up intuitions on what sorts of information they capture, as well as pointing out the flaws of basic neural nets, building up motivation for introducing more complex features such as convolutional layers to be explored in later chapters.
+다음 장 [뉴럴 네트워크의 내부](/ml4a/looking_inside_neural_nets/)에서, 뉴럴 네트워크의 내부 상태를 좀 더 자세히 분석해 보겠습니다. 어떤 종류의 정보를 감지하는 지에 대한 직관을 얻고, 기본 뉴럴 네트워크의 단점으로부터 이어지는 장에서 배울 콘볼루션 레이어 같은 보다 복잡한 기능을 소개하기 위한 발판을 만들어 보겠습니다.
