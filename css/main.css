@@ -188,6 +188,12 @@ figcaption {
     border-bottom: 1px solid #d5d5d5;
 }
 
+.translator_credit {
+	background:#eee;
+	padding:10px;
+	margin-left:-10px;
+	margin-bottom:6px;
+}
 
 
 
