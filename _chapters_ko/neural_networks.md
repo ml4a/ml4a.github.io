@@ -1,26 +1,28 @@
 ---
 layout: chapter
-title: "Neural networks"
+title: "신경망"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/analytical_engine.jpg"
-header_text: "“It were much to be desired, that when mathematical processes pass through the human brain instead of through the medium of inanimate mechanism, it were equally a necessity of things that the reasonings connected with operations should hold the same just place as a clear and well-defined branch of the subject of analysis, a fundamental but yet independent ingredient in the science, which they must do in studying the engine.” <a href=\"https://books.google.de/books?id=b8YUDAAAQBAJ&pg=PA16&lpg=PA16\">Sketch of the Analytical Engine (1843), Ada Lovelace</a>"
+header_text: "“과학에서 근본적이지만 아직 독립적인 요소이고 명확히 잘 정의된 분석 대상으로서, 수학적인 처리 과정이 무생물인 장치가 아니라 사람의 뇌를 통과할 때, 연산에 연관된 추론이 똑같은 곳에서 동등하게 필요하다는 것이 엔진 연구에 반드시 포함되어야 합니다.” <a href=\"https://books.google.de/books?id=b8YUDAAAQBAJ&pg=PA16&lpg=PA16\">해석 기관에 대한 스케치 (1843), 에이다 러브레이스</a>"
+translator: "Haesun Park"
+translator_link: "https://tensorflow.blog/"
 ---
 
 [中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
 
-신경망이 처음 고안된 것은 거의 100여년 전으로 [에이다 러브레이스](http://findingada.com/)는 "[신경 시스템에 대한 수학 모델](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)"을 만들고자 하는 꿈을 가졌습니다. 뇌와 기계 사이의 추측성 비유는 계산 자체의 역사만큼이나 오래되었지만, 에이다의 선생님이었던 [찰스 배비지](https://ko.wikipedia.org/wiki/%EC%B0%B0%EC%8A%A4_%EB%B0%B0%EB%B9%84%EC%A7%80)가 [해석 기관](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%84%9D%EA%B8%B0%EA%B4%80)을 제안하기 전까지는 "계산기"를 사람같은 인지 능력을 가진 것으로 상상하지는 못했습니다. 그 당시 기술자들은 그녀가 고안한 복잡한 회로를 만들 능력이 없었기 때문에 에이다는 생전에 이 기관이 실제로 구현되는 것을 보지 못했습니다. 그럼에도 불구하고, 이 아이디어는 다음 세기를 거쳐 전달되었고 [앨런 튜링](https://ko.wikipedia.org/wiki/%EC%95%A8%EB%9F%B0_%ED%8A%9C%EB%A7%81)이 "[튜링 테스트](https://en.wikipedia.org/wiki/Turing_test)"이라고 불리게 된 [모방 게임](http://phil415.pbworks.com/f/TuringComputing.pdf)을 소개할 때 여기에서 영감을 받았다고 인용하였습니다. 극단적으로 단순한 계산에 대한 그의 고찰은 첫 번째 인공 지능의 붐을 촉발시켰고 신경망의 첫 번째 전성기를 마련하였습니다.
+신경망(neural network)이 처음 고안된 것은 거의 100여년 전으로 [에이다 러브레이스](http://findingada.com/)는 "[신경 시스템에 대한 수학 모델](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)"을 만들고자 하는 꿈을 가졌습니다. 뇌와 기계 사이의 추측성 비유는 계산 자체의 역사만큼이나 오래되었지만, 에이다의 선생님이었던 [찰스 배비지](https://ko.wikipedia.org/wiki/%EC%B0%B0%EC%8A%A4_%EB%B0%B0%EB%B9%84%EC%A7%80)가 [해석 기관](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%84%9D%EA%B8%B0%EA%B4%80)을 제안하기 전까지는 "계산기"를 사람같은 인지 능력을 가진 것으로 상상하지는 못했습니다. 그 당시 기술자들은 그녀가 고안한 복잡한 회로를 만들 능력이 없었기 때문에 에이다는 생전에 이 기관이 실제로 구현되는 것을 보지 못했습니다. 그럼에도 불구하고, 이 아이디어는 다음 세기를 거쳐 전달되었고 [앨런 튜링](https://ko.wikipedia.org/wiki/%EC%95%A8%EB%9F%B0_%ED%8A%9C%EB%A7%81)이 "[튜링 테스트](https://en.wikipedia.org/wiki/Turing_test)"이라고 불리게 된 [모방 게임](http://phil415.pbworks.com/f/TuringComputing.pdf)을 소개할 때 여기에서 영감을 받았다고 인용하였습니다. 극단적으로 단순한 계산에 대한 그의 고찰은 첫 번째 인공 지능의 붐을 촉발시켰고 신경망의 첫 번째 전성기를 마련하였습니다.
 
 ## 신경망의 탄생과 재탄생
 
 최근 신경망의 부활은 독특한 스토리를 가집니다. 초기 AI에 밀접하게 연관된 신경망은 1940년대 후반에 튜링의 [B타입 기계](https://en.wikipedia.org/wiki/Unorganized_machine) 형식으로 처음 형태를 갖추었고, 인간의 학습 과정을 연구하는 신경 과학자와 인지 신경학자들의 [신경가소성](https://en.wikipedia.org/wiki/Hebbian_theory)에 대한 초기 연구에 의존했습니다. 뇌의 발전 메커니즘이 밝혀짐에 따라 컴퓨터 과학자들은 기계에서 이 과정을 시뮬레이션하기 위해 활동 전위와 신경 역전파를 이상화한 모델을 실험했습니다.
 
-오늘날 대부분의 과학자들은 너무 심각하게 이와 같이 비유하는 것을 경계합니다. 왜냐하면 신경망은 뇌를 정확히 묘사하기 위한 것이 아니라 머신러닝 문제를 해결하기 위해서만 고안되었기 때문입니다. 반면 완전히 다른 분야인 [계산 신경과학](https://en.wikipedia.org/wiki/Computational_neuroscience)은 뇌를 정확히 모델링하는 도전을 지속하고 있습니다. 그럼에도 불구하고, 신경망의 핵심 유닛을 단순화된 생물학적 뉴런으로 비유하는 것이 수십년 동안 계속되었습니다. 생물학적 뉴런에서 인공 뉴런으로의 변화는 다음 그림으로 요약할 수 있습니다.
+오늘날 대부분의 과학자들은 너무 심각하게 이와 같이 비유하는 것을 경계합니다. 왜냐하면 신경망은 뇌를 정확히 묘사하기 위한 것이 아니라 머신러닝 문제를 해결하기 위해서만 고안되었기 때문입니다. 반면 완전히 다른 분야인 [계산 신경과학](https://en.wikipedia.org/wiki/Computational_neuroscience)은 뇌를 정확히 모델링하는 도전을 지속하고 있습니다. 그럼에도 불구하고, 신경망의 핵심 유닛(unit)을 단순화된 생물학적 뉴런(neuron)으로 비유하는 것이 수십년 동안 계속되었습니다. 생물학적 뉴런에서 인공 뉴런으로의 변화는 다음 그림으로 요약할 수 있습니다.
 
 {% include figure_multi.md path1="/images/neuron-anatomy.jpg"
-caption1="생물학적 뉴런의 해부도<br/>소스: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
-caption2="네트워크에서의 단순화된 뉴런<br/>소스: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="인공 뉴런<br/>&nbsp;" %}
+caption1="생물학적 뉴런의 해부도<br/>출처: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
+caption2="네트워크에서의 단순화된 뉴런<br/>출처: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="인공 뉴런<br/>&nbsp;" %}
 
  1950년대 후반에 [프랭크 로젠블라트](https://en.wikipedia.org/wiki/Frank_Rosenblatt)가 [이전 장](/ml4a/machine_learning/)에서 보았던 선형 분류기의 한 종류인 [퍼셉트론](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%85%89%ED%8A%B8%EB%A1%A0)을 고안하여 신경망의 발전에 큰 진전을 이루었습니다. 미국 해군으로 부터 재정을 지원받아 Mark 1 퍼셉트론이 광전지, 전위차계, 전기 모터를 사용해 이미지 인식을 수행하도록 설계되었습니다. 복잡한 전기 회로에서 얻은 효과를 보고 1958년 뉴욕 타임즈는 기계가 곧 ["걷고, 말하고, 보고, 쓰고, 스스로 재생산하며 자신의 존재를 인지할"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE) 것이라고 예상했습니다.
 
@@ -36,7 +38,7 @@ caption2="네트워크에서의 단순화된 뉴런<br/>소스: <a href=\"http:/
 
 ## 선형 분류기에서 부터 뉴런까지
 
-이전 장에서 배웠던 것을 다시 보면, 2d 선형 분류기나 회귀 모델로의 입력은 다음과 같은 형태를 가집니다:
+이전 장에서 배웠던 것을 다시 보면, 2d 선형 분류기나 회귀(regression) 모델로의 입력은 다음과 같은 형태를 가집니다:
 
 $$
 \begin{eqnarray}
@@ -52,7 +54,7 @@ f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
 
-회귀의 경우에는 입력 벡터 $$X$$가 주어졌을 때, $$f(X)$$가 예측 출력을 만듭니다. 분류에서는 예측 클래스가 다음과 같습니다.
+회귀의 경우에는 입력 벡터 $$X$$가 주어졌을 때, $$f(X)$$가 예측 출력을 만듭니다. 분류(classification)에서는 예측 클래스가 다음과 같습니다.
 
 $$
 \begin{eqnarray}
@@ -65,13 +67,13 @@ $$
 
 $$x_i$$가 곱해지는 각 가중치 $$w_i$$는 입력의 상대적 영향을 의미하는 것으로 해석할 수 있습니다. 이 식에서 $$b$$ 항은 가중치와 상관없이 뉴런이 1 또는 0이 되는 성향을 제어하기 때문에 편향이라고 종종 부릅니다. 높은 편향은 뉴런이 출력 1을 만들기 위해 더 많은 입력을 필요로 한다는 의미이고 낮은 편향은 더 쉽게 출력 1을 만든다는 뜻입니다.
 
-두 가지 혁신을 통해 이 공식으로 부터 완전한 신경망을 만들 수 있습니다. 첫 번째는 선형 식별기를 뉴런 또는 (뇌와 비유하지 않으려면) "유닛"으로 부르게 만든 활성화 함수의 추가입니다. 두 번째 혁신은 층별로 순서대로 뉴런을 연결하는 구조입니다. 차례대로 이 혁신들을 소개하겠습니다.
+두 가지 혁신을 통해 이 공식으로 부터 완전한 신경망을 만들 수 있습니다. 첫 번째는 선형 식별기를 뉴런 또는 (뇌와 비유하지 않으려면) "유닛"으로 부르게 만든 활성화 함수(activation function)의 추가입니다. 두 번째 혁신은 층(layer)별로 순서대로 뉴런을 연결하는 구조입니다. 차례대로 이 혁신들을 소개하겠습니다.
 
 ## 활성화 함수
 
 인공 신경망과 생물학적 신경망 모두 뉴런이 받은 입력을 그대로 출력하지 않습니다. 대신 뇌의 [활동 전위](https://ko.wikipedia.org/wiki/%ED%99%9C%EB%8F%99%EC%A0%84%EC%9C%84) 발화율에 대응하는 활성화 함수라고 부르는 한 가지 단계를 더 거칩니다. 활성화 함수는 이전 단계에서 나온 가중치 합, $$z = b + \sum_i w_i x_i$$을 입력으로 받아 최종적으로 출력하기 전에 이를 다시 한번 변형시킵니다.
 
-많은 활성화 함수가 제안되었지만 여기서는 시그모이드(sigmoid)와 ReLU 두 함수를 자세히 설명하겠습니다.
+많은 활성화 함수가 제안되었지만 여기서는 시그모이드(sigmoid)와 ReLU(rectified linear unit) 두 함수를 자세히 설명하겠습니다.
 
 역사적으로 봤을 때, [시그모이드](https://en.wikipedia.org/wiki/Sigmoid_function) 함수는 가장 오래되고 또 널리 사용되는 활성화 함수입니다. 이 함수는 다음과 같이 정의됩니다:
 
@@ -119,7 +121,7 @@ $$
 
 {% include figure_multi.md path1="/images/figures/neural-net.png" caption1="2개 층으로 된 신경망" %}
 
-신경망에서 층의 수를 헤아릴 때, 입력이 있는 층만 카운트합니다(즉, 첫 번째 입력층은 제외합니다). 그러므로 위의 그림은 1개의 은닉층을 가진 2층 신경망입니다. 이 신경망은 3개의 입력 뉴런, 은닉층에 2개의 뉴런, 1개의 출력 뉴런을 가지고 있습니다.
+신경망에서 층의 수를 헤아릴 때, 입력이 있는 층만 카운트합니다(즉, 첫 번째 입력층은 제외합니다). 그러므로 위의 그림은 1개의 은닉층(hidden layer)을 가진 2층 신경망입니다. 이 신경망은 3개의 입력 뉴런, 은닉층에 2개의 뉴런, 1개의 출력 뉴런을 가지고 있습니다.
 
 왼쪽의 입력층에서 부터 계산이 시작하어 은닉층으로 결과를 전달하고, 다음엔 은닉층의 출력 값을 마지막 층에 보내어 최종 결과를 얻습니다.
 
