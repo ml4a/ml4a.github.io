@@ -1,123 +1,118 @@
 ---
 layout: chapter
-title: "Looking inside neural nets"
+title: "Un vistazo dentro de las redes neuronales"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
-header_quote: "lovelace"
+header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbioscapes.com/gallery/images/743\"> by Dr. Katie Matho</a>. A <a href=\"https://en.wikipedia.org/wiki/Brainbow\">brainbow</a> is a neuroimaging technique in which individual neurons are stained and visualized using fluorescent proteins."
 ---
 
-En el [capítulo anterior](/ml4a/neural_networks), vimos como entrenar una red neuronal para clasificar dígitos escritos a mano con una precisión de alrededor de 90%. En este capítulos vamos a evaluar el rendimiento de la red con más cuidado y también examinar su estado interno para desarollar una intuición sobre lo que en realidad está sucediendo. Más adelante en el capítulo, nos toparemos con los límites de esta red neuronal al intentar entrenarla con un conjunto de datos de objectos como perros, automóbiles y barcos. De esta manera anticiparemos qué tipo de inovaciones serán necesarias para mejorar nuestra red y llevarla al siguiente nivel.
+[inglés](/ml4a/looking_inside_neural_nets/)
+
+En el [capítulo anterior](/ml4a/es/neural_networks), vimos cómo entrenar una red neuronal para clasificar dígitos escritos a mano con una precisión de alrededor de 90%. En este capítulos vamos a evaluar el rendimiento de la red con más cuidado y también examinar su estado interno para desarollar una intuición sobre lo que en realidad está sucediendo. Más adelante en el capítulo, nos toparemos con los límites de esta red neuronal al intentar entrenarla con un conjunto de datos de objectos como perros, automóbiles y barcos. De esta manera anticiparemos qué tipo de inovaciones serán necesarias para mejorar nuestra red y llevarla al siguiente nivel.
  
-## Visualizing weights
+## Visualizar pesos
 
-Let's take a network trained to classify MNIST handwritten digits, except unlike in the last chapter, we will map directly from the input layer to the output layer with no hidden layers in between. Thus our network looks like this.
+Consideremos una red entrenada para clasificar dígitos MNIST escritos a mano, excepto que a diferencia del capítulo anterior, haremos un mapeo directo desde la capa de entrada hasta la capa de salida de tal manera que nuestra red neuronal no tendrá capas ocultas. La red se verá de la siguiente manera:
 
-{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="1-layer neural network for MNIST" %}
+{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="Red neuronal de 1 capa para MNIST" %}
 
-{% include todo.html note="label output neurons" %}
+Recuerda que cuando pasamos una imagen a través de la red neuronal, podemos visualizar el diagrama de la red al "desenrollar" los píxeles de la imágen en una sola columna de neuronas, demostrado en la figura de la izquierda. Concentrémonos en las conexiones de la primera neurona de salida, que llamaremos $$z$$. Etiquetaremos cada una de las neuronas de entrada y sus pesos correspondientes como $$x_i$$ y $$w_i$$.
 
-Recall that when we input an image into our neural net, we visualize the network diagram by "unrolling" the pixels into a single column of neurons, as shown in the below figure on the left. Let's focus on just the connections plugged into the first output neuron, which we will label $$z$$, and label each of the input neurons and their corresponding weights as $$x_i$$ and $$w_i$$.
+{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="Las conexiones de pesos hacia una neurona de salida" %}
 
-{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="Highlighting the weights connections to a single output neuron" %}
+Ahora veamos los pesos en una cuadrícula de 28x28, donde la posición de cada peso coincide con su píxel correspondiente. La representación anterior a la derecha se ve diferente a la siguiente figura, aunque ambas expresan la misma ecuación $$z=b+\sum{w x}$$.
 
-{% include todo.html note="label $z$ on the left" %}
+{% include figure.html path="/images/figures/weights_analogy_2.png" caption="Otra manera de visualizar la multiplicación de pesos-píxeles para cada neurona de salida" %}
 
-Rather than unrolling the pixels though, let's instead view the weights as a 28x28 grid where the weights are arranged exactly like their corresponding pixels. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
+Ahora imaginemos una red neuronal entrenada con esta arquitectura y visualizemos los pesos aprendidos que sirven de entrada a la primera neurona de salida, la cual es responsable de clasificar el dígito 0. Representaremos los pesos más bajos de negro y los más altos de blanco. 
 
-{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="Another way to visualize the pixel-weights multiplication for each output neuron" %}
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="Visualizando los pesos para la neurona 0 de un clasificador MNIST" %}
 
-Now let's take a trained neural network with this architecture, and visualize the learned weights feeding into the first output neuron, which is the one responsible for classifying the digit 0. We color-code them so the lowest weight is black, and the highest is white.
+Mira con cuidado... se parece un poco a un 0 borrozo? La razón por la que parece así quedará claro si pensamos en lo que esta neurona está haciendo. Debido a que es "responsable" de clasificar 0s, su objetivo es generar un valor alto para los 0s y un valor bajo para los dígitos que no sean 0. La neurona podrá obtener salidas altas para los 0s si asocia pesos altos con píxeles que _tienden_ a ser altos en imágenes de 0s. De la misma manera, puede obtener salidas relativamente bajas para dígitos que no son 0 al asociar pesos bajos con píxeles que tienden a ser altos en imágenes de dígitos que non son 0. Por ejemplo, el centro relativamente negro de la imágen de los pesos se da ya que la mayoría de las imágenes de 0s no corresponden con esta área (dado el agujero del 0).
 
-{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="Visualizing the weights for the 0-neuron of an MNIST classifier" %}
+Veamos los pesos que la red neuronal aprendió para cada una de las neuronas de salida. Como sospechamos, cada una se ve como una versión borroza de los diez dígitos. Parece que hubiésemos tomado el promedio de muchas imágenes de cada dígito.  
 
-Squint your eyes a bit... does it look a bit like a blurry 0? The reason why it appears this way becomes more clear if we think about what that neuron is doing. Because it is "responsible" for classifying 0s, its goal is to output a high value for 0s and a low value for non-0s. It can get high outputs for 0s by having large weights aligned to pixels which _tend_ to usually be high in images of 0s. Simultaneously, it can obtain relatively low outputs for non-0s by having small weights aligned to pixels which tend to be high in images of non-0s and low in images of 0s. The relatively black center of the weights image comes from the fact that images of 0s tend to be off here (the hole inside the 0), but are usually higher for the other digits.
+{% include figure.html path="/images/figures/rolled_weights_mnist.png" caption="Visualizando los pesos para todas las neuronas de salida del clasificador MNIST" %}
 
-Let's look at the weights learned for all 10 of the output neurons. As suspected, they all look like somewhat blurry versions of our ten digits. They appear almost as though we averaged many images belonging to each digit class.
+Supongamos que usemos una imágen de un 2 como entrada. Podemos anticipar que la neurona responsable de clasificar los 2 tendrá un valor alto porque sus pesos son tales que corresponden con los píxeles que tienden a representar un 2. En el caso de otras neuronas, _algunos_ de los pesos también corresponderán a píxeles altos. Sin embargo, coincidirán mucho menos y esos valores altos serán negados por pesos bajos en la neurona del 2. La función de activación no cambia eso, porque es monótona con respecto a la entrada - es decir, cuanto mayor la entrada, mayor será la salida.    
 
-{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="Visualizing the weights for all the output neurons of an MNIST classifier" %}
+Podemos interpretar que los pesos están formando modelos de las clases de salida. Esto es realmente fascinante porque nunca le _dijimos_ a nuestra red de antemano lo que era un dígito y sin embargo logró parecerse a esa clase de objectos. Esto sugiere lo verdaderamente especial en las redes neuronales: forman _representaciones_ de los objectos con la cual son entrenados - y resulta que estas representaciones no sólo son útiles para la clasificación y predicción. Hablaremos más sobre esta capacidad de representación cuando lleguemos a las [redes neuronales convolucionales](/ml4a/convnets/) más adelante... 
 
-Suppose we receive an input from an image of a 2. We can anticipate that the neuron responsible for classifying 2s should have a high value because its weights are such that high weights tend to align with pixels tending to be high in 2s. For other neurons, _some_ of the weights will also line up with high-valued pixels, making their scores somewhat higher as well. However, there is much less overlap, and many of the high-valued pixels in those images will be negated by low weights in the 2 neuron. The activation function does not change this, because it is monotonic with respect to the input, that is, the higher the input, the higher the output.
+Quizás esta discusión te ha generado más preguntas que respuestas. Por ejemplo, qué ocurre con los pesos cuando añadimos capas ocultas? La respuesta a esto se basará en algo que vimos en la sección anterior. Pero antes de llegar a eso, será beneficioso examinar el rendimiento de nuestra red neuronal, y en particular considerar qué tipo de errores tiende a cometer. 
 
-We can interpret these weights as forming templates of the output classes. This is really fascinating because we never _told_ our network anything in advance about what these digits are or what they mean, yet they came to resemble those object classes anyway. This is a hint of what's really special about the internals of neural networks: they form _representations_ of the objects they are trained on, and it turns out these representations can be useful for much more than simple classification or prediction. We will take this representational capacity to the next level when we begin to study [convolutional neural networks](/ml4a/convnets/) but let's not get ahead of ourselves yet...
+## 0op5, l0 h1ce 0tra v3z
 
-This raises many more questions than it provides answers, such as what happens to the weights when we add hidden layers? As we will soon see, the answer to this will build upon what we saw in the previous section in an intuitive way. But before we get to that, it will help to examine the performance of our neural network, and in particular, consider what sorts of mistakes it tends to make.
+De vez en cuando nuestra red neuronal cometerá errores con los que podremos simpatizar. A mi parecer, no se me hace tan obvio que el primer dígito en la siguiente imagen sea un 9. Se parece a un 4, que fue lo que nuestra red pensó que era. De la misma manera, podemos entender por qué el segundo dígito, un 3, fue clasificado erróneamente como un 8. Por otro lado, los errores del tercer y cuarto dígito son más serios. Cualquier persona podría reconocerlos como un 3 y un 2, respectivamente. Sin embargo, nuestra red neuronal pensó que el tercer dígito era un 5 y no tiene mucha idea sobre el cuarto dígito. 
 
-## 0op5, 1 d14 17 2ga1n
+{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="Una selección de errores cometidos por nuestra red de 1 capa MNIST. Los dos de la izquierda son de esperarse; los dos de la derecha son más preocupantes." %}
 
-Occasionally, our network will make mistakes that we can sympathize with. To my eye, it's not obvious that the first digit below is 9. One could easily mistake it for a 4, as our network did. Similarly, one could understand why the second digit, a 3, was misclassified by the network as an 8. The mistakes on the third and fourth digits below are more glaring. Almost any person would immediately recognize them as a 3 and a 2, respectively, yet our machine misinterpreted the first as a 5, and is nearly clueless on the second.
+Investiguemos el rendimiento de la red neuronal del capítulo anterior, que logró alcanzar una precisión de 90% con los dígitos MNIST. Una manera de hacer esto es con una matriz de confusión: una manera de listar nuestras predicciones en una tabla. En la siguiente matriz de confusión, las 10 filas corresponden a las etiquetas reales del conjunto de datos MNIST y las columnas representan las etiquetas predichas. Por ejemplo, la celda en la cuarta fila y la sexta columna nos dice que hubo 71 casos donde un 3 real fue etiquetado por la red neuronal como un 5. La diagonal verde en esta matriz nos muestra la cantidad de predicciones correctas. Todas las otras celdas muestran errores. 
 
-{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="A selection of mistakes by our 1-layer MNIST network. The two on the left are understandable; the two on the right are more obvious errors." %}
-
-Let's look more closely at the performance of the last neural network of the previous chapter, which achieved 90% accuracy on MNIST digits. One way we can do this is by looking at a confusion matrix, a table which breaks down our predictions into a table. In the following confusion matrix, the 10 rows correspond to the actual labels of the MNIST dataset, and the columns represent the predicted labels. For example, the cell at the 4th row and 6th column shows us that there were 71 instances in which an actual 3 was mislabeled by our neural network as a 5. The green diagonal of our confusion matrix shows us the quantities of correct predictions, whereas every other cell shows mistakes.
-
-Hover your mouse over each cell to get a sampling of the top instances from each cell, ordered by the network's confidence (probability) for the prediction.
-
-{% include todo.html note="add description to confusion matrices" %}
+Coloque el cursor del ratón sobre cada celda para obtener una muestra de las instancias que representa esa celda, ordenadas en base a la confianza (probabilidad) de cada predicción.  
 
 {% include demo_insert.html path="/demos/confusion_mnist/" parent_div="post" %}
 
-{% include todo.html note="fix overflow in right table" %}
+También podemos aprender algo importante al trazar la muestra más alta de cada celda de la matriz de confusión, como puedes ver a continuación: 
 
-We can also get some nice insights by plotting the top sample for each cell of the confusion matrix, as seen below.
+{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="Muestras de máxima confianza de una matriz de confusión MNIST" %}
 
-{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="Top-confidence samples from an MNIST confusion matrix" %}
+Esto nos da una impresión de cómo la red aprende a hacer ciertas predicciones. En las primeras dos columnas podemos ver que la red parece estar buscando los círculos que predicen un 0 y las líneas delgadas que predicen un 1. La red se confunde cuando otros dígitos presentan esas mismas características.
 
-This gives us an impression of how the network learns to make certain kinds of predictions. Looking at first two columns, we see that our network appears to be looking for big loops to predict 0s, and thin lines to predict 1s, mistaking other digits if they happen to have those features.
+## Como romper nuestra red neuronal
+
+Hasta ahora sólo hemos visto redes neuronales entrenadas para identificar dígitos. Aunque hay mucho que aprender con este ejemplo, en realidad es un caso bastante simple: sólo tenemos 10 clases, bien definidas y con relativamente poca variación interna entre ellas. En la mayoría de los casos del mundo real, estamos tratando de clasificar imágenes en circunstancias menos ideales. Veamos el rendimiento de esta misma red neuronal aplicado a [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), otro conjunto de datos etiquetados de 60.000 imágenes a color (de 32x32 píxeles) de aviones, automóviles, pájaros, gatos, venados, perros, ranas, caballos, barcos y camiones. Aquí está una muestra aleatoria de imágenes de CIFAR-10.
+
+{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="Una muestra aleatoria del conjunto de imágenes CIFAR-10" %}
+
+De inmediato, nos queda claro que estas clases de imágenes son muy diferentes a las que llevamos investigando. Por ejemplo, los gatos pueden aparecer orientados en diferentes direcciones, presentar colores y pelaje diferente, estar estirados o encogidos, y muchas otras variaciones que los dígitos escritos a mano no presentaron. 
+
+Efectivamente, si entrenamos una red neuronal de dos capas con estas imágenes, lograremos una precisión de apenas 37%. Sigue siendo mejor que una conjetura al azar (la cual nos daría una precisión de 10%), pero está muy por debajo del 90% que alcanzamos con el clasificador MNIST. Ya veremos que las redes neuronales convolucionales mejorarán ambos casos enormemente. Por ahora, podremos explorar las deficiencias de las redes neuronales normales al explorar sus ponderaciones. 
+
+Repitamos el experimento anterior de observar los pesos de una red neuronal de sólo 1 capa sin capas ocultas, excepto que esta vez utilizaremos las imágenes de CIFAR-10. Los pesos aparecen a continuación. 
+
+{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="Visualizando los pesos para un clasificador CIFAR-10 de 1 capa" %}
 
 
-## Breaking our neural network
+Comparados a los pesos de MNIST, éstos tienen menos rasgos discernibles. Algunos detalles sí tienen sentido: los aviones y los barcos presentan tonos azules en el borde exterior, lo cual refleja que estas imágenes tienden a tener cielos azules o agua a su alrededor. Ya que la imágen de ponderaciones para cualquiera de estas clases está relacionada con un promedio de las imágenes pertenecientes a esa clase, podemos esperar que salgan colores promedios. Sin embargo ya que las clases de CIFAR-10 son mucho menos consistentes internamente, es más díficil reconocer patrones discernibles. 
 
-So far we've looked only at neural networks trained to identify handwritten digits. This gives us many insights but is a very easy choice of dataset, giving us many advantages; We have only ten classes, which are very well-defined and have relatively little internal variance among them. In most real-world scenarios, we are trying to classify images under much less ideal circumstances. Let's look at the performance of the same neural network on another dataset, [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), a labeled set of 60,000 32x32 color images belonging to ten classes: airplanes, automobiles, birds, cats, deer, dogs, frogs, horses, ships, and trucks. The following is a random sample of images from CIFAR-10.
-
-{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="A random sample from CIFAR-10 image set" %}
-
-{% include todo.html note="new demo, refresh for new random sample" %}
-
-Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem.
-
-Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
-
-Let's repeat the earlier experiment of observing the weights of a 1-layer neural network with no hidden layer, except this time training on images from CIFAR-10. The weights appear below.
-
-{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="Visualizing the weights for 1-layer CIFAR-10 classifier" %}
-
-Compared to the MNIST weights, these have fewer obvious features and far less definition to them. Certain details do make intuitive sense, e.g. airplanes and ships are mostly blue on the outer edges of the images, reflecting the tendency for those images to have blue skies or waters around them. Because the weights image for a particular class does correlate to an average of images belonging to that class, we can expect blobby average colors to come out, as before. But because the CIFAR classes are much less internally consistent, the well-defined "templates" we saw with MNIST are far less evident.
-
-Let's take a look at the confusion matrix associated with this CIFAR-10 classifier.
+Veamos la matriz de confusión asociada con este clasificador CIFAR-10:
 
 {% include demo_insert.html path="/demos/confusion_cifar/" parent_div="post" %}
 
-Not surprisingly, its performance is very poor, reaching only 37% accuracy. Clearly, our simple 1-layer neural network is not capable of capturing the complexity of this dataset. One way we can improve its performance somewhat is by introducing a hidden layer. The next section will analyze the effects of doing that.
+Su rendimiento es muy pobre - alcanza apenas un 37% de precisión. Claramente nuestra pequeña red de 1 capa no es capaz de capturar la complejidad de nuestro conjunto de datos. Pero podemos mejorar su rendimiento introduciendo una capa oculta. En la próxima sección analizaremos los efectos de esta capa.
 
-## Adding hidden layers
+## Capas ocultas
 
-<!--
-Hidden layers are essential here. One obvious way they can help is best exemplified by the weight image for the horse class. The vague template of a horse is discernible, but it appears as though there is a head on each side of the horse. Evidently, the horses in CIFAR-10 seem to be usually facing one way or the other. If we create a hidden layer, a horse classifier could benefit by allowing the network to learn a "right-facing horse" or a "left-facing horse" inside the intermediate layer -->
+Hasta ahora nos hemos enfocado en redes neurales de una capa, donde las entradas se conectan directamente a las salidas. ¿Cual es el efecto de las capas ocultas en las redes neuronales? Intentemos insertar una capa intermedia de 10 neuronas a nuestra red de MNIST. Nuestra red se vería de la siguiente manera.
 
-So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
+{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="Una red de dos capas para MNIST" %}
 
-{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="2-layer neural network for MNIST" %}
+En cierto sentido, se podría decir que "forzamos" a nuestra red original de 1 capa a aprender modelos para cada clase porque cada uno de los pesos se conectó directamente a una sola clase. En este caso ya no tenemos los 784 píxeles de entrada conectándose directamente a las clases de salida. Esta red es más complicada ya que los pesos en la capa oculta afectan _todas las diez_ neuronas de la capa de salida. ¿Cómo se ven esos pesos ahora?
 
-Our simple template metaphor in the 1-layer network above doesn't apply to this case, because we no longer have the 784 input pixels connecting directly to the output classes. In some sense, you could say that we had "forced" our original 1-layer network to learn those templates because each of the weights connected directly into a single class label, and thus only affected that class. But in the more complicated network that we have introduced now, the weights in the hidden layer affect _all ten_ of the neurons in the output layer. So how should we expect those weights to look now?
-
-To understand what's going on, we will visualize the weights in the first layer, as before, but we'll also look carefully at how their activations are then combined in the second layer to obtain class scores. Recall that an image will generate a high activation in a particular neuron in the first layer if the image is largely sympathetic to that filter. So the ten neurons in the hidden layer reflect the presence of those ten features in the original image. In the output layer, a single neuron, corresponding to a class label, is a weighted combination of those previous ten hidden activations. Let's look at them below.
+Para entender lo que está sucediendo primero vamos a visualizar los pesos en la primera capa, como lo hicimos antes. También veremos con cuidado cómo se combinan sus activaciones en la segunda capa para obtener los resultados de cada clase. Recuerde que una imagen generará una activación alta en una neurona de la primera capa si la imagen favorece ese filtro. Asi que las diez neuronas en la capa oculta reflejan la presencia de esas diez características en la imagen orginal. Cada neurona en la capa de salida (cada una corresponde a una etiqueta de clase) es una combinación ponderada de las diez activaciones previas. Veámoslo a continuación.
 
 {% include demo_insert.html path="/demos/f_mnist_weights/" parent_div="post" %}
 
-Let's start with the first layer weights, visualized at the top. They don't look like the image class templates anymore, but rather more unfamiliar. Some look like pseudo-digits, and others appear to be components of digits: half loops, diagonal lines, holes, and so on.
+Empezemos con los pesos de la primera capa. Ya no se parecen a las clases de imágenes que vimos anteriormente, son más extrañas. Algunos parecen pseudodígitos y otros parecen ser components de dígitos: medios círculos, líneas diagonales, agujeros, etc.  
 
-The rows below the filter images correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten filters' activations from the hidden layer. For example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are low (where the hole in zeros is usually found). The `1` class is almost the opposite of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
+Las filas debajo de las imágenes de filtro corresponden a nuestras neuronas de salida, una para cada clase. Las barras representan los pesos associados a cada uno de los diez filtros de activación de la capa oculta. Por ejemplo, la clase `0` parece favorecer los filtros de la primera capa, que tienen valores altos en el borde exterior (donde tiende a aparecer el dígito cero). En vez, desfavorece filtros donde hay valores bajos en los píxeles del medio (donde aparece el agujero del cero). La clase `1` es casi lo opuesto: prefiere filtros que presentan valores altos en el medio, donde podríamos esperar el trazo vertical de un `1`. 
 
-The advantage of this approach is flexibility. For each class, there is a wider array of input patterns that stimulate the corresponding output neuron. Each class can be triggered by the presence of several abstract features from the previous hidden layer, or some combination of them. Essentially, we can learn different kinds of zeros, different kinds of ones, and so on for each class. This will usually--but not always--improve the performance of the network for most tasks.
+La ventaja de esta estrategia es la flexibilidad. Para cada clase, hay una gama mucho más amplia de patrones que estimulan la neurona de salida correspondiente. Cada clase puede ser activada por la presencia de varias características abstractas de la capa oculta anterior. De esta manera podremos aprender a distinguir varios tipos de ceros, varios tipos de unos, etc. para cada clase. Casi siempre (aunque no en todos los casos) esto mejorará el rendimiento de la red neuronal. 
 
-## Features and representations
+## Características y representaciones
 
-Let's generalize some of what we've learned in this chapter. In single-layer and multi-layer neural networks, each layer has a similar function; it transforms data from the previous layer into a "higher-level" representation of that data. By "higher-level," we mean that it contains a compact and more salient representation of that data, in the way that a summary is a "high-level" representation of a book. For example, in the 2-layer network above, we mapped the "low-level" pixels into "higher-level" features found in digits (strokes, loops, etc) in the first layer, and then mapped those high-level features into an even higher-level representation in the next layer, that of the actual digits. This notion of transforming data into smaller but more meaningful information is at the heart of machine learning, and a primary capability of neural networks.
+Generalizemos algo de lo que hemos aprendido en este capítulo. En las redes neuronales de una o más capas, cada capa tiene una función similar: transformar la data de la capa anterior en una representación de "alto nivel" - es decir, una representación más compacta y saliente de los datos (de la misma manera que un resumen es una representación compacta de un libro). Por ejemplo, en la primera capa de la red anterior hicimos un mapeo de píxeles de "bajo nível" a características de "alto nível" que representan las diferencias entre dígitos (el tipo de trazo, que tan circular es la forma, los agujeros que presenta, etc). Esas características de "alto nivel" fueron a su vez mapeadas a una representación aún más alta en la capa final: la de los dígitos actuales. Este proceso de transformar la data en información cada vez más concreta y expresiva es una noción muy importante en el aprendizaje de máquinas, y es la ventaja principal de las redes neuronales.
 
-By adding a hidden layer into a neural network, we give it a chance to learn features at multiple levels of abstraction. This gives us a rich representation of the data, in which we have low-level features in the early layers, and high-level features in the later layers which are composed of the previous layers' features.
+Cuando agregamos capas ocultas a una red, le damos la oportunidad de aprender características a varios niveles de abstracción. Las capas iniciales aprenden a representar característias de "bajo nivel" y las capas finales características más expresivas, pero que en realidad están compuestas de las características de las capas anteriores. 
 
-As we saw, hidden layers can improve accuracy, but only to a limited extent. Adding more and more layers stops improving accuracy quickly, and comes at a computational cost -- we can't simply ask our neural network to memorize every possible version of an image class through its hidden layers. It turns out there is a better way, using [convolutional neural networks](/ml4a/convnets), which will be covered in a later chapter.
+Las capas ocultas pueden mejorar el rendimiento de una red, pero sólo de forma limitada. Aunque agreguemos más y más capas oculatas a una red, en algún momento su rendimiento dejará de mejorar - no podemos simplemente pedirle a nuestra red que memorize todas las versiones posibles de una clase a través de sus capas ocultas. Existe una mejor manera utilizando [redes neuronales convolucionales](/ml4a/convnets), un tema que presentaremos en otro capítulo.   
 
-## Further reading
+## Recursos adicionales
 
-{% include todo.html note="summary / further reading" %}
+{% include further_reading.md title="Demo: Tinker with a neural network" author="Daniel Smilkov and Shan Carter" link="http://playground.tensorflow.org" %} 
+
+{% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %}
+
+## Próximo capítulo
+
+En el próximo capítulo aprenderemos sobre un tema crítico que sólo hemos mencionado superficialmente: [cómo se entrenan las redes neuronales](/ml4a/how_neural_networks_are_trained/), el proceso por el cual se construyen y entrenan estas redes usando una técnica llamada descenso de gradiente via retropropagación. Aprenderemos primero sobre la regresión lineal simple y, a través de ejemplos, presentaremos varios aspectos importantes a considerar al entrenar una red neuronal.
