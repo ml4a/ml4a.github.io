@@ -145,6 +145,18 @@
 			"Making videos by interpolating between multiple painters"
 		]
 	},
+	"neural-synth": {
+		"title": "Neural synthesis",
+		"description": "Feature visualization and Deepdream by pixel optimization",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-synth.ipynb",
+		"thumb":"/images/guides_thumbs/neural-synth.jpg",
+		"summary":[
+			"How to visualize features in a trained neural net",
+			"Recreating Deepdream",
+			"Masking, distorting the canvas, and video feedback"
+		]
+	},
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",

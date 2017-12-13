@@ -100,6 +100,7 @@ redirect_from: /guides2/
 {% include guide_preview.md name="neural-painter" %}
 {% include guide_preview.md name="word2vec" %}
 {% include guide_preview.md name="eigenfaces" %}
+{% include guide_preview.md name="neural-synth" %}
 {% include guide_preview.md name="qlearn" %}
 {% include guide_preview.md name="qnets" %}
 
