@@ -8,7 +8,7 @@ translator: "Irene Alvarado"
 translator_link: "http://www.irenealvarado.com/"
 ---
 
-[inglés](/ml4a/neural_networks/)
+[English](/ml4a/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
 
