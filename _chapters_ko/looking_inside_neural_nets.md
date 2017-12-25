@@ -1,12 +1,13 @@
 ---
 layout: chapter
-title: "Looking inside neural nets"
+title: "신경망의 내부"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
-header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbioscapes.com/gallery/images/743\"> by Dr. Katie Matho</a>. A <a href=\"https://en.wikipedia.org/wiki/Brainbow\">brainbow</a> is a neuroimaging technique in which individual neurons are stained and visualized using fluorescent proteins."
+header_text: "<a href=\"http://www.olympusbioscapes.com/gallery/images/743\">케이티 매소(Katie Matho) 박사</a>가 만든 출생 직후 생쥐의 브레인보우. <a href=\"https://en.wikipedia.org/wiki/Brainbow\">브레인보우</a>는 형광 단백질을 사용해 개별 뉴런을 시각화하는 뇌영상 기술입니다."
 ---
 
-[español](/ml4a/es/looking_inside_neural_nets/)
+[English](/ml4a/looking_inside_neural_nets/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/looking_inside_neural_nets/)
 
 In the [previous chapter](/ml4a/neural_networks), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kinds of innovations will be necessary to take it to the next level.
  
