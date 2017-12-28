@@ -9,21 +9,23 @@ header_text: "<a href=\"http://www.olympusbioscapes.com/gallery/images/743\">케
 [English](/ml4a/looking_inside_neural_nets/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/looking_inside_neural_nets/)
 
-In the [previous chapter](/ml4a/neural_networks), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kinds of innovations will be necessary to take it to the next level.
- 
-## Visualizing weights
+[이전 장](/ml4a/ko/neural_networks)에서 손글씨 숫자 이미지를 90%에 가까운 정확도로 분류하기 위해 신경망이 어떻게 훈련되는지 보았습니다. 이번 장에서는 이 성능을 조금 더 주의깊게 평가해 보고, 도대체 무슨 일이 일어나는지 직관을 얻기위해 내부 상태를 조사해 보려고 합니다. 이 장의 후반부에, 개, 자동차, 배 같은 물체가 있는 복잡한 데이터셋에서 신경망을 훈련시켜 보면서 문제점을 찾아 보겠습니다. 그리고 더 높은 수준에 도달하기 위해 어떤 혁신이 필요한지 추측해 보겠습니다.
 
-Let's take a network trained to classify MNIST handwritten digits, except unlike in the last chapter, we will map directly from the input layer to the output layer with no hidden layers in between. Thus our network looks like this.
+## 가중치 시각화하기
 
-{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="1-layer neural network for MNIST. The 10 output neurons correspond to our classes, the 10 digits from 0 to 9." %}
+MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니다. 이전 장과는 다르게 은닉층 없이 입력층을 출력층에 바로 연결하겠습니다. 이 네트워크는 다음과 같을 것입니다.
 
-Recall that when we input an image into our neural net, we visualize the network diagram by "unrolling" the pixels into a single column of neurons, as shown in the below figure on the left. Let's focus on just the connections plugged into the first output neuron, which we will label $$z$$, and label each of the input neurons and their corresponding weights as $$x_i$$ and $$w_i$$.
+{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="MNIST를 위한 단일층 신경망. 0에서부터 9까지 10개의 숫자 클래스에 대응하는 10개의 출력 뉴런이 있습니다." %}
 
-{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="Highlighting the weights connections to a single output neuron" %}
+이미지를 신경망에 입력할 때, 아래 그림의 왼쪽처럼 일렬로 늘어선 뉴런에 픽셀을 펼치는 모습으로 네트워크 그림을 그렸습니다. $$z$$로 표시된 첫 번째 출력 뉴런에 이어진 연결에만 초점을 맞추겠습니다. 입력 뉴런과 그에 상응하는 가중치는 각각 $$x_i$$와 $$w_i$$로 표시되어 있습니다.
 
-Rather than unrolling the pixels though, let's instead view the weights as a 28x28 grid where the weights are arranged exactly like their corresponding pixels. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
+{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="출력 뉴런 하나의 가중치 연결" %}
 
-{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="Another way to visualize the pixel-weights multiplication for each output neuron" %}
+하지만 픽셀을 펼치는 대신에, 가중치를 그에 상응하는 픽셀에 맞게 정렬된 28x28 격자로 볼 수 있습니다. 오른쪽 위의 표현이 아래 그림과 달라보이지만, 둘은 같은 공식, $$z=b+\sum{w x}$$으로 표현됩니다. 
+
+{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="출력 뉴런에 대한 픽셀-가중치 곱셉을 표현하는 다른 방법" %}
+
+
 
 Now let's take a trained neural network with this architecture, and visualize the learned weights feeding into the first output neuron, which is the one responsible for classifying the digit 0. We color-code them so the lowest weight is black, and the highest is white.
 
