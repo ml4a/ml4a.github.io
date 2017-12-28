@@ -25,13 +25,13 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 {% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="출력 뉴런에 대한 픽셀-가중치 곱셉을 표현하는 다른 방법" %}
 
+이제 이 구조로 학습된 신경망을 가지고, 숫자 0을 분류하는 책임을 가진 첫 번째 출력 뉴런에 연결된 가중치를 시각화해 보겠습니다. 낮은 가중치는 검게 그리고 높은 값은 흰색으로 표시합니다.
+
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="MNIST 분류기의 0-뉴런의 가중치 시각화" %}
+
+눈을 조금 가늘게 뜨고 보면 약간 번진 0처럼 보이나요? 이렇게 보이는 이유는 뉴런이 하는 일을 생각해 보면 명확해 집니다. 이 뉴런은 0을 분류하는 책임을 가졌기 때문에, 0에 대해서 높은 값을 출력하고 0이 아닌 경우에는 낮은 값을 출력하는 것이 목적입니다. 일반적으로 0의 이미지에서 높은 값을 가지는 픽셀에 맞추어 큰 가중치를 가짐으로써 0에 대한 높은 출력을 만들 수 있습니다. 이와 동시에, 0이 아닌 이미지에서는 높고, 0인 이미지에서는 낮은 경향이 있는 픽셀에 있는 가중치는 작은 값을 가지게 되어 0이 아닐 때 비교적 낮은 출력을 얻을 수 있습니다. 가중치 이미지의 가운데 비교적 검은 부분은 0인 이미지가 이 부분에서는 비어있다는 사실을 의미합니다(0의 가운데 원부분). 하지만 보통 다른 숫자에서는 높게 나올 것입니다.
 
 
-Now let's take a trained neural network with this architecture, and visualize the learned weights feeding into the first output neuron, which is the one responsible for classifying the digit 0. We color-code them so the lowest weight is black, and the highest is white.
-
-{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="Visualizing the weights for the 0-neuron of an MNIST classifier" %}
-
-Squint your eyes a bit... does it look a bit like a blurry 0? The reason why it appears this way becomes more clear if we think about what that neuron is doing. Because it is "responsible" for classifying 0s, its goal is to output a high value for 0s and a low value for non-0s. It can get high outputs for 0s by having large weights aligned to pixels which _tend_ to usually be high in images of 0s. Simultaneously, it can obtain relatively low outputs for non-0s by having small weights aligned to pixels which tend to be high in images of non-0s and low in images of 0s. The relatively black center of the weights image comes from the fact that images of 0s tend to be off here (the hole inside the 0), but are usually higher for the other digits.
 
 Let's look at the weights learned for all 10 of the output neurons. As suspected, they all look like somewhat blurry versions of our ten digits. They appear almost as though we averaged many images belonging to each digit class.
 
