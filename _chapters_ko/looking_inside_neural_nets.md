@@ -31,17 +31,15 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 눈을 조금 가늘게 뜨고 보면 약간 번진 0처럼 보이나요? 이렇게 보이는 이유는 뉴런이 하는 일을 생각해 보면 명확해 집니다. 이 뉴런은 0을 분류하는 책임을 가졌기 때문에, 0에 대해서 높은 값을 출력하고 0이 아닌 경우에는 낮은 값을 출력하는 것이 목적입니다. 일반적으로 0의 이미지에서 높은 값을 가지는 픽셀에 맞추어 큰 가중치를 가짐으로써 0에 대한 높은 출력을 만들 수 있습니다. 이와 동시에, 0이 아닌 이미지에서는 높고, 0인 이미지에서는 낮은 경향이 있는 픽셀에 있는 가중치는 작은 값을 가지게 되어 0이 아닐 때 비교적 낮은 출력을 얻을 수 있습니다. 가중치 이미지의 가운데 비교적 검은 부분은 0인 이미지가 이 부분에서는 비어있다는 사실을 의미합니다(0의 가운데 원부분). 하지만 보통 다른 숫자에서는 높게 나올 것입니다.
 
+출력 뉴런 10개에서 학습된 가중치를 보묻 보겠습니다. 예상대로 열 개의 숫자가 모두 번진 것처럼 보입니다. 이들은 각 숫자 클래스에 속한 여러 이미지를 평균낸 것처럼 보입니다.
 
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="MNIST 분류기의 출력 뉴런의 가중치 시각화" %}
 
-Let's look at the weights learned for all 10 of the output neurons. As suspected, they all look like somewhat blurry versions of our ten digits. They appear almost as though we averaged many images belonging to each digit class.
+2에 대한 이미지를 입력으로 받았다고 가정해 보겠습니다. 그럼 2에 대한 분류를 담당하는 뉴런이 2가 나타날 가능성이 높은 픽셀을 따라 큰 가중치를 가지고 있기 때문에, 결국 이 뉴런이 높은 값을 가질 것으로 예상할 수 있습니다. 다른 뉴런에서도 가중치의 일부가 높은 값을 가진 픽셀과 맞을 수 있어 이 뉴런의 값들이 조금 높을 수 있습니다. 하지만 겹치는 부분이 훨씬 적고 이미지에 있는 여러 높은 값의 픽셀들이 2를 담당하는 뉴런에 있는 낮은 가중치 때문에 효과가 감쇠됩니다. 활성화 함수는 단조 함수이므로 이 결과를 바꾸지 않습니다. 즉 활성화 함수는 높은 입력을 받으면 높은 출력을 만듭니다.
 
-{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="Visualizing the weights for all the output neurons of an MNIST classifier" %}
+이런 가중치를 출력 클래스의 템플릿을 구성하는 것으로 해석할 수 있습니다. 이는 매우 흥미로운데 왜냐하면 이런 숫자들이 무엇인지 어떤 의미인지 사전에 어떤 것도 네트워크에 알려 주지 않았지만 이런 이미지의 클래스를 닮게 되었기 때문입니다. 이것이 신경망의 내부에 관해 정말 흥미로운 것에 대한 힌트입니다. 신경망은 그들이 학습한 오브젝트의 _표현_ 을 형성합니다. 그리고 이런 표현은 간단한 분류나 예측보다 훨씬 더 유용할 수 있습니다. 이런 표현 능력은 [합성곱 신경망](/ml4a/convnets/)을 배울 때 다시 살펴 보고 여기서는 너무 깊이 다루지 않겠습니다.
 
-Suppose we receive an input from an image of a 2. We can anticipate that the neuron responsible for classifying 2s should have a high value because its weights are such that high weights tend to align with pixels tending to be high in 2s. For other neurons, _some_ of the weights will also line up with high-valued pixels, making their scores somewhat higher as well. However, there is much less overlap, and many of the high-valued pixels in those images will be negated by low weights in the 2 neuron. The activation function does not change this, because it is monotonic with respect to the input, that is, the higher the input, the higher the output.
-
-We can interpret these weights as forming templates of the output classes. This is really fascinating because we never _told_ our network anything in advance about what these digits are or what they mean, yet they came to resemble those object classes anyway. This is a hint of what's really special about the internals of neural networks: they form _representations_ of the objects they are trained on, and it turns out these representations can be useful for much more than simple classification or prediction. We will take this representational capacity to the next level when we begin to study [convolutional neural networks](/ml4a/convnets/) but let's not get ahead of ourselves yet...
-
-This raises many more questions than it provides answers, such as what happens to the weights when we add hidden layers? As we will soon see, the answer to this will build upon what we saw in the previous section in an intuitive way. But before we get to that, it will help to examine the performance of our neural network, and in particular, consider what sorts of mistakes it tends to make.
+해답 보다는 궁금증이 더 많이 생깁니다. 가령 은닉층을 추가할 때 가중치는 어떻게 될까요? 잠시 후에 보겠지만 이에 대한 답은 직관적으로 이전 절에서 보았던 것을 기초로 합니다. 하지만 이에 대한 답을 하기전에 신경망의 성능을 측정하는 것이 필요합니다. 특히 어떤 종류의 실수를 하게되는지 생각해 보겠습니다.
 
 ## 0op5, 1 d14 17 2ga1n
 
