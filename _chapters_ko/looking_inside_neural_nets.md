@@ -43,22 +43,21 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 ## 0op5, 1 d14 17 2ga1n
 
-Occasionally, our network will make mistakes that we can sympathize with. To my eye, it's not obvious that the first digit below is 9. One could easily mistake it for a 4, as our network did. Similarly, one could understand why the second digit, a 3, was misclassified by the network as an 8. The mistakes on the third and fourth digits below are more glaring. Almost any person would immediately recognize them as a 3 and a 2, respectively, yet our machine misinterpreted the first as a 5, and is nearly clueless on the second.
+때로는 슬프게도 네트워크가 실수를 할 것입니다. 제가 보기에는 아래 첫 번째 이미지가 9인지 확실하지가 않습니다. 이 신경망처럼 누구든지 쉽게 4라고 생각할 수 있습니다. 비슷하게 신경망이 8이라고 잘못 분류한 두 번째 숫자가 왜 3인지 누군가는 이해할 수도 있습니다. 세 번째와 네 번째 숫자의 실수는 더 특이합니다. 거의 모든 사람이 이 숫자를 3과 2라고 즉시 인식할 것입니다. 하지만 시스템은 각각 이를 5라고 잘못 해석했고 그 다음은 거의 마땅한 근거를 찾지 못한 것 같습니다.
 
-{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="A selection of mistakes by our 1-layer MNIST network. The two on the left are understandable; the two on the right are more obvious errors." %}
+{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="단일 층 MNIST 네트워크에 의해 잘못 분류된 예시. 왼쪽의 두 개는 이해가 되지만 오른쪽의 두개는 확실히 에러로 보입니다." %}
 
-Let's look more closely at the performance of the last neural network of the previous chapter, which achieved 90% accuracy on MNIST digits. One way we can do this is by looking at a confusion matrix, a table which breaks down our predictions into a table. In the following confusion matrix, the 10 rows correspond to the actual labels of the MNIST dataset, and the columns represent the predicted labels. For example, the cell at the 4th row and 6th column shows us that there were 71 instances in which an actual 3 was mislabeled by our neural network as a 5. The green diagonal of our confusion matrix shows us the quantities of correct predictions, whereas every other cell shows mistakes.
+이전 장에서 MNIST 숫자 데이터에서 90% 정확도를 달성했던 마지막 신경망의 성능을 조금 더 자세히 살펴 보겠습니다. 이를 위한 한가지 방법은 예측 결과를 쪼개어 테이블에 나누어 놓은 오차 행렬(confusion matrix)를 사용하는 것입니다. 다음 오차 행렬에서 10개의 행은 MNIST 데이터셋의 실제 레이블에 해당하고, 열은 예측한 레이블을 나타냅니다. 예를 들어, 4번째 행과 6번째 열은 실제 3인 샘플 71개가 신경망에 의해 5로 잘못 분류되었다는 것을 보여줍니다. 오차 행렬의 녹색 대각선은 올바른 예측의 양을 보여 주고, 다른 모든 셀은 잘못된 예측입니다.
 
-Hover your mouse over each cell to get a sampling of the top instances from each cell, ordered by the network's confidence (probability) for the prediction.
+각 셀에 마우스를 올리면 각 셀에서 신경망의 예측 신뢰도(확률) 순으로 가장 높은 샘플을 보여줍니다.
 
 {% include demo_insert.html path="/demos/confusion_mnist/" parent_div="post" %}
 
-We can also get some nice insights by plotting the top sample for each cell of the confusion matrix, as seen below.
+또한 아래처럼 오차 행렬의 각 셀의 최상위 샘플을 같이 그려서 유용한 통찰을 얻을 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="Top-confidence samples from an MNIST confusion matrix" %}
+{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="MNIST 오차 행렬에서 가장 신뢰도가 높은 샘플" %}
 
-This gives us an impression of how the network learns to make certain kinds of predictions. Looking at first two columns, we see that our network appears to be looking for big loops to predict 0s, and thin lines to predict 1s, mistaking other digits if they happen to have those features.
-
+이 그림은 네트워크가 특정 종류의 예측을 어떻게 만드는 지에 대한 정보를 제공합니다. 이 네트워크는 큰 동그라미를 0으로 예측하는 것으로 보입니다. 처음 두 개의 열을 보면, 0을 예측하기 위해 큰 동그라미를 찾고, 1을 예측하기 위해서는 가느다란 직선을 찾는 것으로 보입니다. 그래서 이런 특징이 있는 다른 숫자들을 잘못 분류하고 있습니다.
 
 ## Breaking our neural network
 
