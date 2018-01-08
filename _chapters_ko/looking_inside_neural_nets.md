@@ -59,13 +59,13 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 이 그림은 네트워크가 특정 종류의 예측을 어떻게 만드는 지에 대한 정보를 제공합니다. 이 네트워크는 큰 동그라미를 0으로 예측하는 것으로 보입니다. 처음 두 개의 열을 보면, 0을 예측하기 위해 큰 동그라미를 찾고, 1을 예측하기 위해서는 가느다란 직선을 찾는 것으로 보입니다. 그래서 이런 특징이 있는 다른 숫자들을 잘못 분류하고 있습니다.
 
-## Breaking our neural network
+## 신경망 내부를 들여다 보기
 
-So far we've looked only at neural networks trained to identify handwritten digits. This gives us many insights but is a very easy choice of dataset, giving us many advantages; We have only ten classes, which are very well-defined and have relatively little internal variance among them. In most real-world scenarios, we are trying to classify images under much less ideal circumstances. Let's look at the performance of the same neural network on another dataset, [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), a labeled set of 60,000 32x32 color images belonging to ten classes: airplanes, automobiles, birds, cats, deer, dogs, frogs, horses, ships, and trucks. The following is a random sample of images from CIFAR-10.
+지금까지 손글씨 숫자를 인식하기 위해 훈련한 신경망을 보았습니다. 이 모델은 매우 인상적이지만 매우 쉬운 데이터셋입니다. 10개의 클래스가 비교적 잘 구성되어 있고 클래스가 같은 샘플들은 서로 많이 다르지 않아 모델을 만들기 편리합니다. 대부분의 실제 문제에서는 훨씬 이상적이지 않은 이미지들을 분류해야 합니다. 같은 신경망을 사용해 다른 데이터셋에서 성능을 측정해 보겠습니다. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)는 32x32 크기의 레이블된 60,000개의 컬러 이미지입니다. 이 데이터셋에는 비행기, 자동차, 새, 고양이, 사슴, 강아지, 개구리, 말, 배, 트럭의 10개 클래스가 있습니다. 다음은 CIFAR-10에서 무작위로 선택한 샘플입니다.
 
-{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="A random sample from CIFAR-10 image set" %}
+{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="CIFAR-10 이미지에서 무작위로 선택한 샘플" %}
 
-Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem. 
+이 이미지 클래스들은 이제까지 우리가 다뤄보지 못했던 종류임을 즉각적으로 알 수 있습니다. 예를 들어, 고양이는 다른 방향의 얼굴을 하고 있을 수 있고 색깔과 털의 패턴이 다를 수 있습니다. 또 몸을 쭉 펴고 있거나 웅크리고 있을 수 있는 등 손글씨 숫자에서는 보지 못했던 많은 변종이 있습니다. 고양이 사진은 다른 물체와 함께 있어서 문제를 더 어렵게 만듭니다.
 
 Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
 
