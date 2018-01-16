@@ -41,7 +41,7 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 해답 보다는 궁금증이 더 많이 생깁니다. 가령 은닉층을 추가할 때 가중치는 어떻게 될까요? 잠시 후에 보겠지만 이에 대한 답은 직관적으로 이전 절에서 보았던 것을 기초로 합니다. 하지만 이에 대한 답을 하기전에 신경망의 성능을 측정하는 것이 필요합니다. 특히 어떤 종류의 실수를 하게되는지 생각해 보겠습니다.
 
-## 0op5, 1 d14 17 2ga1n
+## 이런 또 실수를 했네
 
 때로는 슬프게도 네트워크가 실수를 할 것입니다. 제가 보기에는 아래 첫 번째 이미지가 9인지 확실하지가 않습니다. 이 신경망처럼 누구든지 쉽게 4라고 생각할 수 있습니다. 비슷하게 신경망이 8이라고 잘못 분류한 두 번째 숫자가 왜 3인지 누군가는 이해할 수도 있습니다. 세 번째와 네 번째 숫자의 실수는 더 특이합니다. 거의 모든 사람이 이 숫자를 3과 2라고 즉시 인식할 것입니다. 하지만 시스템은 각각 이를 5라고 잘못 해석했고 그 다음은 거의 마땅한 근거를 찾지 못한 것 같습니다.
 
@@ -67,21 +67,21 @@ MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니
 
 이 이미지 클래스들은 이제까지 우리가 다뤄보지 못했던 종류임을 즉각적으로 알 수 있습니다. 예를 들어, 고양이는 다른 방향의 얼굴을 하고 있을 수 있고 색깔과 털의 패턴이 다를 수 있습니다. 또 몸을 쭉 펴고 있거나 웅크리고 있을 수 있는 등 손글씨 숫자에서는 보지 못했던 많은 변종이 있습니다. 고양이 사진은 다른 물체와 함께 있어서 문제를 더 어렵게 만듭니다.
 
-Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
+당연하게 이런 이미지에 2층 신경망을 훈려시키면 정확도는 겨우 37% 정도에 이를 것입니다. 그래도 무작위로 추측하는 것(10%의 정확도)보다는 많이 낫지만 MNIST 분류기가 달성한 90%에는 훨씬 못 미칩니다. 합성곱 신경망을 사용하면 MNIST와 CIFAR-10 양쪽 모두에서 이 숫자는 크게 향상될 것입니다. 지금은 평범한 신경망의 가중치를 조사해서 이 방식의 단점에 대해 조금 더 알아 보도록 하겠습니다.
 
-Let's repeat the earlier experiment of observing the weights of a 1-layer neural network with no hidden layer, except this time training on images from CIFAR-10. The weights appear below.
+앞서 은닉층이 없는 1층 신경망의 가중치를 관찰하는 실험을 다시 하는데 이번에는 CIFAR-10의 이미지를 훈련시켜 보겠습니다. 가중치는 아래와 같이 보입니다.
 
-{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="Visualizing the weights for 1-layer CIFAR-10 classifier" %}
+{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="1층 CIFAR-10 분류기의 가중치 시각화" %}
 
-Compared to the MNIST weights, these have fewer obvious features and far less definition to them. Certain details do make intuitive sense, e.g. airplanes and ships are mostly blue on the outer edges of the images, reflecting the tendency for those images to have blue skies or waters around them. Because the weights image for a particular class does correlate to an average of images belonging to that class, we can expect blobby average colors to come out, as before. But because the CIFAR classes are much less internally consistent, the well-defined "templates" we saw with MNIST are far less evident.
+MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 정의하기가 어렵습니다. 조금 자세히 살펴보면 일부 직관을 얻을 수 있습니다. 가령, 비행기와 배는 이미지 가장자리는 거의 푸른색이어서, 파란 하늘과 바다로 둘러 싸인 이미지들의 경향을 반영하고 있습니다. 특정 클래스에 대한 가중치 이미지는 그 클래스에 속한 이미지의 평균에 관련되어 있기 때문에, 이전처럼 뚜렷하지 않은 평균적인 색깔을 예상할 수 있습니다. 하지만 CIFAR 클래스안의 이미지들은 거의 일관성이 없기 때문에, MNIST에서 보았던 것처럼 잘 정의된 "원형"을 찾기가 어렵습니다.
 
-Let's take a look at the confusion matrix associated with this CIFAR-10 classifier.
+이 CIFAR-10 분류기의 오차 행렬을 살펴 보겠습니다.
 
 {% include demo_insert.html path="/demos/confusion_cifar/" parent_div="post" %}
 
-Not surprisingly, its performance is very poor, reaching only 37% accuracy. Clearly, our simple 1-layer neural network is not capable of capturing the complexity of this dataset. One way we can improve its performance somewhat is by introducing a hidden layer. The next section will analyze the effects of doing that.
+예상대로 성능은 겨우 37% 정확도라서 매우 나쁩니다. 확실하게 간단한 1층 신경망은 이 데이터셋의 복잡한 특징을 잡아낼 능력이 없습니다. 성능을 조금 향상시킬 수 있는 한가지 방법은 은닉층을 추가하는 것입니다. 다음 절에서 이에 대한 효과를 확인해 보겠습니다.
 
-## Adding hidden layers
+## 은닉층 추가
 
 So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
 
