@@ -83,13 +83,13 @@ MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 
 
 ## 은닉층 추가
 
-So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
+지금까지 입력이 출력에 바로 연결되는 1층 신경망만 다루었습니다. 은닉층은 이 신경망에 어떤 영향을 미칠까요? 이를 알아 보기 위해 MNIST 네트워크에 10개의 뉴런을 가진 중간층을 삽입해 보겠습니다. 이제 손글씨 숫자를 분류하기 위한 신경망은 다음과 같아 집니다.
 
-{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="2-layer neural network for MNIST" %}
+{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="MNIST를 위한 2층 신경망" %}
 
-Our simple template metaphor in the 1-layer network above doesn't apply to this case, because we no longer have the 784 input pixels connecting directly to the output classes. In some sense, you could say that we had "forced" our original 1-layer network to learn those templates because each of the weights connected directly into a single class label, and thus only affected that class. But in the more complicated network that we have introduced now, the weights in the hidden layer affect _all ten_ of the neurons in the output layer. So how should we expect those weights to look now?
+앞서 1층 신경망에서의 간단한 템플릿 비유는 이 경우에 적용되지 않습니다. 왜냐하면 784개의 입력 픽셀이 출력 클래스에 직접 연결되어 있지 않기 때문입니다. 어떤 의미에서 처음 만들었던 1층 신경망은 각각의 가중치가 하나의 클래스 레이블에 직접 연결되어 있어서 그 클래스에만 영향을 미치기 때문에 템플릿을 학습했다고 억지로 말할 수 있습니다. 하지만 여기에서처럼 더 복잡한 네트워크에서는 은닉층의 가중치는 출력층의 10개의 뉴런 모두에게 영향을 미칩니다. 그렇다면 이 가중치가 어떻게 나타날까요?
 
-To understand what's going on, we will visualize the weights in the first layer, as before, but we'll also look carefully at how their activations are then combined in the second layer to obtain class scores. Recall that an image will generate a high activation in a particular neuron in the first layer if the image is largely sympathetic to that filter. So the ten neurons in the hidden layer reflect the presence of those ten features in the original image. In the output layer, a single neuron, corresponding to a class label, is a weighted combination of those previous ten hidden activations. Let's look at them below.
+어떤 일이 일어나는지 이해하기 위해서 이전처럼 첫 번째 층에 있는 가중치를 시각화하겠습니다. 하지만 활성화 값이 클래스 점수를 만들기 위해 두 번째 층과 어떻게 연결되어 있는지도 주의깊게 살필 것입니다. 이미지가 첫 번째 층의 어떤 필터에 크게 동조하면 그 뉴런의 활성화 값이 크게 출력된다는 것을 기억하세요. 그러므로 은닉층에 잇는 뉴런 10개는 이미지에 있는 10개의 특성의 존재 여부를 반영합니다. 출력층에서는 클래스 레이블에 상응하는 하나의 뉴런은 이전 은닉층의 10개 활성화 값의 가중치 합입니다. 다음 그림을 한번 보죠.
 
 {% include demo_insert.html path="/demos/f_mnist_weights/" parent_div="post" %}
 
