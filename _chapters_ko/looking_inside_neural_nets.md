@@ -93,11 +93,11 @@ MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 
 
 {% include demo_insert.html path="/demos/f_mnist_weights/" parent_div="post" %}
 
-Let's start with the first layer weights, visualized at the top. They don't look like the image class templates anymore, but rather more unfamiliar. Some look like pseudo-digits, and others appear to be components of digits: half loops, diagonal lines, holes, and so on.
+위에 그림으로 나타난 첫 번째 층의 가중치를 살펴 보죠. 이 그림은 더 이상 이미지 클래스의 템플릿처럼 보이지 않고 오히려 낯설어 보입니다. 어떤 것들은 숫자 비슷한 모양 같기도 하고 다른 것들에서는 숫자의 일부분이 보입니다. 반 원, 대각선, 동심원 등입니다.
 
-The rows below the filter images correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten filters' activations from the hidden layer. For example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are low (where the hole in zeros is usually found). The `1` class is almost the opposite of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
+필터 이미지 아래 행은 이미지 클래스마다 하나씩인 출력 뉴런에 대응됩니다. 막대 그래프는 은닉층에 있는 필터 10개의 활성화에 연결된 가중치의 크기입니다. 예를 들어 `0` 클래스는 (0가 나타날 가능성이 높은) 바깥쪽 테두리를 따라 높게 활성화된 필터를 선호합니다. 가운데 픽셀(일반적으로 0의 구멍에 해당하는 픽셀)이 높은 값을 가진 필터는 선호하지 않습니다. `1` 클래스는 이와 거의 정반대입니다. `1`을 쓸 때 수직선이 나타므로 가운데 픽셀이 강한 필터를 선호합니다.
 
-The advantage of this approach is flexibility. For each class, there is a wider array of input patterns that stimulate the corresponding output neuron. Each class can be triggered by the presence of several abstract features from the previous hidden layer, or some combination of them. Essentially, we can learn different kinds of zeros, different kinds of ones, and so on for each class. This will usually--but not always--improve the performance of the network for most tasks.
+이런 접근 방법의 장점은 유연성입니다. 각 클래스에는 해당 출력 뉴런을 자극하는 다양한 입력 패턴이 있습니다. 각 클래스는 이전 은닉층에서 여러가지 추상적인 특성이나 특성들의 조합이 감지되면 활성화될 수 있습니다. 근본적으로 여러  종류의 0, 여러 종류의 1 등에 대해 학습할 수 있습니다. 이는 보통--항상은 아니고--대부분의 작업에서 네트워크의 성능을 향상시킵니다.
 
 ## Features and representations
 
