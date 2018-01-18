@@ -73,7 +73,7 @@ So far we've looked only at neural networks trained to identify handwritten digi
 
 {% include todo.html note="new demo, refresh for new random sample" %}
 
-Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem.
+Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outstretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem.
 
 Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
 
