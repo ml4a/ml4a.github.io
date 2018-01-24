@@ -65,7 +65,7 @@ So far we've looked only at neural networks trained to identify handwritten digi
 
 {% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="A random sample from CIFAR-10 image set" %}
 
-Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outscretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem. 
+Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outstretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem. 
 
 Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
 
@@ -95,7 +95,7 @@ To understand what's going on, we will visualize the weights in the first layer,
 
 Let's start with the first layer weights, visualized at the top. They don't look like the image class templates anymore, but rather more unfamiliar. Some look like pseudo-digits, and others appear to be components of digits: half loops, diagonal lines, holes, and so on.
 
-The rows below the filter images correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten filters' activations from the hidden layer. For example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are low (where the hole in zeros is usually found). The `1` class is almost the opposite of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
+The rows below the filter images correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten filters' activations from the hidden layer. For example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are high (where the hole in zeros is usually found). The `1` class is almost the opposite of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
 
 The advantage of this approach is flexibility. For each class, there is a wider array of input patterns that stimulate the corresponding output neuron. Each class can be triggered by the presence of several abstract features from the previous hidden layer, or some combination of them. Essentially, we can learn different kinds of zeros, different kinds of ones, and so on for each class. This will usually--but not always--improve the performance of the network for most tasks.
 
