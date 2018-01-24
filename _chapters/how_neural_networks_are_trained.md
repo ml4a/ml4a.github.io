@@ -127,7 +127,7 @@ $$f(x) = b + w_1 \cdot x_1 + w_2 \cdot x_2 + ... + w_n \cdot x_n $$
 Or in matrix notation, we can summarize it as:
 
 $$
-f(x) = b + W^T X
+f(x) = b + W^\top X
 \;\;\;\;\;\;\;\;where\;\;\;\;\;\;\;\;
 W = 
 \begin{bmatrix}
@@ -141,7 +141,7 @@ $$
 One trick we can use to simplify this is to think of our bias $b$ as being simply another weight, which is always being multiplied by a "dummy" input value of 1. In other words, we let:
 
 $$
-f(x) = W^T X
+f(x) = W^\top X
 \;\;\;\;\;\;\;\;where\;\;\;\;\;\;\;\;
 W = 
 \begin{bmatrix}
@@ -152,7 +152,7 @@ X =
 1\\x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
 $$
 
-This equivalent formulation is convenient both notationally, since now our function is more simply expressed as $f(x) = W^T X$, and conceptually, since we can now think of the bias as just another weight, and therefore just one more parameter that needs to be optimized.
+This equivalent formulation is convenient both notationally, since now our function is more simply expressed as $f(x) = W^\top X$, and conceptually, since we can now think of the bias as just another weight, and therefore just one more parameter that needs to be optimized.
 
 Adding many more dimensions may seem at first to complicate our problem horribly, but it turns out that the formulation of the problem remains exactly the same in 2, 3, or any number of dimensions. Although it is impossible for us to draw it now, there exists a loss function which appears like a bowl in some number of dimensions -- a hyper-bowl! And as before, our goal is to find the lowest part of that bowl, objectively the smallest value that the loss function can have with respect to some parameter selection and dataset.
 
@@ -166,7 +166,7 @@ So how do we actually calculate where that point at the bottom is exactly? There
 
 ## The curse of nonlinearity
 
-Alas, ordinary least squares cannot be used to optimize neural networks however, and so solving the above linear regression will be left as an exercise left to the reader. The reason we cannot use linear regression is that neural networks are nonlinear; Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^T X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^T X) $$. 
+Alas, ordinary least squares cannot be used to optimize neural networks however, and so solving the above linear regression will be left as an exercise left to the reader. The reason we cannot use linear regression is that neural networks are nonlinear; Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^\top X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^\top X) $$. 
 
 This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the loss function. Rather than having a bowl shape, the loss function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex loss function ensures we have a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
 
@@ -207,7 +207,7 @@ If we take this approach to solving the simple linear regression we posed above,
 {% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="Example of gradient descent for linear regression with two parameters. We take a random guess at the parameters, and iteratively update our position by taking a small step against the direction of the gradent, until we are at the bottom of the loss function." %}
 
 And if there are more dimensions? If we denote all of our parameters as $w_i$, thus giving us the form
-$f(x) = b + W^T X $, then we can extrapolate the above example to the multimensional case. This can be written down more succinctly using gradient notation. Recall that the gradient of $J$, which we will denote as $\nabla J$, is the vector containing each of the partial derivatives. Thus we can represent the above update step as:
+$f(x) = b + W^\top X $, then we can extrapolate the above example to the multimensional case. This can be written down more succinctly using gradient notation. Recall that the gradient of $J$, which we will denote as $\nabla J$, is the vector containing each of the partial derivatives. Thus we can represent the above update step as:
 
 $$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\partial w_2}, \cdots, \frac{\partial J}{\partial w_N} \Biggr) $$
 
