@@ -99,20 +99,20 @@ MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 
 
 이런 접근 방법의 장점은 유연성입니다. 각 클래스에는 해당 출력 뉴런을 자극하는 다양한 입력 패턴이 있습니다. 각 클래스는 이전 은닉층에서 여러가지 추상적인 특성이나 특성들의 조합이 감지되면 활성화될 수 있습니다. 근본적으로 여러  종류의 0, 여러 종류의 1 등에 대해 학습할 수 있습니다. 이는 보통--항상은 아니고--대부분의 작업에서 네트워크의 성능을 향상시킵니다.
 
-## Features and representations
+## 특성과 표현
 
-Let's generalize some of what we've learned in this chapter. In single-layer and multi-layer neural networks, each layer has a similar function; it transforms data from the previous layer into a "higher-level" representation of that data. By "higher-level," we mean that it contains a compact and more salient representation of that data, in the way that a summary is a "high-level" representation of a book. For example, in the 2-layer network above, we mapped the "low-level" pixels into "higher-level" features found in digits (strokes, loops, etc) in the first layer, and then mapped those high-level features into an even higher-level representation in the next layer, that of the actual digits. This notion of transforming data into smaller but more meaningful information is at the heart of machine learning, and a primary capability of neural networks.
+이 장에서 배운 것들을 일반화시켜 보겠습니다. 단일 층과 다층 신경망에서 각 층은 비슷한 함수를 가집니다. 이 함수는 이전 층으로부터 온 데이터를 고수준의 표현으로 변환시킵니다. 책을 요약한 것이 고수준 표현인 것처럼 고수준이라는 것은 작고 핵심적인 데이터 표현을 담고 있다는 것을 의미합니다. 예를 들어, 위의 2층 신경망에서 저수준 픽셀을 첫 번째 층의 숫자에서 찾은 고수준 특성(직선, 원모양 등)으로 매핑했습니다. 그 다음 이 고수준 특성을 다음 층의 더욱 고수준 특성인 실제 숫자로 매핑했습니다. 데이터를 작지만 더 의미있는 정보로 변환하는 이 개념은 머신러닝의 핵심이고 신경망의 주요한 능력입니다.
 
-By adding a hidden layer into a neural network, we give it a chance to learn features at multiple levels of abstraction. This gives us a rich representation of the data, in which we have low-level features in the early layers, and high-level features in the later layers which are composed of the previous layers' features. 
+신경망에 은닉층을 추가함으로써 여러 추상적인 수준에서 특성을 학습할 수 있게 됩니다. 이는 데이터의 표현을 풍부하게 합니다. 초기 층에는 저수준 특성을 가지고 이전 층의 특성으로 이루어진 후반의 층은 고수준 특성을 가집니다.
 
-As we saw, hidden layers can improve accuracy, but only to a limited extent. Adding more and more layers stops improving accuracy quickly, and comes at a computational cost -- we can't simply ask our neural network to memorize every possible version of an image class through its hidden layers. It turns out there is a better way, using [convolutional neural networks](/ml4a/convnets), which will be covered in a later chapter. 
+우리가 본 대로 은닉층은 정확도를 향상시킬 수 있지만 제한된 범위에서 가능합니다. 더 많은 층을 추가할수록 정확도를 향상시키지 못하고 계산 비용을 높입니다. 은닉층을 통과하는 이미지 클래스의 가능한 모든 경우를 기억하도록 신경망을 만들 수 없습니다. 여기에 [합성곱](/ml4a/convnets)을 사용하는 더 좋은 방법을 다음 장에서 다루겠습니다.
 
-# Further reading
+# 더 읽을 거리
 
 {% include further_reading.md title="Demo: Tinker with a neural network" author="Daniel Smilkov and Shan Carter" link="http://playground.tensorflow.org" %} 
 
 {% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %} 
 
-## Next chapter
+## 다음 장
 
 In the next chapter, we will learn about a critical topic that we've glossed over up until now, [how neural networks are trained](/ml4a/how_neural_networks_are_trained/): the process by which neural nets are constructed and trained on data, using a technique called gradient descent via backpropagation. We will build up our knowledge starting from simple linear regression, and working our way up through examples, and elaborating on the various aspects of training which researchers must deal with.
