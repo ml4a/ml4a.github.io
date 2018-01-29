@@ -46,7 +46,7 @@
 			<nav>
 	    		<ul>
 					<li style="display:none;"><a href="#end-nav" class="skip-navigation">Skip Navigation</a></li>
-	        		<li><a href="/index/">ml4a</a></li>
+	        		<li><a href="/ml4a/">ml4a</a></li>
 		        	<li><a href="/guides/">guides</a></li>
 		        	<li><a href="/demos/">demos</a></li>
 		        	<li><a href="/classes/">classes</a></li>
