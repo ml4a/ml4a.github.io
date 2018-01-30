@@ -115,4 +115,4 @@ MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 
 
 ## 다음 장
 
-In the next chapter, we will learn about a critical topic that we've glossed over up until now, [how neural networks are trained](/ml4a/how_neural_networks_are_trained/): the process by which neural nets are constructed and trained on data, using a technique called gradient descent via backpropagation. We will build up our knowledge starting from simple linear regression, and working our way up through examples, and elaborating on the various aspects of training which researchers must deal with.
+다음 장 [어떻게 신경망이 훈련되는가](/ml4a/how_neural_networks_are_trained/)에서 지금까지는 얼버무린 아주 중요한 주제에 대해 배우도록 하겠습니다. 역전파를 통해 경사 하강법이라 불리는 기법을 사용해 신경망이 구성되고 데이터에 훈련되는 과정을 다룹니다. 간단한 선형 회귀에서 시작해서 예제들을 점차 발전시켜 갈 것입니다. 연구자들이 다루어야 하는 훈련의 여러가지 면면을 설명하겠습니다.
