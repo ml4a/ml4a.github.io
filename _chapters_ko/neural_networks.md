@@ -3,7 +3,7 @@ layout: chapter
 title: "신경망"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/analytical_engine.jpg"
-header_text: "“과학에서 근본적이지만 아직 독립적인 요소이고 명확히 잘 정의된 분석 대상으로서, 수학적인 처리 과정이 무생물인 장치가 아니라 사람의 뇌를 통과할 때, 연산에 연관된 추론이 똑같은 곳에서 동등하게 필요하다는 것이 엔진 연구에 반드시 포함되어야 합니다.” <a href=\"https://books.google.de/books?id=b8YUDAAAQBAJ&pg=PA16&lpg=PA16\">해석 기관에 대한 스케치 (1843), 에이다 러브레이스</a>"
+header_text: "“수학적인 처리 과정이 무생물인 장치가 아니라 사람의 뇌를 통과할 때, 연산에 연관된 추론이 명확히 잘 정의된 분석의 주체가 되는 것이 동일하게 필요합니다. 이는 과학에서 근본적이지만 아직 독립적인 주제로서 엔진 연구에 반드시 포함되어야 합니다.” <a href=\"https://books.google.de/books?id=b8YUDAAAQBAJ&pg=PA16&lpg=PA16\">해석 기관에 대한 스케치 (1843), 에이다 러브레이스</a>"
 translator: "Haesun Park"
 translator_link: "https://tensorflow.blog/"
 ---
