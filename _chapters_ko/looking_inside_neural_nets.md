@@ -1,134 +1,120 @@
 ---
 layout: chapter
-title: "Looking inside neural nets"
+title: "신경망의 내부"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
-header_quote: "lovelace"
+header_text: "<a href=\"http://www.olympusbioscapes.com/gallery/images/743\">케이티 매소(Katie Matho) 박사</a>가 만든 출생 직후 생쥐의 브레인보우. <a href=\"https://en.wikipedia.org/wiki/Brainbow\">브레인보우</a>는 형광 단백질을 사용해 개별 뉴런을 시각화하는 뇌영상 기술입니다."
+translator: "Haesun Park"
+translator_link: "https://tensorflow.blog/"
 ---
 
-<!--
-brainbow by katie matho
+[English](/ml4a/looking_inside_neural_nets/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/looking_inside_neural_nets/)
 
-http://medicalxpress.com/news/2015-10-brain-cells.html img.medicalxpress.com/newman/gfx/news/hires/2015/1-researchersl.png
+[이전 장](/ml4a/ko/neural_networks)에서 손글씨 숫자 이미지를 90%에 가까운 정확도로 분류하기 위해 신경망이 어떻게 훈련되는지 보았습니다. 이번 장에서는 이 성능을 조금 더 주의깊게 평가해 보고, 도대체 무슨 일이 일어나는지 직관을 얻기위해 내부 상태를 조사해 보려고 합니다. 이 장의 후반부에 개, 자동차, 배 등으로 이루어진 복잡한 데이터셋에서 신경망을 훈련시켜 보면서 문제점을 찾아 보겠습니다. 그리고 더 높은 수준에 도달하기 위해 어떤 혁신이 필요한지 추측해 보겠습니다.
 
-http://journal.frontiersin.org/article/10.3389/fnana.2014.00103/full
+## 가중치 시각화하기
 
-http://catalog.flatworldknowledge.com/bookhub/reader/127?e=stangor-ch03_s01 images.flatworldknowledge.com/stangor/stangor-fig03_003.jpg
-[printblock analogy?] [borges quote about numbers]
--->
+MNIST 손글씨 숫자를 분류하는 네트워크를 훈련시켜 보겠습니다. 이전 장과는 다르게 은닉층 없이 입력층을 출력층에 바로 연결하겠습니다. 이 네트워크는 다음과 같습니다.
 
-In the [previous chapter](/ml4a/neural_networks), we saw how a neural network can be trained to classify handwritten digits with a respectable accuracy of around 90%. In this chapter, we are going to evaluate its performance a little more carefully, as well as examine its internal state to develop a few intuitions about what's really going on. Later in this chapter, we are going to break our neural network altogether by attempting to train it on a more complicated dataset of objects like dogs, automobiles, and ships, to try to anticipate what kinds of innovations will be necessary to take it to the next level.
- 
-## Visualizing weights
+{% include figure_multi.md path1="/images/figures/mnist_1layer.png" caption1="MNIST를 위한 1층 신경망. 0에서부터 9까지 10개의 숫자 클래스에 대응하는 10개의 출력 뉴런이 있습니다." %}
 
-Let's take a network trained to classify MNIST handwritten digits, except unlike in the last chapter, we will map directly from the input layer to the output layer with no hidden layers in between. Thus our network looks like this.
+이미지를 신경망으로 주입할 때, 아래 그림의 왼쪽처럼 일렬로 늘어선 뉴런에 픽셀을 펼치는 모습으로 네트워크를 그렸습니다. 레이블이 $$z$$인 첫 번째 출력 뉴런에 이어진 연결에만 초점을 맞추겠습니다. 입력 뉴런과 그에 상응하는 가중치는 각각 $$x_i$$와 $$w_i$$로 표시되어 있습니다.
 
-{% include figure.html path="/images/figures/mnist_1layer.png" caption="1-layer neural network for MNIST" %}
+{% include figure_multi.md path1="/images/figures/weights_analogy_1.png" caption1="출력 뉴런 하나에 연결된 가중치" %}
 
-{% include todo.html note="label output neurons" %}
+하지만 픽셀을 펼치는 대신에, 가중치를 대응된 픽셀에 맞게 정렬된 28x28 격자로 볼 수 있습니다. 위 그림의 오른쪽 표현이 아래 그림과 달라보이지만, 둘은 같은 공식, $$z=b+\sum{w x}$$으로 표현됩니다. 
 
-Recall that when we input an image into our neural net, we visualize the network diagram by "unrolling" the pixels into a single column of neurons, as shown in the below figure on the left. Let's focus on just the connections plugged into the first output neuron, which we will label $$z$$, and label each of the input neurons and their corresponding weights as $$x_i$$ and $$w_i$$.
+{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="출력 뉴런에 대한 픽셀-가중치 곱셉을 표현하는 다른 방법" %}
 
-{% include figure.html path="/images/figures/weights_analogy_1.png" caption="Highlighting the weights connections to a single output neuron" %}
+이제 이 구조로 학습된 신경망에서, 숫자 0을 분류하는 책임을 가진 첫 번째 출력 뉴런에 연결된 가중치를 시각화해 보겠습니다. 낮은 가중치는 검게 그리고 높은 값은 흰색으로 표시합니다.
 
-{% include todo.html note="label $z$ on the left" %}
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist_0.png" caption1="MNIST 분류기의 0-뉴런의 가중치 시각화" %}
 
-Rather than unrolling the pixels though, let's instead view the weights as a 28x28 grid where the weights are arranged exactly like their corresponding pixels. The representation on the above right looks different from the one in the below figure, but they are expressing the same equation, namely $$z=b+\sum{w x}$$.
+눈을 조금 가늘게 뜨고 보면 약간 번진 0처럼 보이나요? 이렇게 보이는 이유는 뉴런이 하는 일을 생각해 보면 명확해 집니다. 이 뉴런은 0을 분류하는 책임을 가졌기 때문에, 0에 대해서 높은 값을 출력하고 0이 아닌 경우에는 낮은 값을 출력하는 것이 목적입니다. 일반적으로 0인 이미지에서 높은 값을 가지는 픽셀에 맞추어 큰 가중치를 가지면 0에 대한 높은 출력을 만들 수 있습니다. 이와 동시에, 0이 아닌 이미지에서는 높고, 0인 이미지에서는 낮은 경향이 있는 픽셀에 있는 가중치는 작은 값을 가지면 0이 아닐 때 비교적 낮은 출력을 얻을 수 있습니다. 가중치 이미지의 가운데 비교적 검은 부분은 0인 이미지가 이 부분에서는 비어있다는 사실을 의미합니다(0의 가운데 원부분). 하지만 보통 다른 숫자에서는 높게 나올 것입니다.
 
-{% include figure.html path="/images/figures/weights_analogy_2.png" caption="Another way to visualize the pixel-weights multiplication for each output neuron" %}
+출력 뉴런 10개에서 학습된 가중치를 살펴 보겠습니다. 예상대로 열 개의 숫자가 모두 번진 것처럼 보입니다. 이들은 각 숫자 클래스에 속한 여러 이미지들을 평균낸 것처럼 보입니다.
 
-Now let's take a trained neural network with this architecture, and visualize the learned weights feeding into the first output neuron, which is the one responsible for classifying the digit 0. We color-code them so the lowest weight is black, and the highest is white.
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="MNIST 분류기의 출력 뉴런의 가중치 시각화" %}
 
-{% include figure.html path="/images/figures/rolled_weights_mnist_0.png" caption="Visualizing the weights for the 0-neuron of an MNIST classifier" %}
+2에 대한 이미지를 입력으로 받았다고 가정해 보겠습니다. 그럼 2에 대한 분류를 담당하는 뉴런이 2가 나타날 가능성이 높은 픽셀을 따라 큰 가중치를 가지고 있기 때문에, 결국 이 뉴런이 높은 값을 가질 것으로 예상할 수 있습니다. 다른 뉴런에서도 가중치의 일부가 높은 값을 가진 픽셀과 맞을 수 있어 이 뉴런의 값들이 조금 높을 수 있습니다. 하지만 겹치는 부분이 훨씬 적고, 이미지에 있는 높은 값의 픽셀들이 다른 뉴런에 있는 낮은 가중치 때문에 효과가 감쇠됩니다. 활성화 함수는 단조(monotonic) 함수이므로 이 결과를 바꾸지 않습니다. 즉 활성화 함수는 높은 입력을 받으면 높은 출력을 만듭니다.
 
-Squint your eyes a bit... does it look a bit like a blurry 0? The reason why it appears this way becomes more clear if we think about what that neuron is doing. Because it is "responsible" for classifying 0s, its goal is to output a high value for 0s and a low value for non-0s. It can get high outputs for 0s by having large weights aligned to pixels which _tend_ to usually be high in images of 0s. Simultaneously, it can obtain relatively low outputs for non-0s by having small weights aligned to pixels which tend to be high in images of non-0s and low in images of 0s. The relatively black center of the weights image comes from the fact that images of 0s tend to be off here (the hole inside the 0), but are usually higher for the other digits.
+이런 가중치를 출력 클래스에 대한 템플릿을 구성하는 것으로 해석할 수 있습니다. 이는 매우 흥미로운데 왜냐하면 이런 숫자들이 무엇인지 어떤 의미인지 사전에 어떤 것도 네트워크에 알려 주지 않았지만 이런 이미지의 클래스를 닮게 되었기 때문입니다. 이것이 바로 정말 특별한 신경망의 내부에 대한 힌트입니다. 신경망은 그들이 훈련된 오브젝트의 _표현_ 을 만듭니다. 그리고 이런 표현은 간단한 분류나 예측보다 훨씬 더 유용할 수 있습니다. 이런 표현 능력은 [합성곱 신경망](/ml4a/convnets/)을 배울 때 다시 살펴 보고 여기서는 너무 깊이 다루지 않겠습니다.
 
-Let's look at the weights learned for all 10 of the output neurons. As suspected, they all look like somewhat blurry versions of our ten digits. They appear almost as though we averaged many images belonging to each digit class.
+해답 보다는 궁금증이 더 많이 생겼을 것입니다. 가령 은닉층을 추가할 때 가중치는 어떻게 될까요? 잠시 후에 보겠지만 이에 대한 답은 이전 절에서 직관적으로 보았던 것을 기초로 얻을 수 있습니다. 하지만 이에 대한 답을 하기전에 신경망의 성능을 측정하는 것이 필요합니다. 특히 어떤 종류의 실수를 하게되는지 생각해 보겠습니다.
 
-{% include figure.html path="/images/figures/rolled_weights_mnist.png" caption="Visualizing the weights for all the output neurons of an MNIST classifier" %}
+## 이런 또 실수를 했네
 
-Suppose we receive an input from an image of a 2. We can anticipate that the neuron responsible for classifying 2s should have a high value because its weights are such that high weights tend to align with pixels tending to be high in 2s. For other neurons, _some_ of the weights will also line up with high-valued pixels, making their scores somewhat higher as well. However, there is much less overlap, and many of the high-valued pixels in those images will be negated by low weights in the 2 neuron. The activation function does not change this, because it is monotonic with respect to the input, that is, the higher the input, the higher the output.
+때로는 슬프게도 네트워크가 실수를 할 것입니다. 제가 보기에는 아래 첫 번째 이미지가 9인지 확실하지가 않습니다. 이 신경망처럼 누구든지 쉽게 4라고 생각할 수 있습니다. 비슷하게 신경망이 8이라고 잘못 분류한 두 번째 숫자가 왜 3인지 누군가는 이해할 수도 있습니다. 세 번째와 네 번째 숫자의 실수는 더 특이합니다. 거의 모든 사람이 이 숫자를 3과 2라고 즉시 인식할 것입니다. 하지만 시스템은 각각 이를 5라고 잘못 해석했고 마지막의 경우는 높은 확률을 가지지도 못했습니다.
 
-We can interpret these weights as forming templates of the output classes. This is really fascinating because we never _told_ our network anything in advance about what these digits are or what they mean, yet they came to resemble those object classes anyway. This is a hint of what's really special about the internals of neural networks: they form _representations_ of the objects they are trained on, and it turns out these representations can be useful for much more than simple classification or prediction. We will take this representational capacity to the next level when we begin to study [convolutional neural networks](/ml4a/convnets/) but let's not get ahead of ourselves yet...
+{% include figure_multi.md path1="/images/figures/mnist-mistakes.png" caption1="1층 MNIST 네트워크에 의해 잘못 분류된 예시. 왼쪽의 두 개는 납득할만 하지만 오른쪽의 두개는 확실히 에러로 보입니다." %}
 
-This raises many more questions than it provides answers, such as what happens to the weights when we add hidden layers? As we will soon see, the answer to this will build upon what we saw in the previous section in an intuitive way. But before we get to that, it will help to examine the performance of our neural network, and in particular, consider what sorts of mistakes it tends to make.
+이전 장에서 MNIST 숫자 데이터에서 90% 정확도를 달성했던 마지막 신경망의 성능을 조금 더 자세히 살펴 보겠습니다. 이를 위한 한가지 방법은 예측 결과를 쪼개어 테이블에 나누어 놓은 오차 행렬(confusion matrix)를 사용하는 것입니다. 다음 오차 행렬에서 10개의 행은 MNIST 데이터셋의 실제 레이블에 해당하고, 열은 예측한 레이블을 나타냅니다. 예를 들어, 4번째 행과 6번째 열은 실제 3인 샘플 71개가 신경망에 의해 5로 잘못 분류되었다는 것을 보여줍니다. 오차 행렬의 녹색 대각선은 올바른 예측의 양을 보여 주고, 다른 모든 셀은 잘못된 예측입니다.
 
-## 0op5, 1 d14 17 2ga1n
-
-Occasionally, our network will make mistakes that we can sympathize with. To my eye, it's not obvious that the first digit below is 9. One could easily mistake it for a 4, as our network did. Similarly, one could understand why the second digit, a 3, was misclassified by the network as an 8. The mistakes on the third and fourth digits below are more glaring. Almost any person would immediately recognize them as a 3 and a 2, respectively, yet our machine misinterpreted the first as a 5, and is nearly clueless on the second.
-
-{% include figure.html path="/images/figures/mnist-mistakes.png" caption="A selection of mistakes by our 1-layer MNIST network. The two on the left are understandable; the two on the right are more obvious errors." %}
-
-Let's look more closely at the performance of the last neural network of the previous chapter, which achieved 90% accuracy on MNIST digits. One way we can do this is by looking at a confusion matrix, a table which breaks down our predictions into a table. In the following confusion matrix, the 10 rows correspond to the actual labels of the MNIST dataset, and the columns represent the predicted labels. For example, the cell at the 4th row and 6th column shows us that there were 71 instances in which an actual 3 was mislabeled by our neural network as a 5. The green diagonal of our confusion matrix shows us the quantities of correct predictions, whereas every other cell shows mistakes.
-
-Hover your mouse over each cell to get a sampling of the top instances from each cell, ordered by the network's confidence (probability) for the prediction.
-
-{% include todo.html note="add description to confusion matrices" %}
+각 셀에 마우스를 올리면 각 셀에서 신경망의 예측 신뢰도(확률)가 가장 높은 샘플을 보여줍니다.
 
 {% include demo_insert.html path="/demos/confusion_mnist/" parent_div="post" %}
 
-{% include todo.html note="fix overflow in right table" %}
+또한 아래처럼 오차 행렬의 각 셀에 최상위 샘플을 같이 그려서 유용한 통찰을 얻을 수 있습니다.
 
-We can also get some nice insights by plotting the top sample for each cell of the confusion matrix, as seen below.
+{% include figure_multi.md path1="/images/figures/mnist-confusion-samples.png" caption1="MNIST 오차 행렬에서 가장 신뢰도가 높은 샘플" %}
 
-{% include figure.html path="/images/figures/mnist-confusion-samples.png" caption="Top-confidence samples from an MNIST confusion matrix" %}
+이 그림은 네트워크가 특정 종류의 예측을 어떻게 만드는 지에 대한 정보를 제공합니다. 이 네트워크는 큰 동그라미를 0으로 예측하는 것으로 보입니다. 처음 두 개의 열을 보면, 0을 예측하기 위해 큰 동그라미를 찾고, 1을 예측하기 위해서는 가느다란 직선을 찾는 것으로 보입니다. 그래서 이런 특징이 있는 다른 숫자들을 잘못 분류하고 있습니다.
 
-This gives us an impression of how the network learns to make certain kinds of predictions. Looking at first two columns, we see that our network appears to be looking for big loops to predict 0s, and thin lines to predict 1s, mistaking other digits if they happen to have those features.
+## 신경망 내부를 들여다 보기
 
+지금까지 손글씨 숫자를 인식하기 위해 훈련된 신경망을 보았습니다. 이 모델에서 많은 통찰을 얻을 수 있지만 매우 쉬운 데이터셋입니다. 10개의 클래스가 비교적 잘 정의되어 있고 클래스가 같은 샘플들은 서로 많이 다르지 않아 모델을 만들기 편리합니다. 대부분의 실제 문제에서는 훨씬 이상적이지 않은 이미지들을 분류해야 합니다. 같은 신경망을 사용해 다른 데이터셋에서 성능을 측정해 보겠습니다. [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html)은 레이블된 32x32 크기의 컬러 이미지 60,000개를 가지고 있습니다. 이 데이터셋에는 비행기, 자동차, 새, 고양이, 사슴, 강아지, 개구리, 말, 배, 트럭의 10개 클래스가 있습니다. 다음은 CIFAR-10에서 무작위로 선택한 샘플입니다.
 
-## Breaking our neural network
+{% include figure_multi.md path1="/images/figures/cifar-grid.png" caption1="CIFAR-10 이미지에서 무작위로 선택한 샘플" %}
 
-So far we've looked only at neural networks trained to identify handwritten digits. This gives us many insights but is a very easy choice of dataset, giving us many advantages; We have only ten classes, which are very well-defined and have relatively little internal variance among them. In most real-world scenarios, we are trying to classify images under much less ideal circumstances. Let's look at the performance of the same neural network on another dataset, [CIFAR-10](https://www.cs.toronto.edu/~kriz/cifar.html), a labeled set of 60,000 32x32 color images belonging to ten classes: airplanes, automobiles, birds, cats, deer, dogs, frogs, horses, ships, and trucks. The following is a random sample of images from CIFAR-10.
+이 이미지 클래스들은 이제까지 우리가 다뤄보지 못했던 종류임을 즉각적으로 알 수 있습니다. 예를 들어, 고양이는 다른 방향의 얼굴을 하고 있을 수 있고 색깔과 털의 패턴이 다를 수 있습니다. 또 몸을 쭉 펴고 있거나 웅크리고 있을 수 있는 등 손글씨 숫자에서는 보지 못했던 많은 변종이 있습니다. 다른 물체와 함께 있는 고양이 사진은 문제를 더 어렵게 만듭니다.
 
-{% include figure.html path="/images/figures/cifar-grid.png" caption="A random sample from CIFAR-10 image set" %}
+당연하게 이런 이미지에 2층 신경망을 훈려시키면 정확도는 겨우 37% 정도에 이를 것입니다. 그래도 무작위로 추측하는 것(10%의 정확도)보다는 많이 낫지만 MNIST 분류기가 달성한 90%에는 훨씬 못 미칩니다. 합성곱 신경망을 사용하면 MNIST와 CIFAR-10 양쪽 모두에서 이 숫자는 크게 향상될 것입니다. 지금은 평범한 신경망의 가중치를 조사해서 이 방식의 단점에 대해 조금 더 알아 보도록 하겠습니다.
 
-{% include todo.html note="new demo, refresh for new random sample" %}
+앞서 은닉층이 없는 1층 신경망의 가중치를 관찰하는 실험을 다시 반복하는데 이번에는 CIFAR-10의 이미지를 훈련시켜 보겠습니다. 가중치는 아래와 같습니다.
 
-Right away, it's clear we must contend with the fact that these image classes differ in ways that we haven't dealt with yet. For example, cats can be facing different directions, have different colors and fur patterns, be outstretched or curled up, and many other variations we don't encounter with handwritten digits. Photos of cats will also be cluttered with other objects, further complicating the problem. 
+{% include figure_multi.md path1="/images/figures/rolled_weights_cifar.png" caption1="1층 CIFAR-10 분류기의 가중치 시각화" %}
 
-Sure enough, if we train a 2-layer neural network on these images, our accuracy reaches only 37%. That's still much better than taking random guesses (which would get us a 10% accuracy) but it's far short of the 90% our MNIST classifier achieves. When we start convolutional neural networks, we'll improve greatly on those numbers, for both MNIST and CIFAR-10. For now, we can get a more precise sense about the shortcomings of ordinary neural networks by inspecting their weights.
+MNIST 가중치와 비교해 보면 거의 뚜렷한 특성이 없고 뭐라고 정의하기가 어렵습니다. 조금 자세히 살펴보면 일부 직관을 얻을 수 있습니다. 가령, 비행기와 배는 이미지 가장자리는 거의 푸른색이어서, 파란 하늘과 바다로 둘러 싸인 이미지들의 경향을 반영하고 있습니다. 특정 클래스에 대한 가중치 이미지는 그 클래스에 속한 이미지의 평균에 관련되어 있기 때문에, 이전처럼 흐릿한 평균적인 색깔을 예상할 수 있습니다. 하지만 CIFAR 클래스안의 이미지들은 거의 일관성이 없기 때문에, MNIST에서 보았던 것처럼 잘 정의된 "원형"을 찾기가 어렵습니다.
 
-Let's repeat the earlier experiment of observing the weights of a 1-layer neural network with no hidden layer, except this time training on images from CIFAR-10. The weights appear below.
-
-{% include figure.html path="/images/figures/rolled_weights_cifar.png" caption="Visualizing the weights for 1-layer CIFAR-10 classifier" %}
-
-Compared to the MNIST weights, these have fewer obvious features and far less definition to them. Certain details do make intuitive sense, e.g. airplanes and ships are mostly blue on the outer edges of the images, reflecting the tendency for those images to have blue skies or waters around them. Because the weights image for a particular class does correlate to an average of images belonging to that class, we can expect blobby average colors to come out, as before. But because the CIFAR classes are much less internally consistent, the well-defined "templates" we saw with MNIST are far less evident.
-
-Let's take a look at the confusion matrix associated with this CIFAR-10 classifier.
+이 CIFAR-10 분류기의 오차 행렬을 살펴 보겠습니다.
 
 {% include demo_insert.html path="/demos/confusion_cifar/" parent_div="post" %}
 
-Not surprisingly, its performance is very poor, reaching only 37% accuracy. Clearly, our simple 1-layer neural network is not capable of capturing the complexity of this dataset. One way we can improve its performance somewhat is by introducing a hidden layer. The next section will analyze the effects of doing that.
+예상대로 성능은 겨우 37% 정확도라서 매우 나쁩니다. 확실하게 간단한 1층 신경망은 이 데이터셋의 복잡한 특징을 잡아낼 능력이 없습니다. 성능을 조금 향상시킬 수 있는 한가지 방법은 은닉층을 추가하는 것입니다. 다음 절에서 이에 대한 효과를 확인해 보겠습니다.
 
-## Adding hidden layers
+## 은닉층 추가
 
-<!--
-Hidden layers are essential here. One obvious way they can help is best exemplified by the weight image for the horse class. The vague template of a horse is discernible, but it appears as though there is a head on each side of the horse. Evidently, the horses in CIFAR-10 seem to be usually facing one way or the other. If we create a hidden layer, a horse classifier could benefit by allowing the network to learn a "right-facing horse" or a "left-facing horse" inside the intermediate layer -->
+지금까지 입력이 출력에 바로 연결되는 1층 신경망만 다루었습니다. 은닉층은 이 신경망에 어떤 영향을 미칠까요? 이를 알아 보기 위해 MNIST 네트워크에 10개의 뉴런을 가진 중간층을 삽입해 보겠습니다. 이제 손글씨 숫자를 분류하기 위한 신경망은 다음과 같아 집니다.
 
-So far, we've focused on 1-layer neural networks where the inputs connect directly to the outputs. How do hidden layers affect our neural network? To see, let's try inserting a middle layer of ten neurons into our MNIST network. So now, our neural network for classifying handwritten digits looks like the following.
+{% include figure_multi.md path1="/images/figures/mnist_2layers.png" caption1="MNIST를 위한 2층 신경망" %}
 
-{% include figure.html path="/images/figures/mnist_2layers.png" caption="2-layer neural network for MNIST" %}
+앞서 1층 신경망에서의 간단한 템플릿 비유는 이 경우에 적용되지 않습니다. 왜냐하면 784개의 입력 픽셀이 출력 클래스에 직접 연결되어 있지 않기 때문입니다. 어떤 의미에서 처음 만들었던 1층 신경망은 각각의 가중치가 하나의 클래스 레이블에 직접 연결되어 있어서 그 클래스에만 영향을 미치기 때문에 템플릿을 학습했다고 억지로 말할 수 있습니다. 하지만 여기에서처럼 더 복잡한 네트워크에서는 은닉층의 가중치는 출력층의 10개의 뉴런 모두에게 영향을 미칩니다. 그렇다면 이 가중치가 어떻게 나타날까요?
 
-Our simple template metaphor in the 1-layer network above doesn't apply to this case, because we no longer have the 784 input pixels connecting directly to the output classes. In some sense, you could say that we had "forced" our original 1-layer network to learn those templates because each of the weights connected directly into a single class label, and thus only affected that class. But in the more complicated network that we have introduced now, the weights in the hidden layer affect _all ten_ of the neurons in the output layer. So how should we expect those weights to look now?
-
-To understand what's going on, we will visualize the weights in the first layer, as before, but we'll also look carefully at how their activations are then combined in the second layer to obtain class scores. Recall that an image will generate a high activation in a particular neuron in the first layer if the image is largely sympathetic to that filter. So the ten neurons in the hidden layer reflect the presence of those ten features in the original image. In the output layer, a single neuron, corresponding to a class label, is a weighted combination of those previous ten hidden activations. Let's look at them below.
+어떤 일이 일어나는지 이해하기 위해서 이전처럼 첫 번째 층에 있는 가중치를 시각화하겠습니다. 하지만 활성화 값이 클래스 점수를 만들기 위해 두 번째 층과 어떻게 연결되어 있는지도 주의깊게 살필 것입니다. 이미지가 첫 번째 층의 어떤 필터에 크게 동조하면 그 뉴런의 활성화 값이 크게 출력된다는 것을 기억하세요. 그러므로 은닉층에 잇는 뉴런 10개는 이미지에 있는 10개의 특성의 존재 여부를 반영합니다. 출력층에서는 클래스 레이블에 상응하는 하나의 뉴런은 이전 은닉층의 10개 활성화 값의 가중치 합입니다. 다음 그림을 한번 보죠.
 
 {% include demo_insert.html path="/demos/f_mnist_weights/" parent_div="post" %}
 
-Let's start with the first layer weights, visualized at the top. They don't look like the image class templates anymore, but rather more unfamiliar. Some look like pseudo-digits, and others appear to be components of digits: half loops, diagonal lines, holes, and so on.
+위에 그림으로 나타난 첫 번째 층의 가중치를 살펴 보죠. 이 그림은 더 이상 이미지 클래스의 템플릿처럼 보이지 않고 오히려 낯설어 보입니다. 어떤 것들은 숫자 비슷한 모양 같기도 하고 다른 것들에서는 숫자의 일부분이 보입니다. 반 원, 대각선, 동심원 등입니다.
 
-The rows below the filter images correspond to our output neurons, one for each image class. The bars signify the weights associated to each of the ten filters' activations from the hidden layer. For example, the `0` class appears to favor first layer filters which are high along the outer rim (where a zero digit tends to appear). It disfavors filters where pixels in the middle are low (where the hole in zeros is usually found). The `1` class is almost the opposite of this, preferring filters which are strong in the middle, where you might expect the vertical stroke of a `1` to be drawn.
+필터 이미지 아래 행은 이미지 클래스마다 하나씩인 개개의 출력 뉴런에 대응되어 있습니다. 막대 그래프는 은닉층에 있는 필터 10개의 활성화에 연결된 가중치의 크기입니다. 예를 들어 `0` 클래스는 (0이 나타날 가능성이 높은) 바깥쪽 테두리를 따라 높게 활성화된 필터를 선호합니다. 가운데 픽셀(일반적으로 0의 구멍에 해당하는 픽셀)이 높은 값을 가진 필터는 선호하지 않습니다. `1` 클래스는 이와 거의 정반대입니다. `1`을 쓸 때 수직선이 나타므로 가운데 픽셀이 강한 필터를 선호합니다.
 
-The advantage of this approach is flexibility. For each class, there is a wider array of input patterns that stimulate the corresponding output neuron. Each class can be triggered by the presence of several abstract features from the previous hidden layer, or some combination of them. Essentially, we can learn different kinds of zeros, different kinds of ones, and so on for each class. This will usually--but not always--improve the performance of the network for most tasks.
+이런 접근 방법의 장점은 유연성입니다. 각 클래스에는 해당 출력 뉴런을 자극하는 다양한 입력 패턴이 있습니다. 각 클래스는 이전 은닉층에서 여러가지 추상적인 특성이나 특성들의 조합이 감지되면 활성화될 수 있습니다. 기본적으로 여러  종류의 0, 여러 종류의 1 등에 대해 학습할 수 있습니다. 이는 보통--항상은 아니고--대부분의 작업에서 네트워크의 성능을 향상시킵니다.
 
-## Features and representations
+## 특성과 표현
 
-Let's generalize some of what we've learned in this chapter. In single-layer and multi-layer neural networks, each layer has a similar function; it transforms data from the previous layer into a "higher-level" representation of that data. By "higher-level," we mean that it contains a compact and more salient representation of that data, in the way that a summary is a "high-level" representation of a book. For example, in the 2-layer network above, we mapped the "low-level" pixels into "higher-level" features found in digits (strokes, loops, etc) in the first layer, and then mapped those high-level features into an even higher-level representation in the next layer, that of the actual digits. This notion of transforming data into smaller but more meaningful information is at the heart of machine learning, and a primary capability of neural networks.
+이 장에서 배운 것들을 일반화시켜 보겠습니다. 단일 층과 다층 신경망에서 각 층은 비슷한 함수를 가집니다. 이 함수는 이전 층으로부터 온 데이터를 고수준의 표현으로 변환시킵니다. 책의 고수준 표현이 줄거리인것처럼 고수준이라는 것은 작고 핵심적인 데이터 표현을 담고 있다는 것을 의미합니다. 예를 들어, 위의 2층 신경망에서 저수준 픽셀을 첫 번째 층의 숫자에서 찾은 고수준 특성(직선, 원모양 등)으로 매핑했습니다. 그 다음 이 고수준 특성을 다음 층의 더더욱 고수준 특성인 실제 숫자로 매핑했습니다. 데이터를 작지만 더 의미있는 정보로 변환하는 이 개념은 머신러닝의 핵심이고 신경망의 주요한 능력입니다.
 
-By adding a hidden layer into a neural network, we give it a chance to learn features at multiple levels of abstraction. This gives us a rich representation of the data, in which we have low-level features in the early layers, and high-level features in the later layers which are composed of the previous layers' features. 
+신경망에 은닉층을 추가함으로써 여러 추상적인 수준에서 특성을 학습할 수 있게 됩니다. 이는 데이터의 표현을 풍부하게 합니다. 초반부의 층에는 저수준 특성을 가지고 이전 층의 특성으로 이루어진 후반부의 층은 고수준 특성을 가집니다.
 
-As we saw, hidden layers can improve accuracy, but only to a limited extent. Adding more and more layers stops improving accuracy quickly, and comes at a computational cost -- we can't simply ask our neural network to memorize every possible version of an image class through its hidden layers. It turns out there is a better way, using [convolutional neural networks](/ml4a/convnets), which will be covered in a later chapter. 
+우리가 본 대로 은닉층은 정확도를 향상시킬 수 있지만 제한된 범위에서 가능합니다. 더 많은 층을 추가할수록 정확도의 향상을 빠르게 멈추게하고 계산 비용을 높입니다. 은닉층을 통과하는 이미지 클래스의 가능한 모든 경우를 기억하도록 신경망을 만들기는 불가능합니다. 결국 더 나은 방법인 [합성곱](/ml4a/convnets)을 사용하는 것에 대해 이후의 장에서 다루겠습니다.
 
-## Further reading
+# 더 읽을 거리
 
-{% include todo.html note="summary / further reading" %}
+{% include further_reading.md title="Demo: Tinker with a neural network" author="Daniel Smilkov and Shan Carter" link="http://playground.tensorflow.org" %} 
+
+{% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %} 
+
+## 다음 장
+
+다음 장 [신경망의 훈련 방법](/ml4a/how_neural_networks_are_trained/)에서 지금까지는 얼버무린 아주 중요한 주제에 대해 배우도록 하겠습니다. 역전파를 통해 경사 하강법이라 불리는 기법을 사용해 신경망이 구성되고 데이터에 훈련되는 과정을 다룹니다. 간단한 선형 회귀에서 시작해서 예제들을 따라가면서 이에 대한 지식을 발전시켜 갈 것입니다. 그리고 연구자들이 다루어야 하는 신경망 훈련의 여러가지 측면을 자세히 설명하겠습니다.
