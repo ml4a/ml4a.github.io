@@ -306,13 +306,13 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 		toggleView(viewTopSamples);
 		ctx.fillStyle = 'rgba(255,255,255,1.0)';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
-		draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
+		//draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
 		if (viewTopSamples) {
 			draw_confusion_matrix_samples(mx, my, sample_scale);
 		} else {
 			draw_confusion_matrix(mx, my, {x:mcw, y:mch}, 16);
 		}
-		//draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
+		draw_confusion_samples(100 + nc*mcw + 100, 24, canvas.height-40, selected.p, selected.a, 2);
 	};
 
 	function test_all() {
