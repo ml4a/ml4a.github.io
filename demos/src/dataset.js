@@ -32,6 +32,11 @@ function dataset(datasetName_)
 		initialize();
 	};		
 
+	this.set_range = function(idxMin_, idxMax_) {
+		idxMin = idxMin_;
+		idxMax = idxMax_;
+	};
+
 	function initialize() {
 		labelsLoaded = false;
 		idxBatch = -1;
@@ -70,6 +75,10 @@ function dataset(datasetName_)
 
 	this.load_next_batch = function(callback) {
 		this.load_batch(idxBatch+1, callback);
+	};
+
+	this.load_batch_idx = function(b, callback) {
+		this.load_batch(b, callback);
 	};
 
 	this.load_multiple_batches = function(idxBatches, callback) {
@@ -111,15 +120,17 @@ function dataset(datasetName_)
 		return {x:x, y:y, idx:idxSample};
 	};
 
-	this.get_next_sample = function(idx, callback) {
+	this.get_next_sample = function(callback) {
 		var returnSample = function(){
-			var sample = get_batch_sample(idxSample);
+			var sample = get_batch_sample(idxMin+idxSample);
 			callback(sample);
 		};
-		idxSample += 1;
-		var b = Math.floor(idxSample / samplesPerBatch);
+		//idxSample += 1;
+		idxSample = (idxSample + 1) % (idxMax-idxMin);
+		var b = Math.floor((idxMin+idxSample) / samplesPerBatch);
 		if (batches[b] === undefined) {
-			this.load_next_batch(returnSample);
+			//this.load_next_batch(returnSample);
+			this.load_batch_idx(b, returnSample);
 		} else {
 			returnSample();
 		}		
@@ -210,7 +221,7 @@ function dataset(datasetName_)
 	var batchPath, idxBatch;
   	var sw, sh, channels, samplesPerBatch, nBatches;
   	var labelsFile, labelsLoaded, classes;
-  	var idxSample;
+  	var idxSample, idxMin, idxMax;
 
 	// setup canvases
 	var batchImg;

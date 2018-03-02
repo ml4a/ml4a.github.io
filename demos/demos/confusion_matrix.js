@@ -1,12 +1,9 @@
-// augmentation
-
-
 function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ , viewTopSamples_, testAll_, numTrain_, numTest_) 
 {
 	// canvas
 	var canvas = parent.canvas;
 	var ctx = canvas.getContext('2d');
-
+	
 	// parameters
 	var datasetName = (datasetName_ === undefined) ? 'MNIST' : datasetName_;
 	var summaryFile = (summaryFile_ === undefined) ? '/demos/datasets/mnist/mnist_summary.json' : summaryFile_;
@@ -15,6 +12,32 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	var testAll = (testAll_ === undefined) ? true : testAll_;
 	var numTrain = (numTrain_ === undefined) ? 40000 : numTrain_;
 	var numTest = (numTest_ === undefined) ? 10000 : numTest_;
+	var numEpochs = 10;
+
+//(datasetName == 'MNIST') ? 50000 : 40000)
+	/*
+	datasetName = 'CIFAR';
+	summaryFile = undefined;
+	summaryFile = '/demos/datasets/cifar/cifar10_summary2.json';
+	testAll = true;
+	snapshotFile = '/demos/datasets/cifar/cifar10_snapshot_nw.json';
+	console.log("DO IT!!!", snapshotFile)
+	*/
+	
+//	numTrain = 50000;
+	//numTest = 100;
+//	summaryFile_ = undefined;
+//	snapshotFile_ = undefined;
+//	snapshotFile = undefined;
+//	summaryFile = undefined;
+
+//	datasetName = 'MNIST';
+//	summaryFile = undefined;
+//	summaryFile = '/demos/datasets/cifar/cifar10_summary2.json';
+	//testAll = true;
+	//snapshotFile = '/demos/datasets/cifar/cifar10_snapshot_nw.json';
+//	console.log("DO IT!!!", snapshotFile, numTrain)
+
 
 	var mcw = 45;
 	var mch = 36;
@@ -53,9 +76,14 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 		nc = classes.length;
 		dim = data.get_dim();
 		net = new convnet(data);
-		net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+		// net.add_layer({type:'fc', num_neurons:15, activation:'sigmoid'});
+		net.add_layer({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+		net.add_layer({type:'pool', sx:2, stride:2});
+		net.add_layer({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+		net.add_layer({type:'pool', sx:3, stride:3});
 		net.add_layer({type:'softmax', num_classes:nc});
-		net.setup_trainer({method:'adadelta', learning_rate:0.01, batch_size:8, l2_decay:0.0001});
+		// net.setup_trainer({method:'adadelta', learning_rate:0.01, batch_size:8, l2_decay:0.0001});
+		net.setup_trainer({method:'adadelta', batch_size:20, l2_decay:0.001});
 		callback();
 	};
 
@@ -288,8 +316,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	};
 
 	function test_all() {
-		console.log("test "+numTest)
-		net.test(numTest, update_canvas);
+		net.test(numTrain, numTest, update_canvas);
 	};
 
 	function test_individually() {
@@ -327,7 +354,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 
 	add_control_panel_menu(["MNIST ordinary","MNIST convnet","CIFAR ordinary","CIFAR convnet"], function() {
 		if 		(this.value == "MNIST ordinary") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary_2layers.json', update_canvas);}
-		else if (this.value == "MNIST convnet") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary.json', update_canvas);}
+		else if (this.value == "MNIST convnet") {loadFromSummary('MNIST', '/demos/datasets/mnist/mnist_summary_convnet.json', update_canvas);}
 		else if (this.value == "CIFAR ordinary") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary_2layers.json', update_canvas);}
 		else if (this.value == "CIFAR convnet") {loadFromSummary('CIFAR', '/demos/datasets/cifar/cifar10_summary_convnet.json', update_canvas);}
 	});
@@ -351,13 +378,24 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	else {
 		createModel(datasetName, function() {
 			if (testAll) {
-				net.train(numTrain, test_all);
+				net.train(numTrain, numTest, numEpochs, test_all);
 			} else {
-				net.train(numTrain, test_individually);
+				net.train(numTrain, numTest, numEpochs, test_individually);
 			}
 		});		
-	};	
+	};
+	
 
+/*
+	createModel(datasetName, function() {
+		if (testAll) {
+			net.train(numTrain, numTest, numEpochs, test_all);
+		} else {
+			net.train(numTrain, numTest, numEpochs, test_individually);
+		}
+	});		
+*/
 	canvas.addEventListener("mousemove", mouseMoved, false);
+
 };
 

@@ -35,9 +35,9 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	// convnet parameters
 	var layer = 1;
 	var idx_filter = 1;
-	var idx_sample = 1;
 	var select_x = 0;
 	var select_y = 0;
+	var idx = 0;
 
 	function draw_sample_as_grid(sample, x_, y_, cellsize) {
 	    var nx = sample.sw;
@@ -70,6 +70,7 @@ function demo(parent, width, height, datasetName_, drawAll_)
 
 	function loadPresetNetwork(callback) {		
 		var snapshot;
+		console.log("loaoa", datasetName)
 		if (datasetName == 'MNIST') {
 			snapshot = '/demos/datasets/mnist/mnist_snapshot_convnet.json';
 		} else if (datasetName == 'CIFAR') {
@@ -82,11 +83,11 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	};
 
 	function finished_training() {
-	    net.test(1, finished_testing);
+	    net.test(idx, idx+1, finished_testing);
 	};
 
 	function finished_testing(results) {
-	    sample = data.get_sample_image(idx_sample, draw);
+	    sample = data.get_sample_image(idx, draw);
 	};
 
 	function draw_line(x1, y1, x2, y2, thickness, color) {
@@ -185,11 +186,11 @@ function demo(parent, width, height, datasetName_, drawAll_)
     	ctx.fillRect(0, 0, width, height);
 
     	// current sample plus green square
-		data.draw_current_sample(ctx, settings.sample_x, settings.sample_y, settings.sample_scale, settings.sample_grid, {x:0, y:0, w:data.get_dim()+2*pad_amt, h:data.get_dim()+2*pad_amt, pad:pad_amt});
+		data.draw_sample(ctx, idx, settings.sample_x, settings.sample_y, settings.sample_scale, settings.sample_grid, {x:0, y:0, w:data.get_dim()+2*pad_amt, h:data.get_dim()+2*pad_amt, pad:pad_amt});
 		draw_square(x1, y1, x2, y2, settings.sample_thickness, 'rgba(0,255,0,1.0)');
 		
 		// subsample
-		data.draw_current_sample(ctx, rx1, ry1+3, settings.s2, 1, {x:select_x, y:select_y, w:filter_size, h:filter_size, pad:pad_amt});
+		data.draw_sample(ctx, idx, rx1, ry1+3, settings.s2, 1, {x:select_x, y:select_y, w:filter_size, h:filter_size, pad:pad_amt});
 		draw_square(rx1, ry1+3, rx1 + (settings.s2+1)*filter_size, ry1+3 + (settings.s2+1)*filter_size, settings.sample_thickness, 'rgba(0,255,0,1.0)');
 		
 		// filter
@@ -269,7 +270,7 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	    grid_size = data.get_dim() + 2 * (pad_amt - crop_amt) - filter_size + 1;
 	    sample_size = data.get_dim() + 2 * (pad_amt - crop_amt);
 	    set_sample_settings();
-		net.test(1, function() {
+		net.test(0, 1, function() {
 			canvas.addEventListener("mousemove", mouseMoved, false);
 			finished_testing();
 		});
@@ -281,7 +282,8 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	};
 
 	function next_sample() {
-		net.test(1, finished_testing);
+		idx+=1;
+		net.test(idx, idx+1, finished_testing);
 	};
 
 	function next_filter() {

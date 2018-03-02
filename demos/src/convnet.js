@@ -1,6 +1,3 @@
-// TODO
-//  - augmentation
-//  - 
 
 function convnet(dataset_) 
 {
@@ -82,11 +79,15 @@ function convnet(dataset_)
         return {predicted:p, actual:a, prob:out_prob};
     };
 
-    this.train = function(numTrain, callback) {
+    this.train = function(numTrain, numTest, numEpochs, callback) {
+        dataset.set_range(0, numTrain);
         var train_next_sample = function(t){            
-            dataset.get_next_sample(t, function(sample){
+            if (t%2000 == 0){
+                console.log("train sample", t)
+            }
+            dataset.get_next_sample(function(sample){
                 trainer.train(sample.x, sample.y);
-                if (t+1 < numTrain) {
+                if (t+1 < numTrain * numEpochs) {
                     train_next_sample(t+1);
                 } else {
                     callback();
@@ -96,10 +97,11 @@ function convnet(dataset_)
         check_if_ready(train_next_sample);
     };
 
-    this.test = function(numTest, callback) {
+    this.test = function(numTrain, numTest, callback) {
+        dataset.set_range(numTrain, numTrain+numTest);
         var results = [];
         var test_next_sample = function(t){
-            dataset.get_next_sample(t, function(sample){
+            dataset.get_next_sample(function(sample){
                 result = test_sample(sample);
                 results.push(result);
                 if (t+1 < numTest) {
@@ -129,7 +131,7 @@ function convnet(dataset_)
 
     function draw_volume(ctx, x_, y_, scale, V, idx, is_weight, grid_thickness) {
         var g = (grid_thickness === undefined) ? 0 : grid_thickness;
-		var nx = V.sx;
+        var nx = V.sx;
         var ny = V.sy;
         var nz = V.depth;
 		var nc = dataset.get_channels();
