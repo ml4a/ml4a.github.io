@@ -2,6 +2,8 @@
 layout: chapter
 title: "Convolutional neural networks"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
+header_image: "/images/headers/Convet_activations_kitty.jpg"
+header_text: "Activations maps from a trained convolutional neural network, via <a href=\"/guides/ConvnetViewer/\">ConvnetViewer</a> from the <a href=\"https://github.com/ml4a/ml4a-ofx\">openframeworks app</a> collection."
 ---
 
 <!--header: densecap
@@ -74,38 +76,41 @@ a common criticism of . one of the first concerted efforts to visualize convnets
 -->
 
 
-Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, emerging in recent years as the most prominent strain of neural networks. They have revolutionized computer vision, achieving state-of-the-art results in fundamental tasks, and have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
+Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, emerging in recent years as the most prominent strain of [neural network](/ml4a/neural_networks/) research. They have revolutionized computer vision, achieving state-of-the-art results in many fundamental tasks, as well as making strong progress in natural language processing, computer audition, reinforcement learning, and many other areas. Convnets have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
 
-- recognizing and labeling objects, locations, and people in images
-- converting speech into text and generating audio of natural sounds
-- describing images and videos in natural language
-- tracking roads and detecting obstacles in self-driving cars
-- analyzing videogame screens to guide autonomous agents in them
-- "hallucinating" generative images via image modeling
+- detecting and labeling objects, locations, and people in images
+- converting speech into text and generating audio of natural sound
+- describing images and videos with natural language
+- tracking roads and navigating around obstacles in autonomous vehicles
+- analyzing videogame screens to guide autonomous agents playing them
+- "hallucinating" images, sounds, and text with generative models
 
-Although convnets have been around since the 1980s and have their roots in earlier neuroscience research, they have only recently achieved fame in the wider scientific community for a series of remarkable successes in important scientific problems across multiple domains. They extend neural networks primarily by introducing a new kind of layer, designed to improve the network's ability to cope with variations in position, scale, and viewpoint. Additionally, they have become increasingly deep, containing upwards of dozens or even hundreds of layers, forming detailed compositional models of images, sounds, as well as game boards and other spatial data structures.
+Although convnets have been around since the 1980s ()[at least in their current form)](https://plus.google.com/100849856540000067209/posts/9BDtGwCDL7D)) and have their roots in [earlier neuroscience research](https://en.wikipedia.org/wiki/Hebbian_theory), they've only recently achieved fame in the wider scientific community for a series of remarkable successes in important scientific problems across multiple domains. They extend neural networks primarily by introducing a new kind of layer, designed to improve the network's ability to cope with variations in position, scale, and viewpoint. Additionally, they have become increasingly deep, containing upwards of dozens or even hundreds of layers, forming hierarchically compositional models of images, sounds, as well as game boards and other spatial data structures.
 
 Because of their success at vision-oriented tasks, they have been adopted by interactive and new media artists, allowing their installations not only to detect movement, but to actively identify, describe, and track objects in physical spaces.
 
-The next few chapters will focus on convnets and their applications, with this one formulating them and how they are trained, the [next one]() describing their properties, and subsequent chapters focusing on their creative and artistic applications.
+The next few chapters will focus on convnets and their applications, with this one formulating them and how they are trained, the [next one](/ml4a/visualizing_convnets) describing their properties, and subsequent chapters focusing on their creative and artistic applications.
 
 
 ## Weaknesses of ordinary neural nets 
 
-To understand the innovations convnets offer, it helps to first review the weaknesses of ordinary neural networks, which are covered in more detail in the prior chapter [Looking inside neural nets](/ml4a/looking_inside_neural_networks/). 
+To understand the innovations convnets offer, it helps to first review the weaknesses of ordinary neural networks, which are covered in more detail in the prior chapter [Looking inside neural nets](/ml4a/looking_inside_neural_nets/). 
 
 Recall that in a trained one-layer ordinary neural network, the weights between the input pixels and the output neurons end up looking like templates for each output class. This is because they are constrained to capture all the information about each class in a single layer. Each of these templates looks like an average of samples belonging to that class.
 
-{% include figure_multi.md path1="/images/figures/mnist_cifar_weights_review.png" caption1="Weights review" %}
+{% include figure_multi.md path1="/images/figures/mnist_cifar_weights_review.png" caption1="The weights of a one-layer neural net trained on MNIST digits captures \"templates\" for each class. But on more complex classes as in CIFAR-10, there is too much variation within classes to do this reliably." %}
 
+In the case of the MNIST dataset, we see that the templates are relatively discernible and thus effective, but for CIFAR-10, they are much more difficult to recognize. The reason is that the image categories in CIFAR-10 have a great deal more internal variation than MNIST. Images of dogs may contain dogs which are curled up or outstretched, have different fur colors, be cluttered with other objects, and various other distortions. Forced to learn all of these variations in one layer, our network can do no better than form a very weak average over all dog pictures, and which will fail to accurately recognize unseen ones on a consistent basis.
 
-In the case of the MNIST dataset, we see that the templates are relatively discernible and thus effective, but for CIFAR-10, they are much more difficult to recognize. The reason is that the image categories in CIFAR-10 have a great deal more internal variation than MNIST. Images of dogs may contain dogs which are curled up or outstretched, have different fur colors, be cluttered with other objects, and various other distortions. Forced to learn all of these variations in one layer, our network simply forms a weak template of dogs, and fails to accurately recognize unseen ones.
+We can combat this by creating hidden layers, giving our network the capacity to form a hierarchy of discovered features. For example, suppose we make a 2-layer neural network for classifying MNIST, which contains a hidden layer containing 10 neurons and a final output layer also containing 10 neurons for our digits (as before). We [train the network and extract the weights](/demos/f_mnist_weights/). In the following figure, we visualize the first layer weights using the same method as before, and we also visualize, as bar graphs, the second layer weights which connect our 10 hidden neurons to our 10 output neurons (we display just the first two classes for brevity).
 
-We can combat this by creating more hidden layers, giving our network the capacity to form a hierarchy of discovered features. For instance, we saw that many of the pictures of horses in CIFAR-10 are of left-facing and right-facing horses, making the above template resemble a two-headed horse. If we create a hidden layer, our network could potentially form learn a "right-facing horse" and "left-facing horse" template in the hidden layer, and the output neuron for horse could have strong weights to each of them. 
+{% include figure_multi.md path1="/images/figures/mnist2-combinations.jpg" caption1="First layer weights (top row) and second layer weights (as bar graphs) for the first two output neurons for a 2-layer neural net trained on MNIST. This figure can be recreated in <a href=\"/demos/f_mnist_weights/\">this demo</a>." %}
 
-{% include todo.html note="multilayer weights" %} 
+The first-layer weights can still be visualized in the same way as before, but instead of looking like the digits themselves, they appear to be fragments of them, or perhaps more general shapes and patterns that can be found in all of the digits to varying degrees. The first row bar graph depicts the relative contribution of each of the hidden layer neurons to the output neuron which classifies 0-digits. It appears to favor those first-layer neurons which have outer rings and it disfavors those with high weights in the middle. The second row is the same visualization for the output 1-neuron, which has prefers those hidden neurons which show strong activity for images whose middle pixels are high. Thus we can see that the network can learn features that are more general to handwritten digits in the first layer and may be present in some digits but not in others. For example, outer loops or rings are useful for 8 and 0 but not 1 or 7; a diagonal stroke through the middle is useful for 7 and 2 but not 5 or 0, a quick inflection in the top-right is useful for 2, 7, and 9, but not for 5 or 6. 
 
-This makes some intuitive sense and gives our network more flexibility, but it's impractical for the network to be able to memorize the nearly endless set of permutations which would fully characterize a dataset of images. In order to capture this much information, we'd need far too many neurons for what we can practically afford to store or train. The advantage of convnets is that they will allow us to capture these permutations in a more efficient way.
+As a related example in the case of CIFAR-10, we saw earlier that many of the pictures of horses are of left-facing and right-facing horses, making the above template faintly resemble a two-headed horse. If we create a hidden layer, our network could potentially form learn a "right-facing horse" and "left-facing horse" template in the hidden layer, and the output neuron for horse could have strong weights for each of them. This isn't a particularly elegant improvement, but as we scale it up, we see how such a strategy gives our network more flexibility. In early layers it can learn more specific and general features, which can then be combined in later layers.
+
+Despite these improvements, it's still impractical for the network to be able to memorize the nearly endless set of permutations which would fully characterize a dataset of diverse images. In order to capture that much information, we'd need too many neurons for what we can practically afford to store or train. The advantage of convnets is that they will allow us to capture these permutations in a more efficient way.
 
 ## Compositionality
 
@@ -161,13 +166,11 @@ For the first two years of the competition, the winning entries all used what we
 
 Starting the following year, nearly all entries to ILSVRC were deep convolutional networks, and classification error has steadily tumbled down to nearly 2% in 2017, the last year of ILSVRC. Convnets [now even outperform humans](https://karpathy.github.io/2014/09/02/what-i-learned-from-competing-against-a-convnet-on-imagenet/) in ImageNet classification. These monumental results have largely fueled the excitement about deep learning that would follow, and many consider them to have revolutionized computer vision as a field. Furthermore, many important research breakthroughs that are now common in network architectures -- such as [residual layers](https://arxiv.org/abs/1512.03385) --  were introduced as entries to ILSVRC.
 
-{% include todo.html note="ImageNet timeline" %}
+# How convolutional layers work
 
-# How convnets work
+Despite having their own proper name, convnets are not categorically different from the neural networks we have seen so far. In fact, they inherit all of the functionality of those earlier nets, and improve them mainly by introducing a new type of layer, called a _convolutional layer_, along with a number of other innovations emulating and refining the ideas introduced by neocognitron. Thus any neural network which contains at least one convolutional layer can be called a convolutional network.
 
-Despite having their own proper name, convnets are not categorically different from the neural networks we have seen so far. In fact, they inherit all of the functionality of those earlier nets, and improve them mainly by introducing a new type of layer, namely a _convolutional layer_, along with a number of other innovations emulating and refining the ideas introduced by neocognitron. Thus any neural network which contains at least one convolutional layer can be regarded as a convnet.
-
-## Convolutional layers
+## Filters and activation maps
 
 Prior to this chapter, we've just looked at _fully-connected layers_, in which each neuron is connected to every neuron in the previous layer. Convolutional layers break this assumption. They are actually mathematically very similar to fully-connected layers, differing only in the architecture. Let's first recall that in a fully-connected layer, we compute the value of a neuron $z$ as a weighted sum of all the previous layer's neurons, $z=b+\sum{w x}$.
 
@@ -283,10 +286,10 @@ A more recent use case for convnets in audio is that of [WaveNet](https://deepmi
 
 {% include figure_multi.md path1="/images/figures/CD-CNN-HMM.png" caption1="Diagram depicting CD-CNN-HMM, an architecture used for speech recognition. The convnet is used to learn features from a waveform's spectral representation. Source: <a href=\"http://recognize-speech.com/acoustic-model/knn/comparing-different-architectures/convolutional-neural-networks-cnns\">Speech Recognition Wiki</a>" path2="/images/figures/wavenet.gif" caption2="WaveNets are used to create a generative model for probabilistically producing audio one sample at a time. Source: <a href=\"https://deepmind.com/blog/wavenet-generative-model-raw-audio/\">DeepMind</a>" %}
 
-
 Generative applications of convnets, including in the image domain and associated with computer vision, as well as those that also make use of recurrent neural networks, are also left to future chapters. 
 
-further reading: https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/object_localization_and_detection.html
+{% include further_reading.md title="Object Localization and Detection" author="Leonardo Araujo dos Santos" link="https://leonardoaraujosantos.gitbooks.io/artificial-inteligence/content/object_localization_and_detection.html" %} 
+
 
 <!--
 
