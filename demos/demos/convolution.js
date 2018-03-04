@@ -70,7 +70,6 @@ function demo(parent, width, height, datasetName_, drawAll_)
 
 	function loadPresetNetwork(callback) {		
 		var snapshot;
-		console.log("loaoa", datasetName)
 		if (datasetName == 'MNIST') {
 			snapshot = '/demos/datasets/mnist/mnist_snapshot_convnet.json';
 		} else if (datasetName == 'CIFAR') {
@@ -232,7 +231,8 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	    var mouse_y = evt.clientY - canvas_rect.top;
 	    var smx = mouse_x - settings.sample_x; 
 		var smy = mouse_y - settings.sample_y; 
-		if (inside(smx, smy, 0, 0, (dim + 2*pad_amt) * (settings.sample_scale + settings.sample_grid), (dim + 2*pad_amt) * (settings.sample_scale + settings.sample_grid))) {
+		if (inside(smx, smy, 0, 0, (dim + 2*pad_amt - filter_size+1) * (settings.sample_scale + settings.sample_grid), (dim + 2*pad_amt - filter_size+1) * (settings.sample_scale + settings.sample_grid))) {
+			console.log(pad_amt, dim, settings.sample_grid, settings.sample_scale);
 			select_x = Math.min(dim-1, Math.floor(smx / (settings.sample_scale + settings.sample_grid)));
 			select_y = Math.min(dim-1, Math.floor(smy / (settings.sample_scale + settings.sample_grid)));
 			draw();
@@ -252,20 +252,20 @@ function demo(parent, width, height, datasetName_, drawAll_)
 	        };
 	    } else {
 	    	settings = {
-	            sample_x: 10,
-	    		sample_y: 10,
-	    		sample_scale: 8,
+	            sample_x: 12,
+	    		sample_y: 12,
+	    		sample_scale: 9,
 	    		sample_grid: 1,
 	    		sample_thickness: 4,
-	           	s1: 8,
+	           	s1: 9	,
 				s2: 24
 	        };
 	    }
 	};
 	
 	function finished_loading() {
-		pad_amt = net.get_net().layers[1].pad;
-	    filter_size = net.get_net().layers[1].filters[0].sx;
+		pad_amt = 0;//net.get_net().layers[1].pad;
+		filter_size = net.get_net().layers[1].filters[0].sx;
 	    num_filters = net.get_net().layers[1].filters.length;
 	    grid_size = data.get_dim() + 2 * (pad_amt - crop_amt) - filter_size + 1;
 	    sample_size = data.get_dim() + 2 * (pad_amt - crop_amt);
