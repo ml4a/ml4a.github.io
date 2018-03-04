@@ -137,7 +137,7 @@ function dataset(datasetName_)
 	};
 
 	this.draw_current_sample = function(ctx, x, y, scale, grid_thickness, crop) {
-		this.draw_sample(ctx, idxSample, x, y, scale, grid_thickness, crop);
+		this.draw_sample(ctx, idxMin+idxSample, x, y, scale, grid_thickness, crop);
 	};
 
 	this.get_sample_image = function(idx, callback) {

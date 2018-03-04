@@ -14,31 +14,6 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	var numTest = (numTest_ === undefined) ? 10000 : numTest_;
 	var numEpochs = 10;
 
-//(datasetName == 'MNIST') ? 50000 : 40000)
-	/*
-	datasetName = 'CIFAR';
-	summaryFile = undefined;
-	summaryFile = '/demos/datasets/cifar/cifar10_summary2.json';
-	testAll = true;
-	snapshotFile = '/demos/datasets/cifar/cifar10_snapshot_nw.json';
-	console.log("DO IT!!!", snapshotFile)
-	*/
-	
-//	numTrain = 50000;
-	//numTest = 100;
-//	summaryFile_ = undefined;
-//	snapshotFile_ = undefined;
-//	snapshotFile = undefined;
-//	summaryFile = undefined;
-
-//	datasetName = 'MNIST';
-//	summaryFile = undefined;
-//	summaryFile = '/demos/datasets/cifar/cifar10_summary2.json';
-	//testAll = true;
-	//snapshotFile = '/demos/datasets/cifar/cifar10_snapshot_nw.json';
-//	console.log("DO IT!!!", snapshotFile, numTrain)
-
-
 	var mcw = 45;
 	var mch = 36;
 	var samples_grid_margin = 2;
@@ -384,18 +359,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 			}
 		});		
 	};
-	
 
-/*
-	createModel(datasetName, function() {
-		if (testAll) {
-			net.train(numTrain, numTest, numEpochs, test_all);
-		} else {
-			net.train(numTrain, numTest, numEpochs, test_individually);
-		}
-	});		
-*/
 	canvas.addEventListener("mousemove", mouseMoved, false);
-
 };
 

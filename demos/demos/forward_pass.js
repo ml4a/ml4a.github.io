@@ -19,7 +19,7 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 	// variables
 	var data, net, classes, nc, dim;
 	var vis, vis_settings, max_label_width, x1, y1, x2, y2, xm, ym;
-
+	var idx = 2;
 
 	function preloadModel(datasetName_, snapshot, callback) {
 		datasetName = datasetName_;
@@ -44,13 +44,14 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 	};
 
 	function test_all() {
-	    net.test(numTest, update_canvas);
+	    net.test(0, numTest, update_canvas);
 	};
 
 	function test_next_sample_auto(result) {
 	    update_canvas(result);
 	    setTimeout(function() {
-	        net.test(1, test_next_sample_auto);   // when to stop?
+	    	idx += 1;
+	        net.test(idx, idx+1, test_next_sample_auto);   // when to stop?
 	    }, 3000);
 	};
 
@@ -72,7 +73,7 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 	    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 	    // draw sample
-	    data.draw_current_sample(ctx, 5, ym-data.get_dim()*sample_scale/2.0, sample_scale);    
+	    data.draw_sample(ctx, idx+1, 5, ym-data.get_dim()*sample_scale/2.0, sample_scale);    
 	    bezier(ctx, x1, ym, xm, ym, x1, y1, xm, y1);
 	    bezier(ctx, x1, ym, xm, ym, x1, y2, xm, y2);
 
@@ -97,10 +98,12 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 	};
 
 	function test_next_sample(){
-	    net.test(1, update_canvas);
+		idx += 1;
+	    net.test(idx, idx+1, update_canvas);
 	};
 
 	function ready(){
+		net.get_dataset().set_range(0, numTest);
 	    var input_layer = net.get_net().layers[0];
 	    var num_inputs = input_layer.out_sx * input_layer.out_sy * input_layer.out_depth;
 
@@ -164,7 +167,7 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 		preloadModel(datasetName, snapshot, ready);
 	} else {
 		createModel(function() {
-		    net.train(numTrain, ready);
+		    net.train(numTrain, numTest, ready);
 		});
 	}
 };

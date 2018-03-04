@@ -2,6 +2,7 @@
 function convnet(dataset_) 
 {
     this.get_net = function() {return net;}
+    this.get_dataset = function() {return dataset;}
     this.get_summary = function(){return summary;}
     this.get_num_activations = function(layer) {return net.layers[layer].out_act.depth;};
     this.get_num_filters = function(layer) {return net.layers[layer].filters.length;};
@@ -79,11 +80,15 @@ function convnet(dataset_)
         return {predicted:p, actual:a, prob:out_prob};
     };
 
+    this.advance_offset = function(amt) {
+        offset += amt;
+    }
+
     this.train = function(numTrain, numTest, numEpochs, callback) {
-        dataset.set_range(0, numTrain);
+        dataset.set_range(offset, offset+numTrain);
         var train_next_sample = function(t){            
             if (t%2000 == 0){
-                console.log("train sample", t)
+                //console.log("train sample", t)
             }
             dataset.get_next_sample(function(sample){
                 trainer.train(sample.x, sample.y);
@@ -198,6 +203,8 @@ function convnet(dataset_)
     var trainer;
     var net;
     var summary;
+
+    var offset = 0; //hack
     
     initialize();    
 };

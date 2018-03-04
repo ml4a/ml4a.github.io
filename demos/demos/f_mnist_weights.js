@@ -97,7 +97,8 @@ var demo = function(parent, width, height, datasetName_, num_hidden_layers_, sna
 		setTimeout(function() {
 			num_trained += num_per;
 			if (num_trained < num_train) {
-				net.train(num_per, train_individually);   // when to stop?
+				net.advance_offset(num_per);
+				net.train(num_per, 0, 1, train_individually);   // when to stop?
 			} else {
 				training = false;
 			}
@@ -105,7 +106,7 @@ var demo = function(parent, width, height, datasetName_, num_hidden_layers_, sna
 	};
 
 	function train_all() {
-	    net.train(num_train, update_canvas);
+	    net.train(num_train, 0, 1, update_canvas);
 	};
 
 	function kill_trainer(kill_callback_) {
