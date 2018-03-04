@@ -6,18 +6,9 @@ header_text_hide: "__"
 ---
 
 **Introduction: Harold Cohen**
-**Machine learning: 00000**
-**Neural networks: Lovelace**
-**Looking inside neural nets: Brainbow**
-**How neural nets are trained: Topographic map**
-**Convnets: Convnets are everywhere**
-**Looking inside convnets: Visualization/**
-**Deepdream: Mike Tyka**
-**Style transfer: Mona Lisa series**
-**Generative models: Tom White VRAE**
-**Recurrent neural nets: MC Escher**
 
 
+Over the last two years, deep learning has made inroads into domains of interest to artists, designers, musicians, and the like. Combined with the appearance of powerful open source frameworks and the proliferation of public educational resources, this once esoteric subject has become accessible to far more people, facilitating numerous innovative hacks and art works. The result has been a virtuous circle, wherein public art works help motivate further scientific inquiry, in turn inspiring ever more creative experimentation.
 
 http://diccan.com/Images/Cohen_tortue.jpg
 http://diccan.com/History_1970.html

@@ -5,6 +5,7 @@ title: "Looking inside convnets"
 
 <!--
 http://www.cs.toronto.edu/~guerzhoy/321/lec/W07/HowConvNetsSee.pdf
+https://www.youtube.com/watch?v=ghEmQSxT6tw
 -->
 
 

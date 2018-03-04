@@ -282,3 +282,5 @@ nakamura vs rybka https://www.chess.com/article/view/computers-in-chess-good-or-
 https://pathak22.github.io/noreward-rl/resources/icml17.pdf
 
 https://pathak22.github.io/noreward-rl/
+
+https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-using-python-and-keras-7f664945c188

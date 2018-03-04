@@ -5,10 +5,10 @@ header_image: "/images/headers/deepdream.jpg"
 header_quote: "lovelace"
 ---
 
+header by <a href="https://mtyka.github.io">Mike Tyka</a>
 
 ## Introduction
 
-{% include todo.html note="reddit: a convnet made this" %}
 {% include todo.html note="examples of hallucinations" %}
 
 ## Review of optimization-based class visualization

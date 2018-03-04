@@ -115,3 +115,5 @@ densecap.png
 neural-storyteller.jpg
 neural-storyteller2.png
 samim-neural-storyteller.jpg
+
+Understanding Hidden Memories of Recurrent Neural Networks https://arxiv.org/pdf/1710.10777.pdf
