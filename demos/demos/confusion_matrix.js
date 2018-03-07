@@ -19,6 +19,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	var samples_grid_margin = 2;
 	var sample_scale = 1.0;
 	var selected = {a:2, p:2};
+	var mouseListener = false;
 
 	// variables
 	var data, net, classes, nc, dim;
@@ -278,6 +279,10 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	};
 
 	function update_canvas() {
+		if (!mouseListener) {
+			canvas.addEventListener("mousemove", mouseMoved, false);
+			mouseListener = true;
+		}
 		toggleView(viewTopSamples);
 		ctx.fillStyle = 'rgba(255,255,255,1.0)';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -343,6 +348,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 
 	// mode 1: load everything from summary file
 	if (summaryFile !== undefined) {
+		console.log("load ",summaryFile)
 		loadFromSummary(datasetName, summaryFile, update_canvas);
 	}
 	// mode 2: load pretrained model and test samples on client
@@ -359,7 +365,5 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 			}
 		});		
 	};
-
-	canvas.addEventListener("mousemove", mouseMoved, false);
 };
 

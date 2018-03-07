@@ -6,14 +6,6 @@ header_image: "/images/headers/Convet_activations_kitty.jpg"
 header_text: "Activations maps from a trained convolutional neural network, via <a href=\"/guides/ConvnetViewer/\">ConvnetViewer</a> from the <a href=\"https://github.com/ml4a/ml4a-ofx\">openframeworks app</a> collection."
 ---
 
-<!--
-
-TODO
- - convolution demo: filters cut off
- 
--->
-
-
 Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, emerging in recent years as the most prominent strain of [neural networks](/ml4a/neural_networks/) in research. They have revolutionized computer vision, achieving state-of-the-art results in many fundamental tasks, as well as making strong progress in natural language processing, computer audition, reinforcement learning, and many other areas. Convnets have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
 
 - detecting and labeling objects, locations, and people in images
@@ -92,7 +84,7 @@ Unaffected by Shift in Position" author="Kunihiko Fukushima" link="http://www.cs
 
 In the late 1980s, [Geoffrey Hinton et al](https://www.nature.com/articles/323533a0) first succeeded in applying backpropagation to the training of neural networks. During the 1990s, a [team at AT&T Labs](https://www.youtube.com/watch?v=FwFduRA_L6Q) led by Hinton's former post-doc student [Yann LeCun](http://yann.lecun.com/) trained a convolutional network, nicknamed ["LeNet"](http://yann.lecun.com/exdb/lenet/), to classify images of handwritten digits to an accuracy of 99.3%. Their system was used for a time to automatically read the numbers in 10-20% of checks printed in the US. LeNet had 7 layers, including two convolutional layers, with the architecture summarized in the below figure.
 
-{% include figure_multi.md path1="/images/figures/lenet.png" caption1="LeNet" %}
+{% include figure_multi.md path1="/images/figures/lenet.png" caption1="<a href=\"http://yann.lecun.com/exdb/lenet/\">LeNet</a>" %}
 
 Their system was the first convolutional network to be applied on an industrial-scale application. Despite this triumph, many computer scientists believed that neural networks would be incapable of scaling up to recognition tasks involving more classes, higher resolution, or more complex content. For this reason, most applied computer vision tasks would continue to be carried out by other algorithms for more than another decade.
 
@@ -104,7 +96,7 @@ Convolutional networks began to take over computer vision -- and by extension, m
 
 For the first two years of the competition, the winning entries all used what were then standard approaches to computer vision, and did not involve the use of convolutional networks. The top-winning entries in the classification tasks had a top-5 error (did not guess the correct class in top-5 predictions) between 25 and 28%. In 2012, a team from the [University of Toronto](http://web.cs.toronto.edu/) led by Geoffrey Hinton, Ilya Sutskever, and Alex Krizhevsky submitted a [deep convolutional neural network nicknamed "AlexNet"](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks) which won the competition by a dramatic margin of over 40%. AlexNet broke the previous record for top-5 classification error from 26% down to 15%. 
 
-{% include figure_multi.md path1="/images/figures/alexnet.jpg" caption1="AlexNet ([original paper](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks))" %}
+{% include figure_multi.md path1="/images/figures/alexnet.jpg" caption1="AlexNet (<a href=\"https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks)\">original paper</a>)" %}
 
 Since the following year, nearly all entries to ILSVRC have been deep convolutional networks, and classification error has steadily tumbled down to nearly 2% in 2017, the last year of ILSVRC. Convnets [now even outperform humans](https://karpathy.github.io/2014/09/02/what-i-learned-from-competing-against-a-convnet-on-imagenet/) in ImageNet classification! These monumental results have largely fueled the excitement about deep learning that would follow, and many consider them to have revolutionized computer vision as a field outright. Furthermore, many important research breakthroughs that are now common in network architectures -- such as [residual layers](https://arxiv.org/abs/1512.03385) --  were introduced as entries to ILSVRC.
 
