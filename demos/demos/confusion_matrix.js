@@ -6,7 +6,7 @@ function demo(parent, width, height, datasetName_, summaryFile_, snapshotFile_ ,
 	
 	// parameters
 	var datasetName = (datasetName_ === undefined) ? 'MNIST' : datasetName_;
-	var summaryFile = (summaryFile_ === undefined) ? '/demos/datasets/mnist/mnist_summary.json' : summaryFile_;
+	var summaryFile = (summaryFile_ === undefined) ? '/demos/datasets/mnist/mnist_summary_2layers.json' : summaryFile_;
 	var snapshotFile = (snapshotFile_ === undefined) ? true : snapshotFile_;
 	var viewTopSamples = (viewTopSamples_ === undefined) ? false : viewTopSamples_;
 	var testAll = (testAll_ === undefined) ? true : testAll_;
