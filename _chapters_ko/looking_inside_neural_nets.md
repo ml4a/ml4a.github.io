@@ -10,6 +10,7 @@ translator_link: "https://tensorflow.blog/"
 
 [English](/ml4a/looking_inside_neural_nets/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/looking_inside_neural_nets/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/looking_inside_neural_nets/)
 
 [이전 장](/ml4a/ko/neural_networks)에서 손글씨 숫자 이미지를 90%에 가까운 정확도로 분류하기 위해 신경망이 어떻게 훈련되는지 보았습니다. 이번 장에서는 이 성능을 조금 더 주의깊게 평가해 보고, 도대체 무슨 일이 일어나는지 직관을 얻기위해 내부 상태를 조사해 보려고 합니다. 이 장의 후반부에 개, 자동차, 배 등으로 이루어진 복잡한 데이터셋에서 신경망을 훈련시켜 보면서 문제점을 찾아 보겠습니다. 그리고 더 높은 수준에 도달하기 위해 어떤 혁신이 필요한지 추측해 보겠습니다.
 

@@ -11,7 +11,8 @@ translator_link: "https://tensorflow.blog/"
 [English](/ml4a/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[french](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[français](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/neural_networks/)
 
 신경망(neural network)이 처음 고안된 것은 거의 100여년 전으로 [에이다 러브레이스](http://findingada.com/)는 "[신경 시스템에 대한 수학 모델](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)"을 만들고자 하는 꿈을 가졌습니다. 뇌와 기계 사이의 추측성 비유는 계산 자체의 역사만큼이나 오래되었지만, 에이다의 선생님이었던 [찰스 배비지](https://ko.wikipedia.org/wiki/%EC%B0%B0%EC%8A%A4_%EB%B0%B0%EB%B9%84%EC%A7%80)가 [해석 기관](https://ko.wikipedia.org/wiki/%ED%95%B4%EC%84%9D%EA%B8%B0%EA%B4%80)을 제안하기 전까지는 "계산기"를 사람같은 인지 능력을 가진 것으로 상상하지는 못했습니다. 그 당시 기술자들은 그녀가 고안한 복잡한 회로를 만들 능력이 없었기 때문에 에이다는 생전에 이 기관이 실제로 구현되는 것을 보지 못했습니다. 그럼에도 불구하고, 이 아이디어는 다음 세기를 거쳐 전달되었고 [앨런 튜링](https://ko.wikipedia.org/wiki/%EC%95%A8%EB%9F%B0_%ED%8A%9C%EB%A7%81)이 "[튜링 테스트](https://en.wikipedia.org/wiki/Turing_test)"이라고 불리게 된 [모방 게임](http://phil415.pbworks.com/f/TuringComputing.pdf)을 소개할 때 여기에서 영감을 받았다고 인용하였습니다. 극단적으로 단순한 계산에 대한 그의 고찰은 첫 번째 인공 지능의 붐을 촉발시켰고 신경망의 첫 번째 전성기를 마련하였습니다.
 

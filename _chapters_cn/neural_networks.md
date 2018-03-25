@@ -11,7 +11,8 @@ header_text: "“It were much to be desired, that when mathematical processes pa
 [English](/ml4a/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[french](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[français](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/neural_networks/)
 
 
 在神经网络最初实现的一个世纪前，[Ada Lovelace](http://findingada.com/) 就有建立一个“[神经系统的微积分](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)”的野心，尽管将大脑同机器类比和计算哲学一样历史悠久，但直到Ada的老师 [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) 提出[分析机（Analytical engine）](https://en.wikipedia.org/wiki/Analytical_Engine)之后，我们才开始考虑计算器有类似人类的认知能力。Ada 并没在有生之年看到从建造引擎到产生成果的过程，因为那时的工程师也无法把她要求的复杂电路实现出来。然而，这个想法传到了下一个世纪，图灵以之为灵感创造了[模仿游戏（Imitation Game）](http://phil415.pbworks.com/f/TuringComputing.pdf)，这就是后来大名鼎鼎的[图灵测试（Turing Test）](https://en.wikipedia.org/wiki/Alan_Turing)。他关于计算之极限的思考被视为人工智能最初的一现昙华，为神经网络的黄金时代奠定了基础。
