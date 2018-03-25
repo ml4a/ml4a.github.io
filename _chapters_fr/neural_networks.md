@@ -10,8 +10,9 @@ translator_link: "https://tiborudvari.com/"
 
 [English](/ml4a/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[中文](/ml4a/cn/neural_networks/)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/neural_networks/)
 
 
 Près d'un siècle avant la conception des réseaux neuronaux, [Ada Lovelace](http://findingada.com/) a décrit l'ambition de construire «[l'analyse du système nerveux](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)». Bien que les analogies spéculatives entre les cerveaux et les machines soient aussi anciennes que la philosophie de l'informatique elle-même, ce n'est que quand [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage), le professeur d'Ada, a proposé [le moteur analytique](https://en.wikipedia.org/wiki/Analytical_Engine) que nous avons imaginés de "calculatrices" ayant des capacités cognitives humaines. Ada n'a pas pour voir son rêve de construire le moteur se concrétiser, car les ingénieurs de l'époque étaient incapables de construire les circuits complexes que nécessitaient ses schémas. Néanmoins, l'idée a été transmise au siècle suivant quand [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) l'a cité comme l'inspiration pour le [Jeu d’imitation](http://phil415.pbworks.com/f/TuringComputing.pdf), ce qui allait bientôt être appelé le [«Test de Turing»](https://en.wikipedia.org/wiki/Turing_test). Ses ruminations dans les limites du calcul ont incité le premier boom l'intelligence artificielle, préparant le terrain pour le premier âge d'or des réseaux de neurones.

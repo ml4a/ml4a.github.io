@@ -8,10 +8,11 @@ translator: "Naoto Hieda"
 translator_link: "http://naotohieda.com/"
 ---
 
-[中文](/ml4a/cn/neural_networks/)
+[English](/ml4a/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[french](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[français](/ml4a/fr/neural_networks/)
 
 
 ニューラルネットワークが発明される約一世紀前、[エイダ・ラヴレス](http://findingada.com/)が「[神経系の計算法](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)」という野心的な提案をしました。脳と機械の推論的なアナロジーは計算自体の哲学と同じくらい古いものの、計算機が人間のような認知機能を持つことはエイダの先生である[チャールズ・バベッジ](https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%BB%E3%83%90%E3%83%99%E3%83%83%E3%82%B8)が[解析機関](https://ja.wikipedia.org/wiki/%E8%A7%A3%E6%9E%90%E6%A9%9F%E9%96%A2)を提案するまで考えられませんでした。当時の技術者たちは彼女の複雑な図面の回路を実現することができず、エイダは自身の夢である機関が完成するのを目の当たりにすることはできませんでした。しかしながらそのアイディアは次の世紀に継承され、[アラン・チューリング](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BB%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0)により後の[「チューリング・テスト」](https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%86%E3%82%B9%E3%83%88)である[イミテーション・ゲーム](http://phil415.pbworks.com/f/TuringComputing.pdf)のインスピレーションとして参照されました。チューリングの計算の極限への熟慮は第一次AIブームに火をつけ、ニューラルネットワークの第一次黄金時代への足掛かりとなりました。

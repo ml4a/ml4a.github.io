@@ -11,7 +11,8 @@ translator_link: "http://www.irenealvarado.com/"
 [English](/ml4a/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[中文](/ml4a/cn/neural_networks/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/neural_networks/)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[french](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[français](/ml4a/fr/neural_networks/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/neural_networks/)
 
 Casi un siglo antes de que las redes neuronales fueran primero concebidas, [Ada Lovelace](http://findingada.com/) describió su ambición por construir un "[cálculo del sistema nervioso](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Aunque la filosofía de la computación ha explorado analogías especulativas sobre mentes y máquinas desde hace mucho años, no fue hasta que el profesor de Ada, [Charles Baggage](https://en.wikipedia.org/wiki/Charles_Babbage), propuso la [Máquina analítica](https://en.wikipedia.org/wiki/Analytical_Engine) que empezamos a concebir "calculadoras" teniendo capacidades cognitivas humanas. Ada no viviría para ver realizado su sueño de contruir una máquina similar a la que propuso Baggage, ya que los ingenieros de su época eran incapaces de producir los circuitos complejos que sus esquemas requerían. Sin embargo, la idea sobrevivió hasta el siguiente siglo cuando Alan Turing la citó como inspiración para el [Juego de Imitación](http://phil415.pbworks.com/f/TuringComputing.pdf), lo cual pronto llegó a llamarse el "[Test de Turing](https://en.wikipedia.org/wiki/Turing_test)." Sus reflexiones sobre los límites de la computación incitaron el primer auge en inteligencia artificial, la cual abrió paso para la primera época dorada de las redes neurales.  
 
