@@ -14,34 +14,34 @@ translator_link: "http://naotohieda.com/"
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[french](/ml4a/fr/neural_networks/)
 
 
-Nearly a century before neural networks were first conceived, [Ada Lovelace](http://findingada.com/) described an ambition to build a "[calculus of the nervous system](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)." Although speculative analogies between brains and machines are as old as the philosophy of computation itself, it wasn't until Ada's teacher [Charles Babbage](https://en.wikipedia.org/wiki/Charles_Babbage) proposed the [Analytical engine](https://en.wikipedia.org/wiki/Analytical_Engine) that we conceived of "calculators" having humanlike cognitive capacities. Ada would not live to see her dream of building the engine come to fruitio	n, as engineers of the time were unable to produce the complex circuitry her schematics required. Nevertheless, the idea was passed on to the next century when [Alan Turing](https://en.wikipedia.org/wiki/Alan_Turing) cited it as the inspiration for the [Imitation Game](http://phil415.pbworks.com/f/TuringComputing.pdf), what soon came to be called the "[Turing Test](https://en.wikipedia.org/wiki/Turing_test)." His ruminations into the extreme limits of computation incited the first boom of artificial intelligence, setting the stage for the first golden age of neural networks.
+ニューラルネットワークが発明される約一世紀前、[エイダ・ラヴレス](http://findingada.com/)が「[神経系の計算法](http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(15)00686-8/fulltext?rss=yes)」という野心的な提案をしました。脳と機械の推論的なアナロジーは計算自体の哲学と同じくらい古いものの、計算機が人間のような認知機能を持つことはエイダの先生である[チャールズ・バベッジ](https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A3%E3%83%BC%E3%83%AB%E3%82%BA%E3%83%BB%E3%83%90%E3%83%99%E3%83%83%E3%82%B8)が[解析機関](https://ja.wikipedia.org/wiki/%E8%A7%A3%E6%9E%90%E6%A9%9F%E9%96%A2)を提案するまで考えられませんでした。当時の技術者たちは彼女の複雑な図面の回路を実現することができず、エイダは自身の夢である機関が完成するのを目の当たりにすることはできませんでした。しかしながらそのアイディアは次の世紀に継承され、[アラン・チューリング](https://ja.wikipedia.org/wiki/%E3%82%A2%E3%83%A9%E3%83%B3%E3%83%BB%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0)により後の[「チューリング・テスト」](https://ja.wikipedia.org/wiki/%E3%83%81%E3%83%A5%E3%83%BC%E3%83%AA%E3%83%B3%E3%82%B0%E3%83%BB%E3%83%86%E3%82%B9%E3%83%88)である[イミテーション・ゲーム](http://phil415.pbworks.com/f/TuringComputing.pdf)のインスピレーションとして参照されました。チューリングの計算の極限への熟慮は第一次AIブームに火をつけ、ニューラルネットワークの第一次黄金時代への足掛かりとなりました。
 
-## Birth and rebirth of neural nets
+## ニューラルネットワークの誕生と復活
 
-The recent resurgence of neural networks is a peculiar story. Intimately connected to the early days of AI, neural networks were first formalized in the late 1940s in the form of Turing's [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine), drawing upon earlier research into [neural plasticity](https://en.wikipedia.org/wiki/Hebbian_theory) by neuroscientists and cognitive psychologists studying the learning process in human beings. As the mechanics of brain development were being discovered, computer scientists experimented with idealized versions of action potential and neural backpropagation to simulate the process in machines.
+最近のニューラルネットワークの復活には奇妙な背景があります。 AIの初期に密接に関連していたニューラルネットワークは、ヒトの学習過程を研究する神経科学者と認知心理学者による[神経可塑性](https://en.wikipedia.org/wiki/Hebbian_theory)の 初期の研究に影響され、1940年代後半にTuringの [B-type machines](https://en.wikipedia.org/wiki/Unorganized_machine)という形で最初に公式化されました。脳の発達のメカニズムが発見され、計算機科学者たちは活動電位と神経の逆伝播を定式化し、機械により脳のプロセスを再現しようと試みました。
 
-Today, most scientists caution against taking this analogy too seriously, as neural networks are strictly designed for solving machine learning problems, rather than accurately depicting the brain, while a completely separate field called [computational neuroscience](https://en.wikipedia.org/wiki/Computational_neuroscience) has taken up the the challenge of faithfully modeling the brain. Nevertheless, the metaphor of the core unit of neural networks as a simplified biological neuron has stuck over the decades. The progression from biological neurons to artificial ones can be summarized by the following figures.
+今日ではニューラルネットワークは脳を正確に再現するのではなく機械学習により問題を解決する用途に限定して設計されているため、このアナロジーをあまり重視しないよう警鐘を鳴らしています。他方で[計算論的神経科学](https://ja.wikipedia.org/wiki/%E8%A8%88%E7%AE%97%E8%AB%96%E7%9A%84%E7%A5%9E%E7%B5%8C%E7%A7%91%E5%AD%A6)は、脳を忠実にモデリングするという課題に取り組んできました。しかしながら、ニューラルネットワークは単純化された生物学的ニューロンであるという比喩は何十年にもわたって存在しています。 生物学的ニューロンから人工ニューロンへの進化を以下の図に要約しました。
 
 {% include figure_multi.md path1="/images/neuron-anatomy.jpg"
-caption1="Anatomy of a biological neuron<br/>Source: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
-caption2="Simplified neuron body within a network<br/>Source: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="Artificial neuron<br/>&nbsp;" %}
+caption1="生物学的ニューロンの構造図<br/>出展: <a href=\"https://askabiologist.asu.edu/neuron-anatomy\">ASU school of life sciences</a>" path2="/images/neuron-simple.jpg"
+caption2="ネットワーク内の細胞体の概略図<br/>出展: <a href=\"http://www.generation5.org/content/2000/nn00.asp\">Gurney, 1997. An Introduction to Neural Networks</a>" path3="/images/figures/neuron.png" caption3="人口ニューロン<br/>&nbsp;" %}
 
-Neural networks took a big step forward when [Frank Rosenblatt](https://en.wikipedia.org/wiki/Frank_Rosenblatt) devised the [Perceptron](https://en.wikipedia.org/wiki/Perceptron) in the late 1950s, a type of linear classifier that we saw in the [last chapter](/ml4a/machine_learning/). Publicly funded by the U.S. Navy, the Mark 1 perceptron was designed to perform image recognition from an array of photocells, potentiometers, and electrical motors. Its effectiveness at completing complex electrical circuits lead the New York Times in 1958 to predict that a machine would soon ["walk, talk, see, write, reproduce itself and be conscious of its existence"](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE).
+ニューラルネットワークは、[フランク・ローゼンブラット](https://ja.wikipedia.org/wiki/%E3%83%95%E3%83%A9%E3%83%B3%E3%82%AF%E3%83%BB%E3%83%AD%E3%83%BC%E3%82%BC%E3%83%B3%E3%83%96%E3%83%A9%E3%83%83%E3%83%88)が1950年代後半に[パーセプトロン](https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%BC%E3%82%BB%E3%83%97%E3%83%88%E3%83%AD%E3%83%B3)（[前章](http://ml4a.github.io/ml4a/jp/machine_learning)の線形分類器の一種）を考案したことにより大きく前進しました。米海軍の公的資金を受けて開発されたマーク1パーセプトロンは、複数のフォトセル、ポテンショメータ、およびモータを用いて画像認識を行うように設計されました。複雑な電気回路を完成させたことにより、1958年にニューヨーク・タイムズ紙はすぐにも機械が[「歩く、話す、見る、書く、自らを複製し自分の存在を認知する」](http://query.nytimes.com/gst/abstract.html?res=9D01E4D8173DE53BBC4053DFB1668383649EDE)と予測しています。
 
-The early hype would inspire science fiction writers for decades to come, but the excitement was far more tempered in the academic community. Marvin Minsky's and Seymour Papert's 1969 book, [Perceptrons](https://en.wikipedia.org/wiki/Perceptrons_(book)), demonstrated various-—[even trivial](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)—limitations, inadvertently leading to a [decline of interest](https://en.wikipedia.org/wiki/AI_winter) within both academia and the general public, who had mistakenly assumed computers would simply keep up with the [breakneck pace](https://en.wikipedia.org/wiki/Moore%27s_law) of computational power. Even Turing himself said machines would possess human-level intelligence by the year 2000 -- the year we had the [Y2K scare](https://en.wikipedia.org/wiki/Year_2000_problem).
+このような初期の誇張された言説はサイエンスフィクション作家に何十年にもわたってインスピレーションを与えることになりましたが、その興奮は学界でははるかに落ち着いたものでした。人々はコンピュータが[ムーアの法則](https://ja.wikipedia.org/wiki/%E3%83%A0%E3%83%BC%E3%82%A2%E3%81%AE%E6%B3%95%E5%89%87)に乗っ取って異常なペースで計算能力が向上するだろうと楽観していましたが、マービン・ミンスキーとシーモア・パパートの1969年の本[「パーセプトロンズ」](https://en.wikipedia.org/wiki/Perceptrons_(book))が様々な、そして[些細な](http://users.ecs.soton.ac.uk/harnad/Hypermail/Explaining.Mind96/0140.html)制約を示し、意図せずにも学者と一般の両方の間で[関心の低下](https://en.wikipedia.org/wiki/AI_winter)を招きました。 チューリング自身でさえ、機械は2000年までに人間レベルの知性を持つだろうと言っていたのです。それは私たちが[2000年問題](https://ja.wikipedia.org/wiki/2000%E5%B9%B4%E5%95%8F%E9%A1%8C)に怯えていた年でした。
 
-Despite a number of quiet but significant improvements to neural networks in the 80s and 90s [[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://www.bioinf.jku.at/publications/older/2604.pdf), they remained on the sidelines through the 2000s, with most commercial and industrial applications of machine learning favoring [support vector machines](https://en.wikipedia.org/wiki/Support_vector_machine) and various other approaches. [Starting in 2009](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf) and [especially ramping up from 2012](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/), neural networks have once again become the dominant strain of ML algorithms. Their resurgence was largely brought about by the emergence of [convolutional](/ml4a/convnets.html) and [recurrent neural networks](/ml4a/RNNs.html), which have surpassed (sometimes dramatically so) previous state-of-the-art methods for key problems in the audiovisual domain. But more interestingly, they have a number of new applications and properties not seen before, especially of a kind that has piqued the interest of artists and others from outside the AI field proper. This book will look more closely at convolutional neural networks in particular several chapters from now.
+AIの冬の時代の80年代と90年代にはニューラルネットワークに数々の重要な改良がなされたにもかかわらず[[1]](http://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf)[[2]](http://yann.lecun.org/exdb/publis/pdf/lecun-89e.pdf)[[3]](http://www.bioinf.jku.at/publications/older/2604.pdf)、2000年代まで注目を浴びることはなく、機械学習の商業的および産業的応用の大部分には[サポートベクターマシン](https://ja.wikipedia.org/wiki/%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%83%99%E3%82%AF%E3%82%BF%E3%83%BC%E3%83%9E%E3%82%B7%E3%83%B3)やその他の手法が用いられました。 [2009年に始まり](http://www.cs.utoronto.ca/~gdahl/papers/dbnPhoneRec.pdf)、[特に2012年から顕著に](https://www.technologyreview.com/s/530561/the-revolutionary-technique-that-quietly-changed-machine-vision-forever/)、ニューラルネットワークは再び機械学習アルゴリズムの主要な手法となっています。その復活は、[畳み込み](http://ml4a.github.io/ml4a/jp/convnets)と[リカレントニューラルネットワーク](http://ml4a.github.io/ml4a/jp/RNNs)の発明に起因すると言っても過言ではなく、これまでの音声や画像解析の手法を劇的に上回るパフォーマンスを見せました。そして興味深いことに、以前は見られなかった多くの新しい応用や特徴があり、特にAI分野外のアーティストらの興味を惹きつけています。この本ではこれからいくつかの章にて、特に畳み込みニューラルネットワークについて詳しく見ていきます。
 
-Although many learning algorithms have been proposed over the years, we will mostly focus our attention on neural networks because:
+長年に渡って多くの学習アルゴリズムが提案されてきましたが、次の理由からここでは主にニューラルネットワークを取り扱います。
 
- - They have a surprisingly simple and intuitive formulation.
- - Deep neural networks are the current state-of-the-art in several important machine learning tasks, the ones most relevant to this book.
- - Most of the recent creative uses of machine learning have been made with neural networks.
+ - 驚くほど簡単で直感的な定式化のため。
+ - ディープニューラルネットワークはいくつかの主要な機械学習の問題を解く上で現在の最先端技術であるため。
+ - 近年の機械学習のクリエイティブなアプリケーションのほとんどはニューラルネットワークで作られているため。
 
 
-## From linear classifiers to neurons
+## 線形分類器からニューロンへ
 
-Recall from the previous chapter that the input to a 2d linear classifier or regressor has the form:
+前章で学んだ二次元線形分類器または線形回帰は次の式で表されます。
 
 $$
 \begin{eqnarray}
@@ -49,7 +49,7 @@ f(x_1, x_2) = b + w_1 x_1 + w_2 x_2
 \end{eqnarray}
 $$
 
-More generally, in any number of dimensions, it can be expressed as
+一般的には任意の次元数において、
 
 $$
 \begin{eqnarray}
@@ -57,7 +57,7 @@ f(X) = b + \sum_i w_i x_i
 \end{eqnarray}
 $$
 
-In the case of regression, $$f(X)$$ gives us our predicted output, given the input vector $$X$$. In the case of classification, our predicted class is given by
+となります。回帰の場合、$$f(X)$$は、説明変数であるベクトル$$X$$（入力）に対する目的変数（出力）となります。分類の場合、クラス確率は
 
 $$
 \begin{eqnarray}
@@ -68,106 +68,105 @@ $$
 \tag{1}\end{eqnarray}
 $$
 
-Each weight, $$w_i$$, can be interpreted as signifying the relative influence of the input that it's multiplied by, $$x_i$$. The $$b$$ term in the equation is often called the bias, because it controls how predisposed the neuron is to firing a 1 or 0, irrespective of the weights. A high bias makes the neuron require a larger input to output a 1, and a lower one makes it easier.
+です。それぞれのパラメータ$$w_i$$は、$$x_i$$と乗算した入力の相対的な影響を示すものとして解釈できます。方程式の$$b$$項はバイアス（切片）とよばれ、重みに関係なくニューロンが1または0を発火する要因となります。バイアスを高くすると、ニューロンが1を出力するためにより大きな入力を必要とし、低くするとより小さな入力が必要になります。
 
-We can get from this formula to a full-fledged neural network by introducing two innovations. The first is the addition of an activation function, which turns our linear discriminator into what's called a neuron, or a "unit" (to dissociate them from the brain analogy). The second innovation is an architecture of neurons which are connected sequentially in layers. We will introduce these innovations in that order.
+この式から本格的なニューラルネットワークにたどり着くためには二つのイノベーションが必要になります。一つ目は線形分類器をニューロンあるいはユニットに変える活性化関数です（ここで脳のアナロジーを排除するためにユニットという言葉を用いました）。二つ目は層状に接続されたニューロンの構造です。以下にこれらのイノベーションを紹介します。
 
 ## Activation function
 
-In both artificial and biological neural networks, a neuron does not just output the bare input it receives. Instead, there is one more step, called an activation function, analagous to the rate of [action potential](https://en.wikipedia.org/wiki/Action_potential) firing in the brain. The activation function takes the same weighted sum input from before, $$z = b + \sum_i w_i x_i$$, and then transforms it once more before finally outputting it.
+人工的および生物学的ニューラルネットワークの双方において、ニューロンは単に入力された情報に重み付けをして出力するわけではありません。脳内の[活動電位](https://ja.wikipedia.org/wiki/%E6%B4%BB%E5%8B%95%E9%9B%BB%E4%BD%8D)の発火率に対応するように、活性化関数と呼ばれるステップがあります。活性化関数は、重み付き和$$z = b + \sum_i w_i x_i$$にもう一段階処理を施します。
 
-Many activation functions have been proposed, but for now we will describe two in detail: sigmoid and ReLU.
+多くの活性化関数が提案されていますが、ここではシグモイドとReLUについて説明します。
 
-Historically, the [sigmoid](https://en.wikipedia.org/wiki/Sigmoid_function) function is the oldest and most popular activation function. It is defined as:
+歴史的に、[シグモイド](https://ja.wikipedia.org/wiki/%E3%82%B7%E3%82%B0%E3%83%A2%E3%82%A4%E3%83%89%E9%96%A2%E6%95%B0)関数は、最も古く普及した活性化関数で次のように定義されます。
 
 $$
 \sigma(x) = \frac{1}{1 + e^{-x}}
 $$
 
-$$e$$ denotes the [exponential constant](https://en.wikipedia.org/wiki/E_(mathematical_constant)), roughly equal to 2.71828. A neuron which uses a sigmoid as its activation function is called a sigmoid neuron. We first set the variable $$z$$ to our original weighted sum input, and then pass that through the sigmoid function.
+$$e$$は[ネイピア数](https://ja.wikipedia.org/wiki/%E3%83%8D%E3%82%A4%E3%83%94%E3%82%A2%E6%95%B0)を表し、おおよそ2.71828です。シグモイドを活性化関数に用いるニューロンをシグモイドニューロンと呼びます。まず先の重み付き和を変数$$z$$とし、それをシグモイド関数に渡します。
 
 $$
 z = b + \sum_i w_i x_i \\
 \sigma(z) = \frac{1}{1 + e^{-z}}
 $$
 
-At first, this equation may seem complicated and arbitrary, but it actually has a very simple shape, which we can see if we plot the value of $$\sigma(z)$$ as a function of the input $$z$$.
+この方程式は複雑で恣意的なものに見えるかもしれませんが、実際は非常に単純な形をしています。$$\sigma(z)$$の値を$$z$$の関数としてプロットしてみましょう。
 
-{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="Sigmoid activation function" %}
+{% include figure_multi.md path1="/images/figures/sigmoid.png" caption1="シグモイド活性化関数" %}
 
-We can see that $$\sigma(z)$$ acts as a sort of "squashing" function, condensing our previously unbounded output to the range 0 to 1. In the center, where $$z = 0$$, $$\sigma(0) = 1/(1+e^{0}) = 1/2$$. For large negative values of $$z$$, the $$e^{-z}$$ term in the denominator grows exponentially, and $$\sigma(z)$$ approaches 0. Conversely, large positive values of $$z$$ shrink $$e^{-z}$$ to 0, so $$\sigma(z)$$ approaches 1.
+$$\sigma(z)$$は、任意の実数をとる先の重み付き和を0から1に制限する一種の「詰め込み」関数であることがわかります。また、中心では$$z = 0$$、$$\sigma(0) = 1/(1+e^{0}) = 1/2$$となります。$$z$$が大きな負の値の場合、分母の$$e^{-z}$$項は指数関数的に増加するため$$\sigma(z)$$は0に近づきます。逆に、$$z$$が大きな正の値をとると$$e^{-z}$$は0に近づき、$$\sigma(z)$$は1に近づきます。
 
-The sigmoid function is continuously differentiable, and its derivative, conveniently, is $$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$. This is important because we have to use calculus to train neural networks, but don't worry about that for now.
+シグモイド関数は連続的に微分可能であり、その導関数は便利なことに$$\sigma^\prime(z) = \sigma(z) (1-\sigma(z))$$です。ニューラルネットワークの学習には微積分が必要なため後に重要になりますが、ここでは心配する必要はありません。
 
-Sigmoid neurons were the basis of most neural networks for decades, but in recent years, they have fallen out of favor. The reason for this will be explained in more detail later, but in short, they make neural networks that have many layers difficult to train due to the [vanishing gradient problem](https://en.wikipedia.org/wiki/Vanishing_gradient_problem). Instead, most have shifted to using another type of activation function, the rectified linear unit, or ReLU for short. Despite its obtuse name, it is simply defined as $$R(z) = max(0, z)$$.
+シグモイドニューロンは、数十年にわたる大部分のニューラルネットワークの基礎となりましたが、近年では他の関数に興味が移っています。その理由は後ほど詳しく説明しますが、端的には[勾配消失](https://en.wikipedia.org/wiki/Vanishing_gradient_problem)を招き多層ニューラルネットワークの学習が難しくなってしまうからです。そのためほとんどの場合、別のタイプの活性化関数、レクティファイドリニアユニット、略してReLUが使用されます。その堅苦しい名前にもかかわらず、それの定義は$$R(z) = max(0, z)$$とシンプルなものです。
 
-{% include figure_multi.md path1="/images/figures/relu.png" caption1="ReLU activation function" %}
+{% include figure_multi.md path1="/images/figures/relu.png" caption1="ReLU活性化関数" %}
 
-In other words, ReLUs let all positive values pass through unchanged, but just sets any negative value to 0. Although newer activation functions are gaining traction, most deep neural networks these days use ReLU or one of its [closely related variants](https://en.wikipedia.org/wiki/Rectifier_(neural_networks)).
+言い換えれば、ReLUは正の値をそのまま通しますが、負の値は0にとして出力します。新しい活性化関数も登場していますが、最近のほとんどの深層ニューラルネットワークでは、ReLUまたはその[亜種](https://en.wikipedia.org/wiki/Rectifier_(neural_networks))が用いられます。
 
-Regardless of which activation function is used, we can visualize a single neuron with this standard diagram, giving us a nice intuitive visual representation of a neuron's behavior.
+どの活性化関数を使用してもこの標準的な図で単一ニューロンを視覚化することができ、ニューロンの動作を直感的に視覚的に表現するのに役立ちます。
 
-{% include figure_multi.md path1="/images/figures/neuron.png" caption1="An artificial neuron" %}
+{% include figure_multi.md path1="/images/figures/neuron.png" caption1="人工ニューロン" %}
 
-The above diagram shows a neuron with three inputs, and outputs a single value $$y$$. As before, we first compute the weighted sum of its inputs, then pass it through an activation function $$\sigma$$.
+上の図のニューロンは3つの入力に対して$$y$$を出力します。これまでのように、まず入力の重み付き和を計算し、それを活性化関数$$\sigma$$に渡します。
 
 $$
 z = b + w_1 x_1 + w_2 x_2 + w_3 x_3 \\
 y = \sigma(z)
 $$
 
-You may be wondering what the purpose of an activation function is, and why it is preferred to simply outputting the weighted sum, as we do with the linear classifier from the last chapter. The reason is that the weighted sum, $$z$$, is [_linear_](https://en.wikipedia.org/wiki/Linearity) with respect to its inputs, i.e. it has a flat dependence on each of the inputs. In contrast, non-linear activation functions greatly expand our capacity to model curved or otherwise non-trivial functions. This will become clearer in the next section.
+前章の線形分類子と同様に、アクティベーション関数の目的や、なぜ重み付き和をそのまま出力するのか不思議に思えるかもしれません。その理由は、重み付き和$$z$$は、その入力に対して[線型](https://ja.wikipedia.org/wiki/%E7%B7%9A%E5%9E%8B%E6%80%A7)である、すなわち各入力に対して一次関数としての性質を持っているからです。対照的に、非線形活性化関数は、カーブを持つあるいはその他の複雑な関数をモデル化するのに役立ちます。これは次節でより明確になるでしょう。
 
-# Layers
+# レイヤー（層）
 
-Now that we have described neurons, we can now define neural networks. A neural network is composed of a series of layers of neurons, such that all the neurons in each layer connect to the neurons in the next layer.
+ここまでの知識に基づいてニューラルネットワークを定義することができます。ニューラルネットワークは、一つの層のすべてのニューロンが次の層のニューロンに接続するような一連のニューロンの層で構成されています。
 
-{% include figure_multi.md path1="/images/figures/neural-net.png" caption1="A 2-layer neural network" %}
+{% include figure_multi.md path1="/images/figures/neural-net.png" caption1="2層ニューラルネットワーク" %}
 
-Note that when we count the number of layers in a neural network, we only count the layers with connections flowing into them (omitting our first, or input layer). So the above figure is of a 2-layer neural network with 1 hidden layer. It contains 3 input neurons, 2 neurons in its hidden layer, and 1 output neuron.
+ここでニューラルネットワークの層の数を数えるとき、入力のある層の数だけがカウントされることに注意してください（最初の層、すなわち入力層は数えられません）。したがって上の図は、1つの隠れ層を持つ2層のニューラルネットワークです。詳しく見ると、3つの入力ニューロンと、隠れ層に2つのニューロン、1つの出力ニューロンで構成されています。
 
-Our computation starts with the input layer on the left, from which we pass the values to the hidden layer, and then in turn, the hidden layer will send its output values to the last layer, which contains our final value.
+計算は次の順に行われます。左の入力層から開始し、そこから値を隠れ層に渡してから、隠れ層は最後の層に値を送り最終出力となります。
 
-Note that it may look like the three input neurons send out multiple values because each of them are connected to both of the neurons in the hidden layer. But really there is still only one output value per neuron, it just gets copied along each of its output connections. Neurons always output one value, no matter how many subsequent neurons it sends it to.
+3つの入力ニューロンはそれぞれが隠れ層の両方のニューロンに接続されているため、複数の値を出力するように見えるかもしれません。しかし実際にはニューロンごとに1つの出力値しかなく、各出力先には同じ値が出力されます。つまりニューロンはいくつもの後続のニューロンに出力をしても​​、常に同じ値を出力するのです。
 
-# Regression
+# 回帰
 
-The process of a neural network sending an initial input forward through its layers to the output is called forward propagation or a forward pass and any neural network which works this way is called a feedforward neural network. As we shall soon see, there are some neural networks which allow data to flow in circles, but let's not get ahead of ourselves yet...
+ニューラルネットワークが初期の入力を層ごとに処理して出力に向けて送ることをフォーワードプロパゲーション（順伝搬）またはフォーワードパスと呼び、このように動作するニューラルネットワークは一般にフィードフォワードニューラルネットワークと呼ばれます。以下で触れるように、データが環状に流れるようなニューラルネットワークもいくつかありますが、まだ気にする必要はありません。
 
-Let's demonstrate a forward pass with this interactive demo. Click the 'Next' button in the top-right corner to proceed. 
+次のインタラクティブなデモでフォワードパスについて詳しく見てみましょう。右上にある「次へ」ボタンをクリックしてください。
 
 {% include demo_insert.html path="/demos/simple_forward_pass/" parent_div="post" %}
 
-# More layers, more expressiveness
+# 層を増やすことで表現力を高める
 
-Why are hidden layers useful? The reason is that if we have no hidden layers and map directly from inputs to output, each input's contribution on the output is independent of the other inputs. In real-world problems, input variables tend to be highly interdependent and they affect the output in combinatorially intricate ways. The hidden layer neurons allow us to capture subtle interactions among our inputs which affect the final output downstream.
-Another way to interpret this is that the hidden layers represent higher-level "features" or attributes of our data. Each of the neurons in the hidden layer weigh the inputs differently, learning some different intermediary characteristic of the data, and our output neuron is then a function of these instead of the raw inputs. By including more than one hidden layer, we give the network an opportunity to learn multiple levels of abstraction of the original input data before arriving at a final output. This notion of high-level features will become more concrete [in the next chapter](/ml4a/looking_inside_neural_nets/) when we look closely at the hidden layers.
+なぜ隠れ層が必要なのでしょうか。隠れ層がなく入力が出力に直接つながっている場合、入力変数同士が互いに干渉することはありません。現実の問題では入力変数間には強い相関があり、複雑に組み合いながら出力に影響を与えます。隠れ層のニューロンは、最終出力に影響を及ぼすであろう入力変数間の小さな相互作用を見つけることができます。 別の解釈として、隠れ層がデータの高次元の特徴や属性を表すことが挙げられます。隠れ層は入力されたデータのいくつかの中間特性をそれぞれのニューロンが学習してそれに応じて重みを設定し、最終出力のニューロンは入力変数の代わりに中間特性の関数になります。複数の隠れ層を用いることで、最終出力に達する前に元の入力データの複数の次元で抽象化を行い学習する機会をネットワークに与えます。この抽象化の概念については、[次の章](http://ml4a.github.io/ml4a/jp/looking_inside_neural_nets/)で隠れ層を詳しく見る中でより具体的に説明します。
 
-Recall also that activation functions expand our capacity to capture non-linear relationships between inputs and outputs. By chaining multiple non-linear transformations together through layers, this dramatically increases the flexibility and expressiveness of neural networks. The proof of this is complex and beyond the scope of this book, but it can even be shown that any 2-layer neural network with a non-linear activation function (including sigmoid or ReLU) and enough hidden units is a [universal function approximator](http://www.sciencedirect.com/science/article/pii/0893608089900208), that is it's theoretically capable of expressing any arbitrary input-to-output mapping. This property is what makes neural networks so powerful.
+また活性化関数は、入力と出力の間に非線形の関係もたらすことを思い出してください。複数の非線形変換を層ごとに連鎖させることにより、ニューラルネットワークの柔軟性と表現力が劇的に向上します。証明は複雑で本書の範囲を超えていますが、例えば非線形活性化関数（シグモイドやReLUを含む）と十分な数のニューロンを持つ2層ニューラルネットワークでさえ理論的には任意の入力と出力マッピングを表現することができます（[汎関数近似](http://www.sciencedirect.com/science/article/pii/0893608089900208)）。この特徴のためニューラルネットワークは非常に強力になります。
 
-# Classification
+# 分類
 
-What about classification? In the previous chapter, we introduced binary classification by simply thresholding the output at 0; If our output was positive, we'd classify positively, and if it was negative, we'd classify negatively. For neural networks, it would be reasonable to adapt this approach for the final neuron, and classify positively if the output neuron scores above some threshold. For example, we can threshold at 0.5 for sigmoid neurons which are always positive.
+分類はどのように行うのでしょうか。前章では、単純に0を出力の閾値とした二値の分類を導入しました。出力が正の値なら正のクラスに分類し、負の値であれば負のクラスに分類します。ニューラルネットワークでは出力ニューロンの値がある閾値を上回った場合には正に分類するといったように、出力ニューロンの値にこの手法を用いることが妥当です。例えば、常に正を返すシグモイドニューロンの場合、閾値を0.5とすることが考えられます。
 
-But what if we have multiple classes? One option might be to create intervals in the output neuron which correspond to each class, but this would be problematic for reasons that we will learn about when we look at [how neural networks are trained](/ml4a/how_neural_networks_are_trained/). Instead, neural networks are adapted for classification by having one output neuron for each class. We do a forward pass and our prediction is the class corresponding to the neuron which received the highest value. Let's have a look at an example.
+しかし、複数のクラスを用いる場合はどうでしょうか。一つの選択肢として各クラスに対応するように出力ニューロンに複数の閾値を設定することが考えられますが、[ニューラルネットワークがどのように訓練されるか](http://ml4a.github.io/ml4a/jp/how_neural_networks_are_trained)を見て明らかになるようにいくつかの問題が起きます。ニューラルネットワークは各クラスに対して1つの出力ニューロンを持つことで分類を可能にするためです。そこでフォワードパスを行い、最も高い値を出力したニューロンに対応するクラスを予測結果とします。それでは次の例を見てみましょう。
 
-# Classification of handwritten digits
+# 手書き数字の分類
 
-Let's now tackle a real world example of classification using neural networks, the task of recognizing and labeling images of handwritten digits. We are going to use the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which contains 60,000 labeled images of handwritten digits sized 28x28 pixels, whose classification accuracy serves as a common benchmark in machine learning research. Below is a random sample of images found in the dataset.
+ここでは手書き数字の画像を認識してラベル付けする例を用いて、ニューラルネットワークを使った実際の分類に取り組んでみましょう。ここで用いる[MNISTデータセット](http://yann.lecun.com/exdb/mnist/)は60,000枚の28×28ピクセルの手書き数字の画像から成り、機械学習の精度を評価するうえで共通のベンチマークとなっています。以下は、データセット内から無作為に取り上げた画像です。
 	
-{% include figure_multi.md path1="/images/figures/fig_mnist_groundtruth.png" caption1="A random sample of MNIST handwritten digits" %}
+{% include figure_multi.md path1="/images/figures/fig_mnist_groundtruth.png" caption1="無作為に選んだMNISTの手書き数字" %}
 
-The way we setup a neural network to classify these images is by having the raw pixel values be our first layer inputs, and having 10 output classes, one for each of our digit classes from 0 to 9. Since they are grayscale images, each pixel has a brightness value between 0 (black) and 255 (white). All the MNIST images are 28x28, so they contain 784 pixels. We can unroll these into a single array of inputs, like in the following figure.
+これらの画像を分類するためには、ピクセルの値を最初の層の入力とし、0から9までの各桁に対応した10の出力クラスを持つようにニューラルネットワークを設定します。グレースケール画像であるため、それぞれのピクセルは輝度に対応して0（黒）〜255（白）の値を持ちます。全てのMNIST画像は28×28であるので、一つの画像につき784画素です。これを引き延ばすことで次の図のように、一次元の入力配列に展開することができます。
 
-{% include figure_multi.md path1="/images/figures/mnist-input.png" caption1="How to input an image into a neural network" %}
+{% include figure_multi.md path1="/images/figures/mnist-input.png" caption1="画像をニューラルネットワークに入力する方法" %}
 
-The important thing to realize is that although this network seems a lot more imposing than our simple 3x2x1 network in the previous chapter, it works exactly as before, just with many more neurons. Each neuron in the first hidden layer receives all the inputs from the first layer. For the output layer, we'll now have _ten_ neurons rather than just one, with full connections between it and the hidden layer, as before. Each of the ten output neurons is assigned to one class label; the first one is for  the digit `0`, the second for `1`, and so on.
+ここで気を付けたいのは、このネットワークは前章の単純な3x2x1ネットワークよりもはるかに仰々しく見えますが、ニューロンの数が多いだけで以前とまったく同じように動作します。第1の隠れ層の各ニューロンは、第1層からのすべてのニューロンの入力を受け取ります。出力層では、これまでのように1つだけでなく10個のニューロンを持ち、それぞれが隠れ層のすべてのニューロンに接続しています。1番目の出力ニューロンは数字の0、2番目の数字は1、となるように10個の出力ニューロンそれぞれが別々のクラスラベルに割り当てられています。
 
-After the neural network has been trained -- something we'll talk about in more detail [in a future chapter](/ml4a/how_neural_networks_are_trained/) -- we can predict the digit associated with unknown samples by running them through the same network and observing the output values. The predicted digit is that whose output neuron has the highest value at the end. The following demo shows this in action; click "next" to flip through more predictions.
+詳細については[次章](http://ml4a.github.io/ml4a/jp/how_neural_networks_are_trained)で説明しますが、ニューラルネットワークが訓練された後、未知の画像をネットワークに入力して出力値を処理することで画像にの表す数字を予測することができます。出力層の中で最大値を出力したニューロンに対応したラベルが予測された数字となります。次のデモではその動作を見ることができます。「次へ」をクリックすると、より多くの予測を見ることができます。
 
 {% include demo_insert.html path="/demos/forward_pass_mnist/" parent_div="post" %}
 
-# Further reading
+# もっと読む（英語）
 
 {% include further_reading.md title="Neural Networks and Deep Learning" author="Michael Nielsen" link="http://neuralnetworksanddeeplearning.com/" %} 
 
@@ -177,6 +176,6 @@ After the neural network has been trained -- something we'll talk about in more 
 
 {% include further_reading.md title="Video: Neural Networks Demystified" author="Welch Labs" link="https://www.youtube.com/watch?v=bxe2T-V8XRs" %} 
 
-## Next chapter
+## 次の章では
 
-In the next chapter, [looking inside neural networks](/ml4a/looking_inside_neural_nets/), we will analyze the internal states of neural networks more closely, building up intuitions on what sorts of information they capture, as well as pointing out the flaws of basic neural nets, building up motivation for introducing more complex features such as convolutional layers to be explored in later chapters.
+次の章[「ニューラルネットワークの中をのぞく」](http://ml4a.github.io/ml4a/jp/looking_inside_neural_nets/)では、ニューラルネットワークの内部をより詳細に分析し、ニューラルネットワークがどのような情報を選りすぐっているのかについての簡単な理解をする他、 基本的なニューラルネットの問題点を見つけながら、後の章で説明する畳み込み層などのより複雑な機能を導入するきっかけを探します。
