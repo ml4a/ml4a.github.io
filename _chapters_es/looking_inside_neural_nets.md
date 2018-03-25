@@ -8,6 +8,7 @@ header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbios
 
 [English](/ml4a/looking_inside_neural_nets/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/looking_inside_neural_nets/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[日本語](/ml4a/jp/looking_inside_neural_nets/)
 
 En el [capítulo anterior](/ml4a/es/neural_networks), vimos cómo entrenar una red neuronal para clasificar dígitos escritos a mano con una precisión de alrededor de 90%. En este capítulos vamos a evaluar el rendimiento de la red con más cuidado y también examinar su estado interno para desarollar una intuición sobre lo que en realidad está sucediendo. Más adelante en el capítulo, nos toparemos con los límites de esta red neuronal al intentar entrenarla con un conjunto de datos de objectos como perros, automóbiles y barcos. De esta manera anticiparemos qué tipo de inovaciones serán necesarias para mejorar nuestra red y llevarla al siguiente nivel.
  

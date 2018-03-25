@@ -8,7 +8,8 @@ translator: "Kynd"
 translator_link: "https://twitter.com/kyndinfo"
 ---
 
-[español](/ml4a/es/looking_inside_neural_nets/)
+[English](/ml4a/looking_inside_neural_nets/)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[español](/ml4a/es/looking_inside_neural_nets/)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[한국어](/ml4a/ko/looking_inside_neural_nets/)
 
 [前章](/ml4a/neural_networks)では、ニューラルネットワークが訓練を通して、90%程度のかなりの精度で手書きの数字を識別できるようになる様子を見ました。この章ではネットワークの性能についてより注意深く調べるとともに、その内部の状態を詳しく観察することで、実際に何が起きているのかについてのいくつかの洞察を得ます。この章の後半では、より高いレベルに到達するにはどんな種類のイノベーションが必要になるのかを予測するために、犬や自動車や船といったより複雑な物のデータセットを使って訓練を試みることでニューラルネットワークにあえて失敗をさせてみます。
