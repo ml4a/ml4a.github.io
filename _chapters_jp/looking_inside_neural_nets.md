@@ -3,7 +3,7 @@ layout: chapter
 title: "ニューラルネットワークの中をのぞく"
 includes: [mathjax, jquery, convnetjs, dataset, convnet, visualizer]
 header_image: "/images/headers/brainbow.jpg"
-header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbioscapes.com/gallery/images/743\"> by Dr. Katie Matho</a>. A <a href=\"https://en.wikipedia.org/wiki/Brainbow\">brainbow</a> is a neuroimaging technique in which individual neurons are stained and visualized using fluorescent proteins."
+header_text: "Brainbow of postnatal mouse taken <a href=\"http://www.olympusbioscapes.com/gallery/images/743\"> by Dr. Katie Matho</a>. A <a href=\"https://en.wikipedia.org/wiki/Brainbow\">brainbow</a> is a neuroimaging technique in which individual neurons are stained and visualized using fluorescent proteins.<a href=\"http://www.olympusbioscapes.com/gallery/images/743\">ケイティ・マト</a>によって撮影された生まれてまもないマウスのブレインボウ。<a href=\"https://ja.wikipedia.org/wiki/Brainbow\">ブレインボウ</a>とは個々のニューロンを蛍光タンパク質で染めることで可視化する神経画像検査の手法。"
 translator: "Kynd"
 translator_link: "https://twitter.com/kyndinfo"
 ---
@@ -26,7 +26,7 @@ MNISTの手書き文字を分類するよう訓練したネットワークを例
 
 ピクセルをまっすぐに並べる代わりに、重みをピクセルの位置にちょうど対応するように並べた28×28グリッドとして見ましょう。右上の図は下の図と異なって見えますが、同じ等式、$$z=b+\sum{w x}$$を示しています。
 
-{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="異なる方法で同じ等式を図示する：1つの出力ニューロンに対する、ピクセルと重みとの掛け合わせ" %}
+{% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="異なる方法で同じ等式を可視化する：1つの出力ニューロンに対する、ピクセルと重みとの掛け合わせ" %}
 
 この構成で訓練したネットワークを例にとって、最初の出力ニューロンに流れ込む分の重みを目に見えるようにして見ましょう。このニューロンの役割は数字の0を識別することです。重みが最も低いところが黒、最も高いところが白になるように色をつけます。
 
@@ -36,7 +36,7 @@ MNISTの手書き文字を分類するよう訓練したネットワークを例
 
 10個の出力ニューロン全てについて、学習済みの重み付けを見てみましょう。予想通り、ややピンボケした10個の数字のように見えます。まるでそれぞれの数字に属する沢山の画像の平均を取ったかのようです。
 
-{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="MNIST分類器の全ての重みを図示する" %}
+{% include figure_multi.md path1="/images/figures/rolled_weights_mnist.png" caption1="MNIST分類器の全ての重みを可視化する" %}
 
 2の画像を受け取ったとったとします。2を識別する役割のニューロンは2の画像で明るくなることの多いピクセルに高い値が対応するよう重み付けされているので、出力も大きくなるだろうと予測できます。他のニューロンでも、いくつかの重みは2の画像の明るいピクセルに対応した位置にあるので、多少スコアは高くなります。しかし2を識別するニューロンと比べると重なりは少なく明るいピクセルの多くは低い重みづけによって打ち消されてしまいます。活性化関数は入力に対して単調増加、つまり入力が大きければ出力もより大きくなるので、結果としての順位に影響を与えることはありません。（訳注：最後の文がわかりにくいので補足。前章でみた通り各ニューロンでは重みとバイアスを計算した後に活性化関数で出力を調整しますが、この活性化関数は必ず単調増加という性質があります。そのため、重みとバイアスを計算した時点で2を識別するニューロンの出力が他のニューロンの出力よりも大きければ、活性化関数を通した後でもその順位は変わりません。この例のような一層のニューラルネットワークで活性化関数を使う意味はまずありません。）
 
@@ -64,7 +64,7 @@ MNISTの数字に対して90%の精度を出した、前章のニューラルネ
 
 これを見るとネットワークが行う予測についての大まかな概観が得られます。最初の2列を見ると、ネットワークは、ゼロを予測するには大きな輪を、1を予測するには細い線を探していて、他の数字がこのような特徴を持っている場合に間違いを犯しているようだという事が見て取れます。
 
-## ネットワークに失敗させて見る
+## ネットワークに失敗させてみる
 
 ここまでは、手書きの文字を識別するように訓練されたニューラルネットワークだけを見てきました。この例は多くの洞察を与えてくれますが、コンピュータにとても有利な、簡単すぎるデータセットでもあります。10個のクラスしかなく、とても明確に定義されていて、各クラス内のデータには比較的わずかの違いしかありません。ほとんどの現実のシナリオでは、もっと理想とは遠いデータを分類することになります。同じニューラルネットワークの振る舞いを異なるデータセットを使って見てみましょう。[CIFAR-10]([https://www.cs.toronto.edu/~kriz/cifar.html](https://www.cs.toronto.edu/~kriz/cifar.html))という、60000枚、32x32ピクセルの画像にラベルをつけたものを用います。画像は10種のクラス、飛行機、自動車、鳥、ネコ、シカ、イヌ、カエル、ウマ、船、トラックに分類されています。下図はCIFAR-10からランダムに選んだ例です。
 
