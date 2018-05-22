@@ -27,12 +27,17 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// Number of classes to classify
-var NUM_CLASSES = 3;
+// Number of classes to classify (placed in index)
+//var NUM_CLASSES = 3;
+
 // Webcam Image size. Must be 227. 
 var IMAGE_SIZE = 227;
 // K value for KNN
 var TOPK = 10;
+
+// p5 sketch
+var mySketch;
+
 
 var Main = function () {
   function Main() {
@@ -105,6 +110,9 @@ var Main = function () {
     this.knn.load().then(function () {
       return _this.start();
     });
+
+    // load p5 sketch
+    mySketch = new p5(sketch);
   }
 
   _createClass(Main, [{
@@ -153,6 +161,9 @@ var Main = function () {
               if (exampleCount[i] > 0) {
                 _this2.infoTexts[i].innerText = ' ' + exampleCount[i] + ' examples - ' + res.confidences[i] * 100 + '%';
               }
+
+              // send prediction to p5
+              mySketch.predict(res.classIndex)
             }
           })
           // Dispose image when done
