@@ -16,7 +16,7 @@ var sketch = function(s)
 
     img = s.loadImage("assets/guitar.png");
 
-    samples [0] = s.loadSound('assets/C.mp3')
+    samples [0] = s.loadSound('http://www.noiseaddicts.com/samples_1w72b820/4928.mp3')
     samples [1] = s.loadSound('assets/F.mp3')
     samples [2] = s.loadSound('assets/G.mp3')
     samples [3] = s.loadSound('assets/Am.mp3')
