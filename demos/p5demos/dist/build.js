@@ -59,13 +59,15 @@ var Main = function () {
     this.video.setAttribute('playsinline', '');
 
     // Add video element to DOM
-    document.body.appendChild(this.video);
+    //document.body.appendChild(this.video);
+    document.getElementById('trainer').appendChild(this.video);
 
     // Create training buttons and info texts    
 
     var _loop = function _loop(i) {
       var div = document.createElement('div');
-      document.body.appendChild(div);
+      //document.body.appendChild(div);
+      document.getElementById('trainer').appendChild(div);
       div.style.marginBottom = '10px';
 
       // Create training button
@@ -112,7 +114,7 @@ var Main = function () {
     });
 
     // load p5 sketch
-    mySketch = new p5(sketch);
+    mySketch = new p5(sketch, 'p5sketch');
   }
 
   _createClass(Main, [{
