@@ -1,3 +1,9 @@
+// needs camera, must be https
+if (location.protocol != 'https:')
+{
+  location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+
 // modules are defined as an array
 // [ module function, map of requires ]
 //
