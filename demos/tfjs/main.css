@@ -1,0 +1,40 @@
+canvas {
+  vertical-align: top; 
+} 
+#p5sketch {
+  vertical-align: top; 
+  display:inline-block;
+} 
+#trainer {
+  vertical-align: top; 
+  display:inline-block;
+}
+#classes, .webcam-box-outer {
+  width:360px;
+  background:#ddd;
+  padding:4px;
+  margin:5px;s
+}
+.webcam-box-outer {
+  text-align:center;
+}
+.thumb-box{
+  background-color:#eee;
+  padding-left:4px;
+  margin:5px;
+  width:150px;
+  display:inline-block;
+}
+#options {
+  background-color:#ddd;
+  width:360px;
+  font-size:20px;
+  padding:4px;
+  margin:4px;
+}
+#hyper-params {
+  background-color:#ddd;
+  width:360px;
+  padding:4px;
+  margin:4px;
+}

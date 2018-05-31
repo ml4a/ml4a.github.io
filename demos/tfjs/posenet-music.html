@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PoseNet - Camera Feed Demo</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.sound.js" type="text/javascript"></script>
+
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        color: black;
+    }
+
+    .footer-text {
+        max-width: 600px;
+        text-align: center;
+        margin: auto;
+    }
+
+    @media only screen and (max-width: 600px) {
+      .footer-text, .dg {
+        display: none;
+      }
+    }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="info" style="display:none">
+    </div>
+    <div id="loading">
+        Loading the model...
+    </div>
+
+    <div id="main" style="display:none">
+        <video id="video" playsinline="" style=" -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        display: none;
+        ">
+        </video>
+        <canvas id="output">
+    </canvas></div>
+
+    <div id="p5sketch"></div>
+
+    <script src="posenet-music.js"></script>
+
+    <script>
+
+// must leave variable name as "sketch"
+var sketch = function(s) 
+{
+  var keypoints = [];
+  var prevkeypoints = [];
+  var osc, reverb;
+  var notes = [ 60, 62, 64, 65, 67, 69, 71];
+  var playing = [ false, false, false, false, false, false, false]
+
+  s.setup = function() {
+    s.createCanvas(720, 400);
+      
+    // A triangle oscillator
+    osc = new p5.TriOsc();
+    // Start silent
+    osc.start();
+    osc.amp(0);
+      
+      reverb = new p5.Reverb();
+
+      // sonnects soundFile to reverb with a
+      //reverbTime of 6 seconds, decayRate of 0.2%
+      reverb.process(osc, 6, 0.2);
+
+      reverb.amp(4); // turn it up!
+  };
+
+  s.draw = function() {
+    s.background(0);
+    s.fill(255);
+
+    if (keypoints.length != prevkeypoints.length) {
+      return;
+    }
+
+    for (var k=0; k<keypoints.length; k++) {
+      var k1 = prevkeypoints[k];
+      var k2 = keypoints[k];
+        
+      var d = s.dist(k1.position.x, k1.position.y, k2.position.x, k2.position.y);
+        if (d < 5) {
+            return;
+        }
+      var n = s.floor (s.map(k2.position.x, 0, s.width, 0, notes.length));
+      var l = s.floor (s.map(k2.position.y, s.height, 0, 0, 20, 600));
+        
+      if (!playing[n]) {
+        s.playNote(n, 200);
+      }
+      s.ellipse(k2.position.x, k2.position.y, 5, 5);
+    }
+
+  };
+
+  s.setKeypoints = function(k) {
+    prevkeypoints = keypoints;
+    keypoints = k;
+  }
+
+  s.playNote = function(n, duration) {
+    var note = notes[n];
+    var r = s.random();
+    if (r < 0.25) {
+        note += 12;
+    } else if (r < 0.4) {
+        note -= 12;
+    }
+    osc.freq(s.midiToFreq(note));
+    playing[n] = true;
+    // Fade it in
+    osc.fade(0.5,0.2);
+
+    // If we sest a duration, fade it out
+    if (duration) {
+      setTimeout(function() {
+        osc.fade(0,0.2);
+        playing[n] = false;
+      }, duration-50);
+    }
+  }
+
+  // When we click
+    s.mousePressed = function() {
+      // Map mouse to the key index
+      var n = s.floor(s.map(s.mouseX, 0, s.width, 0, notes.length));
+      s.playNote(n);
+    }
+
+    // Fade it out when we release
+    s.mouseReleased = function() {
+      osc.fade(0,0.5);
+    }
+
+
+};
+
+var mySketch = new p5(sketch, 'p5sketch');
+
+</script>
+
+</body>
+
+</html>
