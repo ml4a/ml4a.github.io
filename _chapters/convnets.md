@@ -6,6 +6,8 @@ header_image: "/images/headers/Convet_activations_kitty.jpg"
 header_text: "Activations maps from a trained convolutional neural network, via <a href=\"/guides/ConvnetViewer/\">ConvnetViewer</a> from the <a href=\"https://github.com/ml4a/ml4a-ofx\">openframeworks app</a> collection."
 ---
 
+[日本語](/ml4a/jp/convnets/)
+
 Convolutional neural networks -- CNNs or convnets for short -- are at the heart of deep learning, emerging in recent years as the most prominent strain of [neural networks](/ml4a/neural_networks/) in research. They have revolutionized computer vision, achieving state-of-the-art results in many fundamental tasks, as well as making strong progress in natural language processing, computer audition, reinforcement learning, and many other areas. Convnets have been widely deployed by tech companies for many of the new services and features we see today. They have numerous and diverse applications, including:
 
 - detecting and labeling objects, locations, and people in images
