@@ -1,0 +1,185 @@
+[
+	{
+		"date": "10 Sep 2018",
+		"title": "Machine learning for artists",
+		"description": [
+			"Course goals, logistics, and resources",
+			"Introduction to AI, machine learning, and deep learning",
+			"The whole class in 60 minutes"
+		],
+		"pratical": [
+			"<a href=\"https://ml5js.org/\">ml5.js</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-demos\">ml4a-demos</a>",
+			"<a href=\"https://runwayml.com/\">Runway</a>"
+		],
+		"extra": [
+			"<a href=\"https://ml4a.github.io/guides/\">ml4a-guides</a>",
+			"<a href=\"https://experiments.withgoogle.com/collection/ai\">AI experiments</a>"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "11 Sep 2018",
+		"title": "Neural networks I",
+		"description": [
+			"Fundamentals and mathematics of deep learning",
+			"Introduction to classification & regression",
+			"How neural networks work",
+			"Convolutional networks"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/convolutional_neural_networks.ipynb\">Keras image classification</a>",
+			"<a href=\"https://ml5js.org/docs/ImageClassifier\">ml5 live image classifier</a>"
+		],
+		"extra": [
+			"Terminal velocity: a primer on the command line, git, and Jupyter [planned]",
+			"<a href=\"https://ml4a.github.io/ml4a/neural_networks/\">Intro to neural networks</a>"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "18 Sep 2018",
+		"title": "Neural networks II",
+		"description": [
+			"Gradient descent & backpropogation",
+			"Overfitting, regularization, optimization"
+		],
+		"pratical": [
+		],
+		"extra": [
+			"<a href=\"https://ml4a.github.io/ml4a/how_neural_networks_are_trained/\">How neural nets are trained</a>",
+			"Numpy for ninjas: linear algebra [planned]"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "25 Sep 2018",
+		"title": "Applications of neural nets",
+		"description": [
+			"Feature extraction",
+			"Reverse image search and shortest paths",
+			"t-SNE & visualization",
+			"Transfer learning"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb\">Shortest path between images</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb\">Transfer learning</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb\">t-SNE/UMAP of images</a>"
+		],
+		"extra": [
+			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
+		],
+		"video": "",
+		"slides": "",
+	},	
+	
+	{
+		"date": "16 Oct 2018",
+		"title": "Interactive machine learning",
+		"description": [
+			"Training neural nets on sensors and cameras",
+			"Object detection, dense captioning"
+		],
+		"pratical": [
+			"PoseNet + music",
+			"ml4a-ofx",
+			"ConvnetPredictor"
+		],
+		"extra": [
+			"<a href=\"http://wekinator.org/\">Wekinator</a>",
+			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "23 Oct 2018",
+		"title": "Audio & text learning",
+		"description": [
+			"Audio feature extraction & classification",
+			"Document analysis and retrieval",
+			"Word vectors"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
+			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier2</a>"
+		],
+		"extra": [
+
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "30 Oct 2018",
+		"title": "Optimization-based pixel art",
+		"description": [
+			"Visualization of neural networks",
+			"Deepdream",
+			"Texture synthesis & style transfer"
+		],
+		"pratical": [
+			"<a href=\"https://colab.research.google.com/drive/1xeJAhTEwI3TNH_CJnTMq5AJuPkOs8sJ6\">Deepdream</a> + <a href=\"https://github.com/tensorflow/lucid\">Lucid</a>",
+			"<a href=\"https://github.com/jcjohnson/neural-style\">neural-style</a>"
+
+		],
+		"extra": [
+			"<a href=\"https://distill.pub/2017/feature-visualization/\">Feature visualization (Distill)</a>",
+			"<a href=\"https://www.youtube.com/watch?v=AgkfIQ4IGaM\">Deep Visualization Toolbox</a>"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "6 Nov 2018",
+		"title": "Generative models I",
+		"description": [
+			"Autoencoders",
+			"Generative adversarial networks"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb\">Eigenfaces</a>",
+			"<a href=\"https://github.com/carpedm20/DCGAN-tensorflow\">DCGAN</a>",
+		],
+		"extra": [
+			"<a href=\"http://ml4a.github.io/classes/misc/01/\">From PCA to Puppyslugs</a>"
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	{
+		"date": "13 Nov 2018",
+		"title": "Generative models II",
+		"description": [
+			"Image-to-image translation",
+			"Super-resolution, denoising",
+			"WaveNets + SampleRNN",
+			"Progressive GANs"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">pix2pix</a>",
+			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN</a>"
+		],
+		"extra": [
+
+		],
+		"video": "",
+		"slides": "",
+	},
+	
+	
+]
+
+

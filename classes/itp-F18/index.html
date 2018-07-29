@@ -1,0 +1,89 @@
+---
+layout: default
+title: ITP-NYU - Fall 2018
+---
+
+{% assign classes = site.data.itpf18 %}
+
+
+<style>
+.s_entry {
+	border: solid #ddd;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: -60px;
+	margin-left: -60px;
+	padding: 4px;
+}
+.s_description, .s_materials, .s_extra{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.8em;
+	line-height: 130%;
+}
+.s_description ul, .s_materials ul, .s_extra ul{
+	margin-top: 6px	;
+	padding-left: 25px;
+}
+.s_description{
+	width: 40%;
+}
+.s_materials{
+	width: 28%;
+}
+.s_extra{
+	width: 31%;
+}
+.s_title {
+	background:#eee;
+	padding:8px;
+	font-size:1.5em;
+	margin-bottom:8px;
+}
+.s_date {
+	float:right;
+	padding-right:10px;
+}
+.s_header {
+	font-size:1.4em;
+	margin-left:8px;
+}
+
+</style>
+
+<h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Fall 2018</h2>
+
+{% for c in classes %}
+	<div class="s_entry">
+		<div class="s_title">
+			<b>{{c.title}}</b>
+			<span class="s_date">{{c.date}}</span>
+		</div>
+		<div class="s_description">
+			<span class="s_header"><b>Description</b></span>
+			<ul>
+				{% for d in c.description %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_materials">
+			<span class="s_header"><b>Practical</b></span>
+			<ul>
+				{% for d in c.pratical %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_extra">
+			<span class="s_header"><b>Supplementary / links</b></span>
+			<ul>
+				{% for d in c.extra %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endfor %}
+
+
