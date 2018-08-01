@@ -51,7 +51,7 @@
 			"CPNNs"
 		],
 		"pratical": [
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb\">CPNNs</	a>"		
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb\">CPNNs</a>"	
 		],
 		"extra": [
 			"<a href=\"https://ml4a.github.io/ml4a/how_neural_networks_are_trained/\">How neural nets are trained</a>",
@@ -97,7 +97,6 @@
 		],
 		"extra": [
 			"<a href=\"http://wekinator.org/\">Wekinator</a>",
-			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
 		],
 		"video": "",
 		"slides": "",
@@ -119,7 +118,7 @@
 			"<a href=\"https://ml5js.org/docs/PitchDetection\">ml5 pitch detection</a>"
 		],
 		"extra": [
-
+			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>"
 		],
 		"video": "",
 		"slides": "",

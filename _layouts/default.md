@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<title>{{ page.title }}</title>
@@ -32,35 +32,43 @@
 	{% if page.includes contains 'visualizer' %}
 		<script src="/demos/src/visualizer.js" type="text/javascript"></script>
 	{% endif %}
+		<script src="/js/access.js" type="text/javascript"></script>
 	</head>
 
 	<body>
 
-		<!-- header -->
-		{% if page.header_image %}
-			{% include header.html text=page.header_text image=page.header_image %} 
-		{%endif %}
+		<header>
+			
+			<a href="#end-nav" class="skip"><h2>Skip to content</h2></a>
 		
-		<!-- navbar -->
-		<div class="navbar">
-			<nav>
-	    		<ul>
-					<li style="display:none;"><a href="#end-nav" class="skip-navigation">Skip Navigation</a></li>
-	        		<li><a href="/ml4a/">ml4a</a></li>
-		        	<li><a href="/guides/">guides</a></li>
-		        	<li><a href="/demos/">demos</a></li>
-		        	<li><a href="/classes/">classes</a></li>
-		        	<li><a href="https://github.com/ml4a">code</a></li>
-		        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtMjcxMjUwNDQ0NDAzLWVmMTFmMTc3ZDJlYTExNGE1ZmQ4NTk1NGJhZWI3ODJmYWI2ZjgxYmQ3NWMzOWU3NTE3ZDYxOTBkMDg5Nzg5M2I">slack</a></li>
-		        	<li><a href="https://www.twitter.com/ml4a_">twitter</a></li>
-	    		</ul>
-			</nav>
-		</div>
-
-		<!-- main content -->
-		<span id="end-nav"></span>
-		<div class="container">
-			{{ content }}
+			<!-- header -->
+			{% if page.header_image %}
+				{% include header.html text=page.header_text image=page.header_image %} 
+			{%endif %}
+		
+			<!-- navbar -->
+			<div class="navbar">
+				<nav>
+		    		<ul>
+								<li style="display:none;"><a href="#end-nav" class="skip-navigation">Skip Navigation</a></li>
+		        		<li><a href="/ml4a/">ml4a</a></li>
+			        	<li><a href="/guides/">guides</a></li>
+			        	<li><a href="/demos/">demos</a></li>
+			        	<li><a href="/classes/">classes</a></li>
+			        	<li><a href="https://github.com/ml4a">code</a></li>
+			        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtMjcxMjUwNDQ0NDAzLWVmMTFmMTc3ZDJlYTExNGE1ZmQ4NTk1NGJhZWI3ODJmYWI2ZjgxYmQ3NWMzOWU3NTE3ZDYxOTBkMDg5Nzg5M2I">slack</a></li>
+			        	<li><a href="https://www.twitter.com/ml4a_">twitter</a></li>
+		    		</ul>
+				</nav>
+			</div>
+		</header>
+		
+		<main>
+			<!-- main content -->
+			<span id="end-nav"></span>
+			<div class="container">
+				{{ content }}
+			</div>
 		</div>
 		
 		<!-- footer -->

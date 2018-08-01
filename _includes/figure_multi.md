@@ -9,7 +9,7 @@
 	{% if path1 %}
 	<div class="figure_inner">
 		<figure>
-		    <img src="{{path1}}" />
+		    <img src="{{path1}}" alt="" />
 			<figcaption>{{caption1}}</figcaption>
 		</figure>
 	</div>
@@ -17,7 +17,7 @@
 	{% if path2 %}
 	<div class="figure_inner">
 		<figure>
-		    <img src="{{path2}}" />
+		    <img src="{{path2}}" alt="" />
 			<figcaption>{{caption2}}</figcaption>
 		</figure>
 	</div>
@@ -25,7 +25,7 @@
 	{% if path3 %}
 	<div class="figure_inner">
 		<figure>
-		    <img src="{{path3}}" />
+		    <img src="{{path3}}" alt="" />
 			<figcaption>{{caption3}}</figcaption>
 		</figure>
 	</div>
