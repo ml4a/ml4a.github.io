@@ -10,7 +10,8 @@
 		"pratical": [
 			"<a href=\"https://ml5js.org/\">ml5.js</a>",
 			"<a href=\"https://github.com/ml4a/ml4a-demos\">ml4a-demos</a>",
-			"<a href=\"https://runwayml.com/\">Runway</a>"
+			"<a href=\"https://runwayml.com/\">Runway</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-ofx\">ml4a-ofx</a>"
 		],
 		"extra": [
 			"<a href=\"https://ml4a.github.io/guides/\">ml4a-guides</a>",
@@ -174,10 +175,12 @@
 		],
 		"pratical": [
 			"<a href=\"https://ml4a.github.io/guides/Pix2Pix\">pix2pix tutorial</a>",
-			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN + pix2pix</a>"
+			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN + pix2pix</a>",
+			"<a href=\"https://github.com/NVIDIA/pix2pixHD\">pix2pixHD</a>",
+			"<a href=\"https://github.com/tkarras/progressive_growing_of_gans\">Progressive growing of GANS</a>"
 		],
 		"extra": [
-
+			"<a href=\"https://magenta.tensorflow.org/\">Magenta</a>"
 		],
 		"video": "",
 		"slides": "",
@@ -187,13 +190,17 @@
 		"date": "20 Nov 2018",
 		"title": "Reinforcement Learning",
 		"description": [
-			"Agent-environment systems, games simulation"
+			"Agent-environment systems",
+			"Games simulation",
+			"AlphaGo, AlphaZero, DOTA"
 		],
 		"pratical": [		
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb\">Q-learning</a>",
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb\">Deep Q-Networks</a>"
 		],
 		"extra": [
+			"<a href=\"https://unity3d.com/machine-learning		\">Unity Agents</a>",
+			"<a href=\"https://gym.openai.com/\">OpenAI Gym</a>"
 		],
 		"video": "",
 		"slides": "",
@@ -210,6 +217,8 @@
 		"pratical": [
 		],
 		"extra": [
+			"<a href=\"https://docs.google.com/presentation/d/1RI6BnBsJtTBg3djZbD1hDjuhQagPBAUtAqcqoYWQTxU/\">Decentralized AI slides</a>",
+			"<a href=\"https://www.openmined.org/\">OpenMined</a>" 
 		],
 		"video": "",
 		"slides": "",
