@@ -112,8 +112,8 @@ var demo = function(parent, width, height, datasetName_, snapshot_, testAll_, nu
 	        context: ctx,
 	        width: 540 - (datasetName=='CIFAR'?60:0), 
 	        height: 480,
-	        architecture: [num_inputs, 10, nc],
-	        visible: [15, 10, nc],
+	        architecture: [num_inputs, 10, 10],
+	        visible: [15, 10, 10],
 	        neuronStyle: {
 	            color: 'rgba(0,0,0,1.0)',
 	            thickness: 1,
