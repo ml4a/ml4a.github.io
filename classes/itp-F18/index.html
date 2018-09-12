@@ -3,9 +3,11 @@ layout: default
 title: ITP-NYU - Fall 2018
 ---
 
-{% assign classes = site.data.itpf18 %}
+{% assign class = "itp-F18" %}
+{% assign idx = 1 | plus: 0 %}
+{% assign classes = site.data.lectures[class] %}
 
-
+	
 <style>
 .s_entry {
 	border: solid #ddd;
@@ -40,11 +42,27 @@ title: ITP-NYU - Fall 2018
 	font-size:1.5em;
 	margin-bottom:8px;
 }
+
 .s_date {
-	float:left;
-	/*padding-right:25px;*/
-	min-width:150px;
+	display: inline-block;
+	width:150px;
 }
+.s_name {
+	display: inline-block;
+	width: 300px;
+}
+.s_video {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+.s_slides {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+
+
 .s_header {
 	font-size:1.4em;
 	margin-left:8px;
@@ -65,13 +83,18 @@ title: ITP-NYU - Fall 2018
 {% for c in classes %}
 	<div class="s_entry">
 		<div class="s_title">
-			<b>{{c.title}}</b>
-			<span class="s_date">{{c.date}}</span>
+			<!--<b>{{c.title}}</b>-->
+			<div class="s_date">{{c.date | date: '%d %b %Y' }}</div>
+			<div class="s_name"><b>{{c.title}}</b></div>
+			{% if c.youtube_id %}
+			<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>
+			<div class="s_slides">[<a href="{{c.slides}}">slides</a>]</div>
+			{% endif %}
 		</div>
 		<div class="s_description">
 			<span class="s_header"><b>Description</b></span>
 			<ul>
-				{% for d in c.description %}
+				{% for d in c.summary %}
 					<li>{{d}}</li>
 				{% endfor %}
 			</ul>

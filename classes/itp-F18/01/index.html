@@ -1,0 +1,15 @@
+---
+layout: default
+title: ITP-NYU - Lecture 01, 9/10/2018
+date: 9/10/2018
+---
+
+{% assign class = "itp-F18" %}
+{% assign idx = 0 | plus: 0 %}
+{% assign data = site.data.lectures[class][idx] %}
+
+<h1><a href="/classes/itp-F18">ITP-NYU :: {{ page.date }}</a></h1>
+<h1>{{data.title}}</h1>
+
+{% include youtube_contents.html class=class index=idx width='400' %}
+

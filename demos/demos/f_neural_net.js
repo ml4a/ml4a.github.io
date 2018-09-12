@@ -9,9 +9,9 @@ function demo(parent, width, height, datasetName_, useSummary_, useSnapshot_ , v
         context: ctx,
         width:600, 
         height:440,
-        architecture: [3,2,1],
-        visible: [3,2,1],
-        heightBounds: [[0, 1], [0.1, 0.9], [0, 1]],
+        architecture: [2,3,1],
+        visible: [2,3,1],
+        heightBounds: [[0.1, 0.9], [0, 1], [0, 1]],
         neuronStyle: {
             color: 'rgba(0,0,0,0.9)',
             thickness: 5,

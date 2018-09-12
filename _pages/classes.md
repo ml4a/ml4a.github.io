@@ -4,6 +4,24 @@ title: ml4a classes
 ---
 
 
+<div class="class_main">
+	<div class="class_thumb">
+		<a href="/classes/itp-F18/"><img class="thumby" src="/images/classes/itp-F18/thumbnail_01.png"></a>
+	</div>
+	<div class="class_meta">
+		<a href="/classes/itp-F18/" class="class_title">The Neural Aesthetic</a>
+		<span class="class_contents">
+		<ul>
+			<li>Fall 2018</li>
+			<li><a href="http://tisch.nyu.edu/itp">ITP @ New York University</a>, New York</li>
+			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
+			<li>2 lectures (12 planned), ~5 hours (30 planned)</li> 
+		</ul>
+		</span>
+	</div>
+</div>
+
+
 {% include class_preview.html class="misc" index=0 %}
 
 

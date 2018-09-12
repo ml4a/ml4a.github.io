@@ -1,3 +1,4 @@
+
 [
 	{
 		"date": "10 Sep 2018",
@@ -5,7 +6,7 @@
 		"description": [
 			"Course goals, logistics, and resources",
 			"Introduction to AI, machine learning, and deep learning",
-			"The whole class in 60 minutes"
+			"The whole class \"in 60 minutes\""
 		],
 		"pratical": [
 			"<a href=\"https://ml5js.org/\">ml5.js</a>",
