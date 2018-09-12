@@ -1,9 +1,9 @@
 {"itp-F18":[
 	{
-		"title": "Machine learning for artists",
+		"title": "The whole class \"in 60 minutes\"",
 		"date": "10 Sep 2018",
 		"youtube_id": "Bh5zb-IssWQ",
-		"slides": "",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_01/index.html",
 		"thumbnail": "/images/classes/itp-F18/thumbnail_01.png",
 		"bookmarks": [
 			{"title":"Introduction", "m":0, "s":0, "disp":"0:00"},
@@ -45,7 +45,7 @@
 		"title": "Neural networks",
 		"date": "11 Sep 2018",
 		"youtube_id": "FYqsA2B-jKE",
-		"slides": "",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_02/index.html",
 		"thumbnail": "/images/classes/itp-F18/thumbnail_02.png",
 		"bookmarks": [
 			{"title":"Admin", "m":0, "s":0, "disp":"0:00"},
@@ -71,48 +71,6 @@
 			"How convolutional neural networks work (forward pass)",
 			"Transfer learning",
 			"Demos and applications of transfer learning"
-		],
-		"pratical": [
-			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/convolutional_neural_networks.ipynb\">Keras image classification</a>",
-			"<a href=\"https://ml5js.org/docs/ImageClassifier\">ml5 live image classifier</a>"
-		],
-		"extra": [
-			"Terminal velocity: a primer on the command line, git, and Jupyter [planned]",
-			"<a href=\"https://ml4a.github.io/ml4a/neural_networks/\">Intro to neural networks</a>",
-			"<a href=\"http://ml4a.github.io/ml4a/convnets/\">Convolutional networks</a>"
-		]
-	},
-	{
-		"date": "10 Sep 2018",
-		"title": "Machine learning for artists",
-		"thumbnail": "",
-		"bookmarks": [],
-		"summary": [
-			"Course goals, logistics, and resources",
-			"Introduction to AI, machine learning, and deep learning",
-			"The whole class \"in 60 minutes\""
-		],
-		"pratical": [
-			"<a href=\"https://ml5js.org/\">ml5.js</a>",
-			"<a href=\"https://github.com/ml4a/ml4a-demos\">ml4a-demos</a>",
-			"<a href=\"https://runwayml.com/\">Runway</a>",
-			"<a href=\"https://github.com/ml4a/ml4a-ofx\">ml4a-ofx</a>"
-		],
-		"extra": [
-			"<a href=\"https://ml4a.github.io/guides/\">ml4a-guides</a>",
-			"<a href=\"https://experiments.withgoogle.com/collection/ai\">AI experiments</a>"
-		]
-	},
-	{
-		"date": "11 Sep 2018",
-		"title": "Neural networks I",
-		"thumbnail": "",
-		"bookmarks": [],
-		"summary": [
-			"Fundamentals and mathematics of deep learning",
-			"Introduction to classification & regression",
-			"How neural networks work",
-			"Convolutional networks"
 		],
 		"pratical": [
 			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/convolutional_neural_networks.ipynb\">Keras image classification</a>",
