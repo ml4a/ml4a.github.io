@@ -8,6 +8,11 @@ date: 9/10/2018
 {% assign idx = 0 | plus: 0 %}
 {% assign data = site.data.lectures[class][idx] %}
 
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="The Neural Aesthetic @ ITP-NYU, Fall 2018" />
+<meta name="twitter:description" content="Lecture {{idx | plus:1}}: {{data.title}}, {{data.title}} [{{ page.date }}]" />
+<meta name="twitter:image" content="http://img.youtube.com/vi/{{data.youtube_id}}/0.jpg" />
+
 <h1><a href="/classes/itp-F18">The Neural Aesthetic @ ITP-NYU, Fall 2018</a></h1>
 <h2>Lecture {{idx | plus:1}}: {{data.title}}&nbsp;&nbsp;[{{ page.date }}]</h2>
 
