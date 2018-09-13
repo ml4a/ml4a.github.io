@@ -12,7 +12,8 @@
 	<div class="class_meta">
 		<a href="/classes/{{class}}/0{{c_idx}}" class="class_title">{{data.title}}</a>
 		<br/>
-		<a href="/classes/{{class}}/0{{c_idx}}" class="class_date">{{data.date}}</a> {% if data.dropbox != "" %}[<a href="{{data.dropbox}}">download</a>]{% endif %}
+		<a href="/classes/{{class}}/0{{c_idx}}" class="class_date">{{data.date}}</a> 
+		<!--{% if data.dropbox != "" %}[<a href="{{data.dropbox}}">download</a>]{% endif %}-->
 		<span class="class_contents">
 		<ul>
 			{% for s in data.summary %}
@@ -26,7 +27,7 @@
 <style>
 .class_main {
 	border: thick solid #eee;
-	width:720px;
+	width:840px;
 	margin-top:20px;
 	margin-bottom:20px;
 	padding:4px;
@@ -55,6 +56,6 @@
 }
 .class_meta {
 	padding-left:15px;
-	width:420px;
+	width:540px;
 }
 </style>

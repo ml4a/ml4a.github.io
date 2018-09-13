@@ -11,8 +11,8 @@
   div.parentNode.insertBefore(tag, div);
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('yt_player', {
-      height: '400',
-      width: '640',
+      height: '500',
+      width: '800',
       videoId: '{{ youtube_id }}',
       events: {}
     });
@@ -22,12 +22,13 @@
 <div id="yt_container" class="yt_container">
 	<div id="yt_playerContainer" class="yt_embed">
 		<div id="yt_player"></div>
-		<br/>[<a href="{{data.dropbox}}">download</a>]
+		<!--<br/>[<a href="{{data.dropbox}}">download</a>]-->
 	</div>
+	<br/>
 	<div id="yt_bookmarks" class="yt_bookmarks">
 		<ul>
 		{% for b in data.bookmarks %}
-			<li><h4><a href="#" onclick="javascript:player.seekTo({{ b.m | times:60 | plus:b.s }});">{{ b.title }} ({{ b.disp }})</a></h4></li>
+			<li><a href="#" onclick="javascript:player.seekTo({{ b.m | times:60 | plus:b.s }});">{{ b.title }} ({{ b.disp }})</a></li>
 		{% endfor %}
 		</ul>
 	</div>
@@ -36,15 +37,27 @@
 <style>
 	.yt_container {
 		border: thick solid #eee;
+		padding-bottom:20px;
 	}
 	.yt_embed {
 		display: inline-block;
-		width:65%;
+		/*width:65%;*/
+		padding:20px;
 	}
 	.yt_bookmarks {
 		padding-left:22px;
-		display: inline-block;
-		width:31%;
+		/*display: inline-block;*/
+		/*width:31%;*/
 		vertical-align:top;
 	}
+	.yt_bookmarks ul {
+		padding:0px 0px;
+		margin: 0px 0;
+
+	}
+	.yt_bookmarks li {
+		padding:0px 0;
+		margin: 0px 0;
+	}
+
 </style>

@@ -3,6 +3,7 @@
 		"title": "The whole class \"in 60 minutes\"",
 		"date": "10 Sep 2018",
 		"youtube_id": "Bh5zb-IssWQ",
+		"main":"/classes/itp-F18/01/",
 		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_01/index.html",
 		"thumbnail": "/images/classes/itp-F18/thumbnail_01.png",
 		"bookmarks": [
@@ -45,6 +46,7 @@
 		"title": "Neural networks",
 		"date": "11 Sep 2018",
 		"youtube_id": "FYqsA2B-jKE",
+		"main":"/classes/itp-F18/02/",
 		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_02/index.html",
 		"thumbnail": "/images/classes/itp-F18/thumbnail_02.png",
 		"bookmarks": [

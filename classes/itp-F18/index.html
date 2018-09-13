@@ -4,7 +4,7 @@ title: ITP-NYU - Fall 2018
 ---
 
 {% assign class = "itp-F18" %}
-{% assign idx = 1 | plus: 0 %}
+{% assign idx = 0 | plus: 0 %}
 {% assign classes = site.data.lectures[class] %}
 
 	
@@ -61,11 +61,16 @@ title: ITP-NYU - Fall 2018
 	width:80px;
 	float:right;
 }
-
-
 .s_header {
 	font-size:1.4em;
 	margin-left:8px;
+}
+
+.active {
+	background-color:#ccc;
+}
+#syllabus_link, #videos_link {
+	padding:5px;
 }
 
 </style>
@@ -76,9 +81,31 @@ title: ITP-NYU - Fall 2018
 <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/717391151041540096/K3Z09zCg_400x400.jpg" />
 
 
-<h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Fall 2018</h2>
-<h3>Draft syllabus, updated 12 Aug 2018</h3>
+<script>
+function goSyllabus() {
+	document.getElementById("syllabus").style.display = "block";
+	document.getElementById("videos").style.display = "none";
+	document.getElementById("syllabus_link").className = "active";
+	document.getElementById("videos_link").className = "";
+}
+function goLectures() {
+	document.getElementById("syllabus").style.display = "none";
+	document.getElementById("videos").style.display = "block";
+	document.getElementById("syllabus_link").className = "";
+	document.getElementById("videos_link").className = "active";
+}
+</script>
 
+<h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Fall 2018</h2>
+
+<h2>
+<span id="syllabus_link" class="active"><a href="#" onclick="javascript:goSyllabus();">Syllabus</a></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="videos_link"><a href="#" onclick="javascript:goLectures();">Lectures</a></span>
+</h2>
+
+
+<div id="syllabus">
 
 {% for c in classes %}
 	<div class="s_entry">
@@ -87,7 +114,8 @@ title: ITP-NYU - Fall 2018
 			<div class="s_date">{{c.date | date: '%d %b %Y' }}</div>
 			<div class="s_name"><b>{{c.title}}</b></div>
 			{% if c.youtube_id %}
-			<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>
+			<!--<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>-->
+			<div class="s_video">[<a href="{{c.main}}">video</a>]</div>
 			<div class="s_slides">[<a href="{{c.slides}}">slides</a>]</div>
 			{% endif %}
 		</div>
@@ -118,8 +146,17 @@ title: ITP-NYU - Fall 2018
 	</div>
 {% endfor %}
 
+</div>
+
+<div id="videos">
+{% include class_preview.html class="itp-F18" index=0 %}
+{% include class_preview.html class="itp-F18" index=1 %}
+</div>
 
 
+<script>
+goSyllabus();
+</script>
 <!--
 
 Runway
@@ -127,15 +164,10 @@ im2txt
 darknet + objection detection
 densecap
 
-
 The collective imagination
  - artworks and projects made
-
  - [optional] Linear regression  
  - [optional] kNN
-
-
-- <a href=\"\">
 
 Recurrent neural networks
 "RNNs, LSTMs, GRUs, NTMs
