@@ -1,3 +1,5 @@
+
+
 {"itp-F18":[
 	{
 		"title": "The whole class \"in 60 minutes\"",
@@ -85,14 +87,36 @@
 		]
 	},
 	{
+		"title": "How neural nets are trained",
 		"date": "18 Sep 2018",
-		"title": "Neural networks II",
-		"thumbnail": "",
-		"bookmarks": [],
+		"youtube_id": "Ger4Y9Ovrb4",
+		"main":"/classes/itp-F18/03/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_03/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_03.png",
+		"bookmarks": [
+			{"title":"Introduction, announcements", "m":0, "s":0, "disp":"0:00"},
+			{"title":"Review of supervised learning pipeline", "m":5, "s":41, "disp":"5:41"}, 
+			{"title":"Why training is hard", "m":10, "s":06, "disp":"10:06"}, 
+			{"title":"Linear regression", "m":15, "s":33, "disp":"15:33"}, 
+			{"title":"Gradient descent", "m":20, "s":18, "disp":"20:18"}, 
+			{"title":"Calculating the gradient, backpropagation", "m":31, "s":32, "disp":"31:32"}, 
+			{"title":"The problem of non-convexity, SGD, and mini-batches", "m":38, "s":31, "disp":"38:31"}, 
+			{"title":"Momentum and adaptive optimizers", "m":44, "s":29, "disp":"44:29"},
+			{"title":"Overfitting and regularization, dropout", "m":48, "s":52, "disp":"48:52"}, 
+			{"title":"Further reading & questions", "m":56, "s":01, "disp":"56:01"}, 
+			{"title":"Overview of ml4a-ofx", "m":63, "s":40, "disp":"1:03:40"}, 
+			{"title":"Demo of ConvnetPredictor (webcam transfer learning)", "m":68, "s":12, "disp":"1:08:12"}, 
+			{"title":"Communicating between ConvnetPredictor and Processing", "m":79, "s":36, "disp":"1:19:36"},
+			{"title":"Regression controlling generative art sketch", "m":92, "s":53, "disp":"1:32:53"}, 
+			{"title":"Controlling Ableton Live with ConvnetPredictor", "m":100, "s":24, "disp":"1:40:24"}, 
+			{"title":"Demo of DoodleClassifier", "m":108, "s":48, "disp":"1:48:48"}, 
+			{"title":"Demo of AudioClassifier and controlling the keyboard with sound (offline)", "m":119, "s":27, "disp":"1:59:27"}, 
+			{"title":"Summary and comparison of tools", "m":128, "s":35, "disp":"2:08:35"}
+		],
 		"summary": [
-			"Gradient descent & backpropogation",
+			"How neural nets are trained (backward pass)",
 			"Overfitting, regularization, optimization",
-			"CPNNs"
+			"ml4a-ofx demos: ConvnetPredictor, AudioClassifier, DoodleClassifier"
 		],
 		"pratical": [
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb\">CPNNs</a>"	
