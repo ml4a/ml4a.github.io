@@ -83,13 +83,13 @@ title: ITP-NYU - Fall 2018
 
 <script>
 function goSyllabus() {
-	document.getElementById("syllabus").style.display = "block";
+	document.getElementById("syllabus_div").style.display = "block";
 	document.getElementById("videos").style.display = "none";
 	document.getElementById("syllabus_link").className = "active";
 	document.getElementById("videos_link").className = "";
 }
 function goLectures() {
-	document.getElementById("syllabus").style.display = "none";
+	document.getElementById("syllabus_div").style.display = "none";
 	document.getElementById("videos").style.display = "block";
 	document.getElementById("syllabus_link").className = "";
 	document.getElementById("videos_link").className = "active";
@@ -99,13 +99,13 @@ function goLectures() {
 <h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Fall 2018</h2>
 
 <h2>
-<span id="syllabus_link" class="active"><a href="#" onclick="javascript:goSyllabus();">Syllabus</a></span>
+<span id="syllabus_link" class="active"><a href="#syllabus" onclick="javascript:goSyllabus();">Syllabus</a></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span id="videos_link"><a href="#" onclick="javascript:goLectures();">Lectures</a></span>
+<span id="videos_link"><a href="#lectures" onclick="javascript:goLectures();">Lectures</a></span>
 </h2>
 
 
-<div id="syllabus">
+<div id="syllabus_div">
 
 {% for c in classes %}
 	<div class="s_entry">
@@ -156,8 +156,22 @@ function goLectures() {
 
 
 <script>
-goSyllabus();
+
+window.onload = function() {
+	if (window.location.hash=="#syllabus") {
+		goSyllabus();
+	}
+	else if (window.location.hash=="#lectures") {
+		goLectures();
+	}
+	else {
+		goSyllabus();
+	}
+};
+
+
 </script>
+
 <!--
 
 Runway
