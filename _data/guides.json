@@ -24,14 +24,14 @@
 		]
 	},
 	"intro-numpy": {
-		"title": "Foundational mathematics and Numpy",
+		"title": "Foundational mathematics",
 		"description": "A review of relevant concepts from linear algebra and calculus, and intro to Numpy",
 		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/math_review_numpy.ipynb",
 		"thumb":"/images/guides_thumbs/intro_numpy.jpg",
 		"summary":[
 			"Matrices, multivariate functions",
-			"Derivatives, gradients, chain rule",
+			"Gradients and chain rule",
 			"Essential numpy operations"
 		]
 	},
@@ -80,6 +80,17 @@
 			"Introduction to Keras",
 			"Architecture of simple neural net",
 			"Training a neural net on toy data"
+		]
+	},	
+	"keras-classification": {
+		"title": "Neural nets for classification",
+		"description": "How to apply neural networks for classification",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/keras_classification.ipynb",
+		"thumb":"/images/guides_thumbs/digit_classification.jpg",
+		"summary":[
+			"Softmax activations and cross-entropy loss",
+			"Using Keras for classification"
 		]
 	},
 	"cnn": {
