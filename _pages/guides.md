@@ -97,6 +97,7 @@ redirect_from: /guides2/
 {% include guide_preview.md name="linear-regression" %}
 {% include guide_preview.md name="diy-net" %}
 {% include guide_preview.md name="simple" %}
+{% include guide_preview.md name="keras-classification" %}
 {% include guide_preview.md name="cnn" %}
 {% include guide_preview.md name="transfer-learning" %}
 {% include guide_preview.md name="rnn" %}
