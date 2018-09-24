@@ -11,13 +11,73 @@
 			"Functions, derivatives, and gradient descent"
 		]
 	},
+	"intro-python": {
+		"title": "Essentials of Python",
+		"description": "A basic overview of Python programming",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/intro_python.ipynb",
+		"thumb":"/images/guides_thumbs/intro_python.jpg",
+		"summary":[
+			"Conditionals, variables, loops, and other basics",
+			"Data structures and classes",
+			"Functions and plotting"
+		]
+	},
+	"intro-numpy": {
+		"title": "Foundational mathematics and Numpy",
+		"description": "A review of relevant concepts from linear algebra and calculus, and intro to Numpy",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/math_review_numpy.ipynb",
+		"thumb":"/images/guides_thumbs/intro_numpy.jpg",
+		"summary":[
+			"Matrices, multivariate functions",
+			"Derivatives, gradients, chain rule",
+			"Essential numpy operations"
+		]
+	},
+	"kNN": {
+		"title": "Classification & k-Nearest Neighbors",
+		"description": "An introduction to classification using k-nearest neighbors algorithm",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/classification_kNN.ipynb",
+		"thumb":"/images/guides_thumbs/kNN.jpg",
+		"summary":[
+			"Classification tasks",
+			"k-Nearest Neighbors method"
+		]
+	},
+	"linear-regression": {
+		"title": "Linear regression",
+		"description": "Linearly fitting datasets, and basic gradient descent",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/linear_regression.ipynb",
+		"thumb":"/images/guides_thumbs/linear_regression.jpg",
+		"summary":[
+			"Fitting datasets with lines",
+			"Evaluation and measuring error",
+			"Introduction to gradient descent"
+		]
+	},
+	"diy-net": {
+		"title": "DIY neural network",
+		"description": "A numpy implementation of a neural network from scratch",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/diy_neural_network.ipynb",
+		"thumb":"/images/guides_thumbs/diy_net.jpg",
+		"summary":[
+			"Deriving neural networks",
+			"Non-linear activation functions and layers",
+			"Implementation of gradient descent for neural nets"
+		]
+	},
 	"simple": {
-		"title": "Ordinary neural networks",
+		"title": "Neural networks in Keras",
 		"description": "How to train a simple feedforward neural network",
 		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/simple_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
+			"Introduction to Keras",
 			"Architecture of simple neural net",
 			"Training a neural net on toy data"
 		]

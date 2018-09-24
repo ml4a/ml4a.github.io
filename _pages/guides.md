@@ -84,9 +84,18 @@ redirect_from: /guides2/
 </div>
 
 
+
+
+
+
 {% include guide_preview.md name="Contribute" %}
 
 {% include guide_preview.md name="fundamentals" %}
+{% include guide_preview.md name="intro-python" %}
+{% include guide_preview.md name="intro-numpy" %}
+{% include guide_preview.md name="kNN" %}
+{% include guide_preview.md name="linear-regression" %}
+{% include guide_preview.md name="diy-net" %}
 {% include guide_preview.md name="simple" %}
 {% include guide_preview.md name="cnn" %}
 {% include guide_preview.md name="transfer-learning" %}
