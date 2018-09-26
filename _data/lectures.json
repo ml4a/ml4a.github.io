@@ -127,14 +127,37 @@
 		]
 	},
 	{
-		"date": "25 Sep 2018",
 		"title": "Applications of neural nets",
-		"thumbnail": "",
-		"bookmarks": [],
+		"date": "25 Sep 2018",
+		"youtube_id": "zOZYCuDvJ3I",
+		"main":"/classes/itp-F18/04/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_04/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_04.png",
+		"bookmarks": [
+			{"title":"Announcements", "m":0, "s":0, "disp":"0:00"},
+			{"title":"Deep learning frameworks", "m":7, "s":23, "disp":"7:23"},
+			{"title":"Feature vectors", "m":12, "s":18, "disp":"12:18"},
+			{"title":"Embeddings", "m":17, "s":35, "disp":"17:35"},
+			{"title":"Review of neural nets, gradient descent, & feature extraction", "m":21, "s":17, "disp":"21:17"},
+			{"title":"Word vectors & properties of language embeddings", "m":30, "s":45, "disp":"30:45"},
+			{"title":"Sentence/paragraph vectors, language models & story generation", "m":35, "s":24, "disp":"35:24"},
+			{"title":"Applications of feature vectors", "m":50, "s":25, "disp":"50:25"},
+			{"title":"Introduction to ml4a-guides & Jupyter Lab", "m":66, "s":55, "disp":"1:06:55"},
+			{"title":"Tutorial: image feature extraction", "m":84, "s":33, "disp":"1:24:33"},
+			{"title":"Tutorial: reverse image search", "m":108, "s":13, "disp":"1:48:13"},
+			{"title":"Tutorial: shortest path (X degrees of separation)", "m":118, "s":49, "disp":"1:58:49"},
+			{"title":"t-SNE & data dataset visualization", "m":128, "s":15, "disp":"2:08:15"},
+			{"title":"Tutorial: t-SNE of images", "m":133, "s":22, "disp":"2:13:22"},
+			{"title":"Organizing sound clips with t-SNE", "m":139, "s":30, "disp":"2:19:30"},
+			{"title":"Tutorial: audio t-SNE", "m":142, "s":35, "disp":"2:22:35"},
+			{"title":"Interacting with t-SNE viewer (openFrameworks)", "m":147, "s":15, "disp":"2:27:15"},
+			{"title":"ml5-examples (YOLO) & JavaScript demos", "m":152, "s":9, "disp":"2:32:09"},
+			{"title":"Summary of practical materials & about mid-term mini-presentation", "m":155, "s":14, "disp":"2:35:14"}
+		],
 		"summary": [
 			"Feature extraction",
-			"Reverse image search and shortest paths",
-			"t-SNE & visualization",
+			"Reverse image search and X degrees",
+			"t-SNE of images/sounds & visualization",
 			"Transfer learning"
 		],
 		"pratical": [
@@ -146,7 +169,8 @@
 			"<a href=\"http://ml4a.github.io/ml4a/looking_inside_neural_nets/\">Looking inside neural nets</a>",
 			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
 		]
-	},	
+	},
+	
 	{
 		"date": "16 Oct 2018",
 		"title": "Interactive machine learning",
