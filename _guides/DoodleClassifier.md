@@ -24,7 +24,7 @@ DoodleClassifier is quick and easy to set up. It often works best to set up an o
 
 Before launching the app, review and adjust the settings, which can be found in the file `settings_doodleclassifier.xml`. In that file, you must define the classes you'd like for the app to recognize. By default, they are `circle`, `star`, and `arrow`, but you may change those and have as many different classes as you'd like.
 
-Once the app is trained, classifications are sent over OSC (open sound control), to the IP address and port specified in the settings file, `localhost:5000` by default, using the address `\classification`. You may change these accordingly, and will easily send to another computer over the same network if you change the IP address.
+Once the app is trained, the class and bounding box rectangle are sent over OSC (open sound control), to the IP address and port specified in the settings file, `localhost:5000` by default, using the address `\classification`. You may change these accordingly, and will easily send to another computer over the same network if you change the IP address. The precise order of the info it sends for each detected object is: class (string), x-position (float), y-position (float), width of rectangle (float), and height of rectangle (float).
 
 ## Training
 
@@ -64,7 +64,7 @@ Once you are ready, click `Train` in the interface, and wait for the training to
 
 ## Prediction
 
-Once training has completed, you can classify new images. Draw some instances of your class, put them under the camera, and click `Classify`. After a moment, it will segment your doodles as before, and predict which classes they belong to. It will instantly send each predicted class as an OSC message to the address given in the settings, where the value of the OSC message is a string corresponding to the name of the predicted class. See below for an example.
+Once training has completed, you can classify new images. Draw some instances of your class, put them under the camera, and click `Classify`. After a moment, it will segment your doodles as before, and predict which classes they belong to. It will instantly send each predicted class as an OSC message to the address given in the settings, where the value of the OSC message is a string corresponding to the name of the predicted class, and four floats corresponding to the x, y, width, and height of the bounding box. See below for an example.
 
 {:.center}
 ![DoodleClassifier prediction](/images/guides/doodleclassifier_prediction.jpg "DoodleClassifier prediction")
