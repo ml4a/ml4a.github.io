@@ -1,5 +1,3 @@
-
-
 {"itp-F18":[
 	{
 		"title": "The whole class \"in 60 minutes\"",
@@ -119,7 +117,8 @@
 			"ml4a-ofx demos: ConvnetPredictor, AudioClassifier, DoodleClassifier"
 		],
 		"pratical": [
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb\">CPNNs</a>"	
+			"<a href=\"https://ml4a.github.io/guides/DoodleClassifier\">Doodle Classifier</a>",
+			"<a href=\"https://ml4a.github.io/guides/ConvnetPredictor\">ConvnetPredictor</a> / <a href=\"https://ml4a.github.io/guides/ConvnetOSC\">ConvnetOSC</a>"
 		],
 		"extra": [
 			"<a href=\"https://ml4a.github.io/ml4a/how_neural_networks_are_trained/\">How neural nets are trained</a>",
@@ -170,23 +169,66 @@
 			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
 		]
 	},
-	
 	{
+		"title": "Visualization, deepdream, style & texture synthesis",
 		"date": "16 Oct 2018",
-		"title": "Interactive machine learning",
-		"thumbnail": "",
-		"bookmarks": [],
+		"youtube_id": "9Ql0xyXQLt8",
+		"main":"/classes/itp-F18/01/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_01/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_01.png",
+		"bookmarks": [
+			{"title":"Plan for rest of the term", "m":0, "s":0, "disp":"0:00"},
+			{"title":"A review of representation learning", "m":7, "s":2, "disp":"7:02"},
+			{"title":"Visualizing convnet features", "m":12, "s":46, "disp":"12:46"},
+			{"title":"Activating features via pixel optimization", "m":21, "s":38, "disp":"21:38"},
+			{"title":"Inceptionism & Deepdream", "m":27, "s":47, "disp":"27:47"},
+			{"title":"Masking deepdreams", "m":38, "s":52, "disp":"38:52"},
+			{"title":"Style transfer", "m":46, "s":20, "disp":"46:20"},
+			{"title":"Texture synthesis", "m":57, "s":13, "disp":"57:13"},
+			{"title":"Miscellaneous optimization-based work", "m":59, "s":41, "disp":"59:41"}
+		],
 		"summary": [
-			"Training neural nets on sensors and cameras",
-			"Object detection, dense captioning"
+			"Visualizing convnet features",
+			"Pixel-optimization, Deepdream, neural-synth",
+			"Style transfer and textur synthesis"
 		],
 		"pratical": [
-			"PoseNet + music",
-			"<a href=\"https://ml4a.github.io/guides/DoodleClassifier\">Doodle Classifier</a>",
-			"<a href=\"https://ml4a.github.io/guides/ConvnetPredictor\">ConvnetPredictor</a> / <a href=\"https://ml4a.github.io/guides/ConvnetOSC\">ConvnetOSC</a>"
+			"<a href=\"https://ml4a.github.io/classes/itp-F18/terminal-velocity\">Terminal Velocity</a>"
 		],
 		"extra": [
-			"<a href=\"http://wekinator.org/\">Wekinator</a>",
+		]
+	},
+	{
+		"title": "Terminal velocity",
+		"date": "17 Oct 2018",
+		"youtube_id": "cq4Nm2gup-U",
+		"main":"/classes/itp-F18/05/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_05/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_05.png",
+		"bookmarks": [
+			{"title":"Basic terminal commands", "m":3, "s":42, "disp":"3:42"},
+			{"title":"Python shell, bash scripting, nohup", "m":9, "s":43, "disp":"9:43"},
+			{"title":"Launching a remote VM on Paperspace", "m":16, "s":51, "disp":"16:51"},
+			{"title":"Interfacing with your VM, launching Jupyter", "m":22, "s":0, "disp":"22:00"},
+			{"title":"Jupyter Lab", "m":29, "s":50, "disp":"29:50"},
+			{"title":"Setting up neural-style", "m":34, "s":14, "disp":"34:14"},
+			{"title":"Running a style transfer", "m":37, "s":53, "disp":"37:53"},
+			{"title":"Texture synthesis", "m":48, "s":18, "disp":"48:18"},
+			{"title":"Setting up ml4a-guides and neural-synth", "m":50, "s":28, "disp":"50:28"},
+			{"title":"Running basic deepdream", "m":51, "s":16, "disp":"51:16"},
+			{"title":"Masking dreams, canvas distortion", "m":59, "s":23, "disp":"59:23"},
+			{"title":"Generating videos", "m":67, "s":16, "disp":"1:07:16"}
+		],
+		"summary": [
+			"Basic terminal navigation",
+			"Python shell and bash scripting",
+			"Connecting to remote VM"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/neural-synth.ipynb\">neural-synth</a>",
+			"<a href=\"https://github.com/jcjohnson/neural-style\">neural-style</a>"
+		],
+		"extra": [
 		]
 	},
 	{
