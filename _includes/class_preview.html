@@ -10,9 +10,10 @@
 		<a href="/classes/{{class}}/0{{c_idx}}"><img class="thumby" src="{{data.thumbnail}}"></a>
 	</div>
 	<div class="class_meta">
-		<a href="/classes/{{class}}/0{{c_idx}}" class="class_title">{{data.title}}</a>
+		
+		<a href="{{data.main}}" class="class_title">{{data.title}}</a>
 		<br/>
-		<a href="/classes/{{class}}/0{{c_idx}}" class="class_date">{{data.date}}</a> 
+		<a href="{{data.main}}" class="class_date">{{data.date}}</a> 
 		<!--{% if data.dropbox != "" %}[<a href="{{data.dropbox}}">download</a>]{% endif %}-->
 		{% if data.slides %}[<a href="{{data.slides}}">slides</a>]{% endif %}
 		<span class="class_contents">

@@ -79,7 +79,6 @@
 			"<a href=\"https://ml5js.org/docs/ImageClassifier\">ml5 live image classifier</a>"
 		],
 		"extra": [
-			"Terminal velocity: a primer on the command line, git, and Jupyter [planned]",
 			"<a href=\"https://ml4a.github.io/ml4a/neural_networks/\">Intro to neural networks</a>",
 			"<a href=\"http://ml4a.github.io/ml4a/convnets/\">Convolutional networks</a>"
 		]
@@ -118,7 +117,8 @@
 		],
 		"pratical": [
 			"<a href=\"https://ml4a.github.io/guides/DoodleClassifier\">Doodle Classifier</a>",
-			"<a href=\"https://ml4a.github.io/guides/ConvnetPredictor\">ConvnetPredictor</a> / <a href=\"https://ml4a.github.io/guides/ConvnetOSC\">ConvnetOSC</a>"
+			"<a href=\"https://ml4a.github.io/guides/ConvnetPredictor\">ConvnetPredictor</a> / <a href=\"https://ml4a.github.io/guides/ConvnetOSC\">ConvnetOSC</a>",
+			"<a href=\"https://ml4a.github.io/guides/AudioClassifier\">AudioClassifier</a>"
 		],
 		"extra": [
 			"<a href=\"https://ml4a.github.io/ml4a/how_neural_networks_are_trained/\">How neural nets are trained</a>",
@@ -173,9 +173,9 @@
 		"title": "Visualization, deepdream, style & texture synthesis",
 		"date": "16 Oct 2018",
 		"youtube_id": "9Ql0xyXQLt8",
-		"main":"/classes/itp-F18/01/",
-		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_01/index.html",
-		"thumbnail": "/images/classes/itp-F18/thumbnail_01.png",
+		"main":"/classes/itp-F18/05/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_05/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_05.png",
 		"bookmarks": [
 			{"title":"Plan for rest of the term", "m":0, "s":0, "disp":"0:00"},
 			{"title":"A review of representation learning", "m":7, "s":2, "disp":"7:02"},
@@ -196,15 +196,18 @@
 			"<a href=\"https://ml4a.github.io/classes/itp-F18/terminal-velocity\">Terminal Velocity</a>"
 		],
 		"extra": [
+			"<a href=\"https://colab.research.google.com/drive/1xeJAhTEwI3TNH_CJnTMq5AJuPkOs8sJ6\">Deepdream</a> + <a href=\"https://github.com/tensorflow/lucid\">Lucid</a>",
+			"<a href=\"https://distill.pub/2017/feature-visualization/\">distill: Feature Visualization</a>",
+			"<a href=\"https://distill.pub/2018/building-blocks/\">The Building Blocks of Interpretability</a>",
+			"<a href=\"https://www.youtube.com/watch?v=AgkfIQ4IGaM\">Deep Visualization Toolbox</a>"
 		]
 	},
 	{
 		"title": "Terminal velocity",
 		"date": "17 Oct 2018",
 		"youtube_id": "cq4Nm2gup-U",
-		"main":"/classes/itp-F18/05/",
-		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_05/index.html",
-		"thumbnail": "/images/classes/itp-F18/thumbnail_05.png",
+		"main":"/classes/itp-F18/terminal-velocity/",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_terminal-velocity.png",
 		"bookmarks": [
 			{"title":"Basic terminal commands", "m":3, "s":42, "disp":"3:42"},
 			{"title":"Python shell, bash scripting, nohup", "m":9, "s":43, "disp":"9:43"},
@@ -229,53 +232,12 @@
 			"<a href=\"https://github.com/jcjohnson/neural-style\">neural-style</a>"
 		],
 		"extra": [
+			"<a href=\"https://github.com/tensorflow/lucid\">lucid</a>",
+			"<a href=\"https://distill.pub/2018/differentiable-parameterizations/\">Differentiable Image Parameterizations</a>"
 		]
 	},
 	{
 		"date": "23 Oct 2018",
-		"title": "Audio & text learning",
-		"youtube_id": "",
-		"slides": "",
-		"thumbnail": "",
-		"bookmarks": [],
-		"summary": [
-			"Audio feature extraction & classification",
-			"Document analysis and retrieval",
-			"Word vectors"
-		],
-		"pratical": [
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
-			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
-			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
-			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier2</a>",
-			"<a href=\"https://ml5js.org/docs/PitchDetection\">ml5 pitch detection</a>"
-		],
-		"extra": [
-			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>"
-		]
-	},
-	{
-		"date": "30 Oct 2018",
-		"title": "Optimization-based pixel art",
-		"thumbnail": "",
-		"bookmarks": [],
-		"summary": [
-			"Visualization of neural networks",
-			"Deepdream",
-			"Texture synthesis & style transfer",
-		],
-		"pratical": [
-			"<a href=\"https://colab.research.google.com/drive/1xeJAhTEwI3TNH_CJnTMq5AJuPkOs8sJ6\">Deepdream</a> + <a href=\"https://github.com/tensorflow/lucid\">Lucid</a>",
-			"<a href=\"https://github.com/jcjohnson/neural-style\">neural-style</a>",
-			"<a href=\"https://ml5js.org/docs/StyleTransfer\">ml5 style transfer</a>"
-		],
-		"extra": [
-			"<a href=\"https://distill.pub/2017/feature-visualization/\">Feature visualization (Distill)</a>",
-			"<a href=\"https://www.youtube.com/watch?v=AgkfIQ4IGaM\">Deep Visualization Toolbox</a>"
-		]
-	},
-	{
-		"date": "6 Nov 2018",
 		"title": "Generative models I",
 		"thumbnail": "",
 		"bookmarks": [],
@@ -293,7 +255,7 @@
 		]
 	},
 	{
-		"date": "13 Nov 2018",
+		"date": "30 Oct 2018",
 		"title": "Generative models II",
 		"thumbnail": "",
 		"bookmarks": [],
@@ -310,9 +272,43 @@
 			"<a href=\"https://github.com/tkarras/progressive_growing_of_gans\">Progressive growing of GANS</a>"
 		],
 		"extra": [
-			"<a href=\"https://magenta.tensorflow.org/\">Magenta</a>"
+			"<a href=\"https://magenta.tensorflow.org/\">Magenta</a>",
+			"<a href=\"https://ml5js.org/docs/StyleTransfer\">ml5 style transfer</a>"
 		]
 	},
+	{
+		"date": "6 Nov 2018",
+		"title": "Generative models III",
+		"thumbnail": "",
+		"bookmarks": [],
+		"summary": [
+		],
+		"pratical": [
+		],
+		"extra": [
+		]
+	},
+	{
+		"date": "13 Nov 2018",
+		"title": "Audio & text learning",
+		"thumbnail": "",
+		"bookmarks": [],
+		"summary": [
+			"Audio feature extraction & classification",
+			"Document analysis and retrieval",
+			"Word vectors"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
+			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier2</a>",
+			"<a href=\"https://ml5js.org/docs/PitchDetection\">ml5 pitch detection</a>"
+		],
+		"extra": [
+			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>"
+		]
+	},	
 	{
 		"date": "27 Nov 2018",
 		"title": "Reinforcement Learning",
@@ -352,7 +348,7 @@
 	},
 	{
 		"date": "11 Dec 2018",
-		"title": "TBD",
+		"title": "Final presentations",
 		"thumbnail": "",
 		"bookmarks": [],
 		"summary": [
@@ -364,10 +360,14 @@
 	}
 ],	
 
+
+
+
 "misc":[{
 	"youtube_id": "mbkbMvMxLmg",
 	"title": "From principal components to puppyslugs",
 	"date": "6/21/2017",
+	"main":"/classes/misc/01/",
 	"thumbnail": "/images/classes/misc/thumbnail_01.png",
 	"dropbox": "",
 	"bookmarks": [
@@ -398,6 +398,7 @@
 	"youtube_id": "yHOmMCY589Y",
 	"title": "Why machine learning for artists",
 	"date": "11/21/2016",
+	"main":"/classes/opendot/01/",
 	"thumbnail": "/images/classes/opendot/thumbnail_01.png",
 	"dropbox": "https://www.dropbox.com/s/fxz3pbyoj2se91j/opendot_11.21_01.mp4?dl=1",
 	"bookmarks": [
@@ -420,6 +421,7 @@
 	"youtube_id": "sAs0YUwxAoY",
 	"title": "Neural networks",
 	"date": "11/21/2016",
+	"main":"/classes/opendot/02/",
 	"thumbnail": "/images/classes/opendot/thumbnail_02.png",
 	"dropbox": "https://www.dropbox.com/s/x1mozy0kxn75g2m/opendot_11.21_02.mp4?dl=1",
 	"bookmarks": [
@@ -438,6 +440,7 @@
 	"youtube_id": "Y3UuIER66FQ",
 	"title": "Real-time ML for performance",
 	"date": "11/21/2016",
+	"main":"/classes/opendot/03/",
 	"thumbnail": "/images/classes/opendot/thumbnail_03.png",
 	"dropbox": "https://www.dropbox.com/s/qlk1v6db0r6yxd1/opendot_11.21_03.mp4?dl=1",
 	"bookmarks": [
@@ -457,6 +460,7 @@
 	"youtube_id": "vCIDk-bS_zQ",
 	"title": "Convolutional neural networks + t-SNE",
 	"date": "11/22/2016",
+	"main":"/classes/opendot/04/",
 	"thumbnail": "/images/classes/opendot/thumbnail_04.png",
 	"dropbox": "https://www.dropbox.com/s/r6ud3p7ry0dmcak/opendot_11.22_01.mp4?dl=1",
 	"bookmarks": [
@@ -481,6 +485,7 @@
 	"youtube_id": "L3OOWqir-9g",
 	"title": "Applications of t-SNE",
 	"date": "11/23/2016",
+	"main":"/classes/opendot/05/",
 	"thumbnail": "/images/classes/opendot/thumbnail_05.png",
 	"dropbox": "https://www.dropbox.com/s/535vx1ua4jox605/opendot_11.23_01.mp4?dl=1",
 	"bookmarks": [
@@ -499,6 +504,7 @@
 	"youtube_id": "E2r3_oddwEc",
 	"title": "Applications of deep learning",
 	"date": "11/23/2016",
+	"main":"/classes/opendot/06/",
 	"thumbnail": "/images/classes/opendot/thumbnail_06.png",
 	"dropbox": "https://www.dropbox.com/s/4730zse93xy3o22/opendot_11.23_02.mp4?dl=1",
 	"bookmarks": [
@@ -521,6 +527,7 @@
 	"youtube_id": "kc2XOUEyhDM",
 	"title": "Machine learning for artists",
 	"date": "7/4/2016",
+	"main":"/classes/neural-aesthetic/01/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_01.png",
 	"dropbox": "https://www.dropbox.com/s/vz5qlb6ee2ffjhp/neural%20aesthetic%20%40%20schoolofma%20--%2001%20machine%20learning%20for%20artists.mp4?dl=1",
 	"bookmarks": [
@@ -543,6 +550,7 @@
 	"youtube_id": "ED-_-JzvvFk",
 	"title": "Neural networks",
 	"date": "7/5/2016",
+	"main":"/classes/neural-aesthetic/02/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_02.png",
 	"dropbox": "https://www.dropbox.com/s/ln5ylmvfm6xku6q/neural%20aesthetic%20%40%20schoolofma%20--%2002%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
@@ -564,6 +572,7 @@
 	"youtube_id": "euMXlFJlSTQ",
 	"title": "Convolutional neural networks + t-SNE",
 	"date": "7/6/2016",
+	"main":"/classes/neural-aesthetic/03/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_03.png",
 	"dropbox": "https://www.dropbox.com/s/bcqcmgh4uegek8d/neural%20aesthetic%20%40%20schoolofma%20--%2003%20convnets%20%2B%20t-SNE.mp4?dl=1",
 	"bookmarks": [
@@ -588,6 +597,7 @@
 	"youtube_id": "l8lJ8hxHyyc",
 	"title": "Trolley problem, discussion {poor audio}",
 	"date": "7/7/2016",
+	"main":"/classes/neural-aesthetic/04/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_04.png",
 	"dropbox": "https://www.dropbox.com/s/f1sr8ogeih5zeuq/neural%20aesthetic%20%40%20schoolofma%20--%2004%20trolley%20problem%2C%20ethics.mp4?dl=1",
 	"bookmarks": [
@@ -607,6 +617,7 @@
 	"youtube_id": "JVD7MudjF10",
 	"title": "Wekinator, real-time applications of neural nets",
 	"date": "7/18/2016",
+	"main":"/classes/neural-aesthetic/05/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_09.png",
 	"dropbox": "https://www.dropbox.com/s/enudiynnm9kqrt7/neural%20aesthetic%20%40%20schoolofma%20--%2009%20wekinator%20examples%2C%20modules.mp4?dl=1",
 	"bookmarks": [
@@ -627,6 +638,7 @@
 	"youtube_id": "--eZESmJBXQ",
 	"title": "Applications of convnets",
 	"date": "7/19/2016",
+	"main":"/classes/neural-aesthetic/06/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_10.png",
 	"dropbox": "https://www.dropbox.com/s/lomjxbz3vokmfhl/neural%20aesthetic%20%40%20schoolofma%20--%2010%20convnet%20applications.mp4?dl=1",
 	"bookmarks": [
@@ -651,6 +663,7 @@
 	"youtube_id": "vrBh9Nd1QP4",
 	"title": "Recurrent neural networks",
 	"date": "7/20/2016",
+	"main":"/classes/neural-aesthetic/07/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_11.png",
 	"dropbox": "https://www.dropbox.com/s/2gv770ublilrn3k/neural%20aesthetic%20%40%20schoolofma%20--%2011%20recurrent%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
@@ -671,6 +684,7 @@
 	"youtube_id": "QES5UgIO9B4",
 	"title": "Game AI & reinforcement learning",
 	"date": "7/21/2016",
+	"main":"/classes/neural-aesthetic/08/",
 	"thumbnail": "/images/classes/neural-aesthetic/thumbnail_12.png",
 	"dropbox": "https://www.dropbox.com/s/g3neicmofe8r65y/neural%20aesthetic%20%40%20schoolofma%20--%2012%20reinforcement%20learning%20%2B%20game%20AI.mp4?dl=1",
 	"bookmarks": [
@@ -692,6 +706,7 @@
 	"youtube_id": "z0bynQjEpII",
 	"title": "Introduction, neural networks",
 	"date": "3/24/2016",
+	"main":"/classes/itp-S16/01/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_01.png",
 	"dropbox": "https://www.dropbox.com/s/jkgo87c2fe6zcmr/ml4a%20%40%20itp-nyu%20--%2001%20introduction%2C%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
@@ -712,6 +727,7 @@
 	"youtube_id": "lKmkt5LEDS8",
 	"title": "Applications, Wekinator",
 	"date": "3/31/2016",
+	"main":"/classes/itp-S16/02/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_02.png",
 	"dropbox": "https://www.dropbox.com/s/6gg635cbxazsp56/ml4a%20%40%20itp-nyu%20--%2002%20applications%2C%20wekinator.mp4?dl=1",
 	"bookmarks": [
@@ -736,6 +752,7 @@
 	"youtube_id": "z6k_RMKExlQ",
 	"title": "Convolutional neural networks",
 	"date": "4/7/2016",
+	"main":"/classes/itp-S16/03/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_03.png",
 	"dropbox": "https://www.dropbox.com/s/9beww4qyq2nyqhe/ml4a%20%40%20itp-nyu%20--%2003%20convolutional%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
@@ -758,6 +775,7 @@
 	"youtube_id": "V0glxY6fHTY",
 	"title": "Convnet applications",
 	"date": "4/14/2016",
+	"main":"/classes/itp-S16/04/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_04.png",
 	"dropbox": "https://www.dropbox.com/s/taaxxu6ebth78ay/ml4a%20%40%20itp-nyu%20--%2004%20convnet%20applications.mp4?dl=1",
 	"bookmarks": [
@@ -780,6 +798,7 @@
 	"youtube_id": "u18NVUvSEsU",
 	"title": "Recurrent neural networks",
 	"date": "4/21/2016",
+	"main":"/classes/itp-S16/05/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_05.png",
 	"dropbox": "https://www.dropbox.com/s/ap5tqz56n0m1fu0/ml4a%20%40%20itp-nyu%20--%2005%20recurrent%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
@@ -803,6 +822,7 @@
 	"youtube_id": "CRM7HYZYHvo",
 	"title": "Game AI and deep reinforcement learning",
 	"date": "4/28/2016",
+	"main":"/classes/itp-S16/06/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_06.png",
 	"dropbox": "https://www.dropbox.com/s/llzkkc9fj926qlr/ml4a%20%40%20itp-nyu%20--%2006%20reinforcement%20learning%2C%20games%2C%20generative%20models.mp4?dl=1",
 	"bookmarks": [
@@ -826,6 +846,7 @@
 	"youtube_id": "7wXnI2poifI",
 	"title": "The Neural Aesthetic",
 	"date": "6/4/2016",
+	"main":"/classes/itp-S16/07/",
 	"thumbnail": "/images/classes/itp-S16/thumbnail_07.png",
 	"dropbox": "https://www.dropbox.com/s/ilqrbn8i4n66sv7/ml4a%20%40%20itp-nyu%20--%20the%20neural%20aesthetic%206.4.mp4?dl=1",
 	"bookmarks": [

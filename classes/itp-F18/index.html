@@ -116,6 +116,8 @@ function goLectures() {
 			{% if c.youtube_id %}
 			<!--<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>-->
 			<div class="s_video">[<a href="{{c.main}}">video</a>]</div>
+			{% endif %}
+			{% if c.slides %}
 			<div class="s_slides">[<a href="{{c.slides}}">slides</a>]</div>
 			{% endif %}
 		</div>
