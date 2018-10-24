@@ -238,16 +238,45 @@
 	},
 	{
 		"date": "23 Oct 2018",
-		"title": "Generative models I",
-		"thumbnail": "",
-		"bookmarks": [],
+		"title": "Generative models",
+		"youtube_id": "U_u5CuLGVSc",
+		"main":"/classes/itp-F18/06/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_06/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_06.png",
+		"bookmarks": [
+			{"title":"Why study generative models?", "m":3, "s":29, "disp":"3:29"},
+			{"title":"What are generative models?", "m":8, "s":26, "disp":"8:26"},
+			{"title":"Dimensionality reduction and PCA demo", "m":12, "s":15, "disp":"12:15"},
+			{"title":"Pixel-space and the curse of dimensionality", "m":21, "s":57, "disp":"21:57"},
+			{"title":"Eigenfaces", "m":29, "s":46, "disp":"29:46"},
+			{"title":"Linear PCA vs Non-linear methods", "m":45, "s":25, "disp":"45:25"},
+			{"title":"Neural net & embeddings review", "m":51, "s":37, "disp":"51:37"},
+			{"title":"Autoencoders", "m":56, "s":26, "disp":"56:26"},
+			{"title":"Generative adversarial networks", "m":70, "s":04, "disp":"1:10:04"},
+			{"title":"DCGANs and feature arithmetic", "m":75, "s":, "disp":"1:15:30"},
+			{"title":"DCGAN examples projects", "m":79, "s":35, "disp":"1:19:35"},
+			{"title":"Deep generator networks", "m":91, "s":, "disp":"1:31:19"},
+			{"title":"High-resolution and progressively-grown GANs", "m":94, "s":37, "disp":"1:34:37"},
+			{"title":"GLOW and reversibility, fMRI-conditioned GANs", "m":100, "s":53, "disp":"1:40:53"},
+			{"title":"Generative models in text and audio domain", "m":105, "s":47, "disp":"1:45:47"},
+			{"title":"Practical resources and tutorials", "m":113, "s":39, "disp":"1:53:39"},
+			{"title":"Scraping Instagram, Google, and Bing", "m":115, "s":0, "disp":"1:55:00"},
+			{"title":"Finding publicly available datasets", "m":123, "s":42, "disp":"2:03:42"},
+			{"title":"Dataset utils for pre-processing datasets", "m":127, "s":35, "disp":"2:07:35"},
+			{"title":"Setting up Paperspace job-runner for DCGAN", "m":138, "s":9, "disp":"2:18:09"},
+			{"title":"Training DCGAN-tensorflow", "m":147, "s":7, "disp":"2:27:07"},
+			{"title":"Other GAN-training resources", "m":158, "s":46, "disp":"2:38:46"}
+		],
 		"summary": [
-			"Autoencoders",
-			"Generative adversarial networks"
+			"Autoencoders & Generative adversarial networks",
+			"Compiling, scraping, and processing datasets",
+			"Training DCGANs"
 		],
 		"pratical": [
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb\">Eigenfaces</a>",
-			"<a href=\"https://github.com/carpedm20/DCGAN-tensorflow\">DCGAN</a>",
+			"<a href=\"https://github.com/carpedm20/DCGAN-tensorflow\">DCGAN-tensorflow</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/utils\">dataset utils</a>",
+			"<a href=\"https://github.com/montoyamoraga/scrapers\">scrapers</a>"
 		],
 		"extra": [
 			"Garbage in, treasure out: a field guide to compiling datasets on a messy internet [planned]",
