@@ -1,0 +1,21 @@
+---
+layout: default
+title: ITP-NYU - Lecture 6, 10/23/2018
+date: 10/23/2018
+---
+
+{% assign class = "itp-F18" %}
+{% assign idx = 6 | plus: 0 %}
+{% assign data = site.data.lectures[class][idx] %}
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="The Neural Aesthetic @ ITP-NYU, Fall 2018" />
+<meta name="twitter:description" content="Lecture {{idx | plus:1}}: {{data.title}} [{{ page.date }}]" />
+<meta name="twitter:image" content="http://img.youtube.com/vi/{{data.youtube_id}}/0.jpg" />
+
+<h1><a href="/classes/itp-F18">The Neural Aesthetic @ ITP-NYU, Fall 2018</a></h1>
+<h2>Lecture {{idx | plus:0}}: {{data.title}}&nbsp;&nbsp;[{{ page.date }}]</h2>
+<h2>[<a href="{{data.slides}}">Slides</a>]</h2>
+
+{% include youtube_contents.html class=class index=idx width='400' %}
+
