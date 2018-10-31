@@ -285,14 +285,39 @@
 	},
 	{
 		"date": "30 Oct 2018",
-		"title": "Generative models II",
-		"thumbnail": "",
-		"bookmarks": [],
+		"title": "Conditional generative models",
+		"youtube_id": "ZiQNI_UwNbg",
+		"main":"/classes/itp-F18/07/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_07/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_07.png",
+		"bookmarks": [
+			{"title":"Review of generative models", "m":5, "s":58, "disp":"5:58"},
+			{"title":"Conditioning generative models", "m":18, "s":05, "disp":"18:05"},
+			{"title":"Image-to-image translation (pix2pix)", "m":25, "s":34, "disp":"25:34"},
+			{"title":"pix2pix projects", "m":29, "s":30, "disp":"29:30"},
+			{"title":"Conditioning on face landmarks", "m":37, "s":54, "disp":"37:54"},
+			{"title":"Conditioning on pose", "m":44, "s":13, "disp":"44:13"},
+			{"title":"Drawing interface for pix2pix", "m":50, "s":54, "disp":"50:54"},
+			{"title":"pix2pix ping-ponging and feedback loops", "m":51, "s":50, "disp":"51:50"},
+			{"title":"Interactive interfaces and edge2landscapes", "m":57, "s":47, "disp":"57:47"},
+			{"title":"Unpaired image translation and CycleGAN", "m":60, "s":37, "disp":"1:00:37"},
+			{"title":"CycleGAN projects", "m":64, "s":08, "disp":"1:04:08"},
+			{"title":"Object detection (YOLO) and dense captioning", "m":74, "s":52, "disp":"1:14:52"},
+			{"title":"Image-to-text & text-to-image", "m":79, "s":16, "disp":"1:19:16"},
+			{"title":"Installing dataset-utils & pix2pix/CycleGAN", "m":80, "s":54, "disp":"1:20:54"},
+			{"title":"Extracting faces from a movie", "m":92, "s":32, "disp":"1:32:32"},
+			{"title":"Making a pix2pix edge-to-photo dataset", "m":106, "s":50, "disp":"1:46:50"},
+			{"title":"Training pix2pix on faces", "m":115, "s":17, "disp":"1:55:17"},
+			{"title":"Scraping a dataset for CycleGAN", "m":124, "s":31, "disp":"2:04:31"},
+			{"title":"Training CycleGAN to turn faces to clowns", "m":136, "s":0, "disp":"2:16:00"},
+			{"title":"Installing densecap", "m":137, "s":51, "disp":"2:17:51"},
+			{"title":"Short pix2pixHD tutorial & CycleGAN results", "m":141, "s":30, "disp":"2:21:30"},
+			{"title":"Captioning images with densecap", "m":153, "s":01, "disp":"2:33:01"}
+		],
 		"summary": [
-			"Image-to-image translation",
-			"Super-resolution, denoising",
-			"WaveNets + SampleRNN",
-			"Progressive GANs"
+			"Image-to-image translation (pix2pix/CycleGAN)",
+			"Scraping and preparing parallel datasets",
+			"YOLO & dense captioning"
 		],
 		"pratical": [
 			"<a href=\"https://ml4a.github.io/guides/Pix2Pix\">pix2pix tutorial</a>",
@@ -307,7 +332,7 @@
 	},
 	{
 		"date": "6 Nov 2018",
-		"title": "Generative models III",
+		"title": "Recurrent neural networks",
 		"thumbnail": "",
 		"bookmarks": [],
 		"summary": [
@@ -360,7 +385,7 @@
 	},
 	{
 		"date": "4 Dec 2018",
-		"title": "Decentralized AI",
+		"title": "Autonomous artificial artist",
 		"thumbnail": "",
 		"bookmarks": [],
 		"summary": [
