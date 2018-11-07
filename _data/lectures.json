@@ -333,13 +333,42 @@
 	{
 		"date": "6 Nov 2018",
 		"title": "Recurrent neural networks",
-		"thumbnail": "",
-		"bookmarks": [],
+		"youtube_id": "HnBbsIXZ8Mo",
+		"main":"/classes/itp-F18/08/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_08/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_08.png",
+		"bookmarks": [
+			{"title":"Limitations of feedforward networks", "m":3, "s":10, "disp":"3:10"},
+			{"title":"Recurrent neural networks", "m":5, "s":45, "disp":"5:45"},
+			{"title":"RNN for text characters", "m":9, "s":47, "disp":"9:47"},
+			{"title":"Sequence-to-sequence models", "m":14, "s":31, "disp":"14:31"},
+			{"title":"Image-to-text", "m":17, "s":36, "disp":"17:36"},
+			{"title":"Dense captioning", "m":25, "s":21, "disp":"25:21"},
+			{"title":"Text-to-image", "m":28, "s":30, "disp":"28:30"},
+			{"title":"im2txt tutorial & scenescoop", "m":32, "s":13, "disp":"32:13"},
+			{"title":"LSTM", "m":48, "s":24, "disp":"48:24"},
+			{"title":"char-rnn examples/hacks", "m":53, "s":32, "disp":"53:32"},
+			{"title":"char-rnn tutorial", "m":78, "s":23, "disp":"1:18:23"},
+			{"title":"Sketch-RNN", "m":91, "s":57, "disp":"1:31:57"},
+			{"title":"Sketch-RNN tutorial", "m":106, "s":38, "disp":"1:46:38"},
+			{"title":"Other RNN projects", "m":122, "s":02, "disp":"2:02:02"},
+			{"title":"Attention, NTMs, and misc topics", "m":127, "s":23, "disp":"2:07:23"},
+			{"title":"Sampling from char-rnn", "m":132, "s":06, "disp":"2:12:06"}
+		],
 		"summary": [
+			"Recurrent networks & LSTMs",
+			"Sequence-to-sequence applications",
+			"im2txt, Sketch-RNN, char-rnn tutorials"
 		],
 		"pratical": [
+			"<a href=\"https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn\">Sketch-RNN</a>",
+			"<a href=\"https://github.com/sherjilozair/char-rnn-tensorflow\">char-rnn-tensorflow</a>",
+			"<a href=\"https://github.com/runwayml/models/tree/master/im2txt\">im2txt</a>"			
 		],
 		"extra": [
+			"<a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\">Understanding LSTMs</a>",
+			"<a href=\"http://karpathy.github.io/2015/05/21/rnn-effectiveness/\">Unreasonable Effectiveness of RNNs</a>",
+			"<a href=\"https://arxiv.org/abs/1704.03477\">A Neural Representation of Sketch Drawings</a>"			
 		]
 	},
 	{
