@@ -1,0 +1,197 @@
+---
+layout: default
+title: ITP-NYU - Fall 2018
+---
+
+{% assign class = "itp-S19" %}
+{% assign idx = 0 | plus: 0 %}
+{% assign classes = site.data.lectures[class] %}
+
+	
+<style>
+.s_entry {
+	border: solid #ddd;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: -60px;
+	margin-left: -60px;
+	padding: 4px;
+}
+.s_description, .s_materials, .s_extra{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.8em;
+	line-height: 130%;
+}
+.s_description ul, .s_materials ul, .s_extra ul{
+	margin-top: 6px	;
+	padding-left: 25px;
+}
+.s_description{
+	width: 40%;
+}
+.s_materials{
+	width: 28%;
+}
+.s_extra{
+	width: 31%;
+}
+.s_title {
+	background:#eee;
+	padding:8px;
+	font-size:1.5em;
+	margin-bottom:8px;
+}
+
+.s_date {
+	display: inline-block;
+	width:150px;
+}
+.s_name {
+	display: inline-block;
+	width: 300px;
+}
+.s_video {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+.s_slides {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+.s_header {
+	font-size:1.4em;
+	margin-left:8px;
+}
+
+.active {
+	background-color:#ccc;
+}
+#syllabus_link, #videos_link {
+	padding:5px;
+}
+
+</style>
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="ITP-NYU - Spring 19" />
+<meta name="twitter:description" content="Syllabus for Autonomous Artificial Artist @ ITP" />
+<meta name="twitter:image" content="https://pbs.twimg.com/profile_images/717391151041540096/K3Z09zCg_400x400.jpg" />
+
+
+<script>
+function goSyllabus() {
+	document.getElementById("syllabus_div").style.display = "block";
+	document.getElementById("videos").style.display = "none";
+	document.getElementById("syllabus_link").className = "active";
+	document.getElementById("videos_link").className = "";
+}
+function goLectures() {
+	document.getElementById("syllabus_div").style.display = "none";
+	document.getElementById("videos").style.display = "block";
+	document.getElementById("syllabus_link").className = "";
+	document.getElementById("videos_link").className = "active";
+}
+</script>
+
+<h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Spring 2019</h2>
+
+<h2>
+<span id="syllabus_link" class="active"><a href="#syllabus" onclick="javascript:goSyllabus();">Syllabus</a></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="videos_link"><a href="#lectures" onclick="javascript:goLectures();">Lectures</a></span>
+</h2>
+
+
+<div id="syllabus_div">
+
+{% for c in classes %}
+	<div class="s_entry">
+		<div class="s_title">
+			<!--<b>{{c.title}}</b>-->
+			<div class="s_date">{{c.date | date: '%d %b %Y' }}</div>
+			<div class="s_name"><b>{{c.title}}</b></div>
+			{% if c.youtube_id %}
+			<!--<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>-->
+			<div class="s_video">[<a href="{{c.main}}">video</a>]</div>
+			{% endif %}
+			{% if c.slides %}
+			<div class="s_slides">[<a href="{{c.slides}}">slides</a>]</div>
+			{% endif %}
+		</div>
+		<div class="s_description">
+			<span class="s_header"><b>Description</b></span>
+			<ul>
+				{% for d in c.summary %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_materials">
+			<span class="s_header"><b>Practical</b></span>
+			<ul>
+				{% for d in c.pratical %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_extra">
+			<span class="s_header"><b>Supplementary / links</b></span>
+			<ul>
+				{% for d in c.extra %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endfor %}
+
+</div>
+
+<div id="videos">
+<!-- % include class_preview.html class="itp-S19" index=0 % --> 
+</div>
+
+
+<script>
+
+window.onload = function() {
+	if (window.location.hash=="#syllabus") {
+		goSyllabus();
+	}
+	else if (window.location.hash=="#lectures") {
+		goLectures();
+	}
+	else {
+		goSyllabus();
+	}
+};
+
+
+</script>
+
+<!--
+
+Runway
+im2txt
+darknet + objection detection
+densecap
+
+The collective imagination
+ - artworks and projects made
+ - [optional] Linear regression  
+ - [optional] kNN
+
+Recurrent neural networks
+"RNNs, LSTMs, GRUs, NTMs
+"sequence-to-sequence models
+"char-rnn
+
+https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb
+seq https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb
+
+https://ml5js.org/docs/LSTMGenerator
+
+-->
