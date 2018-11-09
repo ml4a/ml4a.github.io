@@ -5,7 +5,8 @@
 		"main":"/classes/itp-S19/01/",
 		"bookmarks": [],
 		"summary": [
-			"The idea of the artificial autonomous artists",
+			"The idea of the artificial autonomous artist",
+			"The whole class \"in 60 minutes\""
 		],
 		"practical": [],
 		"extra": []
@@ -16,6 +17,8 @@
 		"main":"/classes/itp-S19/02/",
 		"bookmarks": [],
 		"summary": [
+			"Artificial life and early computational arts",
+			"The hive mind: crowd-sourced art projects"
 		],
 		"practical": [],
 		"extra": []
@@ -26,6 +29,8 @@
 		"main":"/classes/itp-S19/03/",
 		"bookmarks": [],
 		"summary": [
+			"GANs, autoencoders, oh my",
+			"Multiplexing deep generative models"
 		],
 		"practical": [],
 		"extra": []
@@ -36,6 +41,9 @@
 		"main":"/classes/itp-S19/04/",
 		"bookmarks": [],
 		"summary": [
+			"Taking the machine out of machine learning",
+			"Data and compute markets",
+			"OpenMined, TrueBit, and Ocean protocols"
 		],
 		"practical": [],
 		"extra": []
