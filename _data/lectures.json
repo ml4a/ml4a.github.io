@@ -1,10 +1,80 @@
 {"itp-S19":[
 	{
-		"title": "TBD",
+		"title": "The collective imagination",
 		"date": "31 Jan 2019",
 		"main":"/classes/itp-S19/01/",
 		"bookmarks": [],
-		"summary": [],
+		"summary": [
+			"Composition of artificial autonomous artists",
+			"Decentralized AI",
+			
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Art, autonomy, and AI",
+		"date": "7 Feb 2019",
+		"main":"/classes/itp-S19/02/",
+		"bookmarks": [],
+		"summary": [
+			"Curriculum is a work in progress"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Multiplayer games & crowd-sourced art",
+		"date": "14 Feb 2019",
+		"main":"/classes/itp-S19/03/",
+		"bookmarks": [],
+		"summary": [
+			"Curriculum is a work in progress"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Deep generative models",
+		"date": "21 Feb 2019",
+		"main":"/classes/itp-S19/04/",
+		"bookmarks": [],
+		"summary": [
+			"Curriculum is a work in progress"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "TBD",
+		"date": "28 Feb 2019",
+		"main":"/classes/itp-S19/05/",
+		"bookmarks": [],
+		"summary": [
+			"Curriculum is a work in progress"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "TBD",
+		"date": "7 Mar 2019",
+		"main":"/classes/itp-S19/06/",
+		"bookmarks": [],
+		"summary": [
+			"Putting the pieces together"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Genessis",
+		"date": "14 Mar 2019",
+		"main":"/classes/itp-S19/07/",
+		"bookmarks": [],
+		"summary": [
+			"The AAA finally sings"
+		],
 		"practical": [],
 		"extra": []
 	}
