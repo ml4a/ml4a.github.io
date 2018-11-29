@@ -83,10 +83,6 @@
 	}
 ],
 "itp-F18":[
-
-
-
-
 	{
 		"title": "The whole class \"in 60 minutes\"",
 		"date": "10 Sep 2018",
@@ -501,12 +497,40 @@
 	{
 		"date": "27 Nov 2018",
 		"title": "Reinforcement Learning & Natural Language Processing",
-		"thumbnail": "",
-		"bookmarks": [],
+		"youtube_id": "Pf_0IT5OjiI",
+		"main":"/classes/itp-F18/10/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_10/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_10.png",
+		"bookmarks": [
+			{"title":"Introduction to natural language processing (NLP)", "m":5, "s":40, "disp":"5:40"},
+			{"title":"Why is NLP hard?", "m":10, "s":02, "disp":"10:02"},
+			{"title":"Word embeddings", "m":12, "s":02, "disp":"12:02"},
+			{"title":"Properties of word vectors", "m":21, "s":10, "disp":"21:10"},
+			{"title":"Tutorial: universal sentence encoder", "m":28, "s":24, "disp":"28:24"},
+			{"title":"Applications of sentence embeddings", "m":37, "s":21, "disp":"37:21"},
+			{"title":"Machine translation", "m":43, "s":53, "disp":"43:53"},
+			{"title":"Tutorial: Wikipedia latent semantic analysis (LSA)", "m":50, "s":47, "disp":"50:47"},
+			{"title":"spaCy tutorial ", "m":60, "s":24, "disp":"1:00:24"},
+			{"title":"Introduction to reinforcement learning (RL)", "m":66, "s":23, "disp":"1:06:23"},
+			{"title":"The RL setup", "m":69, "s":07, "disp":"1:09:07"},
+			{"title":"Examples and challenges of RL problems", "m":72, "s":03, "disp":"1:12:03"},
+			{"title":"Deep Q-Networks for beating Atari games", "m":76, "s":22, "disp":"1:16:22"},
+			{"title":"Applications to robotics and humanoid simulation", "m":86, "s":24, "disp":"1:26:24"},
+			{"title":"Monte Carlo tree search (MCTS)", "m":91, "s":06, "disp":"1:31:06"},
+			{"title":"Tic-tac-toe MCTS", "m":93, "s":57, "disp":"1:33:57"},
+			{"title":"Introduction to Go and AlphaGo", "m":102, "s":18, "disp":"1:42:18"},
+			{"title":"How AlphaGo improves MCTS", "m":110, "s":18, "disp":"1:50:18"},
+			{"title":"AlphaGo vs. Lee Sedol", "m":115, "s":19, "disp":"1:55:19"},
+			{"title":"AlphaGo Zero and discarding training data", "m":118, "s":40, "disp":"1:58:40"},
+			{"title":"AlphaZero generalized", "m":125, "s":03, "disp":"2:05:03"},
+			{"title":"AlphaZero plays chess and crushes Stockfish", "m":129, "s":55, "disp":"2:09:55"},
+			{"title":"Curiosity-driven RL exploration ", "m":136, "s":26, "disp":"2:16:26"},
+			{"title":"Practical resources for reinforcement learning", "m":138, "s":01, "disp":"2:18:01"}
+		],
 		"summary": [
+			"Natural language processing",
 			"Agent-environment systems & games",
-			"AlphaGo, AlphaZero, DOTA",
-			"Natural language processing"
+			"AlphaGo and AlphaZero"
 		],
 		"pratical": [		
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb\">Q-learning</a>",
