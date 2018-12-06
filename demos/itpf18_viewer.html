@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>t-SNE viewer</title>
+
+				<script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
+        <style>
+            body {
+                background: #000;
+								color: #fff;
+            }
+            #glslCanvas {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }​
+        </style>
+
+    </head>
+    <body>
+			<div id="waiting"><h2>&nbsp;&nbsp;Please wait while, loading texture! Mouse to move, scroll to zoom...</h2></div>
+			<div id="content">
+        <canvas id="glslCanvas" width="1" height="1" data-fragment="
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform vec2 u_resolution;
+uniform sampler2D u_tex0; // /images/tsne_itpf18.jpg
+uniform vec2 u_tex0Resolution;
+uniform vec2 u_mouse;
+uniform float scale;
+
+void main(){
+    vec2 tex_resolution = u_tex0Resolution.xy / scale;
+    vec2 st = gl_FragCoord.xy / tex_resolution;
+    vec2 offset = clamp(-0.05 + 1.1 * u_mouse / u_resolution, 0.0, 1.0);
+    st += offset * (tex_resolution - u_resolution) / (tex_resolution);
+    gl_FragColor = texture2D(u_tex0, vec2(st.x, st.y));
+}"></canvas>
+			</div>
+    </body>
+
+    <script>
+        var canvas = document.getElementById("glslCanvas");
+        var sandbox = new GlslCanvas(canvas);
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+
+				var scroll = 1.0;
+				sandbox.setUniform("scale", scroll);
+				
+				document.addEventListener("wheel", function(e){
+					scroll = Math.min(7.0, Math.max(0.5, scroll + e.deltaY/500.0));
+					console.log(scroll);
+					sandbox.setUniform("scale", scroll);
+				});
+				
+    </script>
+</html>
