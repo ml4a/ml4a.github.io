@@ -547,18 +547,45 @@
 	{
 		"date": "4 Dec 2018",
 		"title": "Autonomous artificial artist",
-		"thumbnail": "",
-		"bookmarks": [],
+		"youtube_id": "Dqudnjj5wSo",
+		"main":"/classes/itp-F18/11/",
+		"slides": "https://storage.googleapis.com/ml4a.github.io/Slides_11/index.html",
+		"thumbnail": "/images/classes/itp-F18/thumbnail_11.png",
+		"bookmarks": [		
+			{"title":"Why AI and decentralization are relevant to each other", "m":5, "s":21, "disp":"5:21"},
+			{"title":"Quick primer on cryptography", "m":18, "s":35, "disp":"18:35"},
+			{"title":"Applications of public key cryptography", "m":27, "s":55, "disp":"27:55"},
+			{"title":"Hash functions and proof-of-work", "m":31, "s":39, "disp":"31:39"},
+			{"title":"Peer-to-peer networks", "m":38, "s":37, "disp":"38:37"},
+			{"title":"Problems with the web today & IPFS project", "m":46, "s":08, "disp":"46:08"},
+			{"title":"How Bitcoin works", "m":54, "s":45, "disp":"54:45"},
+			{"title":"Blockchain-secured assets & second-generation applications", "m":68, "s":55, "disp":"1:08:55"},
+			{"title":"Smart contracts & Ethereum", "m":73, "s":04, "disp":"1:13:04"},
+			{"title":"Applications of smart contracts", "m":76, "s":45, "disp":"1:16:45"},
+			{"title":"Decentralized autonomous organizations", "m":83, "s":42, "disp":"1:23:42"},
+			{"title":"Cryptoeconomics", "m":87, "s":41, "disp":"1:27:41"},
+			{"title":"Tokens and ICOs", "m":88, "s":50, "disp":"1:28:50"},
+			{"title":"Continuous organizations and curved bonding", "m":97, "s":09, "disp":"1:37:09"},
+			{"title":"Curation markets", "m":109, "s":14, "disp":"1:49:14"},
+			{"title":"Governance as curation and liquid democracy", "m":116, "s":22, "disp":"1:56:22"},
+			{"title":"Problems with centralized machine learning", "m":119, "s":48, "disp":"1:59:48"},
+			{"title":"Federated learning, homomorphic encryption, and OpenMined", "m":123, "s":35, "disp":"2:03:35"},
+			{"title":"Pros and cons of decentralized machine learning setups", "m":135, "s":36, "disp":"2:15:36"},
+			{"title":"Numerai and Ocean protocol", "m":138, "s":45, "disp":"2:18:45"},
+			{"title":"The idea of an autonomous artist", "m":145, "s":56, "disp":"2:25:56"},
+			{"title":"Crypto-collectibles, ArtDAOs, and other related ideas", "m":147, "s":27, "disp":"2:27:27"},
+			{"title":"Components of an autonomous artificial artist", "m":153, "s":14, "disp":"2:33:14"}
+		],
 		"summary": [
-			"Building blocks: cryptography, peer-to-peer networks, blockchains",
-			"Decentralized autonomous organizations & AI DAOs",
+			"Cryptography, peer-to-peer networks, DAOs",
+			"Curation markets and cryptoeconomics",
 			"Decentralizing machine learning"
 		],
 		"pratical": [
 		],
 		"extra": [
-			"<a href=\"https://docs.google.com/presentation/d/1RI6BnBsJtTBg3djZbD1hDjuhQagPBAUtAqcqoYWQTxU/\">Decentralized AI slides</a>",
 			"<a href=\"https://www.openmined.org/\">OpenMined</a>" 
+			"<a href=\"https://github.com/artonomous/artonomous-mvp\">Artonomous</a>"
 		]
 	},
 	{
