@@ -1,0 +1,142 @@
+{
+	"f_cifar_grid": {
+		"title":"CIFAR samples",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_cifar_grid/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_mnist_1layer": {
+		"title":"MNIST 1-layer neural net",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_mnist_1layer/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_mnist_grid": {
+		"title":"MNIST samples",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_mnist_grid/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_mnist_input": {
+		"title":"MNIST as input",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_mnist_input/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_mnist_weights": {
+		"title":"MNIST weights",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_mnist_weights/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_mnist_net": {
+		"title":"MNIST neural network",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_mnist_net/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_neural_net": {
+		"title":"Neural network",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_neural_net/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_neuron": {
+		"title":"Artificial neuron",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_neuron/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"f_weights_analogy": {
+		"title":"Weights analogy",
+		"description": "",
+		"category": "figure",
+		"link":"/demos/f_weights_analogy/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"tsne_viewer": {
+		"title":"t-SNE grid viewer",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/tsne_viewer.html",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"simple_forward_pass": {
+		"title":"Simple forward pass",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/simple_forward_pass/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"forward_pass_mnist": {
+		"title":"MNIST forward pass",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/forward_pass_mnist/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"forward_pass_cifar": {
+		"title":"CIFAR-10 forward pass",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/forward_pass_cifar/", 
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"convolution": {
+		"title":"Convolution",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/convolution/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"convolution_all": {
+		"title":"Convolution (all filters)",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/convolution_all/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},	
+	"confusion_mnist": {
+		"title":"MNIST confusion matrix",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/confusion_mnist/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"confusion_cifar": {
+		"title":"CIFAR-10 confusion matrix",
+		"description": "",
+		"category": "demo",
+		"link":"/demos/confusion_cifar/",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"mnist_weights": {
+		"title":"MNIST weights",
+		"description": "",
+		"category": "demo",
+		"link":"/dev/demos/mnist_weights.html",
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"cifar_weights": {
+		"title":"CIFAR-10 weights",
+		"description": "",
+		"category": "demo",
+		"link":"/dev/demos/cifar_weights.html", 
+		"thumb":"/images/guides_thumbs/default.jpg"
+	},
+	"Contribute": {
+		"title": "Contribute!",
+		"description": "Contribute!",
+		"category": "figure demo",
+		"link":"/guides/Contribute/",
+		"thumb":"/images/guides_thumbs/default.jpg",
+	}
+}
