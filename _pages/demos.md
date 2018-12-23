@@ -119,7 +119,7 @@ redirect_from: /demos2/
 
 <div id="platforms">
 	<div id="platform_all" class="platform"><a href="javascript:displayAll();">All</a></div>
-	<div id="platform_ml5" class="platform"><a href="javascript:displayByKey('ml5');">ml5.js</a></div>
+<!--	<div id="platform_ml5" class="platform"><a href="javascript:displayByKey('ml5');">ml5.js [soon]</a></div> -->
 	<div id="platform_demo" class="platform"><a href="javascript:displayByKey('demo');">Demos</a></div>
 	<div id="platform_figure" class="platform"><a href="javascript:displayByKey('figure');">Figures</a></div>
 </div>
