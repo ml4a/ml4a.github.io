@@ -4,139 +4,247 @@
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_cifar_grid/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_cifar_grid.jpg"
 	},
 	"f_mnist_1layer": {
 		"title":"MNIST 1-layer neural net",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_mnist_1layer/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_mnist_1layer.jpg"
 	},
 	"f_mnist_grid": {
 		"title":"MNIST samples",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_mnist_grid/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_mnist_grid.jpg"
 	},
 	"f_mnist_input": {
 		"title":"MNIST as input",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_mnist_input/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_mnist_input.jpg"
 	},
 	"f_mnist_weights": {
 		"title":"MNIST weights",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_mnist_weights/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_mnist_weights.jpg"
 	},
 	"f_mnist_net": {
 		"title":"MNIST neural network",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_mnist_net/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_mnist_net.jpg"
 	},
 	"f_neural_net": {
 		"title":"Neural network",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_neural_net/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_neural_net.jpg"
 	},
 	"f_neuron": {
 		"title":"Artificial neuron",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_neuron/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_neuron.jpg"
 	},
 	"f_weights_analogy": {
 		"title":"Weights analogy",
 		"description": "",
 		"category": "figure",
 		"link":"/demos/f_weights_analogy/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/f_weights_analogy.jpg"
 	},
 	"tsne_viewer": {
 		"title":"t-SNE grid viewer",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/tsne_viewer.html",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/tsne_viewer.jpg"
 	},
 	"simple_forward_pass": {
 		"title":"Simple forward pass",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/simple_forward_pass/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/simple_forward_pass.jpg"
 	},
 	"forward_pass_mnist": {
 		"title":"MNIST forward pass",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/forward_pass_mnist/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/forward_pass_mnist.jpg"
 	},
 	"forward_pass_cifar": {
 		"title":"CIFAR-10 forward pass",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/forward_pass_cifar/", 
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/forward_pass_cifar.jpg"
 	},
 	"convolution": {
 		"title":"Convolution",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/convolution/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/convolution.jpg"
 	},
 	"convolution_all": {
 		"title":"Convolution (all filters)",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/convolution_all/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/convolution_all.jpg"
 	},	
 	"confusion_mnist": {
 		"title":"MNIST confusion matrix",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/confusion_mnist/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/confusion_mnist.jpg"
 	},
 	"confusion_cifar": {
 		"title":"CIFAR-10 confusion matrix",
 		"description": "",
 		"category": "demo",
 		"link":"/demos/confusion_cifar/",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/confusion_cifar.jpg"
 	},
 	"mnist_weights": {
 		"title":"MNIST weights",
 		"description": "",
 		"category": "demo",
 		"link":"/dev/demos/mnist_weights.html",
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/mnist_weights.jpg"
 	},
 	"cifar_weights": {
 		"title":"CIFAR-10 weights",
 		"description": "",
 		"category": "demo",
 		"link":"/dev/demos/cifar_weights.html", 
-		"thumb":"/images/guides_thumbs/default.jpg"
+		"thumb":"/images/demos_thumbs/cifar_weights.jpg"
+	},
+	"ml5_classifier": {
+		"title":"Simple template: Webcam classifier",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/BJkaHBMYm", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_image": {
+		"title":"Webcam classifier + image",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/rJqk5_1aX", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_sound": {
+		"title":"Webcam classifier + sound",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/ryLlIOJpX", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_camera": {
+		"title":"Trainable Camera",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/BynhuHsqX", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_guitar": {
+		"title":"Play guitar with your webcam",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/genekogan/sketches/SytKVEjg4", 
+		"thumb":"/images/demos_thumbs/ml5_guitar.jpg",
+	},
+	"ml5_mobilenet": {
+		"title":"Mobilenet pretrained classification",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/H1L-KrzFQ", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_speech": {
+		"title":"Classification to speech",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/Sk8M6mqh7", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_regression": {
+		"title":"Webcam regressor",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/B1g7ds0wm", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_regression_generative": {
+		"title":"Regression + generativity",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/genekogan/sketches/BkHwZ4il4", 
+		"thumb":"/images/demos_thumbs/ml5_regression_generative.jpg",
+	},
+	"ml5_regression_pong": {
+		"title":"Webcam pong",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/genekogan/sketches/SJgB8rceN", 
+		"thumb":"/images/demos_thumbs/ml5_regression_pong.jpg",
+	},
+	"ml5_playback": {
+		"title":"Playback rate camera",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/HyEDToYnQ", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_posenet": {
+		"title":"Webcam PoseNet",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/rkz42BzYQ", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"ml5_posenet_sound": {
+		"title":"PoseNet + Sound",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/genekogan/sketches/Hk2Q4Sqe4", 
+		"thumb":"/images/demos_thumbs/ml5_posenet_sound.jpg",
+	},
+	"ml5_posenet_nose": {
+		"title":"Draw with your nose",
+		"description": "",
+		"category": "ml5",
+		"link":"https://editor.p5js.org/AndreasRef/sketches/r1_w73FhQ", 
+		"thumb":"/images/guides_thumbs/default.jpg",
+	},
+	"facetracker_knn": {
+		"title":"Facetracker + k-Nearest Neighbors",
+		"description": "",
+		"category": "demos",
+		"link":"https://editor.p5js.org/genekogan/sketches/S1rLrG2l4", 
+		"thumb":"/images/guides_thumbs/default.jpg",
 	},
 	"Contribute": {
 		"title": "Contribute!",
 		"description": "Contribute!",
-		"category": "figure demo",
+		"category": "figure demo ml5",
 		"link":"/guides/Contribute/",
 		"thumb":"/images/guides_thumbs/default.jpg",
 	}
 }
+
+
+

@@ -85,9 +85,6 @@ redirect_from: /guides2/
 
 
 
-
-
-
 {% include guide_preview.md name="Contribute" %}
 
 {% include guide_preview.md name="fundamentals" %}
