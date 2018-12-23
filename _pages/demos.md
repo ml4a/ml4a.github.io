@@ -170,7 +170,7 @@ redirect_from: /demos2/
 
 function highlightButton(keyword){
 	document.getElementById("platform_figure").style.border = "none";
-	document.getElementById("platform_ml5").style.border = "none";
+//	document.getElementById("platform_ml5").style.border = "none";
 	document.getElementById("platform_demo").style.border = "none";
 	document.getElementById("platform_all").style.border = "none";
 	document.getElementById("platform_"+keyword).style.border = "1px solid #1abc9c";
