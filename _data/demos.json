@@ -1,56 +1,56 @@
 {
 	"f_cifar_grid": {
 		"title":"CIFAR samples",
-		"description": "",
+		"description": "Grid of random image samples from CIFAR-10",
 		"category": "figure",
 		"link":"/demos/f_cifar_grid/",
 		"thumb":"/images/demos_thumbs/f_cifar_grid.jpg"
 	},
 	"f_mnist_1layer": {
 		"title":"MNIST 1-layer neural net",
-		"description": "",
+		"description": "Depiction of a 1-layer neural network for MNIST classification",
 		"category": "figure",
 		"link":"/demos/f_mnist_1layer/",
 		"thumb":"/images/demos_thumbs/f_mnist_1layer.jpg"
 	},
 	"f_mnist_grid": {
 		"title":"MNIST samples",
-		"description": "",
+		"description": "Grid of random image samples from MNIST",
 		"category": "figure",
 		"link":"/demos/f_mnist_grid/",
 		"thumb":"/images/demos_thumbs/f_mnist_grid.jpg"
 	},
 	"f_mnist_input": {
 		"title":"MNIST as input",
-		"description": "",
+		"description": "Pixels as input",
 		"category": "figure",
 		"link":"/demos/f_mnist_input/",
 		"thumb":"/images/demos_thumbs/f_mnist_input.jpg"
 	},
 	"f_mnist_weights": {
 		"title":"MNIST weights",
-		"description": "",
+		"description": "Visualizing weights of a trained MNIST classification network",
 		"category": "figure",
 		"link":"/demos/f_mnist_weights/",
 		"thumb":"/images/demos_thumbs/f_mnist_weights.jpg"
 	},
 	"f_mnist_net": {
 		"title":"MNIST neural network",
-		"description": "",
+		"description": "An ordinary architecture for MNIST image classification",
 		"category": "figure",
 		"link":"/demos/f_mnist_net/",
 		"thumb":"/images/demos_thumbs/f_mnist_net.jpg"
 	},
 	"f_neural_net": {
 		"title":"Neural network",
-		"description": "",
+		"description": "The basic parts of a neural network and terminology",
 		"category": "figure",
 		"link":"/demos/f_neural_net/",
 		"thumb":"/images/demos_thumbs/f_neural_net.jpg"
 	},
 	"f_neuron": {
 		"title":"Artificial neuron",
-		"description": "",
+		"description": "The most elementary particle of a neural network",
 		"category": "figure",
 		"link":"/demos/f_neuron/",
 		"thumb":"/images/demos_thumbs/f_neuron.jpg"
@@ -64,70 +64,70 @@
 	},
 	"tsne_viewer": {
 		"title":"t-SNE grid viewer",
-		"description": "",
+		"description": "Explore a t-SNE grid of animal images live in your browser",
 		"category": "demo",
 		"link":"/demos/tsne_viewer.html",
 		"thumb":"/images/demos_thumbs/tsne_viewer.jpg"
 	},
 	"simple_forward_pass": {
 		"title":"Simple forward pass",
-		"description": "",
+		"description": "A demo showing each step of a forward pass in a neural network",
 		"category": "demo",
 		"link":"/demos/simple_forward_pass/",
 		"thumb":"/images/demos_thumbs/simple_forward_pass.jpg"
 	},
 	"forward_pass_mnist": {
 		"title":"MNIST forward pass",
-		"description": "",
+		"description": "Demo of classifying MNIST images",
 		"category": "demo",
 		"link":"/demos/forward_pass_mnist/",
 		"thumb":"/images/demos_thumbs/forward_pass_mnist.jpg"
 	},
 	"forward_pass_cifar": {
 		"title":"CIFAR-10 forward pass",
-		"description": "",
+		"description": "Demo of classifying CIFAR-10 images",
 		"category": "demo",
 		"link":"/demos/forward_pass_cifar/", 
 		"thumb":"/images/demos_thumbs/forward_pass_cifar.jpg"
 	},
 	"convolution": {
 		"title":"Convolution",
-		"description": "",
+		"description": "How convolution works in a convnet",
 		"category": "demo",
 		"link":"/demos/convolution/",
 		"thumb":"/images/demos_thumbs/convolution.jpg"
 	},
 	"convolution_all": {
 		"title":"Convolution (all filters)",
-		"description": "",
+		"description": "Show all the convolutional filters in a convnet layer",
 		"category": "demo",
 		"link":"/demos/convolution_all/",
 		"thumb":"/images/demos_thumbs/convolution_all.jpg"
 	},	
 	"confusion_mnist": {
 		"title":"MNIST confusion matrix",
-		"description": "",
+		"description": "A confusion matrix of a trained MNIST classification network",
 		"category": "demo",
 		"link":"/demos/confusion_mnist/",
 		"thumb":"/images/demos_thumbs/confusion_mnist.jpg"
 	},
 	"confusion_cifar": {
 		"title":"CIFAR-10 confusion matrix",
-		"description": "",
+		"description": "A confusion matrix of a trained CIFAR-10 classification network",
 		"category": "demo",
 		"link":"/demos/confusion_cifar/",
 		"thumb":"/images/demos_thumbs/confusion_cifar.jpg"
 	},
 	"mnist_weights": {
 		"title":"MNIST weights",
-		"description": "",
+		"description": "Visualize the weights of a 1-layer MNIST network developing in real-time",
 		"category": "demo",
 		"link":"/dev/demos/mnist_weights.html",
 		"thumb":"/images/demos_thumbs/mnist_weights.jpg"
 	},
 	"cifar_weights": {
 		"title":"CIFAR-10 weights",
-		"description": "",
+		"description": "Visualize the weights of a 1-layer CIFAR-10 network developing in real-time",
 		"category": "demo",
 		"link":"/dev/demos/cifar_weights.html", 
 		"thumb":"/images/demos_thumbs/cifar_weights.jpg"
