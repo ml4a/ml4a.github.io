@@ -228,6 +228,17 @@
 			"Masking, distorting the canvas, and video feedback"
 		]
 	},
+	"wiki-tsne": {
+		"title": "Wiki t-SNE",
+		"description": "Create a t-SNE grid of Wikipedia articles arranged by topical similarity",
+		"category": "python",
+		"link":"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/wiki-tSNE.ipynb",
+		"thumb":"/images/guides_thumbs/wiki-tsne.jpg",
+		"summary":[
+			"Latent semantic analysis on corpus of text documents",
+			"Generate a t-SNE grid from LSA embeddings"
+		]
+	},
 	"word2vec": {
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
@@ -257,6 +268,17 @@
 		"category": "python",
 		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb",
 		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
+		"summary":[
+			"Deep Q-Networks for larger state spaces",
+			"Implementing and training DQN for paddle-ball game"
+		]
+	},
+	"biggan": {
+		"title": "BigGANs",
+		"description": "Various techniques for generating interesting images with BigGAN pre-trained models (in Colab)",
+		"category": "python",
+		"link":"https://colab.research.google.com/drive/1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ",
+		"thumb":"/images/guides_thumbs/biggan.jpg",
 		"summary":[
 			"Deep Q-Networks for larger state spaces",
 			"Implementing and training DQN for paddle-ball game"

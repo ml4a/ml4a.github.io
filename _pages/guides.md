@@ -104,12 +104,14 @@ redirect_from: /guides2/
 {% include guide_preview.md name="image-tsne" %}
 {% include guide_preview.md name="audio-tsne" %}
 {% include guide_preview.md name="text-retrieval" %}
+{% include guide_preview.md name="wiki-tsne" %}
 {% include guide_preview.md name="neural-painter" %}
 {% include guide_preview.md name="word2vec" %}
 {% include guide_preview.md name="eigenfaces" %}
 {% include guide_preview.md name="neural-synth" %}
 {% include guide_preview.md name="qlearn" %}
 {% include guide_preview.md name="qnets" %}
+{% include guide_preview.md name="biggan" %}
 
 {% include guide_preview.md name="AudioClassifier" %}
 {% include guide_preview.md name="AudioTSNEViewer" %}
