@@ -69,7 +69,7 @@ title: ITP-NYU - Fall 2018
 .active {
 	background-color:#ccc;
 }
-#syllabus_link, #videos_link {
+#syllabus_link, #videos_link, #projects_link {
 	padding:5px;
 }
 
@@ -85,14 +85,26 @@ title: ITP-NYU - Fall 2018
 function goSyllabus() {
 	document.getElementById("syllabus_div").style.display = "block";
 	document.getElementById("videos").style.display = "none";
+	document.getElementById("projects").style.display = "none";
 	document.getElementById("syllabus_link").className = "active";
 	document.getElementById("videos_link").className = "";
+	document.getElementById("projects_link").className = "";
 }
 function goLectures() {
 	document.getElementById("syllabus_div").style.display = "none";
 	document.getElementById("videos").style.display = "block";
+	document.getElementById("projects").style.display = "none";
 	document.getElementById("syllabus_link").className = "";
-	document.getElementById("videos_link").className = "active";
+	document.getElementById("videos_link").className = "active"
+	document.getElementById("projects_link").className = "";
+}
+function goProjects() {
+	document.getElementById("syllabus_div").style.display = "none";
+	document.getElementById("videos").style.display = "none";
+	document.getElementById("projects").style.display = "block";
+	document.getElementById("syllabus_link").className = "";
+	document.getElementById("videos_link").className = ""
+	document.getElementById("projects_link").className = "active";
 }
 </script>
 
@@ -102,6 +114,8 @@ function goLectures() {
 <span id="videos_link" class="active"><a href="#lectures" onclick="javascript:goLectures();">Lectures</a></span>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <span id="syllabus_link"><a href="#syllabus" onclick="javascript:goSyllabus();">Syllabus</a></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="projects_link"><a href="#projects" onclick="javascript:goProjects();">Student projects</a></span>
 </h2>
 
 
@@ -166,6 +180,31 @@ function goLectures() {
 </div>
 
 
+<div id="projects">
+	<ul>
+		<li><a href="https://www.aidanjnelson.com/blog/neural-aesthetic/painting-agents/">Aidan Nelson</a></li>
+		<li><a href="http://www.buoydontfloat.com/music-sounds-better-with-you/">Anthony Bui</a></li>
+
+		<li><a href="https://medium.com/@dongphilyoo/how-to-train-pix2pix-model-and-generating-on-the-web-with-ml5-js-87d879fb4224"> Dongphil Yoo</a> <a href="https://dongphilyoo.github.io/humansofnowhere/index.html"> <a href="https://www.instagram.com/__humansofnw__/">[2]</a></li>
+		
+		<li><a href="https://ellennickles.com/itpblog/2018/12/12/week-14-generating-holy-scripture">Ellen Nickles</a></li>
+		<li><a href="https://medium.com/@itayniv/lets-read-a-story-a-study-on-storytelling-for-children-using-machine-learning-tools-1b631bbbffac">Itay Niv</a> <a href="http://letsreadastory.itayniv.com/">[2]</a> <a href="http://flocksound.live/">[3]</a></li>
+
+		<li><a href="https://xujenna.com/NYQuotient/">Jenna Xu</a> <a href="http://www.xujenna.com/itp_blog/2018/12/14/how-new-york-are-you-documentation/">[2]</a></li>
+		<li><a href="https://jessesimpson.tumblr.com/post/181440206379/final-project-musicvae-and-keith-jarrett-and">Jesse Simpson</a></li>
+
+		<li><a href="https://cosmicforest.parkjoohyun.com/">Joohyun Park</a></li>
+		<li><a href="http://chung.work/blog/2018/12/neural-city/">Lucas Chung</a></li>
+
+		<li><a href="https://michaeljblum.github.io/MachineProust/">Michael Blum</a> <a href="https://www.youtube.com/watch?v=vEnZ3vKvWrw">[2]</a> <a href="https://www.youtube.com/watch?v=JiuyfV8l7t4">[3]</a></li>
+		
+		<li><a href="https://sofiaitp.wordpress.com/2018/12/04/this-is-not-a-theremin/">Sofia Suazo</a></li>
+		<li><a href="https://wp.nyu.edu/zarakitp/neural-aesthetics/">Zahra Khosravi</a> <a href="https://youtu.be/r49b9K2MP_Q">[2]</a></li>
+
+	</ul>
+</div>
+
+
 <script>
 
 window.onload = function() {
@@ -175,6 +214,9 @@ window.onload = function() {
 	else if (window.location.hash=="#lectures") {
 		goLectures();
 	}
+	else if (window.location.hash=="#projects") {
+		goProjects();
+	}
 	else {
 		goLectures();
 	}
@@ -182,27 +224,3 @@ window.onload = function() {
 
 
 </script>
-
-<!--
-
-Runway
-im2txt
-darknet + objection detection
-densecap
-
-The collective imagination
- - artworks and projects made
- - [optional] Linear regression  
- - [optional] kNN
-
-Recurrent neural networks
-"RNNs, LSTMs, GRUs, NTMs
-"sequence-to-sequence models
-"char-rnn
-
-https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb
-seq https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb
-
-https://ml5js.org/docs/LSTMGenerator
-
--->
