@@ -285,6 +285,51 @@
 		]
 	},
 
+	"maskrcnn": {
+		"title": "Object segmentation",
+		"description": "Identifying and segmenting objects with Mask-RCNN",
+		"category": "python",
+		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/Mask_RCNN.ipynb",
+		"thumb":"/images/guides_thumbs/maskrcnn.jpg",
+		"summary":[
+			"Segmenting objects from images with Mask-RCNN",
+			"Background removal"
+		]
+	},
+	"quickdraw": {
+		"title": "QuickDraw dataset",
+		"description": "Working with Google's QuickDraw dataset",
+		"category": "python",
+		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/QuickDraw10.ipynb",
+		"thumb":"/images/guides_thumbs/quickdraw.jpg",
+		"summary":[
+			"Loading sketches from Google's QuickDraw dataset",
+			"Basic QuickDraw classifier in Keras"
+		]
+	},
+	"autoencoders": {
+		"title": "Autoencoders",
+		"description": "Training simple autoencoders to reconstruct sketches",
+		"category": "python",
+		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/AutoEncoders.ipynb",
+		"thumb":"/images/guides_thumbs/autoencoders.jpg",
+		"summary":[
+			"Training an autoencoder on the QuickDraw dataset",
+			"Generating latent space interplations from autencoders"
+		]
+	},
+	"biggan2": {
+		"title": "BigGAN tricks",
+		"description": "A selection of tricks for working with BigGANs",
+		"category": "python",
+		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/BigGanEx.ipynb",
+		"thumb":"/images/guides_thumbs/biggan2.jpg",
+		"summary":[
+			"Linear and hyperspherical latent space interpolation",
+			"Modulating background while holding foreground constant in generation",
+			"Working with truncation"
+		]
+	},
 	
 	"AudioClassifier": {
 		"title": "Audio classifier",

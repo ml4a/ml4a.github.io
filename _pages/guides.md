@@ -84,7 +84,6 @@ redirect_from: /guides2/
 </div>
 
 
-
 {% include guide_preview.md name="Contribute" %}
 
 {% include guide_preview.md name="fundamentals" %}
@@ -97,6 +96,7 @@ redirect_from: /guides2/
 {% include guide_preview.md name="keras-classification" %}
 {% include guide_preview.md name="cnn" %}
 {% include guide_preview.md name="transfer-learning" %}
+{% include guide_preview.md name="quickdraw" %}
 {% include guide_preview.md name="rnn" %}
 {% include guide_preview.md name="seq2seq" %}
 {% include guide_preview.md name="image-search" %}
@@ -108,10 +108,13 @@ redirect_from: /guides2/
 {% include guide_preview.md name="neural-painter" %}
 {% include guide_preview.md name="word2vec" %}
 {% include guide_preview.md name="eigenfaces" %}
+{% include guide_preview.md name="autoencoders" %}
 {% include guide_preview.md name="neural-synth" %}
 {% include guide_preview.md name="qlearn" %}
 {% include guide_preview.md name="qnets" %}
 {% include guide_preview.md name="biggan" %}
+{% include guide_preview.md name="biggan2" %}
+{% include guide_preview.md name="maskrcnn" %}
 
 {% include guide_preview.md name="AudioClassifier" %}
 {% include guide_preview.md name="AudioTSNEViewer" %}
