@@ -1,0 +1,218 @@
+---
+layout: default
+title: ITP-NYU - Fall 2019
+---
+
+{% assign class = "itp-F19" %}
+{% assign idx = 0 | plus: 0 %}
+{% assign classes = site.data.lectures[class] %}
+
+	
+<style>
+.s_entry {
+	border: solid #ddd;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-right: -60px;
+	margin-left: -60px;
+	padding: 4px;
+}
+.s_description, .s_materials, .s_extra{
+	display: inline-block;
+	vertical-align: top;
+	font-size: 0.8em;
+	line-height: 130%;
+}
+.s_description ul, .s_materials ul, .s_extra ul{
+	margin-top: 6px	;
+	padding-left: 25px;
+}
+.s_description{
+	width: 40%;
+}
+.s_materials{
+	width: 28%;
+}
+.s_extra{
+	width: 31%;
+}
+.s_title {
+	background:#eee;
+	padding:8px;
+	font-size:1.5em;
+	margin-bottom:8px;
+}
+
+.s_date {
+	display: inline-block;
+	width:150px;
+}
+.s_name {
+	display: inline-block;
+	width: 300px;
+}
+.s_video {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+.s_slides {
+	display: inline-block;
+	width:80px;
+	float:right;
+}
+.s_header {
+	font-size:1.4em;
+	margin-left:8px;
+}
+
+.active {
+	background-color:#ccc;
+}
+#syllabus_link, #videos_link, #projects_link {
+	padding:5px;
+}
+
+</style>
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="ITP-NYU - Fall 2019" />
+<meta name="twitter:description" content="Syllabus for The Neural Aesthetic @ ITP" />
+<meta name="twitter:image" content="https://pbs.twimg.com/profile_images/717391151041540096/K3Z09zCg_400x400.jpg" />
+
+
+<script>
+function goSyllabus() {
+	document.getElementById("syllabus_div").style.display = "block";
+	document.getElementById("videos").style.display = "none";
+	document.getElementById("projects").style.display = "none";
+	document.getElementById("syllabus_link").className = "active";
+	document.getElementById("videos_link").className = "";
+	document.getElementById("projects_link").className = "";
+}
+function goLectures() {
+	document.getElementById("syllabus_div").style.display = "none";
+	document.getElementById("videos").style.display = "block";
+	document.getElementById("projects").style.display = "none";
+	document.getElementById("syllabus_link").className = "";
+	document.getElementById("videos_link").className = "active"
+	document.getElementById("projects_link").className = "";
+}
+function goProjects() {
+	document.getElementById("syllabus_div").style.display = "none";
+	document.getElementById("videos").style.display = "none";
+	document.getElementById("projects").style.display = "block";
+	document.getElementById("syllabus_link").className = "";
+	document.getElementById("videos_link").className = ""
+	document.getElementById("projects_link").className = "active";
+}
+</script>
+
+<h2>The Neural Aesthetic @ <a href="http://tisch.nyu.edu/itp">ITP-NYU</a>, Fall 2019</h2>
+
+<h2>
+<span id="videos_link" class="active"><a href="#lectures" onclick="javascript:goLectures();">Lectures</a></span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="syllabus_link"><a href="#syllabus" onclick="javascript:goSyllabus();">Syllabus</a></span>
+<!--
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<span id="projects_link"><a href="#projects" onclick="javascript:goProjects();">Student projects</a></span>
+-->
+</h2>
+
+
+<div id="syllabus_div">
+
+{% for c in classes %}
+	<div class="s_entry">
+		<div class="s_title">
+			<!--<b>{{c.title}}</b>-->
+			<div class="s_date">{{c.date | date: '%d %b %Y' }}</div>
+			<div class="s_name"><b>{{c.title}}</b></div>
+			{% if c.youtube_id %}
+			<!--<div class="s_video">[<a href="https://www.youtube.com/watch?v={{c.youtube_id}}">video</a>]</div>-->
+			<div class="s_video">[<a href="{{c.main}}">video</a>]</div>
+			{% endif %}
+			{% if c.slides %}
+			<div class="s_slides">[<a href="{{c.slides}}">slides</a>]</div>
+			{% endif %}
+		</div>
+		<div class="s_description">
+			<span class="s_header"><b>Description</b></span>
+			<ul>
+				{% for d in c.summary %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_materials">
+			<span class="s_header"><b>Practical</b></span>
+			<ul>
+				{% for d in c.pratical %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="s_extra">
+			<span class="s_header"><b>Supplementary / links</b></span>
+			<ul>
+				{% for d in c.extra %}
+					<li>{{d}}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endfor %}
+
+</div>
+
+<div id="videos">
+		{% include class_preview.html class="itp-F19" index=0 %}
+</div>
+
+
+<div id="projects">
+	<ul>
+		<!--
+		<li><a href="https://www.aidanjnelson.com/blog/neural-aesthetic/painting-agents/">Aidan Nelson</a></li>
+		<li><a href="http://www.buoydontfloat.com/music-sounds-better-with-you/">Anthony Bui</a></li>
+
+		<li><a href="https://medium.com/@dongphilyoo/how-to-train-pix2pix-model-and-generating-on-the-web-with-ml5-js-87d879fb4224"> Dongphil Yoo</a> <a href="https://dongphilyoo.github.io/humansofnowhere/index.html"> <a href="https://www.instagram.com/__humansofnw__/">[2]</a></li>
+		
+		<li><a href="https://ellennickles.com/itpblog/2019/12/12/week-14-generating-holy-scripture">Ellen Nickles</a></li>
+		<li><a href="https://medium.com/@itayniv/lets-read-a-story-a-study-on-storytelling-for-children-using-machine-learning-tools-1b631bbbffac">Itay Niv</a> <a href="http://letsreadastory.itayniv.com/">[2]</a> <a href="http://flocksound.live/">[3]</a></li>
+
+		<li><a href="https://xujenna.com/NYQuotient/">Jenna Xu</a> <a href="http://www.xujenna.com/itp_blog/2019/12/14/how-new-york-are-you-documentation/">[2]</a></li>
+		<li><a href="https://jessesimpson.tumblr.com/post/181440206379/final-project-musicvae-and-keith-jarrett-and">Jesse Simpson</a></li>
+
+		<li><a href="https://cosmicforest.parkjoohyun.com/">Joohyun Park</a></li>
+		<li><a href="http://chung.work/blog/2019/12/neural-city/">Lucas Chung</a></li>
+
+		<li><a href="https://michaeljblum.github.io/MachineProust/">Michael Blum</a> <a href="https://www.youtube.com/watch?v=vEnZ3vKvWrw">[2]</a> <a href="https://www.youtube.com/watch?v=JiuyfV8l7t4">[3]</a></li>
+		
+		<li><a href="https://sofiaitp.wordpress.com/2019/12/04/this-is-not-a-theremin/">Sofia Suazo</a></li>
+		<li><a href="https://wp.nyu.edu/zarakitp/neural-aesthetics/">Zahra Khosravi</a> <a href="https://youtu.be/r49b9K2MP_Q">[2]</a></li>
+		-->
+	</ul>
+</div>
+
+
+<script>
+
+window.onload = function() {
+	if (window.location.hash=="#syllabus") {
+		goSyllabus();
+	}
+	else if (window.location.hash=="#lectures") {
+		goLectures();
+	}
+	else if (window.location.hash=="#projects") {
+		goProjects();
+	}
+	else {
+		goSyllabus();
+	}
+};
+
+
+</script>

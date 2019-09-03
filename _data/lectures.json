@@ -1,4 +1,529 @@
-{"itp-S19":[
+{
+
+
+"itp-F19":[
+	{
+		"title": "The whole class \"in 60 minutes\"",
+		"date": "3 Sep 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/01/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_01.png",
+		"bookmarks": [
+			{"title":"Introduction", "m":0, "s":0, "disp":"0:00"},
+			{"title":"Course logistics", "m":3, "s":21, "disp":"3:21"}, 
+			{"title":"Syllabus", "m":8, "s":13, "disp":"8:13"}, 
+			{"title":"Tools and frameworks", "m":16, "s":43, "disp":"16:43"}, 
+			{"title":"Introduction to machine learning", "m":27, "s":06, "disp":"27:06"}, 
+			{"title":"AI resurgence and deep learning", "m":36, "s":36, "disp":"36:36"}, 
+			{"title":"Characteristics of deep learning", "m":47, "s":11, "disp":"47:11"}, 
+			{"title":"Types of machine learning", "m":51, "s":22, "disp":"51:22"}, 
+			{"title":"Supervised learning", "m":55, "s":14, "disp":"55:14"}, 
+			{"title":"Examples of supervised learning", "m":62, "s":42, "disp":"1:02:42"}, 
+			{"title":"Neural networks and feature extraction", "m":75, "s":28, "disp":"1:15:28"}, 
+			{"title":"Core applications of feature extraction", "m":78, "s":20, "disp":"1:18:20"}, 
+			{"title":"Interactive machine learning", "m":84, "s":40, "disp":"1:24:40"}, 
+			{"title":"Deepdream, style transfer, and texture synthesis", "m":91, "s":40, "disp":"1:31:40"}, 
+			{"title":"Generative models", "m":96, "s":19, "disp":"1:36:19"}, 
+			{"title":"Conditional generative models (Image-to-image)", "m":106, "s":18, "disp":"1:46:18"}, 
+			{"title":"Voice synthesis, language models, and miscellaneous", "m":121, "s":30, "disp":"2:01:30"}, 
+			{"title":"Reinforcement learning and decentralized AI", "m":127, "s":35, "disp":"2:07:35"}
+		],
+		"summary": [
+			"Course goals, logistics, and resources",
+			"Introduction to AI, machine learning, and deep learning",
+			"The whole class \"in 60 minutes\"",
+			"Getting setup with Runway and ml5.js"
+		],
+		"pratical": [
+			"<a href=\"https://runwayml.com/\">Runway</a>",
+			"<a href=\"https://ml5js.org/\">ml5.js</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-demos\">ml4a-demos</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-ofx\">ml4a-ofx</a>"
+		],
+		"extra": [
+			"<a href=\"https://ml4a.github.io/guides/\">ml4a-guides</a>",
+			"<a href=\"https://experiments.withgoogle.com/collection/ai\">AI experiments</a>"
+		]	
+	},
+	{
+		"title": "Neural networks",
+		"date": "10 Sep 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/02/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_02.png",
+		"bookmarks": [
+			{"title":"Admin", "m":0, "s":0, "disp":"0:00"},
+			{"title":"What are features", "m":8, "s":0, "disp":"8:00"},
+			{"title":"Neurons and linear functions", "m":16, "s":23, "disp":"16:23"},
+			{"title":"Non-linearities and hidden layers", "m":20, "s":23, "disp":"20:23"},
+			{"title":"Demo of a simple forward pass", "m":24, "s":49, "disp":"24:49"},
+			{"title":"ReLU activations", "m":38, "s":44, "disp":"38:44"},
+			{"title":"Neural net for classifying MNIST", "m":40, "s":19, "disp":"40:19"},
+			{"title":"Visualizing the weights", "m":48, "s":36, "disp":"48:36"},
+			{"title":"Visualizing weights of hidden layers", "m":59, "s":32, "disp":"59:32"},
+			{"title":"A more complicated dataset: CIFAR-10", "m":66, "s":55, "disp":"1:06:55"},
+			{"title":"Precursors to convolutional networks", "m":70, "s":27, "disp":"1:10:27"},
+			{"title":"How convolutional layers work", "m":82, "s":55, "disp":"1:22:55"},
+			{"title":"Full demo of a convolutional network", "m":92, "s":37, "disp":"1:32:37"},
+			{"title":"Impact of convolutional networks", "m":109, "s":11, "disp":"1:49:11"},
+			{"title":"ml5.js image classifier", "m":114, "s":55, "disp":"1:54:55"},
+			{"title":"Transfer learning", "m":123, "s":26, "disp":"2:03:26"},
+			{"title":"ml5.js transfer learning demos", "m":130, "s":58, "disp":"2:10:58"},
+			{"title":"Transfer learning creative projects", "m":140, "s":34, "disp":"2:20:34"}
+		],
+		"summary": [
+			"How convolutional neural networks work (forward pass)",
+			"Transfer learning",
+			"Demos and applications of transfer learning"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/convolutional_neural_networks.ipynb\">Keras image classification</a>",
+			"<a href=\"https://ml5js.org/docs/ImageClassifier\">ml5 live image classifier</a>"
+		],
+		"extra": [
+			"<a href=\"https://ml4a.github.io/ml4a/neural_networks/\">Intro to neural networks</a>",
+			"<a href=\"http://ml4a.github.io/ml4a/convnets/\">Convolutional networks</a>"
+		]
+	},
+	{
+		"title": "How neural nets are trained",
+		"date": "17 Sep 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/03/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_03.png",
+		"bookmarks": [
+			{"title":"Introduction, announcements", "m":0, "s":0, "disp":"0:00"},
+			{"title":"Review of supervised learning pipeline", "m":5, "s":41, "disp":"5:41"}, 
+			{"title":"Why training is hard", "m":10, "s":06, "disp":"10:06"}, 
+			{"title":"Linear regression", "m":15, "s":33, "disp":"15:33"}, 
+			{"title":"Gradient descent", "m":20, "s":18, "disp":"20:18"}, 
+			{"title":"Calculating the gradient, backpropagation", "m":31, "s":32, "disp":"31:32"}, 
+			{"title":"The problem of non-convexity, SGD, and mini-batches", "m":38, "s":31, "disp":"38:31"}, 
+			{"title":"Momentum and adaptive optimizers", "m":44, "s":29, "disp":"44:29"},
+			{"title":"Overfitting and regularization, dropout", "m":48, "s":52, "disp":"48:52"}, 
+			{"title":"Further reading & questions", "m":56, "s":01, "disp":"56:01"}, 
+			{"title":"Overview of ml4a-ofx", "m":63, "s":40, "disp":"1:03:40"}, 
+			{"title":"Demo of ConvnetPredictor (webcam transfer learning)", "m":68, "s":12, "disp":"1:08:12"}, 
+			{"title":"Communicating between ConvnetPredictor and Processing", "m":79, "s":36, "disp":"1:19:36"},
+			{"title":"Regression controlling generative art sketch", "m":92, "s":53, "disp":"1:32:53"}, 
+			{"title":"Controlling Ableton Live with ConvnetPredictor", "m":100, "s":24, "disp":"1:40:24"}, 
+			{"title":"Demo of DoodleClassifier", "m":108, "s":48, "disp":"1:48:48"}, 
+			{"title":"Demo of AudioClassifier and controlling the keyboard with sound (offline)", "m":119, "s":27, "disp":"1:59:27"}, 
+			{"title":"Summary and comparison of tools", "m":128, "s":35, "disp":"2:08:35"}
+		],
+		"summary": [
+			"How neural nets are trained (backward pass)",
+			"Overfitting, regularization, optimization",
+			"ml4a-ofx demos: ConvnetPredictor, AudioClassifier, DoodleClassifier"
+		],
+		"pratical": [
+			"<a href=\"https://ml4a.github.io/guides/DoodleClassifier\">Doodle Classifier</a>",
+			"<a href=\"https://ml4a.github.io/guides/ConvnetPredictor\">ConvnetPredictor</a> / <a href=\"https://ml4a.github.io/guides/ConvnetOSC\">ConvnetOSC</a>",
+			"<a href=\"https://ml4a.github.io/guides/AudioClassifier\">AudioClassifier</a>"
+		],
+		"extra": [
+			"<a href=\"https://ml4a.github.io/ml4a/how_neural_networks_are_trained/\">How neural nets are trained</a>"
+		]
+	},
+	{
+		"title": "Applications of neural nets",
+		"date": "24 Sep 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/04/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_04.png",
+		"bookmarks": [
+			{"title":"Announcements", "m":0, "s":0, "disp":"0:00"},
+			{"title":"Deep learning frameworks", "m":7, "s":23, "disp":"7:23"},
+			{"title":"Feature vectors", "m":12, "s":18, "disp":"12:18"},
+			{"title":"Embeddings", "m":17, "s":35, "disp":"17:35"},
+			{"title":"Review of neural nets, gradient descent, & feature extraction", "m":21, "s":17, "disp":"21:17"},
+			{"title":"Word vectors & properties of language embeddings", "m":30, "s":45, "disp":"30:45"},
+			{"title":"Sentence/paragraph vectors, language models & story generation", "m":35, "s":24, "disp":"35:24"},
+			{"title":"Applications of feature vectors", "m":50, "s":25, "disp":"50:25"},
+			{"title":"Introduction to ml4a-guides & Jupyter Lab", "m":66, "s":55, "disp":"1:06:55"},
+			{"title":"Tutorial: image feature extraction", "m":84, "s":33, "disp":"1:24:33"},
+			{"title":"Tutorial: reverse image search", "m":108, "s":13, "disp":"1:48:13"},
+			{"title":"Tutorial: shortest path (X degrees of separation)", "m":118, "s":49, "disp":"1:58:49"},
+			{"title":"t-SNE & data dataset visualization", "m":128, "s":15, "disp":"2:08:15"},
+			{"title":"Tutorial: t-SNE of images", "m":133, "s":22, "disp":"2:13:22"},
+			{"title":"Organizing sound clips with t-SNE", "m":139, "s":30, "disp":"2:19:30"},
+			{"title":"Tutorial: audio t-SNE", "m":142, "s":35, "disp":"2:22:35"},
+			{"title":"Interacting with t-SNE viewer (openFrameworks)", "m":147, "s":15, "disp":"2:27:15"},
+			{"title":"ml5-examples (YOLO) & JavaScript demos", "m":152, "s":9, "disp":"2:32:09"},
+			{"title":"Summary of practical materials & about mid-term mini-presentation", "m":155, "s":14, "disp":"2:35:14"}
+		],
+		"summary": [
+			"Feature extraction",
+			"Reverse image search and X degrees",
+			"t-SNE of images/sounds & visualization",
+			"Transfer learning"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb\">Shortest path between images</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb\">Transfer learning</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb\">t-SNE/UMAP of images</a>"
+		],
+		"extra": [
+			"<a href=\"http://ml4a.github.io/ml4a/looking_inside_neural_nets/\">Looking inside neural nets</a>",
+			"<a href=\"https://artsexperiments.withgoogle.com/xdegrees/\">X degrees of separation</a>"
+		]
+	},
+	{
+		"title": "Visualization, deepdream, style & texture synthesis",
+		"date": "8 Oct 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/05/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_05.png",
+		"bookmarks": [
+			{"title":"Plan for rest of the term", "m":0, "s":0, "disp":"0:00"},
+			{"title":"A review of representation learning", "m":7, "s":2, "disp":"7:02"},
+			{"title":"Visualizing convnet features", "m":12, "s":46, "disp":"12:46"},
+			{"title":"Activating features via pixel optimization", "m":21, "s":38, "disp":"21:38"},
+			{"title":"Inceptionism & Deepdream", "m":27, "s":47, "disp":"27:47"},
+			{"title":"Masking deepdreams", "m":38, "s":52, "disp":"38:52"},
+			{"title":"Style transfer", "m":46, "s":20, "disp":"46:20"},
+			{"title":"Texture synthesis", "m":57, "s":13, "disp":"57:13"},
+			{"title":"Miscellaneous optimization-based work", "m":59, "s":41, "disp":"59:41"}
+		],
+		"summary": [
+			"Visualizing convnet features",
+			"Pixel-optimization, Deepdream, neural-synth",
+			"Style transfer and textur synthesis"
+		],
+		"pratical": [
+			"<a href=\"https://ml4a.github.io/classes/itp-F19/terminal-velocity\">Terminal Velocity</a>"
+		],
+		"extra": [
+			"<a href=\"https://colab.research.google.com/drive/1xeJAhTEwI3TNH_CJnTMq5AJuPkOs8sJ6\">Deepdream</a> + <a href=\"https://github.com/tensorflow/lucid\">Lucid</a>",
+			"<a href=\"https://distill.pub/2017/feature-visualization/\">distill: Feature Visualization</a>",
+			"<a href=\"https://distill.pub/2019/building-blocks/\">The Building Blocks of Interpretability</a>",
+			"<a href=\"https://www.youtube.com/watch?v=AgkfIQ4IGaM\">Deep Visualization Toolbox</a>"
+		]
+	},
+	{
+		"title": "Terminal velocity",
+		"date": "9 Oct 2019",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/terminal-velocity/",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_terminal-velocity.png",
+		"bookmarks": [
+			{"title":"Basic terminal commands", "m":3, "s":42, "disp":"3:42"},
+			{"title":"Python shell, bash scripting, nohup", "m":9, "s":43, "disp":"9:43"},
+			{"title":"Launching a remote VM on Paperspace", "m":16, "s":51, "disp":"16:51"},
+			{"title":"Interfacing with your VM, launching Jupyter", "m":22, "s":0, "disp":"22:00"},
+			{"title":"Jupyter Lab", "m":29, "s":50, "disp":"29:50"},
+			{"title":"Setting up neural-style", "m":34, "s":14, "disp":"34:14"},
+			{"title":"Running a style transfer", "m":37, "s":53, "disp":"37:53"},
+			{"title":"Texture synthesis", "m":48, "s":18, "disp":"48:18"},
+			{"title":"Setting up ml4a-guides and neural-synth", "m":50, "s":28, "disp":"50:28"},
+			{"title":"Running basic deepdream", "m":51, "s":16, "disp":"51:16"},
+			{"title":"Masking dreams, canvas distortion", "m":59, "s":23, "disp":"59:23"},
+			{"title":"Generating videos", "m":67, "s":16, "disp":"1:07:16"}
+		],
+		"summary": [
+			"Basic terminal navigation",
+			"Python shell and bash scripting",
+			"Connecting to remote VM"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/neural-synth.ipynb\">neural-synth</a>",
+			"<a href=\"https://github.com/jcjohnson/neural-style\">neural-style</a>"
+		],
+		"extra": [
+			"<a href=\"https://github.com/tensorflow/lucid\">lucid</a>",
+			"<a href=\"https://distill.pub/2019/differentiable-parameterizations/\">Differentiable Image Parameterizations</a>"
+		]
+	},
+	{
+		"date": "22 Oct 2019",
+		"title": "Generative models",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/06/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_06.png",
+		"bookmarks": [
+			{"title":"Why study generative models?", "m":3, "s":29, "disp":"3:29"},
+			{"title":"What are generative models?", "m":8, "s":26, "disp":"8:26"},
+			{"title":"Dimensionality reduction and PCA demo", "m":12, "s":15, "disp":"12:15"},
+			{"title":"Pixel-space and the curse of dimensionality", "m":21, "s":57, "disp":"21:57"},
+			{"title":"Eigenfaces", "m":29, "s":46, "disp":"29:46"},
+			{"title":"Linear PCA vs Non-linear methods", "m":45, "s":25, "disp":"45:25"},
+			{"title":"Neural net & embeddings review", "m":51, "s":37, "disp":"51:37"},
+			{"title":"Autoencoders", "m":56, "s":26, "disp":"56:26"},
+			{"title":"Generative adversarial networks", "m":70, "s":04, "disp":"1:10:04"},
+			{"title":"DCGANs and feature arithmetic", "m":75, "s":, "disp":"1:15:30"},
+			{"title":"DCGAN examples projects", "m":79, "s":35, "disp":"1:19:35"},
+			{"title":"Deep generator networks", "m":91, "s":, "disp":"1:31:19"},
+			{"title":"High-resolution and progressively-grown GANs", "m":94, "s":37, "disp":"1:34:37"},
+			{"title":"GLOW and reversibility, fMRI-conditioned GANs", "m":100, "s":53, "disp":"1:40:53"},
+			{"title":"Generative models in text and audio domain", "m":105, "s":47, "disp":"1:45:47"},
+			{"title":"Practical resources and tutorials", "m":113, "s":39, "disp":"1:53:39"},
+			{"title":"Scraping Instagram, Google, and Bing", "m":115, "s":0, "disp":"1:55:00"},
+			{"title":"Finding publicly available datasets", "m":123, "s":42, "disp":"2:03:42"},
+			{"title":"Dataset utils for pre-processing datasets", "m":127, "s":35, "disp":"2:07:35"},
+			{"title":"Setting up Paperspace job-runner for DCGAN", "m":138, "s":9, "disp":"2:18:09"},
+			{"title":"Training DCGAN-tensorflow", "m":147, "s":7, "disp":"2:27:07"},
+			{"title":"Other GAN-training resources", "m":158, "s":46, "disp":"2:38:46"}
+		],
+		"summary": [
+			"Autoencoders & Generative adversarial networks",
+			"Compiling, scraping, and processing datasets",
+			"Training DCGANs"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb\">Eigenfaces</a>",
+			"<a href=\"https://github.com/carpedm20/DCGAN-tensorflow\">DCGAN-tensorflow</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/utils\">dataset utils</a>",
+			"<a href=\"https://github.com/montoyamoraga/scrapers\">scrapers</a>"
+		],
+		"extra": [
+			"Garbage in, treasure out: a field guide to compiling datasets on a messy internet [planned]",
+			"<a href=\"http://ml4a.github.io/classes/misc/01/\">From PCA to Puppyslugs</a>"
+		]
+	},
+	{
+		"date": "29 Oct 2019",
+		"title": "Conditional generative models",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/07/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_07.png",
+		"bookmarks": [
+			{"title":"Review of generative models", "m":5, "s":58, "disp":"5:58"},
+			{"title":"Conditioning generative models", "m":18, "s":05, "disp":"18:05"},
+			{"title":"Image-to-image translation (pix2pix)", "m":25, "s":34, "disp":"25:34"},
+			{"title":"pix2pix projects", "m":29, "s":30, "disp":"29:30"},
+			{"title":"Conditioning on face landmarks", "m":37, "s":54, "disp":"37:54"},
+			{"title":"Conditioning on pose", "m":44, "s":13, "disp":"44:13"},
+			{"title":"Drawing interface for pix2pix", "m":50, "s":54, "disp":"50:54"},
+			{"title":"pix2pix ping-ponging and feedback loops", "m":51, "s":50, "disp":"51:50"},
+			{"title":"Interactive interfaces and edge2landscapes", "m":57, "s":47, "disp":"57:47"},
+			{"title":"Unpaired image translation and CycleGAN", "m":60, "s":37, "disp":"1:00:37"},
+			{"title":"CycleGAN projects", "m":64, "s":08, "disp":"1:04:08"},
+			{"title":"Object detection (YOLO) and dense captioning", "m":74, "s":52, "disp":"1:14:52"},
+			{"title":"Image-to-text & text-to-image", "m":79, "s":16, "disp":"1:19:16"},
+			{"title":"Installing dataset-utils & pix2pix/CycleGAN", "m":80, "s":54, "disp":"1:20:54"},
+			{"title":"Extracting faces from a movie", "m":92, "s":32, "disp":"1:32:32"},
+			{"title":"Making a pix2pix edge-to-photo dataset", "m":106, "s":50, "disp":"1:46:50"},
+			{"title":"Training pix2pix on faces", "m":115, "s":17, "disp":"1:55:17"},
+			{"title":"Scraping a dataset for CycleGAN", "m":124, "s":31, "disp":"2:04:31"},
+			{"title":"Training CycleGAN to turn faces to clowns", "m":136, "s":0, "disp":"2:16:00"},
+			{"title":"Installing densecap", "m":137, "s":51, "disp":"2:17:51"},
+			{"title":"Short pix2pixHD tutorial & CycleGAN results", "m":141, "s":30, "disp":"2:21:30"},
+			{"title":"Captioning images with densecap", "m":153, "s":01, "disp":"2:33:01"}
+		],
+		"summary": [
+			"Image-to-image translation (pix2pix/CycleGAN)",
+			"Scraping and preparing parallel datasets",
+			"YOLO & dense captioning"
+		],
+		"pratical": [
+			"<a href=\"https://ml4a.github.io/guides/Pix2Pix\">pix2pix tutorial</a>",
+			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN + pix2pix</a>",
+			"<a href=\"https://github.com/NVIDIA/pix2pixHD\">pix2pixHD</a>",
+			"<a href=\"https://github.com/tkarras/progressive_growing_of_gans\">Progressive growing of GANS</a>"
+		],
+		"extra": [
+			"<a href=\"https://magenta.tensorflow.org/\">Magenta</a>",
+			"<a href=\"https://ml5js.org/docs/StyleTransfer\">ml5 style transfer</a>"
+		]
+	},
+	{
+		"date": "12 Nov 2019",
+		"title": "Recurrent neural networks",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/08/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_08.png",
+		"bookmarks": [
+			{"title":"Limitations of feedforward networks", "m":3, "s":10, "disp":"3:10"},
+			{"title":"Recurrent neural networks", "m":5, "s":45, "disp":"5:45"},
+			{"title":"RNN for text characters", "m":9, "s":47, "disp":"9:47"},
+			{"title":"Sequence-to-sequence models", "m":14, "s":31, "disp":"14:31"},
+			{"title":"Image-to-text", "m":17, "s":36, "disp":"17:36"},
+			{"title":"Dense captioning", "m":25, "s":21, "disp":"25:21"},
+			{"title":"Text-to-image", "m":28, "s":30, "disp":"28:30"},
+			{"title":"im2txt tutorial & scenescoop", "m":32, "s":13, "disp":"32:13"},
+			{"title":"LSTM", "m":48, "s":24, "disp":"48:24"},
+			{"title":"char-rnn examples/hacks", "m":53, "s":32, "disp":"53:32"},
+			{"title":"char-rnn tutorial", "m":78, "s":23, "disp":"1:18:23"},
+			{"title":"Sketch-RNN", "m":91, "s":57, "disp":"1:31:57"},
+			{"title":"Sketch-RNN tutorial", "m":106, "s":38, "disp":"1:46:38"},
+			{"title":"Other RNN projects", "m":122, "s":02, "disp":"2:02:02"},
+			{"title":"Attention, NTMs, and misc topics", "m":127, "s":23, "disp":"2:07:23"},
+			{"title":"Sampling from char-rnn", "m":132, "s":06, "disp":"2:12:06"}
+		],
+		"summary": [
+			"Recurrent networks & LSTMs",
+			"Sequence-to-sequence applications",
+			"im2txt, Sketch-RNN, char-rnn tutorials"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn\">Sketch-RNN</a>",
+			"<a href=\"https://github.com/sherjilozair/char-rnn-tensorflow\">char-rnn-tensorflow</a>",
+			"<a href=\"https://github.com/runwayml/models/tree/master/im2txt\">im2txt</a>"			
+		],
+		"extra": [
+			"<a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\">Understanding LSTMs</a>",
+			"<a href=\"http://karpathy.github.io/2015/05/21/rnn-effectiveness/\">Unreasonable Effectiveness of RNNs</a>",
+			"<a href=\"https://arxiv.org/abs/1704.03477\">A Neural Representation of Sketch Drawings</a>"			
+		]
+	},
+	{
+		"date": "26 Nov 2019",
+		"title": "Music information retrieval, BIGGAN & GLOW",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/09/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_09.png",
+		"bookmarks": [
+			{"title":"Flow and reversibility in generative models", "m":5, "s":22, "disp":"5:22"},
+			{"title":"GLOW and face attribute manipulation", "m":9, "s":15, "disp":"9:15"},
+			{"title":"GLOW tutorial", "m":16, "s":50, "disp":"16:50"},
+			{"title":"Interpolations and random latent vectors", "m":30, "s":46, "disp":"30:46"},
+			{"title":"BigGAN tutorial with pre-trained model", "m":39, "s":36, "disp":"39:36"},
+			{"title":"Tasks in music information retrieval (MIR)", "m":50, "s":36, "disp":"50:36"},
+			{"title":"Representations of music and audio", "m":57, "s":42, "disp":"57:42"},
+			{"title":"Review of AudioClassifier & Audio t-SNE", "m":66, "s":55, "disp":"1:06:55"},
+			{"title":"History of electronic & computer music", "m":71, "s":51, "disp":"1:11:51"},
+			{"title":"Physical models and programmable audio", "m":83, "s":35, "disp":"1:23:35"},
+			{"title":"GRUV and RNN-based audio modeling", "m":89, "s":05, "disp":"1:29:05"},
+			{"title":"WaveNets, SampleRNN, Magenta NSynth", "m":92, "s":50, "disp":"1:32:50"},
+			{"title":"Modeling symbolic music", "m":105, "s":54, "disp":"1:45:54"},
+			{"title":"Content-based recommendation & iPod of the future", "m":115, "s":15, "disp":"1:55:15"}
+		],
+		"summary": [
+			"GLOW and reversible generative models",
+			"BigGAN tutorial",
+			"Music information retrieval"
+		],
+		"pratical": [
+			"<a href=\"https://github.com/genekogan/glow\">GLOW demo</a>",			
+			"<a href=\"https://drive.google.com/open?id=1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ\">BigGAN demo</a>",			
+			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>",
+		],
+		"extra": [
+			"<a href=\"https://blog.openai.com/glow/\">Glow: Better Reversible Generative Models</a>",			
+			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>"
+		]
+	},	
+	{
+		"date": "26 Nov 2019",
+		"title": "Reinforcement Learning & Natural Language Processing",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/10/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_10.png",
+		"bookmarks": [
+			{"title":"Introduction to natural language processing (NLP)", "m":5, "s":40, "disp":"5:40"},
+			{"title":"Why is NLP hard?", "m":10, "s":02, "disp":"10:02"},
+			{"title":"Word embeddings", "m":12, "s":02, "disp":"12:02"},
+			{"title":"Properties of word vectors", "m":21, "s":10, "disp":"21:10"},
+			{"title":"Tutorial: universal sentence encoder", "m":28, "s":24, "disp":"28:24"},
+			{"title":"Applications of sentence embeddings", "m":37, "s":21, "disp":"37:21"},
+			{"title":"Machine translation", "m":43, "s":53, "disp":"43:53"},
+			{"title":"Tutorial: Wikipedia latent semantic analysis (LSA)", "m":50, "s":47, "disp":"50:47"},
+			{"title":"spaCy tutorial ", "m":60, "s":24, "disp":"1:00:24"},
+			{"title":"Introduction to reinforcement learning (RL)", "m":66, "s":23, "disp":"1:06:23"},
+			{"title":"The RL setup", "m":69, "s":07, "disp":"1:09:07"},
+			{"title":"Examples and challenges of RL problems", "m":72, "s":03, "disp":"1:12:03"},
+			{"title":"Deep Q-Networks for beating Atari games", "m":76, "s":22, "disp":"1:16:22"},
+			{"title":"Applications to robotics and humanoid simulation", "m":86, "s":24, "disp":"1:26:24"},
+			{"title":"Monte Carlo tree search (MCTS)", "m":91, "s":06, "disp":"1:31:06"},
+			{"title":"Tic-tac-toe MCTS", "m":93, "s":57, "disp":"1:33:57"},
+			{"title":"Introduction to Go and AlphaGo", "m":102, "s":18, "disp":"1:42:18"},
+			{"title":"How AlphaGo improves MCTS", "m":110, "s":18, "disp":"1:50:18"},
+			{"title":"AlphaGo vs. Lee Sedol", "m":115, "s":19, "disp":"1:55:19"},
+			{"title":"AlphaGo Zero and discarding training data", "m":118, "s":40, "disp":"1:58:40"},
+			{"title":"AlphaZero generalized", "m":125, "s":03, "disp":"2:05:03"},
+			{"title":"AlphaZero plays chess and crushes Stockfish", "m":129, "s":55, "disp":"2:09:55"},
+			{"title":"Curiosity-driven RL exploration ", "m":136, "s":26, "disp":"2:16:26"},
+			{"title":"Practical resources for reinforcement learning", "m":138, "s":01, "disp":"2:18:01"}
+		],
+		"summary": [
+			"Natural language processing",
+			"Agent-environment systems & games",
+			"AlphaGo and AlphaZero"
+		],
+		"pratical": [		
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb\">Q-learning</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb\">Deep Q-Networks</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
+			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
+		],
+		"extra": [
+			"<a href=\"https://unity3d.com/machine-learning\">Unity Agents</a>",
+			"<a href=\"https://gym.openai.com/\">OpenAI Gym</a>",
+			"<a href=\"http://karpathy.github.io/2016/05/31/rl/\">Pong from Pixels</a>"
+		]
+	},
+	{
+		"date": "3 Dec 2019",
+		"title": "Autonomous artificial artist",
+		"youtube_id0": "",
+		"main":"/classes/itp-F19/11/",
+		"slides0": "",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_11.png",
+		"bookmarks": [		
+			{"title":"Why AI and decentralization are relevant to each other", "m":5, "s":21, "disp":"5:21"},
+			{"title":"Quick primer on cryptography", "m":18, "s":35, "disp":"18:35"},
+			{"title":"Applications of public key cryptography", "m":27, "s":55, "disp":"27:55"},
+			{"title":"Hash functions and proof-of-work", "m":31, "s":39, "disp":"31:39"},
+			{"title":"Peer-to-peer networks", "m":38, "s":37, "disp":"38:37"},
+			{"title":"Problems with the web today & IPFS project", "m":46, "s":08, "disp":"46:08"},
+			{"title":"How Bitcoin works", "m":54, "s":45, "disp":"54:45"},
+			{"title":"Blockchain-secured assets & second-generation applications", "m":68, "s":55, "disp":"1:08:55"},
+			{"title":"Smart contracts & Ethereum", "m":73, "s":04, "disp":"1:13:04"},
+			{"title":"Applications of smart contracts", "m":76, "s":45, "disp":"1:16:45"},
+			{"title":"Decentralized autonomous organizations", "m":83, "s":42, "disp":"1:23:42"},
+			{"title":"Cryptoeconomics", "m":87, "s":41, "disp":"1:27:41"},
+			{"title":"Tokens and ICOs", "m":88, "s":50, "disp":"1:28:50"},
+			{"title":"Continuous organizations and curved bonding", "m":97, "s":09, "disp":"1:37:09"},
+			{"title":"Curation markets", "m":109, "s":14, "disp":"1:49:14"},
+			{"title":"Governance as curation and liquid democracy", "m":116, "s":22, "disp":"1:56:22"},
+			{"title":"Problems with centralized machine learning", "m":119, "s":48, "disp":"1:59:48"},
+			{"title":"Federated learning, homomorphic encryption, and OpenMined", "m":123, "s":35, "disp":"2:03:35"},
+			{"title":"Pros and cons of decentralized machine learning setups", "m":135, "s":36, "disp":"2:15:36"},
+			{"title":"Numerai and Ocean protocol", "m":138, "s":45, "disp":"2:18:45"},
+			{"title":"The idea of an autonomous artist", "m":145, "s":56, "disp":"2:25:56"},
+			{"title":"Crypto-collectibles, ArtDAOs, and other related ideas", "m":147, "s":27, "disp":"2:27:27"},
+			{"title":"Components of an autonomous artificial artist", "m":153, "s":14, "disp":"2:33:14"}
+		],
+		"summary": [
+			"Cryptography, peer-to-peer networks, DAOs",
+			"Curation markets and cryptoeconomics",
+			"Decentralizing machine learning"
+		],
+		"pratical": [
+		],
+		"extra": [
+			"<a href=\"https://www.openmined.org/\">OpenMined</a>",
+			"<a href=\"https://github.com/artonomous/artonomous-mvp\">Artonomous</a>"
+		]
+	},
+	{
+		"date": "10 Dec 2019",
+		"title": "Final presentations",
+		"thumbnail": "",
+		"bookmarks": [],
+		"summary": [
+		],
+		"pratical": [
+		],
+		"extra": [
+		]
+	}
+],	
+
+	
+
+"itp-S19":[
 	{
 		"title": "Art, autonomy, and AI",
 		"date": "31 Jan 2019",
@@ -83,6 +608,9 @@
 		"extra": []
 	}
 ],
+
+
+
 "itp-F18":[
 	{
 		"title": "The whole class \"in 60 minutes\"",
