@@ -13,8 +13,8 @@ title: ml4a classes
 		<span class="class_contents">
 		<ul>
 			<li>Fall 2018</li>
-			<li><a href="http://tisch.nyu.edu/itp">ITP @ New York University</a>, New York</li>
-			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
+			<li><a href="https://tisch.nyu.edu/itp">ITP @ New York University</a>, New York</li>
+			<li>Taught by <a href="https://twitter.com/genekogan">@genekogan</a></li>
 			<li>2 lectures (12 planned), ~5 hours (30 planned)</li> 
 		</ul>
 		</span>
@@ -34,8 +34,8 @@ title: ml4a classes
 		<span class="class_contents">
 		<ul>
 			<li>November 2016</li>
-			<li><a href="http://www.opendotlab.it/it/content/workshop-machine-learning-artists">OpenDot Lab</a>, Milan</li>
-			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
+			<li><a href="https://www.opendotlab.it/it/content/workshop-machine-learning-artists">OpenDot Lab</a>, Milan</li>
+			<li>Taught by <a href="https://twitter.com/genekogan">@genekogan</a></li>
 			<li>6 lectures, ~7 hours</li> 
 		</ul>
 		</span>
@@ -52,8 +52,8 @@ title: ml4a classes
 		<span class="class_contents">
 		<ul>
 			<li>July 2016</li>
-			<li><a href="http://schoolofma.org/neural-aesthetic/">School Of Machines, Making, and Make-Believe</a>, Berlin</li>
-			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
+			<li><a href="https://schoolofma.org/neural-aesthetic/">School Of Machines, Making, and Make-Believe</a>, Berlin</li>
+			<li>Taught by <a href="https://twitter.com/genekogan">@genekogan</a></li>
 			<li>8 lectures, ~18 hours</li> 
 		</ul>
 		</span>
@@ -70,8 +70,8 @@ title: ml4a classes
 		<span class="class_contents">
 		<ul>
 			<li>Spring 2016</li>
-			<li><a href="http://tisch.nyu.edu/itp">ITP @ New York University</a>, New York</li>
-			<li>Taught by <a href="http://twitter.com/genekogan">@genekogan</a></li>
+			<li><a href="https://tisch.nyu.edu/itp">ITP @ New York University</a>, New York</li>
+			<li>Taught by <a href="https://twitter.com/genekogan">@genekogan</a></li>
 			<li>6 lectures, ~15 hours</li> 
 		</ul>
 		</span>
