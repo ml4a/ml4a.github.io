@@ -106,18 +106,6 @@
 		"main":"/classes/itp-F18/terminal-velocity/",
 		"thumbnail": "/images/classes/itp-F18/thumbnail_terminal-velocity.png",
 		"bookmarks": [
-			{"title":"Basic terminal commands", "m":3, "s":42, "disp":"3:42"},
-			{"title":"Python shell, bash scripting, nohup", "m":9, "s":43, "disp":"9:43"},
-			{"title":"Launching a remote VM on Paperspace", "m":16, "s":51, "disp":"16:51"},
-			{"title":"Interfacing with your VM, launching Jupyter", "m":22, "s":0, "disp":"22:00"},
-			{"title":"Jupyter Lab", "m":29, "s":50, "disp":"29:50"},
-			{"title":"Setting up neural-style", "m":34, "s":14, "disp":"34:14"},
-			{"title":"Running a style transfer", "m":37, "s":53, "disp":"37:53"},
-			{"title":"Texture synthesis", "m":48, "s":18, "disp":"48:18"},
-			{"title":"Setting up ml4a-guides and neural-synth", "m":50, "s":28, "disp":"50:28"},
-			{"title":"Running basic deepdream", "m":51, "s":16, "disp":"51:16"},
-			{"title":"Masking dreams, canvas distortion", "m":59, "s":23, "disp":"59:23"},
-			{"title":"Generating videos", "m":67, "s":16, "disp":"1:07:16"}
 		],
 		"summary": [
 			"Basic terminal navigation",
@@ -137,19 +125,10 @@
 		"title": "Visualization, deepdream, style & texture synthesis",
 		"date": "1 Oct 2019",
 		"youtube_id": "XFs4crBRCck",
-		"main":"/classes/itp-F19/05/",
+		"main":"/classes/itp-F19/06/",
 		"slides": "https://drive.google.com/open?id=1uOBnFd5cn9eyCaR2oEBNkRQ3GqRud7X_",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_05.png",
 		"bookmarks": [
-			{"title":"Plan for rest of the term", "m":0, "s":0, "disp":"0:00"},
-			{"title":"A review of representation learning", "m":7, "s":2, "disp":"7:02"},
-			{"title":"Visualizing convnet features", "m":12, "s":46, "disp":"12:46"},
-			{"title":"Activating features via pixel optimization", "m":21, "s":38, "disp":"21:38"},
-			{"title":"Inceptionism & Deepdream", "m":27, "s":47, "disp":"27:47"},
-			{"title":"Masking deepdreams", "m":38, "s":52, "disp":"38:52"},
-			{"title":"Style transfer", "m":46, "s":20, "disp":"46:20"},
-			{"title":"Texture synthesis", "m":57, "s":13, "disp":"57:13"},
-			{"title":"Miscellaneous optimization-based work", "m":59, "s":41, "disp":"59:41"}
 		],
 		"summary": [
 			"Visualizing convnet features",
@@ -170,7 +149,7 @@
 		"title": "TBD",
 		"date": "8 Oct 2019",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/06/",
+		"main":"/classes/itp-F19/07/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_06.png",
 		"bookmarks": [
@@ -194,7 +173,7 @@
 		"date": "22 Oct 2019",
 		"title": "Midterm presentations",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/07/",
+		"main":"/classes/itp-F19/08/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_07.png",
 		"bookmarks": [
