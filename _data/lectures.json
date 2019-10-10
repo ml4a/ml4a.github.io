@@ -146,27 +146,23 @@
 		]
 	},
 	{
-		"title": "TBD",
+		"title": "Neural-style, Paperspace, and PCA",
 		"date": "8 Oct 2019",
-		"youtube_id0": "",
+		"youtube_id": "QHaOGxnIMuQ",
 		"main":"/classes/itp-F19/07/",
-		"slides0": "",
-		"thumbnail": "/images/classes/itp-F19/thumbnail_06.png",
+		"slides": "https://drive.google.com/open?id=1FP5fW9skOKxvqQVTHBDHHi6idcw6QiYA",
+		"thumbnail": "/images/classes/itp-F19/thumbnail_07.png",
 		"bookmarks": [
 		],
 		"summary": [
-			"Visualizing convnet features",
-			"Pixel-optimization, Deepdream, neural-synth",
-			"Style transfer and textur synthesis"
+			"Principal component analysis",
+			"Paperspace tutorial",
+			"neural-style"
 		],
 		"pratical": [
 			"<a href=\"https://ml4a.github.io/classes/itp-F19/terminal-velocity\">Terminal Velocity</a>"
 		],
 		"extra": [
-			"<a href=\"https://colab.research.google.com/drive/1xeJAhTEwI3TNH_CJnTMq5AJuPkOs8sJ6\">Deepdream</a> + <a href=\"https://github.com/tensorflow/lucid\">Lucid</a>",
-			"<a href=\"https://distill.pub/2017/feature-visualization/\">distill: Feature Visualization</a>",
-			"<a href=\"https://distill.pub/2019/building-blocks/\">The Building Blocks of Interpretability</a>",
-			"<a href=\"https://www.youtube.com/watch?v=AgkfIQ4IGaM\">Deep Visualization Toolbox</a>"
 		]
 	},
 	{
