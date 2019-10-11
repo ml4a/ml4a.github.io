@@ -56,7 +56,7 @@
 			        	<li><a href="/demos/">demos</a></li>
 			        	<li><a href="/classes/">classes</a></li>
 			        	<li><a href="https://github.com/ml4a">code</a></li>
-			        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtNjA4MjgzODk1MjA3LTYyZTdjZjg0ODM1MzhjZWVmMDY5MDM0OTMyNGU2MWY2OGVkNWRjNmRmNjYyNDkzN2IyZGVmNGNiYjkyOWEwMDM">slack</a></li>
+			        	<li><a href="https://join.slack.com/t/ml-4a/shared_invite/enQtNjA4MjgzODk1MjA3LTlhYjQ5NWQ2OTNlODZiMDRjZTFmNDZiYjlmZWYwNGM0YjIxNjE3Yjc0NWVjMmVlZjNmZDhmYTkzZjk0ZTg1ZGM">slack</a></li>
 			        	<li><a href="https://www.twitter.com/ml4a_">twitter</a></li>
 		    		</ul>
 				</nav>
