@@ -280,8 +280,9 @@
 		"link":"https://colab.research.google.com/drive/1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ",
 		"thumb":"/images/guides_thumbs/biggan.jpg",
 		"summary":[
-			"Deep Q-Networks for larger state spaces",
-			"Implementing and training DQN for paddle-ball game"
+			"Sampling new images from BigGAN",
+			"BigGAN interpolations videos",
+			"Arithmetic on GAN features"
 		]
 	},
 
