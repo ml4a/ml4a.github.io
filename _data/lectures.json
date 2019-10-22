@@ -167,10 +167,10 @@
 	},
 	{
 		"date": "22 Oct 2019",
-		"title": "Midterm presentations",
-		"youtube_id0": "",
+		"title": "Generative models 2",
+		"youtube_id": "aE-TRIwWhUY",
 		"main":"/classes/itp-F19/08/",
-		"slides0": "",
+		"slides": "https://drive.google.com/open?id=1jjduUCfJB_IVnjv8J4kMdOtYOzXpC_3K",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_07.png",
 		"bookmarks": [
 
@@ -178,7 +178,6 @@
 		"summary": [
 			"Autoencoders & Generative adversarial networks",
 			"Compiling, scraping, and processing datasets",
-			"Training DCGANs"
 		],
 		"pratical": [
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb\">Eigenfaces</a>",
