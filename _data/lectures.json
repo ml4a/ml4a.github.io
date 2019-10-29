@@ -167,7 +167,7 @@
 	},
 	{
 		"date": "22 Oct 2019",
-		"title": "Generative models 2",
+		"title": "Generative models I",
 		"youtube_id": "aE-TRIwWhUY",
 		"main":"/classes/itp-F19/08/",
 		"slides": "https://drive.google.com/open?id=1jjduUCfJB_IVnjv8J4kMdOtYOzXpC_3K",
@@ -177,7 +177,7 @@
 		],
 		"summary": [
 			"Autoencoders & Generative adversarial networks",
-			"Compiling, scraping, and processing datasets",
+			"Compiling, scraping, and processing datasets"
 		],
 		"pratical": [
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb\">Eigenfaces</a>",
@@ -191,77 +191,60 @@
 	},
 	{
 		"date": "29 Oct 2019",
-		"title": "Conditional generative models",
-		"youtube_id0": "",
-		"main":"/classes/itp-F19/08/",
-		"slides0": "",
+		"title": "Generative models II",
+		"youtube_id": "7Qm3FznQrRw",
+		"main":"/classes/itp-F19/09/",
+		"slides": "https://drive.google.com/open?id=1VSdc_PAJXroLbzSi_BhappoBUoqjgxr8",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_07.png",
 		"bookmarks": [
 		],
 		"summary": [
-			"Image-to-image translation (pix2pix/CycleGAN)",
-			"Scraping and preparing parallel datasets",
-			"YOLO & dense captioning"
+			"Review of generative models and GANs",
+			"BigGAN tutorial",
+			"Scraping and preparing datasets"
 		],
 		"pratical": [
-			"<a href=\"https://ml4a.github.io/guides/Pix2Pix\">pix2pix tutorial</a>",
-			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN + pix2pix</a>",
-			"<a href=\"https://github.com/NVIDIA/pix2pixHD\">pix2pixHD</a>",
-			"<a href=\"https://github.com/tkarras/progressive_growing_of_gans\">Progressive growing of GANS</a>"
+			"<a href=\"https://colab.research.google.com/drive/1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ\">BigGAN workshop</a>",
+			"<a href=\"https://github.com/ml4a/ml4a-guides/blob/master/utils/dataset_utils.py\">ml4a dataset utils</a>",
+			"<a href=\"https://github.com/antiboredom/flickr-scrape\">flickr scraper</a>",
+			"<a href=\"https://github.com/rarcega/instagram-scraper\">instragram scraper</a>"
 		],
 		"extra": [
-			"<a href=\"https://magenta.tensorflow.org/\">Magenta</a>",
-			"<a href=\"https://ml5js.org/docs/StyleTransfer\">ml5 style transfer</a>"
 		]
 	},
 	{
 		"date": "5 Nov 2019",
 		"title": "Recurrent neural networks",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/09/",
+		"main":"/classes/itp-F19/10/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_09.png",
 		"bookmarks": [
 
 		],
 		"summary": [
-			"Recurrent networks & LSTMs",
-			"Sequence-to-sequence applications",
-			"im2txt, Sketch-RNN, char-rnn tutorials"
+			"GLOW tutorial",
+			"Image-to-image translation (pix2pix/CycleGAN)",
+			"Tutorial on StyleGAN and DCGAN"
 		],
 		"pratical": [
-			"<a href=\"https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn\">Sketch-RNN</a>",
-			"<a href=\"https://github.com/sherjilozair/char-rnn-tensorflow\">char-rnn-tensorflow</a>",
-			"<a href=\"https://github.com/runwayml/models/tree/master/im2txt\">im2txt</a>"			
+			"<a href=\"https://github.com/genekogan/glow\">GLOW demo</a>",			
+			"<a href=\"https://ml4a.github.io/guides/Pix2Pix\">pix2pix tutorial</a>",
+			"<a href=\"https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/\">CycleGAN + pix2pix</a>",
+			"<a href=\"https://github.com/NVIDIA/pix2pixHD\">pix2pixHD</a>",
+			"<a href=\"https://github.com/tkarras/progressive_growing_of_gans\">Progressive growing of GANS</a>"
 		],
 		"extra": [
-			"<a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\">Understanding LSTMs</a>",
-			"<a href=\"http://karpathy.github.io/2015/05/21/rnn-effectiveness/\">Unreasonable Effectiveness of RNNs</a>",
-			"<a href=\"https://arxiv.org/abs/1704.03477\">A Neural Representation of Sketch Drawings</a>"			
 		]
 	},
 	{
 		"date": "26 Nov 2019",
 		"title": "Music information retrieval, BIGGAN & GLOW",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/10/",
+		"main":"/classes/itp-F19/11/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_09.png",
 		"bookmarks": [
-			{"title":"Flow and reversibility in generative models", "m":5, "s":22, "disp":"5:22"},
-			{"title":"GLOW and face attribute manipulation", "m":9, "s":15, "disp":"9:15"},
-			{"title":"GLOW tutorial", "m":16, "s":50, "disp":"16:50"},
-			{"title":"Interpolations and random latent vectors", "m":30, "s":46, "disp":"30:46"},
-			{"title":"BigGAN tutorial with pre-trained model", "m":39, "s":36, "disp":"39:36"},
-			{"title":"Tasks in music information retrieval (MIR)", "m":50, "s":36, "disp":"50:36"},
-			{"title":"Representations of music and audio", "m":57, "s":42, "disp":"57:42"},
-			{"title":"Review of AudioClassifier & Audio t-SNE", "m":66, "s":55, "disp":"1:06:55"},
-			{"title":"History of electronic & computer music", "m":71, "s":51, "disp":"1:11:51"},
-			{"title":"Physical models and programmable audio", "m":83, "s":35, "disp":"1:23:35"},
-			{"title":"GRUV and RNN-based audio modeling", "m":89, "s":05, "disp":"1:29:05"},
-			{"title":"WaveNets, SampleRNN, Magenta NSynth", "m":92, "s":50, "disp":"1:32:50"},
-			{"title":"Modeling symbolic music", "m":105, "s":54, "disp":"1:45:54"},
-			{"title":"Content-based recommendation & iPod of the future", "m":115, "s":15, "disp":"1:55:15"}
 		],
 		"summary": [
 			"GLOW and reversible generative models",
@@ -269,21 +252,26 @@
 			"Music information retrieval"
 		],
 		"pratical": [
-			"<a href=\"https://github.com/genekogan/glow\">GLOW demo</a>",			
+			"<a href=\"https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn\">Sketch-RNN</a>",
+			"<a href=\"https://github.com/sherjilozair/char-rnn-tensorflow\">char-rnn-tensorflow</a>",
+			"<a href=\"https://github.com/runwayml/models/tree/master/im2txt\">im2txt</a>",	
 			"<a href=\"https://drive.google.com/open?id=1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ\">BigGAN demo</a>",			
 			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
-			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>"
 		],
 		"extra": [
 			"<a href=\"https://blog.openai.com/glow/\">Glow: Better Reversible Generative Models</a>",			
-			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>"
+			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>",
+			"<a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\">Understanding LSTMs</a>",
+			"<a href=\"http://karpathy.github.io/2015/05/21/rnn-effectiveness/\">Unreasonable Effectiveness of RNNs</a>",
+			"<a href=\"https://arxiv.org/abs/1704.03477\">A Neural Representation of Sketch Drawings</a>"			
 		]
 	},	
 	{
 		"date": "3 Dec 2019",
 		"title": "Reinforcement Learning & Natural Language Processing",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/11/",
+		"main":"/classes/itp-F19/12/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_11.png",
 		"bookmarks": [
@@ -310,7 +298,7 @@
 		"date": "10 Dec 2019",
 		"title": "Final presentations",
 		"youtube_id0": "",
-		"main":"/classes/itp-F19/12/",
+		"main":"/classes/itp-F19/13/",
 		"slides0": "",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_11.png",
 		"bookmarks": [		
