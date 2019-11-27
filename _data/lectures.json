@@ -237,29 +237,26 @@
 	},
 	{
 		"date": "26 Nov 2019",
-		"title": "Music information retrieval, BIGGAN & GLOW",
-		"youtube_id0": "",
+		"title": "RNNs, NLP, and audio applications",
+		"youtube_id": "A7A5xhIFEMA",
 		"main":"/classes/itp-F19/11/",
-		"slides0": "",
+		"slides": "https://drive.google.com/open?id=1A9L0ZXPgNGizHDxlhR2e67bLfC01f4p3",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_09.png",
 		"bookmarks": [
 		],
 		"summary": [
-			"GLOW and reversible generative models",
-			"BigGAN tutorial",
+			"Recurrent neural networks",
+			"Natural language processing",
 			"Music information retrieval"
 		],
 		"pratical": [
-			"<a href=\"https://github.com/genekogan/glow\">GLOW demo</a>",			
 			"<a href=\"https://github.com/tensorflow/magenta/tree/master/magenta/models/sketch_rnn\">Sketch-RNN</a>",
 			"<a href=\"https://github.com/sherjilozair/char-rnn-tensorflow\">char-rnn-tensorflow</a>",
 			"<a href=\"https://github.com/runwayml/models/tree/master/im2txt\">im2txt</a>",	
-			"<a href=\"https://drive.google.com/open?id=1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ\">BigGAN demo</a>",			
 			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
 			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>"
 		],
 		"extra": [
-			"<a href=\"https://blog.openai.com/glow/\">Glow: Better Reversible Generative Models</a>",			
 			"<a href=\"https://medium.com/artists-and-machine-intelligence/neural-nets-for-generating-music-f46dffac21c0\">Neural Nets for Generating Music</a>",
 			"<a href=\"http://colah.github.io/posts/2015-08-Understanding-LSTMs/\">Understanding LSTMs</a>",
 			"<a href=\"http://karpathy.github.io/2015/05/21/rnn-effectiveness/\">Unreasonable Effectiveness of RNNs</a>",
@@ -312,6 +309,7 @@
 		"pratical": [
 		],
 		"extra": [
+			"<a href=\"https://blog.openai.com/glow/\">Glow: Better Reversible Generative Models</a>",			
 			"<a href=\"https://www.openmined.org/\">OpenMined</a>",
 			"<a href=\"https://github.com/artonomous/artonomous-mvp\">Artonomous</a>"
 		]
