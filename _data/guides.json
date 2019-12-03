@@ -285,6 +285,19 @@
 			"Arithmetic on GAN features"
 		]
 	},
+	"glow": {
+		"title": "GLOW",
+		"description": "Do 'operations' on faces with a reversible generative model from OpenAI",
+		"category": "python",
+		"link":"https://colab.research.google.com/drive/1oHnA9p8hVJs7Cf-RKdk1EJXx6SyLGyWd",
+		"thumb":"/images/guides_thumbs/glow.jpg",
+		"summary":[
+			"Encoding images of faces into GLOW",
+			"Adding and subtracting face attributes generatively",
+			"Interpolations between faces"
+		]
+	},
+
 
 	"maskrcnn": {
 		"title": "Object segmentation",

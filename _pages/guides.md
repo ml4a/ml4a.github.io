@@ -114,6 +114,7 @@ redirect_from: /guides2/
 {% include guide_preview.md name="qnets" %}
 {% include guide_preview.md name="biggan" %}
 {% include guide_preview.md name="biggan2" %}
+{% include guide_preview.md name="glow" %}
 {% include guide_preview.md name="maskrcnn" %}
 
 {% include guide_preview.md name="AudioClassifier" %}
