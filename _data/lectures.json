@@ -265,29 +265,27 @@
 	},	
 	{
 		"date": "3 Dec 2019",
-		"title": "Reinforcement Learning & Natural Language Processing",
-		"youtube_id0": "",
+		"title": "Reinforcement Learning & Autonomous artificial artists",
+		"youtube_id": "lhua8b1AiOk",
 		"main":"/classes/itp-F19/12/",
-		"slides0": "",
+		"slides": "https://drive.google.com/open?id=1J8YY_9hoQ2Pz04frq388ouEMvEzAkQW0",
 		"thumbnail": "/images/classes/itp-F19/thumbnail_11.png",
 		"bookmarks": [
 
 		],
 		"summary": [
-			"Natural language processing",
 			"Agent-environment systems & games",
-			"AlphaGo and AlphaZero"
+			"GLOW tutorial",
+			"Abraham and autonomous artificial artists"
 		],
 		"pratical": [		
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb\">Q-learning</a>",
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb\">Deep Q-Networks</a>",
-			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
-			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
+			"<a href=\"https://colab.research.google.com/drive/1oHnA9p8hVJs7Cf-RKdk1EJXx6SyLGyWd\">GLOW tutorial</a>"
 		],
 		"extra": [
 			"<a href=\"https://unity3d.com/machine-learning\">Unity Agents</a>",
 			"<a href=\"https://gym.openai.com/\">OpenAI Gym</a>",
-			"<a href=\"http://karpathy.github.io/2016/05/31/rl/\">Pong from Pixels</a>"
+			"<a href=\"http://karpathy.github.io/2016/05/31/rl/\">Pong from Pixels</a>",
+			"<a href=\"https://abraham.ai\">Abraham</a>"
 		]
 	},
 	{
