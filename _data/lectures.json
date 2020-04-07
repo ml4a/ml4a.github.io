@@ -316,6 +316,88 @@
 
 	
 
+"itp-S20":[
+	{
+		"title": "Art, autonomy, and AI",
+		"date": "6 Apr 2020",
+		"main": "/classes/itp-S20/01/",
+		"youtube_id": "W__oJnUms0o",
+		"zoom": "https://nyu.zoom.us/rec/share/2uBrM5XM03tLS9LPwl_NC4d5Rtmmaaa81SdIrvtcnhqmr-3Rtj3lzqds6wPqiw93",
+		"slides": "https://www.dropbox.com/s/t8o1m42xapxpo35/Slides_01.pdf?dl=0",
+		"bookmarks": [],
+		"summary": [
+			"Intro, Zoom logistics, admin",
+			"Basic idea of artificial autonomous artist",
+			"The whole class \"in 60 minutes\""
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Crowd-sourced art & Generative models 1",
+		"date": "13 Apr 2020",
+		"main":"/classes/itp-S20/02/",
+		"bookmarks": [],
+		"summary": [
+			"Artificial life and early computational arts",
+			"The hive mind: crowd-sourced art projects",
+			"GANs and variational autoencoders"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Decentralized AI 1",
+		"date": "20 Apr 2020",
+		"main":"/classes/itp-S20/03/",
+		"bookmarks": [],
+		"summary": [
+			"Decentralization of AI",
+			"Federated learning",
+			"Secure multiparty computation",
+			"Proposals for decentralizing the internet"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Generative models 2 & non-GM AI Art methods",
+		"date": "27 Apr 2020",
+		"main":"/classes/itp-S20/04/",
+		"bookmarks": [],
+		"summary": [
+			"Generative models ecosystem",
+			"More AI arts techniques that are not generative models"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "Decentralized AI 2",
+		"date": "4 May 2019",
+		"main":"/classes/itp-S20/05/",
+		"bookmarks": [],
+		"summary": [
+			"Federated variational autoencoder demo",
+			"Putting the pieces together"
+		],
+		"practical": [],
+		"extra": []
+	},
+	{
+		"title": "The collective imagination",
+		"date": "11 May 2019",
+		"main":"/classes/itp-S20/06/",
+		"bookmarks": [],
+		"summary": [
+			"TBD"
+		],
+		"practical": [],
+		"extra": []
+	}
+],
+
+
 "itp-S19":[
 	{
 		"title": "Art, autonomy, and AI",
