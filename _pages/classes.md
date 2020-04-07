@@ -6,6 +6,24 @@ title: ml4a classes
 
 <div class="class_main">
 	<div class="class_thumb">
+		<a href="/classes/itp-S20/"><img class="thumby" src="/images/classes/itp-F18/thumbnail_06.png"></a>
+	</div>
+	<div class="class_meta">
+		<a href="/classes/itp-S20/" class="class_title">Autonomous Artificial Artist</a>
+		<span class="class_contents">
+		<ul>
+			<li>Spring 2020, <a href="https://tisch.nyu.edu/itp">ITP @ New York University</a></li>
+			<li>Taught online through Zoom (due to Covid-19)</li>
+			<li>By <a href="https://twitter.com/genekogan">@genekogan</a></li>
+			<li>6 lectures</li> 
+		</ul>
+		</span>
+	</div>
+</div>
+
+
+<div class="class_main">
+	<div class="class_thumb">
 		<a href="/classes/itp-F18/"><img class="thumby" src="/images/classes/itp-F18/thumbnail_01.png"></a>
 	</div>
 	<div class="class_meta">

@@ -7,15 +7,17 @@
 
 <div class="class_main">
 	<div class="class_thumb">
-		<a href="{{data.main}}"><img class="thumby" src="{{data.thumbnail}}"></a>
+		<a href="https://www.youtube.com/watch?v={{data.youtube_id}}"><img class="thumby" src="{{data.thumbnail}}"></a>
 	</div>
 	<div class="class_meta">
 		
-		<a href="{{data.main}}" class="class_title">{{data.title}}</a>
+		<a href="https://www.youtube.com/watch?v={{data.youtube_id}}" class="class_title">{{data.title}}</a>
 		<br/>
-		<a href="{{data.main}}" class="class_date">{{data.date}}</a> 
+		<a href="https://www.youtube.com/watch?v={{data.youtube_id}}" class="class_date">{{data.date}}</a> 
 		<!--{% if data.dropbox != "" %}[<a href="{{data.dropbox}}">download</a>]{% endif %}-->
 		{% if data.slides %}[<a href="{{data.slides}}">slides</a>]{% endif %}
+		{% if data.zoom %}[<a href="{{data.zoom}}">zoom</a>]{% endif %}
+		
 		<span class="class_contents">
 		<ul>
 			{% for s in data.summary %}
