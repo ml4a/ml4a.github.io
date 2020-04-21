@@ -349,25 +349,29 @@
 		"extra": []
 	},
 	{
-		"title": "Decentralized AI 1",
+		"title": "Elements of decentralization",
 		"date": "20 Apr 2020",
 		"main":"/classes/itp-S20/03/",
+		"zoom":"https://nyu.zoom.us/rec/share/3PRUaKrW0E1ObK-Q7B_-QqgNRbqiT6a81ylKrvsKnkrGUQjnS3Ujx_9odnAytxme",
+		"slides": "https://www.dropbox.com/s/01p4qmuq74y15w2/Slides_03.pdf?dl=0",
 		"bookmarks": [],
 		"summary": [
-			"Decentralization of AI",
-			"Federated learning",
-			"Secure multiparty computation",
+			"Cryptography primer",
+			"Decentralization",
 			"Proposals for decentralizing the internet"
 		],
 		"practical": [],
 		"extra": []
 	},
 	{
-		"title": "Generative models 2 & non-GM AI Art methods",
+		"title": "Decentralized AI 1 & Generative models 2",
 		"date": "27 Apr 2020",
 		"main":"/classes/itp-S20/04/",
 		"bookmarks": [],
 		"summary": [
+			"Decentralization of AI",
+			"Federated learning",
+			"Secure multiparty computation",
 			"Generative models ecosystem",
 			"More AI arts techniques that are not generative models"
 		],
