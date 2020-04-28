@@ -367,13 +367,12 @@
 		"title": "Decentralized AI 1 & Generative models 2",
 		"date": "27 Apr 2020",
 		"main":"/classes/itp-S20/04/",
+		"zoom": "https://nyu.zoom.us/rec/share/1dR5DrSosTtOAY30tFn6f_EEA6PFeaa813NMrvMFnUjsZQwVT5XcDVoxtDM8IRpy", 
+		"slides": "https://www.dropbox.com/s/qbmkeuvnmrozbe4/Slides_04.pdf?dl=0",
 		"bookmarks": [],
 		"summary": [
 			"Decentralization of AI",
-			"Federated learning",
-			"Secure multiparty computation",
-			"Generative models ecosystem",
-			"More AI arts techniques that are not generative models"
+			"Image-to-image generative models"
 		],
 		"practical": [],
 		"extra": []
@@ -384,6 +383,8 @@
 		"main":"/classes/itp-S20/05/",
 		"bookmarks": [],
 		"summary": [
+			"Federated learning",
+			"Secure multiparty computation",
 			"Federated variational autoencoder demo",
 			"Putting the pieces together"
 		],
