@@ -381,12 +381,13 @@
 		"title": "Decentralized AI 2",
 		"date": "4 May 2019",
 		"main":"/classes/itp-S20/05/",
+		"slides": "https://www.dropbox.com/s/omk9a5ec761is3e/Slides_05.pdf?dl=0",
+		"zoom": "https://nyu.zoom.us/rec/share/x8ElMZLeqWpIfafO02-PYpwTHInqaaa81ChIq6YNzx4uyNksMwJX3TT3qvhpmcXY",
 		"bookmarks": [],
 		"summary": [
 			"Federated learning",
 			"Secure multiparty computation",
-			"Federated variational autoencoder demo",
-			"Putting the pieces together"
+			"Federated variational autoencoder demo"
 		],
 		"practical": [],
 		"extra": []
@@ -397,7 +398,8 @@
 		"main":"/classes/itp-S20/06/",
 		"bookmarks": [],
 		"summary": [
-			"TBD"
+			"Putting the pieces together",
+			"AI arts demos"
 		],
 		"practical": [],
 		"extra": []
