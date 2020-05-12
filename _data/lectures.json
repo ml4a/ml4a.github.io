@@ -1,6 +1,5 @@
 {
 
-
 "itp-F19":[
 	{
 		"title": "The whole class \"in 60 minutes\"",
@@ -395,11 +394,12 @@
 	{
 		"title": "The collective imagination",
 		"date": "11 May 2019",
-		"main":"/classes/itp-S20/06/",
+		"main": "/classes/itp-S20/06/",
+		"zoom": "https://nyu.zoom.us/rec/share/y-0kLont-FFLU5HK01HWdokzF5-5X6a8hyQd__NbzhrEVjBok42uRes7mCIFhXVZ",
 		"bookmarks": [],
 		"summary": [
 			"Putting the pieces together",
-			"AI arts demos"
+			"bb-aaa setup"
 		],
 		"practical": [],
 		"extra": []
@@ -508,7 +508,7 @@
 			{"title":"Course logistics", "m":3, "s":21, "disp":"3:21"}, 
 			{"title":"Syllabus", "m":8, "s":13, "disp":"8:13"}, 
 			{"title":"Tools and frameworks", "m":16, "s":43, "disp":"16:43"}, 
-			{"title":"Introduction to machine learning", "m":27, "s":06, "disp":"27:06"}, 
+			{"title":"Introduction to machine learning", "m":27, "s":6, "disp":"27:06"}, 
 			{"title":"AI resurgence and deep learning", "m":36, "s":36, "disp":"36:36"}, 
 			{"title":"Characteristics of deep learning", "m":47, "s":11, "disp":"47:11"}, 
 			{"title":"Types of machine learning", "m":51, "s":22, "disp":"51:22"}, 
@@ -590,14 +590,14 @@
 		"bookmarks": [
 			{"title":"Introduction, announcements", "m":0, "s":0, "disp":"0:00"},
 			{"title":"Review of supervised learning pipeline", "m":5, "s":41, "disp":"5:41"}, 
-			{"title":"Why training is hard", "m":10, "s":06, "disp":"10:06"}, 
+			{"title":"Why training is hard", "m":10, "s":6, "disp":"10:06"}, 
 			{"title":"Linear regression", "m":15, "s":33, "disp":"15:33"}, 
 			{"title":"Gradient descent", "m":20, "s":18, "disp":"20:18"}, 
 			{"title":"Calculating the gradient, backpropagation", "m":31, "s":32, "disp":"31:32"}, 
 			{"title":"The problem of non-convexity, SGD, and mini-batches", "m":38, "s":31, "disp":"38:31"}, 
 			{"title":"Momentum and adaptive optimizers", "m":44, "s":29, "disp":"44:29"},
 			{"title":"Overfitting and regularization, dropout", "m":48, "s":52, "disp":"48:52"}, 
-			{"title":"Further reading & questions", "m":56, "s":01, "disp":"56:01"}, 
+			{"title":"Further reading & questions", "m":56, "s":1, "disp":"56:01"}, 
 			{"title":"Overview of ml4a-ofx", "m":63, "s":40, "disp":"1:03:40"}, 
 			{"title":"Demo of ConvnetPredictor (webcam transfer learning)", "m":68, "s":12, "disp":"1:08:12"}, 
 			{"title":"Communicating between ConvnetPredictor and Processing", "m":79, "s":36, "disp":"1:19:36"},
@@ -749,10 +749,10 @@
 			{"title":"Linear PCA vs Non-linear methods", "m":45, "s":25, "disp":"45:25"},
 			{"title":"Neural net & embeddings review", "m":51, "s":37, "disp":"51:37"},
 			{"title":"Autoencoders", "m":56, "s":26, "disp":"56:26"},
-			{"title":"Generative adversarial networks", "m":70, "s":04, "disp":"1:10:04"},
-			{"title":"DCGANs and feature arithmetic", "m":75, "s":, "disp":"1:15:30"},
+			{"title":"Generative adversarial networks", "m":70, "s":4, "disp":"1:10:04"},
+			{"title":"DCGANs and feature arithmetic", "m":75, "s":30, "disp":"1:15:30"},
 			{"title":"DCGAN examples projects", "m":79, "s":35, "disp":"1:19:35"},
-			{"title":"Deep generator networks", "m":91, "s":, "disp":"1:31:19"},
+			{"title":"Deep generator networks", "m":91, "s":19, "disp":"1:31:19"},
 			{"title":"High-resolution and progressively-grown GANs", "m":94, "s":37, "disp":"1:34:37"},
 			{"title":"GLOW and reversibility, fMRI-conditioned GANs", "m":100, "s":53, "disp":"1:40:53"},
 			{"title":"Generative models in text and audio domain", "m":105, "s":47, "disp":"1:45:47"},
@@ -789,7 +789,7 @@
 		"thumbnail": "/images/classes/itp-F18/thumbnail_07.png",
 		"bookmarks": [
 			{"title":"Review of generative models", "m":5, "s":58, "disp":"5:58"},
-			{"title":"Conditioning generative models", "m":18, "s":05, "disp":"18:05"},
+			{"title":"Conditioning generative models", "m":18, "s":5, "disp":"18:05"},
 			{"title":"Image-to-image translation (pix2pix)", "m":25, "s":34, "disp":"25:34"},
 			{"title":"pix2pix projects", "m":29, "s":30, "disp":"29:30"},
 			{"title":"Conditioning on face landmarks", "m":37, "s":54, "disp":"37:54"},
@@ -798,7 +798,7 @@
 			{"title":"pix2pix ping-ponging and feedback loops", "m":51, "s":50, "disp":"51:50"},
 			{"title":"Interactive interfaces and edge2landscapes", "m":57, "s":47, "disp":"57:47"},
 			{"title":"Unpaired image translation and CycleGAN", "m":60, "s":37, "disp":"1:00:37"},
-			{"title":"CycleGAN projects", "m":64, "s":08, "disp":"1:04:08"},
+			{"title":"CycleGAN projects", "m":64, "s":8, "disp":"1:04:08"},
 			{"title":"Object detection (YOLO) and dense captioning", "m":74, "s":52, "disp":"1:14:52"},
 			{"title":"Image-to-text & text-to-image", "m":79, "s":16, "disp":"1:19:16"},
 			{"title":"Installing dataset-utils & pix2pix/CycleGAN", "m":80, "s":54, "disp":"1:20:54"},
@@ -809,7 +809,7 @@
 			{"title":"Training CycleGAN to turn faces to clowns", "m":136, "s":0, "disp":"2:16:00"},
 			{"title":"Installing densecap", "m":137, "s":51, "disp":"2:17:51"},
 			{"title":"Short pix2pixHD tutorial & CycleGAN results", "m":141, "s":30, "disp":"2:21:30"},
-			{"title":"Captioning images with densecap", "m":153, "s":01, "disp":"2:33:01"}
+			{"title":"Captioning images with densecap", "m":153, "s":1, "disp":"2:33:01"}
 		],
 		"summary": [
 			"Image-to-image translation (pix2pix/CycleGAN)",
@@ -848,9 +848,9 @@
 			{"title":"char-rnn tutorial", "m":78, "s":23, "disp":"1:18:23"},
 			{"title":"Sketch-RNN", "m":91, "s":57, "disp":"1:31:57"},
 			{"title":"Sketch-RNN tutorial", "m":106, "s":38, "disp":"1:46:38"},
-			{"title":"Other RNN projects", "m":122, "s":02, "disp":"2:02:02"},
+			{"title":"Other RNN projects", "m":122, "s":2, "disp":"2:02:02"},
 			{"title":"Attention, NTMs, and misc topics", "m":127, "s":23, "disp":"2:07:23"},
-			{"title":"Sampling from char-rnn", "m":132, "s":06, "disp":"2:12:06"}
+			{"title":"Sampling from char-rnn", "m":132, "s":6, "disp":"2:12:06"}
 		],
 		"summary": [
 			"Recurrent networks & LSTMs",
@@ -886,7 +886,7 @@
 			{"title":"Review of AudioClassifier & Audio t-SNE", "m":66, "s":55, "disp":"1:06:55"},
 			{"title":"History of electronic & computer music", "m":71, "s":51, "disp":"1:11:51"},
 			{"title":"Physical models and programmable audio", "m":83, "s":35, "disp":"1:23:35"},
-			{"title":"GRUV and RNN-based audio modeling", "m":89, "s":05, "disp":"1:29:05"},
+			{"title":"GRUV and RNN-based audio modeling", "m":89, "s":5, "disp":"1:29:05"},
 			{"title":"WaveNets, SampleRNN, Magenta NSynth", "m":92, "s":50, "disp":"1:32:50"},
 			{"title":"Modeling symbolic music", "m":105, "s":54, "disp":"1:45:54"},
 			{"title":"Content-based recommendation & iPod of the future", "m":115, "s":15, "disp":"1:55:15"}
@@ -900,7 +900,7 @@
 			"<a href=\"https://github.com/genekogan/glow\">GLOW demo</a>",			
 			"<a href=\"https://drive.google.com/open?id=1rqDwIddy0eunhhV8yrznG4SNiB5XWFJJ\">BigGAN demo</a>",			
 			"<a href=\"http://ml4a.github.io/guides/AudioTSNEViewer/\">Audio t-SNE</a>",
-			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>",
+			"<a href=\"http://ml4a.github.io/guides/AudioClassifier/\">AudioClassifier</a>"
 		],
 		"extra": [
 			"<a href=\"https://blog.openai.com/glow/\">Glow: Better Reversible Generative Models</a>",			
@@ -916,8 +916,8 @@
 		"thumbnail": "/images/classes/itp-F18/thumbnail_10.png",
 		"bookmarks": [
 			{"title":"Introduction to natural language processing (NLP)", "m":5, "s":40, "disp":"5:40"},
-			{"title":"Why is NLP hard?", "m":10, "s":02, "disp":"10:02"},
-			{"title":"Word embeddings", "m":12, "s":02, "disp":"12:02"},
+			{"title":"Why is NLP hard?", "m":10, "s":2, "disp":"10:02"},
+			{"title":"Word embeddings", "m":12, "s":2, "disp":"12:02"},
 			{"title":"Properties of word vectors", "m":21, "s":10, "disp":"21:10"},
 			{"title":"Tutorial: universal sentence encoder", "m":28, "s":24, "disp":"28:24"},
 			{"title":"Applications of sentence embeddings", "m":37, "s":21, "disp":"37:21"},
@@ -925,20 +925,20 @@
 			{"title":"Tutorial: Wikipedia latent semantic analysis (LSA)", "m":50, "s":47, "disp":"50:47"},
 			{"title":"spaCy tutorial ", "m":60, "s":24, "disp":"1:00:24"},
 			{"title":"Introduction to reinforcement learning (RL)", "m":66, "s":23, "disp":"1:06:23"},
-			{"title":"The RL setup", "m":69, "s":07, "disp":"1:09:07"},
-			{"title":"Examples and challenges of RL problems", "m":72, "s":03, "disp":"1:12:03"},
+			{"title":"The RL setup", "m":69, "s":7, "disp":"1:09:07"},
+			{"title":"Examples and challenges of RL problems", "m":72, "s":3, "disp":"1:12:03"},
 			{"title":"Deep Q-Networks for beating Atari games", "m":76, "s":22, "disp":"1:16:22"},
 			{"title":"Applications to robotics and humanoid simulation", "m":86, "s":24, "disp":"1:26:24"},
-			{"title":"Monte Carlo tree search (MCTS)", "m":91, "s":06, "disp":"1:31:06"},
+			{"title":"Monte Carlo tree search (MCTS)", "m":91, "s":6, "disp":"1:31:06"},
 			{"title":"Tic-tac-toe MCTS", "m":93, "s":57, "disp":"1:33:57"},
 			{"title":"Introduction to Go and AlphaGo", "m":102, "s":18, "disp":"1:42:18"},
 			{"title":"How AlphaGo improves MCTS", "m":110, "s":18, "disp":"1:50:18"},
 			{"title":"AlphaGo vs. Lee Sedol", "m":115, "s":19, "disp":"1:55:19"},
 			{"title":"AlphaGo Zero and discarding training data", "m":118, "s":40, "disp":"1:58:40"},
-			{"title":"AlphaZero generalized", "m":125, "s":03, "disp":"2:05:03"},
+			{"title":"AlphaZero generalized", "m":125, "s":3, "disp":"2:05:03"},
 			{"title":"AlphaZero plays chess and crushes Stockfish", "m":129, "s":55, "disp":"2:09:55"},
 			{"title":"Curiosity-driven RL exploration ", "m":136, "s":26, "disp":"2:16:26"},
-			{"title":"Practical resources for reinforcement learning", "m":138, "s":01, "disp":"2:18:01"}
+			{"title":"Practical resources for reinforcement learning", "m":138, "s":1, "disp":"2:18:01"}
 		],
 		"summary": [
 			"Natural language processing",
@@ -949,7 +949,7 @@
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb\">Q-learning</a>",
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb\">Deep Q-Networks</a>",
 			"<a href=\"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb\">Latent semantic analysis</a> / <a href=\"http://genekogan.com/works/wiki-tSNE\">Text t-SNE</a>",
-			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>",
+			"<a href=\"https://ml5js.org/docs/Word2vec\">ml5 word vectors</a>"
 		],
 		"extra": [
 			"<a href=\"https://unity3d.com/machine-learning\">Unity Agents</a>",
@@ -970,15 +970,15 @@
 			{"title":"Applications of public key cryptography", "m":27, "s":55, "disp":"27:55"},
 			{"title":"Hash functions and proof-of-work", "m":31, "s":39, "disp":"31:39"},
 			{"title":"Peer-to-peer networks", "m":38, "s":37, "disp":"38:37"},
-			{"title":"Problems with the web today & IPFS project", "m":46, "s":08, "disp":"46:08"},
+			{"title":"Problems with the web today & IPFS project", "m":46, "s":8, "disp":"46:08"},
 			{"title":"How Bitcoin works", "m":54, "s":45, "disp":"54:45"},
 			{"title":"Blockchain-secured assets & second-generation applications", "m":68, "s":55, "disp":"1:08:55"},
-			{"title":"Smart contracts & Ethereum", "m":73, "s":04, "disp":"1:13:04"},
+			{"title":"Smart contracts & Ethereum", "m":73, "s":4, "disp":"1:13:04"},
 			{"title":"Applications of smart contracts", "m":76, "s":45, "disp":"1:16:45"},
 			{"title":"Decentralized autonomous organizations", "m":83, "s":42, "disp":"1:23:42"},
 			{"title":"Cryptoeconomics", "m":87, "s":41, "disp":"1:27:41"},
 			{"title":"Tokens and ICOs", "m":88, "s":50, "disp":"1:28:50"},
-			{"title":"Continuous organizations and curved bonding", "m":97, "s":09, "disp":"1:37:09"},
+			{"title":"Continuous organizations and curved bonding", "m":97, "s":9, "disp":"1:37:09"},
 			{"title":"Curation markets", "m":109, "s":14, "disp":"1:49:14"},
 			{"title":"Governance as curation and liquid democracy", "m":116, "s":22, "disp":"1:56:22"},
 			{"title":"Problems with centralized machine learning", "m":119, "s":48, "disp":"1:59:48"},
@@ -1039,7 +1039,7 @@
 		{"title":"Conditional GANs (pix2pix)", "m":86, "s":25, "disp":"1:26:25"},
 		{"title":"CycleGANs, horse2zebra", "m":94, "s":27, "disp":"1:34:27"},
 		{"title":"Skip-thought vectors and WaveNets", "m":97, "s":11, "disp":"1:37:11"},
-		{"title":"Class synthesis, deepdream, and puppyslugs", "m":101, "s":08, "disp":"1:41:08"}
+		{"title":"Class synthesis, deepdream, and puppyslugs", "m":101, "s":8, "disp":"1:41:08"}
 	],
 	"summary": [
 		"Generative modeling of images",
@@ -1187,11 +1187,11 @@
 	"dropbox": "https://www.dropbox.com/s/vz5qlb6ee2ffjhp/neural%20aesthetic%20%40%20schoolofma%20--%2001%20machine%20learning%20for%20artists.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Introduction, policies, syllabus, resources + ml4a", "m":0, "s":0, "disp":"0:00"},
-		{"title":"Fun with Meapsoft and music information retrieval", "m":43, "s":03, "disp":"43:03"},
+		{"title":"Fun with Meapsoft and music information retrieval", "m":43, "s":3, "disp":"43:03"},
 		{"title":"What is machine learning?", "m":58, "s":42, "disp":"58:42"},
 		{"title":"AI hype cycles", "m":70, "s":23, "disp":"1:10:23"},
 		{"title":"Objectives of AI (HAL in 2001: A Space Odyssey)", "m":76, "s":45, "disp":"1:16:45"},
-		{"title":"ML for media art, Wekinator", "m":81, "s":04, "disp":"1:21:04"},
+		{"title":"ML for media art, Wekinator", "m":81, "s":4, "disp":"1:21:04"},
 		{"title":"Deep learning art applications: Deepdream and Style transfer", "m":84, "s":22, "disp":"1:24:22"},
 		{"title":"Survey of recent artworks, and alt-AI exhibition pieces", "m":93, "s":37, "disp":"1:33:37"}
 	],
@@ -1234,7 +1234,7 @@
 		{"title":"Review of neural networks", "m":9, "s":45, "disp":"9:45"},
 		{"title":"Shortcomings of ordinary neural nets", "m":24, "s":16, "disp":"24:16"},
 		{"title":"Convolutional layers", "m":36, "s":13, "disp":"36:13"},
-		{"title":"Visualizing what convnet layers learn", "m":51, "s":07, "disp":"51:07"},
+		{"title":"Visualizing what convnet layers learn", "m":51, "s":7, "disp":"51:07"},
 		{"title":"Deepdream, style transfer, variational autoencoders", "m":54, "s":12, "disp":"54:12"},
 		{"title":"Overview of recurrent neural nets", "m":71, "s":21, "disp":"1:11:21"},
 		{"title":"t-SNE embedding of images in 2d", "m":84, "s":58, "disp":"1:24:58"},
@@ -1261,7 +1261,7 @@
 		{"title":"Descartes: animals are machines", "m":46, "s":10, "disp":"46:10"},
 		{"title":"Review of week 1", "m":50, "s":50, "disp":"50:50"},
 		{"title":"Assignment + introduction to Wekinator, review resources", "m":64, "s":50, "disp":"1:04:50"},
-		{"title":"Democratizing AI research (Keras) + discussion", "m":79, "s":06, "disp":"1:19:06"}
+		{"title":"Democratizing AI research (Keras) + discussion", "m":79, "s":6, "disp":"1:19:06"}
 	],
 	"summary": [
 		"Trolley problem {poor audio}",
@@ -1307,7 +1307,7 @@
 		{"title":"Image analogies, neural-doodle, super-resolution, assistive", "m":109, "s":10, "disp":"1:49:10"},
 		{"title":"Colorizing black & white images", "m":115, "s":27, "disp":"1:55:27"},
 		{"title":"Deep convolutional generative adversarial networks", "m":117, "s":34, "disp":"1:57:34"},
-		{"title":"Tutorial: neural-style in terminal instance", "m":123, "s":01, "disp":"2:03:01"}
+		{"title":"Tutorial: neural-style in terminal instance", "m":123, "s":1, "disp":"2:03:01"}
 	],
 	"summary": [
 		"Visualizing convnets and interpreting activations",
@@ -1346,7 +1346,7 @@
 		{"title":"The Glass Bead Game + DeepMind", "m":0, "s":0, "disp":"0:00"},
 		{"title":"What is reinforcement learning?", "m":9, "s":42, "disp":"9:42"},
 		{"title":"Learning how to play Atari games", "m":17, "s":10, "disp":"17:10"},
-		{"title":"Convnets controlling joysticks", "m":33, "s":07, "disp":"33:07"},
+		{"title":"Convnets controlling joysticks", "m":33, "s":7, "disp":"33:07"},
 		{"title":"RL IRL: motor learning to balance a pole", "m":46, "s":50, "disp":"46:50"},
 		{"title":"Games and tree search: Tic tac toe + Chess", "m":49, "s":22, "disp":"49:22"},
 		{"title":"Putting it all together: AlphaGo", "m":62, "s":32, "disp":"1:02:32"}
@@ -1366,7 +1366,7 @@
 	"dropbox": "https://www.dropbox.com/s/jkgo87c2fe6zcmr/ml4a%20%40%20itp-nyu%20--%2001%20introduction%2C%20neural%20networks.mp4?dl=1",
 	"bookmarks": [
 		{"title":"Introduction", "m":0, "s":0, "disp":"0:00"}, 
-		{"title":"Machine learning and neural networks", "m":11, "s":03, "disp":"11:03"}, 
+		{"title":"Machine learning and neural networks", "m":11, "s":3, "disp":"11:03"}, 
 		{"title":"Demo forward pass and MNIST", "m":23, "s":45, "disp":"23:45"}, 
 		{"title":"Visualizing the weights", "m":52, "s":17, "disp":"52:17"}, 
 		{"title":"MNIST/CIFAR confusion matrix", "m":62, "s":50, "disp":"1:02:50"}, 
@@ -1439,7 +1439,7 @@
 		{"title":"Interpreting and visualizing activations", "m":40, "s":0, "disp":"40:00"},
 		{"title":"Occlusion demo, localization/compression, deconvolution", "m":50, "s":12, "disp":"50:12"},
 		{"title":"Image synthesis and Deepdream", "m":69, "s":53, "disp":"1:09:53"},
-		{"title":"Style transfer", "m":91, "s":03, "disp":"1:31:03"},
+		{"title":"Style transfer", "m":91, "s":3, "disp":"1:31:03"},
 		{"title":"Transfer learning (Convnet -> Wekinator)", "m":108, "s":20, "disp":"1:48:20"},
 		{"title":"t-SNE on convnet activations (and text)", "m":117, "s":20, "disp":"1:57:20"}
 	],
@@ -1459,9 +1459,9 @@
 	"bookmarks": [
 		{"title":"Review feedforward neural networks", "m":2, "s":19, "disp":"2:19"},
 		{"title":"Feedforward vs. recurrence", "m":7, "s":38, "disp":"7:38"},
-		{"title":"How recurrent neural nets work", "m":9, "s":06, "disp":"9:06"},
+		{"title":"How recurrent neural nets work", "m":9, "s":6, "disp":"9:06"},
 		{"title":"Training RNNs on text (character sequences)", "m":11, "s":32, "disp":"11:32"},
-		{"title":"RNNs and sequence-to-sequence", "m":20, "s":05, "disp":"20:05"},
+		{"title":"RNNs and sequence-to-sequence", "m":20, "s":5, "disp":"20:05"},
 		{"title":"Image captioning", "m":22, "s":25, "disp":"22:25"},
 		{"title":"Advanced architectures and applications", "m":28, "s":12, "disp":"28:12"},
 		{"title":"Tutorial: text generation via torch-rnn", "m":34, "s":20, "disp":"34:20"},
@@ -1482,14 +1482,14 @@
 	"dropbox": "https://www.dropbox.com/s/llzkkc9fj926qlr/ml4a%20%40%20itp-nyu%20--%2006%20reinforcement%20learning%2C%20games%2C%20generative%20models.mp4?dl=1",
 	"bookmarks": [
 		{"title":"The whole class \"in 10 minutes\"", "m":14, "s":33, "disp":"14:33"},
-		{"title":"Autoencoders", "m":43, "s":03, "disp":"43:03"},
+		{"title":"Autoencoders", "m":43, "s":3, "disp":"43:03"},
 		{"title":"Generative adversarial networks", "m":53, "s":58, "disp":"53:58"},
 		{"title":"Game AI + reinforcement learning", "m":64, "s":59, "disp":"1:04:59"},
 		{"title":"Convnets mastering atari games", "m":74, "s":51, "disp":"1:14:51"},
 		{"title":"States, actions, and rewards, Q-learning", "m":88, "s":52, "disp":"1:28:52"},
 		{"title":"Super mario craziness, computer tic-tac-toe", "m":100, "s":48, "disp":"1:40:48"},
 		{"title":"Computer chess: how DeepBlue works", "m":109, "s":59, "disp":"1:49:59"},
-		{"title":"Computer go: how AlphaGo works", "m":124, "s":05, "disp":"2:04:05"}
+		{"title":"Computer go: how AlphaGo works", "m":124, "s":5, "disp":"2:04:05"}
 	],
 	"summary": [
 		"Generative models (autoencoders + GANs)",
@@ -1511,7 +1511,7 @@
 		{"title":"Convolution demo end to end", "m":81, "s":20, "disp":"1:21:20"},
 		{"title":"Visualizing activations and synthesizing classes", "m":94, "s":23, "disp":"1:34:23"},
 		{"title":"Deepdream and style transfer", "m":105, "s":35, "disp":"1:45:35"},
-		{"title":"Video style transfer with optical flow", "m":124, "s":08, "disp":"2:04:08"},
+		{"title":"Video style transfer with optical flow", "m":124, "s":8, "disp":"2:04:08"},
 		{"title":"t-SNE on images and text", "m":132, "s":41, "disp":"2:12:41"},
 		{"title":"Generative models + DCGANs", "m":142, "s":19, "disp":"2:22:19"},
 		{"title":"Recurrent neural networks, game AI + RL", "m":151, "s":39, "disp":"2:31:39"},
