@@ -7,7 +7,7 @@ header_text_hide: "__"
 
 **Introducción: Harold Cohen**
 
-Durante los últimos dos años el aprendizaje profundo (en inglés deep learning) ha incursionado en dominios de interés para artistas, diseñadores, músicos y similares. Combinado con la aparición de potentes marcos de código abierto y la proliferación de recursos educativos públicos, este tema una vez esotérico se ha vuelto accesible para muchas más personas, lo que facilita numerosos hacks innovadores y obras de arte. El resultado ha sido un círculo virtuoso, en el que las obras de arte públicas ayudan a motivar una mayor investigación científica, lo que a su vez inspira una experimentación cada vez más creativa.
+Durante los últimos dos años el aprendizaje profundo (en inglés \"deep learning\") ha incursionado en dominios de interés para artistas, diseñadores, músicos y similares. Combinado con la aparición de potentes marcos de código abierto y la proliferación de recursos educativos públicos, este tema una vez esotérico se ha vuelto accesible para muchas más personas, lo que facilita numerosos hacks innovadores y obras de arte. El resultado ha sido un círculo virtuoso, en el que las obras de arte públicas ayudan a motivar una mayor investigación científica, lo que a su vez inspira una experimentación cada vez más creativa.
 
 
 http://diccan.com/Images/Cohen_tortue.jpg
