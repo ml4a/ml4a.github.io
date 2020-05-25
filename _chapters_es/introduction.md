@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "Introduction"
+title: "Introducción"
 header_image_hide_: "/images/headers/cohen_tortue.jpg"
 header_text_hide: "__"
 ---
