@@ -1,45 +1,18 @@
 name: Gene Kogan
 markdown: kramdown
 collections:
-  pages:
-    output: true
-    permalink: /:path/
-  chapters:
+  book:
     output: true
     permalink: /ml4a/:path/
-  chapters_fr:
+  translations:
     output: true
-    permalink: /ml4a/fr/:path/
-  chapters_cn:
-    output: true
-    permalink: /ml4a/cn/:path/
-  chapters_jp:
-    output: true
-    permalink: /ml4a/jp/:path/
-  chapters_ko:
-    output: true
-    permalink: /ml4a/ko/:path/
-  chapters_es:
-    output: true
-    permalink: /ml4a/es/:path/
-  chapters_ru:
-    output: true
-    permalink: /ml4a/ru/:path/
-  chapters_it:
-    output: true
-    permalink: /ml4a/it/:path/
-  chapters_pt:
-    output: true
-    permalink: /ml4a/pt/:path/
-  chapters_de:
-    output: true
-    permalink: /ml4a/de/:path/
+    permalink: /ml4a/:path/
   guides:
     output: true
     permalink: /guides/:path/
   demos:
     output: true
     permalink: /demos/:path/
-  terms:
+  pages:
     output: true
-    permalink: /glossary/:path/
+    permalink: /:path/
