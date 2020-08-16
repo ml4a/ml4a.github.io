@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     // bind a click event to the 'skip' link
     $(".skip").click(function(event){
-			console.log("let's SKP!!!!")
+
         // strip the leading hash and declare
         // the content we're skipping to
         var skipTo="#"+this.href.split('#')[1];
