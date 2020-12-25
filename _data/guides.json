@@ -3,7 +3,7 @@
 		"title": "Fundamentals of machine learning",
 		"description": "Mathematical precepts for machine learning",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/fundamentals.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/fundamentals.ipynb",
 		"thumb":"/images/guides_thumbs/fundamentals.jpg",
 		"summary":[
 			"What is machine learning?",
@@ -15,7 +15,7 @@
 		"title": "Essentials of Python",
 		"description": "A basic overview of Python programming",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/intro_python.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/intro_python.ipynb",
 		"thumb":"/images/guides_thumbs/intro_python.jpg",
 		"summary":[
 			"Conditionals, variables, loops, and other basics",
@@ -27,7 +27,7 @@
 		"title": "Foundational mathematics",
 		"description": "A review of relevant concepts from linear algebra and calculus, and intro to Numpy",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/math_review_numpy.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/math_review_numpy.ipynb",
 		"thumb":"/images/guides_thumbs/intro_numpy.jpg",
 		"summary":[
 			"Matrices, multivariate functions",
@@ -39,7 +39,7 @@
 		"title": "Classification & k-Nearest Neighbors",
 		"description": "An introduction to classification using k-nearest neighbors algorithm",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/classification_kNN.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/classification_kNN.ipynb",
 		"thumb":"/images/guides_thumbs/kNN.jpg",
 		"summary":[
 			"Classification tasks",
@@ -50,7 +50,7 @@
 		"title": "Linear regression",
 		"description": "Linearly fitting datasets, and basic gradient descent",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/linear_regression.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/linear_regression.ipynb",
 		"thumb":"/images/guides_thumbs/linear_regression.jpg",
 		"summary":[
 			"Fitting datasets with lines",
@@ -62,7 +62,7 @@
 		"title": "DIY neural network",
 		"description": "A numpy implementation of a neural network from scratch",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/diy_neural_network.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/diy_neural_network.ipynb",
 		"thumb":"/images/guides_thumbs/diy_net.jpg",
 		"summary":[
 			"Deriving neural networks",
@@ -74,7 +74,7 @@
 		"title": "Neural networks in Keras",
 		"description": "How to train a simple feedforward neural network",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/simple_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/simple_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/neural-networks.jpg",
 		"summary":[
 			"Introduction to Keras",
@@ -86,7 +86,7 @@
 		"title": "Neural nets for classification",
 		"description": "How to apply neural networks for classification",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/keras_classification.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/keras_classification.ipynb",
 		"thumb":"/images/guides_thumbs/digit_classification.jpg",
 		"summary":[
 			"Softmax activations and cross-entropy loss",
@@ -97,7 +97,7 @@
 		"title": "Convolutional neural networks",
 		"description": "How to train a convolutional neural network",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/convolutional_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/convolutional_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/convnets.jpg",
 		"summary":[
 			"Building neural networks with convolutional and pooling layers for image processing",
@@ -108,7 +108,7 @@
 		"title": "Transfer learning",
 		"description": "Training accurate image classifiers on small datasets",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/transfer-learning.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/transfer-learning.ipynb",
 		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
 		"summary":[
 			"Using powerful pre-trained networks as feature extractors",
@@ -119,7 +119,7 @@
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/recurrent_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/recurrent_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
 			"RNNs, LSTMs, and context",
@@ -130,7 +130,7 @@
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/sequence_to_sequence.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/sequence_to_sequence.ipynb",
 		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
 			"How RNNs operate on sequences on both ends",
@@ -141,7 +141,7 @@
 		"title": "Eigenfaces",
 		"description": "Understand dimensionality reduction and generate weird faces",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/eigenfaces.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/eigenfaces.ipynb",
 		"thumb":"/images/guides_thumbs/eigenfaces.jpg",
 		"summary":[
 			"Run principal component analysis to compress a dataset of faces",
@@ -152,7 +152,7 @@
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-search.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-search.ipynb",
 		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -163,7 +163,7 @@
 		"title": "Find shortest path between two images",
 		"description": "How to find the shortest path between two images",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-path.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-path.ipynb",
 		"thumb":"/images/guides_thumbs/image-path.jpg",
 		"summary":[
 			"Construct a graph of images connected via k nearest neighbors",
@@ -174,7 +174,7 @@
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/image-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -185,7 +185,7 @@
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/audio-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/audio-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from audio clips with librosa",
@@ -196,7 +196,7 @@
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/text-retrieval.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/text-retrieval.ipynb",
 		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
 			"Text representation: bag-of-words, tf-idf",
@@ -208,7 +208,7 @@
 		"title": "Neural net painter",
 		"description": "Fun experiment teaching a neural net to \"paint\" an image",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/neural-net-painter.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/neural-net-painter.ipynb",
 		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
 		"summary":[
 			"Regression of x,y -> r,g,b from an image",
@@ -232,7 +232,7 @@
 		"title": "Wiki t-SNE",
 		"description": "Create a t-SNE grid of Wikipedia articles arranged by topical similarity",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/blob/master/notebooks/wiki-tSNE.ipynb",
+		"link":"https://github.com/ml4a/ml4a/blob/master/examples/fundamentals/wiki-tSNE.ipynb",
 		"thumb":"/images/guides_thumbs/wiki-tsne.jpg",
 		"summary":[
 			"Latent semantic analysis on corpus of text documents",
@@ -243,7 +243,7 @@
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/word2vec_tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/word2vec_tsne.ipynb",
 		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
 			"Embedding words in vector space",
@@ -255,7 +255,7 @@
 		"title": "Q-Learning",
 		"description": "Introduction to Q Learning",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/q_learning.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/reinforcement_learning/q_learning.ipynb",
 		"thumb":"/images/guides_thumbs/q-learning.jpg",
 		"summary":[
 			"Introduction to the reinforcement learning problem",
@@ -266,7 +266,7 @@
 		"title": "Deep Q-Networks",
 		"description": "Using deep Q networks for advanced reinforcement learning",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a-guides/tree/master/notebooks/deep_q_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/reinforcement_learning/deep_q_networks.ipynb",
 		"thumb":"/images/guides_thumbs/atari-dqn.jpg",
 		"summary":[
 			"Deep Q-Networks for larger state spaces",
@@ -303,7 +303,7 @@
 		"title": "Object segmentation",
 		"description": "Identifying and segmenting objects with Mask-RCNN",
 		"category": "python",
-		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/Mask_RCNN.ipynb",
+		"link":"https://github.com/zaidalyafeai/examples/fundamentals/blob/master/Mask_RCNN.ipynb",
 		"thumb":"/images/guides_thumbs/maskrcnn.jpg",
 		"summary":[
 			"Segmenting objects from images with Mask-RCNN",
@@ -314,7 +314,7 @@
 		"title": "QuickDraw dataset",
 		"description": "Working with Google's QuickDraw dataset",
 		"category": "python",
-		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/QuickDraw10.ipynb",
+		"link":"https://github.com/zaidalyafeai/examples/fundamentals/blob/master/QuickDraw10.ipynb",
 		"thumb":"/images/guides_thumbs/quickdraw.jpg",
 		"summary":[
 			"Loading sketches from Google's QuickDraw dataset",
@@ -325,7 +325,7 @@
 		"title": "Autoencoders",
 		"description": "Training simple autoencoders to reconstruct sketches",
 		"category": "python",
-		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/AutoEncoders.ipynb",
+		"link":"https://github.com/zaidalyafeai/examples/fundamentals/blob/master/AutoEncoders.ipynb",
 		"thumb":"/images/guides_thumbs/autoencoders.jpg",
 		"summary":[
 			"Training an autoencoder on the QuickDraw dataset",
@@ -336,7 +336,7 @@
 		"title": "BigGAN tricks",
 		"description": "A selection of tricks for working with BigGANs",
 		"category": "python",
-		"link":"https://github.com/zaidalyafeai/Notebooks/blob/master/BigGanEx.ipynb",
+		"link":"https://github.com/zaidalyafeai/examples/fundamentals/blob/master/BigGanEx.ipynb",
 		"thumb":"/images/guides_thumbs/biggan2.jpg",
 		"summary":[
 			"Linear and hyperspherical latent space interpolation",
