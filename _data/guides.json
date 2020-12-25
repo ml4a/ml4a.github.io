@@ -108,7 +108,7 @@
 		"title": "Transfer learning",
 		"description": "Training accurate image classifiers on small datasets",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/transfer-learning.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/transfer_learning.ipynb",
 		"thumb":"/images/guides_thumbs/transfer-learning.jpg",
 		"summary":[
 			"Using powerful pre-trained networks as feature extractors",
@@ -119,7 +119,7 @@
 		"title": "Recurrent neural networks",
 		"description": "Introduction to recurrent neural nets and LSTMs",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/recurrent_neural_networks.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/language_models/recurrent_neural_networks.ipynb",
 		"thumb":"/images/guides_thumbs/rnn.jpg",
 		"summary":[
 			"RNNs, LSTMs, and context",
@@ -130,7 +130,7 @@
 		"title": "Sequence to sequence models",
 		"description": "Using recurrent neural nets for sequence to sequence models",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/sequence_to_sequence.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/language_models/sequence_to_sequence.ipynb",
 		"thumb":"/images/guides_thumbs/seq2seq.jpg",
 		"summary":[
 			"How RNNs operate on sequences on both ends",
@@ -141,7 +141,7 @@
 		"title": "Eigenfaces",
 		"description": "Understand dimensionality reduction and generate weird faces",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/eigenfaces.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/generative_models/eigenfaces.ipynb",
 		"thumb":"/images/guides_thumbs/eigenfaces.jpg",
 		"summary":[
 			"Run principal component analysis to compress a dataset of faces",
@@ -152,7 +152,7 @@
 		"title": "Reverse image search",
 		"description": "How to do reverse image search, i.e. find similar images to query image",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-search.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/info_retrieval/image-search.ipynb",
 		"thumb":"/images/guides_thumbs/image-search.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -163,7 +163,7 @@
 		"title": "Find shortest path between two images",
 		"description": "How to find the shortest path between two images",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-path.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/info_retrieval/image-path.ipynb",
 		"thumb":"/images/guides_thumbs/image-path.jpg",
 		"summary":[
 			"Construct a graph of images connected via k nearest neighbors",
@@ -174,7 +174,7 @@
 		"title": "Clustering images with t-SNE",
 		"description": "How to cluster a collection of images in 2d with a t-SNE",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/image-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/info_retrieval/image-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/image-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from images with convnets",
@@ -185,7 +185,7 @@
 		"title": "Clustering sounds with t-SNE",
 		"description": "How to cluster a collection of sounds or audio clips in 2d with a t-SNE",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/audio-tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/info_retrieval/audio-tsne.ipynb",
 		"thumb":"/images/guides_thumbs/audio-tsne.jpg",
 		"summary":[
 			"Extract feature vectors from audio clips with librosa",
@@ -196,7 +196,7 @@
 		"title": "Reverse text search",
 		"description": "Representing text for search by document",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/text-retrieval.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/info_retrieval/text-retrieval.ipynb",
 		"thumb":"/images/guides_thumbs/text-retrieval.jpg",
 		"summary":[
 			"Text representation: bag-of-words, tf-idf",
@@ -208,7 +208,7 @@
 		"title": "Neural net painter",
 		"description": "Fun experiment teaching a neural net to \"paint\" an image",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/neural-net-painter.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/dreaming/neural-net-painter.ipynb",
 		"thumb":"/images/guides_thumbs/neural-net-painter.jpg",
 		"summary":[
 			"Regression of x,y -> r,g,b from an image",
@@ -232,7 +232,7 @@
 		"title": "Wiki t-SNE",
 		"description": "Create a t-SNE grid of Wikipedia articles arranged by topical similarity",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/blob/master/examples/fundamentals/wiki-tSNE.ipynb",
+		"link":"https://github.com/ml4a/ml4a/blob/master/examples/info_retrieval/wiki-tSNE.ipynb",
 		"thumb":"/images/guides_thumbs/wiki-tsne.jpg",
 		"summary":[
 			"Latent semantic analysis on corpus of text documents",
