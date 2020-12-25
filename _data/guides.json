@@ -243,7 +243,7 @@
 		"title": "Word vectors",
 		"description": "Deriving word vectors/embeddings from a text corpus",
 		"category": "python",
-		"link":"https://github.com/ml4a/ml4a/tree/master/examples/fundamentals/word2vec_tsne.ipynb",
+		"link":"https://github.com/ml4a/ml4a/tree/master/examples/language_models/word2vec_tsne.ipynb",
 		"thumb":"/images/guides_thumbs/word2vec.jpg",
 		"summary":[
 			"Embedding words in vector space",
