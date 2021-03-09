@@ -1,3 +1,4 @@
+
 ---
 layout: chapter
 title: "How neural networks are trained"
@@ -58,15 +59,15 @@ todo/more sections?
 
 1,000개의 추측은 식은 죽 먹기라고 말할 수 있습니다. 100개의 세그먼트로 세분화하면 $$100 * 100 * 100 = 1000000$$ 추측이 있을 것입니다. 1,000,000개의 추측은 여전히 문제가 되지 않지만, 슬슬 조금씩 긴장이 됩니다. 이 접근 방식을 보다 현실적인 규모의 네트워크로 확장하면 어떻게 됩니까? 가능한 추측의 수는 우리가 가진 가중치의 수와 관련하여 기하급수적으로 증가한다는 것을 알 수 있습니다. 일반적으로, 한 축당 10개의 세그먼트로 세분화하여 샘플링하려면 $$N$$차원 데이터 세트에 $$10^N$$ 샘플이 필요합니다.
 
-그렇다면 이 방법을 사용하여 [첫 번째 장](/ml4a/ko/neural_network/)의 MNIST 숫자를 분류하기 위해 네트워크를 훈련시키려면 어떻게 될까요? 네트워크가 784개의 입력 뉴런, 즉, 15개의 뉴런이 1개의 숨겨진 레이어에 있고 10개의 뉴런이 출력 레이어에 있었습니다. 따라서 $$784*15 + 15*10 = 11910$$의 가중치가 있습니다. 여기에 25개의 편향을 더하면 11,935개의 매개 변수를 통해 동시에 추측해야 합니다. $$10^{11935}$$의 추측을 해야 한다는 뜻이죠. 거의 12,000개의 0이 있는 1입니다! 상상할 수 없을 정도로 큰 숫자입니다. 쉽게 비교하자면, 전 우주에는 $$10^{80}$$개의 원자가 있습니다. 어떤 슈퍼컴퓨터도 그렇게 많은 계산을 할 수는 없습니다. 사실, 만약 오늘날 세상에 존재하는 모든 컴퓨터들을 지구와 태양에 충돌할 때까지 작동시킨다 하더라도, 여전히 계산 중일 것입니다! 현대의 심층 신경망은 수천, 수억개의 가중치를 가지고 있다는 것을 생각해보세요.
+그렇다면 이 방법을 사용하여 [첫 번째 장](/ml4a/ko/neural_network/)의 MNIST 숫자를 분류하기 위한 네트워크를 훈련시키려면 어떻게 될까요? 네트워크가 784개의 입력 뉴런, 즉, 15개의 뉴런이 1개의 숨겨진 층에 있고 10개의 뉴런이 출력층에 있었습니다. 따라서 $$784*15 + 15*10 = 11910$$의 가중치가 있습니다. 여기에 25개의 편향을 더하면 11,935개의 매개 변수를 통해 동시에 추측해야 합니다. $$10^{11935}$$의 추측을 해야 한다는 뜻이죠. 거의 12,000개의 0이 있는 1입니다! 상상할 수 없을 정도로 큰 숫자입니다. 쉽게 비교하자면, 전 우주에는 $$10^{80}$$개의 원자가 있습니다. 어떤 슈퍼컴퓨터도 그렇게 많은 계산을 할 수는 없습니다. 사실, 만약 오늘날 세상에 존재하는 모든 컴퓨터들을 지구와 태양에 충돌할 때까지 작동시킨다 하더라도, 여전히 계산 중일 것입니다! 현대의 심층 신경망은 수천, 수억개의 가중치를 가지고 있다는 것을 생각해보세요.
 
 이 원리는 우리가 기계 학습에서 "[차원의 저주](https://en.wikipedia.org/wiki/Curse_of_dimensionality)"라고 부르는 것과 밀접하게 관련되어 있습니다. 검색 공간에 추가되는 각 차원은 학습된 모델의 우수한 일반화를 위해 필요한 샘플 수를 기하급수적으로 증가시킵니다. 차원의 저주는 데이터 세트에 적용되는 경우가 더 많습니다. 간단히 말해 데이터 세트가 더 많은 열 또는 변수로 표현될수록 해당 데이터 세트에서 더 많은 샘플을 고려해야 한다는 것입니다. 우리는 입력보다는 가중치에 대해 생각하고 있지만, 원칙은 같습니다; [고차원 공간은 어마어마하다](https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimensionality.pdf)!
 
-분명히 이 문제에는 무작위적인 추측보다 더 우아한 해결책이 필요합니다. 이러한 문제를 해결하기 위한 효율적인 계산 방법에 대한 이해를 높이기 위해, 신경망을 잠시 잊고 간단한 문제로 시작하여 경사 하강법을 발명할 때까지 점진적으로 나아가봅시다.
+분명히 이 문제에는 무작위적인 추측보다 더 우아한 해결책이 필요합니다. 이러한 문제를 해결하기 위한 효율적인 계산 방법에 대한 이해를 높이기 위해, 신경망을 잠시 잊고 간단한 문제로 시작하여 경사 하강법에 도달할 때까지 점진적으로 나아가봅시다.
 
-# Linear regression
+# 선형 회귀
 
-[Linear regression](https://en.wikipedia.org/wiki/Linear_regression) refers to the task of determining a "line of best fit" through a set of data points and is a simple predecessor to the more complex nonlinear methods we use to solve neural networks. This section will show you an example of linear regression. Suppose we are given a set of 7 points, those in the chart to the bottom left. To the right of the chart is a scatterplot of our points.
+[선형 회귀](https://ko.wikipedia.org/wiki/선형_회귀)는 일련의 데이터 포인트를 통해 "가장 적합한 선"을 결정하는 작업을 말하며 신경망 해결에 사용하는 보다 복잡한 비선형 방법에 선행하는 단순한 방법입니다. 이 절에서는 선형 회귀 분석의 예를 보여 줍니다. 아래 그림의 왼쪽 표와 같이 7개의 점으로 이루어진 집합이 있다고 가정해봅시다. 오른쪽에는 이 점들의 산점도가 있습니다.
 
 {::nomarkdown}
 <div style="text-align:center;">
@@ -93,39 +94,38 @@ todo/more sections?
 </div>
 {:/nomarkdown}
 
-The goal of linear regression is to find a line which best fits these points. Recall that the general equation for a line is $$ f(x) = m \cdot x + b $$, where $$m$$ is the slope of the line, and $$b$$ is its y-intercept. Thus, solving a linear regression is determining the best values for $$m$$ and $$b$$, such that $$f(x)$$ gets as close to $$y$$ as possible. Let's try out a few random candidates.
+선형 회귀 분석의 목적은 이러한 점에 가장 적합한 1차 함수를 찾는 것입니다. 1차 함수의 일반 방정식은 $$ f(x) = m \cdot x + b $$이며, 여기서 $$m$$는 기울기이고 $$b$$는 y절편입니다. 따라서, 선형 회귀를 해결하는 것은 $$f(x)$$가 $$y$$와 최대한 비슷하도록 최상의 $$m$$과 $$b$$의 값을 결정하는 것입니다. 무작위로 몇 가지 후보들을 시험해 봅시다.
 
-{% include figure_multi.md path1="/images/figures/lin_reg_randomtries.png" caption1="Three randomly-chosen line candidates" %}
+{% include figure_multi.md path1="/images/figures/lin_reg_randomtries.png" caption1="무작위로 선택된 1차 함수 후보 3가지" %}
 
-Pretty clearly, the first two lines don't fit our data very well. The third one appears to fit a little better than the other two. But how can we decide this? Formally, we need some way of expressing how good the fit is, and we can do that by defining a loss function.
+분명히 처음 두 1차 함수들은 데이터에 잘 맞지 않습니다. 세 번째 것은 다른 두 개보다 조금 더 잘 맞는 것 같습니다. 하지만 어떻게 판단할 수 있을까요? 우리는 얼마나 적합한지를 표현할 수 있는 공식적인 방법이 필요하고, 바로 손실 함수를 정의해서 이를 표현할 수 있습니다.
 
-## Loss function
-
-The loss function -- sometimes called a cost function -- is a measure of the amount of error our linear regression makes on a dataset. Although many loss functions exist, all of them essentially penalize us on the distance between the predicted y-value from a given $$x$$ and its actual value in our dataset. For example, taking the line from the middle example above, $$ f(x) = -0.11 \cdot x + 2.5 $$, we highlight the error margins between the actual and predicted values with red dashed lines.
+## 손실 함수
+손실 함수(또는 비용 함수라고도 함)는 선형 회귀 분석 중 데이터 세트에서 발생하는 오류의 양을 측정하는 것입니다. 많은 손실 함수가 존재하지만, 모든 함수는 기본적으로 주어진 $$x$$에서 예측된 y 값과 실제 값 사이의 거리에 대해 불이익을 줍니다. 예를 들어, 위의 중간 예에서 나온 1차 함수를 보면 $$f(x) = -0.11 \cdot x + 2.5$$의 실제 값과 빨간색 점선으로 예측된 값 사이의 오차 한계를 주목합니다.
 
 {% include figure_multi.md path1="/images/figures/lin_reg_error.png" caption1="" %}
 
-One very common loss function is called mean squared error (MSE). To calculate MSE, we simply take all the error bars, square their lengths, and take their average. 
+매우 일반적인 손실 함수 중 평균 제곱 오차(MSE)가 있습니다. MSE를 계산하려면 모든 오류 막대를 선택하고 길이를 제곱한 다음 평균을 구하면 됩니다.
 
 $$ MSE = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} $$
 
 $$ MSE = \frac{1}{n} \sum_i{(y_i - (mx_i + b))^2} $$
 
-We can go ahead and calculate the MSE for each of the three functions we proposed above. If we do so, we see that the first function achieves a MSE of 0.17, the second one is 0.08, and the third gets down to 0.02. Not surprisingly, the third function has the lowest MSE, confirming our guess that it was the line of best fit. 
+우리는 앞서 제안한 세 1차 함수 각각에 대한 MSE를 계산할 수 있습니다. 이렇게 하면 첫 번째 함수는 0.17의 MSE 값을 가지고 있고, 두 번째 함수는 0.08이며, 세 번째 함수는 0.02로 내려갑니다. 놀랄 것도 없이, 세 번째 함수는 MSE가 가장 낮아서 그것이 가장 적합하다는 우리의 추측을 확인시켜줍니다.
 
-We can get some intuition if we calculate the MSE for all $$m$$ and $$b$$ within some neighborhood and compare them. Consider the figure below, which uses two different visualizations of the mean squared error in the range where the slope $$m$$ is between -2 and 4, and the intercept $$b$$ is between -6 and 8.
+어떤 이웃한 1차 함수들에서 모든 $$m$$와 $$b$$에 대한 MSE를 계산하고 비교한다면 직관을 얻을 수 있습니다. 아래 그림을 생각해 보십시오. 이 그림은 기울기 $$m$$가 -2와 4 사이이고 절편 $$b$$가 -6과 8 사이인 범위에서 평균 제곱 오차를 두 가지 방법으로 시각화했습니다.
 
-{% include figure_multi.md path1="/images/figures/lin_reg_mse.png" caption1="Left: A graph plotting mean squared error for $ -2 \le m \le 4 $ and $ -6 \le p \le 8 $ <br/>Right: the same figure, but visualized as a 2-d <a href=\"https://en.wikipedia.org/wiki/Contour_line\">contour plot</a> where the contour lines are logarithmically distributed height cross-sections." %}
+{% include figure_multi.md path1="/images/figures/lin_reg_mse.png" caption1="왼쪽: $ -2 \lem \le 4$ 및 $ -6 \le p \le 8 $에 대한 평균 제곱 오차를 표시한 그래프 <br/> 오른쪽: 동일 값을 표시한, 등고선도가 로그적으로 분포된 높이 횡단면이 있는 2차원 <ref=\"https://en.wikipedia.org/wiki/Contour_line\">등치선</a>" %}
 
-Looking at the two graphs above, we can see that our MSE is shaped like an elongated bowl, which appears to flatten out in an oval very roughly centered in the neighborhood around $$ (m,p) \approx (0.5, 1.0) $$. In fact, if we plot the MSE of a linear regression for any dataset, we will get a similar shape. Since we are trying to minimize the MSE, we can see that our goal is to figure out where the lowest point in the bowl lies.
+위의 두 그래프를 보면, 우리의 MSE는 길쭉한 사발처럼 생겼다는 것을 알 수 있습니다. 이 사발은 이웃에 있는 대략 $$ (m,p) \approx (0.5, 1.0)$$의 타원형으로 평평하게 보입니다. 실제로 데이터 세트에 대한 선형 회귀 분석의 MSE를 그려보면 유사한 모양이 나타납니다. MSE를 최소화하기 위해 노력하고 있기 때문에 그릇에 담긴 가장 낮은 지점이 어디에 있는지 파악하는 것이 우리의 목표임을 알 수 있습니다.
 
-## Adding more dimensions
+## 더 많은 차원을 더하기
 
-The above example is quite minimal, having just one independent variable, $$x$$, and thus two parameters, $$m$$ and $$b$$. What happens when there are more variables? In general, if there are $$n$$ variables, a linear function of them can be written out as:
+위의 예는 매우 작은 것으로, 하나의 독립 변수인 $$x$$와 $$m$$와 $$b$$의 두 가지 매개 변수를 가지고 있습니다. 변수가 더 많으면 어떻게 될까요? 일반적으로 $$n$$개의 변수가 있는 경우, 변수의 1차 선형 함수는 다음과 같이 작성할 수 있습니다.
 
 $$f(x) = b + w_1 \cdot x_1 + w_2 \cdot x_2 + ... + w_n \cdot x_n $$
 
-Or in matrix notation, we can summarize it as:
+행렬로 표시하자면, 이렇게 요약할 수 있습니다:
 
 $$
 f(x) = b + W^\top X
@@ -139,7 +139,7 @@ X =
 x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
 $$
 
-One trick we can use to simplify this is to think of our bias $b$ as being simply another weight, which is always being multiplied by a "dummy" input value of 1. In other words, we let:
+이를 단순화하기 위해 사용할 수 있는 한 가지 방법은 바이어스 $b$를 단순히 다른 가중치로 생각하는 것입니다. 이 가중치는 항상 "더미" 입력 값 1에 곱해 표현됩니다. 즉, 다음과 같이 표현할 수 있습니다.
 
 $$
 f(x) = W^\top X
@@ -153,11 +153,11 @@ X =
 1\\x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
 $$
 
-This equivalent formulation is convenient both notationally, since now our function is more simply expressed as $f(x) = W^\top X$, and conceptually, since we can now think of the bias as just another weight, and therefore just one more parameter that needs to be optimized.
+이 등가 공식은 함수를 더 단순하게 $f(x) = W^\top X$로 표현할 수 있고, 편향을 가중치 중 하나로 생각하면, 매개 변수 하나만 최적화하면 되므로 아주 합리적인 방법입니다.
 
-Adding many more dimensions may seem at first to complicate our problem horribly, but it turns out that the formulation of the problem remains exactly the same in 2, 3, or any number of dimensions. Although it is impossible for us to draw it now, there exists a loss function which appears like a bowl in some number of dimensions -- a hyper-bowl! And as before, our goal is to find the lowest part of that bowl, objectively the smallest value that the loss function can have with respect to some parameter selection and dataset.
+더 많은 차원을 추가하는 것은 처음에는 우리의 문제를 끔찍히 복잡하게 만드는 것처럼 보일였지만, 알고 보니 문제의 공식은 2, 3 또는 어떤 수의 차원으로도 정확히 동일하게 유지됩니다. 비록 지금 그것을 그리는 것은 불가능하지만, 어떤 차원에서는 그릇처럼 보이는 손실 함수가 존재합니다. -- 초-사발(hyper-bowl)이죠! 그리고 이전과 마찬가지로, 우리의 목표는 그 그릇의 가장 낮은 부분, 객관적으로 손실 함수가 특정 매개 변수와 데이터 세트에 대해 가질 수 있는 가장 작은 값을 찾는 것입니다.
 
-So how do we actually calculate where that point at the bottom is exactly? There are numerous ways to do so, with the most common approach being the [ordinary least squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) method, which solves it analytically. When there are only one or two parameters to solve, this can be done by hand, and is commonly taught in an introductory course on statistics or linear algebra. 
+그러면 어떻게 하면 맨 아래에 있는 그 지점이 정확히 어디에 있는지 계산할 수 있을까요? 가장 일반적인 방법은 분석적으로 해결하는 [최소 제곱법](https://ko.wikipedia.org/wiki/최소제곱법)이 있지만, 다양한 방법을 사용할 수 있습니다. 풀어야 할 매개변수가 하나 또는 두 개뿐일 때, 이것은 손으로 할 수 있고, 일반적으로 통계학이나 선형 대수학 입문 과정에서 배울 수 있습니다.
 
 {% include further_reading.md title="Linear regression tutorial" author="Ozzie Liu" link="http://ozzieliu.com/2016/02/09/gradient-descent-tutorial/" %} 
 
@@ -165,9 +165,10 @@ So how do we actually calculate where that point at the bottom is exactly? There
 
 {% include further_reading.md title="Artificial Neural Networks: Linear Regression (Part 1)" author="Brian Dolhansky" link="http://briandolhansky.com/blog/artificial-neural-networks-linear-regression-part-1" %} 
 
-## The curse of nonlinearity
+## 비선형성의 저주
 
 Alas, ordinary least squares cannot be used to optimize neural networks however, and so solving the above linear regression will be left as an exercise left to the reader. The reason we cannot use linear regression is that neural networks are nonlinear; Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^\top X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^\top X) $$. 
+그러나, 일반적인 최소 제곱은 신경망 최적화를 위해 사용될 수 없으므로, 위의 선형 회귀 분석을 해결하는 것은 독자에게 남겨진 연습으로 남겨질 것입니다. 선형 회귀를 사용할 수 없는 이유는 신경망은 비선형적이기 때문입니다. 우리가 제시한 선형 방정식과 신경망 사이의 본질적인 차이는 활성화 함수(예: 시그모이드, 탄, ReLU 또는 기타)의 존재입니다. 따라서, 위의 선형 방정식은 단순히 $y = b + W^\top X$인 반면, 시그모이드 활성화 함수를 갖는 1계층 신경망은 $f(x) = \two(b + W^\top X)$가 될 것입니다.
 
 This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the loss function. Rather than having a bowl shape, the loss function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex loss function ensures we have a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
 
