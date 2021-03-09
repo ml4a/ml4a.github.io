@@ -167,85 +167,83 @@ $$
 
 ## 비선형성의 저주
 
-Alas, ordinary least squares cannot be used to optimize neural networks however, and so solving the above linear regression will be left as an exercise left to the reader. The reason we cannot use linear regression is that neural networks are nonlinear; Recall the essential difference between the linear equations we posed and a neural network is the presence of the activation function (e.g. sigmoid, tanh, ReLU, or others). Thus, whereas the linear equation above is simply $$y = b + W^\top X$$, a 1-layer neural network with a sigmoid activation function would be $$f(x) = \sigma (b + W^\top X) $$. 
-그러나, 일반적인 최소 제곱은 신경망 최적화를 위해 사용될 수 없으므로, 위의 선형 회귀 분석을 해결하는 것은 독자에게 남겨진 연습으로 남겨질 것입니다. 선형 회귀를 사용할 수 없는 이유는 신경망은 비선형적이기 때문입니다. 우리가 제시한 선형 방정식과 신경망 사이의 본질적인 차이는 활성화 함수(예: 시그모이드, 탄, ReLU 또는 기타)의 존재입니다. 따라서, 위의 선형 방정식은 단순히 $y = b + W^\top X$인 반면, 시그모이드 활성화 함수를 갖는 1계층 신경망은 $f(x) = \two(b + W^\top X)$가 될 것입니다.
+그러나, 일반적인 최소 제곱은 신경망 최적화를 위해 사용될 수 없으므로, 위의 선형 회귀 분석을 해결하는 것은 여러분께 연습으로 남겨놓겠습니다. 선형 회귀를 사용할 수 없는 이유는 신경망은 비선형적이기 때문입니다. 우리가 제시한 선형 방정식과 신경망 사이의 본질적인 차이는 활성화 함수(예: 시그모이드, tanh, ReLU 또는 기타)의 존재입니다. 따라서, 위의 선형 방정식은 단순히 $y = b + W^\top X$인 반면, 시그모이드 활성화 함수를 갖는 단층 신경망은 $f(x) = \two(b + W^\top X)$가 될 것입니다.
 
-This nonlinearity means that the parameters do not act independently of each other in influencing the shape of the loss function. Rather than having a bowl shape, the loss function of a neural network is more complicated. It is bumpy and full of hills and troughs. The property of being "bowl-shaped" is called [convexity](https://en.wikipedia.org/wiki/Convex_function), and it is a highly prized convenience in multi-parameter optimization. A convex loss function ensures we have a global minimum (the bottom of the bowl), and that all roads downhill lead to it.
+이 비선형성은 매개 변수가 손실 함수의 모양에 영향을 미치는 데 서로 독립적으로 작용하지 않음을 의미합니다. 신경망의 손실 함수는 그릇 모양보다 더 복잡합니다. 울퉁불퉁하고 언덕과 수조가 가득합니다. "그릇 모양" 특징은 [볼록 함수](https://ko.wikipedia.org/wiki/볼록_함수)라고 하며, 다중 파라미터를 최적화할 때 매우 편리합니다. 볼록 손실 함수는 글로벌 최소값(그릇의 바닥)을 보장하며 내리막길의 모든 도로가 볼록한 상태로 이어지도록 합니다.
 
-But by introducing the nonlinearity, we lose this convenience for the sake of giving our neural networks much more "flexibility" in modeling arbitrary functions. The price we pay is that there is no easy way to find the minimum in one step analytically anymore (i.e. by deriving neat equations for them). In this case, we are forced to use a multi-step numerical method to arrive at the solution instead. Although several alternative approaches exist, gradient descent remains the most popular and effective. The next section will go over how it works.
+그러나 비선형성을 도입함으로써, 우리는 신경망의 함수를 모델링하는 데 훨씬 더 많은 "유연성"을 제공하기 위해 이러한 편리성을 잃게 됩니다. 더 이상 분석적으로 최소값을 찾을 수 있는 쉬운 방법이 없다는 것입니다. 이 경우, 우리는 정답에 도달하기 위해 다단계의 수치적인 방법을 사용해야 합니다. 몇 가지 대안적 접근법이 존재하지만, 경사 하강법은 여전히 가장 대중적이고 효과적입니다. 다음 절에서는 어떻게 작동하는지 살펴보겠습니다.
 
-# Gradient Descent
+# 경사 하강
 
-The general problem we've been dealing with -- that of finding parameters to satisfy some objective function -- is not specific to machine learning. Indeed it is a very general problem found in [mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization), known to us for a long time, and encountered in far more scenarios than just neural networks. Today, many problems in multivariable function optimization -- including training neural networks -- generally rely on a very effective algorithm called gradient descent to find a good solution much faster than taking random guesses, and more powerful than linear regression. 
+우리가 다루어 온 일반적인 문제, 즉 어떤 객관적인 기능을 만족시키기 위한 매개 변수를 찾는 문제는 기계 학습에만 국한되지 않습니다. 실제로 그것은 오랫동안 알려진 [수학적 최적화](https://ko.wikipedia.org/wiki/수학적_최적화),에서 발견되는 매우 일반적인 문제이며, 단순한 신경망보다 훨씬 더 많은 시나리오에서 발견되었습니다. 오늘날, 신경망 훈련을 포함한 다변수 함수 최적화의 많은 문제들은 일반적으로 무작위 추측보다 훨씬 빠르고 선형 회귀보다 더 강력한 해결책을 찾기 위해 경사 하강법라고 불리는 매우 효과적인 알고리즘에 의존합니다.
 
-## The gradient descent method
+## 경사 하강법
 
-Intuitively, the way gradient descent works is similar to the mountain climber analogy we gave in the beginning of the chapter. First, we start with a random guess at the parameters, and start there. We then figure out which direction the loss function steeps downward the most (with respect to changing the parameters), and step slightly in that direction. To put it another way, we determine the amounts to tweak all of the parameters such that the loss function goes down by the largest amount. We repeat this process over and over until we are satisfied we have found the lowest point.
+직관적으로, 경사 하강법이 작동하는 방식은 우리가 챕터 앞부분에서 제시한 산악인의 비유와 비슷합니다. 먼저, 매개 변수를 랜덤하게 추측하는 것으로 시작합니다. 그런 다음 매개 변수 변경과 관련하여 손실 함수가 가장 아래로 기울어지는 방향을 파악하고 해당 방향으로 약간 이동합니다. 다시 말하면 손실 함수가 가장 큰 폭으로 감소하도록 모든 매개 변수를 조정할 양을 결정합니다. 우리는 우리가 가장 낮은 점을 발견했다고 만족할 때까지 이 과정을 계속해서 반복합니다.
 
-To figure out which direction the loss steeps downward the most, it is necessary to calculate the [gradient](https://en.wikipedia.org/wiki/Gradient) of the loss function with respect to all of the parameters. A gradient is a multidimensional generalization of a [derivative](https://en.wikipedia.org/wiki/Derivative); it is a vector containing each of the partial derivatives of the function with respect to each variable. In other words, it is a vector which contains the slope of the loss function along every axis. 
+손실 함수가 가장 아래로 기울어지는 방향을 파악하려면 모든 매개 변수에 대해 손실 함수의 [기울기](https://ko.wikipedia.org/wiki/기울기)을 계산해야 합니다. 기울기(gradient)는 [미분](https://ko.wikipedia.org/wiki/미분)의 다차원 일반화입니다. 이는 각 변수에 대한 함수의 편미분을 포함하는 벡터입니다. 즉, 모든 축에 대한 손실 함수의 기울기를 포함한 벡터입니다.
 
-Although we've already said that the most convenient way to solve linear regression is via ordinary least squares or some other single-step method, let's quickly turn our attention back to linear regression to see a simple example of using gradient descent to solve a linear regression. 
+선형 회귀를 해결하는 가장 편리한 방법은 일반 최소 제곱법이나 다른 단일 단계 방법을 사용하는 것이라고 이미 언급했지만, 선형 회귀 분석을 위한 경사 하강법을 사용하는 간단한 예를 보기 위해 선형 회귀 분석으로 다시 돌아가 보겠습니다.
 
-Recall the mean squared error loss we introduced in the previous section, which we will denote as $J$.
+이전 섹션에서 소개한 평균 제곱 오차 손실을 다시 생각해봅시다. 이를 $J$라고 합니다.
 
 $$ J = \frac{1}{n} \sum_i{(y_i - (mx_i + b))^2} $$
 
-There are two parameters we are trying to optimize: $m$ and $b$. Let's calculate the partial derivative of $J$ with respect to each of them. 
+최적화하려는 매개 변수는 $m$와 $b$입니다. 각각에 대해 $J$의 편미분을 계산해 보겠습니다.
 
 $$ \frac{\partial J}{\partial m} = \frac{2}{n} \sum_i{x_i \cdot (y_i - (mx_i + b))} $$
 
 $$ \frac{\partial J}{\partial b} = \frac{2}{n} \sum_i{(y_i - (mx_i + b))} $$
 
-How far in that direction should we step? This turns out to be an important consideration, and in ordinary gradient descent, this is left as a hyperparameter to decide manually. This hyperparameter -- known as the learning rate -- is generally the most important and sensitive hyperparameter to set and is often denoted as $$\alpha$$. If $$\alpha$$ is set too low, it may take an unacceptably long time to get to the bottom. If $$\alpha$$ is too high, we may overshoot the correct path or even climb upwards. 
+그 방향으로 얼마나 더 나아가야 할까요? 이것은 중요한 고려사항으로 밝혀졌습니다. 그리고 보통의 경사 하강법에서는, 이것은 수동으로 결정하는 하이퍼 파라미터(hyperparameter)로 남겨집니다. 학습률로 알려진 이 하이퍼 파라미터는 일반적으로 가장 중요하고 민감한 하이퍼 파라미터이며 종종 $$\alpha$$로 표시됩니다. $$\alpha$$가 너무 낮게 설정되어 있으면 가장 낮은 곳으로 이동하는 데 참을 수 없을 정도로 오랜 시간이 걸릴 수 있습니다. $$\alpha$$가 너무 높으면 올바른 경로를 오버슈팅(overshoot)하거나 심지어는 위로 올라갈 수도 있습니다.
 
-Denoting the assignment operation as $:=$, we can write the update steps for the two parameters as follows.
+할당 작업을 $:=$로 나타내면 두 매개 변수에 대한 업데이트 단계를 다음과 같이 작성할 수 있습니다.
 
 $$ m := m - \alpha \cdot \frac{\partial J}{\partial m} $$
 
 $$ b := b - \alpha \cdot \frac{\partial J}{\partial b} $$
 
-If we take this approach to solving the simple linear regression we posed above, we will get something that looks like this:
+위에서 설명한 간단한 선형 회귀 분석을 해결하기 위해서 이 방법을 사용하면 다음과 같은 결과를 얻을 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="Example of gradient descent for linear regression with two parameters. We take a random guess at the parameters, and iteratively update our position by taking a small step against the direction of the gradient, until we are at the bottom of the loss function." %}
+{% include figure_multi.md path1="/images/figures/lin_reg_mse_gradientdescent.png" caption1="두 개의 매개 변수를 사용한 선형 회귀 분석에 대한 경사 하강 예입니다. 매개 변수를 랜덤하게 추측하고 손실 함수의 맨 아래에 도달할 때까지 기울기 방향으로 조금씩 이동해 반복적으로 위치를 업데이트합니다." %}
 
-And if there are more dimensions? If we denote all of our parameters as $w_i$, thus giving us the form
-$f(x) = b + W^\top X $, then we can extrapolate the above example to the multidimensional case. This can be written down more succinctly using gradient notation. Recall that the gradient of $J$, which we will denote as $\nabla J$, is the vector containing each of the partial derivatives. Thus we can represent the above update step as:
+그리고 만약 더 많은 차원이 있다면요? 모든 매개 변수를 $w_i$로 표시하면,
+$f(x) = b + W^\top X$로 표시할 수 있습니다. 그런 다음 위의 예를 다차원 사례에 대해 추론할 수 있습니다. 기울기 표기법을 사용하여 보다 간결하게 표현할 수 있습니다. $\nabla J$로 표현하는 $J$의 기울기는 각각의 편미분을 포함하는 벡터임을 잊지마세요. 따라서 위의 업데이트 단계를 다음과 같이 나타낼 수 있습니다.
 
 $$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\partial w_2}, \cdots, \frac{\partial J}{\partial w_N} \Biggr) $$
 
 $$ W := W - \alpha \nabla J(W) $$
 
-The above formula is the canonical formula for ordinary gradient descent. It is guaranteed to get you the best set of parameters for a linear regression, or indeed for any linear optimization problem. If you understand the significance of this formula, you understand "in a nutshell" how neural networks are trained. In practice however, certain things complicate this process in neural networks and the next section will get into how we deal with them.
+위의 공식은 일반적인 경사 하강에 대한 표준 공식입니다. 선형 회귀 분석 또는 모든 현실적인 선형 최적화 문제에 대한 최적의 매개 변수 집합을 얻을 수 있습니다. 만약 여러분이 이 공식의 중요성을 이해한다면, 여러분은 신경망이 어떻게 훈련되는지 "간단히" 이해할 것입니다. 하지만 실제로는 신경망의 훈련 과정을 복잡하게 만드는 어떤 것들이 있고, 다음 절에서 그것들을 다루는 방법에 대해 다루도록 하겠습니다.
 
+# 신경망에 경사 하강법 적용하기
 
-# Applying gradient descent to neural nets
+## 볼록하다는 것의 문제
 
-## The problem of convexity
+이전 섹션에서는 단순한 선형 회귀 문제에 대해 경사 하강을 실행하는 방법을 보여 주었고, 그렇게 하면 올바른 매개 변수를 찾을 수 있다고 선언했습니다. 이것은 우리가 했던 것처럼 선형 모델을 최적화하는 것은 사실이지만, 활성화 함수가 가지고 있는 비선형성 때문에 신경망에는 적용되지 않습니다. 결과적으로, 신경망의 손실 함수는 '그릇 모양'이 아니고, 볼록하지 않습니다. 대신, 수 많은 언덕과 계곡, 곡선 및 기타 불규칙성으로 인해 손실 함수가 훨씬 더 복잡합니다. 즉, 손실값이 주변에서는 가장 낮지만 반드시 절대 최소값(또는 "global minima")은 아닌 "극솟값(local minima)"이 많다는 의미입니다. 이것은 우리가 경사 하강을 할 때, 우리는 우연히 극솟값에 갇힐 수 있다는 것을 의미합니다.
 
-In the previous section, we showed how to run gradient descent for a simple linear regression problem, and declared that doing so is guaranteed to find the correct parameters. This is true for optimizing a linear model as we did, but it's not true for neural networks, due to the nonlinearity introduced by their activation functions. Consequently, the loss function of a neural net is not "bowl-shaped", and it is not convex. Instead, its loss function is much more complex, with many hills and valleys and curves and other irregularities. This means there are many "local minima" i.e. parameterizations where the loss is the lowest in its own immediate neighborhood, but not necessarily the absolute minimum (or "global minimum"). This means that if we run gradient descent, we might accidentally get stuck in a local minimum.
+{% include figure_multi.md path1="/images/figures/non_convex_function.png" caption1="두 개의 매개 변수가 있는 볼록하지 않은 손실 함수면의 예입니다. 심층 신경망에서는 수백만 개의 매개 변수를 다루고 있지만 기본 원리는 그대로입니다. 출처: <a href=\"http://videolectures.net/site/normal_dl/tag=983679/deeplearning2015_bengio_theoretical_motivations_01.pdf\">Yoshua Bengio</a>." %}
 
-{% include figure_multi.md path1="/images/figures/non_convex_function.png" caption1="Example of non-convex loss surface with two parameters. Note that in deep neural networks, we're dealing with millions of parameters, but the basic principle stays the sam. Source: <a href=\"http://videolectures.net/site/normal_dl/tag=983679/deeplearning2015_bengio_theoretical_motivations_01.pdf\">Yoshua Bengio</a>." %}
+이 책의 범위를 벗어난 어떤 이론적 이유로 인해 이것은 딥 러닝에서 큰 문제가 아닌 것으로 밝혀졌습니다. 왜냐하면 다른 기준들과 함께 충분한 숨겨진 단위가 있을 때, 대부분의 극솟값은 합리적으로 절대 최소값에 가깝기 때문에 "충분히" 좋기 때문입니다. [Dauphin et al](https://arxiv.org/abs/1406.2572)에 따르면, 극솟값보다 더 큰 문제는 기울기가 0에 매우 근접하는 [안장점](https://ko.wikipedia.org/wiki/안장점),입니다. 이것이 사실인 이유에 대한 설명은 [요슈아 벤지오](http://www.iro.umontreal.ca/~bengio/yoshua_en/)의 [강의](http://videolectures.net/deeplearning2015_bengio_theoretical_motivations/)를 참고하세요(28절, 1:09:41)
 
-For theoretical reasons beyond the scope of this book, it turns out that this is not a major problem in deep learning, because when there are enough hidden units alongside some other criteria, most local minima are "good enough," being reasonably close to the absolute minimum. According to [Dauphin et al](https://arxiv.org/abs/1406.2572), a bigger challenge than local minima are [saddle points](https://en.wikipedia.org/wiki/Saddle_point), along which the gradient becomes very close to 0. For an explanation of why this is true, see [this lecture](http://videolectures.net/deeplearning2015_bengio_theoretical_motivations/) by [Yoshua Bengio](http://www.iro.umontreal.ca/~bengioy/yoshua_en/) (beginning at section 28, 1:09:41).
+극솟값이 큰 문제가 아니라는 사실에도 불구하고, 우리는 여전히 그것들이 전혀 문제가 되지 않도록 극복하는 것을 선호합니다. 한 가지 방법은 경사 하강이 작동하는 방식을 수정하는 것입니다. 다음 절에서는 이 방법을 설명합니다.
 
-Despite the fact that local minima are not a major problem, we'd still prefer to overcome them to the extent they are any problem at all. One way of doing this is to modify the way gradient descent works, which is what the next section is about.
+## 확률적, 배치 그리고 미니 배치 경사 하강
 
-## Stochastic, batch, and mini-batch gradient descent
+극솟값 외에도, "기본" 경사 하강은 또 다른 큰 문제가 있습니다: 너무 느립니다. 신경망은 수억 개의 매개 변수를 가질 수 있습니다. 즉, 데이터 세트의 단일 예제를 평가하려면 수억 개의 작업이 필요합니다. 게다가 데이터 세트의 모든 지점에서 평가된 경사 하강("batch gradient downlation")은 매우 비싸고 느린 작업입니다. 더욱이, 모든 데이터 세트에는 고유의 중복성이 있기 때문에, 어쨌든 점들의 충분히 많은 부분 집합에서 전체의 경사를 예상할 수 있어, 기울기를 추정하기 위한 부분 경사 하강에 불필요한 비용이 많이 든다는 것을 알 수 있습니다.
 
-Besides for local minima, "vanilla" gradient descent has another major problem: it's too slow. A neural net may have hundreds of millions of parameters; this means a single example from our dataset requires hundreds of millions of operations to evaluate. Subsequently, gradient descent evaluated over all of the points in our dataset -- also known as "batch gradient descent" -- is a very expensive and slow operation. Moreover, because every dataset has inherent redundancy, it can be shown that a large enough subset of points can approximate the full gradient anyway, making batch gradient descent unnecessarily expensive to estimate the gradient.
+우리는 [확률적 경사 하강법(SGD)](https://en.wikipedia.org/wiki/Stochastic_gradient_descent)라는 수정된 경사 하강법을 사용하여 이 문제와 극솟값 문제를 모두 해결할 수 있습니다. SGD를 사용하여 데이터 세트를 섞은 다음 각 샘플을 개별적으로 살펴보고, 단일 점에 대한 기울기를 계산하고, 각 샘플에 대한 가중치 업데이트를 수행합니다. 단일 예제가 특이치일 수 있고 실제 기울기의 근사치가 반드시 좋은 것은 아니기 때문에 처음에는 좋지 않은 생각처럼 보일 수 있습니다. 그러나 데이터 세트의 각 샘플에 대해 임의의 순서로 이 작업을 수행하면 전체 기울기 업데이트 경로의 변동이 평균화되고 좋은 해로 수렴됩니다. 게다가 SGD는 업데이트를 더 "덜컹거리고" 불규칙하게 만들어 극솟값과 안장점을 벗어나 계곡의 바닥에 갇히지 않도록 도와줍니다.
 
-It turns out that we can combat both this problem _and_ the problem of local minima using a modified version of gradient descent called [stochastic gradient descent (SGD)](https://en.wikipedia.org/wiki/Stochastic_gradient_descent). With SGD, we shuffle our dataset, and then go through each sample individually, calculating the gradient with respect to that single point, and performing a weight update for each. This may seem like a bad idea at first because a single example may be an outlier and not necessarily give a good approximation of the actual gradient. But it turns out that if we do this for each sample of our dataset in some random order, the overall fluctuations of the gradient update path will average out and converge towards a good solution. Moreover, SGD helps us get out of local minima and saddle points by making the updates more "jerky" and erratic, which can be enough to get unstuck if we find ourselves in the bottom of a valley. 
+SGD는 특히 손실 함수면이 불규칙한 경우에 유용합니다. 그러나 일반적으로는 전체 데이터 세트가 각각 $$K$$개의 샘플을 갖도록 동일한 크기로 나누어진 $$N$$개의 미니 배치를 사용하는 미니 배치 경사 하강법(MB-GD)을 사용하는 것이 일반적인 접근 방식이다. $$K$$는 적은 양의 양수이거나 수십 또는 수백이 될 수도 있습니다. 특정 아키텍처와 애플리케이션에 따라 다릅니다. $$K=1$$이면 SGD이고 $$K$$가 전체 데이터 세트의 크기라면 배치 경사 하강입니다. 혼란스럽게도, 때때로 사람들은 MB-GD와 한 번에 하나의 표본을 모두 참조하기 위해 "SGD"라고 말합니다.
 
-SGD is particularly useful in cases where the loss surface is especially irregular. But in general, the usual approach is to use what is called mini-batch gradient descent (MB-GD), in which the whole dataset is randomly subdivided into $$N$$ equally-sized mini-batches of $$K$$ samples each. $$K$$ may be a small positive number, or it can be in the dozens or hundreds; it depends on the specific architecture and application. Note that if $$K=1$$, then you have SGD, and if $$K$$ is the size of the whole dataset, it is batch gradient descent. Note also that confusingly, sometimes people say "SGD" to refer to both MB-GD and one sample at a time.
+MB-GD를 사용하면 다음 두 가지 모두를 최대한 활용할 수 있습니다. 기울기는 SGD보다 부드럽고 안정적이며 전체 기울기와 상당히 유사할 뿐 아니라, 각 업데이트에 대해 데이터 세트의 모든 샘플을 평가할 필요가 없기 때문에 굉장히 빠릅니다. MB-GD는 병렬 가능한 행렬 연산으로 인해 매우 효율적으로 계산됩니다.
 
-With MB-GD, we get the best of both worlds; the gradient is smoother and more stable than SGD, and reasonably similar to the full gradient, but we have a massive speed-up from not having to evaluate every sample in the dataset for each update. MB-GD is also computed very efficiently owing to parallelizable matrix operations. 
+{% include figure_multi.md path1="/images/figures/bumpy_gradient_descent.png" caption1="볼록하지 않은 손실 함수에 대한 경사 하강법 예시(신경망과 같은), $\theta_0$ 와 $\theta_1$, 2개의 매개 변수가 있습니다. Source: <a href=\"http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html\">Andrew Ng</a>." %}
 
-{% include figure_multi.md path1="/images/figures/bumpy_gradient_descent.png" caption1="Example of gradient descent for non-convex loss function (such as a neural network), with two parameters $\theta_0$ and $\theta_1$. Source: <a href=\"http://www.holehouse.org/mlclass/01_02_Introduction_regression_analysis_and_gr.html\">Andrew Ng</a>." %}
+실제로 MB-GD와 SGD는 신경망의 손실 함수를 효율적으로 최적화하는 데 효과적입니다. 하지만, 그들은 약점도 가지고 있습니다.
 
-In practice, MB-GD and SGD work well at efficiently optimizing the loss function of a neural network. However, they have weaknesses as well.
-
- - The aforementioned problem of saddle points; we can get stuck in a parameterization where the loss function plateaus, and the gradient gets very close to 0.
- - The learning rate remains a hyperparameter which must be set manually, which can be difficult to do. A learning rate which is too low leads to slow convergence, and one which is too high may overshoot the correct path. 
+ - 앞서 언급한 안장점의 문제. 손실 함수 기울기가 0에 매우 근접하는 매개변수에 갇힐 수 있습니다.
+ - 학습률은 수동으로 설정해야 하는 하이퍼 파라미터로 유지되며, 이는 어려운 작업입니다. 학습률이 너무 작으면 수렴 속도가 느려지고, 너무 크면 올바른 경로를 벗어나 오버슈팅할 수 있습니다.
 
 ## Momentum
 
