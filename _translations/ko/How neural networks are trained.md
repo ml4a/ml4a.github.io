@@ -1,6 +1,6 @@
 ---
 layout: chapter
-title: "How neural networks are trained"
+title: "신경망 학습 "
 includes: [mathjax]
 header_image: "/images/headers/topographic_map.jpg"
 header_text: "A <a href=\"http://www.summitpost.org/ruth-creek-topographic-map/771858\">topographic map</a> depicts elevation with contour lines connecting places at equal heights."
