@@ -1,11 +1,10 @@
-
 ---
 layout: chapter
 title: "How neural networks are trained"
 includes: [mathjax]
 header_image: "/images/headers/topographic_map.jpg"
 header_text: "A <a href=\"http://www.summitpost.org/ruth-creek-topographic-map/771858\">topographic map</a> depicts elevation with contour lines connecting places at equal heights."
----
+
 <!--
 
 Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
@@ -23,27 +22,27 @@ todo/more sections?
 
 본인이 산꼭대기에 있는 등산가이고 밤이 깊었다고 상상해 봅시다. 산 아래 베이스캠프에 도착해야 하는데, 희미한 손전등만 있는 이 어둠 속에서는 몇 피트 정도의 땅밖에 보이지 않습니다. 어떻게 내려갈 수 있을까요? 하나의 방법으로는 어느 쪽으로 가장 땅이 기울고 있는지 확인한 다음 그 방향으로 나아가는 것이 있겠습니다. 이 과정을 여러 번 반복하면 내리막길을 따라 점점 아래로 내려갈 수 있습니다. 때때로 작은 골이나 계곡에 갇히게 될 수도 있는데, 이 경우 움직인 방향으로 조금 더 많이 움직여서 계곡을 벗어날 수도 있습니다. 이러한 주의사항만 있으면 이 전략으로 결국 하산할 수 있게 됩니다.
 
-신경망과 전혀 관계가 없는 것처럼 보일 수 있지만, 이 이야기는 신경망이 훈련되는 방식에 대한 좋은 비유입니다. 사실, 그렇게 하기 위한 기본적인 기술인 [경사 하강법](https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%82%AC_%ED%95%98%EA%B0%95%EB%B2%95)은 우리가 방금 설명한 것과 매우 흡사합니다. 훈련은 신경망의 정확도를 최대화하기 위한 최상의 가중치 세트를 결정하는 것을 말합니다. 앞 장에서는 이 과정을 블랙박스 안에 넣어 둔 채로 이미 훈련된 네트워크가 무엇을 할 수 있는지 살펴보았습니다. 그러나 이 장에서는 경사 하강법이 어떻게 작용하는지에 대한 세부 사항을 설명할 것이며, 그것이 방금 설명한 등반가 비유와 아주 유사하다는 것을 알게 될 것입니다.
+신경망과 전혀 관계가 없는 것처럼 보일 수 있지만, 이 이야기는 신경망이 학습되는 방식에 대한 좋은 비유입니다. 사실, 그렇게 하기 위한 기본적인 기술인 [경사 하강법](https://ko.wikipedia.org/wiki/%EA%B2%BD%EC%82%AC_%ED%95%98%EA%B0%95%EB%B2%95)은 우리가 방금 설명한 것과 매우 흡사합니다. 학습은 신경망의 정확도를 최대화하기 위한 최상의 가중치 세트를 결정하는 것을 말합니다. 앞 장에서는 이 과정을 블랙박스 안에 넣어 둔 채로 이미 학습된 네트워크가 무엇을 할 수 있는지 살펴보았습니다. 그러나 이 장에서는 경사 하강법이 어떻게 작용하는지에 대한 세부 사항을 설명할 것이며, 그것이 방금 설명한 등반가 비유와 아주 유사하다는 것을 알게 될 것입니다.
 
-신경망은 안에 있는 전자제품이 어떻게 작동하는지 모른 채 손전등을 조작할 수 있는 것처럼 훈련 과정을 정확히 알지 못한 채 사용할 수 있습니다. 대부분의 현대 기계 학습 라이브러리는 훈련 과정을 굉장히 자동화했습니다. 자동화된 라이브러리에 의지할 수 있고, 이 주제가 수학적으로 더 어렵기 때문에, 그것을 따로 두고 신경망의 응용 분야로 달려가고 싶은 유혹을 느낄지도 모릅니다. 그러나 그 과정을 이해하는 것은 신경망이 어떻게 적용되고 재구성될 수 있는지에 대한 귀중한 통찰력을 제공하기 때문에, 용감한 독자는 그 과정을 이해하지 않는 것이 실수라는 것을 알고 있을 것입니다. 게다가, 대형 신경망 훈련 능력은 수년 동안 이해할 수 없었고 최근에서야 실현 가능해져, 현재 가장 활동적이고 흥미로운 연구 분야 중 하나일 뿐만 아니라 인공지능 역사상 가장 위대한 성공 사례 중 하나가 되었습니다.
+신경망은 안에 있는 전자제품이 어떻게 작동하는지 모른 채 손전등을 조작할 수 있는 것처럼 학습 과정을 정확히 알지 못한 채 사용할 수 있습니다. 대부분의 현대 기계 학습 라이브러리는 학습 과정을 굉장히 자동화했습니다. 자동화된 라이브러리에 의지할 수 있고, 이 주제가 수학적으로 더 어렵기 때문에, 그것을 따로 두고 신경망의 응용 분야로 달려가고 싶은 유혹을 느낄지도 모릅니다. 그러나 그 과정을 이해하는 것은 신경망이 어떻게 적용되고 재구성될 수 있는지에 대한 귀중한 통찰력을 제공하기 때문에, 용감한 독자는 그 과정을 이해하지 않는 것이 실수라는 것을 알고 있을 것입니다. 게다가, 대형 신경망 학습 능력은 수년 동안 이해할 수 없었고 최근에서야 실현 가능해져, 현재 가장 활동적이고 흥미로운 연구 분야 중 하나일 뿐만 아니라 인공지능 역사상 가장 위대한 성공 사례 중 하나가 되었습니다.
 
-이 장의 목적은 신경망의 해결 방법에 대한 엄격한 이해는 아닐지라도 직관적인 이해를 제공하는 것입니다. 가능한 한 방정식보다 그림으로 설명될 것이며, 추가적인 판독과 정교함을 위한 외부 링크가 제공될 것입니다. 우리는 경사 하강법, 역전파, 그리고 몇 가지 부분에서 관련된 모든 기술에 대해 이야기 할 것입니다. 하지만 우선, 왜 훈련이 어려운지 이해하는 것부터 시작합시다.
+이 장의 목적은 신경망의 해결 방법에 대한 엄격한 이해는 아닐지라도 직관적인 이해를 제공하는 것입니다. 가능한 한 방정식보다 그림으로 설명될 것이며, 추가적인 판독과 정교함을 위한 외부 링크가 제공될 것입니다. 우리는 경사 하강법, 역전파, 그리고 몇 가지 부분에서 관련된 모든 기술에 대해 이야기 할 것입니다. 하지만 우선, 왜 학습이 어려운지 이해하는 것부터 시작합시다.
 
-# 왜 훈련이 힘든가
+# 학습은 왜 어려운가
 
-## 초차원 건초 더미 안의 바늘
+## 초-차원(hyper-dimensional) 건초 더미 안의 바늘
 
 숨겨진 레이어가 있는 신경망의 가중치는 상호의존성이 아주 높습니다. 그 이유를 알기 위해, 아래 세 계층 네트워크의 첫 번째 계층에서 강조 표시된 연결을 고려해봅시다. 만약 우리가 그 연결에서 가중치를 약간 조정한다면, 그 연결이 직접적으로 전파하는 뉴런뿐만 아니라 다음 두 층의 모든 뉴런에도 영향을 미칠 것이고, 따라서 _모든_ 출력에도 영향을 미칠 것입니다.
 
 {% include figure_multi.md path1="/images/figures/connection_tweak.png" caption1="첫 번째 층에서 한 연결의 가중치를 조절하는 것은 다음 층 한 개의 뉴런에만 영향을 미치지만, 완전히 연결되어 있기 때문에 이후 다음 층의 모든 뉴런은 바뀔 것이다." %}
 
-이러한 이유로, 우리는 한 번에 하나씩 최적화함으로써 최고의 가중치 세트를 얻을 수 없다는 것을 알 수 있습니다. 우리는 가능한 전체 가중치 조합을 동시에 찾아야 합니다. 우리가 이걸 어떻게 할 수 있을까요?
+이러한 이유로, 우리는 한 번에 하나씩 최적화함으로써 최고의 가중치 세트를 얻을 수 없다는 것을 알 수 있습니다. 우리는 전체 가중치 조합을 가능한 동시에 찾아야 합니다. 우리가 이걸 어떻게 할 수 있을까요?
 
-가장 단순하고 가장 쉬운 접근법부터 시작해보죠: 무작위 추측입니다. 네트워크의 모든 가중치를 랜덤 값으로 설정하고 데이터 세트에서 정확성을 평가하는 방법입니다. 결과를 추적하면서 이것을 여러 번 반복하고 우리에게 가장 정확한 결과를 준 일련의 가중치를 저장합니다. 처음에 이것은 합리적인 접근으로 보일 수 있습니다. 결국, 컴퓨터는 매우 빠르기 때문에 아마도 우리는 이 무작위 대입 방법으로 괜찮은 해결책을 얻을 수 있을 것입니다. 수십 개의 뉴런이 있는 네트워크라면, 이 방법이 효과가 있을 겁니다. 우리는 빠르게 수백만 가지 추측을 할 수 있고 그것들로부터 괜찮은 후보자를 얻을 수 있을 것입니다. 하지만 대부분의 실제 응용 프로그램에서는 그보다 훨씬 더 많은 가중치를 가집니다. [이전 장](/ml4a/ko/neural_networks/)의 필기 예제를 살펴 봅시다. 약 12,000개의 가중치 값이 있습니다. 그 많은 것들 중에서 가장 좋은 무게의 조합은 말 그대로 건초 더미 안의 바늘과 같습니다. 이 건초 더미는 12,000개의 차원을 가지고 있다는 것을 제외하면요!
+가장 단순하고 가장 쉬운 접근법부터 시작해보죠, 무작위 추측입니다. 네트워크의 모든 가중치를 랜덤 값으로 설정하고 데이터 세트에서 정확성을 평가하는 방법입니다. 결과를 추적하면서 이것을 여러 번 반복하고 우리에게 가장 정확한 결과를 준 일련의 가중치를 저장합니다. 처음에 이것은 합리적인 접근으로 보일 수 있습니다. 결국, 컴퓨터는 매우 빠르기 때문에 아마도 우리는 이 무작위 대입 방법으로 괜찮은 해결책을 얻을 수 있을 것입니다. 수십 개의 뉴런이 있는 네트워크라면, 이 방법이 효과가 있을 겁니다. 우리는 빠르게 수백만 가지 추측을 할 수 있고 그것들로부터 괜찮은 후보자를 얻을 수 있을 것입니다. 하지만 대부분의 실제 응용 프로그램에서는 그보다 훨씬 더 많은 가중치를 가집니다. [이전 장](/ml4a/ko/neural_networks/)의 필기 예제를 살펴 봅시다. 약 12,000개의 가중치 값이 있습니다. 그 많은 것들 중에서 가장 좋은 무게의 조합은 말 그대로 건초 더미 안의 바늘과 같습니다. 이 건초 더미는 12,000개의 차원을 가지고 있다는 것을 제외하면요!
 
 여러분은 12,000차원 건초 더미가 더 친숙한 3차원 건초 더미보다 "4,000배 밖에 안 된다"고 생각할지도 모릅니다. 그래서 최고의 가중치를 찾기 위해서는 4,000배의 시간이 필요하다고 말입니다. 하지만 실제로는 그 비율이 이해할 수 없을 정도로 큽니다. 그리고 다음 섹션에서 그 이유를 알아보겠습니다.
 
-## n차원 공간은 외로운 곳입니다.
+## 외로운 n차원 공간
 
 우리의 전략이 무차별적인 무작위 검색이라면, 합리적으로 좋은 가중치 세트를 얻기 전에 얼마나 많은 추측을 해야 할지 생각해볼 수 있습니다. 직관적으로, 가능한 추측의 전체 공간(space)을 촘촘히 표본으로 추출하기 위해 충분한 추측을 해야 한다고 예상할 수 있습니다. 사전 지식이 없으면 올바른 가중치가 어디에든 숨겨질 수 있기 때문에 가능한 모든 공간을 표본으로 추출하는 것이 타당합니다.
 
@@ -59,7 +58,7 @@ todo/more sections?
 
 1,000개의 추측은 식은 죽 먹기라고 말할 수 있습니다. 100개의 세그먼트로 세분화하면 $$100 * 100 * 100 = 1000000$$ 추측이 있을 것입니다. 1,000,000개의 추측은 여전히 문제가 되지 않지만, 슬슬 조금씩 긴장이 됩니다. 이 접근 방식을 보다 현실적인 규모의 네트워크로 확장하면 어떻게 됩니까? 가능한 추측의 수는 우리가 가진 가중치의 수와 관련하여 기하급수적으로 증가한다는 것을 알 수 있습니다. 일반적으로, 한 축당 10개의 세그먼트로 세분화하여 샘플링하려면 $$N$$차원 데이터 세트에 $$10^N$$ 샘플이 필요합니다.
 
-그렇다면 이 방법을 사용하여 [첫 번째 장](/ml4a/ko/neural_network/)의 MNIST 숫자를 분류하기 위한 네트워크를 훈련시키려면 어떻게 될까요? 네트워크가 784개의 입력 뉴런, 즉, 15개의 뉴런이 1개의 숨겨진 층에 있고 10개의 뉴런이 출력층에 있었습니다. 따라서 $$784*15 + 15*10 = 11910$$의 가중치가 있습니다. 여기에 25개의 편향을 더하면 11,935개의 매개 변수를 통해 동시에 추측해야 합니다. $$10^{11935}$$의 추측을 해야 한다는 뜻이죠. 거의 12,000개의 0이 있는 1입니다! 상상할 수 없을 정도로 큰 숫자입니다. 쉽게 비교하자면, 전 우주에는 $$10^{80}$$개의 원자가 있습니다. 어떤 슈퍼컴퓨터도 그렇게 많은 계산을 할 수는 없습니다. 사실, 만약 오늘날 세상에 존재하는 모든 컴퓨터들을 지구와 태양에 충돌할 때까지 작동시킨다 하더라도, 여전히 계산 중일 것입니다! 현대의 심층 신경망은 수천, 수억개의 가중치를 가지고 있다는 것을 생각해보세요.
+그렇다면 이 방법을 사용하여 [첫 번째 장](/ml4a/ko/neural_network/)의 MNIST 숫자를 분류하기 위한 네트워크를 학습시키려면 어떻게 될까요? 네트워크가 784개의 입력 뉴런, 즉, 15개의 뉴런이 1개의 숨겨진 층에 있고 10개의 뉴런이 출력층에 있었습니다. 따라서 $$784*15 + 15*10 = 11910$$의 가중치가 있습니다. 여기에 25개의 편향을 더하면 11,935개의 매개 변수를 통해 동시에 추측해야 합니다. $$10^{11935}$$의 추측을 해야 한다는 뜻이죠. 거의 12,000개의 0이 있는 1입니다! 상상할 수 없을 정도로 큰 숫자입니다. 쉽게 비교하자면, 전 우주에는 $$10^{80}$$개의 원자가 있습니다. 어떤 슈퍼컴퓨터도 그렇게 많은 계산을 할 수는 없습니다. 사실, 만약 오늘날 세상에 존재하는 모든 컴퓨터들을 지구와 태양에 충돌할 때까지 작동시킨다 하더라도, 여전히 계산 중일 것입니다! 현대의 심층 신경망은 수천, 수억개의 가중치를 가지고 있다는 것을 생각해보세요.
 
 이 원리는 우리가 기계 학습에서 "[차원의 저주](https://en.wikipedia.org/wiki/Curse_of_dimensionality)"라고 부르는 것과 밀접하게 관련되어 있습니다. 검색 공간에 추가되는 각 차원은 학습된 모델의 우수한 일반화를 위해 필요한 샘플 수를 기하급수적으로 증가시킵니다. 차원의 저주는 데이터 세트에 적용되는 경우가 더 많습니다. 간단히 말해 데이터 세트가 더 많은 열 또는 변수로 표현될수록 해당 데이터 세트에서 더 많은 샘플을 고려해야 한다는 것입니다. 우리는 입력보다는 가중치에 대해 생각하고 있지만, 원칙은 같습니다; [고차원 공간은 어마어마하다](https://www.inf.fu-berlin.de/inst/ag-ki/rojas_home/documents/tutorials/dimensionality.pdf)!
 
@@ -175,7 +174,7 @@ $$
 
 # 경사 하강
 
-우리가 다루어 온 일반적인 문제, 즉 어떤 객관적인 기능을 만족시키기 위한 매개 변수를 찾는 문제는 기계 학습에만 국한되지 않습니다. 실제로 그것은 오랫동안 알려진 [수학적 최적화](https://ko.wikipedia.org/wiki/수학적_최적화),에서 발견되는 매우 일반적인 문제이며, 단순한 신경망보다 훨씬 더 많은 시나리오에서 발견되었습니다. 오늘날, 신경망 훈련을 포함한 다변수 함수 최적화의 많은 문제들은 일반적으로 무작위 추측보다 훨씬 빠르고 선형 회귀보다 더 강력한 해결책을 찾기 위해 경사 하강법라고 불리는 매우 효과적인 알고리즘에 의존합니다.
+우리가 다루어 온 일반적인 문제, 즉 어떤 객관적인 기능을 만족시키기 위한 매개 변수를 찾는 문제는 기계 학습에만 국한되지 않습니다. 실제로 그것은 오랫동안 알려진 [수학적 최적화](https://ko.wikipedia.org/wiki/수학적_최적화),에서 발견되는 매우 일반적인 문제이며, 단순한 신경망보다 훨씬 더 많은 시나리오에서 발견되었습니다. 오늘날, 신경망 학습을 포함한 다변수 함수 최적화의 많은 문제들은 일반적으로 무작위 추측보다 훨씬 빠르고 선형 회귀보다 더 강력한 해결책을 찾기 위해 경사 하강법라고 불리는 매우 효과적인 알고리즘에 의존합니다.
 
 ## 경사 하강법
 
@@ -214,7 +213,7 @@ $$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\part
 
 $$ W := W - \alpha \nabla J(W) $$
 
-위의 공식은 일반적인 경사 하강에 대한 표준 공식입니다. 선형 회귀 분석 또는 모든 현실적인 선형 최적화 문제에 대한 최적의 매개 변수 집합을 얻을 수 있습니다. 만약 여러분이 이 공식의 중요성을 이해한다면, 여러분은 신경망이 어떻게 훈련되는지 "간단히" 이해할 것입니다. 하지만 실제로는 신경망의 훈련 과정을 복잡하게 만드는 어떤 것들이 있고, 다음 절에서 그것들을 다루는 방법에 대해 다루도록 하겠습니다.
+위의 공식은 일반적인 경사 하강에 대한 표준 공식입니다. 선형 회귀 분석 또는 모든 현실적인 선형 최적화 문제에 대한 최적의 매개 변수 집합을 얻을 수 있습니다. 만약 여러분이 이 공식의 중요성을 이해한다면, 여러분은 신경망이 어떻게 학습되는지 "간단히" 이해할 것입니다. 하지만 실제로는 신경망의 학습 과정을 복잡하게 만드는 어떤 것들이 있고, 다음 절에서 그것들을 다루는 방법에 대해 다루도록 하겠습니다.
 
 # 신경망에 경사 하강법 적용하기
 
@@ -224,7 +223,7 @@ $$ W := W - \alpha \nabla J(W) $$
 
 {% include figure_multi.md path1="/images/figures/non_convex_function.png" caption1="두 개의 매개 변수가 있는 볼록하지 않은 손실 함수면의 예입니다. 심층 신경망에서는 수백만 개의 매개 변수를 다루고 있지만 기본 원리는 그대로입니다. 출처: <a href=\"http://videolectures.net/site/normal_dl/tag=983679/deeplearning2015_bengio_theoretical_motivations_01.pdf\">Yoshua Bengio</a>." %}
 
-이 책의 범위를 벗어난 어떤 이론적 이유로 인해 이것은 딥 러닝에서 큰 문제가 아닌 것으로 밝혀졌습니다. 왜냐하면 다른 기준들과 함께 충분한 숨겨진 단위가 있을 때, 대부분의 극솟값은 합리적으로 절대 최소값에 가깝기 때문에 "충분히" 좋기 때문입니다. [Dauphin et al](https://arxiv.org/abs/1406.2572)에 따르면, 극솟값보다 더 큰 문제는 기울기가 0에 매우 근접하는 [안장점](https://ko.wikipedia.org/wiki/안장점),입니다. 이것이 사실인 이유에 대한 설명은 [요슈아 벤지오](http://www.iro.umontreal.ca/~bengio/yoshua_en/)의 [강의](http://videolectures.net/deeplearning2015_bengio_theoretical_motivations/)를 참고하세요(28절, 1:09:41)
+이 책의 범위를 벗어난 어떤 이론적 이유로 인해 이것은 딥 러닝에서 큰 문제가 아닌 것으로 밝혀졌습니다. 왜냐하면 다른 기준들과 함께 충분한 숨겨진 단위가 있을 때, 대부분의 극솟값은 합리적으로 절대 최소값에 가까워 "충분히" 좋기 때문입니다. [Dauphin et al](https://arxiv.org/abs/1406.2572)에 따르면, 극솟값보다 더 큰 문제는 기울기가 0에 매우 근접하는 [안장점](https://ko.wikipedia.org/wiki/안장점),입니다. 이것이 사실인 이유에 대한 설명은 [요슈아 벤지오](http://www.iro.umontreal.ca/~bengio/yoshua_en/)의 [강의](http://videolectures.net/deeplearning2015_bengio_theoretical_motivations/)를 참고하세요(28절, 1:09:41)
 
 극솟값이 큰 문제가 아니라는 사실에도 불구하고, 우리는 여전히 그것들이 전혀 문제가 되지 않도록 극복하는 것을 선호합니다. 한 가지 방법은 경사 하강이 작동하는 방식을 수정하는 것입니다. 다음 절에서는 이 방법을 설명합니다.
 
@@ -245,156 +244,154 @@ MB-GD를 사용하면 다음 두 가지 모두를 최대한 활용할 수 있습
  - 앞서 언급한 안장점의 문제. 손실 함수 기울기가 0에 매우 근접하는 매개변수에 갇힐 수 있습니다.
  - 학습률은 수동으로 설정해야 하는 하이퍼 파라미터로 유지되며, 이는 어려운 작업입니다. 학습률이 너무 작으면 수렴 속도가 느려지고, 너무 크면 올바른 경로를 벗어나 오버슈팅할 수 있습니다.
 
-## Momentum
+## 모멘텀(Momentum)
 
-[Momentum](https://distill.pub/2017/momentum/) refers to a family of gradient descent variants where the weight update has inertia. In other words, the weight update is no longer a function of just the gradient at the current time step, but is gradually adjusted from the rate of the previous update. 
+[모멘텀](https://distill.pub/2017/momentum/)은 가중치 업데이트가 관성을 갖는 변형된 경사 하강법을 가리킵니다. 즉, 가중치 업데이트는 더 이상 현재에서 점진적으로 바뀌는 함수가 아니라 이전 업데이트의 속도에 따라 점차 조정됩니다.
 
-Recall that in standard gradient descent, we calculate the gradient $$\nabla J(W)$$ and use the following parameter update formula with learning rate $$\alpha$$. 
-
+표준 경사 하강에서 기울기 $$\nabla J(W)$$를 계산하고 학습률 $\alpha$와 함께 다음 매개 변수 업데이트 공식을 사용한다는 점을 기억합시다.
 $$ W_{t} := W_{t} - \alpha \nabla J(W_{t}) $$
 
-Note that we've appended the $$t$$ subscript to denote the current time step, which was previously omitted. In contrast, the generic formula for gradient descent with momentum is the following:
+이전에 생략된 현재 단계를 나타내기 위해 첨자$$t$$를 추가했습니다. 이와는 대조적으로, 모멘텀이 있는 경사 하강에 대한 일반적인 공식은 다음과 같습니다.
 
 $$ z_{t} := \beta z_{t-1} + \nabla J(W_{t-1}) $$
 
 $$ W_{t} := W_{t-1} - \alpha z_{t} $$
 
-In the parameter update, we've replaced the gradient $$\nabla J(W_{t})$$ with a more complex function $$z_{t}$$ that takes into account the gradient in past time steps. The higher $$\beta$$ is set, the more momentum our parameter update is. If we set $$\beta = 0$$, then the formula reverts to ordinary gradient descent. $$\alpha$$ controls the overall learning rate of the process, as before.
+매개 변수 업데이트에서 우리는 기울기 $$\nabla J(W_{t})$$를 이전 단계의 기울기를 고려한 더 복잡한 함수 $$z_{t}$$로 교체했습니다. $$\beta$$가 높게 설정될수록 매개 변수 업데이트의 모멘텀이 커집니다. $$\diples = 0$$를 설정하면 공식이 일반적인 경사 하강으로 되돌아갑니다. $$\alpha$$는 이전과 같이 프로세스의 전체 학습 속도를 제어합니다.
 
-You can think of the update path as being like a ball rolling downhill. Even if it gets to a region where the gradient changes significantly, it will continue going in roughly the same direction under its own momentum, only changing gradually along the path of the gradient. Momentum helps us escape saddle points and local minima by rolling out from them via speed built up from previous updates. It also helps counteract against the common problem of zig-zagging found along locally irregular loss surfaces where the gradient steeps strongly along some directions and not others.
+업데이트 경로가 볼이 아래로 굴러가는 것과 같다고 생각할 수 있습니다. 기울기가 크게 변화하는 지역에 도달하더라도, 기울기의 경로를 따라 점차적으로 변화할 뿐 자신의 관성을 따라 거의 동일한 방향으로 계속 진행될 것입니다. 모멘텀은 이전 업데이트에서 축적된 속도를 통해 안장점과 극솟값을 벗어날 수 있도록 도와줍니다. 또한 경사도가 다른 방향이 아닌, 일부 방향을 따라 강하게 기울어지는 국지적으로 불규칙한 손실 함수 표면을 따라 일어날 수 있는 급격한 방향 전환을 막는데 도움이 됩니다.
 
-One alternative to the standard momentum formula is Nesterov accelerated gradient descent, given below:
+기존 모멘텀 공식의 한 가지 대안으로는 다음과 같은 네스테로프 가속 경사 하강(Nesterov accelerated gradient descent)이 있습니다.
 
 $$ z_{t} := \beta z_{t-1} + \nabla J(W_{t-1} - \beta z_{t-1} ) $$
 
-The only change is, rather than evaluating the gradient where we currently are ($$W_{t-1}$$), we instead evaluate it at approximately where we will be at the next time step ($$W_{t-1} - \beta z_{t-1}$$), given the buildup of momentum carrying us in that direction. Calculating the gradient at that point instead of where we are currently lets us anticipate the loss surface ahead better and tune the momentum term accordingly. An illustration is given below:
+유일한 변화는 현재 ($$W_{t-1}$$)인 기울기를 평가하는 대신, 그 방향으로 이동하는 모멘텀이 축적될 경우, 다음 단계 ($$W_{t-1} - \betaz_{t-1}$$)에서 우리가 있을 위치를 대략적으로 평가하는 것입니다. 현재 위치 대신 해당 지점에서 기울기를 계산하면 앞으로의 손실 함수 표면을 더 잘 예측하고 그에 따라 모멘텀 항을 조정할 수 있습니다. 아래 그림으로 보여드립니다.
 
-{% include figure_multi.md path1="/images/figures/nesterov_acceleration.jpg" caption1="Nesterov momentum \"looks ahead\" to the approximate position we will be in the next update to calculate the gradient term in the update. Source: <a href=\"https://cs231n.github.io/neural-networks-3/\">Stanford CS231n</a>." %}
+{% include figure_multi.md path1="/images/figures/nesterov_acceleration.jpg" caption1="네스테로프 모멘텀은 기울기 항을 계산하기 위해 다음 업데이트에 있을 대략적인 위치를 \"미리 봅니다\". 출처: <a href=\"https://cs231n.github.io/neural-networks-3/\">스탠포드 CS231n</a>." %}
 
-Momentum methods work pretty well, but like MB-GD and SGD use a single formula for the entire gradient, despite any internal asymmetries among parameters. In contrast, methods which adapt to each element in the gradient have some advantages, which will be looked at in the next section. The following article at [distill.pub](https://distill.pub) looks at momentum in much more mathematical depth and nicely illustrates why it works. 
+모멘텀 방법은 매우 잘 작동하지만 MB-GD 및 SGD와 마찬가지로 매개 변수 간의 비대칭에도 불구하고 전체에서 단 하나의 공식을 사용합니다. 이와는 대조적으로, 그라데이션의 각 요소에 적용하는 방법에는 몇 가지 장점이 있습니다. 다음 절에서 살펴보겠습니다. [distill.pub](https://distill.pub)의 기사에서는 모멘텀을 수학적으로 설명보고 모멘텀이 작동하는 이유를 알기 쉽게 설명하고 있습니다.
 
 {% include further_reading.md title="Why momentum works" author="Gabriel Goh" link="https://distill.pub/2017/momentum/" %} 
 
-## Adaptive methods
+## 적응 기법
 
-Momentum comes in many flavors, and in general, finding fast, efficient, and accurate strategies for updating the parameters during gradient descent is a core objective of scientific research in the area, and a full discussion of them is out of the scope of this book. This section will instead quickly survey several of the more prominent variations in practical implementation, and refer to other materials online for a more comprehensive review.
+모멘텀은 여러 종류가 있습니다. 일반적으로 경사 하강 시 매개 변수를 업데이트하기 위한 빠르고, 효율적이며, 정확한 전략을 찾는 것이 이 분야의 과학 연구의 핵심 목표이지만, 이에 대한 논의는 이 책의 범위를 벗어납니다. 대신 이 절에서는 실제 구현에서 잘 볼 수 있는 몇 가지 변형 방법들을 간략하게 정리해 보겠습니다. 보다 포괄적인 설명은 다른 온라인 자료를 참고하시기 바랍니다.
 
-One of the bigger annoyances in the training process is setting the learning rate $$\alpha$$. Typically, an initial $$\alpha$$ is set at the beginning, and is left to decay gradually over some number of time steps, letting it converge more precisely to a good solution. $$\alpha$$ is the same for each individual parameter.
+학습 과정에서 가장 큰 골칫거리 중 하나는 학습률 $$\alpha$$를 설정하는 것입니다. 일반적으로 초기 $$\alpha$$는 처음에 설정되며, 일부 시간 단계에 걸쳐 점진적으로 감소되도록 내버려두어 더 정확하게 좋은 해로 수렴되도록 합니다. $$\alpha$$는 각 개별 매개 변수에게 모두 동일하게 적용됩니다.
 
-This is unsatisfactory because it assumes that the learning rate must follow a set schedule which is identical for each individual parameter, irrespective of the particular characteristics of the loss surface at a given time step. Additionally, it's unclear how to set $$\alpha$$ and its decay rate in the first place. Momentum and Nesterov momentum help to reduce this burden by giving the update rate some dependence on local observations rather than the "one-size-fits-all" approach of vanilla gradient descent. Still, the choice of $$\alpha$$ and the inflexibility across parameters is seen as a problem.
+만족스럽지 않습니다. 각 단계에서 손실 함수 표면의 특성에 관계없이 각 개별 매개 변수에 대해 동일하게 설정된 학습률을 따라야 한다고 가정하기 때문입니다. 또한 학습률 $$\alpha$$와 감소율을 설정하는 방법은 처음부터 명확하지 않습니다. 모멘텀과 네스테로프 모멘텀은 업데이트 속도를 기본 경사 하강이라는 "일률적인" 접근 방식보다는 주변 지역을 어느정도 관찰하게 하여 이러한 부담을 줄이는 데 도움이 됩니다. 그러나 $$\alpha$$ 설정과 매개 변수 간의 유연성이 문제로 여겨집니다.
 
-A number of methods address this shortcoming by adapting the learning rate to each parameter individually, based on the assumption that there is a lot of variance of the loss across all the parameters. The simplest per-parameter update method is [AdaGrad](http://jmlr.org/papers/v12/duchi11a.html) (standing for "Adaptive subGradient"). With AdaGrad, each parameter is updated individually according to its own gradient, but with a new coefficient which attempts to equalize the learning rate between parameters which tend towards large gradients and those that tend to small ones. AdaGrad is defined in the following formula (Note: for the sake of avoiding confusion, note the subscript $$i$$ refers to index of the weight, rather than the time step as before
-).
+모든 매개 변수에서 손실의 분산이 크다는 가정하에 학습률을 각 매개 변수에 개별적으로 적용하여 이러한 단점을 해결하는 여러 가지 방법이 있습니다. 가장 간단한 매개 변수별 업데이트 방법은 [AdaGrad](http://jmlr.org/papers/v12/duchi11a.html)("Adaptive subGradient")입니다. AdaGrad를 사용하면 각 파라미터가 자체 경사에 따라 개별적으로 업데이트되지만, 그레이디언트가 큰 파라미터와 작은 파라미터 사이의 학습 속도를 균등하게 하는 새로운 계수로 업데이트됩니다. AdaGrad는 다음 공식으로 정의됩니다(참고: 첨자 $$i$$는 이전과 같은 시간 단계가 아닌 가중치의 인덱스입니다, 혼동하지 않도록 주의하세요).
 
 $$ w_{i} := w_{i} - \frac{\alpha}{\sqrt{G_{i}+\epsilon}} \frac{\partial J}{\partial w_{i}} $$
 
-$$\sqrt{G_{i}+\epsilon}$$ represents the sum of the squares of the gradient for that paramter for each step since training began (the $$\epsilon$$ term is just some very small number, e.g. $$10^{-8}$$, to avoid division-by-zero). By dividing $$\alpha$$ for each parameter according to that quantity, we effectively slow down the learning rate for those parameters which have enjoyed large gradients up to that point, and conversely, speed up learning for parameters with minor or sparse gradients.
+$$\sqrt{G_{i}+\epsilon}$$는 학습이 시작된 이후 각 단계에 대한 해당 매개 변수에 대한 그라데이션의 제곱합을 나타냅니다(예: $$\epsilon$$항은 0으로 나누는 것을 피하기 위한 충분히 작은 숫자 $$10^-8$$ 등을 사용합니다). 그 양에 따라 각 매개 변수에 대해 $$\alpha$$를 나누면, 우리는 그 시점까지 큰 그레이디언트를 누려온 매개 변수에 대한 학습률을 효과적으로 늦추고 반대로 경미하거나 희박한 그레이디언트를 가진 매개 변수에 대한 학습을 가속화합니다.
 
-AdaGrad mostly eliminates the need to treat the initial learning rate $$\alpha$$ as a hyperparameter, but it has its own challenges as well. The typical problem with AdaGrad is that learning may stop prematurely as $$G_{i}$$ accumulates for each parameter over time and reduces the magnitude of the updates. A variant of AdaGrad, [AdaDelta](https://arxiv.org/abs/1212.5701), addresses this by effectivly restricting the window of the gradient accumulation term to the most recent updates. Another adaptive method which is very similar to AdaDelta is [RMSprop](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf). RMSprop -- proposed by [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/) during his Coursera class but otherwise unpublished -- similarly shortsights the update by summing the squares of the previous updates, but does so in a simpler way by using a standard [easing](http://easings.net) formula with a decay rate (which ends up being a hyperparameter). Thus, for both AdaDelta and RMSprop the update is not just adaptive with respect to parameters, but it's adaptive with respect to time as well, instead of having the learning rate decay monotonically until stopping.
+AdaGrad는 대부분 초기 학습률 $$\alpha$$를 하이퍼 파라미터로 처리할 필요가 없지만 여전히 문제가 있습니다. AdaGrad의 일반적인 문제는 시간이 지남에 따라 각 매개 변수에 대해 $$G_{i}$$가 누적되고 업데이트의 크기가 감소함에 따라 학습이 조기에 중지될 수 있다는 것입니다. AdaGrad의 변형인 [AdaDelta](https://arxiv.org/abs/1212.5701),은 그레이디언트 누적 범위를 최신 업데이트에 제한하여 이를 효과적으로 해결합니다. AdaDelta와 매우 유사한 또 다른 방법으로는 [RMSprop](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf)이 있습니다. RMSprop은 [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/)가 Coursera 수업 중에 제안했지만 논문으로 출판되지는 않았습니다. 이 기술은 표준 [dupper](http://easings.net) 공식을 사용해 감쇠율을 이용하는 것으로, 더 간단한 방법으로 업데이트를 확인할 수 있습니다. 여기서 감쇠율은 하이퍼 파라미터가 됩니다. 따라서 AdaDelta와 RMSprop의 업데이트는 학습이 끝날 때까지 단조 감소하는 대신 매개 변수와 시간에 따라 변하게 됩니다.
 
-## Adam and comparison of update methods
+## Adam 및 업데이트 방법 비교
 
-The last method worth mentioning in this chapter, and one of the most recent to be proposed, is [Adam](http://arxiv.org/abs/1412.6980), whose name is derived from adaptive moment estimation. Adam gives us the best of both worlds between adaptive methods and momentum-based methods. Like AdaDelta and RMSprop, Adam adapts the learning rate for each parameter according to a sliding window of past gradients, but it has a momentum component to smooth the path over time steps.
+이 장에서 마지막으로 언급할 가치가 있는 방법이자 가장 최근에 제안된 방법 중 하나는 [Adam](http://arxiv.org/abs/1412.6980),이며, Adam의 이름은 적응형 모멘트 추정에서 파생된 이름입니다. Adam은 우리에게 적응법과 운동량 기반 방법 사이의 장점을 모두 제공합니다. AdaDelta 및 RMSprop와 마찬가지로 Adam은 과거 그레이디언트의 슬라이딩 윈도우에 따라 각 매개 변수의 학습율을 조정하지만, 시간 단계에 따라 경로를 매끄럽게 하는 모멘텀 구성 요소를 갖추고 있습니다.
 
-Still more methods exist, and a full discussion of them is out of the scope of this chapter. A more complete discussion of them, including derivations and practical tips, can be found in [this blog post by Sebastian Ruder](http://ruder.io/optimizing-gradient-descent/index.html).
+여전히 더 많은 방법들이 존재하고, 그것들에 대한 완전한 논의는 이 장의 범위를 벗어났습니다. 파생 모델 및 실제 팁을 포함한 자세한 내용은 [Sebastian Ruder의 블로그 게시물](http://ruder.io/optimizing-gradient-descent/index.html)에서 확인할 수 있습니다.
 
-This nice visualization, courtesy of [Alec Radford](https://twitter.com/alecrad), shows the characteristic behavior among the different gradient update methods discussed so far. Notice that momentum-based methods, Momentum and Nesterov accelerated gradient descent (NAG), tend to overshoot the optimal path by "rolling downhill" too fast, whereas standard SGD moves in the right path, but too slowly. Adaptive methods -- AdaGrad, AdaDelta, and RMSProp (and we could add Adam to it as well) -- tend to have the per-parameter flexibility to avoid both of those trappings.
+[Alex Radford](https://twitter.com/alecrad)의 멋진 시각화를 통해 지금까지 논의된 여러 그레이디언트 업데이트 방법 중 특징적인 동작을 보여줍니다. 운동량 기반 방법인 모멘텀 및 네스테로프 가속 경사 하강(NAG)은 "하강으로 너무 빠르게" 최적 경로를 오버슈팅하는 경향이 있는 반면 표준 SGD는 올바른 경로에서 너무 느리게 이동합니다. AdaGrad, AdaDelta, 그리고 RMSProp 같은 적응적 방법은 (Adam을 여기에 추가할 수도 있습니다) 매개 변수별로 유연성이 있어 두 가지 함정을 모두 피할 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/opt2a.gif" caption1="Contour plot of gradient update methods converging on good parameters. Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" path2="/images/figures/opt1a.gif" caption2="Comparison of gradient update methods escaping from a saddle point. Notice that SGD gets stuck. Figure by <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
+{% include figure_multi.md path1="/images/figures/opt2a.gif" caption1="좋은 매개 변수로 수렴되는 그레이디언트 업데이트 방법의 등고선도. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" path2="/images/figures/opt1a.gif" caption2=안장점에서 빠져나오는 그라데이션 업데이트 방법의 비교입니다. SGD가 끼이는 것을 주목하세요. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
 
-So which optimization method works best? There's no simple answer to this, and the answer largely depends on the characteristics of your data and other training constraints and considerations. Nevertheless, Adam has emerged as a promising method to at least start with. When data is sparse or unevenly distributed, the purely adaptive methods tend to work best. A full discussion of when to use each method is beyond the scope of this chapter, and is best found in the academic papers on optimizers, or in practical summaries such as [this one by Yoshua Bengio](https://arxiv.org/pdf/1206.5533v2.pdf).
+그렇다면 어떤 최적화 방법이 가장 효과적일까요? 이에 대한 간단한 해답은 없으며, 답변은 주로 데이터의 특성과 기타 교육 제약 및 고려 사항에 따라 달라집니다. 그럼에도 불구하고, Adam은 적어도 처음에는 유망한 방법으로 등장했습니다. 데이터가 희박하거나 불균일하게 분포되어 있는 경우에는 순수하게 적용된 방법이 가장 잘 작동하는 경향이 있습니다. 각 방법의 사용 시기에 대한 자세한 설명은 본 장의 범위를 벗어나기 때문에, 더 많은 정보는 최적화에 대한 학술 논문이나 [요슈아 벤지오](https://arxiv.org/pdf/1206.5533v2.pdf)와 같은 실용적인 요약을 참고하시기 바랍니다.
 
-For further reading on gradient descent optimization, see the following:
+경사 하강 최적화에 대한 자세한 내용은 다음을 참조하십시오.
 
 {% include further_reading.md title="An overview of gradient descent optimization algorithms" author="Sebastian Ruder" link="http://ruder.io/optimizing-gradient-descent/index.html" %} 
 
 {% include further_reading.md title="Optimizing convolutional networks (CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/neural-networks-3/" %} 
 
 
-# Hyperparameters and evaluation
+# 하이퍼 파라미터 및 평가
 
-Now that we understand the notion of optimizing the parameters of a network, we are ready to summarize the full procedure. The naive way to train our final model would be to run the gradient descent procedure over our full data. But we run into a problem if we do this: how do we evaluate the accuracy of our model? Since we've used up all our labeled data for training, the only way to evaluate it is to run the model on our training set again, and measure the difference between the output and the "ground truth" (the given labels). To understand why this is a bad practice, it is necessary to understand the phenomenon of overfitting.
+이제 네트워크의 매개 변수를 최적화하는 개념을 이해했으므로 전체 절차를 요약할 준비가 되었습니다. 최종 모델을 훈련시키는 쉬운 방법은 전체 데이터에 대해 경사 하강 절차를 실행하는 것입니다. 하지만 이렇게 하면 문제가 발생합니다. 모델의 정확성을 어떻게 평가할 수 있을까요? 레이블링된 데이터를 모두 교육에 사용했기 때문에, 레이블을 평가하는 유일한 방법은 교육 세트에서 모델을 다시 실행하고 출력과 "Ground Truth(실측 정보)"(주어진 레이블) 간의 차이를 측정하는 것입니다. 이것이 왜 나쁜 관행인지 이해하기 위해서는 과적합(overfitting) 현상을 이해하는 것이 필요합니다.
 
-## Overfitting
+## 과적합
 
-[Overfitting](https://en.wikipedia.org/wiki/Overfitting) describes the situation in which your model is over-optimized to accurately predict the training set, at the expense of generalizing to unknown data (which is the objective of learning in the first place). This can happen because the model greatly twists itself to perfectly conform to the training set, even capturing its underlying noise. 
+[과적합](https://en.wikipedia.org/wiki/Overfitting)은 알 수 없는 데이터(처음 학습 목표)로 일반화하는 대신 교육 세트를 정확하게 예측하기 위해 모델이 지나치게 최적화되어 있는 상황을 설명합니다. 이러한 현상은 모델이 교육 세트에 완벽하게 부합해 학습 데이터 세트에 포함된 노이즈까지 포착하기 때문에 발생할 수 있습니다.
 
-One way we can think of overfitting is that our algorithm is sort of \"cheating.\" It is trying to convince you it has an artificially high score by orienting itself in such a way as to get minimal error on the known data. It would be as though you are trying to learn how fashion works but all you've seen is pictures of people at disco nightclubs in the 70s, so you assume all fashion everywhere consists of nothing but bell bottoms, denim jackets, and platform shoes. Perhaps you even have a close friend or family member whom this describes.
+우리가 과적합을 생각할 수 있는 한 가지 방법은 우리의 알고리즘이 일종의 \"부정행위\"를 배웠다는 것입니다. 알려진 데이터에 대해 최소한의 오류만 얻을 수 있도록 방향을 맞춤으로써 인위적으로 높은 점수를 얻도록 설득하는 것입니다. 마치 패션이 어떻게 작동하는지 학습하려고 할 때, 70년대 디스코 나이트클럽의 사람들의 사진만 보고 모든 패션이 나팔 바지, 청자켓, 통굽 신발이 전부라고 생각하는 것과 같습니다. 여러분의 가까운 친구나 가족 구성원에도 비슷한 사람이 있을지도 모르겠네요.
 
-An example of this can be seen in the below graph. We are given 11 data points in black, and two functions are trained to fit it. One is a straight line, which roughly captures the data. The other is a very curvy line, which perfectly captures the data with no error. The latter may at first seem like the better fit because it has less (indeed, zero) error on the training data. But it probably does not really capture the underlying distribution very well and would have poor performance on unknown points.
+이러한 예는 아래 그래프에서 확인할 수 있습니다. 우리는 11개의 데이터 포인트를 블랙으로 부여받았고, 2개의 함수는 그것에 맞도록 학습되었습니다. 하나는 데이터를 대략적으로 캡처하는 직선입니다. 다른 하나는 곡선 형태로, 오류 없이 데이터에 완벽하게 일치합니다. 후자는 교육 데이터에 대한 오류(실제로 0입니다)가 적기 때문에 처음에는 더 잘 맞는 것처럼 보일지도 모릅니다. 그러나 기본 분포를 잘 따르지 않는 미지의 점에 대해서는 성능이 저하될 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/overfitting.png" caption1="An example of overfitting. The straight line is simple and roughly captures the data points with some error. The curvy line has 0 error but is very complex and likely does not generalize well. Source: <a href=\"https://en.wikipedia.org/wiki/Overfitting\">Wikipedia</a>." %}
+{% include figure_multi.md path1="/images/figures/overfitting.png" caption1="과적합의 예시. 직선은 간단하며 약간의 오류와 함께 데이터 지점을 대략적으로 파악합니다. 곡선의 오차는 0이지만 매우 복잡하고 일반화되지 않을 가능성이 높습니다. 출처: <a href=\"https://en.wikipedia.org/wiki/Overfitting\">Wikipedia</a>." %}
 
-How can we avoid overfitting? The simplest solution is to split our dataset into a training set and a test set. The training set is used for the optimization procedure we described above, but we evaluate the accuracy of our model by forwarding the test set to the trained model and measuring its accuracy. Because the test set is held out from training, this prevents the model from "cheating," i.e. memorizing the samples it will be quizzed on later. During training, we can monitor the accuracy of the model on the training set and test set. The longer we train, the more likely our training accuracy is to go higher and higher, but at some point, it is likely the test set will stop improving. This is a cue to stop training at that point. We should generally expect that training accuracy is higher than test accuracy, but if it is much higher, that is a clue that we have overfit.
+어떻게 하면 과적합을 피할 수 있을까요? 가장 간단한 해결책은 데이터 세트를 학습 세트와 테스트 세트로 나누는 것입니다. 학습 세트는 위에서 설명한 최적화 절차에 사용되지만, 테스트 세트는 학습된 모델에 사용되고 모델의 정확도를 평가합니다. 테스트 세트는 학습에서 제외되기 때문에 모델이 "부정행위", 즉 나중에 퀴즈로 낼 샘플을 암기하는 것을 방지할 수 있습니다. 학습 중에 우리는 학습 세트와 테스트 세트에서 모델의 정확도를 모니터링할 수 있습니다. 학습 시간이 길어질수록 학습 정확도가 점점 더 높아지지만, 어느 시점부터 테스트 세트의 정확도는 더 이상 개선되지 않을 가능성이 높습니다. 이것은 학습을 중단하라는 신호입니다. 일반적으로 학습 정확도가 테스트 정확도보다 높을 것으로 예상하지만, 예상보다 훨씬 높으면 과적합이 일어나고 있다는 것을 뜻합니다.
 
-## Cross-validation and hyperparameter selection
+## 교차 검증 및 하이퍼 파라미터 선택
 
-The procedure above is a good start to combat overfitting, but it turns out to be not enough. There remain a number of crucial decisions to make before optimization begins. What model architecture should we use? How many layers and hidden units should there be? How should we set the learning rate and other hyperparameters? We could simply try different settings, and pick the one that has the best performance on the test set. But the problem is we risk setting the hyperparameters to be those values which optimize only _that particular_ test set, rather than an arbitrary or unknown one. This would again mean that we are overfitting.
+위의 절차는 과적합을 해결하기 위한 좋은 시작이지만, 여전히 충분하지 않습니다. 최적화를 시작하기 전에 해야 할 중요한 결정들이 많이 남아 있습니다. 어떤 모델 아키텍처를 사용해야 할까요? 레이어와 숨겨진 유닛은 몇 개나 있어야 할까요? 학습률 및 기타 하이퍼 파라미터는 어떻게 설정해야 할까요? 여러 가지 설정을 시도해보고 테스트 세트에서 성능이 가장 좋은 것으로 결정할 수 있습니다. 그러나 문제는 하이퍼 파라미터가 임의적이거나 알려지지 않은 테스트 집합이 아니라 특정 테스트 집합만 최적화하는 값으로 설정될 위험이 있다는 것입니다. 이것은 또 다시 과적합되었다는 것을 의미할 것입니다.
 
-The solution to this is to partition the data into three sets rather than two: a training set, a validation set, and a test set. Typically you will see splits where the training set accounts for 70 or 80% of the full data, and the test and validation are equally split among the rest. Now, you train on the training set, and evaluate on the validation set in order to find the optimal hyperparameters and know when to stop training (typically when validation set accuracy stops improving). Sometimes, cross-fold validation is preferred; in this type of setup, the training and validation set is split into some number (e.g. 10) equally-sized partitions, and each partition takes turns being the validation set. Other times, one validation set is used persistently. After validation, the final evaluation is carried out on the test data, which has been held out the whole time leading up to the end.
+이에 대한 해결책은 두 세트가 아닌 세 세트, 즉, 학습 세트, 검증 세트 및 테스트 세트로 데이터를 분할하는 것입니다. 일반적으로 학습 세트가 전체 데이터의 70% 에서 80%를 차지하고 테스트와 검증 세트가 나머지를 균등하게 나눕니다. 이제 학습 세트에 대해 학습하고 검증 세트에 대해 평가하여 최적의 하이퍼 파라미터를 찾고 학습을 중단해야 하는 시기를 파악합니다(일반적으로 검증 세트 정확도가 향상되지 않을 때). 때로는 교차 검증이 선호됩니다. 이러한 유형에서는 학습 및 검증 세트가 동일한 크기(예: 10)의 부분 집합으로 분할되고 각 부분 집합이 번갈아 검증 세트가 됩니다. 하나의 검증 세트가 지속적으로 사용될 수도 있습니다. 확인 후 계속 남겨두고 테스트 세트를 사용하여 마지막 평가를 실시합니다.
 
-Recently, a number of researchers have even begun devising ways of learning architectures and hyperparameters within the training process itself. Researchers at [Google Brain](https://research.google.com/teams/brain/) call this [AutoML](https://research.googleblog.com/2017/05/using-machine-learning-to-explore.html). Such methods hold great potential in automating those tedious components of machine learning which still require human intervention, and perhaps point to a future when someone will need only to define a problem and provide a dataset in order to do machine learning.
+최근, 많은 연구자들은 훈련 과정 자체 내에서 아키텍처와 하이퍼 파라미터를 학습하는 방법을 고안하기 시작했습니다. [Google Brain](https://research.google.com/teams/brain/))의 연구원들은 이것을 [AutoML](https://research.googleblog.com/2017/05/using-machine-learning-to-explore.html)이라고 부릅니다. 이러한 방법은 여전히 인간의 개입이 필요한 기계 학습의 구성요소를 자동화하는 데 큰 잠재력을 가지고 있으며, 문제를 정의하고 데이터 세트를 제공하는 것만으로 기계 학습을 할 수 있는 미래를 보여줍니다.
 
-## Regularization
+## 정규화
 
-[Regularization](https://en.wikipedia.org/wiki/Regularization_(mathematics)) refers to imposing constraints on our neural network in order to prevent overfitting or otherwise discourage undesirable properties. One way overfitting occurs is when the magnitude of the weights grows too large; it is this property that allows the shape of the network output function to curve so wildly as to capture the underlying noise of a training set, as we saw in the above example.  
+[정규화](https://en.wikipedia.org/wiki/Regularization_(mathematics))는 과적합을 방지하거나 바람직하지 않은 속성을 억제하기 위해 신경 네트워크에 제약을 가하는 것을 말합니다. 과적합이 발생하는 경우 중 하나는 가중치의 크기가 너무 커질 때입니다. 위의 예에서 보았던 것처럼 네트워크 출력 함수의 모양이 학습 세트의 기본 노이즈 마저 학습하는 것이 바로 그것입니다.
 
-One way to regularize is to modify our objective function by adding an additional term which penalizes large weights. Denoting our neural network as $$f$$, recall that the loss function we are optimizing is the mean squared error:
+정규화하는 한 가지 방법은 큰 가중치에 불이익을 추가하여 목표 함수를 수정하는 것입니다. 신경망을 $$f$$하면 우리가 최적화하고 있는 손실 함수는 다음의 평균 제곱 오차로 표현됩니다.
 
 $$ J = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} $$
 
-We can penalize large weights by appending our loss function with the L2-regularization term, denoted here as $R(f)$:
+여기서 $R(f)$로 표시된 L2 정규화 항에 손실 함수를 추가해 큰 가중치에 불이익을 줄 수 있습니다.
 
 $$ R(f) = \frac{1}{2} \lambda \sum{w^2} $$
 
-This term is simply the sum of the squares of all of the weights, multiplied by a new hyperparameter $\lambda$ which controls the overall magnitude (and therefore influence) of the regularization term. The $\frac{1}{2}$ multiplier is simply used for convenience when taking its derivative. Adding it to our original loss function, we now have:
+이 항은 정규화 항의 전체 크기(즉, 영향)를 제어하는 새로운 하이퍼 파라미터 $\lambda$에 곱한 것입니다. $\frac{1}{2}$ 승수는 쉽게 미분하기 위해 사용됩니다. 이것을 기존 손실 함수에 추가하면 다음과 같습니다.
 
 $$ J = \frac{1}{n} \sum_i{(y_i - f(x_i))^2} + R(f) $$
 
-The effect of this regularization term is is that we help gradient descent find a parameterization which does not accumulate large weights and have such wild swings as we saw above.
+이 정규화 항은 경사 하강이 위에서 본 것 처럼 큰 가중치를 쌓아 급격하게 변하지 않는 매개 변수를를 찾는 데 도움이 됩니다.
 
-Other regularization terms exist, including [L1-distance](https://en.wikipedia.org/wiki/Taxicab_geometry) or the "Manhattan distance." Each of these have slightly different properties but have approximately the same effect.
+[L1-거리](https://en.wikipedia.org/wiki/Taxicab_geometry) 또는 "맨하탄 거리"와 같은 다른 정규화 방법이 존재합니다. 이들은 약간 다른 특성을 가지고 있지만 효과는 거의 같습니다.
 
-## Dropout
+## 드롭아웃(Dropout)
 
-Dropout is a clever technique for regularization, which was only introduced by [Nitish Srivastava et al](http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf) in 2014. During training, when dropout is applied to a layer, some percentage of its neurons (a hyperparameter, with common values being between 20 and 50%) are randomly deactivated or "dropped out," along with their connections. Which neurons are dropped out are constantly shuffled randomly during training. The effect of this is to reduce the network's tendency to come to over-depend on some neurons, since it can't rely on them being available all the time. This forces the network to learn a more balanced representation, and helps combat overfitting. It is depicted below, from its original publication.
+드롭아웃은 정규화를 위한 성공적인 기술로, 2014년 [Nitish Srivastava et al](http://www.cs.toronto.edu/~rsalakhu/tfta/srivastava14a.pdf)에 의해 도입되었습니다. 학습 중에, 드롭아웃이 레이어에 적용될 때, 뉴런의 일부(일반적으로 하이퍼 파라미터의 20%~50%)는 연결과 함께 무작위로 비활성화됩니다. 어떤 뉴런이 탈락하는지는 학습 중에 끊임없이 무작위로 바뀝니다. 그 효과는 네트워크가 뉴런에 지나치게 의존하는 경향을 감소시키는 것입니다. 특정 뉴런을 항상 이용할 수는 없기 때문입니다. 이렇게 하면 네트워크가 보다 균형 잡힌 표현을 학습하고 과적합을 방지하는 데 도움이 됩니다. 원 논문의 그림은 아래와 같습니다.
 
-{% include figure_multi.md path1="/images/figures/dropout.png" caption1="During training, dropout randomly deactivates some neurons as a method for combatting overfitting. Source: <a href=\"http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf\">Srivastava et al</a>." %}
+{% include figure_multi.md path1="/images/figures/dropout.png" caption1="드롭아웃은 과적합 방지를 위한 방법으로서 학습 중에 일부 뉴런을 무작위로 비활성화합니다. 출처: <a href=\"http://www.cs.toronto.edu/~rsalakhu/papers/srivastava14a.pdf\">Srivastava et al</a>." %}
 
-Another exotic method for regularization is [adding a bit of noise to the inputs](https://www.microsoft.com/en-us/research/publication/training-with-noise-is-equivalent-to-tikhonov-regularization/). Still many others have been proposed with varying levels of success, but will not be covered in-depth here.
+정규화를 위한 또 다른 이색적인 방법은 [입력 내용에 약간의 노이즈가 있는 경우](https://www.microsoft.com/en-us/research/publication/training-with-noise-is-equivalent-to-tikhonov-regularization/)입니다. 또 다른 방법들이 많이 제안되었지만, 여기서는 자세히 다루지 않을 것입니다.
 
-# Backpropagation
+# 오차역전파법(Backpropagation)
 
-At this point, we've introduced the gradient descent algorithm for parameterizing neural networks, along with a number of flavored alternatives including adaptive and momentum-based methods. Regardless of the exact variant chosen, all of them need to compute the gradient of the loss function with respect to the weights and biases of the network. This is no easy task. To see why, let's think about how we might go about doing this. 
+이 시점에서, 우리는 신경망의 매개 변수화를 위한 경사 하강법과 적용, 그리고 모멘텀 방법을 포함한 여러 가지 대안들을 소개했습니다. 어떤 방법을 선택하든, 네트워크의 가중치와 편향에 대해 손실 함수의 기울기를 계산해야 합니다. 이것은 쉬운 일이 아닙니다. 그 이유를 알기 위해 어떻게 해야 할지 생각해 보죠.
 
-Recall that our weight update formula in standard gradient descent is given by the following:
+표준 경사 하강법에서 가중치 업데이트 공식은 다음과 같았습니다.
 
 $$ W_{t} := W_{t} - \alpha \nabla J(W_{t}) $$
 
-$\nabla J(W_{t})$ is the gradient of the loss, and must be computed in some form across all of the gradient descent varieties we surveyed. Recall that the gradient is a vector which contains each of the individual partial derivatives of the cost function with respect to each parameter, and is given by the following ($t$ is omitted for brevity). 
+$\nabla J(W_{t})$는 손실의 그레이디언트이며, 우리가 조사한 모든 경사 하강법 변형에서 어떤 형태로든 계산되어야 합니다. 그라데이션은 각 매개 변수에 대한 손실 함수의 편미분으로 이루어진 벡터이며, 다음 ($t$는 간결성을 위해 생략됨)과 같습니다.
 
 $$ \nabla J(W) = \Biggl(\frac{\partial J}{\partial w_1}, \frac{\partial J}{\partial w_2}, \cdots, \frac{\partial J}{\partial w_N} \Biggr) $$
 
-How can we calculate each $\frac{\partial J}{\partial w_i}$? The most obvious way to do this would be to compute it with the equation for a derivative from ordinary calculus:
+각 $\frac{\partial J}{\partial w_i}$를 어떻게 계산할 수 있습니까? 이렇게 하는 가장 분명한 방법은 일반적인 미분방정식으로 계산하는 것입니다.
 
 $$ \frac{\partial J}{\partial w_i} \approx \frac{J(W + \epsilon e_i) - J(W)}{\epsilon} $$
 
-Where $e_i$ is a one-hot vector (all zeros except 1 at index $i$) and $\epsilon$ is a some very small number. Technically this will work, but it presents us with a major problem: speed. To get a single element of the gradient, it's necessary to calculate the the loss function at both $W + \epsilon e_i$ and $W$. For $W$ it's only necessary to do this once, but we need $J(W + \epsilon e_i)$ for every single weight $w_i$. Typical deep neural nets have millions or even hundreds of millions of weights. This would entail doing millions of forward passes, each of which has millions of operations, just to do a single weight update. This is totally impractical for training neural nets.
+여기서 $e_i$는 원-핫 벡터(one-hot vector, 지수 $i$에서 1을 제외한 모든 0)이고 $\epsilon$은 매우 작은 숫자입니다. 이론적으로는 잘 되지만, 수렴 속도 측면에서 큰 문제가 있습니다. 그레이디언트의 단일 요소를 얻으려면 손실 함수를 $W + \epsilone_i$ 및 $W$에서 모두 계산해야 합니다. $W$의 경우 이 작업을 한 번만 수행하면 되지만, 모든 단일 가중치 $w_i$에 대해 $J(W + \epsilone_i)$가 필요합니다. 전형적인 심층 신경망은 수백만 혹은 심지어 수억의 가중치를 가지고 있습니다. 이 작업에는 수백만 번의 전진 패스를 수행해야 하며, 각 패스는 하나의 가중치 업데이트를 위해 수백만 번의 작업을 수행합니다. 이렇게 신경망을 학습시키는 것은 완전히 비현실적입니다.
 
-So how do we do it? In fact, until the development of [backpropagation](https://en.wikipedia.org/wiki/Backpropagation), this was a major impediment to training neural networks. The question of who invented backpropagation ("backprop" for short) is a [contentious issue](https://plus.google.com/100849856540000067209/posts/9BDtGwCDL7D), and it seems that a number of people have re-invented it at different times throughout history, or stumbled upon similar concepts applied to different problems. Although largely associated with neural networks, backprop can be used on any problem that involves calculating a gradient on a continuously differentiable multivariate function, and as such, its development was somewhat parallel to the development of neural networks in general. In 2014, [Jürgen Schmidhuber](http://www.idsia.ch/~juergen) compiled a [review of the relevant work that went into developing backprop](http://people.idsia.ch/~juergen/who-invented-backpropagation.html). 
+어떻게 할까요? 사실, 이것은 [오차역전파법](https://ko.wikipedia.org/wiki/%EC%97%AD%EC%A0%84%ED%8C%8C)이 개발되기 전까지 신경망 학습에 큰 걸림돌 이었습니다. 역전파를 발명한 사람이 누구인가 하는 문제는 [논쟁적 이슈](https://plus.google.com/100849856540000067209/posts/9BDtGwCDL7D),)가 있습니다. 많은 사람들이 역사 속에서 다양한 문제에 적용되는 동일한 개념을 발견한 것입니다. 신경망과 크게 관련되어 있지만, 오차 역전파(backprop)는 지속적으로 미분 가능한 다변수 함수에 대한 그레이디언트를 계산하는 것과 관련된 모든 문제에 사용될 수 있습니다. 따라서 오차 역전파법의 발전은 어느정도 신경망의 발전과 같이 이루어졌습니다. 2014년 [Jürgen Schmidhuber](http://www.idsia.ch/~jugeren)는 [오차역전파법 개발 배경 연구에 대한 리뷰](http://people.idsia.ch/~jugeren/who-juger-back propagation.differ)를 정리했습니다.
 
-Backpropagation was first applied to the task of optimizing neural networks by gradient descent in a [landmark paper in 1986](https://www.iro.umontreal.ca/~vincentp/ift3395/lectures/backprop_old.pdf) by [David Rumelhart](https://en.wikipedia.org/wiki/David_Rumelhart), [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/), and [Ronald J. Williams](http://www.ccs.neu.edu/home/rjw/). Subsequent work was done in the 80s and 90s by [Yann LeCun](http://yann.lecun.com/ex/research/index.html), who first applied it to convolutional networks. The success of neural networks was largely enabled by their efforts along with their teams.
+오차 역전파는 [David Rumelhart](https://en.wikipedia.org/wiki/David_Rumelhart), [Geoffrey Hinton](http://www.cs.toronto.edu/~hinton/) 및 [Ronald J. Williams](http://www.ccs.neu.edu/home/rjw/)가 1986년에 발표한 [획기적인 논문](https://www.iro.umontreal.ca/~hypt3395/backprop_old.pdf)에서 경사 하강에 의한 신경망 최적화를 위해 처음 적용되었습니다. 이후 80년대와 90년대에 [옌 르쿤](http://yann.lecun.com/ex/research/index.html)이 합성곱 신경망에 처음 적용했습니다. 신경망의 성공은 주로 그들의 팀의 노력에 의한 것이 큽니다.
 
-A full explanation of how backpropagation works is beyond the scope of this book. Instead, this paragraph will offer a basic high-level view of what backprop gives us, and defer a more technical explanation of it to a number of sources for further reading. The basic idea is that backprop makes it possible to compute all the elements of the gradient in a single forward and backward pass through the network, rather than having to do one forward pass for _every single_ parameter, as we'd have to using the naive approach. This is enabled by utilizing [the chain rule](https://en.wikipedia.org/wiki/Chain_rule) in calculus, which lets us decompose a derivative as a product of its individual functional parts. By keeping track of the differences in a forward pass along every connection and storing them, we can calculate the gradient by taking the loss term found at the end of the forward pass, and "propagating the error backwards" through each of the layers. This makes a backward pass take roughly the same amount of work as a forwards pass. This dramatically speeds up training and makes doing gradient descent on deep neural networks a feasible problem.
+오차역전파가 작동하는 방식에 대한 자세한 설명은 이 책의 범위를 벗어납니다. 대신, 이 단락은 오차 역전파가 무엇을  제공하는지 기본적인 관점을 설명할 것입니다. 기술적인 설명은 몇 가지 참고 문헌에 맡깁니다. 기본 아이디어는 역전파(backprop)를 사용하면 단순한 접근 방식을 사용할 때처럼 모든 매개 변수에 대해 하나의 전진 패스를 수행할 필요 없이 네트워크를 통과하는 단일 전진 및 후진 패스로 그레이디언트의 모든 요소를 계산할 수 있다는 것입니다. 이것은 미적분학의 [연쇄 법칙](https://ko.wikipedia.org/wiki/%EC%97%B0%EC%87%84_%EB%B2%95%EC%B9%99)을 활용함으로써 가능합니다. 연쇄 규칙을 사용하면 미분을 개별 함수 부분의 곱으로 분해 할 수 있습니다. 모든 연결을 따라 전진 패스의 차이를 추적하고 저장함으로써, 우리는 전진 패스의 끝에 있는 손실 항을 취하고 각 레이어를 통해 "오차를 거꾸로 전파"함으로써 기울기를 계산할 수 있습니다. 이렇게 하면 후진 패스는 전진 패스와 거의 동일한 양의 작업이 수행됩니다. 이는 학습 속도를 획기적으로 높이고 심층 신경망에서 경사 하강을 수행할 수 있도록 합니다.
 
-For more in-depth technical explanations of how backprop is derived, see the following links for further reading.
+오차 역전파법에 대한 자세한 설명은 다음 링크를 참조하십시오.
 
 {% include further_reading.md title="How the backpropagation algorithm works" author="Michael Nielsen" link="http://neuralnetworksanddeeplearning.com/chap2.html" description="A free online book which introduces neural networks and deep learning from scratch" %} 
 
 {% include further_reading.md title="Hacker's guide to Neural Networks" author="Andrej Karpathy" link="http://karpathy.github.io/neuralnets/" %} 
 
 {% include further_reading.md title="Deep Learning Basics: Neural Networks and Stochastic Gradient Descent" author="Alex Minnaar" link="http://alexminnaar.com/deep-learning-basics-neural-networks-backpropagation-and-stochastic-gradient-descent.html" %} 
- 
+
 {% include further_reading.md title="[Video] Back Propagation Derivation for Feed Forward Artificial Neural Networks " author="Sully Chen" link="https://www.youtube.com/watch?v=gl3lfL-g5mA" %} 
 
 {% include further_reading.md title="[Video] Neural network tutorial: the back-propagation algorithm (2 parts)" author="Ryan Harris" link="https://www.youtube.com/watch?v=aVId8KMsdUU" %} 
@@ -403,9 +400,8 @@ For more in-depth technical explanations of how backprop is derived, see the fol
 
 {% include further_reading.md title="A Step by Step Backpropagation Example" author="Matt Mazur" link="https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/" %} 
 
-# Descending the mountain
+# 하산하기
 
-If you've made it this far into the article, then by now the analogy of the mountain climber put forth in the beginning of this chapter should be beginning to make sense to you. If that's the case, congratulations: you appreciate the art and science of how neural networks are trained to a sufficient enough degree that actual scientific research into the topic should seem much more approachable. As the years have gone on, many scientists have proposed various and exotic extensions to backpropagation. Others, including Geoffrey Hinton himself, have suggested that machine learning [must move on from backpropagation and start over](http://www.i-programmer.info/news/105-artificial-intelligence/11135--geoffrey-hinton-says-ai-needs-to-start-over.html). But as of the writing of this book, gradient descent via backpropagation continues to be the dominant paradigm for training neural networks and most other machine learning models, and looks to be set to continue on that path for the foreseeable future. 
+여기까지 읽었다면, 여러분은 지금쯤 이 챕터의 첫머리에 제시된 등산가의 비유의 의미를 파악하셨을 것입니다. 만약 그렇다면, 축하드립니다. 신경망 학습을 위한 실제 과학적 연구가 훨씬 더 쉽게 접근할 수 있도록 충분히 성공적인 것에 대한 예술과 과학에 대해 감사하게 생각합니다. 세월이 흐르면서, 많은 과학자들은 오차 역전파를 위해 다양하고 색다른 확장을 제안했습니다. Geoffrey Hinton 자신을 포함한 다른 사람들은 기계 학습이 [역전파에서 벗어나 다시 시작해야 한다](http://www.i-programmer.info/news/105-artificial-intelligence/11135--geoffrey-hinton-says-ai-needs-to-start-over.html)를 제안했습니다. 그러나 이 책의 집필 시점에서는, 역전파를 통한 경사 하강법은 신경망과 대부분의 다른 기계 학습 모델을 훈련시키는 가장 유력한 패러다임으로, 가까운 미래에도 그럴 것으로 보입니다.
 
-In the next few chapters of the book, we are going to start to look at more advanced topics. We will introduce [Convolutional neural networks](/ml4a/convnets/) in the next chapter, as well as their numerous applications, especially toward art and other creative purposes that are at the heart of this book.
-
+이 책의 다음 몇 장에서는 좀 더 발전된 주제를 살펴보기 시작할 것입니다. 우리는 다음 장에서 [합성곱 신경망](/ml4a/convnets/)와 특히 이 책의 핵심인 예술 및 기타 창작에 대한 다양한 응용을 소개할 것입니다.
