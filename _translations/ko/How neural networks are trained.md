@@ -5,6 +5,8 @@ includes: [mathjax]
 header_image: "/images/headers/topographic_map.jpg"
 header_text: "A <a href=\"http://www.summitpost.org/ruth-creek-topographic-map/771858\">topographic map</a> depicts elevation with contour lines connecting places at equal heights."
 
+---
+
 <!--
 
 Gradient descent isn't the only way to solve neural networks. Notably, BGFS (or LBGFS when memory is limited) is sometimes used, but it operates on a similar principle: iterative, small weight updates convering on a good solution. 
@@ -138,7 +140,7 @@ X =
 x_1\\x_2\\\vdots\\x_n\\\end{bmatrix}
 $$
 
-이를 단순화하기 위해 사용할 수 있는 한 가지 방법은 바이어스 $b$를 단순히 다른 가중치로 생각하는 것입니다. 이 가중치는 항상 "더미" 입력 값 1에 곱해 표현됩니다. 즉, 다음과 같이 표현할 수 있습니다.
+이를 단순화하기 위해 사용할 수 있는 한 가지 방법은 편향 $b$를 단순히 다른 가중치로 생각하는 것입니다. 이 가중치는 항상 "더미" 입력 값 1에 곱해 표현됩니다. 즉, 다음과 같이 표현할 수 있습니다.
 
 $$
 f(x) = W^\top X
@@ -194,7 +196,7 @@ $$ \frac{\partial J}{\partial m} = \frac{2}{n} \sum_i{x_i \cdot (y_i - (mx_i + b
 
 $$ \frac{\partial J}{\partial b} = \frac{2}{n} \sum_i{(y_i - (mx_i + b))} $$
 
-그 방향으로 얼마나 더 나아가야 할까요? 이것은 중요한 고려사항으로 밝혀졌습니다. 그리고 보통의 경사 하강법에서는, 이것은 수동으로 결정하는 하이퍼 파라미터(hyperparameter)로 남겨집니다. 학습률로 알려진 이 하이퍼 파라미터는 일반적으로 가장 중요하고 민감한 하이퍼 파라미터이며 종종 $$\alpha$$로 표시됩니다. $$\alpha$$가 너무 낮게 설정되어 있으면 가장 낮은 곳으로 이동하는 데 참을 수 없을 정도로 오랜 시간이 걸릴 수 있습니다. $$\alpha$$가 너무 높으면 올바른 경로를 오버슈팅(overshoot)하거나 심지어는 위로 올라갈 수도 있습니다.
+그 방향으로 얼마나 더 나아가야 할까요? 이것은 아주 중요한 사항입니다. 그리고 보통의 경사 하강법에서는, 이것은 수동으로 결정하는 하이퍼 파라미터(hyperparameter)로 남겨집니다. 학습률로 알려진 이 하이퍼 파라미터는 일반적으로 가장 중요하고 민감한 하이퍼 파라미터이며 종종 $$\alpha$$로 표시됩니다. $$\alpha$$가 너무 낮게 설정되어 있으면 가장 낮은 곳으로 이동하는 데 참을 수 없을 정도로 오랜 시간이 걸릴 수 있습니다. $$\alpha$$가 너무 높으면 올바른 경로를 오버슈팅(overshoot)하거나 심지어는 위로 올라갈 수도 있습니다.
 
 할당 작업을 $:=$로 나타내면 두 매개 변수에 대한 업데이트 단계를 다음과 같이 작성할 수 있습니다.
 
@@ -249,6 +251,7 @@ MB-GD를 사용하면 다음 두 가지 모두를 최대한 활용할 수 있습
 [모멘텀](https://distill.pub/2017/momentum/)은 가중치 업데이트가 관성을 갖는 변형된 경사 하강법을 가리킵니다. 즉, 가중치 업데이트는 더 이상 현재에서 점진적으로 바뀌는 함수가 아니라 이전 업데이트의 속도에 따라 점차 조정됩니다.
 
 표준 경사 하강에서 기울기 $$\nabla J(W)$$를 계산하고 학습률 $\alpha$와 함께 다음 매개 변수 업데이트 공식을 사용한다는 점을 기억합시다.
+
 $$ W_{t} := W_{t} - \alpha \nabla J(W_{t}) $$
 
 이전에 생략된 현재 단계를 나타내기 위해 첨자$$t$$를 추가했습니다. 이와는 대조적으로, 모멘텀이 있는 경사 하강에 대한 일반적인 공식은 다음과 같습니다.
@@ -273,7 +276,7 @@ $$ z_{t} := \beta z_{t-1} + \nabla J(W_{t-1} - \beta z_{t-1} ) $$
 
 {% include further_reading.md title="Why momentum works" author="Gabriel Goh" link="https://distill.pub/2017/momentum/" %} 
 
-## 적응 기법
+## 적용 기법
 
 모멘텀은 여러 종류가 있습니다. 일반적으로 경사 하강 시 매개 변수를 업데이트하기 위한 빠르고, 효율적이며, 정확한 전략을 찾는 것이 이 분야의 과학 연구의 핵심 목표이지만, 이에 대한 논의는 이 책의 범위를 벗어납니다. 대신 이 절에서는 실제 구현에서 잘 볼 수 있는 몇 가지 변형 방법들을 간략하게 정리해 보겠습니다. 보다 포괄적인 설명은 다른 온라인 자료를 참고하시기 바랍니다.
 
@@ -404,4 +407,4 @@ $$ \frac{\partial J}{\partial w_i} \approx \frac{J(W + \epsilon e_i) - J(W)}{\ep
 
 여기까지 읽었다면, 여러분은 지금쯤 이 챕터의 첫머리에 제시된 등산가의 비유의 의미를 파악하셨을 것입니다. 만약 그렇다면, 축하드립니다. 신경망 학습을 위한 실제 과학적 연구가 훨씬 더 쉽게 접근할 수 있도록 충분히 성공적인 것에 대한 예술과 과학에 대해 감사하게 생각합니다. 세월이 흐르면서, 많은 과학자들은 오차 역전파를 위해 다양하고 색다른 확장을 제안했습니다. Geoffrey Hinton 자신을 포함한 다른 사람들은 기계 학습이 [역전파에서 벗어나 다시 시작해야 한다](http://www.i-programmer.info/news/105-artificial-intelligence/11135--geoffrey-hinton-says-ai-needs-to-start-over.html)를 제안했습니다. 그러나 이 책의 집필 시점에서는, 역전파를 통한 경사 하강법은 신경망과 대부분의 다른 기계 학습 모델을 훈련시키는 가장 유력한 패러다임으로, 가까운 미래에도 그럴 것으로 보입니다.
 
-이 책의 다음 몇 장에서는 좀 더 발전된 주제를 살펴보기 시작할 것입니다. 우리는 다음 장에서 [합성곱 신경망](/ml4a/convnets/)와 특히 이 책의 핵심인 예술 및 기타 창작에 대한 다양한 응용을 소개할 것입니다.
+이 책의 다음 몇 장에서는 좀 더 발전된 주제를 살펴보기 시작할 것입니다. 우리는 다음 장에서 [합성곱 신경망](/ml4a/convnets/)과 특히 이 책의 핵심인 예술 및 기타 창작에 대한 다양한 응용을 소개할 것입니다.
