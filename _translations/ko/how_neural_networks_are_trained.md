@@ -300,7 +300,7 @@ AdaGrad는 대부분 초기 학습률 $$\alpha$$를 하이퍼 파라미터로 �
 
 [Alex Radford](https://twitter.com/alecrad)의 멋진 시각화를 통해 지금까지 논의된 여러 그레이디언트 업데이트 방법 중 특징적인 동작을 보여줍니다. 운동량 기반 방법인 모멘텀 및 네스테로프 가속 경사 하강(NAG)은 "하강으로 너무 빠르게" 최적 경로를 오버슈팅하는 경향이 있고, 표준 SGD는 올바른 경로에서 너무 느리게 이동합니다. AdaGrad, AdaDelta, 그리고 RMSProp 같은 적응적 방법은 (Adam을 여기에 추가할 수도 있습니다) 매개 변수별로 유연성이 있어 두 가지 함정을 모두 피할 수 있습니다.
 
-{% include figure_multi.md path1="/images/figures/opt2a.gif" caption1="좋은 매개 변수로 수렴되는 그레이디언트 업데이트 방법의 등고선도. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" path2="/images/figures/opt1a.gif" caption2=안장점에서 빠져나오는 그라데이션 업데이트 방법의 비교입니다. SGD가 끼이는 것을 주목하세요. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
+{% include figure_multi.md path1="/images/figures/opt2a.gif" caption1="좋은 매개 변수로 수렴되는 그레이디언트 업데이트 방법의 등고선도. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" path2="/images/figures/opt1a.gif" caption2="안장점에서 빠져나오는 그라데이션 업데이트 방법의 비교입니다. SGD가 끼이는 것을 주목하세요. 출처 <a href=\"https://www.twitter.com/alecrad\">Alec Radford</a>" %}
 
 그렇다면 어떤 최적화 방법이 가장 효과적일까요? 이에 대한 간단한 해답은 없으며, 답변은 주로 데이터의 특성과 기타 교육 제약 및 고려 사항에 따라 달라집니다. Adam은 적어도 처음에는 유망한 방법으로 등장했습니다. 데이터가 희박하거나 불균일하게 분포된 경우에는 순수하게 적용된 방법이 가장 잘 작동하는 경향이 있습니다. 각 방법의 사용 시기에 대한 자세한 설명은 본 장의 범위를 벗어나기 때문에, 더 많은 정보는 최적화에 대한 학술 논문이나 [요슈아 벤지오](https://arxiv.org/pdf/1206.5533v2.pdf)와 같은 실용적인 요약을 참고하시기 바랍니다.
 
