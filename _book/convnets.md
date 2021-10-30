@@ -216,7 +216,7 @@ Generative applications of convnets, including those in the image domain and ass
 
 {% include further_reading.md title="Conv Nets: A Modular Perspective" author="Chris Olah" link="https://colah.github.io/posts/2014-07-Conv-Nets-Modular/" %} 
  
-{% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %} 
+{% include further_reading.md title="Visualizing what ConvNets learn (Stanford CS231n)" author="Andrej Karpathy" link="https://cs231n.github.io/understanding-cnn/" %} 
 
 {% include further_reading.md title="How do Convolutional Neural Networks work?" author="Brandon Rohrer" link="https://brohrer.github.io/how_convolutional_neural_networks_work.html" %} 
 
