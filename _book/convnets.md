@@ -112,7 +112,7 @@ Prior to this chapter, we've just looked at _fully-connected layers_, in which e
 
 {% include figure_multi.md path1="/images/figures/weights_analogy_2.png" caption1="Weights analogy" %}
 
-We can interpret the set of weights as a _feature detector_ which is trying to detect the presence of a particular feature. We can visualize these feature detectors, as we did previously for MNIST and CIFAR. In a 1-layer fully-connected layer, the "features" are simply the the image classes themselves, and thus the weights appear as templates for the entire classes. 
+We can interpret the set of weights as a _feature detector_ which is trying to detect the presence of a particular feature. We can visualize these feature detectors, as we did previously for MNIST and CIFAR. In a 1-layer fully-connected layer, the "features" are simply the image classes themselves, and thus the weights appear as templates for the entire classes. 
 
 In convolutional layers, we instead have a collection of smaller feature detectors called _convolutional filters_ which we individually slide along the entire image and perform the same weighted sum operation as before, on each subregion of the image. Essentially, for each of these small filters, we generate a map of responses--called an _activation map_--which indicate the presence of that feature across the image.
 
